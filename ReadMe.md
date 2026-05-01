@@ -2,4 +2,6 @@
 
 ## Microservice System Baseline:
 
-![alt text](figures/ms-scm.png)
+- RetailBen
+- Google Online Boutique Microservices
+- DeathStarBench Social Network
