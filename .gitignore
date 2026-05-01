@@ -1,0 +1,11 @@
+.env
+.env.local
+*.pyc
+.idea/
+*.DS_Store
+__pycache__/
+*.mako
+/alembic/script.py.mako
+*.html
+.sonar/
+

@@ -1,0 +1,64 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: postgres_ms_to_mas
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_DB: ms_to_mas
+      POSTGRES_PASSWORD: pass1
+    volumes:
+      - postgres-local-db-ms-to-mas:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+    ports:
+      - "5442:5432"
+    command: >
+      bash -c "apt-get update && apt-get install -y postgresql-16-pgvector && docker-entrypoint.sh postgres"
+
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_ms_to_mas
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass1
+    volumes:
+      - mongodb-data-ms-to-mas:/data/db
+
+
+  redis:
+    image: redis
+    container_name: redis_ms_to_mas
+    #restart: always
+    ports:
+      - '6385:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass 1
+    volumes:
+      - redis-cache-local-ms-to-mas:/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq_ms_to_mas
+    ports:
+      - "5672:5672"  # RabbitMQ broker port
+      - "15672:15672"  # RabbitMQ management UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq-data-ms-to-mas:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+
+volumes:
+  redis-cache-local-ms-to-mas:
+  postgres-local-db-ms-to-mas:
+  rabbitmq-data-ms-to-mas:
+  mongodb-data-ms-to-mas:

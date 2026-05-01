@@ -1,0 +1,10 @@
+2026-02-14 17:54:26,528 - INFO - Request for process_payment, order_id: ea9e453c-c9e0-4c2a-9516-898ddaa13698, request: order_id='ea9e453c-c9e0-4c2a-9516-898ddaa13698' final_price=400.0
+2026-02-14 17:54:26,831 - INFO - Request for process_payment successfully processed, order_id: ea9e453c-c9e0-4c2a-9516-898ddaa13698, status: SUCCESS
+2026-02-14 17:54:27,093 - INFO - Request for process_payment, order_id: 6b35cea5-2743-4eab-a898-238ad5603836, request: order_id='6b35cea5-2743-4eab-a898-238ad5603836' final_price=400.0
+2026-02-14 17:54:27,396 - INFO - Request for process_payment successfully processed, order_id: 6b35cea5-2743-4eab-a898-238ad5603836, status: SUCCESS
+2026-02-14 17:54:27,646 - INFO - Request for process_payment, order_id: 4f1d6e08-a8d4-4520-a272-487f192dd8d3, request: order_id='4f1d6e08-a8d4-4520-a272-487f192dd8d3' final_price=400.0
+2026-02-14 17:54:27,949 - INFO - Request for process_payment successfully processed, order_id: 4f1d6e08-a8d4-4520-a272-487f192dd8d3, status: SUCCESS
+2026-02-14 17:54:28,206 - INFO - Request for process_payment, order_id: 052b59b7-cc28-4b32-94a6-ddbd856cd804, request: order_id='052b59b7-cc28-4b32-94a6-ddbd856cd804' final_price=400.0
+2026-02-14 17:54:28,509 - INFO - Request for process_payment successfully processed, order_id: 052b59b7-cc28-4b32-94a6-ddbd856cd804, status: SUCCESS
+2026-02-14 17:54:28,758 - INFO - Request for process_payment, order_id: e034e236-5f94-49ca-bced-40ed03b69b61, request: order_id='e034e236-5f94-49ca-bced-40ed03b69b61' final_price=400.0
+2026-02-14 17:54:29,061 - INFO - Request for process_payment successfully processed, order_id: e034e236-5f94-49ca-bced-40ed03b69b61, status: SUCCESS

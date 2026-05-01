@@ -1,0 +1,21 @@
+
+
+{
+  "migration_order": "Ranked",
+  "step": "4",
+  "services": "order_service:8000,payment_service:8007,shopping_cart_service:8003",
+  "agents": "inventory_agent:8001,shipment_agent:8006",
+  "acceptance_result": {
+    "epsilon_l": "1.9",
+    "epsilon_qa": "0",
+    "epsilon_f": "0.02",
+    "p95_latency": 1.1,
+    "qa_inconsistency_rate": 0.1,
+    "failure_rate": 0.01,
+    "latency_predicate_failed": true,
+    "qa_predicate_failed": true,
+    "failure_rate_predicate_failed": true,
+    "success": true
+  }
+}
+
