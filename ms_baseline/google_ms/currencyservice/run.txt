@@ -1,0 +1,1 @@
+python3 -m ms_baseline.google_ms.currencyservice.currencyservice

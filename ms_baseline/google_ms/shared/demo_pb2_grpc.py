@@ -2,12 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 import warnings
-import sys
-import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
-
-import demo_pb2 as demo__pb2
+from ..shared import demo_pb2 as demo__pb2
 
 GRPC_GENERATED_VERSION = '1.74.0'
 GRPC_VERSION = grpc.__version__

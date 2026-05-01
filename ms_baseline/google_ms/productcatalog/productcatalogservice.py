@@ -12,10 +12,10 @@ import logging
 import os
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from shared import demo_pb2
-from shared import demo_pb2_grpc
-from shared.base_service import make_health_app, run_service
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
+from ..shared import demo_pb2
+from ..shared import demo_pb2_grpc
+from ..shared.base_service import make_health_app, run_service
 
 logger = logging.getLogger(__name__)
 GRPC_PORT = int(os.getenv("PORT", "3550"))
@@ -24,7 +24,7 @@ GRPC_PORT = int(os.getenv("PORT", "3550"))
 
 _CATALOG_PATH = os.getenv(
     "PRODUCTS_JSON",
-    os.path.join(os.path.dirname(__file__), "products.json"),
+    os.path.join(os.path.dirname(__file__), "../products.json"),
 )
 
 def _load_catalog() -> list[demo_pb2.Product]:

@@ -1,0 +1,2 @@
+python3 -m ms_baseline.google_ms.adservice.adservice
+python3 -m ms_baseline.google_ms.adservice.client
