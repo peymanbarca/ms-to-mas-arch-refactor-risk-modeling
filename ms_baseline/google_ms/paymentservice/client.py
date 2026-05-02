@@ -239,7 +239,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     _, _card, _cvv, _year, _month, _curr, _units, _nanos = sys.argv
-    _addr = os.getenv("PAYMENT_SERVICE_ADDR", "localhost:50051")
+    _addr = os.getenv("PAYMENT_SERVICE_ADDR", "localhost:5052")
 
     asyncio.run(_run_cli(
         address    = _addr,
