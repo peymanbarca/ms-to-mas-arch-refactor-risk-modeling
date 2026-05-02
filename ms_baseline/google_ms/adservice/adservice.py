@@ -235,20 +235,20 @@ if __name__ == "__main__":
     )
 
     # Optional: OpenTelemetry Jaeger export (replaces Java JaegerTraceExporter)
-    jaeger_endpoint = os.getenv("OTEL_EXPORTER_JAEGER_ENDPOINT")
-    if jaeger_endpoint:
-        try:
-            from opentelemetry import trace
-            from opentelemetry.exporter.jaeger.thrift import JaegerExporter
-            from opentelemetry.sdk.trace import TracerProvider
-            from opentelemetry.sdk.trace.export import BatchSpanProcessor
+    # jaeger_endpoint = os.getenv("OTEL_EXPORTER_JAEGER_ENDPOINT")
+    # if jaeger_endpoint:
+    #     try:
+    #         from opentelemetry import trace
+    #         from opentelemetry.exporter.jaeger.thrift import JaegerExporter
+    #         from opentelemetry.sdk.trace import TracerProvider
+    #         from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
-            provider = TracerProvider()
-            provider.add_span_processor(BatchSpanProcessor(JaegerExporter()))
-            trace.set_tracer_provider(provider)
-            logger.info("Jaeger tracing enabled → %s", jaeger_endpoint)
-        except ImportError:
-            logger.warning("opentelemetry-exporter-jaeger not installed; skipping Jaeger export")
+    #         provider = TracerProvider()
+    #         provider.add_span_processor(BatchSpanProcessor(JaegerExporter()))
+    #         trace.set_tracer_provider(provider)
+    #         logger.info("Jaeger tracing enabled → %s", jaeger_endpoint)
+    #     except ImportError:
+    #         logger.warning("opentelemetry-exporter-jaeger not installed; skipping Jaeger export")
 
     logger.info("AdService starting | gRPC port=%d", GRPC_PORT)
     logger.info("Ad catalog loaded | total_ads=%d | categories=%s",

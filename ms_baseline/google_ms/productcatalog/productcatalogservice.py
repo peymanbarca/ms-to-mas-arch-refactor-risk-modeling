@@ -24,7 +24,7 @@ GRPC_PORT = int(os.getenv("PORT", "3550"))
 
 _CATALOG_PATH = os.getenv(
     "PRODUCTS_JSON",
-    os.path.join(os.path.dirname(__file__), "../products.json"),
+    os.path.join(os.path.dirname(__file__), "products.json"),
 )
 
 def _load_catalog() -> list[demo_pb2.Product]:

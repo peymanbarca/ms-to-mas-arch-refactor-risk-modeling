@@ -58,37 +58,37 @@ GRPC_PORT = int(os.getenv("PORT", "50051"))
 # (mirrors Go's initTracing – currently a TODO in the original too)
 # ════════════════════════════════════════════════════════════════════════════
 
-def _setup_tracing() -> None:
-    if os.getenv("DISABLE_TRACING"):
-        logger.info("Tracing disabled.")
-        return
+# def _setup_tracing() -> None:
+#     if os.getenv("DISABLE_TRACING"):
+#         logger.info("Tracing disabled.")
+#         return
 
-    logger.info("Tracing enabled.")
-    try:
-        from opentelemetry import trace
-        from opentelemetry.instrumentation.grpc import (
-            GrpcAioInstrumentorServer,
-            GrpcAioInstrumentorClient,
-        )
-        from opentelemetry.sdk.trace import TracerProvider
-        from opentelemetry.sdk.trace.export import BatchSpanProcessor
-        from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+#     logger.info("Tracing enabled.")
+#     try:
+#         from opentelemetry import trace
+#         from opentelemetry.instrumentation.grpc import (
+#             GrpcAioInstrumentorServer,
+#             GrpcAioInstrumentorClient,
+#         )
+#         from opentelemetry.sdk.trace import TracerProvider
+#         from opentelemetry.sdk.trace.export import BatchSpanProcessor
+#         from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
-        GrpcAioInstrumentorServer().instrument()
-        GrpcAioInstrumentorClient().instrument()
+#         GrpcAioInstrumentorServer().instrument()
+#         GrpcAioInstrumentorClient().instrument()
 
-        endpoint = os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT", "localhost:4317")
-        provider = TracerProvider()
-        provider.add_span_processor(
-            BatchSpanProcessor(OTLPSpanExporter(endpoint=endpoint, insecure=True))
-        )
-        trace.set_tracer_provider(provider)
-        logger.info("OTLP tracing → %s", endpoint)
+#         endpoint = os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT", "localhost:4317")
+#         provider = TracerProvider()
+#         provider.add_span_processor(
+#             BatchSpanProcessor(OTLPSpanExporter(endpoint=endpoint, insecure=True))
+#         )
+#         trace.set_tracer_provider(provider)
+#         logger.info("OTLP tracing → %s", endpoint)
 
-    except ImportError:
-        logger.info("opentelemetry packages not installed – tracing skipped")
-    except Exception:
-        logger.warning("Tracing setup error: %s", traceback.format_exc())
+#     except ImportError:
+#         logger.info("opentelemetry packages not installed – tracing skipped")
+#     except Exception:
+#         logger.warning("Tracing setup error: %s", traceback.format_exc())
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -96,33 +96,33 @@ def _setup_tracing() -> None:
 # (mirrors Go's initProfiling with 3-retry logic)
 # ════════════════════════════════════════════════════════════════════════════
 
-def _setup_profiler() -> None:
-    if os.getenv("DISABLE_PROFILER"):
-        logger.info("Profiling disabled.")
-        return
+# def _setup_profiler() -> None:
+#     if os.getenv("DISABLE_PROFILER"):
+#         logger.info("Profiling disabled.")
+#         return
 
-    logger.info("Profiling enabled.")
-    try:
-        import googlecloudprofiler
-        for attempt in range(1, 4):
-            try:
-                googlecloudprofiler.start(
-                    service="shippingservice",
-                    service_version="1.0.0",
-                    verbose=0,
-                )
-                logger.info("started Stackdriver profiler")
-                return
-            except Exception as exc:
-                logger.warning("failed to start profiler (attempt %d): %s", attempt, exc)
-                if attempt < 3:
-                    wait = 10 * attempt
-                    logger.info("sleeping %ds before retry", wait)
-                    import time
-                    time.sleep(wait)
-        logger.warning("could not initialize Stackdriver profiler after retrying, giving up")
-    except ImportError:
-        logger.info("googlecloudprofiler not installed – profiling skipped")
+#     logger.info("Profiling enabled.")
+#     try:
+#         import googlecloudprofiler
+#         for attempt in range(1, 4):
+#             try:
+#                 googlecloudprofiler.start(
+#                     service="shippingservice",
+#                     service_version="1.0.0",
+#                     verbose=0,
+#                 )
+#                 logger.info("started Stackdriver profiler")
+#                 return
+#             except Exception as exc:
+#                 logger.warning("failed to start profiler (attempt %d): %s", attempt, exc)
+#                 if attempt < 3:
+#                     wait = 10 * attempt
+#                     logger.info("sleeping %ds before retry", wait)
+#                     import time
+#                     time.sleep(wait)
+#         logger.warning("could not initialize Stackdriver profiler after retrying, giving up")
+#     except ImportError:
+#         logger.info("googlecloudprofiler not installed – profiling skipped")
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -317,10 +317,10 @@ if __name__ == "__main__":
     )
 
     # Go: if DISABLE_TRACING == "" → initTracing()
-    _setup_tracing()
+    # _setup_tracing()
 
     # Go: if DISABLE_PROFILER == "" → initProfiling()
-    _setup_profiler()
+    # _setup_profiler()
 
     # Go: port := defaultPort / os.LookupEnv("PORT")
     logger.info("Shipping Service listening on port %d", GRPC_PORT)

@@ -58,53 +58,53 @@ GRPC_PORT = int(os.getenv("PORT", "8080"))
 # (mirrors original GrpcInstrumentorClient/Server + OTLPSpanExporter block)
 # ════════════════════════════════════════════════════════════════════════════
 
-def _setup_tracing() -> None:
-    """
-    Original:
-        grpc_client_instrumentor = GrpcInstrumentorClient(); .instrument()
-        grpc_server_instrumentor = GrpcInstrumentorServer(); .instrument()
-        if os.environ["ENABLE_TRACING"] == "1":
-            trace.set_tracer_provider(TracerProvider())
-            otel_endpoint = os.getenv("COLLECTOR_SERVICE_ADDR", "localhost:4317")
-            trace.get_tracer_provider().add_span_processor(
-                BatchSpanProcessor(OTLPSpanExporter(endpoint=otel_endpoint, insecure=True))
-            )
-    """
-    try:
-        from opentelemetry import trace
-        from opentelemetry.instrumentation.grpc import (
-            GrpcAioInstrumentorClient,
-            GrpcAioInstrumentorServer,
-        )
-        from opentelemetry.sdk.trace import TracerProvider
-        from opentelemetry.sdk.trace.export import BatchSpanProcessor
-        from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+# def _setup_tracing() -> None:
+#     """
+#     Original:
+#         grpc_client_instrumentor = GrpcInstrumentorClient(); .instrument()
+#         grpc_server_instrumentor = GrpcInstrumentorServer(); .instrument()
+#         if os.environ["ENABLE_TRACING"] == "1":
+#             trace.set_tracer_provider(TracerProvider())
+#             otel_endpoint = os.getenv("COLLECTOR_SERVICE_ADDR", "localhost:4317")
+#             trace.get_tracer_provider().add_span_processor(
+#                 BatchSpanProcessor(OTLPSpanExporter(endpoint=otel_endpoint, insecure=True))
+#             )
+#     """
+#     try:
+#         from opentelemetry import trace
+#         from opentelemetry.instrumentation.grpc import (
+#             GrpcAioInstrumentorClient,
+#             GrpcAioInstrumentorServer,
+#         )
+#         from opentelemetry.sdk.trace import TracerProvider
+#         from opentelemetry.sdk.trace.export import BatchSpanProcessor
+#         from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
-        # Auto-instrument all gRPC client + server calls
-        GrpcAioInstrumentorClient().instrument()
-        GrpcAioInstrumentorServer().instrument()
-        logger.info("gRPC OpenTelemetry instrumentation enabled")
+#         # Auto-instrument all gRPC client + server calls
+#         GrpcAioInstrumentorClient().instrument()
+#         GrpcAioInstrumentorServer().instrument()
+#         logger.info("gRPC OpenTelemetry instrumentation enabled")
 
-        if os.environ.get("ENABLE_TRACING") == "1":
-            otel_endpoint = os.getenv("COLLECTOR_SERVICE_ADDR", "localhost:4317")
-            provider = TracerProvider()
-            provider.add_span_processor(
-                BatchSpanProcessor(
-                    OTLPSpanExporter(endpoint=otel_endpoint, insecure=True)
-                )
-            )
-            trace.set_tracer_provider(provider)
-            logger.info("OTLP tracing → %s", otel_endpoint)
-        else:
-            logger.info("Tracing disabled (ENABLE_TRACING != 1)")
+#         if os.environ.get("ENABLE_TRACING") == "1":
+#             otel_endpoint = os.getenv("COLLECTOR_SERVICE_ADDR", "localhost:4317")
+#             provider = TracerProvider()
+#             provider.add_span_processor(
+#                 BatchSpanProcessor(
+#                     OTLPSpanExporter(endpoint=otel_endpoint, insecure=True)
+#                 )
+#             )
+#             trace.set_tracer_provider(provider)
+#             logger.info("OTLP tracing → %s", otel_endpoint)
+#         else:
+#             logger.info("Tracing disabled (ENABLE_TRACING != 1)")
 
-    except ImportError:
-        logger.info("opentelemetry packages not installed – tracing disabled")
-    except Exception:
-        logger.warning(
-            "Exception on tracing setup: %s – tracing disabled",
-            traceback.format_exc(),
-        )
+#     except ImportError:
+#         logger.info("opentelemetry packages not installed – tracing disabled")
+#     except Exception:
+#         logger.warning(
+#             "Exception on tracing setup: %s – tracing disabled",
+#             traceback.format_exc(),
+#         )
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -213,7 +213,7 @@ if __name__ == "__main__":
         logger.info("Profiler disabled via env var.")
 
     # ── Original: GrpcInstrumentor + TracerProvider ───────────────────────────
-    _setup_tracing()
+    # _setup_tracing()
 
     # ── Original: server.start() + blockUntilShutdown ───────────────────────
     http_port = int(os.getenv("HTTP_PORT", GRPC_PORT + 1000))
