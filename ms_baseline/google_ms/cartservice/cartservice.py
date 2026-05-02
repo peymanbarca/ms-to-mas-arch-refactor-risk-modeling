@@ -18,9 +18,9 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from shared import demo_pb2
-from shared import demo_pb2_grpc
-from shared.base_service import make_health_app, run_service
+from ..shared import demo_pb2
+from ..shared import demo_pb2_grpc
+from ..shared.base_service import make_health_app, run_service
 
 logger = logging.getLogger(__name__)
 
