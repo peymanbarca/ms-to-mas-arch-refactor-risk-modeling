@@ -55,7 +55,7 @@ from .card_validator import (
 
 logger = logging.getLogger("paymentservice")
 
-GRPC_PORT = int(os.getenv("PORT", "50051"))
+GRPC_PORT = int(os.getenv("PORT", "5052"))
 
 
 # ════════════════════════════════════════════════════════════════════════════

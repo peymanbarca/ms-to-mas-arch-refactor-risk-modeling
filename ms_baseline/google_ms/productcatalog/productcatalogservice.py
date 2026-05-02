@@ -2,8 +2,8 @@
 productcatalogservice/main.py
 
 Replaces the original Go productcatalogservice.
-- gRPC server on port 3550
-- FastAPI HTTP server on port 4550
+- gRPC server on port 5055
+- FastAPI HTTP server on port 6055
 - Reads products from products.json (same format as original)
 """
 
@@ -18,7 +18,7 @@ from ..shared import demo_pb2_grpc
 from ..shared.base_service import make_health_app, run_service
 
 logger = logging.getLogger(__name__)
-GRPC_PORT = int(os.getenv("PORT", "3550"))
+GRPC_PORT = int(os.getenv("PORT", "5055"))
 
 # ── Product catalog loader ───────────────────────────────────────────────────
 

@@ -9,7 +9,7 @@ from ..shared import demo_pb2, demo_pb2_grpc
 async def run_client():
     """gRPC client for ProductCatalogService"""
     async with grpc.aio.insecure_channel(
-        "localhost:3550",
+        "localhost:5055",
     ) as channel:
         stub = demo_pb2_grpc.ProductCatalogServiceStub(channel)
 

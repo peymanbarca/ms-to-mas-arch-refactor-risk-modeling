@@ -18,7 +18,7 @@ from ..shared import demo_pb2_grpc
 from ..shared.base_service import make_health_app, run_service
 
 logger = logging.getLogger(__name__)
-GRPC_PORT = int(os.getenv("PORT", "7000"))
+GRPC_PORT = int(os.getenv("PORT", "5053"))
 
 # ── Currency data loader ─────────────────────────────────────────────────────
 

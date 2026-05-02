@@ -50,7 +50,7 @@ from .quote import create_quote_from_count
 
 logger = logging.getLogger("shippingservice")
 
-GRPC_PORT = int(os.getenv("PORT", "50051"))
+GRPC_PORT = int(os.getenv("PORT", "5051"))
 
 
 # ════════════════════════════════════════════════════════════════════════════

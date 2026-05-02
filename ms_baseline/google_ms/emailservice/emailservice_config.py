@@ -11,12 +11,12 @@ import os
 
 # gRPC Configuration
 GRPC_HOST = os.getenv("EMAIL_SERVICE_HOST", "localhost")
-GRPC_PORT = int(os.getenv("EMAIL_SERVICE_GRPC_PORT", "8081"))
+GRPC_PORT = int(os.getenv("EMAIL_SERVICE_GRPC_PORT", "5056"))
 GRPC_ADDRESS = f"{GRPC_HOST}:{GRPC_PORT}"
 
 # HTTP Configuration
 HTTP_HOST = os.getenv("EMAIL_SERVICE_HTTP_HOST", "0.0.0.0")
-HTTP_PORT = int(os.getenv("EMAIL_SERVICE_HTTP_PORT", "9081"))
+HTTP_PORT = int(os.getenv("EMAIL_SERVICE_HTTP_PORT", "6056"))
 HTTP_BASE_URL = f"http://{GRPC_HOST}:{HTTP_PORT}"
 
 # Service Metadata

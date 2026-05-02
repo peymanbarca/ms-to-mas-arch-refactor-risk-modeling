@@ -25,7 +25,7 @@ from ..shared.base_service import make_health_app, run_service
 logger = logging.getLogger(__name__)
 
 REDIS_ADDR = os.getenv("REDIS_ADDR", "localhost:6385")
-GRPC_PORT  = int(os.getenv("PORT", "7070"))
+GRPC_PORT  = int(os.getenv("PORT", "5054"))
 
 # ── Redis client ────────────────────────────────────────────────────────────
 

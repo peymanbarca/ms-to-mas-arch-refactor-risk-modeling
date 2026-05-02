@@ -54,7 +54,7 @@ from .servicer import AdServicer
 
 logger = logging.getLogger(__name__)
 
-GRPC_PORT = int(os.getenv("PORT", "9555"))
+GRPC_PORT = int(os.getenv("PORT", "5057"))
 
 # # ── Prometheus metrics (optional – mirrors Java PrometheusStatsCollector) ───
 # try:

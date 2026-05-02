@@ -24,7 +24,7 @@ from ms_baseline.google_ms.shared import demo_pb2_grpc
 from ms_baseline.google_ms.shared.base_service import make_health_app, run_service
 
 logger = logging.getLogger(__name__)
-GRPC_PORT = int(os.getenv("PORT", "8081"))
+GRPC_PORT = int(os.getenv("PORT", "5056"))
 
 # ── Email template loader ────────────────────────────────────────────────────
 

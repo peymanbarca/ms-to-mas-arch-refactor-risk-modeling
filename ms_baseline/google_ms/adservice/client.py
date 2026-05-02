@@ -31,7 +31,7 @@ from ..shared import demo_pb2_grpc
 logger = logging.getLogger(__name__)
 
 # ── default target (matches Kubernetes service name + Java client default) ───
-_DEFAULT_ADDR = os.getenv("AD_SERVICE_ADDR", "localhost:9555")
+_DEFAULT_ADDR = os.getenv("AD_SERVICE_ADDR", "localhost:5057")
 
 
 class AdServiceClient:

@@ -68,7 +68,7 @@ from ..shared import demo_pb2_grpc
 
 logger = logging.getLogger("shippingservice-client")
 
-_DEFAULT_ADDR = os.getenv("SHIPPING_SERVICE_ADDR", "localhost:50051")
+_DEFAULT_ADDR = os.getenv("SHIPPING_SERVICE_ADDR", "localhost:5051")
 
 
 # ── Error type ────────────────────────────────────────────────────────────────

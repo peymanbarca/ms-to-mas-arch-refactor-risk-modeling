@@ -157,7 +157,7 @@ async def main():
     print()
 
     # Initialize client
-    client = EmailServiceClient("localhost:8081")
+    client = EmailServiceClient("localhost:5056")
 
     try:
         # Connect to service

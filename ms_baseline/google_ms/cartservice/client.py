@@ -135,7 +135,7 @@ async def main():
     print()
 
     # Initialize client
-    client = CartServiceClient("localhost:7070")
+    client = CartServiceClient("localhost:5054")
 
     try:
         # Connect to service

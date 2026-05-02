@@ -50,7 +50,7 @@ from .servicer import RecommendationServicer
 
 logger = logging.getLogger("recommendationservice-server")
 
-GRPC_PORT = int(os.getenv("PORT", "8080"))
+GRPC_PORT = int(os.getenv("PORT", "5058"))
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -221,7 +221,7 @@ if __name__ == "__main__":
     async def _main() -> None:
 
         # ── Original: catalog_addr check ────────────────────────────────────────
-        catalog_addr = os.environ.get("PRODUCT_CATALOG_SERVICE_ADDR", "localhost:3550")
+        catalog_addr = os.environ.get("PRODUCT_CATALOG_SERVICE_ADDR", "localhost:5055")
         if not catalog_addr:
             raise EnvironmentError(
                 "PRODUCT_CATALOG_SERVICE_ADDR environment variable not set"
