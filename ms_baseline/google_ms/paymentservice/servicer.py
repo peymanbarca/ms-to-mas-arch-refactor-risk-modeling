@@ -76,7 +76,6 @@ async def get_payment_transactions_collection():
     collection = db["payment_transactions"]
     
     # Ensure indexes
-    await collection.create_index("payment_id", unique=True)
     await collection.create_index("created_at")
     return collection
 
