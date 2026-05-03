@@ -26,6 +26,7 @@ from __future__ import annotations
 import logging
 import uuid
 from dataclasses import dataclass, field
+from datetime import datetime
 
 from ..shared import demo_pb2
 from ..shared import demo_pb2_grpc
@@ -39,8 +40,34 @@ from .money import (
     zero_money,
 )
 
+from motor.motor_asyncio import AsyncIOMotorClient
+from os import getenv
+
 logger = logging.getLogger("checkoutservice")
 
+# MongoDB configuration
+MONGODB_URI = getenv("MONGODB_URI", "mongodb://user:pass1@localhost:27017")
+MONGODB_DB = getenv("MONGODB_DB", "google_ms")
+
+# Global MongoDB client (lazy-initialized)
+_mongodb_client: AsyncIOMotorClient | None = None
+
+
+async def get_mongodb_client() -> AsyncIOMotorClient:
+    """Get or create MongoDB client (lazy initialization)."""
+    global _mongodb_client
+    if _mongodb_client is None:
+        _mongodb_client = AsyncIOMotorClient(MONGODB_URI)
+    return _mongodb_client
+
+async def get_order_collection():
+    """Get order collection with auto-created indexes."""
+    client = await get_mongodb_client()
+    db = client[MONGODB_DB]
+    collection = db["orders"]
+    
+    return collection
+    
 
 # ── orderPrep (Go struct) ─────────────────────────────────────────────────────
 @dataclass
@@ -372,6 +399,17 @@ class CheckoutOrchestrator:
 
         # Step 2 – Go: orderID, err := uuid.NewUUID()
         order_id = str(uuid.uuid4())
+        collection = await get_order_collection()
+        
+        # generate new order record with status pending in db
+        order_record = {
+            "_id": order_id,
+            "user_id": request.user_id,
+            "user_currency": request.user_currency,
+            "status": "pending",
+            "created_at": datetime.utcnow(),
+        }
+        await collection.insert_one(order_record)
 
         # Step 3 – Go: prep, err := cs.prepareOrderItemsAndShippingQuoteFromCart(...)
         prep = await self.prepare_order_items_and_shipping_quote(
@@ -409,13 +447,39 @@ class CheckoutOrchestrator:
         )
 
         # Step 5 – Go: txID, err := cs.chargeCard(ctx, &total, req.CreditCard)
-        transaction_id = await self.charge_card(total_proto, request.credit_card)
+        try:
+            transaction_id = await self.charge_card(total_proto, request.credit_card)
+            # update order record with transaction_id and status paid in db
+            await collection.update_one(
+                {"_id": order_id},
+                {"$set": {"transaction_id": transaction_id, "status": "paid"}}
+            )
+        except Exception as exc:
+            # update order record with status payment_failed in db
+            await collection.update_one(
+                {"_id": order_id},
+                {"$set": {"status": "payment_failed"}}
+            )
+            raise RuntimeError(f"could not charge the card: {exc}") from exc
 
         # Step 6 – Go: log.Infof("payment went through (transaction_id: %s)", txID)
         logger.info("payment went through (transaction_id: %s)", transaction_id)
 
         # Step 7 – Go: shippingTrackingID, err := cs.shipOrder(ctx, req.Address, prep.cartItems)
-        tracking_id = await self.ship_order(request.address, prep.cart_items)
+        try:
+            tracking_id = await self.ship_order(request.address, prep.cart_items)
+            # update order record with tracking_id and status shipped in db
+            await collection.update_one(
+                {"_id": order_id},
+                {"$set": {"tracking_id": tracking_id, "status": "shipped"}}
+            )
+        except Exception as exc:
+            # update order record with status shipping_failed in db
+            await collection.update_one(
+                {"_id": order_id},
+                {"$set": {"status": "shipping_failed"}}
+            )
+            raise RuntimeError(f"shipment failed: {exc}") from exc
 
         # Step 8 – Go: _ = cs.emptyUserCart(ctx, req.UserId)   (error silently ignored)
         try:
@@ -443,6 +507,11 @@ class CheckoutOrchestrator:
             logger.warning(
                 "failed to send order confirmation to %r: %s", request.email, exc
             )
+        # update order record with status completed in db
+        await collection.update_one(
+            {"_id": order_id},
+            {"$set": {"status": "completed"}}
+        )
 
         # Step 11 – Go: return &pb.PlaceOrderResponse{Order: orderResult}, nil
         return demo_pb2.PlaceOrderResponse(order=order_result)

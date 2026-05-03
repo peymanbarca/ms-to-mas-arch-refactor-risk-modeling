@@ -315,7 +315,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     _, cmd, _street, _city, _state, _country, _zip, _qty = sys.argv
-    _addr = os.getenv("SHIPPING_SERVICE_ADDR", "localhost:50051")
+    _addr = os.getenv("SHIPPING_SERVICE_ADDR", "localhost:5051")
 
     asyncio.run(_run_cli(
         command  = cmd,
