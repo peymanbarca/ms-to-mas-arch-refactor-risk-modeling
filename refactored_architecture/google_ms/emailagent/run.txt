@@ -1,0 +1,2 @@
+python3 -m refactored_architecture.google_ms.emailagent.emailagent_as_service
+python3 -m refactored_architecture.google_ms.emailagent.client
