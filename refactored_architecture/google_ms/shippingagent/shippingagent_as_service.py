@@ -1,33 +1,3 @@
-"""
-shippingservice/main.py
-
-Python / FastAPI + gRPC server – faithful port of the Go shippingservice main.go.
-
-Go startup sequence reproduced here:
-─────────────────────────────────────────────────────────────────────────────
-  1. init()                   → JSON logrus logger setup
-  2. if DISABLE_TRACING == "" → initTracing() (currently TODO in Go too)
-  3. if DISABLE_PROFILER == "" → initProfiling() (Cloud Profiler, 3 retries)
-  4. port = $PORT or "50051"
-  5. net.Listen("tcp", port)
-  6. grpc.NewServer()
-  7. pb.RegisterShippingServiceServer(srv, &server{})
-  8. healthpb.RegisterHealthServer(srv, healthcheck)
-  9. reflection.Register(srv)
- 10. srv.Serve(lis)
-─────────────────────────────────────────────────────────────────────────────
-
-What this Python version adds beyond the Go original:
-  • FastAPI HTTP server on HTTP_PORT (default PORT + 1000) with:
-      GET  /health              – liveness probe
-      GET  /ready               – readiness probe
-      POST /quote               – REST proxy for GetQuote RPC
-      POST /ship                – REST proxy for ShipOrder RPC
-      GET  /quote               – GET variant (query-param address + item count)
-  • gRPC reflection (same as Go's reflection.Register)
-  • Optional OTLP tracing via OTEL_EXPORTER_OTLP_ENDPOINT env var
-"""
-
 from __future__ import annotations
 
 import asyncio
@@ -48,7 +18,7 @@ from ..shared.base_service import make_health_app, run_service
 from .servicer import ShippingServicer
 from .quote import create_quote_from_count
 
-logger = logging.getLogger("shippingservice")
+logger = logging.getLogger("shippingagent")
 
 GRPC_PORT = int(os.getenv("PORT", "5051"))
 
