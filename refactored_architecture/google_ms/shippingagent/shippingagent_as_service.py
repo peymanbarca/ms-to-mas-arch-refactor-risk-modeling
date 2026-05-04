@@ -99,7 +99,7 @@ GRPC_PORT = int(os.getenv("PORT", "5051"))
 # FastAPI HTTP layer
 # ════════════════════════════════════════════════════════════════════════════
 
-app = make_health_app("shippingservice")
+app = make_health_app("shippingagent")
 
 _servicer: ShippingServicer = ShippingServicer()
 

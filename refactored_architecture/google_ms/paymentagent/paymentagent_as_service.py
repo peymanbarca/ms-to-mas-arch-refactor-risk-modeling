@@ -25,7 +25,7 @@ from .card_validator import (
     is_expired,
 )
 
-logger = logging.getLogger("paymentservice")
+logger = logging.getLogger("paymentagent")
 
 GRPC_PORT = int(os.getenv("PORT", "5052"))
 
