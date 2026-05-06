@@ -21,8 +21,8 @@ async def run_client():
 
         # Get single product
         print("\n=== GetProduct ===")
-        response = await stub.GetProduct(demo_pb2.GetProductRequest(id="OLJCESPC7Z"))
-        print(f"Product: {response.name} - {response.description}")
+        response = await stub.GetProduct(demo_pb2.GetProductRequest(id="66VCHSJNUP"))
+        print(f"Product: {response}")
 
         # Search products
         print("\n=== SearchProducts ===")

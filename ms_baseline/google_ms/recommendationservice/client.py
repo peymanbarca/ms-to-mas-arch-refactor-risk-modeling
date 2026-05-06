@@ -189,7 +189,7 @@ if __name__ == "__main__":
         print("Usage: python -m recommendationservice.client <user_id> [product_id ...]")
         sys.exit(1)
 
-    _addr    = os.getenv("RECOMMENDATION_SERVICE_ADDR", "localhost:8080")
+    _addr    = os.getenv("RECOMMENDATION_SERVICE_ADDR", "localhost:5058")
     _user_id = sys.argv[1]
     _pids    = sys.argv[2:]
 

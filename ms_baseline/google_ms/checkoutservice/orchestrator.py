@@ -130,7 +130,7 @@ class CheckoutOrchestrator:
             )
         except Exception as exc:
             raise RuntimeError(f"failed to get user cart during checkout: {exc}") from exc
-        return list(resp.items)
+        return list(resp.cart.items)
 
     # ── emptyUserCart ─────────────────────────────────────────────────────────
     async def empty_user_cart(self, user_id: str) -> None:
@@ -215,7 +215,7 @@ class CheckoutOrchestrator:
         order_items: list[demo_pb2.OrderItem] = []
         for item in cart_items:
             try:
-                product: demo_pb2.Product = await self._catalog.GetProduct(
+                product: demo_pb2.GetProductResponse = await self._catalog.GetProduct(
                     demo_pb2.GetProductRequest(id=item.product_id)
                 )
             except Exception as exc:
@@ -225,7 +225,7 @@ class CheckoutOrchestrator:
 
             try:
                 price: demo_pb2.Money = await self.convert_currency(
-                    product.price_usd, user_currency
+                    product.product.price_usd, user_currency
                 )
             except Exception as exc:
                 raise RuntimeError(

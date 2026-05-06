@@ -61,10 +61,11 @@ class ProductCatalogServicer(demo_pb2_grpc.ProductCatalogServiceServicer):
         return demo_pb2.ListProductsResponse(products=self._catalog)
 
     async def GetProduct(self, request, context):
+        print(f"GetProduct called with id={request.id!r}")
         product = self._index.get(request.id)
         if product is None:
             await context.abort(grpc.StatusCode.NOT_FOUND, f"Product {request.id!r} not found")
-        return product
+        return demo_pb2.GetProductResponse(product=product, llm_metrics=demo_pb2.LLMMetrics(total_input_tokens=0, total_output_tokens=0, total_llm_calls=0))
 
     async def SearchProducts(self, request, context):
         query = request.query.lower()

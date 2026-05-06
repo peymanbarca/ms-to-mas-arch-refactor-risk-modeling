@@ -247,6 +247,28 @@ def route_after_validation(state: CartAgentState) -> str:
 
 
 # ════════════════════════════════════════════════════════════════════════════
+# Conditional router after apply_operation (skip reasoning for GET_CART)
+# ════════════════════════════════════════════════════════════════════════════
+
+def route_after_apply(state: CartAgentState) -> str:
+    """
+    Conditional edge function — skip LLM reasoning for GET_CART operations.
+
+    GET_CART operations bypass reasoning and go directly to persistence.
+    ADD_ITEM and EMPTY_CART operations proceed to LLM reasoning.
+    """
+    operation_type = state.get("operation_type", "")
+    
+    if operation_type == "GET_CART":
+        logger.info("[route] GET_CART operation → skip reasoning, go to persist")
+        # For GET_CART, set a default APPROVED decision
+        return "auto_approve"
+    
+    logger.info("[route] %s operation → reasoning", operation_type)
+    return "operation_reasoning"
+
+
+# ════════════════════════════════════════════════════════════════════════════
 # Node 2a – apply_operation  (deterministic tool)
 # ════════════════════════════════════════════════════════════════════════════
 
@@ -367,6 +389,39 @@ async def reject_operation_node(state: CartAgentState) -> CartAgentState:
 
 
 # ════════════════════════════════════════════════════════════════════════════
+# Node 2c – auto_approve  (deterministic shortcut for GET_CART)
+# ════════════════════════════════════════════════════════════════════════════
+
+async def auto_approve_node(state: CartAgentState) -> CartAgentState:
+    """
+    Deterministic node — auto-approves GET_CART operations without LLM reasoning.
+
+    GET_CART is a read-only operation, so it bypasses LLM review and is
+    automatically approved if the operation succeeded.
+    """
+    operation_result = state.get("operation_result", {})
+    success = operation_result.get("success", False)
+
+    if success:
+        decision = {
+            "status": "APPROVED",
+            "reason": "GET_CART operation completed successfully (no reasoning required)",
+        }
+        logger.info("[auto_approve] GET_CART approved without reasoning")
+    else:
+        decision = {
+            "status": "REJECTED",
+            "reason": f"GET_CART operation failed: {operation_result.get('error', 'unknown error')}",
+        }
+        logger.warning("[auto_approve] GET_CART rejected due to operation failure")
+
+    return {
+        **state,
+        "decision": decision,
+    }
+
+
+# ════════════════════════════════════════════════════════════════════════════
 # Node 3 – operation_reasoning  (LLM / Ollama node)
 # ════════════════════════════════════════════════════════════════════════════
 
@@ -383,11 +438,12 @@ def _parse_json_response(text: str) -> dict | None:
 
 async def operation_reasoning_node(state: CartAgentState) -> CartAgentState:
     """
-    LLM node — validates the cart operation from a business logic perspective.
+    LLM node — validates cart operations ADD_ITEM and EMPTY_CART only.
+
+    GET_CART operations are skipped and auto-approved (see auto_approve_node).
 
     The LLM reviews:
       • For ADD_ITEM: is the product valid? is quantity reasonable (1-1000)?
-      • For GET_CART: is the cart state consistent?
       • For EMPTY_CART: is the request valid?
 
     Returns:
@@ -401,6 +457,17 @@ async def operation_reasoning_node(state: CartAgentState) -> CartAgentState:
     # Build operation details for LLM
     operation_details = json.dumps(result, indent=2)
 
+    if operation_type == "ADD_ITEM":
+        validation_rules = """- For ADD_ITEM operations:
+  * Product ID must not be empty
+  * Quantity must be between 1 and 1000
+  * Operation must have succeeded (success=true)"""
+    elif operation_type == "EMPTY_CART":
+        validation_rules = """- For EMPTY_CART operations:
+  * Operation must have succeeded (success=true)"""
+    else:
+        validation_rules = "- Operation must have succeeded"
+
     prompt = f"""
 You are a cart operation validation agent for an e-commerce platform.
 
@@ -408,15 +475,7 @@ Your task is to approve or reject a cart operation based on business logic.
 
 Rules:
 - Status MUST be either "APPROVED" or "REJECTED".
-- For ADD_ITEM operations:
-  * Product ID must not be empty
-  * Quantity must be between 1 and 1000
-  * Operation must have succeeded (success=true)
-- For GET_CART operations:
-  * Item count should be non-negative
-  * Operation must have succeeded
-- For EMPTY_CART operations:
-  * Operation must have succeeded
+{validation_rules}
 - If any rule is violated, set status to REJECTED with a brief reason.
 - Do not generate python code.
 - Return ONLY valid JSON. No markdown, no code blocks, no preamble.
@@ -531,6 +590,11 @@ def build_cart_agent() -> Any:
     """
     Assemble and compile the LangGraph cart agent.
 
+    Graph topology:
+      validate_request → apply_operation → route_after_apply
+                      ↓                      ├→ operation_reasoning → persist_operation
+                   reject_operation        └→ auto_approve → persist_operation
+
     Returns the compiled graph, ready for ainvoke().
     """
     graph = StateGraph(CartAgentState)
@@ -539,6 +603,7 @@ def build_cart_agent() -> Any:
     graph.add_node("validate_request", validate_request_node)
     graph.add_node("apply_operation", apply_operation_node)
     graph.add_node("reject_operation", reject_operation_node)
+    graph.add_node("auto_approve", auto_approve_node)
     graph.add_node("operation_reasoning", operation_reasoning_node)
     graph.add_node("persist_operation", persist_operation_node)
 
@@ -555,9 +620,19 @@ def build_cart_agent() -> Any:
         },
     )
 
-    # Happy path: apply → reason → persist
-    graph.add_edge("apply_operation", "operation_reasoning")
+    # Conditional edge after apply_operation (GET_CART → auto_approve, others → reasoning)
+    graph.add_conditional_edges(
+        "apply_operation",
+        route_after_apply,
+        {
+            "operation_reasoning": "operation_reasoning",
+            "auto_approve": "auto_approve",
+        },
+    )
+
+    # Both reasoning and auto_approve paths converge at persistence
     graph.add_edge("operation_reasoning", "persist_operation")
+    graph.add_edge("auto_approve", "persist_operation")
 
     # Rejection shortcut: reject → persist
     graph.add_edge("reject_operation", "persist_operation")

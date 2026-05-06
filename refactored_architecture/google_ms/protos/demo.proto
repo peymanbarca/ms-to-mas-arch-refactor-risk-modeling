@@ -77,7 +77,6 @@ message ListRecommendationsRequest {
 
 message ListRecommendationsResponse {
     repeated string product_ids = 1;
-    LLMMetrics llm_metrics = 2;
 }
 
 // ---------------Product Catalog----------------

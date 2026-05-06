@@ -105,4 +105,8 @@ class AdServicer(demo_pb2_grpc.AdServiceServicer):
             ads = [_to_proto(a) for a in get_random_ads(MAX_ADS_TO_SERVE)]
 
         logger.info("GetAds returning %d ad(s)", len(ads))
-        return demo_pb2.AdResponse(ads=ads)
+        return demo_pb2.AdResponse(ads=ads, llm_metrics=demo_pb2.LLMMetrics(
+                total_input_tokens=-1,
+                total_output_tokens=-1,
+                total_llm_calls=-1,
+            ))

@@ -39,17 +39,17 @@ class CartServiceStub(object):
         self.AddItem = channel.unary_unary(
                 '/hipstershop.CartService/AddItem',
                 request_serializer=demo__pb2.AddItemRequest.SerializeToString,
-                response_deserializer=demo__pb2.Empty.FromString,
+                response_deserializer=demo__pb2.AddItemResponse.FromString,
                 _registered_method=True)
         self.GetCart = channel.unary_unary(
                 '/hipstershop.CartService/GetCart',
                 request_serializer=demo__pb2.GetCartRequest.SerializeToString,
-                response_deserializer=demo__pb2.Cart.FromString,
+                response_deserializer=demo__pb2.GetCartResponse.FromString,
                 _registered_method=True)
         self.EmptyCart = channel.unary_unary(
                 '/hipstershop.CartService/EmptyCart',
                 request_serializer=demo__pb2.EmptyCartRequest.SerializeToString,
-                response_deserializer=demo__pb2.Empty.FromString,
+                response_deserializer=demo__pb2.EmptyCartResponse.FromString,
                 _registered_method=True)
 
 
@@ -82,17 +82,17 @@ def add_CartServiceServicer_to_server(servicer, server):
             'AddItem': grpc.unary_unary_rpc_method_handler(
                     servicer.AddItem,
                     request_deserializer=demo__pb2.AddItemRequest.FromString,
-                    response_serializer=demo__pb2.Empty.SerializeToString,
+                    response_serializer=demo__pb2.AddItemResponse.SerializeToString,
             ),
             'GetCart': grpc.unary_unary_rpc_method_handler(
                     servicer.GetCart,
                     request_deserializer=demo__pb2.GetCartRequest.FromString,
-                    response_serializer=demo__pb2.Cart.SerializeToString,
+                    response_serializer=demo__pb2.GetCartResponse.SerializeToString,
             ),
             'EmptyCart': grpc.unary_unary_rpc_method_handler(
                     servicer.EmptyCart,
                     request_deserializer=demo__pb2.EmptyCartRequest.FromString,
-                    response_serializer=demo__pb2.Empty.SerializeToString,
+                    response_serializer=demo__pb2.EmptyCartResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -123,7 +123,7 @@ class CartService(object):
             target,
             '/hipstershop.CartService/AddItem',
             demo__pb2.AddItemRequest.SerializeToString,
-            demo__pb2.Empty.FromString,
+            demo__pb2.AddItemResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -150,7 +150,7 @@ class CartService(object):
             target,
             '/hipstershop.CartService/GetCart',
             demo__pb2.GetCartRequest.SerializeToString,
-            demo__pb2.Cart.FromString,
+            demo__pb2.GetCartResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -177,7 +177,7 @@ class CartService(object):
             target,
             '/hipstershop.CartService/EmptyCart',
             demo__pb2.EmptyCartRequest.SerializeToString,
-            demo__pb2.Empty.FromString,
+            demo__pb2.EmptyCartResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -286,7 +286,7 @@ class ProductCatalogServiceStub(object):
         self.GetProduct = channel.unary_unary(
                 '/hipstershop.ProductCatalogService/GetProduct',
                 request_serializer=demo__pb2.GetProductRequest.SerializeToString,
-                response_deserializer=demo__pb2.Product.FromString,
+                response_deserializer=demo__pb2.GetProductResponse.FromString,
                 _registered_method=True)
         self.SearchProducts = channel.unary_unary(
                 '/hipstershop.ProductCatalogService/SearchProducts',
@@ -329,7 +329,7 @@ def add_ProductCatalogServiceServicer_to_server(servicer, server):
             'GetProduct': grpc.unary_unary_rpc_method_handler(
                     servicer.GetProduct,
                     request_deserializer=demo__pb2.GetProductRequest.FromString,
-                    response_serializer=demo__pb2.Product.SerializeToString,
+                    response_serializer=demo__pb2.GetProductResponse.SerializeToString,
             ),
             'SearchProducts': grpc.unary_unary_rpc_method_handler(
                     servicer.SearchProducts,
@@ -392,7 +392,7 @@ class ProductCatalogService(object):
             target,
             '/hipstershop.ProductCatalogService/GetProduct',
             demo__pb2.GetProductRequest.SerializeToString,
-            demo__pb2.Product.FromString,
+            demo__pb2.GetProductResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -571,7 +571,7 @@ class CurrencyServiceStub(object):
         self.Convert = channel.unary_unary(
                 '/hipstershop.CurrencyService/Convert',
                 request_serializer=demo__pb2.CurrencyConversionRequest.SerializeToString,
-                response_deserializer=demo__pb2.Money.FromString,
+                response_deserializer=demo__pb2.CurrencyConversionResponse.FromString,
                 _registered_method=True)
 
 
@@ -603,7 +603,7 @@ def add_CurrencyServiceServicer_to_server(servicer, server):
             'Convert': grpc.unary_unary_rpc_method_handler(
                     servicer.Convert,
                     request_deserializer=demo__pb2.CurrencyConversionRequest.FromString,
-                    response_serializer=demo__pb2.Money.SerializeToString,
+                    response_serializer=demo__pb2.CurrencyConversionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -661,7 +661,7 @@ class CurrencyService(object):
             target,
             '/hipstershop.CurrencyService/Convert',
             demo__pb2.CurrencyConversionRequest.SerializeToString,
-            demo__pb2.Money.FromString,
+            demo__pb2.CurrencyConversionResponse.FromString,
             options,
             channel_credentials,
             insecure,

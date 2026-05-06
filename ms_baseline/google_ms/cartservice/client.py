@@ -74,6 +74,7 @@ class CartServiceClient:
             logger.info(f"✓ AddItem: user_id={user_id}, product_id={product_id}, quantity={quantity}")
             print(f"✓ AddItem - user_id: {user_id}, product_id: {product_id}, quantity: {quantity}")
             print(f"  Response: Empty (success)")
+            print("LLM metrics: ", response.llm_metrics)
             return True
         except grpc.RpcError as e:
             logger.error(f"✗ AddItem failed: {e.details()}")
@@ -92,12 +93,16 @@ class CartServiceClient:
         """
         try:
             request = demo_pb2.GetCartRequest(user_id=user_id)
-            cart = await self.stub.GetCart(request)
-            logger.info(f"✓ GetCart: user_id={user_id}")
-            print(f"✓ GetCart - user_id: {user_id}")
-            print(f"  Cart items ({len(cart.items)} items):")
-            for item in cart.items:
-                print(f"    - Product: {item.product_id}, Quantity: {item.quantity}")
+            resp: demo_pb2.GetCartResponse = await self.stub.GetCart(request)
+            print("LLM metrics: ", resp.llm_metrics)
+            cart: demo_pb2.Cart = resp.cart        
+            for item in cart.items:                 
+                
+                logger.info(f"✓ GetCart: user_id={user_id}")
+                print(f"✓ GetCart - user_id: {user_id}")
+                print(f"  Cart items ({len(cart.items)} items):")
+                for item in cart.items:
+                    print(f"    - Product: {item.product_id}, Quantity: {item.quantity}")
             return cart
         except grpc.RpcError as e:
             logger.error(f"✗ GetCart failed: {e.details()}")
@@ -117,6 +122,7 @@ class CartServiceClient:
         try:
             request = demo_pb2.EmptyCartRequest(user_id=user_id)
             response = await self.stub.EmptyCart(request)
+            print("LLM metrics: ", response.llm_metrics)
             logger.info(f"✓ EmptyCart: user_id={user_id}")
             print(f"✓ EmptyCart - user_id: {user_id}")
             print(f"  Response: Empty (success)")

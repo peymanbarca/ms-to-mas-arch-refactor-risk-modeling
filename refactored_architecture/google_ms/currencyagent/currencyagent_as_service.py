@@ -5,10 +5,13 @@ import logging
 import os
 import sys
 
+import grpc
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 from ..shared import demo_pb2
 from ..shared import demo_pb2_grpc
 from ..shared.base_service import make_health_app, run_service
+from ..shared.metrics import build_llm_metrics, metrics_to_dict
 from .currencyagent import run_currency_conversion_agent
 
 logger = logging.getLogger(__name__)
@@ -79,10 +82,22 @@ class CurrencyServiceServicer(demo_pb2_grpc.CurrencyServiceServicer):
                           from_code, to_code, agent_result["decision"].get("reason", "Unknown"))
             await context.abort(grpc.StatusCode.INTERNAL, "Currency conversion failed")
 
-        return demo_pb2.Money(
+        # Build LLM metrics
+        llm_metrics = build_llm_metrics(
+            total_input_tokens=agent_result.get("total_input_tokens", 0),
+            total_output_tokens=agent_result.get("total_output_tokens", 0),
+            total_llm_calls=agent_result.get("total_llm_calls", 0),
+        )
+
+        converted_amount = demo_pb2.Money(
             currency_code=result_money["currency_code"],
             units=int(result_money["units"]),
             nanos=int(result_money["nanos"]),
+        )
+
+        return demo_pb2.CurrencyConversionResponse(
+            converted_amount=converted_amount,
+            llm_metrics=llm_metrics,
         )
 
 
