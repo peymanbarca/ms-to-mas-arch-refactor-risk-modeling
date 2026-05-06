@@ -185,6 +185,11 @@ class ShippingClient:
         dollars = result["units"]
         cents   = result["nanos"] // 10_000_000
         logger.info("GetQuote → $%d.%02d USD", dollars, cents)
+        logger.info("LLM Metrics | input_tokens=%d output_tokens=%d llm_calls=%d",
+                    response.llm_metrics.total_input_tokens,
+                    response.llm_metrics.total_output_tokens,
+                    response.llm_metrics.total_llm_calls
+                )
         return result
 
     # ── ShipOrder ────────────────────────────────────────────────────────────
@@ -232,7 +237,7 @@ class ShippingClient:
             )
             raise ShippingClientError("ShipOrder", exc.code(), exc.details()) from exc
 
-        logger.info("ShipOrder → tracking_id=%s", response.tracking_id)
+        logger.info("ShipOrder → tracking_id=%s, llm_metrics=%s", response.tracking_id, response.llm_metrics)
         return response.tracking_id
 
     # ── lifecycle ─────────────────────────────────────────────────────────────

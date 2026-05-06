@@ -224,9 +224,10 @@ class CheckoutOrchestrator:
                 ) from exc
 
             try:
-                price: demo_pb2.Money = await self.convert_currency(
+                convert_resp: demo_pb2.CurrencyConversionResponse = await self.convert_currency(
                     product.product.price_usd, user_currency
                 )
+                price = convert_resp.money
             except Exception as exc:
                 raise RuntimeError(
                     f"failed to convert price of {item.product_id!r} to {user_currency}: {exc}"

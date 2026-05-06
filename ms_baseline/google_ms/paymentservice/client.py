@@ -154,7 +154,7 @@ class PaymentClient:
             )
             raise PaymentClientError(exc.code(), exc.details()) from exc
 
-        logger.info("Charge success | transaction_id=%s", response.transaction_id)
+        logger.info("Charge success | transaction_id=%s, llm_metrics =%s", response.transaction_id, response.llm_metrics)
         return response.transaction_id
 
     # ── lifecycle ─────────────────────────────────────────────────────────────

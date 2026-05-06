@@ -65,7 +65,8 @@ class ProductCatalogServicer(demo_pb2_grpc.ProductCatalogServiceServicer):
         product = self._index.get(request.id)
         if product is None:
             await context.abort(grpc.StatusCode.NOT_FOUND, f"Product {request.id!r} not found")
-        return demo_pb2.GetProductResponse(product=product, llm_metrics=demo_pb2.LLMMetrics(total_input_tokens=0, total_output_tokens=0, total_llm_calls=0))
+        return demo_pb2.GetProductResponse(product=product, 
+                                           llm_metrics=demo_pb2.LLMMetrics(total_input_tokens=-1, total_output_tokens=-1, total_llm_calls=-1))
 
     async def SearchProducts(self, request, context):
         query = request.query.lower()
@@ -73,7 +74,8 @@ class ProductCatalogServicer(demo_pb2_grpc.ProductCatalogServiceServicer):
             p for p in self._catalog
             if query in p.name.lower() or query in p.description.lower()
         ]
-        return demo_pb2.SearchProductsResponse(results=results)
+        return demo_pb2.SearchProductsResponse(results=results,
+                                               llm_metrics=demo_pb2.LLMMetrics(total_input_tokens=-1, total_output_tokens=-1, total_llm_calls=-1))
 
 
 import grpc  # noqa: E402 (needed for abort above)

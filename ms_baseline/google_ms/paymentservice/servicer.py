@@ -248,7 +248,11 @@ class PaymentServicer(
         )
 
         # JS: callback(null, response)  where response = { transaction_id: uuidv4() }
-        return demo_pb2.ChargeResponse(transaction_id=result.transaction_id)
+        return demo_pb2.ChargeResponse(transaction_id=result.transaction_id, llm_metrics=demo_pb2.LLMMetrics(
+            total_input_tokens=-1,
+            total_output_tokens=-1,
+            total_llm_calls=-1
+        ))
 
     # ── gRPC HealthService ────────────────────────────────────────────────────
 

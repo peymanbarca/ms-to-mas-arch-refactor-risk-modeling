@@ -78,11 +78,15 @@ class CurrencyServiceServicer(demo_pb2_grpc.CurrencyServiceServicer):
             "nanos": euros["nanos"] * float(self._rates[to_code])
         })
 
-        return demo_pb2.Money(
+        return demo_pb2.CurrencyConversionResponse(demo_pb2.Money(
             currency_code=to_code,
             units=int(result["units"]),
             nanos=int(result["nanos"]),
-        )
+        ), llm_metrics=demo_pb2.LLMMetrics(
+            total_input_tokens=-1,
+            total_output_tokens=-1,
+            total_llm_calls=-1,
+        ))
 
 
 import grpc  # noqa: E402
@@ -118,6 +122,7 @@ async def rest_convert(request: dict):
         to_code=request["to_code"],
     )
     resp = await svc.Convert(grpc_request, None)
+    resp = resp.money
     return {
         "currency_code": resp.currency_code,
         "units": resp.units,
