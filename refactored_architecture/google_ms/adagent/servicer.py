@@ -96,13 +96,14 @@ class AdServicer(demo_pb2_grpc.AdServiceServicer):
 
         # Invoke agent for intelligent ad selection
         try:
-            selected_ads = await run_ad_request_agent(
+            response = await run_ad_request_agent(
                 context_keys=context_keys,
                 catalog=catalog,
                 max_ads=MAX_ADS_TO_SERVE,
             )
             
             # Convert agent results to proto
+            selected_ads = response.get("ads", [])
             ads = [
                 demo_pb2.Ad(
                     redirect_url=ad["redirect_url"],
@@ -110,13 +111,17 @@ class AdServicer(demo_pb2_grpc.AdServiceServicer):
                 )
                 for ad in selected_ads
             ]
+            llm_metrics = response.get("llm_metrics", {})
             
             logger.info("GetAds returning %d ad(s) via agent", len(ads))
-            return demo_pb2.AdResponse(ads=ads)
-        
+            return demo_pb2.AdResponse(ads=ads, llm_metrics=llm_metrics)
+
         except Exception as e:
             logger.error("Agent error during ad selection: %s", e)
             # Graceful fallback: return random ads
             logger.info("Falling back to random ads due to agent error")
             ads = [_to_proto(a) for a in get_random_ads(MAX_ADS_TO_SERVE)]
-            return demo_pb2.AdResponse(ads=ads)
+            return demo_pb2.AdResponse(ads=ads, llm_metrics=demo_pb2.LLMMetrics(
+                total_input_tokens=-1,
+                total_output_tokens=-1,
+                total_llm_calls=-1))

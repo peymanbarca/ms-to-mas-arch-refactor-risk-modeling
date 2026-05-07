@@ -105,7 +105,12 @@ class AdServiceClient:
             {"redirect_url": ad.redirect_url, "text": ad.text}
             for ad in response.ads
         ]
+        llm_metrics = response.llm_metrics
         logger.info("AdServiceClient received %d ad(s)", len(ads))
+        logger.info("LLM Metrics: input_tokens=%d output_tokens=%d llm_calls=%d",
+                    llm_metrics.total_input_tokens,
+                    llm_metrics.total_output_tokens,
+                    llm_metrics.total_llm_calls)
         return ads
 
     # ── lifecycle ────────────────────────────────────────────────────────────
@@ -167,7 +172,7 @@ if __name__ == "__main__":
         python -m adservice.client kitchen cycling    # multiple keys
         AD_SERVICE_ADDR=adservice:9555 python -m adservice.client camera
     """
-    _addr = os.getenv("AD_SERVICE_ADDR", "localhost:9555")
+    _addr = os.getenv("AD_SERVICE_ADDR", "localhost:5057")
     _keys = sys.argv[1:]  # all CLI args become context keys
 
     if not _keys:

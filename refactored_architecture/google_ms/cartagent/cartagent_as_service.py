@@ -82,13 +82,17 @@ class CartServicer(demo_pb2_grpc.CartServiceServicer):
             logger.info("AddItem agent decision: %s | user=%s product=%s",
                         decision_status, user_id, product_id)
 
-            return demo_pb2.Empty()
+            return demo_pb2.AddItemResponse(llm_metrics=demo_pb2.LLMMetrics(
+                total_input_tokens=state.get("total_input_tokens", 0),
+                total_output_tokens=state.get("total_output_tokens", 0),
+                total_llm_calls=state.get("total_llm_calls", 0),
+            ))
 
         except Exception as e:
             logger.error("AddItem failed: %s", str(e), exc_info=True)
             if context:
                 context.set_details(f"Failed to add item: {str(e)}")
-            return demo_pb2.Empty()
+            return demo_pb2.AddItemResponse(llm_metrics=demo_pb2.LLMMetrics())
 
     async def GetCart(self, request, context):
         """Get user's cart."""
@@ -113,13 +117,13 @@ class CartServicer(demo_pb2_grpc.CartServiceServicer):
             ]
 
             logger.info("GetCart returning %d items | user=%s", len(cart_items), user_id)
-            return demo_pb2.Cart(user_id=user_id, items=cart_items)
+            return demo_pb2.GetCartResponse(cart=demo_pb2.Cart(user_id=user_id, items=cart_items), llm_metrics=demo_pb2.LLMMetrics())
 
         except Exception as e:
             logger.error("GetCart failed: %s", str(e), exc_info=True)
             if context:
                 context.set_details(f"Failed to get cart: {str(e)}")
-            return demo_pb2.Cart(user_id=request.user_id, items=[])
+            return demo_pb2.GetCartResponse(cart=demo_pb2.Cart(user_id=user_id, items=[]), llm_metrics=demo_pb2.LLMMetrics())
 
     async def EmptyCart(self, request, context):
         """Empty user's cart."""
@@ -137,18 +141,22 @@ class CartServicer(demo_pb2_grpc.CartServiceServicer):
             logger.info("EmptyCart agent decision: %s | user=%s",
                         decision_status, user_id)
 
-            return demo_pb2.Empty()
+            return demo_pb2.EmptyCartResponse(llm_metrics=demo_pb2.LLMMetrics(
+                total_input_tokens=state.get("total_input_tokens", 0),
+                total_output_tokens=state.get("total_output_tokens", 0),
+                total_llm_calls=state.get("total_llm_calls", 0),
+            ))
 
         except Exception as e:
             logger.error("EmptyCart failed: %s", str(e), exc_info=True)
             if context:
                 context.set_details(f"Failed to empty cart: {str(e)}")
-            return demo_pb2.Empty()
+            return demo_pb2.EmptyCartResponse(llm_metrics=demo_pb2.LLMMetrics())
 
 
 # ── FastAPI (REST proxy + health) ────────────────────────────────────────────
 
-app = make_health_app("cartservice")
+app = make_health_app("cartagent")
 
 class AddItemBody(BaseModel):
     product_id: str

@@ -77,6 +77,7 @@ message ListRecommendationsRequest {
 
 message ListRecommendationsResponse {
     repeated string product_ids = 1;
+    LLMMetrics llm_metrics = 2;
 }
 
 // ---------------Product Catalog----------------
@@ -224,7 +225,7 @@ message ChargeResponse {
 // -------------Email service-----------------
 
 service EmailService {
-    rpc SendOrderConfirmation(SendOrderConfirmationRequest) returns (Empty) {}
+    rpc SendOrderConfirmation(SendOrderConfirmationRequest) returns (LLMMetrics) {}
 }
 
 message OrderItem {
@@ -301,7 +302,4 @@ message LLMMetrics {
 
     // Total number of LLM invocations/reasoning calls
     int32 total_llm_calls = 3;
-
-    // Timestamp when metrics were collected (RFC 3339 format)
-    string timestamp = 4;
 }

@@ -27,12 +27,12 @@ logger = logging.getLogger(__name__)
 class CartServiceClient:
     """gRPC client for CartService"""
 
-    def __init__(self, target: str = "localhost:7070"):
+    def __init__(self, target: str = "localhost:5054"):
         """
         Initialize the CartService client.
 
         Args:
-            target: gRPC server address (default: localhost:7070)
+            target: gRPC server address (default: localhost:5054)
         """
         self.target = target
         self.channel = None
@@ -74,6 +74,9 @@ class CartServiceClient:
             logger.info(f"✓ AddItem: user_id={user_id}, product_id={product_id}, quantity={quantity}")
             print(f"✓ AddItem - user_id: {user_id}, product_id: {product_id}, quantity: {quantity}")
             print(f"  Response: Empty (success)")
+            print(f"  LLM Metrics: input_tokens={response.llm_metrics.total_input_tokens}, "
+                  f"output_tokens={response.llm_metrics.total_output_tokens}, "
+                  f"llm_calls={response.llm_metrics.total_llm_calls}")
             return True
         except grpc.RpcError as e:
             logger.error(f"✗ AddItem failed: {e.details()}")
@@ -92,12 +95,17 @@ class CartServiceClient:
         """
         try:
             request = demo_pb2.GetCartRequest(user_id=user_id)
-            cart = await self.stub.GetCart(request)
+            res = await self.stub.GetCart(request)
+            cart = res.cart
+            llm_metrics = res.llm_metrics
             logger.info(f"✓ GetCart: user_id={user_id}")
             print(f"✓ GetCart - user_id: {user_id}")
             print(f"  Cart items ({len(cart.items)} items):")
             for item in cart.items:
                 print(f"    - Product: {item.product_id}, Quantity: {item.quantity}")
+            print(f"  LLM Metrics: input_tokens={llm_metrics.total_input_tokens}, "
+                  f"output_tokens={llm_metrics.total_output_tokens}, "
+                  f"llm_calls={llm_metrics.total_llm_calls}")
             return cart
         except grpc.RpcError as e:
             logger.error(f"✗ GetCart failed: {e.details()}")
@@ -117,9 +125,13 @@ class CartServiceClient:
         try:
             request = demo_pb2.EmptyCartRequest(user_id=user_id)
             response = await self.stub.EmptyCart(request)
+            llm_metrics = response.llm_metrics
             logger.info(f"✓ EmptyCart: user_id={user_id}")
             print(f"✓ EmptyCart - user_id: {user_id}")
             print(f"  Response: Empty (success)")
+            print(f"  LLM Metrics: input_tokens={llm_metrics.total_input_tokens}, "
+                  f"output_tokens={llm_metrics.total_output_tokens}, "
+                  f"llm_calls={llm_metrics.total_llm_calls}")
             return True
         except grpc.RpcError as e:
             logger.error(f"✗ EmptyCart failed: {e.details()}")

@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import demo_pb2 as demo__pb2
+from ..shared import demo_pb2 as demo__pb2
 
 GRPC_GENERATED_VERSION = '1.74.0'
 GRPC_VERSION = grpc.__version__
@@ -765,7 +765,7 @@ class EmailServiceStub(object):
         self.SendOrderConfirmation = channel.unary_unary(
                 '/hipstershop.EmailService/SendOrderConfirmation',
                 request_serializer=demo__pb2.SendOrderConfirmationRequest.SerializeToString,
-                response_deserializer=demo__pb2.Empty.FromString,
+                response_deserializer=demo__pb2.LLMMetrics.FromString,
                 _registered_method=True)
 
 
@@ -786,7 +786,7 @@ def add_EmailServiceServicer_to_server(servicer, server):
             'SendOrderConfirmation': grpc.unary_unary_rpc_method_handler(
                     servicer.SendOrderConfirmation,
                     request_deserializer=demo__pb2.SendOrderConfirmationRequest.FromString,
-                    response_serializer=demo__pb2.Empty.SerializeToString,
+                    response_serializer=demo__pb2.LLMMetrics.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -817,7 +817,7 @@ class EmailService(object):
             target,
             '/hipstershop.EmailService/SendOrderConfirmation',
             demo__pb2.SendOrderConfirmationRequest.SerializeToString,
-            demo__pb2.Empty.FromString,
+            demo__pb2.LLMMetrics.FromString,
             options,
             channel_credentials,
             insecure,

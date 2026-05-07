@@ -245,9 +245,9 @@ Example format:
             state["ranked_ads"] = ranked[:max_ads]
             state["decision"] = "RANKED"
             state["reasoning"] = "LLM ranked ads based on relevance to context"
-            state["llm_metrics"]["input_tokens"] = in_tokens
-            state["llm_metrics"]["output_tokens"] = out_tokens
-            state["llm_metrics"]["llm_calls"] = state["llm_metrics"].get("llm_calls", 0) + 1
+            state["llm_metrics"]["total_input_tokens"] = in_tokens
+            state["llm_metrics"]["total_output_tokens"] = out_tokens
+            state["llm_metrics"]["total_llm_calls"] = state["llm_metrics"].get("total_llm_calls", 0) + 1
         else:
             logger.warning("[ad_rank_reasoning] LLM did not return valid ranked ads")
             state["ranked_ads"] = candidate_ads[:max_ads]
@@ -418,7 +418,7 @@ async def run_ad_request_agent(
     context_keys: list[str],
     catalog: dict[str, list[dict]],
     max_ads: int = 5,
-) -> list[dict]:
+) -> dict[str, Any]:
     """
     Execute ad selection agent workflow.
     
@@ -429,6 +429,7 @@ async def run_ad_request_agent(
     
     Returns:
         list[dict]: Ranked ads (or fallback random ads)
+        llm_metrics: dict with input_tokens, output_tokens, llm_calls for observability
     """
     
     # Initialize state
@@ -443,9 +444,9 @@ async def run_ad_request_agent(
         decision="",
         reasoning="",
         llm_metrics={
-            "input_tokens": 0,
-            "output_tokens": 0,
-            "llm_calls": 0,
+            "total_input_tokens": 0,
+            "total_output_tokens": 0,
+            "total_llm_calls": 0,
         },
         created_at=datetime.utcnow(),
     )
@@ -455,6 +456,7 @@ async def run_ad_request_agent(
     try:
         final_state = await ad_graph.ainvoke(initial_state)
         ads = final_state.get("ranked_ads", [])
+        llm_metrics = final_state.get("llm_metrics", {})
         
         logger.info(
             "Ad request completed | interaction_id=%s | decision=%s | ads_returned=%d",
@@ -462,9 +464,9 @@ async def run_ad_request_agent(
             final_state.get("decision"),
             len(ads),
         )
-        
-        return ads
-    
+
+        return {"ads": ads, "llm_metrics": llm_metrics}
+
     except Exception as e:
         logger.error(
             "Ad request agent error | interaction_id=%s: %s",
@@ -472,4 +474,4 @@ async def run_ad_request_agent(
             e
         )
         # Return empty list on error (caller should handle gracefully)
-        return []
+        return {"ads": [], "llm_metrics": llm_metrics}
