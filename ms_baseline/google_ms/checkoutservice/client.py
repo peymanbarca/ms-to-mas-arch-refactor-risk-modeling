@@ -203,6 +203,8 @@ class CheckoutClient:
             raise CheckoutClientError(exc.code(), exc.details()) from exc
 
         result = _order_result_to_dict(response.order)
+        llm_metrics = getattr(response, "llm_metrics", None)
+        print("llm_metrics:", llm_metrics) 
         logger.info(
             "PlaceOrder success | order_id=%s tracking_id=%s",
             result["order_id"],
