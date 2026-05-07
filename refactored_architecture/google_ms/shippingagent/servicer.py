@@ -117,7 +117,7 @@ class ShippingServicer(
                 currency_code="USD",
                 units=quote.dollars,
                 nanos=quote.nanos,   # cents * 10_000_000
-            )
+            ), llm_metrics=demo_pb2.LLMMetrics() 
         )
 
     # ── ShipOrder ────────────────────────────────────────────────────────────
@@ -174,7 +174,11 @@ class ShippingServicer(
         logger.info("[ShipOrder] completed request")
 
         # Return same gRPC response (backward compatible)
-        return demo_pb2.ShipOrderResponse(tracking_id=tracking_id)
+        return demo_pb2.ShipOrderResponse(tracking_id=tracking_id, llm_metrics=demo_pb2.LLMMetrics(
+            total_input_tokens=agent_result.get("total_input_tokens", 0),
+            total_output_tokens=agent_result.get("total_output_tokens", 0),
+            total_llm_calls=agent_result.get("total_llm_calls", 0),
+        ))
 
     # ── gRPC HealthService ───────────────────────────────────────────────────
 

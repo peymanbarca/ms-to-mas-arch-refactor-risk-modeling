@@ -56,7 +56,7 @@ class ProductCatalogServicer(demo_pb2_grpc.ProductCatalogServiceServicer):
         product = self._index.get(request.id)
         if product is None:
             await context.abort(grpc.StatusCode.NOT_FOUND, f"Product {request.id!r} not found")
-        return product
+        return demo_pb2.GetProductResponse(product=product, llm_metrics=demo_pb2.LLMMetrics())
 
     async def SearchProducts(self, request, context):
         """
@@ -92,7 +92,11 @@ class ProductCatalogServicer(demo_pb2_grpc.ProductCatalogServiceServicer):
             if product:
                 products.append(product)
 
-        return demo_pb2.SearchProductsResponse(results=products)
+        return demo_pb2.SearchProductsResponse(results=products, llm_metrics=demo_pb2.LLMMetrics(
+            total_input_tokens=agent_result.get("total_input_tokens", 0),
+            total_output_tokens=agent_result.get("total_output_tokens", 0),
+            total_llm_calls=agent_result.get("total_llm_calls", 0),
+        ))
 
 
 import grpc  # noqa: E402 (needed for abort above)

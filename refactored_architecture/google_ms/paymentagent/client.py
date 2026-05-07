@@ -54,7 +54,7 @@ import grpc
 from ..shared import demo_pb2
 from ..shared import demo_pb2_grpc
 
-logger = logging.getLogger("paymentservice-client")
+logger = logging.getLogger("paymentagent-client")
 
 _DEFAULT_ADDR = os.getenv("PAYMENT_SERVICE_ADDR", "localhost:5052")
 
@@ -155,6 +155,11 @@ class PaymentClient:
             raise PaymentClientError(exc.code(), exc.details()) from exc
 
         logger.info("Charge success | transaction_id=%s", response.transaction_id)
+        logger.info("LLM Metrics | input_tokens=%d output_tokens=%d llm_calls=%d",
+            response.llm_metrics.total_input_tokens,
+            response.llm_metrics.total_output_tokens,
+            response.llm_metrics.total_llm_calls,
+        )
         return response.transaction_id
 
     # ── lifecycle ─────────────────────────────────────────────────────────────

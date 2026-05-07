@@ -369,6 +369,7 @@ Shipment details:
 
     logger.info("[shipping_reasoning] LLM raw response: %s", raw)
     logger.info("[shipping_reasoning] tokens | in=%d out=%d", in_tokens, out_tokens)
+    logger.info("raw LLM response: %s", raw)
 
     decision = _parse_json_response(raw)
 

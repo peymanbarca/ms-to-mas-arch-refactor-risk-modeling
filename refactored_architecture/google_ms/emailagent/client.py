@@ -140,6 +140,7 @@ class EmailServiceClient:
             print(f"  Tracking ID: {tracking_id}")
             print(f"  Items: {len(order_items)}")
             print(f"  Shipping Cost: ${shipping_cost[0]}.{shipping_cost[1]:09d}")
+            print("LLM Metrics:", response)
             print(f"  Response: Success (Empty response)")
             return True
             
@@ -170,7 +171,7 @@ async def main():
         print("\n" + "-" * 80)
         print("TEST 1: Send order confirmation email")
         print("-" * 80)
-        success = await client.send_order_confirmation(
+        response = await client.send_order_confirmation(
             email="john.doe@example.com",
             order_id="ORD-2024-001",
             tracking_id="TRK-123456789",
@@ -189,14 +190,14 @@ async def main():
             shipping_cost=(12, 500000000)
         )
         print()
-
+        
         # ─────────────────────────────────────────────────────────────────
         # Test 2: Send confirmation with different address
         # ─────────────────────────────────────────────────────────────────
         print("\n" + "-" * 80)
         print("TEST 2: Send order confirmation with different address")
         print("-" * 80)
-        success = await client.send_order_confirmation(
+        response = await client.send_order_confirmation(
             email="jane.smith@example.com",
             order_id="ORD-2024-002",
             tracking_id="TRK-987654321",
@@ -221,7 +222,7 @@ async def main():
         print("\n" + "-" * 80)
         print("TEST 3: Send order confirmation with multiple items")
         print("-" * 80)
-        success = await client.send_order_confirmation(
+        response = await client.send_order_confirmation(
             email="customer@example.com",
             order_id="ORD-2024-003",
             tracking_id="TRK-555555555",
@@ -249,7 +250,7 @@ async def main():
         print("\n" + "-" * 80)
         print("TEST 4: Send order confirmation with international address")
         print("-" * 80)
-        success = await client.send_order_confirmation(
+        response = await client.send_order_confirmation(
             email="customer@example.co.uk",
             order_id="ORD-2024-004",
             tracking_id="TRK-444444444",
@@ -274,7 +275,7 @@ async def main():
         print("\n" + "-" * 80)
         print("TEST 5: Send order confirmation with default values")
         print("-" * 80)
-        success = await client.send_order_confirmation(
+        response = await client.send_order_confirmation(
             email="default@example.com",
             order_id="ORD-2024-005",
             tracking_id="TRK-DEFAULT"

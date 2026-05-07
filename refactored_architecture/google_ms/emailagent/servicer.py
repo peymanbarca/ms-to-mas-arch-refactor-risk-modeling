@@ -48,7 +48,7 @@ class EmailServicer(
         self,
         request: demo_pb2.SendOrderConfirmationRequest,
         context: grpc.aio.ServicerContext,
-    ) -> demo_pb2.Empty:
+    ) -> demo_pb2.LLMMetrics:
         """
         Original dummy implementation:
             - render Jinja2 template
@@ -92,7 +92,7 @@ class EmailServicer(
                     grpc.StatusCode.INTERNAL,
                     f"Email agent error: {exc}",
                 )
-            return demo_pb2.Empty()
+            return demo_pb2.LLMMetrics()
 
         # Template rendering failure → INTERNAL (same as original TemplateError branch)
         if final_state.get("error") and "Template rendering" in (final_state.get("error") or ""):
@@ -105,7 +105,7 @@ class EmailServicer(
                     grpc.StatusCode.INTERNAL,
                     "An error occurred when preparing the confirmation mail.",
                 )
-            return demo_pb2.Empty()
+            return demo_pb2.LLMMetrics()
 
         # Delivery failure → warn but still return Empty() (email is non-critical)
         send_status = final_state.get("send_status", "unknown")
@@ -123,7 +123,9 @@ class EmailServicer(
                 final_state.get("total_llm_calls", 0),
             )
 
-        return demo_pb2.Empty()
+        return demo_pb2.LLMMetrics(total_input_tokens=final_state.get("total_input_tokens", 0),
+                                   total_output_tokens=final_state.get("total_output_tokens", 0),
+                                   total_llm_calls=final_state.get("total_llm_calls", 0))
 
     # ── gRPC HealthService ────────────────────────────────────────────────────
 

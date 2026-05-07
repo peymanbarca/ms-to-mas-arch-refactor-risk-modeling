@@ -34,8 +34,7 @@ def build_llm_metrics(
     return demo_pb2.LLMMetrics(
         total_input_tokens=total_input_tokens,
         total_output_tokens=total_output_tokens,
-        total_llm_calls=total_llm_calls,
-        timestamp=timestamp,
+        total_llm_calls=total_llm_calls
     )
 
 

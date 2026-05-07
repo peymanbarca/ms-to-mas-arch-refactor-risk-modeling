@@ -182,9 +182,16 @@ class ShippingClient:
             raise ShippingClientError("GetQuote", exc.code(), exc.details()) from exc
 
         result = _money_to_dict(response.cost_usd)
+        llm_metrics = response.llm_metrics
         dollars = result["units"]
         cents   = result["nanos"] // 10_000_000
         logger.info("GetQuote → $%d.%02d USD", dollars, cents)
+        logger.info(
+            "GetQuote LLM metrics | input_tokens=%d, output_tokens=%d, llm_calls=%d",
+            llm_metrics.total_input_tokens,
+            llm_metrics.total_output_tokens,
+            llm_metrics.total_llm_calls,
+        )
         return result
 
     # ── ShipOrder ────────────────────────────────────────────────────────────
@@ -233,6 +240,11 @@ class ShippingClient:
             raise ShippingClientError("ShipOrder", exc.code(), exc.details()) from exc
 
         logger.info("ShipOrder → tracking_id=%s", response.tracking_id)
+        logger.info("ShipOrder llm_metrics | input_tokens=%d, output_tokens=%d, llm_calls=%d",
+            response.llm_metrics.total_input_tokens,
+            response.llm_metrics.total_output_tokens,
+            response.llm_metrics.total_llm_calls,
+        )
         return response.tracking_id
 
     # ── lifecycle ─────────────────────────────────────────────────────────────

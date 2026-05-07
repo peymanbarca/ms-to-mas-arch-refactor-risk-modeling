@@ -126,11 +126,19 @@ class RecommendationClient:
             ) from exc
 
         recommended = list(response.product_ids)
+        llm_metrics = response.llm_metrics
         logger.info(
             "ListRecommendations returned %d product(s) for user=%s: %s",
             len(recommended),
             user_id,
             recommended,
+        )
+        logger.info(
+            "ListRecommendations LLM metrics | user_id=%s: input_tokens=%d, output_tokens=%d, llm_calls=%d",
+            user_id,
+            llm_metrics.total_input_tokens,
+            llm_metrics.total_output_tokens,
+            llm_metrics.total_llm_calls,
         )
         return recommended
 

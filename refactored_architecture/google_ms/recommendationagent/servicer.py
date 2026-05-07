@@ -108,6 +108,9 @@ class RecommendationServicer(
 
         response = demo_pb2.ListRecommendationsResponse()
         response.product_ids.extend(recommended)
+        response.llm_metrics.total_input_tokens = final_state.get("total_input_tokens", 0)
+        response.llm_metrics.total_output_tokens = final_state.get("total_output_tokens", 0)
+        response.llm_metrics.total_llm_calls = final_state.get("total_llm_calls", 0)
         return response
 
     # ── gRPC HealthService ────────────────────────────────────────────────────

@@ -399,7 +399,7 @@ Conversion details:
 
 
 # ════════════════════════════════════════════════════════════════════════════
-# Node 4 – persist_conversion  (deterministic tool)
+# Node 4 – persist_conversion  (deterministic tool) only logging
 # ════════════════════════════════════════════════════════════════════════════
 
 async def persist_conversion_node(state: CurrencyConversionAgentState) -> CurrencyConversionAgentState:

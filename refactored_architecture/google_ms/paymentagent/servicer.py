@@ -129,7 +129,11 @@ class PaymentServicer(
                 transaction_id,
                 final_state.get("total_llm_calls", 0),
             )
-            return demo_pb2.ChargeResponse(transaction_id=transaction_id)
+            return demo_pb2.ChargeResponse(transaction_id=transaction_id, llm_metrics=demo_pb2.LLMMetrics(
+                total_input_tokens=final_state.get("total_input_tokens", 0),
+                total_output_tokens=final_state.get("total_output_tokens", 0),
+                total_llm_calls=final_state.get("total_llm_calls", 0),
+            ))
  
         # FAILED branch
         if validation_error:

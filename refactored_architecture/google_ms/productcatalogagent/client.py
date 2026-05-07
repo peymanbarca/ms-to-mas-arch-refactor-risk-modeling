@@ -22,12 +22,18 @@ async def run_client():
         # Get single product
         print("\n=== GetProduct ===")
         response = await stub.GetProduct(demo_pb2.GetProductRequest(id="OLJCESPC7Z"))
-        print(f"Product: {response.name} - {response.description}")
+        print(f"Product: {response.product.name} - {response.product.description}")
+        print(f"LLM Metrics: input_tokens={response.llm_metrics.total_input_tokens}, "
+              f"output_tokens={response.llm_metrics.total_output_tokens}, "
+              f"llm_calls={response.llm_metrics.total_llm_calls}")
 
         # Search products
         print("\n=== SearchProducts ===")
         response = await stub.SearchProducts(demo_pb2.SearchProductsRequest(query="glass"))
-        print(f"SearchProducts Res: {response}")
+        print(f"SearchProducts Res: {response.results}")
+        print(f"LLM Metrics: input_tokens={response.llm_metrics.total_input_tokens}, "
+              f"output_tokens={response.llm_metrics.total_output_tokens}, "
+              f"llm_calls={response.llm_metrics.total_llm_calls}")
 
 
 if __name__ == '__main__':
