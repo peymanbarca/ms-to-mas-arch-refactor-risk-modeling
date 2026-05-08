@@ -208,6 +208,13 @@ class CheckoutClient:
             result["order_id"],
             result["shipping_tracking_id"],
         )
+        llm_metrics = getattr(response, "llm_metrics", None)
+        if llm_metrics:
+            logger.info(
+                "LLM Metrics | input_tokens=%d output_tokens=%d llm_calls=%d",
+                llm_metrics.total_input_tokens,
+                llm_metrics.total_output_tokens,
+                llm_metrics.total_llm_calls)
         return result
 
     # ── lifecycle ─────────────────────────────────────────────────────────────

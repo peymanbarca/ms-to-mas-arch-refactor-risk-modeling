@@ -123,8 +123,26 @@ logger = logging.getLogger("checkoutagent")
 # ── LLM ───────────────────────────────────────────────────────────────────────
 llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
 
-# ── MongoDB (wired by main.py on startup) ─────────────────────────────────────
-db: Any = None
+# Global client (lazy-initialized)
+_mongodb_client: AsyncIOMotorClient = None
+
+
+async def get_mongodb_client() -> AsyncIOMotorClient:
+    """Get or create the MongoDB client."""
+    global _mongodb_client
+    if _mongodb_client is None:
+        _mongodb_client = AsyncIOMotorClient(MONGODB_URI)
+        # Verify connection
+        await _mongodb_client.admin.command("ping")
+        logger.info("Connected to MongoDB at %s", MONGODB_URI)
+    return _mongodb_client
+
+async def get_orders_collection():
+    """Get the orders collection."""
+    client = await get_mongodb_client()
+    db = client[MONGODB_DB]
+    col = db["orders"]
+    return col
 
 # ── Safety cap ────────────────────────────────────────────────────────────────
 MAX_ITERATIONS: int = 12   # maximum ReAct loop turns before fallback
@@ -605,12 +623,12 @@ async def _dispatch(
 
     # ── GET_CART ──────────────────────────────────────────────────────────────
     if action == ToolName.GET_CART:
-        resp: demo_pb2.Cart = await state["cart_stub"].GetCart(
+        resp: demo_pb2.GetCartResponse = await state["cart_stub"].GetCart(
             demo_pb2.GetCartRequest(user_id=state["user_id"])
         )
         items = [
             {"product_id": i.product_id, "quantity": i.quantity}
-            for i in resp.items
+            for i in resp.cart.items
         ]
         logger.info("[execute_tool:GET_CART] fetched %d items", len(items))
         return (
@@ -626,19 +644,27 @@ async def _dispatch(
         order_items = []
 
         for item in cart_items:
-            product: demo_pb2.Product = await state["catalog_stub"].GetProduct(
+            resp: demo_pb2.GetProductResponse = await state["catalog_stub"].GetProduct(
                 demo_pb2.GetProductRequest(id=item["product_id"])
             )
+            product = resp.product
             price_usd = product.price_usd
+            state["total_output_tokens"] += getattr(resp.llm_metrics, "total_input_tokens",  0)
+            state["total_llm_calls"] += getattr(resp.llm_metrics, "total_llm_calls", 0)
+            state["total_input_tokens"] += getattr(resp.llm_metrics, "total_input_tokens", 0)
 
             if price_usd.currency_code == user_currency:
                 converted = price_usd
             else:
-                converted = await state["currency_stub"].Convert(
+                converted_resp: demo_pb2.CurrencyConversionResponse = await state["currency_stub"].Convert(
                     demo_pb2.CurrencyConversionRequest(
                         from_=price_usd, to_code=user_currency,
                     )
                 )
+                converted: demo_pb2.Money = converted_resp.converted_amount
+                state["total_output_tokens"] += getattr(converted_resp.llm_metrics, "total_input_tokens",  0)
+                state["total_llm_calls"] += getattr(converted_resp.llm_metrics, "total_llm_calls", 0)
+                state["total_input_tokens"] += getattr(converted_resp.llm_metrics, "total_input_tokens", 0)
 
             cost_py   = proto_to_money(converted)
             mult      = money_multiply_slow(cost_py, item["quantity"])
@@ -657,9 +683,10 @@ async def _dispatch(
             })
 
         logger.info(
-            "[execute_tool:GET_PRODUCT_PRICES] priced %d items in %s",
-            len(order_items), user_currency,
+            "[execute_tool:GET_PRODUCT_PRICES] priced %d items in %s, order_items: %s",
+            len(order_items), user_currency, order_items
         )
+        await _db_update_order_order_items(state["order_id"], order_items)  # persist order_items to MongoDB
         return (
             {"order_items": order_items},
             f"priced {len(order_items)} items in {user_currency}",
@@ -688,18 +715,28 @@ async def _dispatch(
         )
         shipping_usd = quote_resp.cost_usd
         user_currency = state["user_currency"]
+        
+        state["total_output_tokens"] += getattr(quote_resp.llm_metrics, "total_input_tokens",  0)
+        state["total_llm_calls"] += getattr(quote_resp.llm_metrics, "total_llm_calls", 0)
+        state["total_input_tokens"] += getattr(quote_resp.llm_metrics, "total_input_tokens", 0)
 
         if shipping_usd.currency_code == user_currency:
             shipping_local = shipping_usd
         else:
-            shipping_local = await state["currency_stub"].Convert(
+            converted_resp = await state["currency_stub"].Convert(
                 demo_pb2.CurrencyConversionRequest(
                     from_=shipping_usd, to_code=user_currency,
                 )
             )
+            shipping_local: demo_pb2.Money = converted_resp.converted_amount
+            state["total_output_tokens"] += getattr(converted_resp.llm_metrics, "total_input_tokens",  0)
+            state["total_llm_calls"] += getattr(converted_resp.llm_metrics, "total_llm_calls", 0)
+            state["total_input_tokens"] += getattr(converted_resp.llm_metrics, "total_input_tokens", 0)
 
         cost_dict = _money_dict(shipping_local)
         logger.info("[execute_tool:GET_SHIPPING_QUOTE] %s", cost_dict["formatted"])
+        await _db_update_order_shipping_quote(state["order_id"], cost_dict)  # persist shipping_cost to MongoDB
+        
         return (
             {"shipping_cost": cost_dict},
             f"shipping quote: {cost_dict['formatted']}",
@@ -734,6 +771,10 @@ async def _dispatch(
         )
         txn_id = charge_resp.transaction_id
         logger.info("[execute_tool:CHARGE_CARD] transaction_id=%s", txn_id)
+        
+        state["total_output_tokens"] += getattr(charge_resp.llm_metrics, "total_input_tokens",  0)
+        state["total_llm_calls"] += getattr(charge_resp.llm_metrics, "total_llm_calls", 0)
+        state["total_input_tokens"] += getattr(charge_resp.llm_metrics, "total_input_tokens", 0)
 
         # Update MongoDB: PENDING → PAID
         await _db_update_order(state["order_id"], OrderStatus.PAID, {
@@ -770,6 +811,10 @@ async def _dispatch(
         tracking_id = ship_resp.tracking_id
         logger.info("[execute_tool:SHIP_ORDER] tracking_id=%s", tracking_id)
 
+        state["total_output_tokens"] += getattr(ship_resp.llm_metrics, "total_input_tokens",  0)
+        state["total_llm_calls"] += getattr(ship_resp.llm_metrics, "total_llm_calls", 0)
+        state["total_input_tokens"] += getattr(ship_resp.llm_metrics, "total_input_tokens", 0)
+
         await _db_update_order(state["order_id"], OrderStatus.SHIPPED, {
             "shipping_tracking_id": tracking_id,
         })
@@ -783,9 +828,14 @@ async def _dispatch(
     # ── EMPTY_CART ────────────────────────────────────────────────────────────
     elif action == ToolName.EMPTY_CART:
         try:
-            await state["cart_stub"].EmptyCart(
+            cart_resp: demo_pb2.EmptyCartResponse = await state["cart_stub"].EmptyCart(
                 demo_pb2.EmptyCartRequest(user_id=state["user_id"])
             )
+            
+            state["total_output_tokens"] += getattr(cart_resp.llm_metrics, "total_input_tokens",  0)
+            state["total_llm_calls"] += getattr(cart_resp.llm_metrics, "total_llm_calls", 0)
+            state["total_input_tokens"] += getattr(cart_resp.llm_metrics, "total_input_tokens", 0)
+        
             logger.info("[execute_tool:EMPTY_CART] cart cleared")
             return ({"cart_emptied": True}, "cart emptied", True)
         except Exception as exc:
@@ -833,11 +883,15 @@ async def _dispatch(
                 items=items_proto,
             )
 
-            await state["email_stub"].SendOrderConfirmation(
+            email_resp: demo_pb2.LLMMetrics = await state["email_stub"].SendOrderConfirmation(
                 demo_pb2.SendOrderConfirmationRequest(
                     email=state["email"], order=order_result
                 )
             )
+            
+            state["total_output_tokens"] += getattr(email_resp, "total_input_tokens",  0)
+            state["total_llm_calls"] += getattr(email_resp, "total_llm_calls", 0)
+            state["total_input_tokens"] += getattr(email_resp, "total_input_tokens", 0)
 
             # Mark COMPLETED in MongoDB
             await _db_update_order(state["order_id"], OrderStatus.COMPLETED, {})
@@ -891,23 +945,11 @@ async def finalise_order_node(state: CheckoutAgentState) -> CheckoutAgentState:
 # MongoDB helpers (same schema as original orchestrator)
 # ════════════════════════════════════════════════════════════════════════════
 
-async def _get_orders_collection():
-    if db is None:
-        return None
-    col = db["orders"]
-    try:
-        await col.create_index("order_id", unique=True)
-        await col.create_index("user_id")
-        await col.create_index("status")
-        await col.create_index("created_at")
-    except Exception:
-        pass
-    return col
 
 
 async def _db_create_pending_order(state: CheckoutAgentState) -> None:
     """Create a new order with PENDING status in MongoDB."""
-    col = await _get_orders_collection()
+    col = await get_orders_collection()
     if col is None:
         logger.warning("[MongoDB] orders collection not available")
         return
@@ -939,7 +981,7 @@ async def _db_create_pending_order(state: CheckoutAgentState) -> None:
 
 async def _db_update_order(order_id: str, status: str, extra: Dict[str, Any]) -> None:
     """Update an existing order with new status and extra fields."""
-    col = await _get_orders_collection()
+    col = await get_orders_collection()
     if col is None:
         return
     try:
@@ -958,6 +1000,38 @@ async def _db_update_order(order_id: str, status: str, extra: Dict[str, Any]) ->
         logger.error("[MongoDB] failed to update order: %s", exc)
 
 
+async def _db_update_order_shipping_quote(order_id: str, shipping_quote: dict) -> None:
+    """Update an existing order with new status and extra fields."""
+    col = await get_orders_collection()
+    if col is None:
+        return
+    try:
+        now = datetime.datetime.now(tz=timezone.utc)
+        set_fields: Dict[str, Any] = {"shipping_cost": shipping_quote, "updated_at": now}
+        await col.update_one(
+            {"_id": order_id},
+            {"$set": set_fields}
+        )
+        logger.info("[MongoDB] updated order add shipping quote | order_id=%s", order_id)
+    except Exception as exc:
+        logger.error("[MongoDB] failed to update order: %s", exc)
+
+async def _db_update_order_order_items(order_id: str, order_items: list) -> None:
+    """Update an existing order with new status and extra fields."""
+    col = await get_orders_collection()
+    if col is None:
+        return
+    try:
+        now = datetime.datetime.now(tz=timezone.utc)
+        set_fields: Dict[str, Any] = {"items": order_items, "updated_at": now}
+        await col.update_one(
+            {"_id": order_id},
+            {"$set": set_fields}
+        )
+        logger.info("[MongoDB] updated order add order items | order_id=%s", order_id)
+    except Exception as exc:
+        logger.error("[MongoDB] failed to update order: %s", exc)
+                
 # ════════════════════════════════════════════════════════════════════════════
 # Graph assembly
 # ════════════════════════════════════════════════════════════════════════════
