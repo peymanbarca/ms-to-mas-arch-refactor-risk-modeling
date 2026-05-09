@@ -14,7 +14,7 @@ PORT = int(os.getenv("PORT", 8008))
 
 logger = logging.getLogger("product_search")
 logging.basicConfig(
-    filename='../logs/product_search_service.log',
+    filename='./logs/product_search_service.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )

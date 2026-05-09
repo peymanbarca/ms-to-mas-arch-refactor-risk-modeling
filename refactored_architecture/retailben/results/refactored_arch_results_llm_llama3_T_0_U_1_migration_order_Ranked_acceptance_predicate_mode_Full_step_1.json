@@ -15,7 +15,7 @@
     "latency_predicate_failed": true,
     "qa_predicate_failed": true,
     "failure_rate_predicate_failed": true,
-    "success": true
+    "success": false
   }
 }
 

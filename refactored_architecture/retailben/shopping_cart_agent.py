@@ -18,7 +18,7 @@ import asyncio
 
 logger = logging.getLogger("shopping_cart_agent")
 logging.basicConfig(
-    filename='../logs/shopping_cart_agent.log',
+    filename='./logs/shopping_cart_agent.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )

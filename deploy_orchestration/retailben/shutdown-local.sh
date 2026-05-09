@@ -45,9 +45,9 @@ for pair in "${AGENT_LIST[@]}"; do
 done
 
 
-cd ms_baseline && rm *.log
+cd ../../ms_baseline/retailben && rm *.log
 
-cd ../refactored_architecture && rm *.log
+cd ../../refactored_architecture/retailben && rm *.log
 
 # Graceful shutdown on CTRL+C
 trap "echo 'Stopping all...'; kill 0" SIGINT

@@ -19,7 +19,7 @@ SHIPMENT_SERVICE_URL = "http://127.0.0.1:8006/book"
 
 logger = logging.getLogger("order")
 logging.basicConfig(
-    filename='../logs/order_service.log',
+    filename='./logs/order_service.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )

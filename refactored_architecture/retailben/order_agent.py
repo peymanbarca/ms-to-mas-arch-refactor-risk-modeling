@@ -20,7 +20,7 @@ import requests
 
 logger = logging.getLogger("order_agent")
 logging.basicConfig(
-    filename='../logs/order_agent.log',
+    filename='./logs/order_agent.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )

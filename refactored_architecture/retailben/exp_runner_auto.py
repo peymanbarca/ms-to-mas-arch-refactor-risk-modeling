@@ -313,8 +313,9 @@ if __name__ == '__main__':
     epsilon_l = sys.argv[6]
     epsilon_qa = sys.argv[7]
     epsilon_f = sys.argv[8]
-    if len(sys.argv) < 9:
-        raise ValueError("Expected: migration_order predicate-mode step services agents epsilon_l epsilon_qa epsilon_f")
+    governance_mode = sys.argv[9]
+    if len(sys.argv) < 10:
+        raise ValueError("Expected: migration_order predicate-mode step services agents epsilon_l epsilon_qa epsilon_f governance_mode")
 
     acceptance_result = acceptance_of_architecture_step_predicate_based(
                                                                         epsilon_l=epsilon_l,
@@ -324,7 +325,7 @@ if __name__ == '__main__':
     full_run_step_results = {"migration_order": migration_order,
                              "step": step, "services": services, "agents": agents, "acceptance_result": acceptance_result}
     step_report_file_name = f"results/refactored_arch_results_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}" \
-              f"_migration_order_{migration_order}_acceptance_predicate_mode_{acceptance_predicate_mode}_step_{step}.json"
+              f"_migration_order_{migration_order}_acceptance_predicate_mode_{acceptance_predicate_mode}_governance_mode_{governance_mode}_step_{step}.json"
     # print(step_report_file_name, full_run_step_results)
     with open(step_report_file_name, "w") as f:
         f.write("\n\n")

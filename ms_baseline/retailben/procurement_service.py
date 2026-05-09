@@ -25,7 +25,7 @@ http_client: httpx.AsyncClient = None
 
 logger = logging.getLogger("procurement")
 logging.basicConfig(
-    filename='../logs/procurement_service.log',
+    filename='./logs/procurement_service.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )

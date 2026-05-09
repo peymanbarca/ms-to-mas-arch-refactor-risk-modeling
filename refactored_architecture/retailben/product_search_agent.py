@@ -19,7 +19,7 @@ import asyncio
 
 logger = logging.getLogger("product_search_agent")
 logging.basicConfig(
-    filename='../logs/product_search_agent.log',
+    filename='./logs/product_search_agent.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )

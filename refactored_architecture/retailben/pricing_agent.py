@@ -13,7 +13,7 @@ import asyncio
 
 logger = logging.getLogger("pricing_agent")
 logging.basicConfig(
-    filename='../logs/pricing_agent.log',
+    filename='./logs/pricing_agent.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )

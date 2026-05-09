@@ -14,7 +14,7 @@ PORT = int(os.getenv("PORT", 8002))
 
 logger = logging.getLogger("pricing")
 logging.basicConfig(
-    filename='../logs/pricing_service.log',
+    filename='./logs/pricing_service.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )

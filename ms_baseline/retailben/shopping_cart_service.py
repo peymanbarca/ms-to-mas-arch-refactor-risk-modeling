@@ -15,7 +15,7 @@ PORT = int(os.getenv("PORT", 8003))
 
 logger = logging.getLogger("shopping_cart")
 logging.basicConfig(
-    filename='../logs/shopping_cart_service.log',
+    filename='./logs/shopping_cart_service.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )

@@ -78,8 +78,8 @@ else:
 
 acceptance_predicate_mode = "Full" # ["QA-Only", "Latency-Only", "Failure-Only", "Full"]
 
-# --------------------------------- Governance Mechanism HITL ---------------------------
-HITL_policy = "Post-Audit-Only" # ["No", "Post-Audit-Only", "Full"]
+# --------------------------------- Governance Mechanism  ---------------------------
+governance_policy = "Post-Audit-Only" # ["No", "Post-Audit-Only", "Full"]
 
 
 current_agents = []
@@ -152,9 +152,9 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
         ["python3", "exp_runner_auto.py",
          migration_order,
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
-         str(epsilon_l), str(epsilon_qa), str(epsilon_f)
+         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy)
          ],
-        cwd="refactored_architecture",
+        cwd="../../refactored_architecture/retailben",
         capture_output=True,
         text=True
     )
@@ -162,10 +162,10 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
     print(f"Experiment output for step {step_num}:", step_result_parsed)
 
     # Automated acceptance decision based on predicate results
-    if HITL_policy == "No":
+    if governance_policy == "No":
         return True if step_result_parsed["result"] == "ACCEPTED" else False
     else:
-        print("Please decide whether to ACCEPT or REJECT this refactoring step based on the above results and HITL policy.")
+        print("Please decide whether to ACCEPT or REJECT this refactoring step based on the above results and governance policy.")
         governed_step_result = input("Type 'A' to Accept or 'R' to Reject: ").strip().upper()
         if governed_step_result == "A":
             return True
@@ -179,6 +179,8 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
 
 
 # ---- Main Refactoring LOOP ----
+
+subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
 
 step = 0
 for svc in ranked_services:

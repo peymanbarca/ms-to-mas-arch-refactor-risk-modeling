@@ -56,7 +56,7 @@ sleep 1
 
 echo "Starting services..."
 
-cd ms_baseline && rm *.log
+cd ../../ms_baseline/retailben && rm *.log
 
 for pair in "${SVC_LIST[@]}"; do
   NAME="${pair%%:*}"
@@ -67,7 +67,7 @@ for pair in "${SVC_LIST[@]}"; do
 done
 
 
-cd ../refactored_architecture && rm *.log
+cd ../../refactored_architecture/retailben && rm *.log
 
 echo "Starting agents..."
 
