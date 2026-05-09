@@ -11,7 +11,7 @@ Agents:
 
     Shopping Cart Agent:
 
-        nohup python3 -m refactored_architecture.google_ms.cartagent.cartagent_as_service >& shopping_agent.log &
+        nohup python3 -m refactored_architecture.google_ms.cartagent.cartagent_as_service >& cart_agent.log &
 
         python3 -m refactored_architecture.google_ms.cartagent.client
 
