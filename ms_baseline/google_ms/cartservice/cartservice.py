@@ -44,7 +44,7 @@ from ..shared.base_service import make_health_app, run_service
 
 logger = logging.getLogger(__name__)
 
-MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://user:pass1@localhost:27017")
+MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017")
 MONGODB_DB  = os.getenv("MONGODB_DB",  "google_ms")
 GRPC_PORT   = int(os.getenv("PORT", "5054"))
 

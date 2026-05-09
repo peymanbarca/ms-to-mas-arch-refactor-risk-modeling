@@ -1,0 +1,102 @@
+Agents:
+    ps -ef | grep agent
+    rm -f *.log
+    fuser -k 5050/tcp
+
+    Ad Agent:
+
+        nohup python3 -m refactored_architecture.google_ms.adagent.adagent_as_service >& ad_agent.log &
+
+        python3 -m ms_baseline.google_ms.adservice.client kitchen cycling
+
+    Shopping Cart Agent:
+
+        nohup python3 -m refactored_architecture.google_ms.cartagent.cartagent_as_service >& shopping_agent.log &
+
+        python3 -m refactored_architecture.google_ms.cartagent.client
+
+    Currency Agent:
+        nohup python3 -m refactored_architecture.google_ms.currencyagent.currencyagent_as_service  >& currency_agent.log &
+          
+    Email Agent:
+        nohup python3 -m refactored_architecture.google_ms.emailagent.emailagent_as_service  >& email_agent.log &
+
+        python3 -m refactored_architecture.google_ms.emailagent.client
+
+    Payment Agent:
+
+            nohup python3 -m refactored_architecture.google_ms.paymentagent.paymentagent_as_service >& payment_agent.log &
+
+                python3 -m refactored_architecture.google_ms.paymentagent.client 4111111111111111 123 2030 1 USD 100 0
+                python3 -m refactored_architecture.google_ms.paymentagent.client 5500005555555559 123 2030 6 EUR 25 990000000
+                python3 -m refactored_architecture.google_ms.paymentagent.client 4111111111111111 123 2020 1 USD 50 0
+                python3 -m refactored_architecture.google_ms.paymentagent.client 4111111111111112 123 2030 1 USD 10 0
+
+  
+    Shipment Agent:
+
+            nohup python3 -m refactored_architecture.google_ms.shippingagent.shippingagent_as_service >& shipment_agent.log &
+
+                python3 -m refactored_architecture.google_ms.shippingagent.client quote "1600 Amphitheatre Pkwy" "Mountain View" CA US 94043 3
+                python3 -m refactored_architecture.google_ms.shippingagent.client ship  "1600 Amphitheatre Pkwy" "Mountain View" CA US 94043 3
+      
+    Product Search Agent:
+
+            nohup python3 -m refactored_architecture.google_ms.productcatalogagent.productcatalogagent_as_service >& product_search_agent.log &
+
+                python3 -m refactored_architecture.google_ms.productcatalogagent.client
+
+    Recommendation Agent:
+
+            nohup python3 -m refactored_architecture.google_ms.recommendationagent.recommendationagent_as_service >& product_search_agent.log &
+
+                python3 -m refactored_architecture.google_ms.recommendationagent.client 1
+                python3 -m refactored_architecture.google_ms.recommendationagent.client 1 OLJCESPC7Z 2ZYFJ3GM2N
+
+
+    Checkout Agent:
+
+            nohup python3 -m refactored_architecture.google_ms.checkoutagent.checkoutagent_as_service >& checkout_agent.log &
+
+                python3 -m refactored_architecture.google_ms.checkoutagent.client_cart
+                python3 -m refactored_architecture.google_ms.checkoutagent.client 1 USD "1600 Amphitheatre Pkwy" "Mountain View" CA US 94043 test@example.com 4111111111111111 123 2030 1
+                python3 -m refactored_architecture.google_ms.checkoutagent.client 1 USD "1600 Amphitheatre Pkwy" "Mountain View" CA US 94043 test@example.com 4111111111111111 123 2025 1
+
+
+Microservices:
+    ps -ef | grep service
+    rm -f *.log
+
+    nohup python3 -m ms_baseline.google_ms.adservice.adservice >& ad_service.log &
+    python3 -m ms_baseline.google_ms.adservice.client kitchen cycling
+
+    nohup python3 -m ms_baseline.google_ms.cartservice.cartservice >& cart_service.log &
+    python3 -m ms_baseline.google_ms.cartservice.client
+    
+    
+    nohup python3 -m ms_baseline.google_ms.currencyservice.currencyservice >& currency_service.log &
+    
+    
+    nohup python3 -m ms_baseline.google_ms.emailservice.emailservice >& email_service.log &
+        python3 -m ms_baseline.google_ms.emailservice.emailservice_client
+    
+    nohup python3 -m ms_baseline.google_ms.paymentservice.paymentservice >& payment_service.log &
+        python3 -m ms_baseline.google_ms.paymentservice.client 4111111111111111 123 2030 1 USD 100 0
+        python3 -m ms_baseline.google_ms.paymentservice.client 5500005555555559 123 2030 6 EUR 25 990000000
+        python3 -m ms_baseline.google_ms.paymentservice.client 4111111111111111 123 2020 1 USD 50 0
+        python3 -m ms_baseline.google_ms.paymentservice.client 4111111111111112 123 2030 1 USD 10 0   
+    
+    nohup python3 -m ms_baseline.google_ms.productcatalog.productcatalogservice >& productcatalog_service.log &
+        python3 -m ms_baseline.google_ms.productcatalog.client
+    
+    nohup python3 -m ms_baseline.google_ms.recommendationservice.recommendationservice >& recommendationservice.log &
+        python3 -m ms_baseline.google_ms.recommendationservice.client 1
+        python3 -m ms_baseline.google_ms.recommendationservice.client 1 OLJCESPC7Z 2ZYFJ3GM2N
+    
+    nohup python3 -m ms_baseline.google_ms.shippingservice.shippingservice >& shippingservice.log &
+        python3 -m ms_baseline.google_ms.shippingservice.client quote "1600 Amphitheatre Pkwy" "Mountain View" CA US 94043 3
+        python3 -m ms_baseline.google_ms.shippingservice.client ship  "1600 Amphitheatre Pkwy" "Mountain View" CA US 94043 3
+    
+    nohup python3 -m ms_baseline.google_ms.checkoutservice.checkoutservice >& checkoutservice.log &
+        python3 -m ms_baseline.google_ms.checkoutservice.client 1 USD "1600 Amphitheatre Pkwy" "Mountain View" CA US 94043 test@example.com 4111111111111111 123 2030 1
+        python3 -m ms_baseline.google_ms.checkoutservice.client 1 USD "1600 Amphitheatre Pkwy" "Mountain View" CA US 94043 test@example.com 4111111111111111 123 2025 1

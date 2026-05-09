@@ -49,7 +49,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 logger = logging.getLogger("checkoutservice")
 
-MONGODB_URI = getenv("MONGODB_URI", "mongodb://user:pass1@localhost:27017")
+MONGODB_URI = getenv("MONGODB_URI", "mongodb://localhost:27017")
 MONGODB_DB  = getenv("MONGODB_DB",  "google_ms")
 
 _mongodb_client: AsyncIOMotorClient | None = None

@@ -62,7 +62,7 @@ from .quote import create_quote_from_count, create_tracking_id
 logger = logging.getLogger("shippingservice")
 
 # MongoDB configuration
-MONGODB_URI = getenv("MONGODB_URI", "mongodb://user:pass1@localhost:27017")
+MONGODB_URI = getenv("MONGODB_URI", "mongodb://localhost:27017")
 MONGODB_DB = getenv("MONGODB_DB", "google_ms")
 
 # Global MongoDB client (lazy-initialized)

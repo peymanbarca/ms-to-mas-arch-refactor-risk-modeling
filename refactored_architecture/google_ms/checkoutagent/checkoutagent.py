@@ -147,7 +147,7 @@ async def get_orders_collection():
 # ── Safety cap ────────────────────────────────────────────────────────────────
 MAX_ITERATIONS: int = 12   # maximum ReAct loop turns before fallback
 
-MONGODB_URI = getenv("MONGODB_URI", "mongodb://user:pass1@localhost:27017")
+MONGODB_URI = getenv("MONGODB_URI", "mongodb://localhost:27017")
 MONGODB_DB  = getenv("MONGODB_DB",  "google_ms")
 
 # ── Order lifecycle constants ─────────────────────────────────────────────────
