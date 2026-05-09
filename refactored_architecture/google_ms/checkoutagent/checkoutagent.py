@@ -121,7 +121,7 @@ from .money import (
 logger = logging.getLogger("checkoutagent")
 
 # ── LLM ───────────────────────────────────────────────────────────────────────
-llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
+llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)
 
 # Global client (lazy-initialized)
 _mongodb_client: AsyncIOMotorClient = None
