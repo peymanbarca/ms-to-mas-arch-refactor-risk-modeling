@@ -21,9 +21,9 @@ services:
     container_name: mongodb_ms_to_mas
     ports:
       - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass1
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=user
+    #   - MONGO_INITDB_ROOT_PASSWORD=pass1
     volumes:
       - mongodb-data-ms-to-mas:/data/db
 
