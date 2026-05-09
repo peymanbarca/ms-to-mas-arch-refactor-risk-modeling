@@ -428,8 +428,8 @@ Rules:
     3. GET_SHIPPING_QUOTE  → populates shipping_cost (needs cart_items)
     4. CHARGE_CARD         → populates transaction_id (needs order_items + shipping_cost)
     5. SHIP_ORDER          → populates tracking_id (needs transaction_id)
-    6. EMPTY_CART          → best-effort cleanup (needs transaction_id)
-    7. SEND_CONFIRMATION   → best-effort email (needs tracking_id)
+    6. EMPTY_CART          → best-effort cleanup (needs transaction_id and cart_emptied should be False)
+    7. SEND_CONFIRMATION   → best-effort email (needs tracking_id and confirmation_sent should be False)
     8. DONE                → only when SHIP_ORDER has tracking_id
 - Skip a step if its result is already in the state (not null).
 - If a critical step failed (CHARGE_CARD, SHIP_ORDER), do NOT proceed to DONE.
