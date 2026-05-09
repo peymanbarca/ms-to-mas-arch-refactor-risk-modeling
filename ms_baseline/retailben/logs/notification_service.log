@@ -1,0 +1,32 @@
+2026-05-09 11:46:59,403 - INFO - 
+┌── MOCK EMAIL ─────────────────────────────────┐
+│  To      : user@example.com
+│  Subject : Order #ORD-001 Received – Thank You!
+│  Msg-ID  : mock-cb799ea3ed@retailben.local
+├───────────────────────────────────────────────┤
+│  Hi Customer,
+│  
+│  We received your order #ORD-001.
+│  Total: $49.99
+│  Items: 2x Widget, 1x Gadget
+│  
+│  We'll send another email once it's confirmed.
+│  
+│  RetailBen Team
+└───────────────────────────────────────────────┘
+2026-05-09 11:47:26,630 - INFO - 
+┌── MOCK EMAIL ─────────────────────────────────┐
+│  To      : user@example.com
+│  Subject : Order #ORD-001 Received – Thank You!
+│  Msg-ID  : mock-3f12834d80@retailben.local
+├───────────────────────────────────────────────┤
+│  Hi Customer,
+│  
+│  We received your order #ORD-001.
+│  Total: $49.99
+│  Items: 2x Widget, 1x Gadget
+│  
+│  We'll send another email once it's confirmed.
+│  
+│  RetailBen Team
+└───────────────────────────────────────────────┘

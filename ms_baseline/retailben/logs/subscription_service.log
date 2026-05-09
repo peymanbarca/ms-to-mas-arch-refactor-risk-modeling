@@ -1,0 +1,18 @@
+2026-05-09 12:04:42,644 - WARNING - Duplicate subscription attempt for user '1' and promo code 'SUMMER20'
+2026-05-09 12:04:57,987 - INFO - Fetched 0 active subscriptions for user '2'
+2026-05-09 12:04:57,987 - INFO - Sorted active subscriptions for user '2' by discount percent
+2026-05-09 12:04:57,987 - INFO - Active subscriptions for user '2': []
+2026-05-09 12:05:01,023 - INFO - Fetched 1 active subscriptions for user '1'
+2026-05-09 12:05:01,024 - INFO - Sorted active subscriptions for user '1' by discount percent
+2026-05-09 12:05:01,024 - INFO - Active subscriptions for user '1': [('SUMMER20', 20.0)]
+2026-05-09 12:14:38,640 - INFO - Subscription created for user '1' with promo code 'SUMMER20'
+2026-05-09 12:14:50,013 - INFO - Fetched and sorted 1 active subscriptions for user '1'
+2026-05-09 12:15:16,390 - WARNING - Subscription attempt with invalid promo code: '1'
+2026-05-09 12:15:32,648 - INFO - Duplicate subscription attempt: user '1' already subscribed to 'SUMMER20'
+2026-05-09 12:15:42,858 - INFO - Fetched and sorted 0 active subscriptions for user '1'
+2026-05-09 12:15:43,887 - INFO - Fetched and sorted 0 active subscriptions for user '1'
+2026-05-09 12:15:46,651 - INFO - Subscription created for user '1' with promo code 'SUMMER20'
+2026-05-09 12:15:53,123 - INFO - Fetched and sorted 1 active subscriptions for user '1'
+2026-05-09 12:15:55,655 - INFO - Fetched and sorted 1 active subscriptions for user '1'
+2026-05-09 12:17:42,413 - INFO - Fetched and sorted 0 active subscriptions for user '2'
+2026-05-09 12:17:45,380 - INFO - Fetched and sorted 1 active subscriptions for user '1'

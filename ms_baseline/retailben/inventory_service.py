@@ -17,7 +17,7 @@ lock = threading.Lock()
 
 logger = logging.getLogger("inventory")
 logging.basicConfig(
-    filename='../logs/inventory_service.log',
+    filename='./logs/inventory_service.log',
     level=logging.INFO,  # Log all messages with severity DEBUG or higher
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )
