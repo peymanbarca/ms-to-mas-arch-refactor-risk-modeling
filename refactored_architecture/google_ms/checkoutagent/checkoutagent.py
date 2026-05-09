@@ -344,7 +344,6 @@ def _state_summary(state: CheckoutAgentState) -> str:
         "user_id":           state["user_id"],
         "user_currency":     state["user_currency"],
         "email":             state["email"],
-        "address":           state.get("address"),
         "cart_items":        state.get("cart_items"),
         "order_items":       state.get("order_items"),
         "shipping_cost":     state.get("shipping_cost"),
@@ -428,12 +427,12 @@ Rules:
     3. GET_SHIPPING_QUOTE  → populates shipping_cost (needs cart_items)
     4. CHARGE_CARD         → populates transaction_id (needs order_items + shipping_cost)
     5. SHIP_ORDER          → populates tracking_id (needs transaction_id)
-    6. EMPTY_CART          → best-effort cleanup (needs transaction_id and cart_emptied should be False)
-    7. SEND_CONFIRMATION   → best-effort email (needs tracking_id and confirmation_sent should be False)
+    6. EMPTY_CART          → best-effort cleanup (needs transaction_id not null and cart_emptied should be False)
+    7. SEND_CONFIRMATION   → best-effort email (needs tracking_id not null and confirmation_sent should be False)
     8. DONE                → only when SHIP_ORDER has tracking_id
 - Skip a step if its result is already in the state (not null).
 - If a critical step failed (CHARGE_CARD, SHIP_ORDER), do NOT proceed to DONE.
-- EMPTY_CART and SEND_CONFIRMATION are best-effort: attempt them even after partial failures.
+- EMPTY_CART and SEND_CONFIRMATION are best-effort: attempt them even after partial failures. Do not repeat them if they have already been attempted once in Actions taken so far.
 - Do NOT call DONE unless transaction_id AND tracking_id are both set.
 - Return ONLY valid JSON — no markdown, no preamble.
 
