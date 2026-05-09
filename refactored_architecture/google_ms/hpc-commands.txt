@@ -48,7 +48,7 @@ Agents:
 
     Recommendation Agent:
 
-            nohup python3 -m refactored_architecture.google_ms.recommendationagent.recommendationagent_as_service >& product_search_agent.log &
+            nohup python3 -m refactored_architecture.google_ms.recommendationagent.recommendationagent_as_service >& recommendationagent.log &
 
                 python3 -m refactored_architecture.google_ms.recommendationagent.client 1
                 python3 -m refactored_architecture.google_ms.recommendationagent.client 1 OLJCESPC7Z 2ZYFJ3GM2N
