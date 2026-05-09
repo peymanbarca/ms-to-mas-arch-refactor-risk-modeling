@@ -121,7 +121,7 @@ from .money import (
 logger = logging.getLogger("checkoutagent")
 
 # ── LLM ───────────────────────────────────────────────────────────────────────
-llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)
+llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
 
 # Global client (lazy-initialized)
 _mongodb_client: AsyncIOMotorClient = None
@@ -411,15 +411,6 @@ You are the orchestration brain for an e-commerce checkout service.
 Your job is to inspect the current order state and decide which single tool
 to call next to advance the checkout toward completion.
 
-Available tools:
-{tools_block}
-
-Current order state (JSON):
-{_state_summary(state)}
-
-Actions taken so far (iteration {state['iteration']}):
-{_steps_summary(state.get('steps', []))}
-
 Rules:
 - You MUST follow this logical sequence unless a step already has data:
     1. GET_CART            → populates cart_items
@@ -430,16 +421,27 @@ Rules:
     6. EMPTY_CART          → best-effort cleanup (needs transaction_id not null and cart_emptied should be False)
     7. SEND_CONFIRMATION   → best-effort email (needs tracking_id not null and confirmation_sent should be False)
     8. DONE                → only when SHIP_ORDER has tracking_id
-- Skip a step if its result is already in the state (not null).
+- Do NOT call DONE unless transaction_id AND tracking_id are both set. IF they both are set immediately call DONE to complete the checkout.
+- Skip a step if its result is already in the state (not null or true).
 - If a critical step failed (CHARGE_CARD, SHIP_ORDER), do NOT proceed to DONE.
 - EMPTY_CART and SEND_CONFIRMATION are best-effort: attempt them even after partial failures. Do not repeat them if they have already been attempted once in Actions taken so far.
-- Do NOT call DONE unless transaction_id AND tracking_id are both set.
 - Return ONLY valid JSON — no markdown, no preamble.
 
 Output schema:
 {{
   "next_action": "<one of: GET_CART | GET_PRODUCT_PRICES | GET_SHIPPING_QUOTE | CHARGE_CARD | SHIP_ORDER | EMPTY_CART | SEND_CONFIRMATION | DONE>"
 }}
+
+Available tools:
+{tools_block}
+
+Current order state (JSON):
+{_state_summary(state)}
+
+Actions taken so far (iteration {state['iteration']}):
+{_steps_summary(state.get('steps', []))}
+
+
 """.strip()
 
 
