@@ -499,6 +499,7 @@ async def reason_node(state: CheckoutAgentState) -> CheckoutAgentState:
         }
 
     prompt = _build_reason_prompt(state)
+    logger.debug("[reason] LLM prompt (iteration=%d): %s", iteration, prompt)
 
     try:
         response    = await asyncio.to_thread(llm.invoke, prompt)
