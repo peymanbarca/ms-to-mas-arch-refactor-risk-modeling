@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   postgres:
-    image: postgis/postgis:16-3.4
+    image: postgres:15
     container_name: postgres_ms_to_mas
     environment:
       POSTGRES_USER: user
@@ -56,9 +56,50 @@ services:
       retries: 5
       start_period: 30s
 
+  sonarqube-db:
+    image: postgres:15
+    container_name: sonarqube-db
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_DB: sonarqube
+    volumes:
+      - sonarqube-db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - sonarqube-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sonar"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  sonarqube:
+    image: sonarqube:community # Use 'latest-community' for the free version
+    restart: always
+    ports:
+      - "9000:9000" # Default web interface port
+    environment:
+      - SONARQUBE_DATABASE_USER=sonar
+      - SONARQUBE_DATABASE_PASSWORD=sonar
+      - SONARQUBE_DATABASE_NAME=sonarqube
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
+    networks:
+      - sonarqube-network
+
+networks:
+  sonarqube-network:
 
 volumes:
   redis-cache-local-ms-to-mas:
   postgres-local-db-ms-to-mas:
   rabbitmq-data-ms-to-mas:
   mongodb-data-ms-to-mas:
+  sonarqube-db-data:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:

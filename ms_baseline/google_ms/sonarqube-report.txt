@@ -1,0 +1,120 @@
+All shared/*.py and client.py are excluded
+
+
+Cognitive complexity is usually lower than cyclomatic complexity in well-written microservice codebases.
+
+Because microservices are designed to be small, single-purpose, and loosely coupled, their internal codebase naturally leans toward 
+    a linear architecture that maps cleanly to how human brains process information. Microservices inherently avoid the deep,
+    tangled logic structures that cause cognitive complexity to explode. 
+
+If you find that a specific microservice has a higher cognitive complexity than cyclomatic complexity,
+ it is a strong code smell.
+ It usually means that business logic is heavily nested, or that the microservice has grown too large and is turning back into a "mini-monolith."
+
+
+------------------------ Cognitive Complexity
+
+adservice
+    ad_catalog.py 2
+    adservice.py 1
+    servicer.py 14
+
+
+
+cartservice
+    cartservice.py 14
+
+
+
+checkoutservice
+    checkoutservice.py 7
+    money.py 17
+    orchestrator.py 23
+    servicer.py 3
+
+
+currencyservice
+    currencyservice.py 4
+
+
+emailservice
+    emailservice.py 23
+    emailservice_config.py 2
+
+
+paymentservice
+    card_validator.py 15
+    paymentservice.py 13
+    servicer.py 8
+
+
+productcatalog
+    productcatalogservice.py 6
+
+
+recommendationservice
+    recommendationservice.py 7
+    servicer.py 1
+
+
+
+shippingservice
+    quote.py 3
+    servicer.py 3
+    shippingservice.py 3
+
+
+
+------------------------ Cyclomatic Complexity
+
+
+adservice
+    ad_catalog.py 5
+    adservice.py 5
+    servicer.py 7
+
+
+cartservice
+    cartservice.py 17
+
+
+
+checkoutservice
+    checkoutservice.py 15
+    money.py 26
+    orchestrator.py 22
+    servicer.py 2
+
+
+
+currencyservice
+    currencyservice.py 12
+
+
+
+emailservice
+    emailservice.py 19
+    emailservice_config.py 4
+
+
+paymentservice
+    card_validator.py 15
+    paymentservice.py 18
+    servicer.py 8
+
+
+
+productcatalog
+    productcatalogservice.py 17
+
+
+recommendationservice
+    recommendationservice.py 8
+    servicer.py 2
+
+
+
+shippingservice
+    quote.py 8
+    servicer.py 6
+    shippingservice.py 7
