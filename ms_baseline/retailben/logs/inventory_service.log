@@ -1,35 +1,115 @@
-2026-02-14 17:54:26,523 - INFO - Request for reserve_stock, order_id: ea9e453c-c9e0-4c2a-9516-898ddaa13698, request: order_id='ea9e453c-c9e0-4c2a-9516-898ddaa13698' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:26,524 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:26,525 - INFO - Request for reserve_stock successfully processed, order_id: ea9e453c-c9e0-4c2a-9516-898ddaa13698, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 8}], status: RESERVED
-2026-02-14 17:54:27,071 - INFO - Request for reserve_stock, order_id: 6b35cea5-2743-4eab-a898-238ad5603836, request: order_id='6b35cea5-2743-4eab-a898-238ad5603836' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:27,071 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:27,078 - INFO - Request for reserve_stock successfully processed, order_id: 6b35cea5-2743-4eab-a898-238ad5603836, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 6}], status: RESERVED
-2026-02-14 17:54:27,631 - INFO - Request for reserve_stock, order_id: 4f1d6e08-a8d4-4520-a272-487f192dd8d3, request: order_id='4f1d6e08-a8d4-4520-a272-487f192dd8d3' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:27,631 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:27,636 - INFO - Request for reserve_stock successfully processed, order_id: 4f1d6e08-a8d4-4520-a272-487f192dd8d3, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 4}], status: RESERVED
-2026-02-14 17:54:28,191 - INFO - Request for reserve_stock, order_id: 052b59b7-cc28-4b32-94a6-ddbd856cd804, request: order_id='052b59b7-cc28-4b32-94a6-ddbd856cd804' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:28,191 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:28,198 - INFO - Request for reserve_stock successfully processed, order_id: 052b59b7-cc28-4b32-94a6-ddbd856cd804, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 2}], status: RESERVED
-2026-02-14 17:54:28,742 - INFO - Request for reserve_stock, order_id: e034e236-5f94-49ca-bced-40ed03b69b61, request: order_id='e034e236-5f94-49ca-bced-40ed03b69b61' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:28,743 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:28,748 - INFO - Request for reserve_stock successfully processed, order_id: e034e236-5f94-49ca-bced-40ed03b69b61, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 0}], status: RESERVED
-2026-02-14 17:54:29,341 - INFO - Request for reserve_stock, order_id: 8201a874-e577-407d-b866-bcf5bfc69546, request: order_id='8201a874-e577-407d-b866-bcf5bfc69546' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:29,341 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:29,342 - INFO - Request for reserve_stock successfully processed, order_id: 8201a874-e577-407d-b866-bcf5bfc69546, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
-2026-02-14 17:54:29,342 - ERROR - Exception in Request for reserve_stock, order_id: 8201a874-e577-407d-b866-bcf5bfc69546, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
-2026-02-14 17:54:29,350 - INFO - Request for reserve_stock, order_id: c6f2c7a7-da81-40c3-b0d2-430915184252, request: order_id='c6f2c7a7-da81-40c3-b0d2-430915184252' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:29,350 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:29,351 - INFO - Request for reserve_stock successfully processed, order_id: c6f2c7a7-da81-40c3-b0d2-430915184252, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
-2026-02-14 17:54:29,351 - ERROR - Exception in Request for reserve_stock, order_id: c6f2c7a7-da81-40c3-b0d2-430915184252, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
-2026-02-14 17:54:29,357 - INFO - Request for reserve_stock, order_id: 6d017097-aa96-4b32-956c-a23931eb9630, request: order_id='6d017097-aa96-4b32-956c-a23931eb9630' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:29,357 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:29,358 - INFO - Request for reserve_stock successfully processed, order_id: 6d017097-aa96-4b32-956c-a23931eb9630, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
-2026-02-14 17:54:29,358 - ERROR - Exception in Request for reserve_stock, order_id: 6d017097-aa96-4b32-956c-a23931eb9630, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
-2026-02-14 17:54:29,384 - INFO - Request for reserve_stock, order_id: fb3a1466-3370-4e10-bc9e-36efcb04f87a, request: order_id='fb3a1466-3370-4e10-bc9e-36efcb04f87a' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:29,385 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:29,387 - INFO - Request for reserve_stock successfully processed, order_id: fb3a1466-3370-4e10-bc9e-36efcb04f87a, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
-2026-02-14 17:54:29,387 - ERROR - Exception in Request for reserve_stock, order_id: fb3a1466-3370-4e10-bc9e-36efcb04f87a, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
-2026-02-14 17:54:29,394 - INFO - Request for reserve_stock, order_id: 2ae34fa0-1af3-4b90-b559-e007334a365f, request: order_id='2ae34fa0-1af3-4b90-b559-e007334a365f' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
-2026-02-14 17:54:29,394 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
-2026-02-14 17:54:29,395 - INFO - Request for reserve_stock successfully processed, order_id: 2ae34fa0-1af3-4b90-b559-e007334a365f, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
-2026-02-14 17:54:29,395 - ERROR - Exception in Request for reserve_stock, order_id: 2ae34fa0-1af3-4b90-b559-e007334a365f, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:15,625 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,629 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,630 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,630 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,632 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,633 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,634 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,634 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,635 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,638 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,638 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,640 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,640 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,642 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,644 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,646 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,647 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,649 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,651 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,652 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}
+2026-05-17 17:35:15,687 - INFO - Request for reserve_stock, order_id: 1ea6f06e-2911-42cf-bd33-8cad913d07ce, request: order_id='1ea6f06e-2911-42cf-bd33-8cad913d07ce' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:15,687 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:15,690 - INFO - Request for reserve_stock successfully processed, order_id: 1ea6f06e-2911-42cf-bd33-8cad913d07ce, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 8}], status: RESERVED
+2026-05-17 17:35:16,242 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:16,246 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 8}
+2026-05-17 17:35:16,379 - INFO - Request for reserve_stock, order_id: a8ccfd3d-0f15-4854-9565-6abfa2fba03e, request: order_id='a8ccfd3d-0f15-4854-9565-6abfa2fba03e' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:16,379 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:16,383 - INFO - Request for reserve_stock successfully processed, order_id: a8ccfd3d-0f15-4854-9565-6abfa2fba03e, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 6}], status: RESERVED
+2026-05-17 17:35:16,944 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:16,949 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 6}
+2026-05-17 17:35:16,991 - INFO - Request for reserve_stock, order_id: 974b8379-8087-4568-bda6-b1d1d0abb981, request: order_id='974b8379-8087-4568-bda6-b1d1d0abb981' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:16,991 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:16,995 - INFO - Request for reserve_stock successfully processed, order_id: 974b8379-8087-4568-bda6-b1d1d0abb981, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 4}], status: RESERVED
+2026-05-17 17:35:17,548 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:17,553 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 4}
+2026-05-17 17:35:17,564 - INFO - Request for reserve_stock, order_id: 7b9e20dd-db60-4fab-a916-5f124748b142, request: order_id='7b9e20dd-db60-4fab-a916-5f124748b142' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:17,564 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:17,571 - INFO - Request for reserve_stock successfully processed, order_id: 7b9e20dd-db60-4fab-a916-5f124748b142, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 2}], status: RESERVED
+2026-05-17 17:35:18,137 - INFO - Request for reserve_stock, order_id: 2cf87fb8-17c5-4094-ae20-97a16f2d8b58, request: order_id='2cf87fb8-17c5-4094-ae20-97a16f2d8b58' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:18,137 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:18,144 - INFO - Request for reserve_stock successfully processed, order_id: 2cf87fb8-17c5-4094-ae20-97a16f2d8b58, result items: [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 0}], status: RESERVED
+2026-05-17 17:35:18,708 - INFO - Request for reserve_stock, order_id: 039bda05-d2ee-4531-b27f-3cf532f0bb5d, request: order_id='039bda05-d2ee-4531-b27f-3cf532f0bb5d' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:18,708 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:18,711 - INFO - Request for reserve_stock successfully processed, order_id: 039bda05-d2ee-4531-b27f-3cf532f0bb5d, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:18,712 - ERROR - Exception in Request for reserve_stock, order_id: 039bda05-d2ee-4531-b27f-3cf532f0bb5d, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:18,742 - INFO - Request for reserve_stock, order_id: bfea7521-b7f0-4b17-8c20-72cf9bc92a3f, request: order_id='bfea7521-b7f0-4b17-8c20-72cf9bc92a3f' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:18,742 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:18,745 - INFO - Request for reserve_stock successfully processed, order_id: bfea7521-b7f0-4b17-8c20-72cf9bc92a3f, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:18,745 - ERROR - Exception in Request for reserve_stock, order_id: bfea7521-b7f0-4b17-8c20-72cf9bc92a3f, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:18,782 - INFO - Request for reserve_stock, order_id: 9edfd3c3-72da-46a8-9e29-e5f0da4e64d4, request: order_id='9edfd3c3-72da-46a8-9e29-e5f0da4e64d4' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:18,782 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:18,783 - INFO - Request for reserve_stock successfully processed, order_id: 9edfd3c3-72da-46a8-9e29-e5f0da4e64d4, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:18,783 - ERROR - Exception in Request for reserve_stock, order_id: 9edfd3c3-72da-46a8-9e29-e5f0da4e64d4, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:18,788 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,792 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}
+2026-05-17 17:35:18,808 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,811 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}
+2026-05-17 17:35:18,821 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,822 - INFO - Request for reserve_stock, order_id: e8c87ac6-a68e-4914-9903-2eb857183386, request: order_id='e8c87ac6-a68e-4914-9903-2eb857183386' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:18,824 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:18,826 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}
+2026-05-17 17:35:18,827 - INFO - Request for reserve_stock successfully processed, order_id: e8c87ac6-a68e-4914-9903-2eb857183386, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:18,827 - ERROR - Exception in Request for reserve_stock, order_id: e8c87ac6-a68e-4914-9903-2eb857183386, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:18,841 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,845 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}
+2026-05-17 17:35:18,851 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,853 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}
+2026-05-17 17:35:18,858 - INFO - Request for reserve_stock, order_id: 7b44b022-c2de-442c-b132-c198e80e522e, request: order_id='7b44b022-c2de-442c-b132-c198e80e522e' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:18,859 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:18,861 - INFO - Request for reserve_stock successfully processed, order_id: 7b44b022-c2de-442c-b132-c198e80e522e, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:18,862 - ERROR - Exception in Request for reserve_stock, order_id: 7b44b022-c2de-442c-b132-c198e80e522e, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:18,887 - INFO - Request for reserve_stock, order_id: e2866f0d-bae9-47a9-a5f8-6eae9dd0e323, request: order_id='e2866f0d-bae9-47a9-a5f8-6eae9dd0e323' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:18,887 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:18,890 - INFO - Request for reserve_stock successfully processed, order_id: e2866f0d-bae9-47a9-a5f8-6eae9dd0e323, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:18,891 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,891 - ERROR - Exception in Request for reserve_stock, order_id: e2866f0d-bae9-47a9-a5f8-6eae9dd0e323, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:18,893 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}
+2026-05-17 17:35:18,916 - INFO - Request for get_stock_by_skus, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,919 - INFO - Request for get_stock_by_skus successfully processed, result: {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}
+2026-05-17 17:35:18,921 - INFO - Request for reserve_stock, order_id: bd036109-0c67-45fc-a393-45e35b74c99e, request: order_id='bd036109-0c67-45fc-a393-45e35b74c99e' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:18,922 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:18,925 - INFO - Request for reserve_stock successfully processed, order_id: bd036109-0c67-45fc-a393-45e35b74c99e, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:18,926 - ERROR - Exception in Request for reserve_stock, order_id: bd036109-0c67-45fc-a393-45e35b74c99e, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:18,954 - INFO - Request for reserve_stock, order_id: 9cc36def-a991-49a7-8039-bbe1c96ab0c0, request: order_id='9cc36def-a991-49a7-8039-bbe1c96ab0c0' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:18,954 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:18,956 - INFO - Request for reserve_stock successfully processed, order_id: 9cc36def-a991-49a7-8039-bbe1c96ab0c0, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:18,956 - ERROR - Exception in Request for reserve_stock, order_id: 9cc36def-a991-49a7-8039-bbe1c96ab0c0, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:19,013 - INFO - Request for reserve_stock, order_id: 15a6ec86-ba92-4351-8f21-a2a32065f47c, request: order_id='15a6ec86-ba92-4351-8f21-a2a32065f47c' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:19,013 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:19,014 - INFO - Request for reserve_stock successfully processed, order_id: 15a6ec86-ba92-4351-8f21-a2a32065f47c, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:19,014 - ERROR - Exception in Request for reserve_stock, order_id: 15a6ec86-ba92-4351-8f21-a2a32065f47c, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:19,035 - INFO - Request for reserve_stock, order_id: 6a04c52f-eb84-4f52-ba8b-a4161b5b57ca, request: order_id='6a04c52f-eb84-4f52-ba8b-a4161b5b57ca' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:19,035 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:19,036 - INFO - Request for reserve_stock successfully processed, order_id: 6a04c52f-eb84-4f52-ba8b-a4161b5b57ca, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:19,036 - ERROR - Exception in Request for reserve_stock, order_id: 6a04c52f-eb84-4f52-ba8b-a4161b5b57ca, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:19,053 - INFO - Request for reserve_stock, order_id: 28ff7284-7a9f-4a5c-948c-2c0eac5f2414, request: order_id='28ff7284-7a9f-4a5c-948c-2c0eac5f2414' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:19,054 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:19,055 - INFO - Request for reserve_stock successfully processed, order_id: 28ff7284-7a9f-4a5c-948c-2c0eac5f2414, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:19,055 - ERROR - Exception in Request for reserve_stock, order_id: 28ff7284-7a9f-4a5c-948c-2c0eac5f2414, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:19,075 - INFO - Request for reserve_stock, order_id: 340348b1-0a27-4f74-8ddb-d45396ffb91b, request: order_id='340348b1-0a27-4f74-8ddb-d45396ffb91b' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:19,075 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:19,078 - INFO - Request for reserve_stock successfully processed, order_id: 340348b1-0a27-4f74-8ddb-d45396ffb91b, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:19,079 - ERROR - Exception in Request for reserve_stock, order_id: 340348b1-0a27-4f74-8ddb-d45396ffb91b, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:19,097 - INFO - Request for reserve_stock, order_id: 39745b9c-1a03-48bd-a25d-a370b8c3dc81, request: order_id='39745b9c-1a03-48bd-a25d-a370b8c3dc81' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:19,097 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:19,099 - INFO - Request for reserve_stock successfully processed, order_id: 39745b9c-1a03-48bd-a25d-a370b8c3dc81, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:19,099 - ERROR - Exception in Request for reserve_stock, order_id: 39745b9c-1a03-48bd-a25d-a370b8c3dc81, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:19,125 - INFO - Request for reserve_stock, order_id: a937ae3e-2b2e-44ce-ad20-68b8143dd20d, request: order_id='a937ae3e-2b2e-44ce-ad20-68b8143dd20d' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:19,126 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:19,128 - INFO - Request for reserve_stock successfully processed, order_id: a937ae3e-2b2e-44ce-ad20-68b8143dd20d, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:19,128 - ERROR - Exception in Request for reserve_stock, order_id: a937ae3e-2b2e-44ce-ad20-68b8143dd20d, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16
+2026-05-17 17:35:19,158 - INFO - Request for reserve_stock, order_id: 6b342c4a-a86d-40a5-ad1b-f75229951368, request: order_id='6b342c4a-a86d-40a5-ad1b-f75229951368' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] atomic_update=True delay=0.0 drop=0
+2026-05-17 17:35:19,158 - INFO - Failure injected for inventory reserve_stock INJECT_DELAY: 0, INJECT_DROP_RATE: 0
+2026-05-17 17:35:19,160 - INFO - Request for reserve_stock successfully processed, order_id: 6b342c4a-a86d-40a5-ad1b-f75229951368, failed_sku: b2926dc2-cc6d-4c3e-ae40-7a127c173b16, status: OUT_OF_STOCK
+2026-05-17 17:35:19,161 - ERROR - Exception in Request for reserve_stock, order_id: 6b342c4a-a86d-40a5-ad1b-f75229951368, status: OUT_OF_STOCK, Error: Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16

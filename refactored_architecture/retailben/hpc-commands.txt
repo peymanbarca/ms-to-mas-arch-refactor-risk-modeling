@@ -43,7 +43,7 @@ Agents:
 
             curl -X 'GET' 'http://127.0.0.1:8003/cart/2c73d756-bf8f-4c60-99ca-47008f3721c4' -H 'accept: application/json'
 
-            curl -X 'POST' 'http://127.0.0.1:8003/cart/-1/items' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"4cc0770f-91bc-4c0d-a26f-7b872f02ca94", "qty": 2}'
+            curl -X 'POST' 'http://127.0.0.1:8003/cart/-1/items' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"b2926dc2-cc6d-4c3e-ae40-7a127c173b16", "qty": 2}'
 
 
     Product Search Agent:
@@ -53,6 +53,7 @@ Agents:
             curl -X 'GET' 'http://127.0.0.1:8008/search?q=looking%20for%20headphone%20with%20noise%20cancelling%20under%20300$,%20and%20wanna%20delivery%20cheap%20and%20only%20on%20week%20days%20within%203%20days&user_id=123' -H 'accept: application/json'
 
             curl -X 'POST' 'http://127.0.0.1:8008/products' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"b2926dc2-cc6d-4c3e-ae40-7a127c173b16", "name": "Airpod", "description": "Noise cancelling headphone Airpod"}'
+            curl -X 'POST' 'http://127.0.0.1:8008/products' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"4cc0770f-91bc-4c0d-a26f-7b872f02ca94", "name": "Laptop", "description": "Macbook Air 13 inch professional"}'
 
 
     Order Agent:
@@ -76,3 +77,5 @@ Microservices:
     nohup python3 run_service.py product_search_service 8008 >& product_search_service.log &
     nohup python3 run_service.py procurement_service 8009 >& procurement_service.log &
     nohup python3 run_service.py order_service 8000 >& order_service.log &
+    nohup python3 run_service.py subscription_service 8010 >& subscription_service.log &
+    nohup python3 run_service.py notification_service 8011 >& notification_service.log &

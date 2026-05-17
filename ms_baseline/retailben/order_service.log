@@ -1,0 +1,242 @@
+nohup: ignoring input
+INFO:     Will watch for changes in these directories: ['/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/ms_baseline/retailben']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [38198] using WatchFiles
+INFO:     Started server process [38224]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:46568 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46568 - "GET /openapi.json HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38224]
+INFO:     Started server process [38690]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'order_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38690]
+INFO:     Started server process [38790]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'product_search_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38790]
+INFO:     Started server process [38887]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'inventory_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38887]
+INFO:     Started server process [39025]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'payment_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39025]
+INFO:     Started server process [39192]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'pricing_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39192]
+INFO:     Started server process [39292]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'procurement_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39292]
+INFO:     Started server process [39387]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'shipment_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39387]
+INFO:     Started server process [39491]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'shopping_cart_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39491]
+INFO:     Started server process [39612]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'subscription_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39612]
+INFO:     Started server process [39703]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'product_search_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39703]
+WARNING:  WatchFiles detected changes in 'product_search_service.py'. Reloading...
+INFO:     Started server process [41360]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:59020 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59020 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59036 - "POST /clear_orders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50542 - "POST /cart/b70e352b-3854-40d9-b7e8-e0a2288b9041/checkout HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38138 - "POST /cart/b70e352b-3854-40d9-b7e8-e0a2288b9041/checkout HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53444 - "POST /cart/b70e352b-3854-40d9-b7e8-e0a2288b9041/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59632 - "POST /cart/b70e352b-3854-40d9-b7e8-e0a2288b9041/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37542 - "POST /cart/b70e352b-3854-40d9-b7e8-e0a2288b9041/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37550 - "POST /cart/b70e352b-3854-40d9-b7e8-e0a2288b9041/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36224 - "POST /cart/b70e352b-3854-40d9-b7e8-e0a2288b9041/checkout?user_id=1 HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [41360]
+INFO:     Started server process [45199]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:52582 - "POST /clear_orders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52598 - "POST /cart/7aba21f5-4dfb-4331-bfff-9a6c0cfa6fd4/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52620 - "POST /cart/8fbfe72c-914a-4274-ac83-41e654f3fe3c/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52610 - "POST /cart/8cf5129b-7c30-4c33-a71f-92c52f39b033/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52656 - "POST /cart/e9d868f4-a73c-45de-ae90-366a08dd6136/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52630 - "POST /cart/35687f85-65ca-4eb2-9391-91c1977287b2/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52626 - "POST /cart/eb273e3c-27c7-41fe-a019-b47e06dcd19d/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52636 - "POST /cart/4c262dd8-d276-4cc9-9f96-76590b108c1c/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52624 - "POST /cart/1663951f-8d40-47b9-921b-c71eb05ae657/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52648 - "POST /cart/9ffcbc16-db11-4205-ac7a-bf134b9f639d/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52662 - "POST /cart/9e180cac-62b0-44b3-aee2-c7469f25258b/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52652 - "POST /cart/932d7b5d-53aa-44dd-bf4b-8a7fbf21f29b/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40848 - "POST /cart/7e880c42-37e4-48bf-b5e3-b7889ca12e56/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52668 - "POST /cart/e1da0829-f066-4190-aef3-e8615508ac81/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40858 - "POST /cart/29dd22a7-d341-4bdf-82a8-d5900b6e8d1d/checkout?user_id=1 HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45199]
+INFO:     Started server process [45779]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:60622 - "POST /clear_orders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42858 - "POST /cart/45b400ab-abdb-43ed-9892-e20c208d13af/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42870 - "POST /cart/f3589620-42ec-42c6-9378-3a85000f496d/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42884 - "POST /cart/af76f5bf-3d3e-4482-9510-69e9a2b18d32/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42892 - "POST /cart/6936907c-48d3-47b2-8f5e-2ee299ac2d91/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42894 - "POST /cart/6d22bb92-8f98-4805-bd80-0668364dae7e/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42904 - "POST /cart/7ca0051e-ef34-4efb-8f69-274fa37e8a2f/checkout?user_id=1 HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45779]
+INFO:     Started server process [46710]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46710]
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Started server process [46771]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Started server process [46823]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46823]
+INFO:     Started server process [46960]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46960]
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Started server process [47099]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47099]
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Started server process [47335]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:51438 - "POST /clear_orders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51440 - "POST /cart/f7316106-4ffd-42fe-8f81-49b0cb6d72ce/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51442 - "POST /cart/2a059989-44d6-47bd-9a8c-a6f7aaa2a25b/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51458 - "POST /cart/f1c47132-c96d-404a-a2bd-8c5a5e4152a9/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51466 - "POST /cart/678abb28-5ab9-4aaf-b145-c8e128b1f634/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51472 - "POST /cart/d0299c9e-a990-44a0-a9c8-371ac39d0ead/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51476 - "POST /cart/23233a38-f681-4b44-9dae-86e6cffdcd66/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51486 - "POST /cart/faf8c6ff-26ff-43e2-85cc-6d3b08c7a45e/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51496 - "POST /cart/a2d7cc01-34cb-4d43-9edb-67a0eb1b2c72/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51502 - "POST /cart/a1f4c847-cda5-4d93-b70b-3482e7017fc7/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51504 - "POST /cart/3d3c5006-b031-4de7-9663-c51087fad622/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51506 - "POST /cart/8468a712-b1f2-445d-b12c-b0986f42f117/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51510 - "POST /cart/6f6d4e13-b084-45ab-b546-720c40861a03/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51512 - "POST /cart/46d2af00-538f-44d7-9322-58805a6f8eee/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51516 - "POST /cart/a215a54f-8a15-40af-bec4-d9e1c4471dd6/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51532 - "POST /cart/a9c79f47-3f84-4c6c-83e1-2e651f98c44b/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51544 - "POST /cart/12f3f155-08cf-430b-b0aa-0c372e64dc30/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51552 - "POST /cart/8279c193-6968-45ee-8a91-5e62de016b97/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51568 - "POST /cart/c1e02c40-c3d5-487a-abb5-4815be4ae70b/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51576 - "POST /cart/91aecca7-ee39-49e4-a8c2-184fa5d043f1/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51592 - "POST /cart/a39a2ccc-a506-4df1-9c5a-41e5e39eecbf/checkout?user_id=1 HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47335]
+INFO:     Started server process [47808]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:49492 - "POST /clear_orders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49506 - "POST /cart/03d9df3c-b990-40ac-9d67-58a548fe5635/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49508 - "POST /cart/746274fd-5f68-4475-9814-5f9c8092d43b/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /cart/a39e68e7-4af3-4593-9fd1-4b3ee92510b4/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49536 - "POST /cart/667afa60-3afc-4963-9082-cb9440b087d0/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49524 - "POST /cart/8b3982ef-2ee4-4cfd-b9c8-2d2c112153be/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49548 - "POST /cart/8abd9582-93cf-4e92-ac37-ac43773e392f/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49564 - "POST /cart/85e63d39-66eb-4acb-a025-54df473e8eea/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49570 - "POST /cart/6908da0c-874b-420e-805a-84350484d0fc/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49578 - "POST /cart/ba8f3f1b-5a44-43b4-aea2-6d7321b46a93/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49608 - "POST /cart/e6649860-dc4f-465f-9301-90fd8b28f2a0/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49610 - "POST /cart/0dad9a01-b38a-4d68-8513-4c0a1055a137/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49602 - "POST /cart/d2624443-b048-4065-94bb-28fd01489cc6/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49626 - "POST /cart/4ded335c-3658-47db-9dc2-77b7769409cd/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49642 - "POST /cart/b2989a48-808d-4215-88e1-23cccc19a1c8/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49652 - "POST /cart/53c6bbae-5d5a-40dc-b8fd-ff5ab2133914/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49678 - "POST /cart/b012a352-fd6c-4f7a-9a4c-7ce5b1545f27/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49704 - "POST /cart/00a89df3-5035-4a1c-9643-4d24e67ae3cf/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49720 - "POST /cart/537b8aee-ae27-4c4e-89a5-b5ed6caf6a02/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49694 - "POST /cart/563f9d75-8956-4072-a0d7-0cfb2fc089a2/checkout?user_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49664 - "POST /cart/0cc8b75d-7ab1-4060-a5fc-617fb68a3789/checkout?user_id=1 HTTP/1.1" 200 OK

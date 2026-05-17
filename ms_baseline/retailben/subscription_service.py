@@ -79,7 +79,7 @@ PROMO_CATALOGUE: dict[str, dict] = {
 # MongoDB
 # ─────────────────────────────────────────────────────────────────────────────
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://user:pass1@localhost:27017")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
 MONGO_DB  = os.getenv("MONGO_DB",  "retailben")
 
 _mongo_client: AsyncIOMotorClient | None = None

@@ -13,7 +13,7 @@ import datetime
 
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 SUPPLIER_URL = os.getenv("SUPPLIER_URL", "http://localhost:9010/supplier/order")
 PORT = int(os.getenv("PORT", 8009))
 

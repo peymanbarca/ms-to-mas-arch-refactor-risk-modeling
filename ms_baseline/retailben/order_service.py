@@ -9,11 +9,12 @@ import httpx
 import logging
 
 app = FastAPI()
-ORDER_COLL = MongoClient("mongodb://localhost:27017/")["ms_baseline"]["orders"]
+ORDER_COLL = MongoClient("mongodb://localhost:27017/")["retailben"]["orders"]
 INVENTORY_SERVICE_RESERVE_URL = "http://127.0.0.1:8001/reserve"
 INVENTORY_SERVICE_RESERVE_ROLLBACK_URL = "http://127.0.0.1:8001/reserve-rollback"
 CART_SERVICE_URL = "http://127.0.0.1:8003/cart/"
 PRICING_SERVICE_URL = "http://127.0.0.1:8002"
+SUBSCRIPTION_SERVICE_URL = "http://127.0.0.1:8010"
 PAYMENT_SERVICE_URL = "http://127.0.0.1:8007/pay-order"
 SHIPMENT_SERVICE_URL = "http://127.0.0.1:8006/book"
 
@@ -68,13 +69,14 @@ def clear_orders():
 
 
 @app.post("/cart/{cart_id}/checkout")
-async def checkout_cart(cart_id: str):
+async def checkout_cart(cart_id: str, user_id: str = None):
     # 1. retrieve cart from cart service
     # 2. retrieve final price from pricing service
+    # 3. check active subscriptions and apply discount
     # orchestrate order placement -> inventory reservation -> payment processing -> book shipment -> notify user
 
     trace_id = str(uuid.uuid4())
-    logger.info(f"Request for checkout_cart, cart_id={cart_id},  trace_id={trace_id}")
+    logger.info(f"Request for checkout_cart, cart_id={cart_id}, user_id={user_id}, trace_id={trace_id}")
     
     total_input_tokens = 0
     total_output_tokens = 0
@@ -104,10 +106,40 @@ async def checkout_cart(cart_id: str):
             total_output_tokens += j_resp['total_output_tokens']
             total_llm_calls += j_resp['total_llm_calls']
 
+            # ============================
+            # Check for active subscriptions and apply discount
+            # ============================
+            discount_percent = 0.0
+            applied_promo_code = None
+            if user_id:
+                try:
+                    sub_resp = requests.get(f"{SUBSCRIPTION_SERVICE_URL}/subscriptions/{user_id}", timeout=10)
+                    logger.info(f"Subscription Service Called, user_id: {user_id},"
+                                f" response_status: {sub_resp.status_code}, trace_id={trace_id}")
+                    if sub_resp.status_code == 200:
+                        sub_data = sub_resp.json()
+                        subscriptions = sub_data.get('subscriptions', [])
+                        if subscriptions:
+                            # Use the first subscription (highest discount per subscription service sorting)
+                            first_sub = subscriptions[0]
+                            discount_percent = first_sub.get('discount_percent', 0.0)
+                            applied_promo_code = first_sub.get('promo_code', None)
+                            # Apply discount to final price
+                            discounted_price = final_price * (1 - discount_percent / 100.0)
+                            logger.info(f"Applied subscription discount for user {user_id}, "
+                                        f"promo_code: {applied_promo_code}, discount: {discount_percent}%, "
+                                        f"original_price: {final_price}, discounted_price: {discounted_price}, trace_id={trace_id}")
+                            final_price = discounted_price
+                except Exception as e:
+                    logger.exception(f"Error calling subscription service for user {user_id}, "
+                                     f"proceeding with original price: {e}, trace_id={trace_id}")
+                    # Fallback: use original price if subscription service fails
+
             return orchestrate_order(OrderCreate(items=cart_items, cart_id=cart_id, final_price=final_price,
                                                  atomic_update=True, delay=0.0, drop=0), trace_id=trace_id,
                                                  total_input_tokens=total_input_tokens, total_output_tokens=total_output_tokens,
-                                                 total_llm_calls=total_llm_calls)
+                                                 total_llm_calls=total_llm_calls, applied_promo_code=applied_promo_code,
+                                                 discount_percent=discount_percent)
 
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
@@ -116,14 +148,19 @@ async def checkout_cart(cart_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-def orchestrate_order(order: OrderCreate, trace_id: str, total_input_tokens:int, total_output_tokens:int, total_llm_calls: int):
+def orchestrate_order(order: OrderCreate, trace_id: str, total_input_tokens:int, total_output_tokens:int, total_llm_calls: int,
+                       applied_promo_code: str = None, discount_percent: float = 0.0):
     order_id = str(uuid.uuid4())
     logger.info(f"Request for orchestrate_order started, order_id={order_id}, trace_id={trace_id}")
     start_time = time.time()
-    # Save order INIT
-    ORDER_COLL.insert_one({"_id": order_id, "items": [{'sku': item.sku, 'qty': item.qty} for item in order.items],
-                           "cart_id": order.cart_id, "status": "INIT",
-                           "final_price": order.final_price})
+    # Save order INIT with discount info
+    order_doc = {"_id": order_id, "items": [{'sku': item.sku, 'qty': item.qty} for item in order.items],
+                 "cart_id": order.cart_id, "status": "INIT",
+                 "final_price": order.final_price}
+    if applied_promo_code:
+        order_doc["applied_promo_code"] = applied_promo_code
+        order_doc["discount_percent"] = discount_percent
+    ORDER_COLL.insert_one(order_doc)
 
     # Call inventory service
     try:

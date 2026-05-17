@@ -9,14 +9,14 @@ import statistics
 # ---------------- CONFIG ----------------
 SEARCH_SERVICE_URL = "http://127.0.0.1:8008/search"
 CART_SERVICE_URL = "http://127.0.0.1:8003/cart/cart_id/items"
-ORDER_SERVICE_URL = "http://127.0.0.1:8000/cart/cart_id/checkout"
+ORDER_SERVICE_URL = "http://127.0.0.1:8000/cart/cart_id/checkout?user_id=1"
 
 ITEM = "headphone"
 SKU = "b2926dc2-cc6d-4c3e-ae40-7a127c173b16"
 INIT_STOCK = 10
 QTY = 2
 
-N_TRIALS = 10
+N_TRIALS = 20
 MAX_WORKERS = N_TRIALS / 2  # Number of concurrent threads
 total_runs = 1
 
@@ -25,7 +25,7 @@ DROP_RATE = int(os.environ.get("DROP_RATE", "0"))       # percent 0-100
 atomic_update = False
 
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb://localhost:27017/")
-DB_NAME = os.environ.get("DB_NAME", "ms_baseline")
+DB_NAME = os.environ.get("DB_NAME", "retailben")
 
 
 logs = ['logs/order_service.log', 'logs/inventory_service.log', 'logs/payment_service.log', 'logs/pricing_service.log',
@@ -56,9 +56,14 @@ def run_trial(trial_id: int, delay: float, drop_rate: int):
         search_latency = round((et - st), 3)
         search_res = r.json()
         # print(f"Result of product search: {search_res}, latency: {search_latency}")
-        selected_sku = search_res["results"][0]["sku"]
-        result["search_latency"] = search_latency
-        result["selected_sku"] = selected_sku
+        if search_res.get("results"):
+            selected_sku = search_res["results"][0]["sku"]
+            result["search_latency"] = search_latency
+            result["selected_sku"] = selected_sku
+        else:
+            selected_sku = SKU # anyway try to progress with SKU even if not exist from search result, to test the robustness of the system
+            result["search_latency"] = search_latency
+            result["selected_sku"] = selected_sku
 
         # ---------------- add cart -----------------------------
         st = time.time()

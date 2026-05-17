@@ -10,7 +10,7 @@ import logging
 
 app = FastAPI()
 db_client = MongoClient("mongodb://localhost:27017/")
-inventory_col = db_client["ms_baseline"]["inventory"]
+inventory_col = db_client["retailben"]["inventory"]
 PROCUREMENT_SERVICE_URL = "http://127.0.0.1:8009/order_supplier"
 
 lock = threading.Lock()
@@ -268,6 +268,33 @@ def rollback_reserve_stock(req: ReservationReq):
             "total_output_tokens": 0,
             "total_llm_calls": 0
         }
+
+
+@app.get("/stock")
+def get_stock_by_skus(skus: str):
+    """
+    Get stock levels for multiple SKUs.
+    Query parameter: skus (comma-separated SKU values)
+    Returns: dict with SKU -> stock mapping
+    """
+    if not skus:
+        raise HTTPException(status_code=400, detail="skus parameter required")
+    
+    sku_list = [s.strip() for s in skus.split(",")]
+    logger.info(f"Request for get_stock_by_skus, skus: {sku_list}")
+    
+    stock_map = {}
+    for sku in sku_list:
+        doc = inventory_col.find_one({"sku": sku})
+        stock_map[sku] = doc["stock"] if doc else 0
+    
+    logger.info(f"Request for get_stock_by_skus successfully processed, result: {stock_map}")
+    return {
+        "stocks": stock_map,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "total_llm_calls": 0
+    }
 
 
 @app.post("/reorder")

@@ -8,7 +8,7 @@ import os
 import logging
 
 app = FastAPI(title="Mock Payment Service")
-PAYMENT_COLL = MongoClient("mongodb://localhost:27017/")["ms_baseline"]["payments"]
+PAYMENT_COLL = MongoClient("mongodb://localhost:27017/")["retailben"]["payments"]
 PORT = int(os.getenv("PORT", 8007))
 
 

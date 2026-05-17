@@ -1,0 +1,512 @@
+nohup: ignoring input
+INFO:     Will watch for changes in these directories: ['/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/ms_baseline/retailben']
+INFO:     Uvicorn running on http://0.0.0.0:8008 (Press CTRL+C to quit)
+INFO:     Started reloader process [37803] using WatchFiles
+INFO:     Started server process [37824]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:49022 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49022 - "GET /openapi.json HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [37824]
+INFO:     Started server process [38694]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'order_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38694]
+INFO:     Started server process [38788]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'product_search_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38788]
+INFO:     Started server process [38879]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'inventory_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38879]
+INFO:     Started server process [39026]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'payment_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39026]
+INFO:     Started server process [39189]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'pricing_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39189]
+INFO:     Started server process [39287]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'procurement_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39287]
+INFO:     Started server process [39389]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'shipment_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39389]
+INFO:     Started server process [39488]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'shopping_cart_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39488]
+INFO:     Started server process [39614]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'subscription_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39614]
+INFO:     Started server process [39706]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:55054 - "POST /products HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/uvicorn/protocols/http/httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/usr/local/lib/python3.10/dist-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/applications.py", line 292, in __call__
+    await super().__call__(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/routing.py", line 192, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/usr/local/lib/python3.10/dist-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "/usr/local/lib/python3.10/dist-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+  File "/usr/local/lib/python3.10/dist-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/ms_baseline/retailben/product_search_service.py", line 77, in create_product
+    db.products.insert_one(p.dict())
+  File "/usr/local/lib/python3.10/dist-packages/motor/metaprogramming.py", line 74, in method
+    loop = self.get_io_loop()
+  File "/usr/local/lib/python3.10/dist-packages/motor/core.py", line 1381, in get_io_loop
+    return self.database.get_io_loop()
+  File "/usr/local/lib/python3.10/dist-packages/motor/core.py", line 888, in get_io_loop
+    return self._client.get_io_loop()
+  File "/usr/local/lib/python3.10/dist-packages/motor/core.py", line 181, in get_io_loop
+    return self.io_loop
+  File "/usr/local/lib/python3.10/dist-packages/motor/core.py", line 177, in io_loop
+    self._io_loop = self._framework.get_event_loop()
+  File "/usr/lib/python3.10/asyncio/events.py", line 656, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+RuntimeError: There is no current event loop in thread 'AnyIO worker thread'.
+WARNING:  WatchFiles detected changes in 'product_search_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39706]
+WARNING:  WatchFiles detected changes in 'product_search_service.py'. Reloading...
+INFO:     Started server process [41358]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:47288 - "POST /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52758 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52758 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52760 - "GET /search?q=noise%20cancelling%20headphones&limit=5 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/uvicorn/protocols/http/httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/usr/local/lib/python3.10/dist-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/applications.py", line 292, in __call__
+    await super().__call__(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/routing.py", line 190, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/ms_baseline/retailben/product_search_service.py", line 87, in search_products
+    docs = await cursor.to_list(length=limit)
+  File "/usr/local/lib/python3.10/dist-packages/motor/core.py", line 1696, in _to_list
+    result = get_more_result.result()
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/cursor.py", line 1213, in _refresh
+    self._send_message(q)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2047, in _retryable_read
+    return self._retry_internal(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2014, in _retry_internal
+    ).run()
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2765, in run
+    return self._read() if self._is_read else self._write()
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2926, in _read
+    return self._func(self._session, self._server, conn, read_pref)  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 1929, in _cmd
+    return server.run_operation(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/server.py", line 227, in run_operation
+    _check_command_response(first, conn.max_wire_version, pool_opts=conn.opts)  # type:ignore[has-type]
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/helpers_shared.py", line 284, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound'}
+INFO:     127.0.0.1:33746 - "GET /search?q=noise%20cancelling%20headphones&limit=5 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/uvicorn/protocols/http/httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/usr/local/lib/python3.10/dist-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/applications.py", line 292, in __call__
+    await super().__call__(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/routing.py", line 190, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/ms_baseline/retailben/product_search_service.py", line 87, in search_products
+    docs = await cursor.to_list(length=limit)
+  File "/usr/local/lib/python3.10/dist-packages/motor/core.py", line 1696, in _to_list
+    result = get_more_result.result()
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/cursor.py", line 1213, in _refresh
+    self._send_message(q)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2047, in _retryable_read
+    return self._retry_internal(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2014, in _retry_internal
+    ).run()
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2765, in run
+    return self._read() if self._is_read else self._write()
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2926, in _read
+    return self._func(self._session, self._server, conn, read_pref)  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 1929, in _cmd
+    return server.run_operation(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/server.py", line 227, in run_operation
+    _check_command_response(first, conn.max_wire_version, pool_opts=conn.opts)  # type:ignore[has-type]
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/helpers_shared.py", line 284, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound'}
+INFO:     127.0.0.1:56586 - "GET /search?q=noise%20cancelling%20headphones&limit=5 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/uvicorn/protocols/http/httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/usr/local/lib/python3.10/dist-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/applications.py", line 292, in __call__
+    await super().__call__(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/usr/local/lib/python3.10/dist-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.10/dist-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/routing.py", line 273, in app
+    raw_response = await run_endpoint_function(
+  File "/usr/local/lib/python3.10/dist-packages/fastapi/routing.py", line 190, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/ms_baseline/retailben/product_search_service.py", line 87, in search_products
+    docs = await cursor.to_list(length=limit)
+  File "/usr/local/lib/python3.10/dist-packages/motor/core.py", line 1696, in _to_list
+    result = get_more_result.result()
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/cursor.py", line 1213, in _refresh
+    self._send_message(q)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2047, in _retryable_read
+    return self._retry_internal(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2014, in _retry_internal
+    ).run()
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2765, in run
+    return self._read() if self._is_read else self._write()
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 2926, in _read
+    return self._func(self._session, self._server, conn, read_pref)  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/mongo_client.py", line 1929, in _cmd
+    return server.run_operation(
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/synchronous/server.py", line 227, in run_operation
+    _check_command_response(first, conn.max_wire_version, pool_opts=conn.opts)  # type:ignore[has-type]
+  File "/usr/local/lib/python3.10/dist-packages/pymongo/helpers_shared.py", line 284, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound'}
+INFO:     127.0.0.1:53382 - "GET /search?q=noise%20cancelling%20headphones&limit=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41170 - "POST /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33076 - "GET /search?q=noise%20cancelling%20headphones&limit=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33076 - "GET /search?q=noise%20cancelling%20headphones&limit=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33076 - "GET /search?q=noise%20cancelling%20headphones&limit=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46584 - "GET /search?q=noise%20cancelling%20headphones&limit=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43042 - "GET /search?q=noise%20cancelling%20headphones&limit=5 HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [41358]
+INFO:     Started server process [45191]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:60300 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60304 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60342 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60320 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60356 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60368 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60316 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60388 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60376 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60326 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60400 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60408 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50664 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50676 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50686 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50720 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50698 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50708 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50728 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50724 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45191]
+INFO:     Started server process [45771]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:48146 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48154 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48170 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48180 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48196 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48210 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48224 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48234 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48236 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48248 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48256 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48258 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48262 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48270 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48282 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48296 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48298 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48300 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48310 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48326 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45771]
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Started server process [46760]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46760]
+INFO:     Started server process [46826]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46826]
+INFO:     Started server process [46959]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46959]
+INFO:     Started server process [47071]
+INFO:     Waiting for application startup.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Application startup complete.
+INFO:     Started server process [47107]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47107]
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Started server process [47336]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:43822 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43832 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43844 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43852 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43860 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43870 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43872 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43878 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43886 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43896 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43902 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43906 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43920 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43924 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43932 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43934 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43936 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43952 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43960 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43968 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47336]
+INFO:     Started server process [47807]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:47294 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47296 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47300 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47364 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47326 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47342 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47348 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47362 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47320 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47306 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47374 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47388 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47404 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47418 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47430 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47460 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47444 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47468 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47478 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47488 - "GET /search?q=looking+for+headphone+with+noise+cancelling HTTP/1.1" 200 OK

@@ -1,60 +1,161 @@
-2026-02-14 17:54:26,275 - INFO - ProductSearch connected to mongo mongodb://user:pass1@localhost:27017/
-2026-02-14 17:54:26,404 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:26,410 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:26,412 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:26,414 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:26,415 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:26,438 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:26,447 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:26,448 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:26,448 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:26,450 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:26,464 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:26,465 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:26,465 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 17:54:26,466 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:26,466 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:26,467 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:26,467 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:26,468 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:26,468 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 17:54:26,469 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:26,469 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 17:54:26,469 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:26,470 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 17:54:26,470 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:26,470 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 17:54:27,069 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:27,075 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:27,089 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:27,093 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:27,094 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 17:54:28,189 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:28,197 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:28,199 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:28,204 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:28,210 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:28,211 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:28,211 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 17:54:28,213 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:28,214 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:28,214 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 17:54:29,297 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:29,304 - INFO - Request for search_products, query: looking for headphone with noise cancelling
-2026-02-14 17:54:29,307 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:29,312 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
-2026-02-14 17:54:29,321 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:29,322 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:29,323 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 17:54:29,324 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
-2026-02-14 17:54:29,326 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD'}
-2026-02-14 17:54:29,326 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)]
-2026-02-14 19:53:41,243 - INFO - ProductSearch connected to mongo mongodb://user:pass1@localhost:27017/
-2026-02-14 20:31:48,232 - INFO - ProductSearch connected to mongo mongodb://user:pass1@localhost:27017/
-2026-02-14 20:32:21,050 - INFO - ProductSearch connected to mongo mongodb://user:pass1@localhost:27017/
-2026-02-14 20:32:36,641 - INFO - ProductSearch connected to mongo mongodb://user:pass1@localhost:27017/
-2026-02-14 20:33:12,531 - INFO - ProductSearch connected to mongo mongodb://user:pass1@localhost:27017/
-2026-02-14 20:34:45,924 - INFO - ProductSearch connected to mongo mongodb://localhost:27017/
-2026-02-14 20:35:35,465 - INFO - ProductSearch connected to mongo mongodb://localhost:27017/
-2026-02-14 20:36:05,720 - INFO - ProductSearch connected to mongo mongodb://localhost:27017/
-2026-02-14 20:36:31,498 - INFO - ProductSearch connected to mongo mongodb://localhost:27017/
+2026-05-17 17:35:14,489 - INFO - ProductSearch connected to mongo mongodb://localhost:27017/
+2026-05-17 17:35:15,577 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,580 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,582 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,584 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,590 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,593 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,597 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,599 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,599 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,607 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,609 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,610 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,612 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,613 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:15,614 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,615 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,617 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,617 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,619 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,620 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:15,637 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,638 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,638 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,645 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,646 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,646 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:15,649 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,650 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,651 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,653 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,653 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,654 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,654 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,656 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,656 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,657 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,658 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,659 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,660 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,661 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,661 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,663 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,663 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,664 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,665 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,666 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,666 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,668 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,668 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,670 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,670 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,672 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 10}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,672 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:15,684 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,686 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,687 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:15,704 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,705 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,705 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:15,706 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,707 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,707 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,708 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,708 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:15,709 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,710 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:15,711 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,712 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:15,713 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,713 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,714 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,715 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:15,716 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,716 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:15,718 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,718 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:15,720 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,720 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:15,721 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:15,722 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,224 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:16,231 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:16,251 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:16,256 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 8}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:16,257 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:16,271 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:16,276 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:16,277 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,928 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:16,935 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:16,952 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:16,955 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 6}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:16,956 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:16,979 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:16,981 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:16,982 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:17,527 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:17,537 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:17,559 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:17,565 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 4}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:17,566 - INFO - Calling pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}
+2026-05-17 17:35:17,587 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:17,593 - INFO - Called pricing_service, req: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1}], 'promo_codes': []}, response: {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 1, 'unit_price': 200.0, 'line_total': 200.0, 'discounts': 0.0}], 'subtotal': 200.0, 'total_discount': 0.0, 'total': 200.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:17,594 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[ProductSearchResultItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', name='Airpod', description='Noise cancelling headphone Airpod', price=200.0, score=1.875)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,777 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:18,780 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:18,782 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:18,782 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,786 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:18,790 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,797 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,801 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,801 - INFO - Calling pricing_service, req: {'items': [], 'promo_codes': []}
+2026-05-17 17:35:18,805 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:18,808 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,812 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,816 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,822 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,822 - INFO - Calling pricing_service, req: {'items': [], 'promo_codes': []}
+2026-05-17 17:35:18,827 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,831 - INFO - Called pricing_service, req: {'items': [], 'promo_codes': []}, response: {'items': [], 'subtotal': 0.0, 'total_discount': 0.0, 'total': 0.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,831 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,832 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,836 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,842 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,843 - INFO - Calling pricing_service, req: {'items': [], 'promo_codes': []}
+2026-05-17 17:35:18,853 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,859 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,859 - INFO - Calling pricing_service, req: {'items': [], 'promo_codes': []}
+2026-05-17 17:35:18,863 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,865 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,866 - INFO - Calling pricing_service, req: {'items': [], 'promo_codes': []}
+2026-05-17 17:35:18,868 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:18,871 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,873 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,875 - INFO - Called pricing_service, req: {'items': [], 'promo_codes': []}, response: {'items': [], 'subtotal': 0.0, 'total_discount': 0.0, 'total': 0.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,875 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,877 - INFO - Called pricing_service, req: {'items': [], 'promo_codes': []}, response: {'items': [], 'subtotal': 0.0, 'total_discount': 0.0, 'total': 0.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,877 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,880 - INFO - Request for search_products, query: looking for headphone with noise cancelling
+2026-05-17 17:35:18,882 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,889 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,895 - INFO - Called pricing_service, req: {'items': [], 'promo_codes': []}, response: {'items': [], 'subtotal': 0.0, 'total_discount': 0.0, 'total': 0.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,897 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,900 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,902 - INFO - Called pricing_service, req: {'items': [], 'promo_codes': []}, response: {'items': [], 'subtotal': 0.0, 'total_discount': 0.0, 'total': 0.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,903 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,904 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,907 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,907 - INFO - Calling pricing_service, req: {'items': [], 'promo_codes': []}
+2026-05-17 17:35:18,909 - INFO - Calling inventory_service for stock check, skus: ['b2926dc2-cc6d-4c3e-ae40-7a127c173b16']
+2026-05-17 17:35:18,921 - INFO - HTTP Request: GET http://localhost:8001/stock?skus=b2926dc2-cc6d-4c3e-ae40-7a127c173b16 "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,925 - INFO - Called inventory_service, response: {'stocks': {'b2926dc2-cc6d-4c3e-ae40-7a127c173b16': 0}, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,925 - INFO - Calling pricing_service, req: {'items': [], 'promo_codes': []}
+2026-05-17 17:35:18,928 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,931 - INFO - Called pricing_service, req: {'items': [], 'promo_codes': []}, response: {'items': [], 'subtotal': 0.0, 'total_discount': 0.0, 'total': 0.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,931 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,937 - INFO - HTTP Request: POST http://localhost:8002/price "HTTP/1.1 200 OK"
+2026-05-17 17:35:18,939 - INFO - Called pricing_service, req: {'items': [], 'promo_codes': []}, response: {'items': [], 'subtotal': 0.0, 'total_discount': 0.0, 'total': 0.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 17:35:18,941 - INFO - Request for search_products successfully processed, query: looking for headphone with noise cancelling, result: query='looking for headphone with noise cancelling' results=[] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0

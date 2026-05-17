@@ -1,0 +1,319 @@
+nohup: ignoring input
+INFO:     Will watch for changes in these directories: ['/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/ms_baseline/retailben']
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+INFO:     Started reloader process [37637] using WatchFiles
+INFO:     Started server process [37663]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54000 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54000 - "GET /openapi.json HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [37663]
+INFO:     Started server process [38692]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'order_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38692]
+INFO:     Started server process [38794]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'product_search_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38794]
+INFO:     Started server process [38882]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'inventory_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38882]
+INFO:     Started server process [39021]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'payment_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39021]
+INFO:     Started server process [39191]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'pricing_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39191]
+INFO:     Started server process [39290]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'procurement_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39290]
+INFO:     Started server process [39385]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'shipment_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39385]
+INFO:     Started server process [39493]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'shopping_cart_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39493]
+INFO:     Started server process [39608]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'subscription_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39608]
+INFO:     Started server process [39699]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:59486 - "POST /price/put HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38186 - "POST /price/put HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'product_search_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39699]
+WARNING:  WatchFiles detected changes in 'product_search_service.py'. Reloading...
+INFO:     Started server process [41332]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Started server process [41372]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:33718 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53672 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53672 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53672 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44194 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48588 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44646 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44312 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40126 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37188 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37192 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37206 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33530 - "POST /price HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [41372]
+INFO:     Started server process [45194]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:35486 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35496 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35508 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35524 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35534 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35542 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35544 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35564 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35578 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35552 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35584 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35486 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35584 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35596 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35486 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35584 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35636 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35650 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35486 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35622 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35662 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35596 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35678 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35486 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35486 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35496 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35508 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35584 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40146 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35596 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35486 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35486 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35496 - "POST /price HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45194]
+INFO:     Started server process [45777]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50038 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50050 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50058 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50050 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50050 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50050 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50050 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50038 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "POST /price HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45777]
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Started server process [46764]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Started server process [46841]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46841]
+INFO:     Started server process [46965]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46965]
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Started server process [47103]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47103]
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Started server process [47329]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48616 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48644 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48612 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48630 - "POST /price HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'exp_runner.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47329]
+INFO:     Started server process [47812]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:49840 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49856 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49840 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49860 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49870 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49884 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49902 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49888 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49906 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49914 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49928 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49840 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49856 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49856 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49840 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49930 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49944 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49948 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49962 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49964 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49970 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49840 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49972 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49840 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49976 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49856 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49930 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49860 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49840 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49870 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49884 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49840 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49860 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49856 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49930 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49944 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49948 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49856 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49930 - "POST /price HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49944 - "POST /price HTTP/1.1" 200 OK

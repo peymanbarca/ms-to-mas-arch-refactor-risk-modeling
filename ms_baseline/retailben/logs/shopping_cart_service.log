@@ -1,29 +1,41 @@
-2026-02-14 17:54:26,180 - INFO - ShoppingCart connected to mongo
-2026-02-14 17:54:26,486 - INFO - Request for get_cart, cart_id: a850e8b3-8324-40ac-9292-0d3628692ad8
-2026-02-14 17:54:26,488 - INFO - Request for get_cart, cart_id: a850e8b3-8324-40ac-9292-0d3628692ad8, result: cart_id='a850e8b3-8324-40ac-9292-0d3628692ad8' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 17:54:26,493 - INFO - Request for get_cart, cart_id: 99369b39-a52f-4eee-9fbd-973577bd2c52
-2026-02-14 17:54:26,494 - INFO - Request for get_cart, cart_id: 99369b39-a52f-4eee-9fbd-973577bd2c52, result: cart_id='99369b39-a52f-4eee-9fbd-973577bd2c52' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 17:54:26,498 - INFO - Request for get_cart, cart_id: b26dff29-7349-42bd-a6d7-79d7c55fcdb7
-2026-02-14 17:54:26,499 - INFO - Request for get_cart, cart_id: b26dff29-7349-42bd-a6d7-79d7c55fcdb7, result: cart_id='b26dff29-7349-42bd-a6d7-79d7c55fcdb7' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 17:54:26,502 - INFO - Request for get_cart, cart_id: 4e351d16-b9e6-4fa3-badc-2070f302527a
-2026-02-14 17:54:26,504 - INFO - Request for get_cart, cart_id: 4e351d16-b9e6-4fa3-badc-2070f302527a, result: cart_id='4e351d16-b9e6-4fa3-badc-2070f302527a' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 17:54:26,507 - INFO - Request for get_cart, cart_id: b66e2919-867e-491e-8943-a99462948215
-2026-02-14 17:54:26,508 - INFO - Request for get_cart, cart_id: b66e2919-867e-491e-8943-a99462948215, result: cart_id='b66e2919-867e-491e-8943-a99462948215' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 17:54:29,294 - INFO - Request for get_cart, cart_id: 36376f70-6b27-4bcc-9c5b-17df33fd6c57
-2026-02-14 17:54:29,299 - INFO - Request for get_cart, cart_id: 36376f70-6b27-4bcc-9c5b-17df33fd6c57, result: cart_id='36376f70-6b27-4bcc-9c5b-17df33fd6c57' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 17:54:29,312 - INFO - Request for get_cart, cart_id: 5578a6bc-7609-4cc5-9730-31b1f1ce7895
-2026-02-14 17:54:29,315 - INFO - Request for get_cart, cart_id: 5578a6bc-7609-4cc5-9730-31b1f1ce7895, result: cart_id='5578a6bc-7609-4cc5-9730-31b1f1ce7895' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 17:54:29,323 - INFO - Request for get_cart, cart_id: 59fae009-a15c-4d1f-a93d-662e6d8477f2
-2026-02-14 17:54:29,326 - INFO - Request for get_cart, cart_id: 59fae009-a15c-4d1f-a93d-662e6d8477f2, result: cart_id='59fae009-a15c-4d1f-a93d-662e6d8477f2' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 17:54:29,364 - INFO - Request for get_cart, cart_id: f65805fd-0c97-4424-9b9f-def9304ba085
-2026-02-14 17:54:29,365 - INFO - Request for get_cart, cart_id: f65805fd-0c97-4424-9b9f-def9304ba085, result: cart_id='f65805fd-0c97-4424-9b9f-def9304ba085' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 17:54:29,370 - INFO - Request for get_cart, cart_id: 17db00ec-926b-481f-b31e-f39e55088743
-2026-02-14 17:54:29,371 - INFO - Request for get_cart, cart_id: 17db00ec-926b-481f-b31e-f39e55088743, result: cart_id='17db00ec-926b-481f-b31e-f39e55088743' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)]
-2026-02-14 19:53:41,374 - INFO - ShoppingCart connected to mongo
-2026-02-14 20:31:48,295 - INFO - ShoppingCart connected to mongo
-2026-02-14 20:32:21,381 - INFO - ShoppingCart connected to mongo
-2026-02-14 20:32:36,472 - INFO - ShoppingCart connected to mongo
-2026-02-14 20:33:12,369 - INFO - ShoppingCart connected to mongo
-2026-02-14 20:34:45,999 - INFO - ShoppingCart connected to mongo
-2026-02-14 20:35:35,432 - INFO - ShoppingCart connected to mongo
-2026-02-14 20:36:05,843 - INFO - ShoppingCart connected to mongo
+2026-05-17 17:35:13,770 - INFO - ShoppingCart connected to mongo
+2026-05-17 17:35:15,665 - INFO - Request for get_cart, cart_id: 03d9df3c-b990-40ac-9d67-58a548fe5635
+2026-05-17 17:35:15,667 - INFO - Request for get_cart, cart_id: 03d9df3c-b990-40ac-9d67-58a548fe5635, result: cart_id='03d9df3c-b990-40ac-9d67-58a548fe5635' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,222 - INFO - Request for get_cart, cart_id: 746274fd-5f68-4475-9814-5f9c8092d43b
+2026-05-17 17:35:16,228 - INFO - Request for get_cart, cart_id: 746274fd-5f68-4475-9814-5f9c8092d43b, result: cart_id='746274fd-5f68-4475-9814-5f9c8092d43b' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,246 - INFO - Request for get_cart, cart_id: 8b3982ef-2ee4-4cfd-b9c8-2d2c112153be
+2026-05-17 17:35:16,252 - INFO - Request for get_cart, cart_id: 8b3982ef-2ee4-4cfd-b9c8-2d2c112153be, result: cart_id='8b3982ef-2ee4-4cfd-b9c8-2d2c112153be' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,272 - INFO - Request for get_cart, cart_id: 667afa60-3afc-4963-9082-cb9440b087d0
+2026-05-17 17:35:16,280 - INFO - Request for get_cart, cart_id: 667afa60-3afc-4963-9082-cb9440b087d0, result: cart_id='667afa60-3afc-4963-9082-cb9440b087d0' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,311 - INFO - Request for get_cart, cart_id: 8abd9582-93cf-4e92-ac37-ac43773e392f
+2026-05-17 17:35:16,317 - INFO - Request for get_cart, cart_id: 8abd9582-93cf-4e92-ac37-ac43773e392f, result: cart_id='8abd9582-93cf-4e92-ac37-ac43773e392f' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,332 - INFO - Request for get_cart, cart_id: 85e63d39-66eb-4acb-a025-54df473e8eea
+2026-05-17 17:35:16,335 - INFO - Request for get_cart, cart_id: 85e63d39-66eb-4acb-a025-54df473e8eea, result: cart_id='85e63d39-66eb-4acb-a025-54df473e8eea' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,344 - INFO - Request for get_cart, cart_id: 6908da0c-874b-420e-805a-84350484d0fc
+2026-05-17 17:35:16,346 - INFO - Request for get_cart, cart_id: 6908da0c-874b-420e-805a-84350484d0fc, result: cart_id='6908da0c-874b-420e-805a-84350484d0fc' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,357 - INFO - Request for get_cart, cart_id: ba8f3f1b-5a44-43b4-aea2-6d7321b46a93
+2026-05-17 17:35:16,359 - INFO - Request for get_cart, cart_id: ba8f3f1b-5a44-43b4-aea2-6d7321b46a93, result: cart_id='ba8f3f1b-5a44-43b4-aea2-6d7321b46a93' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,915 - INFO - Request for get_cart, cart_id: a39e68e7-4af3-4593-9fd1-4b3ee92510b4
+2026-05-17 17:35:16,918 - INFO - Request for get_cart, cart_id: a39e68e7-4af3-4593-9fd1-4b3ee92510b4, result: cart_id='a39e68e7-4af3-4593-9fd1-4b3ee92510b4' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,930 - INFO - Request for get_cart, cart_id: d2624443-b048-4065-94bb-28fd01489cc6
+2026-05-17 17:35:16,934 - INFO - Request for get_cart, cart_id: d2624443-b048-4065-94bb-28fd01489cc6, result: cart_id='d2624443-b048-4065-94bb-28fd01489cc6' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:16,947 - INFO - Request for get_cart, cart_id: e6649860-dc4f-465f-9301-90fd8b28f2a0
+2026-05-17 17:35:16,951 - INFO - Request for get_cart, cart_id: e6649860-dc4f-465f-9301-90fd8b28f2a0, result: cart_id='e6649860-dc4f-465f-9301-90fd8b28f2a0' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,761 - INFO - Request for get_cart, cart_id: 0dad9a01-b38a-4d68-8513-4c0a1055a137
+2026-05-17 17:35:18,763 - INFO - Request for get_cart, cart_id: 0dad9a01-b38a-4d68-8513-4c0a1055a137, result: cart_id='0dad9a01-b38a-4d68-8513-4c0a1055a137' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,794 - INFO - Request for get_cart, cart_id: 4ded335c-3658-47db-9dc2-77b7769409cd
+2026-05-17 17:35:18,797 - INFO - Request for get_cart, cart_id: 4ded335c-3658-47db-9dc2-77b7769409cd, result: cart_id='4ded335c-3658-47db-9dc2-77b7769409cd' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,938 - INFO - Request for get_cart, cart_id: b2989a48-808d-4215-88e1-23cccc19a1c8
+2026-05-17 17:35:18,941 - INFO - Request for get_cart, cart_id: b2989a48-808d-4215-88e1-23cccc19a1c8, result: cart_id='b2989a48-808d-4215-88e1-23cccc19a1c8' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,962 - INFO - Request for get_cart, cart_id: 53c6bbae-5d5a-40dc-b8fd-ff5ab2133914
+2026-05-17 17:35:18,963 - INFO - Request for get_cart, cart_id: 53c6bbae-5d5a-40dc-b8fd-ff5ab2133914, result: cart_id='53c6bbae-5d5a-40dc-b8fd-ff5ab2133914' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,970 - INFO - Request for get_cart, cart_id: 0cc8b75d-7ab1-4060-a5fc-617fb68a3789
+2026-05-17 17:35:18,973 - INFO - Request for get_cart, cart_id: 0cc8b75d-7ab1-4060-a5fc-617fb68a3789, result: cart_id='0cc8b75d-7ab1-4060-a5fc-617fb68a3789' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,980 - INFO - Request for get_cart, cart_id: b012a352-fd6c-4f7a-9a4c-7ce5b1545f27
+2026-05-17 17:35:18,982 - INFO - Request for get_cart, cart_id: b012a352-fd6c-4f7a-9a4c-7ce5b1545f27, result: cart_id='b012a352-fd6c-4f7a-9a4c-7ce5b1545f27' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,987 - INFO - Request for get_cart, cart_id: 563f9d75-8956-4072-a0d7-0cfb2fc089a2
+2026-05-17 17:35:18,988 - INFO - Request for get_cart, cart_id: 563f9d75-8956-4072-a0d7-0cfb2fc089a2, result: cart_id='563f9d75-8956-4072-a0d7-0cfb2fc089a2' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:18,998 - INFO - Request for get_cart, cart_id: 00a89df3-5035-4a1c-9643-4d24e67ae3cf
+2026-05-17 17:35:18,999 - INFO - Request for get_cart, cart_id: 00a89df3-5035-4a1c-9643-4d24e67ae3cf, result: cart_id='00a89df3-5035-4a1c-9643-4d24e67ae3cf' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-17 17:35:19,019 - INFO - Request for get_cart, cart_id: 537b8aee-ae27-4c4e-89a5-b5ed6caf6a02
+2026-05-17 17:35:19,021 - INFO - Request for get_cart, cart_id: 537b8aee-ae27-4c4e-89a5-b5ed6caf6a02, result: cart_id='537b8aee-ae27-4c4e-89a5-b5ed6caf6a02' items=[CartItem(sku='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] total_input_tokens=0 total_output_tokens=0 total_llm_calls=0

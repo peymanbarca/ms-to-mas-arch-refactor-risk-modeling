@@ -13,7 +13,7 @@ import uuid
 
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 CARRIER_API = os.getenv("CARRIER_API", "http://localhost:9020/carrier/book")
 PORT = int(os.getenv("PORT", 8006))
 

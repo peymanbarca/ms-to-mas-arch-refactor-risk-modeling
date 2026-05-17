@@ -8,8 +8,9 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import httpx
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PRICING_SERVICE_URL = os.getenv("PRICING_SERVICE_URL", "http://localhost:8002")
+INVENTORY_SERVICE_URL = os.getenv("INVENTORY_SERVICE_URL", "http://localhost:8001")
 PORT = int(os.getenv("PORT", 8008))
 
 logger = logging.getLogger("product_search")
@@ -69,11 +70,11 @@ async def shutdown():
         db_client.close()
 
 @app.post("/products")
-def create_product(p: ProductCreate):
+async def create_product(p: ProductCreate):
     # if db.products.find_one({"sku": p.sku}):
     #     raise HTTPException(400, "SKU already exists")
 
-    db.products.insert_one(p.dict())
+    await db.products.insert_one(p.dict())
     return {"status": "created", "sku": p.sku}
 
 
@@ -89,6 +90,32 @@ async def search_products(q: str = Query(..., example="noise cancelling headphon
         docs = await db.products.find({"name": {"$regex": q, "$options": "i"}}).limit(limit).to_list(length=limit)
 
     product_ids = [d["sku"] for d in docs]
+    
+    # ============================
+    # Call inventory service to get stock levels
+    # ============================
+    stock_map = {}
+    if product_ids:
+        try:
+            skus_query = ",".join(product_ids)
+            logger.info(f"Calling inventory_service for stock check, skus: {product_ids}")
+            inv_resp = await http_client.get(f"{INVENTORY_SERVICE_URL}/stock?skus={skus_query}", timeout=10)
+            inv_resp.raise_for_status()
+            inv_data = inv_resp.json()
+            stock_map = inv_data.get("stocks", {})
+            logger.info(f"Called inventory_service, response: {inv_data}")
+        except Exception as e:
+            logger.exception(f"inventory call failed in request for search_products: {e}")
+            # Fallback: assume all products are in stock if inventory service fails
+            stock_map = {sku: 1 for sku in product_ids}
+    
+    # Filter docs to only include products with stock > 0
+    docs = [d for d in docs if stock_map.get(d["sku"], 0) > 0]
+    product_ids = [d["sku"] for d in docs]
+    
+    # ============================
+    # Call pricing service to get unit prices
+    # ============================
     # Call pricing service to get unit prices: we call /price endpoint with qty=1 items
     payload = {"items": [{"product_id": pid, "qty": 1} for pid in product_ids], "promo_codes": []}
     prices = {}
