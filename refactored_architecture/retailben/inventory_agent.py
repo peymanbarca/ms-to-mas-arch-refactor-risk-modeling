@@ -333,6 +333,33 @@ async def reset_stocks(request: dict):
         await db.inventory.insert_one({"sku": item['sku'], "stock": item['stock']})
 
 
+@app.get("/stock")
+async def get_stock_by_skus(skus: str):
+    """
+    Get stock levels for multiple SKUs.
+    Query parameter: skus (comma-separated SKU values)
+    Returns: dict with SKU -> stock mapping
+    """
+    if not skus:
+        raise HTTPException(status_code=400, detail="skus parameter required")
+    
+    sku_list = [s.strip() for s in skus.split(",")]
+    logger.info(f"Request for get_stock_by_skus, skus: {sku_list}")
+    
+    stock_map = {}
+    for sku in sku_list:
+        doc = await db.inventory.find_one({"sku": sku})
+        stock_map[sku] = doc["stock"] if doc else 0
+    
+    logger.info(f"Request for get_stock_by_skus successfully processed, result: {stock_map}")
+    return {
+        "stocks": stock_map,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "total_llm_calls": 0
+    }
+    
+
 @app.post("/reserve")
 async def reserve_stock(req: ReservationReq):
     if not req.items:

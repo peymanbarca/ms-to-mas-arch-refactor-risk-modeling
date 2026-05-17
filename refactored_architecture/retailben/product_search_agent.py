@@ -28,6 +28,7 @@ MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
 MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
 PORT = int(os.getenv("PORT", 8008))
 PRICING_SERVICE_URL = os.getenv("PRICING_SERVICE_URL", "http://localhost:8002")
+INVENTORY_SERVICE_URL = os.getenv("INVENTORY_SERVICE_URL", "http://localhost:8001")
 
 llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)
 
@@ -62,6 +63,7 @@ class ProductSearchResponse(BaseModel):
 class ProductSearchAgentState(TypedDict):
     query: str
     candidates: List[Dict[str, Any]]
+    stocks: Dict[str, int]
     prices: List[Dict[str, Any]]
     results: List[Dict[str, Any]]
     total_input_tokens: int
@@ -92,6 +94,46 @@ async def fetch_candidates_tool(state: ProductSearchAgentState) -> ProductSearch
         if doc["sku"] not in current_candidate_skus:
             candidates.append(doc)
     state["candidates"] = candidates
+    state["stocks"] = {}
+    return state
+
+
+async def fetch_stock_tool(state: ProductSearchAgentState) -> ProductSearchAgentState:
+    """Fetch stock levels from inventory service and filter candidates with stock > 0"""
+    product_ids = [d["sku"] for d in state["candidates"]]
+    
+    if not product_ids:
+        state["stocks"] = {}
+        return state
+    
+    try:
+        skus_query = ",".join(product_ids)
+        logger.info(f"Calling inventory service for stock check, skus: {product_ids}")
+        
+        async with httpx.AsyncClient() as client:
+            r = await client.get(f"{INVENTORY_SERVICE_URL}/stock?skus={skus_query}", timeout=10)
+            r.raise_for_status()
+            stock_data = r.json()
+        
+        stock_map = stock_data.get("stocks", {})
+        logger.info(f"Inventory service response: {stock_data}")
+        
+        # Filter candidates to only those with stock > 0
+        filtered_candidates = [
+            doc for doc in state["candidates"] 
+            if stock_map.get(doc["sku"], 0) > 0
+        ]
+        
+        state["candidates"] = filtered_candidates
+        state["stocks"] = stock_map
+        
+        logger.info(f"Filtered {len(state['candidates'])} products with stock > 0")
+        
+    except Exception as e:
+        logger.exception(f"Error fetching stock from inventory service: {e}")
+        # Fallback: keep all candidates if inventory service fails
+        state["stocks"] = {sku: 1 for sku in product_ids}
+    
     return state
 
 
@@ -250,12 +292,14 @@ def build_product_search_agent():
     graph = StateGraph(ProductSearchAgentState)
 
     graph.add_node("fetch_candidates", fetch_candidates_tool)
+    graph.add_node("fetch_stock", fetch_stock_tool)
     graph.add_node("fetch_prices", fetch_prices_tool)
     graph.add_node("filter_and_rank_reason", filter_and_rank_reasoning_node)
     graph.add_node("assemble", assemble_response_node)
 
     graph.set_entry_point("fetch_candidates")
-    graph.add_edge("fetch_candidates", "fetch_prices")
+    graph.add_edge("fetch_candidates", "fetch_stock")
+    graph.add_edge("fetch_stock", "fetch_prices")
     graph.add_edge("fetch_prices", "filter_and_rank_reason")
     graph.add_edge("filter_and_rank_reason", "assemble")
     graph.add_edge("assemble", END)
@@ -276,7 +320,9 @@ async def search_products(q: str = Query(...), limit: int = 5):
     state = {
         "query": q,
         "candidates": [],
-        "ranked": [],
+        "stocks": {},
+        "prices": {},
+        "results": [],
         "total_input_tokens": 0,
         "total_output_tokens": 0,
         "total_llm_calls": 0
