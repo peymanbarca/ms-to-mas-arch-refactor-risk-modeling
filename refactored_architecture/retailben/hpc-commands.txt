@@ -55,6 +55,9 @@ Agents:
             curl -X 'POST' 'http://127.0.0.1:8008/products' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"b2926dc2-cc6d-4c3e-ae40-7a127c173b16", "name": "Airpod", "description": "Noise cancelling headphone Airpod"}'
             curl -X 'POST' 'http://127.0.0.1:8008/products' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"4cc0770f-91bc-4c0d-a26f-7b872f02ca94", "name": "Laptop", "description": "Macbook Air 13 inch professional"}'
 
+    Subscription Agent:
+
+            nohup python3 run_as_service.py subscription_agent 8010 >& subscription_agent.log &
 
     Order Agent:
 

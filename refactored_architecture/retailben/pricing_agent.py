@@ -1,3 +1,26 @@
+"""
+PRICING AGENT - Graph Topology
+
+    START
+      |
+      v
+[fetch_prices] (Fetch Product Prices from DB)
+      |
+      v
+[reason_price] (LLM Reasoning Node - Calculate Total & Apply Promos)
+      |
+      v
+      END
+
+Key Features:
+- Linear 2-step pricing calculation workflow
+- Fetches base unit prices from MongoDB
+- LLM-based price computation with promotion logic
+- Supports promo codes: PROMO10 (10% off), BUYS2SAVE5 ($5 off if qty >= 2)
+- Returns itemized pricing with subtotal, discounts, and final total
+- Tracks token usage metrics
+"""
+
 import os
 import logging
 from fastapi import FastAPI, HTTPException
@@ -19,7 +42,7 @@ logging.basicConfig(
 )
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8002))
 
 llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)

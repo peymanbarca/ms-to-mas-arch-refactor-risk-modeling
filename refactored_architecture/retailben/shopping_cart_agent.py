@@ -1,3 +1,42 @@
+"""
+SHOPPING CART AGENT - Graph Topology
+
+    START
+      |
+      v
+[fetch_cart] (Fetch Cart from DB)
+      |
+      v
+    action=?
+      |
+      +─ VIEW ────────────────> END
+      |
+      +─ ADD_ITEM ──> [reason_cart] (LLM Node - Validate & Update)
+      |                   |
+      |                   v
+      |              [persist_cart] (Save Cart to DB)
+      |                   |
+      |                   v
+      |                  END
+      |
+      +─ REMOVE_ITEM ──> [reason_cart] (same as ADD_ITEM)
+                             |
+                             v
+                        [persist_cart]
+                             |
+                             v
+                            END
+
+Key Features:
+- Conditional 3-step cart management workflow
+- Supports three operations: VIEW, ADD_ITEM, REMOVE_ITEM
+- LLM-based validation for add/remove operations
+- VIEW bypasses reasoning and persisting (read-only)
+- Creates new cart if cart_id = '-1'
+- Persists cart state to MongoDB
+- Tracks token usage and LLM call metrics
+"""
+
 import os
 import logging
 import time
@@ -24,7 +63,7 @@ logging.basicConfig(
 )
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8003))
 
 llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)

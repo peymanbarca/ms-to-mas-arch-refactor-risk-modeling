@@ -1,3 +1,26 @@
+"""
+SHIPMENT AGENT - Graph Topology
+
+    START
+      |
+      v
+[carrier_call] (External Carrier/Logistics API Call)
+      |
+      v
+[reason_shipment] (LLM Reasoning Node - Validate Booking & Confirm)
+      |
+      v
+      END
+
+Key Features:
+- Linear 2-step shipment booking workflow
+- Integrates with external logistics/carrier systems
+- LLM-based booking validation and confirmation
+- Returns shipment ID and tracking ID
+- Persists shipment records to MongoDB
+- Tracks token usage and LLM call metrics
+"""
+
 import os
 import logging
 import time
@@ -24,7 +47,7 @@ logging.basicConfig(
 )
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8006))
 
 llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)

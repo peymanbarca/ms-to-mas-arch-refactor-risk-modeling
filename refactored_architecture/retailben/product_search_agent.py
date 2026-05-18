@@ -1,3 +1,36 @@
+"""
+PRODUCT SEARCH AGENT - Graph Topology
+
+    START
+      |
+      v
+[fetch_candidates] (DB Full-Text Search / Regex Fallback)
+      |
+      v
+[fetch_stock] (Call Inventory Service - Filter Available Products)
+      |
+      v
+[fetch_prices] (Call Pricing Service - Get Price Quotes)
+      |
+      v
+[filter_and_rank_reason] (LLM Ranking Node - Score & Filter Results)
+      |
+      v
+[assemble] (Format Final Response with Metadata)
+      |
+      v
+      END
+
+Key Features:
+- 5-step product discovery and ranking pipeline
+- Multi-source data aggregation: database, inventory service, pricing service
+- LLM-based intelligent filtering and ranking
+- Stock availability validation
+- Price enrichment for search results
+- Fallback mechanisms (text search → regex)
+- Returns scored, ranked product list with prices and availability
+"""
+
 import os
 import logging
 import time
@@ -25,7 +58,7 @@ logging.basicConfig(
 )
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8008))
 PRICING_SERVICE_URL = os.getenv("PRICING_SERVICE_URL", "http://localhost:8002")
 INVENTORY_SERVICE_URL = os.getenv("INVENTORY_SERVICE_URL", "http://localhost:8001")

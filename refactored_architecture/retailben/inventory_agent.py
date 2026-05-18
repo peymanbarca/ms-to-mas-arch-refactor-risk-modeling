@@ -1,3 +1,35 @@
+"""
+INVENTORY AGENT - Graph Topology
+
+    START
+      |
+      v
+[reason_action] (LLM Decision Node)
+      |
+      ├─ FETCH_STOCK ──> [fetch] (Fetch Current Stock)
+      |                    |
+      |                    v
+      |              [reason_reserve] (LLM Decision Node)
+      |                    |
+      |                    ├─ APPLY_RESERVE ──> [apply] (Reserve Stock)
+      |                    |                       |
+      |                    |                       v
+      |                    |                       END
+      |                    |
+      |                    └─ OUT_OF_STOCK ──> END
+      |
+      └─ ROLLBACK_RESERVE ──> [rollback] (Rollback Stock)
+                                    |
+                                    v
+                                    END
+
+Key Features:
+- Handles inventory reservations for orders
+- Supports both atomic and non-atomic updates
+- Two-phase decision: action validation then stock reservation
+- Rollback capability for failed orders
+"""
+
 import os
 import logging
 import time
@@ -26,7 +58,7 @@ logging.basicConfig(
 )
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8001))
 
 llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)

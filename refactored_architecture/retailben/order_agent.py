@@ -1,3 +1,38 @@
+"""
+ORDER AGENT - ReACT - Graph Topology
+
+    START
+      |
+      v
+    [reason] (LLM Decision Node - Orchestrator)
+      |
+      +─ FETCH_CART ─────────> [fetch_cart] ─────┐
+      |                                           |
+      +─ PRICE_CART ─────────> [price] ───────┐  |
+      |                                       |  |
+      +─ RESERVE_INVENTORY ──> [reserve] ──┐ |  |
+      |                                    | |  |
+      +─ PROCESS_PAYMENT ───> [pay] ─────┐| |  |
+      |                                  || |  |
+      +─ ROLLBACK_INVENTORY ──> [rollback]| |  |
+      |                                  |  |  |
+      +─ BOOK_SHIPMENT ───────> [ship] ──┐| |  |
+      |                                  || |  |
+      +─ FINISH ───────────────> END     || |  |
+                                         || |  |
+          All action nodes loop back ───┴┴┴┘  |
+                                         |
+                                         v
+                                      [reason]
+
+Key Features:
+- Multi-step order orchestration workflow
+- LLM-driven decision making at each step
+- Looping architecture: each action feeds back to reason node
+- Coordinates: cart fetching, pricing, inventory reservation, payment, rollback, and shipment
+- State management across multiple agent interactions
+"""
+
 import os
 import logging
 import time
@@ -26,7 +61,7 @@ logging.basicConfig(
 )
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8000))
 
 INVENTORY_SERVICE_RESERVE_URL = "http://127.0.0.1:8001/reserve"

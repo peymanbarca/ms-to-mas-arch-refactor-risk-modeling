@@ -1,0 +1,1659 @@
+2026-05-17 22:14:58,154 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:15:09,288 - INFO - Catalogue retrieved with 4 promos
+2026-05-17 22:20:13,131 - INFO - MongoDB connection closed
+2026-05-17 22:20:24,430 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:20:40,540 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 22:20:40,540 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:20:40,590 - INFO - Fetched 1 subscriptions for user 1
+2026-05-17 22:20:40,590 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:20:40,591 - INFO - LLM Call Prompt: 
+    You are a subscription filtering agent.
+    
+    Your task:
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent (highest first)
+    - Return ONLY valid JSON
+    
+    Current UTC Time: 2026-05-17T22:20:40.590809
+    
+    Subscriptions to filter:
+    [{"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"}]
+    
+    Schema:
+    {
+      "active_count": number,
+      "highest_discount": number
+    }
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - If no active subscriptions, highest_discount should be 0
+    - Return only the count and highest discount value
+    
+2026-05-17 22:21:09,777 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:22:51,543 - INFO - LLM Raw response: Here's a Python solution using the `datetime` module to filter out expired subscriptions and sort them by discount percent:
+
+```python
+import json
+from datetime import datetime
+
+def filter_subscriptions(subscriptions, current_time):
+    # Filter out expired subscriptions
+    active_subscriptions = [subscription for subscription in subscriptions if current_time < subscription['expires_at']]
+    
+    # Sort active subscriptions by discount_percent (highest first)
+    sorted_subscriptions = sorted(active_subscriptions, key=lambda x: x['discount_percent'], reverse=True)
+    
+    # Return only valid JSON
+    return json.dumps({
+        "active_count": len(sorted_subscriptions),
+        "highest_discount": sorted_subscriptions[0]['discount_percent'] if sorted_subscriptions else 0
+    })
+
+# Current UTC Time
+current_time = datetime(2026, 5, 17, 22, 20, 40)
+
+# Subscriptions to filter
+subscriptions = [
+    {"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"},
+    # Add more subscriptions here...
+]
+
+# Filter and sort subscriptions
+result = filter_subscriptions(subscriptions, current_time)
+
+print(result)
+```
+
+This script first filters out expired subscriptions by comparing the `current_time` with the `expires_at` of each subscription. Then it sorts the active subscriptions in descending order based on their `discount_percent`. Finally, it returns a JSON object containing the count of active subscriptions and the highest discount percent.
+
+Please note that this code assumes that the input data is a list of dictionaries where each dictionary represents a subscription. The keys for each subscription are assumed to be `_id`, `subscription_id`, `user_id`, `email`, `promo_code`, `promo_title`, `promo_description`, `discount_percent`, and `subscribed_at`. Also, it assumes that the `expires_at` field is in UTC format.
+
+Also note that this code does not handle any potential exceptions or edge cases. Depending on your specific requirements, you might need to add additional error checking or handling code.
+2026-05-17 22:22:51,545 - INFO - Filtered 1 active subscriptions
+2026-05-17 22:22:51,545 - INFO - Retrieved 1 active subscriptions for user 1
+2026-05-17 22:22:59,710 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 22:22:59,711 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:22:59,712 - INFO - Fetched 1 subscriptions for user 1
+2026-05-17 22:22:59,713 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:22:59,713 - INFO - LLM Call Prompt: 
+    You are a subscription filtering agent.
+    
+    Your task:
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent (highest first)
+    - Return ONLY valid JSON
+    
+    Current UTC Time: 2026-05-17T22:22:59.713242
+    
+    Subscriptions to filter:
+    [{"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"}]
+    
+    Schema:
+    {
+      "active_count": number,
+      "highest_discount": number
+    }
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - If no active subscriptions, highest_discount should be 0
+    - Return only the count and highest discount value
+    
+2026-05-17 22:23:19,266 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:24:50,992 - INFO - LLM Raw response: Here's a Python solution using the `datetime` module to filter out expired subscriptions and sort them by discount percent:
+
+```python
+import json
+from datetime import datetime
+
+def filter_subscriptions(subscriptions, current_time):
+    # Filter out expired subscriptions
+    active_subscriptions = [sub for sub in subscriptions if current_time < sub['expires_at']]
+    
+    # Sort active subscriptions by discount_percent (highest first)
+    sorted_subscriptions = sorted(active_subscriptions, key=lambda x: x['discount_percent'], reverse=True)
+    
+    # Return only valid JSON
+    return json.dumps({
+        "active_count": len(sorted_subscriptions),
+        "highest_discount": sorted_subscriptions[0]['discount_percent'] if sorted_subscriptions else 0
+    })
+
+# Current UTC Time
+current_time = datetime(2026, 5, 17, 22, 22, 59)
+
+# Subscriptions to filter
+subscriptions = [
+    {"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"},
+    # Add more subscriptions here...
+]
+
+# Filter and sort subscriptions
+result = filter_subscriptions(subscriptions, current_time)
+
+print(result)
+```
+
+This script first filters out expired subscriptions by comparing the `current_time` with the `expires_at` of each subscription. Then it sorts the active subscriptions in descending order based on their `discount_percent`. Finally, it returns a JSON object containing the count and highest discount value.
+
+Please note that this code assumes that the input data is valid and does not include any error checking or handling.
+2026-05-17 22:24:50,997 - INFO - Filtered 1 active subscriptions
+2026-05-17 22:24:50,997 - INFO - Retrieved 1 active subscriptions for user 1
+2026-05-17 22:24:51,075 - INFO - MongoDB connection closed
+2026-05-17 22:24:59,039 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:25:09,249 - INFO - MongoDB connection closed
+2026-05-17 22:25:16,124 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:25:25,573 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:25:35,779 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:25:46,659 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:25:57,094 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:25:58,045 - INFO - MongoDB connection closed
+2026-05-17 22:26:08,479 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:26:12,025 - INFO - Catalogue retrieved with 4 promos
+2026-05-17 22:26:17,199 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 22:26:17,199 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:26:17,269 - INFO - Fetched 1 subscriptions for user 1
+2026-05-17 22:26:17,269 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:26:17,270 - INFO - LLM Call Prompt: 
+    You are a subscription filtering agent.
+    
+    Your task:
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent (highest first)
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Current UTC Time: 2026-05-17T22:26:17.270089
+    
+    Subscriptions to filter:
+    [{"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"}]
+    
+    Schema:
+    {
+      "active_count": number,
+      "highest_discount": number
+    }
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - If no active subscriptions, highest_discount should be 0
+    - Return only the count and highest discount value
+    
+2026-05-17 22:26:38,217 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:27:44,407 - INFO - LLM Raw response: ```json
+{
+  "_id": "69ff5db279e5dd46d5db225f",
+  "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a",
+  "user_id": "1",
+  "email": "user@example.com",
+  "promo_code": "SUMMER20",
+  "promo_title": "Summer Sale",
+  "promo_description": "20% off all orders this summer.",
+  "discount_percent": 20.0,
+  "subscribed_at": "2026-05-09T16:15:46.649000Z",
+  "expires_at": "2026-08-31T23:59:59Z"
+}
+
+{
+  "_id": "69ff5db279e5dd46d5db225f",
+  "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a",
+  "user_id": "1",
+  "email": "user@example.com",
+  "promo_code": "SUMMER20",
+  "promo_title": "Summer Sale",
+  "promo_description": "20% off all orders this summer.",
+  "discount_percent": 20.0,
+  "subscribed_at": "2026-05-09T16:15:46.649000Z",
+  "expires_at": "2026-08-31T23:59:59Z"
+}
+```
+
+```json
+{
+  "_id": "69ff5db279e5dd46d5db225f",
+  "active_count": 2,
+  "highest_discount": 20.0
+}
+```
+2026-05-17 22:27:44,407 - INFO - Filtered 1 active subscriptions
+2026-05-17 22:27:44,407 - INFO - Retrieved 1 active subscriptions for user 1
+2026-05-17 22:34:45,407 - INFO - MongoDB connection closed
+2026-05-17 22:34:56,077 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:35:12,478 - INFO - MongoDB connection closed
+2026-05-17 22:35:16,650 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:35:48,384 - INFO - Catalogue retrieved with 4 promos
+2026-05-17 22:35:51,398 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 22:35:51,398 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:35:51,401 - INFO - Fetched 1 subscriptions for user 1
+2026-05-17 22:35:51,401 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:35:51,401 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return the filtered and sorted list with all subscription details
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Current UTC Time: 2026-05-17T22:35:51.401773
+    
+    All User Subscriptions:
+    [{"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"}]
+    
+    Schema:
+    {
+      "active_subscriptions": [
+        {
+          "subscription_id": string,
+          "promo_code": string,
+          "promo_title": string,
+          "discount_percent": number,
+          "expires_at": string,
+          "is_active": boolean
+        }
+      ],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Include all required fields in each subscription object
+    - If no active subscriptions, return empty list
+    
+2026-05-17 22:36:33,150 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:36:55,249 - INFO - LLM Raw response: ```json
+{
+  "active_subscriptions": [
+    {
+      "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a",
+      "promo_code": "SUMMER20",
+      "promo_title": "Summer Sale",
+      "discount_percent": 20.0,
+      "expires_at": "2026-08-31 23:59:59",
+      "is_active": true
+    }
+  ],
+  "total_active": 1,
+  "highest_discount": 20.0
+}
+```
+2026-05-17 22:36:55,250 - INFO - Filtered 1 active subscriptions
+2026-05-17 22:36:55,250 - INFO - Retrieved 1 active subscriptions for user 1
+2026-05-17 22:36:55,250 - ERROR - Error in get_subscriptions: 'user_id'
+Traceback (most recent call last):
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 656, in get_subscriptions
+    subscriptions = [
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 659, in <listcomp>
+    user_id=s["user_id"],
+KeyError: 'user_id'
+2026-05-17 22:40:12,290 - INFO - MongoDB connection closed
+2026-05-17 22:40:20,628 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:40:51,215 - INFO - MongoDB connection closed
+2026-05-17 22:41:03,576 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:41:03,707 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 22:41:03,707 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:41:03,765 - INFO - Fetched 1 subscriptions for user 1
+2026-05-17 22:41:03,766 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:41:03,766 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return the filtered and sorted list with all subscription details
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Current UTC Time: 2026-05-17T22:41:03.766120
+    
+    All User Subscriptions:
+    [{"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"}]
+    
+    Schema:
+    {
+      "active_subscriptions": [
+        {
+          "subscription_id": string,
+          "promo_code": string,
+          "promo_title": string,
+          "discount_percent": number,
+          "expires_at": string,
+          "is_active": boolean
+        }
+      ],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Include all required fields in each subscription object
+    - If no active subscriptions, return empty list
+    
+2026-05-17 22:41:28,895 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:41:51,239 - INFO - LLM Raw response: ```json
+{
+  "active_subscriptions": [
+    {
+      "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a",
+      "promo_code": "SUMMER20",
+      "promo_title": "Summer Sale",
+      "discount_percent": 20.0,
+      "expires_at": "2026-08-31 23:59:59",
+      "is_active": true
+    }
+  ],
+  "total_active": 1,
+  "highest_discount": 20.0
+}
+```
+2026-05-17 22:41:51,239 - ERROR - Error in get_subscriptions: name 'log' is not defined
+Traceback (most recent call last):
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 652, in get_subscriptions
+    out = await filter_and_rank_subscriptions_node(state)
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 462, in filter_and_rank_subscriptions_node
+    log.info(f'LLM Token Metrics: input_tokens: {input_tokens}, output_tokens: {output_tokens},'
+NameError: name 'log' is not defined
+2026-05-17 22:42:03,545 - INFO - MongoDB connection closed
+2026-05-17 22:42:12,814 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:42:20,452 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 22:42:20,453 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:42:20,539 - INFO - Fetched 1 subscriptions for user 1
+2026-05-17 22:42:20,540 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:42:20,542 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return the filtered and sorted list with all subscription details
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Current UTC Time: 2026-05-17T22:42:20.541147
+    
+    All User Subscriptions:
+    [{"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"}]
+    
+    Schema:
+    {
+      "active_subscriptions": [
+        {
+          "subscription_id": string,
+          "promo_code": string,
+          "promo_title": string,
+          "discount_percent": number,
+          "expires_at": string,
+          "is_active": boolean
+        }
+      ],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Include all required fields in each subscription object
+    - If no active subscriptions, return empty list
+    
+2026-05-17 22:42:52,858 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:43:15,106 - INFO - LLM Raw response: ```json
+{
+  "active_subscriptions": [
+    {
+      "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a",
+      "promo_code": "SUMMER20",
+      "promo_title": "Summer Sale",
+      "discount_percent": 20.0,
+      "expires_at": "2026-08-31 23:59:59",
+      "is_active": true
+    }
+  ],
+  "total_active": 1,
+  "highest_discount": 20.0
+}
+```
+2026-05-17 22:43:15,106 - INFO - LLM Token Metrics: input_tokens: 409, output_tokens: 124, total_tokens: 533
+2026-05-17 22:43:15,109 - INFO - Filtered 1 active subscriptions
+2026-05-17 22:43:15,109 - INFO - Retrieved 1 active subscriptions for user 1
+2026-05-17 22:43:15,109 - ERROR - Error in get_subscriptions: 'user_id'
+Traceback (most recent call last):
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 657, in get_subscriptions
+    subscriptions = [
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 660, in <listcomp>
+    user_id=s["user_id"],
+KeyError: 'user_id'
+2026-05-17 22:45:50,452 - INFO - Request for buy_subscription, user_id = 1, promo_code = string
+2026-05-17 22:45:50,459 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'string', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:45:50,460 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T22:45:50.460023
+    
+    Promo Code to Validate: STRING
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"title": "Summer Sale", "description": "20% off all orders this summer.", "discount_percent": 20.0, "expires_at": "2026-08-31 23:59:59"}, "WELCOME10": {"title": "Welcome Discount", "description": "10% off your first order.", "discount_percent": 10.0, "expires_at": "2026-12-31 23:59:59"}, "FLASH50": {"title": "Flash Deal", "description": "50% off for the next 24 hours!", "discount_percent": 50.0, "expires_at": "2026-06-01 23:59:59"}, "LOYALTY15": {"title": "Loyalty Reward", "description": "15% off as a thank-you to loyal customers.", "discount_percent": 15.0, "expires_at": "2026-03-31 23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 22:46:25,594 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:46:28,213 - INFO - LLM Raw response: Here is the JSON response:
+
+{
+  "status": "VALID"
+}
+2026-05-17 22:46:28,213 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 22:46:28,214 - WARNING - Invalid promo code: string
+2026-05-17 22:49:34,521 - INFO - MongoDB connection closed
+2026-05-17 22:49:49,852 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:50:32,759 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:50:49,923 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:50:53,111 - INFO - MongoDB connection closed
+2026-05-17 22:50:59,932 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:51:03,462 - INFO - MongoDB connection closed
+2026-05-17 22:51:08,393 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:51:11,318 - INFO - MongoDB connection closed
+2026-05-17 22:51:15,211 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:51:20,947 - INFO - Request for buy_subscription, user_id = 1, promo_code = string
+2026-05-17 22:51:20,949 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'string', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:51:20,949 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T22:51:20.949452
+    
+    Promo Code to Validate: STRING
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 22:51:42,821 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:51:46,874 - INFO - LLM Raw response: Here is the JSON response:
+
+{
+  "status": "VALID"
+}
+2026-05-17 22:51:46,874 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 22:51:46,876 - WARNING - Invalid promo code: string
+2026-05-17 22:52:04,407 - INFO - Request for buy_subscription, user_id = 1, promo_code = SUMMER20
+2026-05-17 22:52:04,409 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:52:04,409 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T22:52:04.409547
+    
+    Promo Code to Validate: SUMMER20
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 22:52:24,480 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:52:26,132 - INFO - LLM Raw response: {
+  "status": "VALID"
+}
+2026-05-17 22:52:26,132 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 22:52:26,133 - INFO - Calling check_duplicate_subscription_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': 'VALID', 'duplicate_check': None, 'catalogue_lookup': {'expires_at': '2026-08-31T23:59:59'}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 297, 'total_output_tokens': 10, 'total_llm_calls': 1}
+2026-05-17 22:52:26,167 - INFO - LLM Call Prompt: 
+    You are a duplicate subscription detection agent.
+    
+    Your task:
+    - Determine if a user has already subscribed to a promo code
+    - Return a decision as json schema specified: DUPLICATE or NEW
+    - Do not generate python code, only return JSON response
+    
+    Input:
+    USER_ID: 1
+    PROMO_CODE: SUMMER20
+    EXISTING_SUBSCRIPTION: {"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"}
+    
+    Rules:
+    - If EXISTING_SUBSCRIPTION is null/None, respond: NEW (no duplicate)
+    - If EXISTING_SUBSCRIPTION contains a record, respond: DUPLICATE (user already subscribed)
+    - Return ONLY a JSON response with decision field
+    
+    Schema:
+    {
+      "decision": "NEW" | "DUPLICATE"
+    }
+    
+2026-05-17 22:52:56,986 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:52:58,870 - INFO - LLM Raw response: {
+  "decision": "NEW"
+}
+2026-05-17 22:52:58,871 - INFO - No duplicate found: 
+2026-05-17 22:52:58,872 - INFO - Calling create_subscription_tool ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': 'VALID', 'duplicate_check': 'NEW', 'catalogue_lookup': {'expires_at': '2026-08-31T23:59:59'}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 624, 'total_output_tokens': 20, 'total_llm_calls': 2}
+2026-05-17 22:52:58,873 - ERROR - Error in buy_subscription: 'title'
+Traceback (most recent call last):
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 592, in buy_subscription
+    out = await subscription_graph.ainvoke(state)
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/main.py", line 3182, in ainvoke
+    async for chunk in self.astream(
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/main.py", line 3000, in astream
+    async for _ in runner.atick(
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/_runner.py", line 304, in atick
+    await arun_with_retry(
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/_retry.py", line 137, in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/_internal/_runnable.py", line 709, in ainvoke
+    input = await step.ainvoke(input, config, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/_internal/_runnable.py", line 473, in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 386, in create_subscription_tool
+    "promo_title": promo["title"],
+KeyError: 'title'
+2026-05-17 22:54:27,975 - INFO - MongoDB connection closed
+2026-05-17 22:54:36,992 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:54:44,121 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:54:51,862 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:54:59,707 - INFO - MongoDB connection closed
+2026-05-17 22:55:16,148 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:55:23,446 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:55:30,101 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:55:53,167 - INFO - Request for buy_subscription, user_id = 1, promo_code = SUMMER20
+2026-05-17 22:55:53,171 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:55:53,171 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T22:55:53.171286
+    
+    Promo Code to Validate: SUMMER20
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 22:56:17,571 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:56:19,030 - INFO - LLM Raw response: {
+  "status": "VALID"
+}
+2026-05-17 22:56:19,031 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 22:56:19,037 - INFO - Calling check_duplicate_subscription_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': 'VALID', 'duplicate_check': None, 'catalogue_lookup': {'expires_at': '2026-08-31T23:59:59'}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 297, 'total_output_tokens': 10, 'total_llm_calls': 1}
+2026-05-17 22:56:19,120 - INFO - LLM Call Prompt: 
+    You are a duplicate subscription detection agent.
+    
+    Your task:
+    - Determine if a user has already subscribed to a promo code
+    - Return a decision as json schema specified: DUPLICATE or NEW
+    - Do not generate python code, only return JSON response
+    
+    Input:
+    USER_ID: 1
+    PROMO_CODE: SUMMER20
+    EXISTING_SUBSCRIPTION: "SUMMER20"
+    
+    Rules:
+    - If EXISTING_SUBSCRIPTION is null/None, respond: NEW (no duplicate)
+    - If EXISTING_SUBSCRIPTION contains a record, respond: DUPLICATE (user already subscribed)
+    - Return ONLY a JSON response with decision field
+    
+    Schema:
+    {
+      "decision": "NEW" | "DUPLICATE"
+    }
+    
+2026-05-17 22:56:34,410 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:56:36,250 - INFO - LLM Raw response: {
+  "decision": "NEW"
+}
+2026-05-17 22:56:36,250 - INFO - No duplicate found: 
+2026-05-17 22:56:36,252 - INFO - Calling create_subscription_tool ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': 'VALID', 'duplicate_check': 'NEW', 'catalogue_lookup': {'expires_at': '2026-08-31T23:59:59'}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 485, 'total_output_tokens': 20, 'total_llm_calls': 2}
+2026-05-17 22:56:36,252 - ERROR - Error in buy_subscription: 'title'
+Traceback (most recent call last):
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 594, in buy_subscription
+    out = await subscription_graph.ainvoke(state)
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/main.py", line 3182, in ainvoke
+    async for chunk in self.astream(
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/main.py", line 3000, in astream
+    async for _ in runner.atick(
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/_runner.py", line 304, in atick
+    await arun_with_retry(
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/_retry.py", line 137, in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/_internal/_runnable.py", line 709, in ainvoke
+    input = await step.ainvoke(input, config, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/_internal/_runnable.py", line 473, in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 388, in create_subscription_tool
+    "promo_title": promo["title"],
+KeyError: 'title'
+2026-05-17 22:57:30,616 - INFO - MongoDB connection closed
+2026-05-17 22:57:42,818 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:57:50,658 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:57:57,897 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:58:06,366 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:58:14,414 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 22:58:14,466 - INFO - Request for buy_subscription, user_id = 1, promo_code = SUMMER20
+2026-05-17 22:58:14,471 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 22:58:14,471 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T22:58:14.471643
+    
+    Promo Code to Validate: SUMMER20
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 22:58:39,878 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:58:41,563 - INFO - LLM Raw response: {
+  "status": "VALID"
+}
+2026-05-17 22:58:41,563 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 22:58:41,567 - INFO - Calling check_duplicate_subscription_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': 'VALID', 'duplicate_check': None, 'catalogue_lookup': {'expires_at': '2026-08-31T23:59:59'}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 297, 'total_output_tokens': 10, 'total_llm_calls': 1}
+2026-05-17 22:58:41,790 - INFO - LLM Call Prompt: 
+    You are a duplicate subscription detection agent.
+    
+    Your task:
+    - Determine if a user has already subscribed to a promo code
+    - Return a decision as json schema specified: DUPLICATE or NEW
+    - Do not generate python code, only return JSON response
+    
+    Input:
+    USER_ID: 1
+    PROMO_CODE: SUMMER20
+    EXISTING_SUBSCRIPTION: True
+    
+    Rules:
+    - If EXISTING_SUBSCRIPTION is False, respond: NEW (no duplicate)
+    - If EXISTING_SUBSCRIPTION is True, respond: DUPLICATE (user already subscribed)
+    - Return ONLY a JSON response with decision field
+    
+    Schema:
+    {
+      "decision": "NEW" | "DUPLICATE"
+    }
+    
+2026-05-17 22:58:57,902 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 22:58:59,722 - INFO - LLM Raw response: {
+  "decision": "NEW"
+}
+2026-05-17 22:58:59,722 - INFO - No duplicate found: 
+2026-05-17 22:58:59,723 - INFO - Calling create_subscription_tool ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': 'VALID', 'duplicate_check': 'NEW', 'catalogue_lookup': {'expires_at': '2026-08-31T23:59:59'}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 478, 'total_output_tokens': 20, 'total_llm_calls': 2}
+2026-05-17 22:58:59,723 - ERROR - Error in buy_subscription: 'title'
+Traceback (most recent call last):
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 593, in buy_subscription
+    out = await subscription_graph.ainvoke(state)
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/main.py", line 3182, in ainvoke
+    async for chunk in self.astream(
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/main.py", line 3000, in astream
+    async for _ in runner.atick(
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/_runner.py", line 304, in atick
+    await arun_with_retry(
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/pregel/_retry.py", line 137, in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/_internal/_runnable.py", line 709, in ainvoke
+    input = await step.ainvoke(input, config, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/langgraph/_internal/_runnable.py", line 473, in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 387, in create_subscription_tool
+    "promo_title": promo["title"],
+KeyError: 'title'
+2026-05-17 23:00:41,472 - INFO - MongoDB connection closed
+2026-05-17 23:00:49,424 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:03:06,544 - INFO - MongoDB connection closed
+2026-05-17 23:03:15,227 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:03:23,308 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:03:28,798 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:03:33,724 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:03:33,743 - INFO - Request for buy_subscription, user_id = 1, promo_code = SUMMER20
+2026-05-17 23:03:33,745 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:03:33,746 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T23:03:33.746117
+    
+    Promo Code to Validate: SUMMER20
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 23:03:57,045 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:03:58,674 - INFO - LLM Raw response: {
+  "status": "VALID"
+}
+2026-05-17 23:03:58,675 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 23:03:58,676 - INFO - Calling check_duplicate_subscription_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'validation_status': 'VALID', 'duplicate_check': None, 'catalogue_lookup': {'title': 'Summer Sale', 'description': '20% off all orders this summer.', 'discount_percent': 20.0, 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 297, 'total_output_tokens': 10, 'total_llm_calls': 1}
+2026-05-17 23:03:58,746 - INFO - LLM Call Prompt: 
+    You are a duplicate subscription detection agent.
+    
+    Your task:
+    - Determine if a user has already subscribed to a promo code
+    - Return a decision as json schema specified: DUPLICATE or NEW
+    - Do not generate python code, only return JSON response
+    
+    Rules:
+    - If EXISTING_SUBSCRIPTION is False, respond: NEW (no duplicate)
+    - If EXISTING_SUBSCRIPTION is True, respond: DUPLICATE (user already subscribed)
+    - Return ONLY a JSON response with decision field
+    
+    Input:
+    USER_ID: 1
+    PROMO_CODE: SUMMER20
+    EXISTING_SUBSCRIPTION: True
+    
+
+    
+    Schema:
+    {
+      "decision": "NEW" | "DUPLICATE"
+    }
+    
+2026-05-17 23:04:14,143 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:04:15,823 - INFO - LLM Raw response: {
+  "decision": "DUPLICATE"
+}
+2026-05-17 23:04:15,823 - INFO - LLM Token Metrics: input_tokens: 182, output_tokens: 11, total_tokens: 193
+2026-05-17 23:04:15,823 - INFO - Duplicate subscription detected: 
+2026-05-17 23:04:15,825 - WARNING - Duplicate subscription for user 1
+2026-05-17 23:05:17,201 - INFO - Request for buy_subscription, user_id = 1, promo_code = WELCOME10
+2026-05-17 23:05:17,202 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:05:17,202 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T23:05:17.202562
+    
+    Promo Code to Validate: WELCOME10
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 23:05:41,054 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:05:42,019 - INFO - LLM Raw response: {"status": "VALID"}
+2026-05-17 23:05:42,019 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 23:05:42,020 - INFO - Calling check_duplicate_subscription_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': 'VALID', 'duplicate_check': None, 'catalogue_lookup': {'title': 'Welcome Discount', 'description': '10% off your first order.', 'discount_percent': 10.0, 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59)}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 297, 'total_output_tokens': 7, 'total_llm_calls': 1}
+2026-05-17 23:05:42,021 - INFO - LLM Call Prompt: 
+    You are a duplicate subscription detection agent.
+    
+    Your task:
+    - Determine if a user has already subscribed to a promo code
+    - Return a decision as json schema specified: DUPLICATE or NEW
+    - Do not generate python code, only return JSON response
+    
+    Rules:
+    - If EXISTING_SUBSCRIPTION is False, respond: NEW (no duplicate)
+    - If EXISTING_SUBSCRIPTION is True, respond: DUPLICATE (user already subscribed)
+    - Return ONLY a JSON response with decision field
+    
+    Input:
+    USER_ID: 1
+    PROMO_CODE: WELCOME10
+    EXISTING_SUBSCRIPTION: False
+    
+
+    
+    Schema:
+    {
+      "decision": "NEW" | "DUPLICATE"
+    }
+    
+2026-05-17 23:05:56,114 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:05:57,873 - INFO - LLM Raw response: {
+  "decision": "NEW"
+}
+2026-05-17 23:05:57,873 - INFO - LLM Token Metrics: input_tokens: 182, output_tokens: 10, total_tokens: 192
+2026-05-17 23:05:57,873 - INFO - No duplicate found: 
+2026-05-17 23:05:57,874 - INFO - Calling create_subscription_tool ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': 'VALID', 'duplicate_check': 'NEW', 'catalogue_lookup': {'title': 'Welcome Discount', 'description': '10% off your first order.', 'discount_percent': 10.0, 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59)}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 479, 'total_output_tokens': 17, 'total_llm_calls': 2}
+2026-05-17 23:05:57,891 - INFO - Subscription created successfully for user 1
+2026-05-17 23:05:57,892 - INFO - Subscription created successfully for user 1
+2026-05-17 23:06:17,908 - INFO - Request for buy_subscription, user_id = 1, promo_code = WELCOME10
+2026-05-17 23:06:17,910 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:06:17,910 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T23:06:17.910297
+    
+    Promo Code to Validate: WELCOME10
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 23:06:40,942 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:06:42,490 - INFO - LLM Raw response: {"status": "VALID"}
+2026-05-17 23:06:42,490 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 23:06:42,491 - INFO - Calling check_duplicate_subscription_node ... Current State is {'operation': 'BUY', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': 'VALID', 'duplicate_check': None, 'catalogue_lookup': {'title': 'Welcome Discount', 'description': '10% off your first order.', 'discount_percent': 10.0, 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59)}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 297, 'total_output_tokens': 7, 'total_llm_calls': 1}
+2026-05-17 23:06:42,493 - INFO - LLM Call Prompt: 
+    You are a duplicate subscription detection agent.
+    
+    Your task:
+    - Determine if a user has already subscribed to a promo code
+    - Return a decision as json schema specified: DUPLICATE or NEW
+    - Do not generate python code, only return JSON response
+    
+    Rules:
+    - If EXISTING_SUBSCRIPTION is False, respond: NEW (no duplicate)
+    - If EXISTING_SUBSCRIPTION is True, respond: DUPLICATE (user already subscribed)
+    - Return ONLY a JSON response with decision field
+    
+    Input:
+    USER_ID: 1
+    PROMO_CODE: WELCOME10
+    EXISTING_SUBSCRIPTION: True
+    
+
+    
+    Schema:
+    {
+      "decision": "NEW" | "DUPLICATE"
+    }
+    
+2026-05-17 23:06:57,393 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:06:59,503 - INFO - LLM Raw response: {
+  "decision": "DUPLICATE"
+}
+2026-05-17 23:06:59,503 - INFO - LLM Token Metrics: input_tokens: 182, output_tokens: 11, total_tokens: 193
+2026-05-17 23:06:59,503 - INFO - Duplicate subscription detected: 
+2026-05-17 23:06:59,504 - WARNING - Duplicate subscription for user 1
+2026-05-17 23:07:06,553 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 23:07:06,553 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:07:06,556 - INFO - Fetched 2 subscriptions for user 1
+2026-05-17 23:07:06,558 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}, {'_id': ObjectId('6a0a821526f4d8577e7b0a12'), 'subscription_id': '66ec92c5-65da-4142-bb66-81b9551e24cc', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'promo_title': 'Welcome Discount', 'promo_description': '10% off your first order.', 'discount_percent': 10.0, 'subscribed_at': datetime.datetime(2026, 5, 17, 23, 5, 57, 875000), 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59), 'is_active': True}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:07:06,559 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return the filtered and sorted list with all subscription details
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Current UTC Time: 2026-05-17T23:07:06.559041
+    
+    All User Subscriptions:
+    [{"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"}, {"_id": "6a0a821526f4d8577e7b0a12", "subscription_id": "66ec92c5-65da-4142-bb66-81b9551e24cc", "user_id": "1", "email": "user@example.com", "promo_code": "WELCOME10", "promo_title": "Welcome Discount", "promo_description": "10% off your first order.", "discount_percent": 10.0, "subscribed_at": "2026-05-17 23:05:57.875000", "expires_at": "2026-12-31 23:59:59", "is_active": true}]
+    
+    Schema:
+    {
+      "active_subscriptions": [
+        {
+          "subscription_id": string,
+          "promo_code": string,
+          "promo_title": string,
+          "discount_percent": number,
+          "expires_at": string,
+          "is_active": boolean
+        }
+      ],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Include all required fields in each subscription object
+    - If no active subscriptions, return empty list
+    
+2026-05-17 23:08:02,289 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:08:42,772 - INFO - LLM Raw response: ```json
+{
+  "active_subscriptions": [
+    {
+      "subscription_id": "66ec92c5-65da-4142-bb66-81b9551e24cc",
+      "promo_code": "WELCOME10",
+      "promo_title": "Welcome Discount",
+      "discount_percent": 10.0,
+      "expires_at": "2026-12-31 23:59:59",
+      "is_active": true
+    },
+    {
+      "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a",
+      "promo_code": "SUMMER20",
+      "promo_title": "Summer Sale",
+      "discount_percent": 20.0,
+      "expires_at": "2026-08-31 23:59:59",
+      "is_active": true
+    }
+  ],
+  "total_active": 2,
+  "highest_discount": 20.0
+}
+```
+2026-05-17 23:08:42,773 - INFO - LLM Token Metrics: input_tokens: 558, output_tokens: 212, total_tokens: 770
+2026-05-17 23:08:42,773 - INFO - Filtered 2 active subscriptions
+2026-05-17 23:08:42,773 - INFO - Retrieved 2 active subscriptions for user 1
+2026-05-17 23:08:42,773 - ERROR - Error in get_subscriptions: 'user_id'
+Traceback (most recent call last):
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 669, in get_subscriptions
+    subscriptions = [
+  File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/subscription_agent.py", line 672, in <listcomp>
+    user_id=s["user_id"],
+KeyError: 'user_id'
+2026-05-17 23:09:26,132 - INFO - MongoDB connection closed
+2026-05-17 23:09:36,364 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:10:25,086 - INFO - MongoDB connection closed
+2026-05-17 23:10:35,452 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:10:38,511 - INFO - MongoDB connection closed
+2026-05-17 23:10:45,628 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:13:23,704 - INFO - MongoDB connection closed
+2026-05-17 23:13:34,065 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:13:36,236 - INFO - MongoDB connection closed
+2026-05-17 23:13:42,090 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:13:42,270 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 23:13:42,270 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:13:42,313 - INFO - Fetched 2 subscriptions for user 1
+2026-05-17 23:13:42,314 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}, {'_id': ObjectId('6a0a821526f4d8577e7b0a12'), 'subscription_id': '66ec92c5-65da-4142-bb66-81b9551e24cc', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'promo_title': 'Welcome Discount', 'promo_description': '10% off your first order.', 'discount_percent': 10.0, 'subscribed_at': datetime.datetime(2026, 5, 17, 23, 5, 57, 875000), 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59), 'is_active': True}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:13:42,314 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return only the subscription IDs of active subscriptions in order
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Current UTC Time: 2026-05-17T23:13:42.314342
+    
+    All User Subscriptions:
+    [{"_id": "69ff5db279e5dd46d5db225f", "subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "user_id": "1", "email": "user@example.com", "promo_code": "SUMMER20", "promo_title": "Summer Sale", "promo_description": "20% off all orders this summer.", "discount_percent": 20.0, "subscribed_at": "2026-05-09 16:15:46.649000", "expires_at": "2026-08-31 23:59:59"}, {"_id": "6a0a821526f4d8577e7b0a12", "subscription_id": "66ec92c5-65da-4142-bb66-81b9551e24cc", "user_id": "1", "email": "user@example.com", "promo_code": "WELCOME10", "promo_title": "Welcome Discount", "promo_description": "10% off your first order.", "discount_percent": 10.0, "subscribed_at": "2026-05-17 23:05:57.875000", "expires_at": "2026-12-31 23:59:59", "is_active": true}]
+    
+    Schema:
+    {
+      "active_subscription_ids": [string],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Return only the subscription_id values in the active_subscription_ids array
+    - If no active subscriptions, return empty array
+    
+2026-05-17 23:14:22,589 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:14:39,116 - INFO - LLM Raw response: ```json
+{
+  "active_subscription_ids": [
+    "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a"
+  ],
+  "total_active": 1,
+  "highest_discount": 20.0
+}
+```
+
+This JSON response indicates that there is only one active subscription, which has a discount of 20%. The `active_subscription_ids` array contains the ID of this single active subscription.
+2026-05-17 23:14:39,116 - INFO - LLM Token Metrics: input_tokens: 516, output_tokens: 98, total_tokens: 614
+2026-05-17 23:14:39,116 - INFO - Filtered 1 active subscriptions
+2026-05-17 23:14:39,116 - INFO - Retrieved 1 active subscriptions for user 1
+2026-05-17 23:15:56,006 - INFO - MongoDB connection closed
+2026-05-17 23:16:07,452 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:16:19,535 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:16:29,995 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:16:42,887 - INFO - MongoDB connection closed
+2026-05-17 23:16:53,498 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:17:09,486 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:17:14,205 - INFO - MongoDB connection closed
+2026-05-17 23:17:23,951 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:17:26,230 - INFO - MongoDB connection closed
+2026-05-17 23:17:35,672 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:17:49,241 - INFO - MongoDB connection closed
+2026-05-17 23:18:00,499 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:18:10,173 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:18:10,254 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 23:18:10,254 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:18:10,347 - INFO - Fetched 2 subscriptions for user 1
+2026-05-17 23:18:10,347 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}, {'_id': ObjectId('6a0a821526f4d8577e7b0a12'), 'subscription_id': '66ec92c5-65da-4142-bb66-81b9551e24cc', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'promo_title': 'Welcome Discount', 'promo_description': '10% off your first order.', 'discount_percent': 10.0, 'subscribed_at': datetime.datetime(2026, 5, 17, 23, 5, 57, 875000), 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59), 'is_active': True}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:18:10,348 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return only the subscription IDs of active subscriptions in order
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Current UTC Time: 2026-05-17T23:18:10.347810
+    
+    All User Subscriptions:
+    [{"subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "promo_code": "SUMMER20", "discount_percent": 20.0, "expires_at": "2026-08-31 23:59:59"}, {"subscription_id": "66ec92c5-65da-4142-bb66-81b9551e24cc", "promo_code": "WELCOME10", "discount_percent": 10.0, "expires_at": "2026-12-31 23:59:59"}]
+    
+    Schema:
+    {
+      "active_subscription_ids": [string],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Return only the subscription_id values in the active_subscription_ids array
+    - If no active subscriptions, return empty array
+    
+2026-05-17 23:18:31,733 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:18:48,797 - INFO - LLM Raw response: ```json
+{
+  "active_subscription_ids": [
+    "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a"
+  ],
+  "total_active": 1,
+  "highest_discount": 20.0
+}
+```
+
+This response is generated based on the provided input and rules. It filters out expired subscriptions, sorts active subscriptions by discount_percent in descending order, and returns only the subscription IDs of active subscriptions in order.
+2026-05-17 23:18:48,797 - INFO - LLM Token Metrics: input_tokens: 353, output_tokens: 102, total_tokens: 455
+2026-05-17 23:18:48,797 - INFO - Filtered 1 active subscriptions
+2026-05-17 23:18:48,797 - INFO - Retrieved 1 active subscriptions for user 1
+2026-05-17 23:19:16,406 - INFO - MongoDB connection closed
+2026-05-17 23:19:25,730 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:19:32,231 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:19:33,565 - INFO - MongoDB connection closed
+2026-05-17 23:19:40,366 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:19:45,909 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:19:46,114 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 23:19:46,114 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:19:46,184 - INFO - Fetched 2 subscriptions for user 1
+2026-05-17 23:19:46,184 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}, {'_id': ObjectId('6a0a821526f4d8577e7b0a12'), 'subscription_id': '66ec92c5-65da-4142-bb66-81b9551e24cc', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'promo_title': 'Welcome Discount', 'promo_description': '10% off your first order.', 'discount_percent': 10.0, 'subscribed_at': datetime.datetime(2026, 5, 17, 23, 5, 57, 875000), 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59), 'is_active': True}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:19:46,185 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return only the subscription IDs of active subscriptions in order
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Return only the subscription_id values in the active_subscription_ids array
+    - If no active subscriptions, return empty array
+    
+    Output Schema:
+    {
+      "active_subscription_ids": [string],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Current UTC Time: 2026-05-17T23:19:46.185033
+    
+    All User Subscriptions:
+    [{"subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "promo_code": "SUMMER20", "discount_percent": 20.0, "expires_at": "2026-08-31 23:59:59"}, {"subscription_id": "66ec92c5-65da-4142-bb66-81b9551e24cc", "promo_code": "WELCOME10", "discount_percent": 10.0, "expires_at": "2026-12-31 23:59:59"}]
+    
+
+    
+    
+2026-05-17 23:20:11,021 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:20:25,425 - INFO - LLM Raw response: ```json
+{
+    "active_subscription_ids": [
+        "66ec92c5-65da-4142-bb66-81b9551e24cc",
+        "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a"
+    ],
+    "total_active": 2,
+    "highest_discount": 20.0
+}
+```
+2026-05-17 23:20:25,425 - INFO - LLM Token Metrics: input_tokens: 355, output_tokens: 86, total_tokens: 441
+2026-05-17 23:20:25,426 - INFO - Filtered 2 active subscriptions
+2026-05-17 23:20:25,426 - INFO - Retrieved 2 active subscriptions for user 1
+2026-05-17 23:20:50,373 - INFO - Request for buy_subscription, user_id = 2, promo_code = WELCOME10
+2026-05-17 23:20:50,377 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '2', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:20:50,377 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T23:20:50.377310
+    
+    Promo Code to Validate: WELCOME10
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 23:21:14,758 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:21:16,075 - INFO - LLM Raw response: {"status": "VALID"}
+2026-05-17 23:21:16,075 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 23:21:16,077 - INFO - Calling check_duplicate_subscription_node ... Current State is {'operation': 'BUY', 'user_id': '2', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': 'VALID', 'duplicate_check': None, 'catalogue_lookup': {'title': 'Welcome Discount', 'description': '10% off your first order.', 'discount_percent': 10.0, 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59)}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 297, 'total_output_tokens': 7, 'total_llm_calls': 1}
+2026-05-17 23:21:16,081 - INFO - LLM Call Prompt: 
+    You are a duplicate subscription detection agent.
+    
+    Your task:
+    - Determine if a user has already subscribed to a promo code
+    - Return a decision as json schema specified: DUPLICATE or NEW
+    - Do not generate python code, only return JSON response
+    
+    Rules:
+    - If EXISTING_SUBSCRIPTION is False, respond: NEW (no duplicate)
+    - If EXISTING_SUBSCRIPTION is True, respond: DUPLICATE (user already subscribed)
+    - Return ONLY a JSON response with decision field
+    
+    Input:
+    USER_ID: 2
+    PROMO_CODE: WELCOME10
+    EXISTING_SUBSCRIPTION: False
+    
+
+    
+    Schema:
+    {
+      "decision": "NEW" | "DUPLICATE"
+    }
+    
+2026-05-17 23:21:32,345 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:21:34,202 - INFO - LLM Raw response: {
+  "decision": "NEW"
+}
+2026-05-17 23:21:34,203 - INFO - LLM Token Metrics: input_tokens: 182, output_tokens: 10, total_tokens: 192
+2026-05-17 23:21:34,203 - INFO - No duplicate found: 
+2026-05-17 23:21:34,204 - INFO - Calling create_subscription_tool ... Current State is {'operation': 'BUY', 'user_id': '2', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': 'VALID', 'duplicate_check': 'NEW', 'catalogue_lookup': {'title': 'Welcome Discount', 'description': '10% off your first order.', 'discount_percent': 10.0, 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59)}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 479, 'total_output_tokens': 17, 'total_llm_calls': 2}
+2026-05-17 23:21:34,220 - INFO - Subscription created successfully for user 2
+2026-05-17 23:21:34,221 - INFO - Subscription created successfully for user 2
+2026-05-17 23:22:06,915 - INFO - Request for buy_subscription, user_id = 2, promo_code = WELCOME10
+2026-05-17 23:22:06,917 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '2', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:22:06,917 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Current UTC Time: 2026-05-17T23:22:06.917687
+    
+    Promo Code to Validate: WELCOME10
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+2026-05-17 23:22:31,449 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:22:32,989 - INFO - LLM Raw response: {"status": "VALID"}
+2026-05-17 23:22:32,989 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 23:22:32,990 - INFO - Calling check_duplicate_subscription_node ... Current State is {'operation': 'BUY', 'user_id': '2', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': 'VALID', 'duplicate_check': None, 'catalogue_lookup': {'title': 'Welcome Discount', 'description': '10% off your first order.', 'discount_percent': 10.0, 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59)}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 297, 'total_output_tokens': 7, 'total_llm_calls': 1}
+2026-05-17 23:22:32,992 - INFO - LLM Call Prompt: 
+    You are a duplicate subscription detection agent.
+    
+    Your task:
+    - Determine if a user has already subscribed to a promo code
+    - Return a decision as json schema specified: DUPLICATE or NEW
+    - Do not generate python code, only return JSON response
+    
+    Rules:
+    - If EXISTING_SUBSCRIPTION is False, respond: NEW (no duplicate)
+    - If EXISTING_SUBSCRIPTION is True, respond: DUPLICATE (user already subscribed)
+    - Return ONLY a JSON response with decision field
+    
+    Input:
+    USER_ID: 2
+    PROMO_CODE: WELCOME10
+    EXISTING_SUBSCRIPTION: True
+    
+
+    
+    Schema:
+    {
+      "decision": "NEW" | "DUPLICATE"
+    }
+    
+2026-05-17 23:22:48,889 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:22:50,731 - INFO - LLM Raw response: {
+  "decision": "DUPLICATE"
+}
+2026-05-17 23:22:50,731 - INFO - LLM Token Metrics: input_tokens: 182, output_tokens: 11, total_tokens: 193
+2026-05-17 23:22:50,731 - INFO - Duplicate subscription detected: 
+2026-05-17 23:22:50,733 - WARNING - Duplicate subscription for user 2
+2026-05-17 23:23:12,766 - INFO - MongoDB connection closed
+2026-05-17 23:23:23,298 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:23:31,641 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:23:31,667 - INFO - Request for buy_subscription, user_id = 2, promo_code = WELCOME10
+2026-05-17 23:23:31,669 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '2', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:23:31,669 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Output Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+    Current UTC Time: 2026-05-17T23:23:31.669700
+    
+    Promo Code to Validate: WELCOME10
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    
+2026-05-17 23:23:54,700 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:23:56,288 - INFO - LLM Raw response: {
+  "status": "VALID"
+}
+2026-05-17 23:23:56,288 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 23:23:56,290 - INFO - Calling check_duplicate_subscription_node ... Current State is {'operation': 'BUY', 'user_id': '2', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'validation_status': 'VALID', 'duplicate_check': None, 'catalogue_lookup': {'title': 'Welcome Discount', 'description': '10% off your first order.', 'discount_percent': 10.0, 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59)}, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 299, 'total_output_tokens': 10, 'total_llm_calls': 1}
+2026-05-17 23:23:56,432 - INFO - LLM Call Prompt: 
+    You are a duplicate subscription detection agent.
+    
+    Your task:
+    - Determine if a user has already subscribed to a promo code
+    - Return a decision as json schema specified: DUPLICATE or NEW
+    - Do not generate python code, only return JSON response
+    
+    Rules:
+    - If EXISTING_SUBSCRIPTION is False, respond: NEW (no duplicate)
+    - If EXISTING_SUBSCRIPTION is True, respond: DUPLICATE (user already subscribed)
+    - Return ONLY a JSON response with decision field
+    
+    Input:
+    USER_ID: 2
+    PROMO_CODE: WELCOME10
+    EXISTING_SUBSCRIPTION: True
+    
+
+    
+    Schema:
+    {
+      "decision": "NEW" | "DUPLICATE"
+    }
+    
+2026-05-17 23:24:10,763 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:24:12,907 - INFO - LLM Raw response: {
+  "decision": "DUPLICATE"
+}
+2026-05-17 23:24:12,907 - INFO - LLM Token Metrics: input_tokens: 182, output_tokens: 11, total_tokens: 193
+2026-05-17 23:24:12,907 - INFO - Duplicate subscription detected: 
+2026-05-17 23:24:12,908 - WARNING - Duplicate subscription for user 2
+2026-05-17 23:24:25,748 - INFO - Request for buy_subscription, user_id = 2, promo_code = WELCOME0
+2026-05-17 23:24:25,749 - INFO - Calling validate_promo_node ... Current State is {'operation': 'BUY', 'user_id': '2', 'email': 'user@example.com', 'promo_code': 'WELCOME0', 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:24:25,750 - INFO - LLM Call Prompt: 
+    You are a promotion validation agent.
+    
+    Your task:
+    - Validate the promo code against the catalogue
+    - Check if the code is expired (current_time >= expires_at)
+    - Return a decision: VALID, INVALID, or EXPIRED
+    
+    Rules:
+    - If code does not exist in catalogue, respond: INVALID
+    - If code exists but is expired, respond: EXPIRED
+    - If code exists and not expired, respond: VALID
+    - Return ONLY a JSON response with status field, Do not generate python code
+    
+    Output Schema:
+    {
+      "status": "VALID" | "INVALID" | "EXPIRED"
+    }
+    
+    Current UTC Time: 2026-05-17T23:24:25.750112
+    
+    Promo Code to Validate: WELCOME0
+    
+    Available Promotion Catalogue:
+    {"SUMMER20": {"expires_at": "2026-08-31T23:59:59"}, "WELCOME10": {"expires_at": "2026-12-31T23:59:59"}, "FLASH50": {"expires_at": "2026-06-01T23:59:59"}, "LOYALTY15": {"expires_at": "2026-03-31T23:59:59"}}
+    
+    
+2026-05-17 23:24:51,423 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:24:52,995 - INFO - LLM Raw response: {
+  "status": "VALID"
+}
+2026-05-17 23:24:52,995 - INFO - Promo validation result: VALID - Unknown error
+2026-05-17 23:24:52,997 - WARNING - Invalid promo code: WELCOME0
+2026-05-17 23:25:06,401 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 23:25:06,402 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:25:06,406 - INFO - Fetched 2 subscriptions for user 1
+2026-05-17 23:25:06,406 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}, {'_id': ObjectId('6a0a821526f4d8577e7b0a12'), 'subscription_id': '66ec92c5-65da-4142-bb66-81b9551e24cc', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'promo_title': 'Welcome Discount', 'promo_description': '10% off your first order.', 'discount_percent': 10.0, 'subscribed_at': datetime.datetime(2026, 5, 17, 23, 5, 57, 875000), 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59), 'is_active': True}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:25:06,406 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return only the subscription IDs of active subscriptions in order
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Return only the subscription_id values in the active_subscription_ids array
+    - If no active subscriptions, return empty array
+    
+    Output Schema:
+    {
+      "active_subscription_ids": [string],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Current UTC Time: 2026-05-17T23:25:06.406422
+    
+    All User Subscriptions:
+    [{"subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "promo_code": "SUMMER20", "discount_percent": 20.0, "expires_at": "2026-08-31 23:59:59"}, {"subscription_id": "66ec92c5-65da-4142-bb66-81b9551e24cc", "promo_code": "WELCOME10", "discount_percent": 10.0, "expires_at": "2026-12-31 23:59:59"}]
+    
+
+    
+    
+2026-05-17 23:25:36,078 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:25:51,580 - INFO - LLM Raw response: ```json
+{
+    "active_subscription_ids": [
+        "66ec92c5-65da-4142-bb66-81b9551e24cc",
+        "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a"
+    ],
+    "total_active": 2,
+    "highest_discount": 20.0
+}
+```
+2026-05-17 23:25:51,580 - INFO - LLM Token Metrics: input_tokens: 355, output_tokens: 86, total_tokens: 441
+2026-05-17 23:25:51,580 - INFO - Filtered 2 active subscriptions
+2026-05-17 23:25:51,580 - INFO - Retrieved 2 active subscriptions for user 1
+2026-05-17 23:25:56,567 - INFO - Request for get_subscriptions, user_id = 2
+2026-05-17 23:25:56,567 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '2', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:25:56,570 - INFO - Fetched 1 subscriptions for user 2
+2026-05-17 23:25:56,570 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '2', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('6a0a85bef5880ea573fda521'), 'subscription_id': '9ab44a81-d5e3-48e3-98c4-b27427ac6e11', 'user_id': '2', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'promo_title': 'Welcome Discount', 'promo_description': '10% off your first order.', 'discount_percent': 10.0, 'subscribed_at': datetime.datetime(2026, 5, 17, 23, 21, 34, 205000), 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59), 'is_active': True}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:25:56,570 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return only the subscription IDs of active subscriptions in order
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Return only the subscription_id values in the active_subscription_ids array
+    - If no active subscriptions, return empty array
+    
+    Output Schema:
+    {
+      "active_subscription_ids": [string],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Current UTC Time: 2026-05-17T23:25:56.570539
+    
+    All User Subscriptions:
+    [{"subscription_id": "9ab44a81-d5e3-48e3-98c4-b27427ac6e11", "promo_code": "WELCOME10", "discount_percent": 10.0, "expires_at": "2026-12-31 23:59:59"}]
+    
+
+    
+    
+2026-05-17 23:26:04,092 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:26:26,050 - INFO - LLM Raw response: ```json
+{
+    "active_subscription_ids": [
+        "9ab44a81-d5e3-48e3-98c4-b27427ac6e11"
+    ],
+    "total_active": 1,
+    "highest_discount": 10.0
+}
+```
+
+This output is generated based on the provided rules and data. The current time is used to filter out expired subscriptions, sort active subscriptions by discount_percent in descending order, and return only the subscription IDs of active subscriptions in order.
+2026-05-17 23:26:26,050 - INFO - LLM Token Metrics: input_tokens: 291, output_tokens: 107, total_tokens: 398
+2026-05-17 23:26:26,050 - INFO - Filtered 1 active subscriptions
+2026-05-17 23:26:26,050 - INFO - Retrieved 1 active subscriptions for user 2
+2026-05-17 23:27:31,798 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 23:27:31,798 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:27:31,800 - INFO - Fetched 2 subscriptions for user 1
+2026-05-17 23:27:31,800 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}, {'_id': ObjectId('6a0a821526f4d8577e7b0a12'), 'subscription_id': '66ec92c5-65da-4142-bb66-81b9551e24cc', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'promo_title': 'Welcome Discount', 'promo_description': '10% off your first order.', 'discount_percent': 10.0, 'subscribed_at': datetime.datetime(2026, 5, 17, 23, 5, 57, 875000), 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59), 'is_active': True}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:27:31,800 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return only the subscription IDs of active subscriptions in order
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Return only the subscription_id values in the active_subscription_ids array
+    - If no active subscriptions, return empty array
+    
+    Output Schema:
+    {
+      "active_subscription_ids": [string],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Current UTC Time: 2026-05-17T23:27:31.800855
+    
+    All User Subscriptions:
+    [{"subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "promo_code": "SUMMER20", "discount_percent": 20.0, "expires_at": "2026-08-31 23:59:59"}, {"subscription_id": "66ec92c5-65da-4142-bb66-81b9551e24cc", "promo_code": "WELCOME10", "discount_percent": 10.0, "expires_at": "2026-12-31 23:59:59"}]
+    
+
+    
+    
+2026-05-17 23:27:46,936 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:28:00,884 - INFO - LLM Raw response: ```json
+{
+    "active_subscription_ids": [
+        "66ec92c5-65da-4142-bb66-81b9551e24cc",
+        "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a"
+    ],
+    "total_active": 2,
+    "highest_discount": 20.0
+}
+```
+2026-05-17 23:28:00,884 - INFO - LLM Token Metrics: input_tokens: 355, output_tokens: 86, total_tokens: 441
+2026-05-17 23:28:00,884 - INFO - Filtered 2 active subscriptions
+2026-05-17 23:28:00,885 - INFO - Retrieved 2 active subscriptions for user 1
+2026-05-17 23:28:42,476 - INFO - MongoDB connection closed
+2026-05-17 23:28:53,712 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:29:00,534 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-17 23:29:00,544 - INFO - Request for get_subscriptions, user_id = 1
+2026-05-17 23:29:00,545 - INFO - Calling fetch_user_subscriptions_tool ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': None, 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:29:00,617 - INFO - Fetched 2 subscriptions for user 1
+2026-05-17 23:29:00,617 - INFO - Calling filter_and_rank_subscriptions_node ... Current State is {'operation': 'FETCH', 'user_id': '1', 'email': None, 'promo_code': None, 'validation_status': None, 'duplicate_check': None, 'catalogue_lookup': None, 'subscription_result': None, 'user_subscriptions': [{'_id': ObjectId('69ff5db279e5dd46d5db225f'), 'subscription_id': '0dfe65c4-3b0d-40fd-ad4a-8917dda4676a', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'SUMMER20', 'promo_title': 'Summer Sale', 'promo_description': '20% off all orders this summer.', 'discount_percent': 20.0, 'subscribed_at': datetime.datetime(2026, 5, 9, 16, 15, 46, 649000), 'expires_at': datetime.datetime(2026, 8, 31, 23, 59, 59)}, {'_id': ObjectId('6a0a821526f4d8577e7b0a12'), 'subscription_id': '66ec92c5-65da-4142-bb66-81b9551e24cc', 'user_id': '1', 'email': 'user@example.com', 'promo_code': 'WELCOME10', 'promo_title': 'Welcome Discount', 'promo_description': '10% off your first order.', 'discount_percent': 10.0, 'subscribed_at': datetime.datetime(2026, 5, 17, 23, 5, 57, 875000), 'expires_at': datetime.datetime(2026, 12, 31, 23, 59, 59), 'is_active': True}], 'result': None, 'error_message': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-05-17 23:29:00,618 - INFO - LLM Call Prompt: 
+    You are a subscription filtering and ranking agent.
+    
+    Your task:
+    - Analyze all subscriptions for the user
+    - Filter out expired subscriptions (where current_time >= expires_at)
+    - Sort active subscriptions by discount_percent in descending order (highest discount first)
+    - Return only the subscription IDs of active subscriptions in order
+    - Return ONLY valid JSON, Do not generate python code
+    
+    Rules:
+    - A subscription is active only if current_time < expires_at
+    - Sort by discount_percent descending (highest first)
+    - Return only the subscription_id values in the active_subscription_ids array and maintain the order descending based on discount
+    - If no active subscriptions, return empty array
+    
+    Output Schema:
+    {
+      "active_subscription_ids": [string],
+      "total_active": number,
+      "highest_discount": number
+    }
+    
+    Current UTC Time: 2026-05-17T23:29:00.618041
+    
+    All User Subscriptions:
+    [{"subscription_id": "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a", "promo_code": "SUMMER20", "discount_percent": 20.0, "expires_at": "2026-08-31 23:59:59"}, {"subscription_id": "66ec92c5-65da-4142-bb66-81b9551e24cc", "promo_code": "WELCOME10", "discount_percent": 10.0, "expires_at": "2026-12-31 23:59:59"}]
+    
+
+    
+    
+2026-05-17 23:29:19,287 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-17 23:29:35,415 - INFO - LLM Raw response: ```json
+{
+    "active_subscription_ids": [
+        "66ec92c5-65da-4142-bb66-81b9551e24cc",
+        "0dfe65c4-3b0d-40fd-ad4a-8917dda4676a"
+    ],
+    "total_active": 2,
+    "highest_discount": 20.0
+}
+```
+2026-05-17 23:29:35,415 - INFO - LLM Token Metrics: input_tokens: 363, output_tokens: 86, total_tokens: 449
+2026-05-17 23:29:35,416 - INFO - Filtered 2 active subscriptions
+2026-05-17 23:29:35,416 - INFO - Retrieved 2 active subscriptions for user 1

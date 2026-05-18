@@ -1,3 +1,28 @@
+"""
+PAYMENT AGENT - Graph Topology
+
+    START
+      |
+      v
+  [psp_call] (External PSP Service Call)
+      |
+      v
+[decide_payment] (LLM Decision Node - Validate & Authorize)
+      |
+      v
+[persist_payment] (Save Payment Result to DB)
+      |
+      v
+      END
+
+Key Features:
+- Linear 3-step payment processing workflow
+- Integrates with external Payment Service Provider (PSP)
+- LLM-based payment decision using PSP tracking ID validation
+- Persists payment records to MongoDB
+- Tracks token usage and LLM call metrics
+"""
+
 import os
 import logging
 import time
@@ -25,7 +50,7 @@ logging.basicConfig(
 )
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8007))
 
 llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)

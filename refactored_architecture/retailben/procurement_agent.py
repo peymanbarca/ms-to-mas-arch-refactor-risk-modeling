@@ -1,3 +1,26 @@
+"""
+PROCUREMENT AGENT - Graph Topology
+
+    START
+      |
+      v
+[call_supplier] (External Supplier API Call)
+      |
+      v
+[reason_procurement] (LLM Reasoning Node - Validate & Finalize Order)
+      |
+      v
+      END
+
+Key Features:
+- Linear 2-step supplier order workflow
+- Calls external supplier/vendor systems
+- LLM-based order validation and finalization
+- Returns supplier order ID, status, and ETA (estimated time to arrival)
+- Tracks token usage and LLM call metrics
+- Supports supplier preference selection
+"""
+
 import os
 import logging
 import time
@@ -20,7 +43,7 @@ logger = logging.getLogger("procurement_agent")
 logging.basicConfig(level=logging.INFO)
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB = os.getenv("MONGO_DB", "ms_baseline")
+MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8009))
 
 llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)
