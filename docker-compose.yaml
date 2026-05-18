@@ -77,7 +77,7 @@ services:
 
   sonarqube:
     image: sonarqube:community # Use 'latest-community' for the free version
-    restart: always
+    # restart: no
     ports:
       - "9000:9000" # Default web interface port
     environment:

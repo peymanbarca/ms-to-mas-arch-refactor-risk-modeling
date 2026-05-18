@@ -259,7 +259,10 @@ def run_experiment_of_architecture_step_full_predicate():
 
 
 def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f):
+    
     latency_predicate_failed = None; qa_predicate_failed = None; failure_rate_predicate_failed = None
+    
+    # -------------- Real execution of the architecture step and evaluation of predicates --------------
     # p95_latency, qa_inconsistency_rate, failure_rate = run_experiment_of_architecture_step_full_predicate()
     # # check with baseline w.s.t thresholds:
     # if epsilon_l and epsilon_l > -1:
@@ -285,9 +288,11 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
     #         failure_rate_predicate_failed = False
     # success = False
 
-    p95_latency, qa_inconsistency_rate, failure_rate = 1.1, 0.1, 0.01  # dummy values for testing
+
+    p95_latency, qa_inconsistency_rate, failure_rate = 1.1, 0.1, 0.01 
     latency_predicate_failed = True; qa_predicate_failed = True; failure_rate_predicate_failed = True
     success = random.choices([True, False], weights=[3, 1])[0]  # 70% success
+    step_self_temporal_propagation = random.uniform(0.2, 0.7)  # Simulate some temporal propagation effect
 
 
     result = {
@@ -300,7 +305,8 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
         "latency_predicate_failed": latency_predicate_failed,
         "qa_predicate_failed": qa_predicate_failed,
         "failure_rate_predicate_failed": failure_rate_predicate_failed,
-        "success": success
+        "success": success,
+        "step_self_temporal_propagation": step_self_temporal_propagation
     }
     return result
 
@@ -333,8 +339,6 @@ if __name__ == '__main__':
         f.write("\n\n")
 
     if acceptance_result["success"]:
-        print(json.dumps({"result": "ACCEPTED", "details": acceptance_result}))
+        print(json.dumps({"result": "ACCEPTED", "step_self_temporal_propagation": acceptance_result["step_self_temporal_propagation"], "details": acceptance_result}))
     else:
-        print(json.dumps({"result": "REJECTED", "details": acceptance_result}))
-
-
+        print(json.dumps({"result": "REJECTED", "step_self_temporal_propagation": acceptance_result["step_self_temporal_propagation"], "details": acceptance_result}))

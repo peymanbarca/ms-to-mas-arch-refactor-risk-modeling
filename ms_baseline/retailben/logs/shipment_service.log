@@ -14,3 +14,5 @@
 2026-05-17 17:35:18,470 - INFO - Request for book_shipment, order_id=2cf87fb8-17c5-4094-ae20-97a16f2d8b58, request: order_id='2cf87fb8-17c5-4094-ae20-97a16f2d8b58' address='SAMPLE_ADDRESS'
 2026-05-17 17:35:18,671 - INFO - Request for book_shipment, external carrier service called successfully, order_id=2cf87fb8-17c5-4094-ae20-97a16f2d8b58, request: order_id='2cf87fb8-17c5-4094-ae20-97a16f2d8b58' address='SAMPLE_ADDRESS'
 2026-05-17 17:35:18,676 - INFO - Request for book_shipment successfully processed, request: order_id='2cf87fb8-17c5-4094-ae20-97a16f2d8b58' address='SAMPLE_ADDRESS', order_id=2cf87fb8-17c5-4094-ae20-97a16f2d8b58, result: shipment_id='ad25ff34-6f8e-4011-9361-6666b3f1b77a' tracking_id='3edc9459-3e12-404c-a8bf-a904857b6df1' total_input_tokens=0 total_output_tokens=0 total_llm_calls=0
+2026-05-18 16:26:22,304 - INFO - Shipment connected to mongo
+2026-05-18 16:32:25,649 - INFO - Shipment connected to mongo

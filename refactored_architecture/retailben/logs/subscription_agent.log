@@ -1657,3 +1657,18 @@ This output is generated based on the provided rules and data. The current time 
 2026-05-17 23:29:35,415 - INFO - LLM Token Metrics: input_tokens: 363, output_tokens: 86, total_tokens: 449
 2026-05-17 23:29:35,416 - INFO - Filtered 2 active subscriptions
 2026-05-17 23:29:35,416 - INFO - Retrieved 2 active subscriptions for user 1
+2026-05-18 17:09:05,202 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:13:33,050 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:14:01,564 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:17:52,819 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:18:19,838 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:22:57,453 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:23:14,690 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:35:17,297 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:35:32,580 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:35:52,827 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:38:43,942 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:41:03,987 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:45:35,740 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:45:52,993 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:46:15,776 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben

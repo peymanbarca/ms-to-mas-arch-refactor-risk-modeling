@@ -79,3 +79,42 @@
 2026-05-17 17:35:19,086 - INFO - Request for compute_price successfully processed, result: items=[PriceResponseItem(product_id='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2, unit_price=200.0, line_total=400.0, discounts=0.0)] subtotal=400.0 total_discount=0.0 total=400.0 currency='USD' total_input_tokens=0 total_output_tokens=0 total_llm_calls=0, request: items=[PriceRequestItem(product_id='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] promo_codes=[] currency='USD' only_final_price=True
 2026-05-17 17:35:19,108 - INFO - Request for compute_price, request: items=[PriceRequestItem(product_id='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] promo_codes=[] currency='USD' only_final_price=True
 2026-05-17 17:35:19,113 - INFO - Request for compute_price successfully processed, result: items=[PriceResponseItem(product_id='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2, unit_price=200.0, line_total=400.0, discounts=0.0)] subtotal=400.0 total_discount=0.0 total=400.0 currency='USD' total_input_tokens=0 total_output_tokens=0 total_llm_calls=0, request: items=[PriceRequestItem(product_id='b2926dc2-cc6d-4c3e-ae40-7a127c173b16', qty=2)] promo_codes=[] currency='USD' only_final_price=True
+2026-05-18 16:26:22,153 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:32:25,414 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:39:06,369 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:40:02,536 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:46:28,414 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:46:51,488 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:50:43,468 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:52:24,096 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:52:42,618 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:53:16,588 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 16:53:43,557 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:06:59,871 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:07:18,938 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:07:37,491 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:07:55,257 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:11:13,623 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:11:32,788 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:12:05,837 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:12:24,094 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:16:01,690 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:16:13,466 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:16:25,477 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:16:37,832 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:21:30,066 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:21:41,343 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:21:54,563 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:22:13,765 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:33:45,195 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:34:00,434 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:34:12,246 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:34:24,416 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:37:07,910 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:37:19,830 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:37:32,904 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:37:44,621 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:43:20,948 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:43:33,068 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:43:46,111 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-18 17:43:57,243 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
