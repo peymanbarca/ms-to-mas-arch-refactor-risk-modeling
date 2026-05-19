@@ -9,69 +9,51 @@ import time
 
 # ranked services (example)
 ranked_services = [
-    # ["notification_service:8011", 0.1],
-    ["shipment_service:8006", 0.2],
-    ["procurement_service:8009", 0.3],
-    ["payment_service:8007", 0.4],
-    ["shopping_cart_service:8003", 0.5],
-    ["pricing_service:8003", 0.6],
-    ["inventory_service:8001", 0.7],
-    ["subscription_service:8010", 0.8],
-    ["product_catalog_service:8008", 0.9],
-    ["order_service:8000", 1],
+    ["currency_service:5053", 0.1],
+    ["product_catalog_service:5055", 0.2],
+    ["ad_service:5057", 0.3],
+    ["cart_service:5054", 0.4],
+    ["recommendation_service:5058", 0.5],
+    ["shipping_service:5051", 0.6],
+    ["email_service:5056", 0.7],
+    ["payment_service:5052", 0.8],
+    ["checkout_service:5050", 1],
 ]
 
 # reverse-ranked services (example)
 reverse_ranked_services = [
-    ["order_service:8000", 1],
-    ["product_catalog_service:8008", 0.9],
-    ["subscription_service:8010", 0.8],
-    ["inventory_service:8001", 0.7],
-    ["pricing_service:8003", 0.6],
-    ["shopping_cart_service:8003", 0.5],
-    ["payment_service:8007", 0.4],
-    ["procurement_service:8009", 0.3],
-    ["shipment_service:8006", 0.2],
-    # ["notification_service:8011", 0.1]
+    ["checkout_service:5050", 1],
+    ["payment_service:5052", 0.8],
+    ["email_service:5056", 0.7],
+    ["shipping_service:5051", 0.6],
+    ["recommendation_service:5058", 0.5],
+    ["cart_service:5054", 0.4],
+    ["ad_service:5057", 0.3],
+    ["product_catalog_service:5055", 0.2],
+    ["currency_service:5051", 0.1],
 ]
 
 # random-ranked services (example)
 random_ranked_services = [
-    ["inventory_service:8001", 0.2],
-    ["order_service:8000", 1],
-    ["payment_service:8007", 0.6],
-    ["shipment_service:8006", 0.8],
-    ["shopping_cart_service:8003", 0.4],
 ]
 
 dependency_ranked_services = [
-    ["inventory_service:8001", 0.2],
-    ["order_service:8000", 1],
-    ["payment_service:8007", 0.6],
-    ["shipment_service:8006", 0.8],
-    ["shopping_cart_service:8003", 0.4],
 ]
 
 complexity_ranked_services = [
-    ["inventory_service:8001", 0.2],
-    ["order_service:8000", 1],
-    ["payment_service:8007", 0.6],
-    ["shipment_service:8006", 0.8],
-    ["shopping_cart_service:8003", 0.4],
 ]
 
 # mapping service -> agent
 service_to_agent = {
-    "inventory_service:8001": "inventory_agent:8001",
-    "order_service:8000": "order_agent:8000",
-    "payment_service:8007": "payment_agent:8007",
-    "shipment_service:8006": "shipment_agent:8006",
-    "shopping_cart_service:8003": "shopping_cart_agent:8003",
-    "product_catalog_service:8008": "product_catalog_agent:8008",
-    "pricing_service:8003": "pricing_agent:8003",
-    "subscription_service:8010": "subscription_agent:8010",
-    "procurement_service:8009": "procurement_agent:8009",
-    # "notification_service:8011": "notification_agent:8011"
+    "checkout_service:5050": "checkout_agent:5050",
+    "payment_service:5052": "payment_agent:5052",
+    "email_service:5056": "email_agent:5056",
+    "shipping_service:5051": "shipping_agent:5051",
+    "recommendation_service:5058": "recommendation_agent:5058",
+    "cart_service:5054": "cart_agent:5054",
+    "ad_service:5057": "ad_agent:5057",
+    "product_catalog_service:5055": "product_catalog_agent:5055",
+    "currency_service:5053": "currency_agent:5053",
 }
 
 # initial architecture
@@ -99,16 +81,13 @@ governance_policy = "Post-Audit-Selective-Only" # ["No", "Post-Audit-Selective-O
 
 temporal_propagation_enabled = True
 temporal_propagation_dependency_influence_weight = {
-    "subscription_service->order_service": 0.5,
-    "pricing_service->product_catalog_service": 1,
-    "pricing_service->order_service": 0.5,
-    "inventory_service->product_catalog_service": 1,
-    "inventory_service->order_service": 0.5,
-    "payment_service->order_service": 0.5,
-    "payment_service->subscription_service": 0.8,
-    "procurement_service->inventory_service": 0.4,
-    "shipment_service->order_service": 0.5,
-    "notification_service->order_service": 0.5,
+    "product_catalog_service->checkout_service": 0.5,
+    "product_catalog_service->recommendation_service": 1,
+    "cart_service->checkout_service": 0.5,
+    "currency_service->checkout_service": 0.5,
+    "payment_service->checkout_service": 0.5,
+    "shipping_service->checkout_service": 0.5,
+    "email_service->checkout_service": 0.5,
 }
 
 
@@ -165,8 +144,9 @@ def shutdown(services, agents):
     subprocess.run([SD_SCRIPT] + args, check=True)
 
 
-def run_experiment_for_step(migration_order, step_num, predicate_mode, services, agents):
+def run_experiment_for_step(migration_order, step_num, predicate_mode, services, agents, target_service, temporal_propagation_enabled, previous_step_acceptance_type):
     print(f"🧪 Running Predicate-based Acceptance Experiment for step {step_num}...")
+    time.sleep(2)  
 
     # ---------- Specify predicates thresholds based on predicate mode ----------
     baseline_latency_p95 = 1
@@ -184,48 +164,62 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
         epsilon_qa = -1
 
     step_result = subprocess.run(
-        ["python3", "exp_runner_auto.py",
+        ["python3", "-m", "refactored_architecture.google_ms.exp_runner_auto",
          migration_order,
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
-         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy)
+         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy), str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled) 
          ],
-        cwd="../../refactored_architecture/retailben",
+        cwd="../..",
         capture_output=True,
-        text=True
+        text=True,
+        check=True  # Raise exception if subprocess fails
     )
-    # print(f"Raw experiment output for step {step_num}:", step_result.stdout.strip())
     
-    step_result_parsed = json.loads(step_result.stdout.strip())
+    # Debug output
+    if step_result.stdout.strip():
+        print(f"Raw experiment output for step {step_num}:", step_result.stdout.strip())
+    if step_result.stderr.strip():
+        print(f"⚠️  Experiment stderr for step {step_num}:", step_result.stderr.strip())
+    
+    if not step_result.stdout.strip():
+        raise RuntimeError(f"Experiment for step {step_num} produced no output. Check stderr above.")
+    
+    try:
+        step_result_parsed = json.loads(step_result.stdout.strip())
+    except json.JSONDecodeError as e:
+        print(f"❌ Failed to parse JSON from step {step_num} output:")
+        print(f"Raw output: {step_result.stdout}")
+        raise ValueError(f"Invalid JSON output from experiment: {e}")
     print(f"Experiment output for step {step_num}:", step_result_parsed)
     acceptance_result = step_result_parsed["result"]
     step_self_temporal_propagation = step_result_parsed.get("step_self_temporal_propagation", 0)
 
     # Automated acceptance decision based on predicate results
     if governance_policy == "No":
-        return (True, step_self_temporal_propagation) if acceptance_result == "ACCEPTED" else (False, step_self_temporal_propagation)
+        return (True, step_self_temporal_propagation, 'accepted_by_predicate') if acceptance_result == "ACCEPTED" else (False, step_self_temporal_propagation, 'rejected_by_predicate')
     elif governance_policy == "Post-Audit-Selective-Only": # only confirm rejections, auto-accept all that pass
         if acceptance_result == "REJECTED":
             print("Please decide whether to ACCEPT or REJECT this refactoring step based on the above results and governance policy.")
             governed_step_result = input("Type 'A' to Accept or 'R' to Reject: ").strip().upper()
             if governed_step_result == "A":
-                return True, step_self_temporal_propagation
+                return True, step_self_temporal_propagation, 'accepted_by_governance_post_selective_override'
             elif governed_step_result == "R":
-                return False, step_self_temporal_propagation
+                return False, step_self_temporal_propagation, 'rejected_by_predicate_confirmed_by_governance_post_selective'
             else:
                 print("Invalid input. Defaulting to REJECT.")
-                return False, step_self_temporal_propagation
+                return False, step_self_temporal_propagation, 'rejected_by_predicate_confirmed_by_governance_post_selective'
         else:  # acceptance_result == "ACCEPTED"
-            return True, step_self_temporal_propagation
+            return True, step_self_temporal_propagation, 'accepted_by_predicate'
     elif governance_policy == "Full": # confirm all decisions
         print("Please decide whether to ACCEPT or REJECT this refactoring step based on the above results and governance policy.")
         governed_step_result = input("Type 'A' to Accept or 'R' to Reject: ").strip().upper()
         if governed_step_result == "A":
-            return True, step_self_temporal_propagation
+            return True, step_self_temporal_propagation, 'accepted_by_governance_full'
         elif governed_step_result == "R":
-            return False, step_self_temporal_propagation
+            return False, step_self_temporal_propagation, 'rejected_by_governance_full'
         else:
             print("Invalid input. Defaulting to REJECT.")
-            return False, step_self_temporal_propagation
+            return False, step_self_temporal_propagation, 'rejected_by_governance_full'
 
 
 
@@ -235,7 +229,8 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
 subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
 
 migration_sorting_strategy_services = ranked_services # ranked_services, reverse_ranked_services, random_ranked_services, dependency_ranked_services, complexity_ranked_services
-
+previous_step_acceptance_types = ['N/A']
+    
 for step in range(1, len(migration_sorting_strategy_services)+1):
     print(f"\n============================== Starting Step {step}/{len(migration_sorting_strategy_services)} ==============================")
     print("current services with scores:", migration_sorting_strategy_services)
@@ -255,12 +250,15 @@ for step in range(1, len(migration_sorting_strategy_services)+1):
     deploy(candidate_services, candidate_agents)
 
     # optional: wait for services to stabilize
+    print("... Waiting for the deployment to stabilize...")
     time.sleep(10)
 
     # input("Press Enter to run the experiment for this configuration...")
 
-    automatic_acceptance_result, step_self_temporal_propagation = run_experiment_for_step(migration_order_strategy, step, acceptance_predicate_mode,
-                                                 candidate_services, candidate_agents)
+
+    automatic_acceptance_result, step_self_temporal_propagation, acceptance_type = run_experiment_for_step(migration_order_strategy, step, acceptance_predicate_mode,
+                                                 candidate_services, candidate_agents, svc.split(":")[0], temporal_propagation_enabled, previous_step_acceptance_types[-1])
+    previous_step_acceptance_types.append(acceptance_type)
 
     if automatic_acceptance_result:
         print(f"✅ ACCEPTED: {svc} → {agent}")
