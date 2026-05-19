@@ -80,7 +80,9 @@ async def book_shipment(req: ShipmentRequest):
         time.sleep(0.2)
         logger.info(f"Request for book_shipment, external carrier service called successfully, order_id={req.order_id},"
                     f" request: {req}")
-
+        
+        # todo: implement some logic for evaluating feasibility of booking, e.g. based on address, order details, etc. For now we just generate random tracking id
+        # this brings cyclomatic complexity of this function higher suitable for dynamic ranking with temporal propagation
         tracking_id = str(uuid.uuid4())
 
         shipment_id = str(uuid.uuid4())

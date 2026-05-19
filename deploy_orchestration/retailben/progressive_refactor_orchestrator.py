@@ -10,14 +10,14 @@ import time
 # ranked services (example)
 ranked_services = [
     # ["notification_service:8011", 0.1],
-    ["shipment_service:8006", 0.2],
-    ["procurement_service:8009", 0.3],
+    ["procurement_service:8009", 0.2],
+    ["pricing_service:8003", 0.3],
     ["payment_service:8007", 0.4],
     ["shopping_cart_service:8003", 0.5],
-    ["pricing_service:8003", 0.6],
+    ["subscription_service:8010", 0.6],
     ["inventory_service:8001", 0.7],
-    ["subscription_service:8010", 0.8],
-    ["product_catalog_service:8008", 0.9],
+    ["product_catalog_service:8008", 0.8],
+    ["shipment_service:8006", 0.9],
     ["order_service:8000", 1],
 ]
 
@@ -106,7 +106,7 @@ temporal_propagation_dependency_influence_weight = {
     "inventory_service->order_service": 0.5,
     "payment_service->order_service": 0.5,
     "payment_service->subscription_service": 0.8,
-    "procurement_service->inventory_service": 0.4,
+    "procurement_service->inventory_service": 0.3,
     "shipment_service->order_service": 0.5,
     "notification_service->order_service": 0.5,
 }
