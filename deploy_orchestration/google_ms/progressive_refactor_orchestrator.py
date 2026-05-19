@@ -144,7 +144,7 @@ def shutdown(services, agents):
     subprocess.run([SD_SCRIPT] + args, check=True)
 
 
-def run_experiment_for_step(migration_order, step_num, predicate_mode, services, agents, target_service, temporal_propagation_enabled, previous_step_acceptance_type):
+def run_experiment_for_step(migration_order, step_num, predicate_mode, services, agents, target_service, temporal_propagation_enabled, previous_step_acceptance_type, migration_sorting_strategy_services):
     print(f"🧪 Running Predicate-based Acceptance Experiment for step {step_num}...")
     time.sleep(2)  
 
@@ -167,7 +167,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
         ["python3", "-m", "refactored_architecture.google_ms.exp_runner_auto",
          migration_order,
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
-         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy), str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled) 
+         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy), str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled), str(migration_sorting_strategy_services)
          ],
         cwd="../..",
         capture_output=True,
@@ -250,14 +250,14 @@ for step in range(1, len(migration_sorting_strategy_services)+1):
     deploy(candidate_services, candidate_agents)
 
     # optional: wait for services to stabilize
-    print("... Waiting for the deployment to stabilize...")
+    print("... Waiting for the deployment to stabilize ...")
     time.sleep(10)
 
     # input("Press Enter to run the experiment for this configuration...")
 
 
     automatic_acceptance_result, step_self_temporal_propagation, acceptance_type = run_experiment_for_step(migration_order_strategy, step, acceptance_predicate_mode,
-                                                 candidate_services, candidate_agents, svc.split(":")[0], temporal_propagation_enabled, previous_step_acceptance_types[-1])
+                                                 candidate_services, candidate_agents, svc.split(":")[0], temporal_propagation_enabled, previous_step_acceptance_types[-1], migration_sorting_strategy_services)
     previous_step_acceptance_types.append(acceptance_type)
 
     if automatic_acceptance_result:

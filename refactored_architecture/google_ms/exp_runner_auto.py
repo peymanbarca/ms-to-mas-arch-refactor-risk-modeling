@@ -114,15 +114,18 @@ if __name__ == '__main__':
     target_service = sys.argv[10]
     previous_step_acceptance_type = sys.argv[11]
     temporal_propagation_effect_enabled = sys.argv[12]
-    if len(sys.argv) < 13:
-        raise ValueError("Expected: migration_order predicate-mode step services agents epsilon_l epsilon_qa epsilon_f governance_mode target_service temporal_propagation_effect_enabled")
+    migration_sorting_strategy_services = sys.argv[13]
+    if len(sys.argv) < 14:
+        raise ValueError("Expected: migration_order predicate-mode step services agents epsilon_l epsilon_qa epsilon_f governance_mode target_service temporal_propagation_effect_enabled migration_sorting_strategy_services")
 
     acceptance_result = acceptance_of_architecture_step_predicate_based(
                                                                         epsilon_l=epsilon_l,
                                                                         epsilon_qa=epsilon_qa,
                                                                         epsilon_f=epsilon_f)
 
-    full_run_step_results = {"migration_order": migration_order, "previous_step_acceptance_type": previous_step_acceptance_type,
+
+    full_run_step_results = {"migration_order": migration_order, "migration_sorting_strategy_services": migration_sorting_strategy_services,
+                             "previous_step_acceptance_type": previous_step_acceptance_type,
                              "step": step, "services": services, "agents": agents, "acceptance_result": acceptance_result,
                              "acceptance_predicate_mode": acceptance_predicate_mode, "governance_mode": governance_mode,
                              "target_service": target_service, "temporal_propagation_effect_enabled": temporal_propagation_effect_enabled,

@@ -1672,3 +1672,8 @@ This output is generated based on the provided rules and data. The current time 
 2026-05-18 17:45:35,740 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
 2026-05-18 17:45:52,993 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
 2026-05-18 17:46:15,776 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-19 10:52:57,927 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-19 10:53:10,191 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-19 10:53:27,781 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-19 10:56:35,774 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-05-19 10:57:02,965 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben

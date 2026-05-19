@@ -165,8 +165,9 @@ def shutdown(services, agents):
     subprocess.run([SD_SCRIPT] + args, check=True)
 
 
-def run_experiment_for_step(migration_order, step_num, predicate_mode, services, agents):
+def run_experiment_for_step(migration_order, step_num, predicate_mode, services, agents, target_service, temporal_propagation_enabled, previous_step_acceptance_type, migration_sorting_strategy_services):
     print(f"🧪 Running Predicate-based Acceptance Experiment for step {step_num}...")
+    time.sleep(2)  
 
     # ---------- Specify predicates thresholds based on predicate mode ----------
     baseline_latency_p95 = 1
@@ -187,45 +188,60 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
         ["python3", "exp_runner_auto.py",
          migration_order,
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
-         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy)
+         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy), str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled), str(migration_sorting_strategy_services)
          ],
         cwd="../../refactored_architecture/retailben",
         capture_output=True,
         text=True
     )
-    # print(f"Raw experiment output for step {step_num}:", step_result.stdout.strip())
+
+    # Debug output
+    if step_result.stdout.strip():
+        print(f"Raw experiment output for step {step_num}:", step_result.stdout.strip())
+    if step_result.stderr.strip():
+        print(f"⚠️  Experiment stderr for step {step_num}:", step_result.stderr.strip())
     
-    step_result_parsed = json.loads(step_result.stdout.strip())
+    if not step_result.stdout.strip():
+        raise RuntimeError(f"Experiment for step {step_num} produced no output. Check stderr above.")
+    
+    try:
+        step_result_parsed = json.loads(step_result.stdout.strip())
+    except json.JSONDecodeError as e:
+        print(f"❌ Failed to parse JSON from step {step_num} output:")
+        print(f"Raw output: {step_result.stdout}")
+        raise ValueError(f"Invalid JSON output from experiment: {e}")
+    
     print(f"Experiment output for step {step_num}:", step_result_parsed)
+
     acceptance_result = step_result_parsed["result"]
     step_self_temporal_propagation = step_result_parsed.get("step_self_temporal_propagation", 0)
 
     # Automated acceptance decision based on predicate results
     if governance_policy == "No":
-        return (True, step_self_temporal_propagation) if acceptance_result == "ACCEPTED" else (False, step_self_temporal_propagation)
+        return (True, step_self_temporal_propagation, 'accepted_by_predicate') if acceptance_result == "ACCEPTED" else (False, step_self_temporal_propagation, 'rejected_by_predicate')
     elif governance_policy == "Post-Audit-Selective-Only": # only confirm rejections, auto-accept all that pass
         if acceptance_result == "REJECTED":
             print("Please decide whether to ACCEPT or REJECT this refactoring step based on the above results and governance policy.")
             governed_step_result = input("Type 'A' to Accept or 'R' to Reject: ").strip().upper()
             if governed_step_result == "A":
-                return True, step_self_temporal_propagation
+                return True, step_self_temporal_propagation, 'accepted_by_governance_post_selective_override'
             elif governed_step_result == "R":
-                return False, step_self_temporal_propagation
+                return False, step_self_temporal_propagation, 'rejected_by_predicate_confirmed_by_governance_post_selective'
             else:
                 print("Invalid input. Defaulting to REJECT.")
-                return False, step_self_temporal_propagation
+                return False, step_self_temporal_propagation, 'rejected_by_predicate_confirmed_by_governance_post_selective'
         else:  # acceptance_result == "ACCEPTED"
-            return True, step_self_temporal_propagation
+            return True, step_self_temporal_propagation, 'accepted_by_predicate'
     elif governance_policy == "Full": # confirm all decisions
         print("Please decide whether to ACCEPT or REJECT this refactoring step based on the above results and governance policy.")
         governed_step_result = input("Type 'A' to Accept or 'R' to Reject: ").strip().upper()
         if governed_step_result == "A":
-            return True, step_self_temporal_propagation
+            return True, step_self_temporal_propagation, 'accepted_by_governance_full'
         elif governed_step_result == "R":
-            return False, step_self_temporal_propagation
+            return False, step_self_temporal_propagation, 'rejected_by_governance_full'
         else:
             print("Invalid input. Defaulting to REJECT.")
-            return False, step_self_temporal_propagation
+            return False, step_self_temporal_propagation, 'rejected_by_governance_full'
 
 
 
@@ -235,6 +251,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
 subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
 
 migration_sorting_strategy_services = ranked_services # ranked_services, reverse_ranked_services, random_ranked_services, dependency_ranked_services, complexity_ranked_services
+previous_step_acceptance_types = ['N/A']
 
 for step in range(1, len(migration_sorting_strategy_services)+1):
     print(f"\n============================== Starting Step {step}/{len(migration_sorting_strategy_services)} ==============================")
@@ -255,12 +272,16 @@ for step in range(1, len(migration_sorting_strategy_services)+1):
     deploy(candidate_services, candidate_agents)
 
     # optional: wait for services to stabilize
+    print("... Waiting for the deployment to stabilize ...")
     time.sleep(10)
 
     # input("Press Enter to run the experiment for this configuration...")
 
-    automatic_acceptance_result, step_self_temporal_propagation = run_experiment_for_step(migration_order_strategy, step, acceptance_predicate_mode,
-                                                 candidate_services, candidate_agents)
+    automatic_acceptance_result, step_self_temporal_propagation, acceptance_type = run_experiment_for_step(migration_order_strategy, step, acceptance_predicate_mode,
+                                                 candidate_services, candidate_agents, svc.split(":")[0],
+                                                 temporal_propagation_enabled, previous_step_acceptance_types[-1],
+                                                 migration_sorting_strategy_services)
+    previous_step_acceptance_types.append(acceptance_type)
 
     if automatic_acceptance_result:
         print(f"✅ ACCEPTED: {svc} → {agent}")

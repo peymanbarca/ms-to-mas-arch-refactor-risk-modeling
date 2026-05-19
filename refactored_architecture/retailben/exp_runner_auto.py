@@ -320,23 +320,40 @@ if __name__ == '__main__':
     epsilon_qa = sys.argv[7]
     epsilon_f = sys.argv[8]
     governance_mode = sys.argv[9]
-    if len(sys.argv) < 10:
-        raise ValueError("Expected: migration_order predicate-mode step services agents epsilon_l epsilon_qa epsilon_f governance_mode")
+    target_service = sys.argv[10]
+    previous_step_acceptance_type = sys.argv[11]
+    temporal_propagation_effect_enabled = sys.argv[12]
+    migration_sorting_strategy_services = sys.argv[13]
+    if len(sys.argv) < 14:
+        raise ValueError("Expected: migration_order predicate-mode step services agents epsilon_l epsilon_qa epsilon_f governance_mode target_service temporal_propagation_effect_enabled migration_sorting_strategy_services")
 
     acceptance_result = acceptance_of_architecture_step_predicate_based(
                                                                         epsilon_l=epsilon_l,
                                                                         epsilon_qa=epsilon_qa,
                                                                         epsilon_f=epsilon_f)
 
-    full_run_step_results = {"migration_order": migration_order,
-                             "step": step, "services": services, "agents": agents, "acceptance_result": acceptance_result}
+
+    full_run_step_results = {"migration_order": migration_order, "migration_sorting_strategy_services": migration_sorting_strategy_services,
+                            "previous_step_acceptance_type": previous_step_acceptance_type,
+                            "step": step, "services": services, "agents": agents, "acceptance_result": acceptance_result,
+                            "acceptance_predicate_mode": acceptance_predicate_mode, "governance_mode": governance_mode,
+                            "target_service": target_service, "temporal_propagation_effect_enabled": temporal_propagation_effect_enabled,
+                            "predicate_acceptance_result": acceptance_result["success"]}
+    
     step_report_file_name = f"results/refactored_arch_results_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}" \
-              f"_migration_order_{migration_order}_acceptance_predicate_mode_{acceptance_predicate_mode}_governance_mode_{governance_mode}_step_{step}.json"
+              f"_migration_order_{migration_order}_acceptance_predicate_mode_{acceptance_predicate_mode}_governance_mode_{governance_mode}_tprop_enabled_{temporal_propagation_effect_enabled}.json"
     # print(step_report_file_name, full_run_step_results)
-    with open(step_report_file_name, "w") as f:
+    
+    
+    if step=="1":
+         # For the first step, we create a new report file (overwriting if it already exists)
+        with open(step_report_file_name, "w") as f:
+            f.write("")
+    
+    with open(step_report_file_name, "a") as f:
         f.write("\n\n")
         json.dump(full_run_step_results, f, indent=2)
-        f.write("\n\n")
+        f.write("\n\n------------\n\n")
 
     if acceptance_result["success"]:
         print(json.dumps({"result": "ACCEPTED", "step_self_temporal_propagation": acceptance_result["step_self_temporal_propagation"], "details": acceptance_result}))
