@@ -10,13 +10,13 @@ import time
 # ranked services (example)
 ranked_services = [
     # ["notification_service:8011", 0.1],
-    ["procurement_service:8009", 0.2],
-    ["pricing_service:8003", 0.3],
-    ["payment_service:8007", 0.4],
-    ["shopping_cart_service:8003", 0.5],
-    ["subscription_service:8010", 0.6],
-    ["inventory_service:8001", 0.7],
-    ["product_catalog_service:8008", 0.8],
+    ["pricing_service:8003", 0.2],
+    ["payment_service:8007", 0.3],
+    ["shopping_cart_service:8003", 0.4],
+    ["subscription_service:8010", 0.5],
+    ["inventory_service:8001", 0.6],
+    ["product_catalog_service:8008", 0.7],
+    ["procurement_service:8009", 0.8],
     ["shipment_service:8006", 0.9],
     ["order_service:8000", 1],
 ]
@@ -24,14 +24,14 @@ ranked_services = [
 # reverse-ranked services (example)
 reverse_ranked_services = [
     ["order_service:8000", 1],
-    ["product_catalog_service:8008", 0.9],
-    ["subscription_service:8010", 0.8],
-    ["inventory_service:8001", 0.7],
-    ["pricing_service:8003", 0.6],
-    ["shopping_cart_service:8003", 0.5],
-    ["payment_service:8007", 0.4],
-    ["procurement_service:8009", 0.3],
-    ["shipment_service:8006", 0.2],
+    ["shipment_service:8006", 0.9],
+    ["procurement_service:8009", 0.8],
+    ["product_catalog_service:8008", 0.7],
+    ["inventory_service:8001", 0.6],
+    ["subscription_service:8010", 0.5],
+    ["shopping_cart_service:8003", 0.4],
+    ["payment_service:8007", 0.3],
+    ["pricing_service:8003", 0.2],
     # ["notification_service:8011", 0.1]
 ]
 

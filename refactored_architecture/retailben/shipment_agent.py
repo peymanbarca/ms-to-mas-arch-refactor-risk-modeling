@@ -61,6 +61,8 @@ db = None
 class ShipmentRequest(BaseModel):
     order_id: str
     address: str
+    shipment_date: Optional[datetime.datetime] = time.now() + datetime.timedelta(days=2)
+
 
 
 class ShipmentResponse(BaseModel):
@@ -228,6 +230,7 @@ async def book_shipment(req: ShipmentRequest):
             "shipment_id": shipment_id,
             "order_id": req.order_id,
             "address": req.address,
+            "shipment_date": req.shipment_date,
             "tracking_id": tracking_id,
             "created_at": datetime.datetime.utcnow()
         }

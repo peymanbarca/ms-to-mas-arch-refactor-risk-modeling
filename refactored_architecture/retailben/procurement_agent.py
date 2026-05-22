@@ -203,14 +203,14 @@ async def order_from_supplier(req: SupplierOrderRequest):
             "created_at": datetime.datetime.utcnow()
         }
 
-        await db.proc_orders.insert_one(doc)
+        await db.procurement_orders.insert_one(doc)
 
         return SupplierOrderResponse(**out["result"])
 
     except Exception as e:
         # failed procurement is persisted for auditability
         failed_id = str(uuid.uuid4())
-        await db.proc_orders.insert_one({
+        await db.procurement_orders.insert_one({
             "supplier_order_id": failed_id,
             "sku": req.sku,
             "qty": req.qty,
