@@ -28,7 +28,7 @@ kill_port () {
   PID=$(lsof -ti tcp:$PORT)
 
   if [ ! -z "$PID" ]; then
-    echo "Killing process on port $PORT (PID=$PID)"
+    #echo "Killing process on port $PORT (PID=$PID)"
     kill -9 $PID
   fi
 }
@@ -62,7 +62,7 @@ for pair in "${SVC_LIST[@]}"; do
   NAME="${pair%%:*}"
   PORT="${pair##*:}"
 
-  echo "Running service: $NAME on port $PORT, Swagger UI: http://localhost:$PORT/docs"
+  # echo "Running service: $NAME on port $PORT, Swagger UI: http://localhost:$PORT/docs"
   nohup python3 run_service.py "$NAME" "$PORT" >& "$NAME".log &
 done
 
@@ -75,7 +75,7 @@ for pair in "${AGENT_LIST[@]}"; do
   NAME="${pair%%:*}"
   PORT="${pair##*:}"
 
-  echo "Running agent: $NAME on port $PORT, Swagger UI: http://localhost:$PORT/docs"
+  # echo "Running agent: $NAME on port $PORT, Swagger UI: http://localhost:$PORT/docs"
   nohup python3 run_as_service.py "$NAME" "$PORT" >& "$NAME".log &
 done
 

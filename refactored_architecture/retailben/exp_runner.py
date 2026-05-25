@@ -25,7 +25,7 @@ DROP_RATE = int(os.environ.get("DROP_RATE", "0"))       # percent 0-100
 atomic_update = False
 
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb://localhost:27017/")
-DB_NAME = os.environ.get("DB_NAME", "ms_baseline")
+DB_NAME = os.environ.get("DB_NAME", "retailben")
 
 
 logs = ['logs/order_agent.log', 'logs/inventory_agent.log', 'logs/payment_agent.log', 'logs/pricing_agent.log',

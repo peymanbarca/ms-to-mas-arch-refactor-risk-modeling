@@ -1,6 +1,8 @@
 #!/bin/bash
 
 
+# pkill -9 -f '_service'
+# pkill -9 -f '_agent'
 
 echo "Parsing arguments..."
 
@@ -43,6 +45,8 @@ for pair in "${AGENT_LIST[@]}"; do
   PORT="${pair##*:}"
   kill_port $PORT
 done
+
+
 
 
 cd ../../ms_baseline/retailben && rm *.log
