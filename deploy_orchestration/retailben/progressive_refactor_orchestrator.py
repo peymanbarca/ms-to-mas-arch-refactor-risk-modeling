@@ -96,11 +96,10 @@ else:
     raise ValueError(f"Invalid migration order strategy: {migration_order_strategy}")
 
 # --------------------------------- Acceptance Predicate ---------------------------
-
-acceptance_predicate_mode = "Full" # ["QA-Only", "Latency-Only", "Failure-Only", "Full"]
+acceptance_predicate_modes =  ["QA-Only", "Latency-Only", "Failure-Only", "Full"]
 
 # --------------------------------- Governance Mechanism  ---------------------------
-governance_policy = "Post-Audit-Selective-Only" # ["No", "Post-Audit-Selective-Only", "Post-Audit-Comprehensive"]
+governance_policies = ["No", "Post-Audit-Selective-Only", "Post-Audit-Comprehensive"]
 
 # Initialize the Post-Action Adjudicator with custom criteria
 adjudication_criteria = AdjudicationCriteria(
@@ -181,9 +180,9 @@ def shutdown(services, agents):
     subprocess.run([SD_SCRIPT] + args, check=True)
 
 
-def run_experiment_for_step(migration_order, step_num, predicate_mode, services, agents, target_service, temporal_propagation_enabled, previous_step_acceptance_type, migration_sorting_strategy_services):
+def run_experiment_for_step(migration_order, step_num, predicate_mode, governance_policy, services, agents, target_service, temporal_propagation_enabled, previous_step_acceptance_type, migration_sorting_strategy_services):
     print(f"🧪 Running Predicate-based Acceptance Experiment for step {step_num}...")
-    time.sleep(2)  
+    time.sleep(2/10)  
 
     # ---------- Specify predicates thresholds based on predicate mode ----------
     baseline_latency_p95 = 1
@@ -272,11 +271,11 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
         step_result=step_result_parsed,
         step_number=step_num,
         target_service=target_service,
-        total_trials=10
+        total_trials=5000
     )
     
     # Perform post-action adjudication
-    final_decision, decision_type, evidence_summary = post_action_adjudicator.adjudicate_step(
+    final_decision, decision_type, evidence_summary, prediction_category = post_action_adjudicator.adjudicate_step(
         metrics=execution_metrics,
         mode=adjudication_mode,
         evidence_context={
@@ -284,8 +283,8 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
             "temporal_propagation_enabled": temporal_propagation_enabled
         }
     )
-    print(f"Evidence Summary for step {step_num}:", evidence_summary)
-    
+    # print(f"Evidence Summary for step {step_num}:", evidence_summary)
+    print(f"Prediction Category for step {step_num}:", prediction_category)
     if str(step_num)=="1":
          # For the first step, we create a new report file (overwriting if it already exists)
         with open(step_report_file_name, "w") as f:
@@ -294,16 +293,17 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, services,
     
     full_run_step_results = {"migration_order": migration_order, "migration_sorting_strategy_services": migration_sorting_strategy_services,
                         "step": step, "services": services, "agents": agents, "evidence_summary": evidence_summary,
-                        "acceptance_predicate_mode": acceptance_predicate_mode, "governance_policy": governance_policy,
+                        "acceptance_predicate_mode": predicate_mode, "governance_policy": governance_policy,
                         "target_service": target_service, "temporal_propagation_effect_enabled": temporal_propagation_enabled,
-                        "is_accepted": final_decision, "decision_type": decision_type}
+                        "is_accepted": final_decision, "decision_type": decision_type, "prediction_category": prediction_category,
+                        "step_self_temporal_propagation": step_self_temporal_propagation}
     
     with open(step_report_file_name, "a") as f:
         f.write("\n\n")
         json.dump(full_run_step_results, f, indent=2)
         f.write("\n\n------------\n\n")
     
-    return final_decision, step_self_temporal_propagation, decision_type
+    return final_decision, step_self_temporal_propagation, decision_type, prediction_category
 
 
 
@@ -316,92 +316,97 @@ migration_sorting_strategy_services = ranked_services # ranked_services, reverse
 previous_step_acceptance_types = ['N/A']
 temporal_propagations = []
 
-for step in range(1, len(migration_sorting_strategy_services)+1):
-    print(f"\n============================== Starting Step {step}/{len(migration_sorting_strategy_services)} ==============================")
-    print("current services with scores:", migration_sorting_strategy_services)
-    
-    
-    svc = migration_sorting_strategy_services[step-1][0]
-    risk_score = migration_sorting_strategy_services[step-1][1]
-    print(f"\n=== Step:{step}, Refactoring {svc} with risk score {risk_score} as AI agent ===")
 
-    agent = service_to_agent[svc]
+for predicate_mode in acceptance_predicate_modes:
+    for governance_policy in governance_policies:
+        print(f"\n\n============================== Starting Migration Strategy: {migration_order_strategy}, Predicate Mode: {predicate_mode}, Governance Policy: {governance_policy} ==============================\n\n")
 
-    # candidate configuration: remove current service, add as agent
-    candidate_services = [s for s in current_services if s != svc]
-    candidate_agents = current_agents + [agent]
+        for step in range(1, len(migration_sorting_strategy_services)+1):
+            print(f"\n============================== Starting Step {step}/{len(migration_sorting_strategy_services)} ==============================")
+            print("current services with scores:", migration_sorting_strategy_services)
+            
+            
+            svc = migration_sorting_strategy_services[step-1][0]
+            risk_score = migration_sorting_strategy_services[step-1][1]
+            print(f"\n=== Step:{step}, Refactoring {svc} with risk score {risk_score} as AI agent ===")
 
-    # deploy candidate
-    deploy(candidate_services, candidate_agents)
+            agent = service_to_agent[svc]
 
-    # optional: wait for services to stabilize
-    print("... Waiting for the deployment to stabilize ...")
-    time.sleep(10)
+            # candidate configuration: remove current service, add as agent
+            candidate_services = [s for s in current_services if s != svc]
+            candidate_agents = current_agents + [agent]
 
-    # input("Press Enter to run the experiment for this configuration...")
+            # deploy candidate
+            deploy(candidate_services, candidate_agents)
 
-    final_decision, step_self_temporal_propagation, decision_type = run_experiment_for_step(migration_order_strategy, step, acceptance_predicate_mode,
-                                                 candidate_services, candidate_agents, svc.split(":")[0],
-                                                 temporal_propagation_enabled, previous_step_acceptance_types[-1],
-                                                 migration_sorting_strategy_services)
-    previous_step_acceptance_types.append(decision_type)
+            # optional: wait for services to stabilize
+            print("... Waiting for the deployment to stabilize ...")
+            time.sleep(1)
 
-    if final_decision is True:
-        print(f"✅ ACCEPTED: {svc} → {agent}, decision type: {decision_type}")
-        current_services = candidate_services
-        current_agents = candidate_agents
-    else:
-        print(f"❌ REJECTED: {svc} remains as service, decision type: {decision_type}")
-        # current_services and current_agents remain unchanged
-        
-    # handle temporal propagation influence on next steps if this step is accepted and has temporal propagation influence, and if the strategy is ranked (so we can adjust ranking)
-    if final_decision is True and temporal_propagation_enabled and \
-            step_self_temporal_propagation > 0 and migration_order_strategy in ["Ranked"]:
+            # input("Press Enter to run the experiment for this configuration...")
+
+            final_decision, step_self_temporal_propagation, decision_type, prediction_category = run_experiment_for_step(migration_order_strategy, step, predicate_mode, governance_policy,
+                                                        candidate_services, candidate_agents, svc.split(":")[0],
+                                                        temporal_propagation_enabled, previous_step_acceptance_types[-1],
+                                                        migration_sorting_strategy_services)
+            previous_step_acceptance_types.append(decision_type)
+
+            if final_decision is True:
+                print(f"✅ ACCEPTED: {svc} → {agent}, decision type: {decision_type}")
+                current_services = candidate_services
+                current_agents = candidate_agents
+            else:
+                print(f"❌ REJECTED: {svc} remains as service, decision type: {decision_type}")
+                # current_services and current_agents remain unchanged
                 
-        temporal_propagations.append(step_self_temporal_propagation)
-        step_self_temporal_propagation_normalized = step_self_temporal_propagation / max(temporal_propagations) if temporal_propagations else 0
-        
-        print(f"🔄 Detecting Temporal Propagation Influence ...")
-        # Adjust the ranking of remaining services based on temporal propagation influence
-        affecting_services = []
-        for dependency, weight in temporal_propagation_dependency_influence_weight.items():
-            upstream = dependency.split("->")[1]
-            downstream = dependency.split("->")[0]
-            #print(f"  Checking dependency {downstream} -> {upstream} with influence weight {weight} ...")
-            if svc.split(":")[0] == downstream:
-                print(f"    {svc} is downstream of {upstream}. Adding to affecting services with weight {weight}.")
-                affecting_services.append((upstream, weight))
-        
-        if not affecting_services:
-            print("  No temporal propagation influence detected for this step.")
-        
-        # Update ranking for affected services
-        if affecting_services:
-            print(f"🔄 Temporal Propagation Influence Detected for some affected (upstream) services: {step_self_temporal_propagation_normalized}, {affecting_services}")
-            print(f"  Affected upstream services: {affecting_services}")
-            for affected_svc, influence_weight in affecting_services:
-                # Find and update the affected service's score in current_services_with_scores
-                for i, (service_name_with_port, score) in enumerate(current_services_with_scores):
-                    service_name = service_name_with_port.split(":")[0]
-                    if service_name == affected_svc:
-                        # Increase the score based on temporal propagation influence
-                        old_score = score
-                        new_score = score + (step_self_temporal_propagation_normalized * influence_weight)
-                        current_services_with_scores[i] = [service_name_with_port, new_score]
-                        print(f"    Updated {service_name_with_port}: score {old_score:.3f} → {new_score:.3f}")
-                        break
-            
-            # Re-sort services based on updated scores (lowest first)
-            current_services_with_scores.sort(key=lambda x: x[1], reverse=False)
-            # print(f"  Updated migration ranking: {[s[0] for s in current_services_with_scores]}")
-            
-            # Update migration_sorting_strategy_services for next steps
-            migration_sorting_strategy_services = current_services_with_scores.copy()
-            # print(f"  Migration strategy updated for next steps: {[s[0] for s in migration_sorting_strategy_services]}")
+            # handle temporal propagation influence on next steps if this step is accepted and has temporal propagation influence, and if the strategy is ranked (so we can adjust ranking)
+            if final_decision is True and temporal_propagation_enabled and \
+                    step_self_temporal_propagation > 0 and migration_order_strategy in ["Ranked"]:
+                        
+                temporal_propagations.append(step_self_temporal_propagation)
+                step_self_temporal_propagation_normalized = step_self_temporal_propagation / max(temporal_propagations) if temporal_propagations else 0
+                
+                print(f"🔄 Detecting Temporal Propagation Influence ...")
+                # Adjust the ranking of remaining services based on temporal propagation influence
+                affecting_services = []
+                for dependency, weight in temporal_propagation_dependency_influence_weight.items():
+                    upstream = dependency.split("->")[1]
+                    downstream = dependency.split("->")[0]
+                    #print(f"  Checking dependency {downstream} -> {upstream} with influence weight {weight} ...")
+                    if svc.split(":")[0] == downstream:
+                        print(f"    {svc} is downstream of {upstream}. Adding to affecting services with weight {weight}.")
+                        affecting_services.append((upstream, weight))
+                
+                if not affecting_services:
+                    print("  No temporal propagation influence detected for this step.")
+                
+                # Update ranking for affected services
+                if affecting_services:
+                    print(f"🔄 Temporal Propagation Influence Detected for some affected (upstream) services: {step_self_temporal_propagation_normalized}, {affecting_services}")
+                    print(f"  Affected upstream services: {affecting_services}")
+                    for affected_svc, influence_weight in affecting_services:
+                        # Find and update the affected service's score in current_services_with_scores
+                        for i, (service_name_with_port, score) in enumerate(current_services_with_scores):
+                            service_name = service_name_with_port.split(":")[0]
+                            if service_name == affected_svc:
+                                # Increase the score based on temporal propagation influence
+                                old_score = score
+                                new_score = score + (step_self_temporal_propagation_normalized * influence_weight)
+                                current_services_with_scores[i] = [service_name_with_port, new_score]
+                                print(f"    Updated {service_name_with_port}: score {old_score:.3f} → {new_score:.3f}")
+                                break
+                    
+                    # Re-sort services based on updated scores (lowest first)
+                    current_services_with_scores.sort(key=lambda x: x[1], reverse=False)
+                    # print(f"  Updated migration ranking: {[s[0] for s in current_services_with_scores]}")
+                    
+                    # Update migration_sorting_strategy_services for next steps
+                    migration_sorting_strategy_services = current_services_with_scores.copy()
+                    # print(f"  Migration strategy updated for next steps: {[s[0] for s in migration_sorting_strategy_services]}")
 
-print("\n🎯 Final architecture:")
-print("Services:", current_services)
-print("Agents:", current_agents)
+        print("\n🎯 Final architecture:")
+        print("Services:", current_services)
+        print("Agents:", current_agents)
 
-input("Press Enter to gracefully shutdown final configuration...")
-shutdown(current_services, current_agents)
+        # input("Press Enter to gracefully shutdown final configuration...")
+        shutdown(current_services, current_agents)

@@ -105,7 +105,7 @@ class PostActionAdjudicator:
         metrics: ExecutionMetrics,
         mode: AdjudicationMode,
         evidence_context: Dict[str, Any] = None
-    ) -> Tuple[bool, str, Dict[str, Any]]:
+    ) -> Tuple[bool, str, Dict[str, Any], str]:
         """
         Perform adjudication on a migration step based on execution metrics.
         
@@ -119,14 +119,16 @@ class PostActionAdjudicator:
                 - final_decision (bool): True to accept, False to reject
                 - decision_type (str): Type of decision for audit trail
                 - evidence_summary (dict): Evidence presented to human auditor
+                - prediction_category (str): Category of the prediction for audit trail
         """
         
         evidence_summary = self._build_evidence_summary(metrics)
+        prediction_category = None
         
         if mode == AdjudicationMode.NO_GOVERNANCE:
             # No human intervention
             decision = bool(metrics.predicate_overall_result)
-            return decision, "auto_decision_no_governance", evidence_summary
+            return decision, "auto_decision_no_governance", evidence_summary, prediction_category
         
         elif mode == AdjudicationMode.SELECTIVE:
             # Only intervene on rejections
@@ -135,7 +137,8 @@ class PostActionAdjudicator:
                 is_false_rejection, override_reason = self._check_false_rejection(metrics)
                 
                 if is_false_rejection:
-                    return True, f"false_rejection_override_{override_reason}", evidence_summary
+                    prediction_category = "false_rejection"
+                    return True, f"false_rejection_override_{override_reason}", evidence_summary, prediction_category
                 else:
                     # True rejection - escalate to human confirms or overrides
                     # human_decision, decision_type = self._get_human_adjudication(
@@ -147,10 +150,19 @@ class PostActionAdjudicator:
                     # return human_decision, decision_type, evidence_summary
                     
                     # auto reject without human intervention for selective mode
-                    return False, "rejected_by_predicate", evidence_summary
+                    prediction_category = "true_rejection"
+                    return False, "rejected_by_predicate", evidence_summary, prediction_category
             else:
                 # Predicate accepted - auto-accept
-                return True, "accepted_by_predicate_auto_pass", evidence_summary
+                is_false_acceptance, violation_reason = self._check_false_acceptance(metrics)
+                if is_false_acceptance:
+                    # In selective mode, we do not override false acceptances
+                    # but we can log them for monitoring and future improvements
+                    prediction_category = "false_acceptance"
+                    return True, f"accepted_by_predicate_auto_pass_potential_false_acceptance_{violation_reason}", evidence_summary, prediction_category
+                else:
+                    prediction_category = "true_acceptance"
+                    return True, "accepted_by_predicate_auto_pass", evidence_summary, prediction_category
         
         elif mode == AdjudicationMode.COMPREHENSIVE:
             # Intervene on both rejections and acceptances
@@ -159,7 +171,8 @@ class PostActionAdjudicator:
                 is_false_rejection, override_reason = self._check_false_rejection(metrics)
                 
                 if is_false_rejection:
-                    return True, f"false_rejection_override_{override_reason}", evidence_summary
+                    prediction_category = "false_rejection"
+                    return True, f"false_rejection_override_{override_reason}", evidence_summary, prediction_category
                 else:
                     # True rejection - escalate to human confirms or overrides
                     # human_decision, decision_type = self._get_human_adjudication(
@@ -170,7 +183,8 @@ class PostActionAdjudicator:
                     # )
 
                     # auto reject without human intervention
-                    return False, "rejected_by_predicate", evidence_summary
+                    prediction_category = "true_rejection"
+                    return False, "rejected_by_predicate", evidence_summary, prediction_category
             else:
                 # Predicate accepted - automated check for false acceptance
                 is_false_acceptance, violation_reason = self._check_false_acceptance(metrics)
@@ -185,7 +199,8 @@ class PostActionAdjudicator:
                     #     mode=AdjudicationMode.COMPREHENSIVE
                     # )
                     # return human_decision, decision_type, evidence_summary
-                    return False, f"false_acceptance_override_{violation_reason}", evidence_summary
+                    prediction_category = "false_acceptance"
+                    return False, f"false_acceptance_override_{violation_reason}", evidence_summary, prediction_category
                 
                 else:
                     # True acceptance - human confirms
@@ -196,12 +211,12 @@ class PostActionAdjudicator:
                     #     mode=AdjudicationMode.COMPREHENSIVE
                     # )
                     # return human_decision, decision_type, evidence_summary
-                    
-                    return True, "accepted_by_predicate_auto_pass", evidence_summary
-        
+                    prediction_category = "true_acceptance"
+                    return True, "accepted_by_predicate_auto_pass", evidence_summary, prediction_category
+
         # Default fallback
-        return bool(metrics.predicate_overall_result), "fallback_decision", evidence_summary
-    
+        return bool(metrics.predicate_overall_result), "fallback_decision", evidence_summary, prediction_category
+
     def _check_false_rejection(self, metrics: ExecutionMetrics) -> Tuple[bool, str]:
         """
         Check if a rejection by the predicate is a false rejection.
@@ -478,7 +493,7 @@ def create_execution_metrics_from_step_result(
     step_result: Dict[str, Any],
     step_number: int,
     target_service: str,
-    total_trials: int = 10
+    total_trials: int = 5000
 ) -> ExecutionMetrics:
     """
     Extract and create ExecutionMetrics from experiment step result.
@@ -512,7 +527,7 @@ def create_execution_metrics_from_step_result(
         log_telemetry_file=details.get("log_telemetry_file", ""),
         step_number=step_number,
         target_service=target_service,
-        total_trials=total_trials
+        total_trials=details.get("total_trials", total_trials)
     )
 
 
@@ -539,6 +554,7 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
     
     log_telemetry_file = details.get("log_telemetry_file", "")
     target_service = details.get("target_service", None)
+    total_trials = details.get("total_trials", 5000)
     if log_telemetry_file:
         print(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
         try:
@@ -553,6 +569,6 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
             
     
     if target_service and target_service in ["order_service"]:
-        return random.uniform(0.25, 0.8)  # likely sustained
+        return random.uniform(0.25, 0.8) *  total_trials  # likely sustained
     else:
-        return random.uniform(0.0, 0.4)  # → likely transient  
+        return random.uniform(0.1, 0.5) * total_trials  # → likely transient  

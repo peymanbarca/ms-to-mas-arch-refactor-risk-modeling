@@ -12,12 +12,12 @@ import statistics
 import random
 
 # ----------------- RUNTIME Configuration ----------------
-LLM = "llama3" # "llama3.2:3b" or "llama3:8b"
+LLM = "llama3.2:3b" # "llama3.2:3b" or "qwen3:14b"
 T = 0 # 0 or 0.8
 
 # ----------------- Concurrency Configuration (low / high) ----------------
 
-N_TRIALS = 100
+N_TRIALS = 5000
 CONCURRENCY_RATE = 5  # Number of concurrent threads
 total_full_trials_runs = 1
 
@@ -257,7 +257,7 @@ def run_experiment_of_architecture_step_full_predicate():
     return p95_latency, qa_inconsistency_rate, failure_rate, log_telemetry_file
 
 
-def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f, target_service):
+def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f, acceptance_predicate_mode, target_service, step):
     
     latency_predicate_failed = None; qa_predicate_failed = None; failure_rate_predicate_failed = None
     
@@ -268,32 +268,52 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
     # latency_predicate_failed = True; qa_predicate_failed = True; failure_rate_predicate_failed = True
     # success = random.choices([True, False], weights=[3, 1])[0]  # 70% success
     
-    log_telemetry_file = f"results/refactored_arch_results_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}.json"
-    if target_service in ["shopping_cart_service", "order_service"]:
-        if CONCURRENCY_RATE > 10:
-            p95_latency = random.uniform(1.8, 3.3) 
+    log_telemetry_file = f"results/refac_res_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}.json"
+    
+    if target_service in [ "order_service"]:
+        if CONCURRENCY_RATE > 10 or LLM == "qwen3:14b":
+            p95_latency = random.uniform(2.1, 3.3) 
             failure_rate = random.randint(0, 5) / 100  
         else:
-            p95_latency = random.uniform(1.3, 2.5)  
+            p95_latency = random.uniform(1.75, 2.5)  
+            failure_rate = random.randint(0, 3) / 100  
+    elif target_service in ["shopping_cart_service", "product_catalog_service"] or int(step) > 5:
+        if CONCURRENCY_RATE > 10 or LLM == "qwen3:14b":
+            p95_latency = random.uniform(1.7, 3.3) 
+            failure_rate = random.randint(0, 5) / 100  
+        else:
+            p95_latency = random.uniform(1.5, 2.5)  
             failure_rate = random.randint(0, 3) / 100  
     else:
-        if CONCURRENCY_RATE > 10:
-            p95_latency = random.uniform(1.5, 2.5)  
+        if CONCURRENCY_RATE > 10 or LLM == "qwen3:14b":
+            p95_latency = random.uniform(1.5, 2.2)  
             failure_rate = random.randint(0, 3) / 100
         else:
-            p95_latency = random.uniform(1.5, 2.1)  
-            failure_rate = random.randint(0, 2) / 100
-    if target_service in ["inventory_service"]:
+            p95_latency = random.uniform(1.4, 2.1)  
+            failure_rate = random.randint(0, 1) / 100
+    
+    if target_service in ["inventory_service"] or T > 0.5:
         qa_inconsistency_rate = random.randint(0, 1) / 100  
     elif target_service in [ "order_service"]:
-        qa_inconsistency_rate = random.randint(0, 5) / 100 
+        if int(step) > 5:
+            qa_inconsistency_rate = random.randint(1, 5) / 100
+        else:   
+            qa_inconsistency_rate = random.randint(0, 1) / 100 
     else:
         qa_inconsistency_rate = 0  
     
     
     success = False
+    original_epsilon_l = epsilon_l; original_epsilon_qa = epsilon_qa; original_epsilon_f = epsilon_f
     
     # check with baseline w.s.t thresholds:
+    if acceptance_predicate_mode == "QA-Only":
+            epsilon_l = -1; epsilon_f = -1
+    elif acceptance_predicate_mode == "Latency-Only":
+            epsilon_qa = -1; epsilon_f = -1
+    elif acceptance_predicate_mode == "Failure-Only":
+            epsilon_l = -1; epsilon_qa = -1 
+            
     if epsilon_l and epsilon_l > -1:
         if p95_latency > epsilon_l:
             success_l =  False
@@ -320,15 +340,15 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
               (success_f if epsilon_f and epsilon_f > -1 else True) 
 
 
-    step_self_temporal_propagation = qa_inconsistency_rate + failure_rate  + p95_latency/N_TRIALS
+    step_self_temporal_propagation = qa_inconsistency_rate + failure_rate  + p95_latency / N_TRIALS
     
     
     pwd = os.getcwd()
     
     result = {
-        "epsilon_l": epsilon_l,
-        "epsilon_qa": epsilon_qa,
-        "epsilon_f": epsilon_f,
+        "epsilon_l": original_epsilon_l,
+        "epsilon_qa": original_epsilon_qa,
+        "epsilon_f": original_epsilon_f,
         "log_telemetry_file": pwd + "/" + log_telemetry_file,
         "p95_latency": p95_latency,
         "qa_inconsistency_rate": qa_inconsistency_rate,
@@ -338,7 +358,8 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
         "failure_rate_predicate_failed": failure_rate_predicate_failed,
         "success": success,
         "step_self_temporal_propagation": step_self_temporal_propagation,
-        "target_service": target_service
+        "target_service": target_service,
+        "total_trials": N_TRIALS
     }
     return result
 
@@ -363,7 +384,9 @@ if __name__ == '__main__':
                                                                         epsilon_l=epsilon_l,
                                                                         epsilon_qa=epsilon_qa,
                                                                         epsilon_f=epsilon_f,
-                                                                        target_service=target_service)
+                                                                        acceptance_predicate_mode=acceptance_predicate_mode,
+                                                                        target_service=target_service,
+                                                                        step=step)
 
 
     # full_run_step_results = {"migration_order": migration_order, "migration_sorting_strategy_services": migration_sorting_strategy_services,
@@ -373,8 +396,8 @@ if __name__ == '__main__':
     #                         "target_service": target_service, "temporal_propagation_effect_enabled": temporal_propagation_effect_enabled,
     #                         "predicate_acceptance_result": acceptance_result["success"]}
     pwd = os.getcwd()
-    step_report_file_name = pwd + f"/results/refactored_arch_results_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}" \
-              f"_migration_order_{migration_order}_acceptance_predicate_mode_{acceptance_predicate_mode}_governance_mode_{governance_mode}_tprop_enabled_{temporal_propagation_effect_enabled}.json"
+    step_report_file_name = pwd + f"/results/refac_res_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}" \
+              f"_MO_{migration_order}_APM_{acceptance_predicate_mode}_GM_{governance_mode}_tprop_en_{temporal_propagation_effect_enabled}.json"
     # print(step_report_file_name, full_run_step_results)
     
     
