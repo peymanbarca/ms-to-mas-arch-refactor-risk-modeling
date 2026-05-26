@@ -103,9 +103,9 @@ governance_policies = ["No", "Post-Audit-Selective-Only", "Post-Audit-Comprehens
 
 # Initialize the Post-Action Adjudicator with custom criteria
 adjudication_criteria = AdjudicationCriteria(
-    delta_qa=0.05,  # 5% tolerance on QA inconsistency rate
+    delta_qa=0,  # tolerance on QA inconsistency rate
     delta_latency=0.1,  # 0.1s tolerance on p95 latency
-    delta_failure=0.02,  # 2% tolerance on failure rate
+    delta_failure=0.005,  # tolerance on failure rate
     delta_temporal_prop=0.1,  # 0.1 tolerance on temporal propagation
     grace_window_fraction=0.3  # 30% of trials as grace window for transient violations
 )

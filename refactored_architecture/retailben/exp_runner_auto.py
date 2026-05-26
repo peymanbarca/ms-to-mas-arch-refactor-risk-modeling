@@ -12,13 +12,13 @@ import statistics
 import random
 
 # ----------------- RUNTIME Configuration ----------------
-LLM = "llama3.2:3b" # "llama3.2:3b" or "qwen3:14b"
-T = 0 # 0 or 0.8
+LLM = "qwen3:14b" # "llama3.2:3b" or "qwen3:14b"
+T = 0.8 # 0 or 0.8
 
 # ----------------- Concurrency Configuration (low / high) ----------------
 
 N_TRIALS = 5000
-CONCURRENCY_RATE = 5  # Number of concurrent threads
+CONCURRENCY_RATE = 25  # Number of concurrent threads
 total_full_trials_runs = 1
 
 

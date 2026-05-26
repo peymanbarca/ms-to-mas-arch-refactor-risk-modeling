@@ -1,0 +1,1286 @@
+
+
+{
+  "migration_order": "Ranked",
+  "migration_sorting_strategy_services": [
+    [
+      "pricing_service:8003",
+      0.2
+    ],
+    [
+      "payment_service:8007",
+      0.3
+    ],
+    [
+      "shopping_cart_service:8003",
+      0.4
+    ],
+    [
+      "procurement_service:8009",
+      0.8
+    ],
+    [
+      "shipment_service:8006",
+      0.9
+    ],
+    [
+      "inventory_service:8001",
+      1.72969366260665
+    ],
+    [
+      "subscription_service:8010",
+      2.1251223717301633
+    ],
+    [
+      "product_catalog_service:8008",
+      7.722479456347325
+    ],
+    [
+      "order_service:8000",
+      8.414332091547376
+    ]
+  ],
+  "step": 1,
+  "services": [],
+  "agents": [
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "subscription_agent:8010",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "subscription_agent:8010",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "inventory_agent:8001",
+    "pricing_agent:8003"
+  ],
+  "evidence_summary": {
+    "step": 1,
+    "target_service": "pricing_service",
+    "predicate_decision": "ACCEPTED",
+    "metrics": {
+      "quality_assurance": {
+        "actual": "0.0100",
+        "threshold": "0.0000",
+        "tolerance_band": "\u00b10.0000",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "latency_p95": {
+        "actual": "1.881s",
+        "threshold": "1.900s",
+        "tolerance_band": "\u00b10.100s",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "failure_rate": {
+        "actual": "0.0000",
+        "threshold": "0.0200",
+        "tolerance_band": "\u00b10.0050",
+        "status": "PASS",
+        "predicate_failed": false
+      }
+    },
+    "risk_assessment": {
+      "temporal_propagation": "0.010",
+      "temporal_prop_tolerance": "0.100",
+      "temporal_prop_status": "LOW RISK"
+    },
+    "violation_analysis": {
+      "violation_duration": "1331.35 trials",
+      "grace_window": "1500.0 trials (30%)",
+      "is_transient": true,
+      "duration_status": "TRANSIENT"
+    }
+  },
+  "acceptance_predicate_mode": "Full",
+  "governance_policy": "No",
+  "target_service": "pricing_service",
+  "temporal_propagation_effect_enabled": true,
+  "is_accepted": true,
+  "decision_type": "auto_decision_no_governance",
+  "prediction_category": null,
+  "step_self_temporal_propagation": 0.010376276504229879
+}
+
+------------
+
+
+
+{
+  "migration_order": "Ranked",
+  "migration_sorting_strategy_services": [
+    [
+      "pricing_service:8003",
+      0.2
+    ],
+    [
+      "payment_service:8007",
+      0.3
+    ],
+    [
+      "shopping_cart_service:8003",
+      0.4
+    ],
+    [
+      "procurement_service:8009",
+      0.8
+    ],
+    [
+      "shipment_service:8006",
+      0.9
+    ],
+    [
+      "inventory_service:8001",
+      1.72969366260665
+    ],
+    [
+      "subscription_service:8010",
+      2.1251223717301633
+    ],
+    [
+      "product_catalog_service:8008",
+      7.977948271046892
+    ],
+    [
+      "order_service:8000",
+      8.54206649889716
+    ]
+  ],
+  "step": 2,
+  "services": [],
+  "agents": [
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "subscription_agent:8010",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "subscription_agent:8010",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "inventory_agent:8001",
+    "pricing_agent:8003",
+    "payment_agent:8007"
+  ],
+  "evidence_summary": {
+    "step": 2,
+    "target_service": "payment_service",
+    "predicate_decision": "REJECTED",
+    "metrics": {
+      "quality_assurance": {
+        "actual": "0.0100",
+        "threshold": "0.0000",
+        "tolerance_band": "\u00b10.0000",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "latency_p95": {
+        "actual": "2.126s",
+        "threshold": "1.900s",
+        "tolerance_band": "\u00b10.100s",
+        "status": "FAIL",
+        "predicate_failed": true
+      },
+      "failure_rate": {
+        "actual": "0.0000",
+        "threshold": "0.0200",
+        "tolerance_band": "\u00b10.0050",
+        "status": "PASS",
+        "predicate_failed": false
+      }
+    },
+    "risk_assessment": {
+      "temporal_propagation": "0.010",
+      "temporal_prop_tolerance": "0.100",
+      "temporal_prop_status": "LOW RISK"
+    },
+    "violation_analysis": {
+      "violation_duration": "552.93 trials",
+      "grace_window": "1500.0 trials (30%)",
+      "is_transient": true,
+      "duration_status": "TRANSIENT"
+    }
+  },
+  "acceptance_predicate_mode": "Full",
+  "governance_policy": "No",
+  "target_service": "payment_service",
+  "temporal_propagation_effect_enabled": true,
+  "is_accepted": false,
+  "decision_type": "auto_decision_no_governance",
+  "prediction_category": null,
+  "step_self_temporal_propagation": 0.01042522231582203
+}
+
+------------
+
+
+
+{
+  "migration_order": "Ranked",
+  "migration_sorting_strategy_services": [
+    [
+      "pricing_service:8003",
+      0.2
+    ],
+    [
+      "payment_service:8007",
+      0.3
+    ],
+    [
+      "shopping_cart_service:8003",
+      0.4
+    ],
+    [
+      "procurement_service:8009",
+      0.8
+    ],
+    [
+      "shipment_service:8006",
+      0.9
+    ],
+    [
+      "inventory_service:8001",
+      1.72969366260665
+    ],
+    [
+      "subscription_service:8010",
+      2.1251223717301633
+    ],
+    [
+      "product_catalog_service:8008",
+      7.977948271046892
+    ],
+    [
+      "order_service:8000",
+      8.54206649889716
+    ]
+  ],
+  "step": 3,
+  "services": [],
+  "agents": [
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "subscription_agent:8010",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "subscription_agent:8010",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "inventory_agent:8001",
+    "pricing_agent:8003",
+    "shopping_cart_agent:8003"
+  ],
+  "evidence_summary": {
+    "step": 3,
+    "target_service": "shopping_cart_service",
+    "predicate_decision": "REJECTED",
+    "metrics": {
+      "quality_assurance": {
+        "actual": "0.0000",
+        "threshold": "0.0000",
+        "tolerance_band": "\u00b10.0000",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "latency_p95": {
+        "actual": "2.166s",
+        "threshold": "1.900s",
+        "tolerance_band": "\u00b10.100s",
+        "status": "FAIL",
+        "predicate_failed": true
+      },
+      "failure_rate": {
+        "actual": "0.0500",
+        "threshold": "0.0200",
+        "tolerance_band": "\u00b10.0050",
+        "status": "FAIL",
+        "predicate_failed": true
+      }
+    },
+    "risk_assessment": {
+      "temporal_propagation": "0.000",
+      "temporal_prop_tolerance": "0.100",
+      "temporal_prop_status": "LOW RISK"
+    },
+    "violation_analysis": {
+      "violation_duration": "1950.95 trials",
+      "grace_window": "1500.0 trials (30%)",
+      "is_transient": false,
+      "duration_status": "SUSTAINED"
+    }
+  },
+  "acceptance_predicate_mode": "Full",
+  "governance_policy": "No",
+  "target_service": "shopping_cart_service",
+  "temporal_propagation_effect_enabled": true,
+  "is_accepted": false,
+  "decision_type": "auto_decision_no_governance",
+  "prediction_category": null,
+  "step_self_temporal_propagation": 0
+}
+
+------------
+
+
+
+{
+  "migration_order": "Ranked",
+  "migration_sorting_strategy_services": [
+    [
+      "pricing_service:8003",
+      0.2
+    ],
+    [
+      "payment_service:8007",
+      0.3
+    ],
+    [
+      "shopping_cart_service:8003",
+      0.4
+    ],
+    [
+      "procurement_service:8009",
+      0.8
+    ],
+    [
+      "shipment_service:8006",
+      0.9
+    ],
+    [
+      "inventory_service:8001",
+      1.72969366260665
+    ],
+    [
+      "subscription_service:8010",
+      2.1251223717301633
+    ],
+    [
+      "product_catalog_service:8008",
+      7.977948271046892
+    ],
+    [
+      "order_service:8000",
+      8.54206649889716
+    ]
+  ],
+  "step": 4,
+  "services": [],
+  "agents": [
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "subscription_agent:8010",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "subscription_agent:8010",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "inventory_agent:8001",
+    "pricing_agent:8003",
+    "procurement_agent:8009"
+  ],
+  "evidence_summary": {
+    "step": 4,
+    "target_service": "procurement_service",
+    "predicate_decision": "REJECTED",
+    "metrics": {
+      "quality_assurance": {
+        "actual": "0.0100",
+        "threshold": "0.0000",
+        "tolerance_band": "\u00b10.0000",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "latency_p95": {
+        "actual": "2.125s",
+        "threshold": "1.900s",
+        "tolerance_band": "\u00b10.100s",
+        "status": "FAIL",
+        "predicate_failed": true
+      },
+      "failure_rate": {
+        "actual": "0.0100",
+        "threshold": "0.0200",
+        "tolerance_band": "\u00b10.0050",
+        "status": "PASS",
+        "predicate_failed": false
+      }
+    },
+    "risk_assessment": {
+      "temporal_propagation": "0.020",
+      "temporal_prop_tolerance": "0.100",
+      "temporal_prop_status": "LOW RISK"
+    },
+    "violation_analysis": {
+      "violation_duration": "1503.76 trials",
+      "grace_window": "1500.0 trials (30%)",
+      "is_transient": false,
+      "duration_status": "SUSTAINED"
+    }
+  },
+  "acceptance_predicate_mode": "Full",
+  "governance_policy": "No",
+  "target_service": "procurement_service",
+  "temporal_propagation_effect_enabled": true,
+  "is_accepted": false,
+  "decision_type": "auto_decision_no_governance",
+  "prediction_category": null,
+  "step_self_temporal_propagation": 0.02042503296171757
+}
+
+------------
+
+
+
+{
+  "migration_order": "Ranked",
+  "migration_sorting_strategy_services": [
+    [
+      "pricing_service:8003",
+      0.2
+    ],
+    [
+      "payment_service:8007",
+      0.3
+    ],
+    [
+      "shopping_cart_service:8003",
+      0.4
+    ],
+    [
+      "procurement_service:8009",
+      0.8
+    ],
+    [
+      "shipment_service:8006",
+      0.9
+    ],
+    [
+      "inventory_service:8001",
+      1.72969366260665
+    ],
+    [
+      "subscription_service:8010",
+      2.1251223717301633
+    ],
+    [
+      "product_catalog_service:8008",
+      7.977948271046892
+    ],
+    [
+      "order_service:8000",
+      8.54206649889716
+    ]
+  ],
+  "step": 5,
+  "services": [],
+  "agents": [
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "subscription_agent:8010",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "subscription_agent:8010",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "inventory_agent:8001",
+    "pricing_agent:8003",
+    "shipment_agent:8006"
+  ],
+  "evidence_summary": {
+    "step": 5,
+    "target_service": "shipment_service",
+    "predicate_decision": "REJECTED",
+    "metrics": {
+      "quality_assurance": {
+        "actual": "0.0100",
+        "threshold": "0.0000",
+        "tolerance_band": "\u00b10.0000",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "latency_p95": {
+        "actual": "2.010s",
+        "threshold": "1.900s",
+        "tolerance_band": "\u00b10.100s",
+        "status": "FAIL",
+        "predicate_failed": true
+      },
+      "failure_rate": {
+        "actual": "0.0300",
+        "threshold": "0.0200",
+        "tolerance_band": "\u00b10.0050",
+        "status": "FAIL",
+        "predicate_failed": true
+      }
+    },
+    "risk_assessment": {
+      "temporal_propagation": "0.040",
+      "temporal_prop_tolerance": "0.100",
+      "temporal_prop_status": "LOW RISK"
+    },
+    "violation_analysis": {
+      "violation_duration": "2047.83 trials",
+      "grace_window": "1500.0 trials (30%)",
+      "is_transient": false,
+      "duration_status": "SUSTAINED"
+    }
+  },
+  "acceptance_predicate_mode": "Full",
+  "governance_policy": "No",
+  "target_service": "shipment_service",
+  "temporal_propagation_effect_enabled": true,
+  "is_accepted": false,
+  "decision_type": "auto_decision_no_governance",
+  "prediction_category": null,
+  "step_self_temporal_propagation": 0.04040195766789948
+}
+
+------------
+
+
+
+{
+  "migration_order": "Ranked",
+  "migration_sorting_strategy_services": [
+    [
+      "pricing_service:8003",
+      0.2
+    ],
+    [
+      "payment_service:8007",
+      0.3
+    ],
+    [
+      "shopping_cart_service:8003",
+      0.4
+    ],
+    [
+      "procurement_service:8009",
+      0.8
+    ],
+    [
+      "shipment_service:8006",
+      0.9
+    ],
+    [
+      "inventory_service:8001",
+      1.72969366260665
+    ],
+    [
+      "subscription_service:8010",
+      2.1251223717301633
+    ],
+    [
+      "product_catalog_service:8008",
+      7.977948271046892
+    ],
+    [
+      "order_service:8000",
+      8.54206649889716
+    ]
+  ],
+  "step": 6,
+  "services": [],
+  "agents": [
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "subscription_agent:8010",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "subscription_agent:8010",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "inventory_agent:8001",
+    "pricing_agent:8003",
+    "inventory_agent:8001"
+  ],
+  "evidence_summary": {
+    "step": 6,
+    "target_service": "inventory_service",
+    "predicate_decision": "REJECTED",
+    "metrics": {
+      "quality_assurance": {
+        "actual": "0.0000",
+        "threshold": "0.0000",
+        "tolerance_band": "\u00b10.0000",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "latency_p95": {
+        "actual": "3.056s",
+        "threshold": "1.900s",
+        "tolerance_band": "\u00b10.100s",
+        "status": "FAIL",
+        "predicate_failed": true
+      },
+      "failure_rate": {
+        "actual": "0.0500",
+        "threshold": "0.0200",
+        "tolerance_band": "\u00b10.0050",
+        "status": "FAIL",
+        "predicate_failed": true
+      }
+    },
+    "risk_assessment": {
+      "temporal_propagation": "0.051",
+      "temporal_prop_tolerance": "0.100",
+      "temporal_prop_status": "LOW RISK"
+    },
+    "violation_analysis": {
+      "violation_duration": "632.40 trials",
+      "grace_window": "1500.0 trials (30%)",
+      "is_transient": true,
+      "duration_status": "TRANSIENT"
+    }
+  },
+  "acceptance_predicate_mode": "Full",
+  "governance_policy": "No",
+  "target_service": "inventory_service",
+  "temporal_propagation_effect_enabled": true,
+  "is_accepted": false,
+  "decision_type": "auto_decision_no_governance",
+  "prediction_category": null,
+  "step_self_temporal_propagation": 0.05061116102759059
+}
+
+------------
+
+
+
+{
+  "migration_order": "Ranked",
+  "migration_sorting_strategy_services": [
+    [
+      "pricing_service:8003",
+      0.2
+    ],
+    [
+      "payment_service:8007",
+      0.3
+    ],
+    [
+      "shopping_cart_service:8003",
+      0.4
+    ],
+    [
+      "procurement_service:8009",
+      0.8
+    ],
+    [
+      "shipment_service:8006",
+      0.9
+    ],
+    [
+      "inventory_service:8001",
+      1.72969366260665
+    ],
+    [
+      "subscription_service:8010",
+      2.1251223717301633
+    ],
+    [
+      "product_catalog_service:8008",
+      7.977948271046892
+    ],
+    [
+      "order_service:8000",
+      8.54206649889716
+    ]
+  ],
+  "step": 7,
+  "services": [],
+  "agents": [
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "subscription_agent:8010",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "subscription_agent:8010",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "inventory_agent:8001",
+    "pricing_agent:8003",
+    "subscription_agent:8010"
+  ],
+  "evidence_summary": {
+    "step": 7,
+    "target_service": "subscription_service",
+    "predicate_decision": "REJECTED",
+    "metrics": {
+      "quality_assurance": {
+        "actual": "0.0100",
+        "threshold": "0.0000",
+        "tolerance_band": "\u00b10.0000",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "latency_p95": {
+        "actual": "2.975s",
+        "threshold": "1.900s",
+        "tolerance_band": "\u00b10.100s",
+        "status": "FAIL",
+        "predicate_failed": true
+      },
+      "failure_rate": {
+        "actual": "0.0200",
+        "threshold": "0.0200",
+        "tolerance_band": "\u00b10.0050",
+        "status": "PASS",
+        "predicate_failed": false
+      }
+    },
+    "risk_assessment": {
+      "temporal_propagation": "0.031",
+      "temporal_prop_tolerance": "0.100",
+      "temporal_prop_status": "LOW RISK"
+    },
+    "violation_analysis": {
+      "violation_duration": "1707.18 trials",
+      "grace_window": "1500.0 trials (30%)",
+      "is_transient": false,
+      "duration_status": "SUSTAINED"
+    }
+  },
+  "acceptance_predicate_mode": "Full",
+  "governance_policy": "No",
+  "target_service": "subscription_service",
+  "temporal_propagation_effect_enabled": true,
+  "is_accepted": false,
+  "decision_type": "auto_decision_no_governance",
+  "prediction_category": null,
+  "step_self_temporal_propagation": 0.030595057349430493
+}
+
+------------
+
+
+
+{
+  "migration_order": "Ranked",
+  "migration_sorting_strategy_services": [
+    [
+      "pricing_service:8003",
+      0.2
+    ],
+    [
+      "payment_service:8007",
+      0.3
+    ],
+    [
+      "shopping_cart_service:8003",
+      0.4
+    ],
+    [
+      "procurement_service:8009",
+      0.8
+    ],
+    [
+      "shipment_service:8006",
+      0.9
+    ],
+    [
+      "inventory_service:8001",
+      1.72969366260665
+    ],
+    [
+      "subscription_service:8010",
+      2.1251223717301633
+    ],
+    [
+      "product_catalog_service:8008",
+      7.977948271046892
+    ],
+    [
+      "order_service:8000",
+      8.54206649889716
+    ]
+  ],
+  "step": 8,
+  "services": [],
+  "agents": [
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "subscription_agent:8010",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "subscription_agent:8010",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "inventory_agent:8001",
+    "pricing_agent:8003",
+    "product_catalog_agent:8008"
+  ],
+  "evidence_summary": {
+    "step": 8,
+    "target_service": "product_catalog_service",
+    "predicate_decision": "REJECTED",
+    "metrics": {
+      "quality_assurance": {
+        "actual": "0.0000",
+        "threshold": "0.0000",
+        "tolerance_band": "\u00b10.0000",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "latency_p95": {
+        "actual": "2.566s",
+        "threshold": "1.900s",
+        "tolerance_band": "\u00b10.100s",
+        "status": "FAIL",
+        "predicate_failed": true
+      },
+      "failure_rate": {
+        "actual": "0.0000",
+        "threshold": "0.0200",
+        "tolerance_band": "\u00b10.0050",
+        "status": "PASS",
+        "predicate_failed": false
+      }
+    },
+    "risk_assessment": {
+      "temporal_propagation": "0.000",
+      "temporal_prop_tolerance": "0.100",
+      "temporal_prop_status": "LOW RISK"
+    },
+    "violation_analysis": {
+      "violation_duration": "2304.30 trials",
+      "grace_window": "1500.0 trials (30%)",
+      "is_transient": false,
+      "duration_status": "SUSTAINED"
+    }
+  },
+  "acceptance_predicate_mode": "Full",
+  "governance_policy": "No",
+  "target_service": "product_catalog_service",
+  "temporal_propagation_effect_enabled": true,
+  "is_accepted": false,
+  "decision_type": "auto_decision_no_governance",
+  "prediction_category": null,
+  "step_self_temporal_propagation": 0
+}
+
+------------
+
+
+
+{
+  "migration_order": "Ranked",
+  "migration_sorting_strategy_services": [
+    [
+      "pricing_service:8003",
+      0.2
+    ],
+    [
+      "payment_service:8007",
+      0.3
+    ],
+    [
+      "shopping_cart_service:8003",
+      0.4
+    ],
+    [
+      "procurement_service:8009",
+      0.8
+    ],
+    [
+      "shipment_service:8006",
+      0.9
+    ],
+    [
+      "inventory_service:8001",
+      1.72969366260665
+    ],
+    [
+      "subscription_service:8010",
+      2.1251223717301633
+    ],
+    [
+      "product_catalog_service:8008",
+      7.977948271046892
+    ],
+    [
+      "order_service:8000",
+      8.54206649889716
+    ]
+  ],
+  "step": 9,
+  "services": [],
+  "agents": [
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shopping_cart_agent:8003",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "subscription_agent:8010",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "subscription_agent:8010",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "product_catalog_agent:8008",
+    "pricing_agent:8003",
+    "payment_agent:8007",
+    "procurement_agent:8009",
+    "shipment_agent:8006",
+    "inventory_agent:8001",
+    "subscription_agent:8010",
+    "order_agent:8000",
+    "procurement_agent:8009",
+    "inventory_agent:8001",
+    "pricing_agent:8003",
+    "order_agent:8000"
+  ],
+  "evidence_summary": {
+    "step": 9,
+    "target_service": "order_service",
+    "predicate_decision": "REJECTED",
+    "metrics": {
+      "quality_assurance": {
+        "actual": "0.0000",
+        "threshold": "0.0000",
+        "tolerance_band": "\u00b10.0000",
+        "status": "PASS",
+        "predicate_failed": false
+      },
+      "latency_p95": {
+        "actual": "2.824s",
+        "threshold": "1.900s",
+        "tolerance_band": "\u00b10.100s",
+        "status": "FAIL",
+        "predicate_failed": true
+      },
+      "failure_rate": {
+        "actual": "0.0200",
+        "threshold": "0.0200",
+        "tolerance_band": "\u00b10.0050",
+        "status": "PASS",
+        "predicate_failed": false
+      }
+    },
+    "risk_assessment": {
+      "temporal_propagation": "0.000",
+      "temporal_prop_tolerance": "0.100",
+      "temporal_prop_status": "LOW RISK"
+    },
+    "violation_analysis": {
+      "violation_duration": "2215.93 trials",
+      "grace_window": "1500.0 trials (30%)",
+      "is_transient": false,
+      "duration_status": "SUSTAINED"
+    }
+  },
+  "acceptance_predicate_mode": "Full",
+  "governance_policy": "No",
+  "target_service": "order_service",
+  "temporal_propagation_effect_enabled": true,
+  "is_accepted": false,
+  "decision_type": "auto_decision_no_governance",
+  "prediction_category": null,
+  "step_self_temporal_propagation": 0
+}
+
+------------
+
