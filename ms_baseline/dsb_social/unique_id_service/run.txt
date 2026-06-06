@@ -1,0 +1,2 @@
+python3 -m ms_baseline.dsb_social.unique_id_service.server
+python3 -m ms_baseline.dsb_social.unique_id_service.client
