@@ -1,0 +1,26 @@
+{
+  "UrlShortenService": {
+    "port": 9092,
+    "hostname": "http://dsbscl.com/",
+    "num_workers": 8
+  },
+  "url-shorten-mongodb": {
+    "host": "localhost",
+    "port": 27017,
+    "db": "dsb_social",
+    "collection": "url-shorten"
+  },
+  "url-shorten-redis": {
+    "host": "localhost",
+    "port": 6385,
+    "db": 0
+  },
+  "jaeger": {
+    "service_name": "url-shorten-service",
+    "agent_host": "jaeger-agent",
+    "agent_port": 6831,
+    "sampler_type": "const",
+    "sampler_param": 1,
+    "reporter_log_spans": false
+  }
+}
