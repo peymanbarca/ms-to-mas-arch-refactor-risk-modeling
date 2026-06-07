@@ -1,0 +1,2 @@
+python3 -m ms_baseline.dsb_social.text_service.server
+python3 -m ms_baseline.dsb_social.text_service.client compose "Hello @alice, check https://example.com/page"
