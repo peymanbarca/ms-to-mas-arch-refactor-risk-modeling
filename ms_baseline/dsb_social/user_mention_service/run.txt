@@ -1,0 +1,2 @@
+python3 -m ms_baseline.dsb_social.user_mention_service.server
+python3 -m ms_baseline.dsb_social.user_mention_service.client resolve alice bob charlie

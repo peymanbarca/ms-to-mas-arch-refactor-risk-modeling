@@ -1,0 +1,6 @@
+python3 -m ms_baseline.dsb_social.user_service.server
+
+python3 -m ms_baseline.dsb_social.user_service.client register --first Alice --last Smith --username alice --password secret123
+python3 -m ms_baseline.dsb_social.user_service.client login --username alice --password secret123
+python3 -m ms_baseline.dsb_social.user_service.client get-id --username alice
+python3 -m ms_baseline.dsb_social.user_service.client compose-creator --username alice
