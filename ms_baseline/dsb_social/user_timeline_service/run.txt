@@ -1,0 +1,5 @@
+python3 -m ms_baseline.dsb_social.user_timeline_service.server
+
+python3 -m ms_baseline.dsb_social.user_timeline_service.client write --user-id 1 --post-id 1000 --timestamp 1717000000000
+python3 -m ms_baseline.dsb_social.user_timeline_service.client write --user-id 1 --post-id 1001 --timestamp 1717100000000
+python3 -m ms_baseline.dsb_social.user_timeline_service.client read --user-id 1 --start 0 --stop 10
