@@ -1,0 +1,27 @@
+{
+  "HomeTimelineService": {
+    "port": 9099,
+    "num_workers": 16
+  },
+  "home-timeline-redis": {
+    "host": "localhost",
+    "port": 6385,
+    "db": 0
+  },
+  "post-storage-service": {
+    "host": "localhost",
+    "port": 9096
+  },
+  "social-graph-service": {
+    "host": "localhost",
+    "port": 9097
+  },
+  "jaeger": {
+    "service_name": "home-timeline-service",
+    "agent_host": "jaeger-agent",
+    "agent_port": 6831,
+    "sampler_type": "const",
+    "sampler_param": 1,
+    "reporter_log_spans": false
+  }
+}
