@@ -1,0 +1,7 @@
+python3 -m ms_baseline.dsb_social.social_graph_service.server
+
+python3 -m ms_baseline.dsb_social.social_graph_service.client insert-user --user-id 1
+python3 -m ms_baseline.dsb_social.social_graph_service.client follow --user-id 1 --followee-id 2
+python3 -m ms_baseline.dsb_social.social_graph_service.client unfollow --user-id 1 --followee-id 2
+python3 -m ms_baseline.dsb_social.social_graph_service.client get-followers --user-id 2
+python3 -m ms_baseline.dsb_social.social_graph_service.client get-followees --user-id 1
