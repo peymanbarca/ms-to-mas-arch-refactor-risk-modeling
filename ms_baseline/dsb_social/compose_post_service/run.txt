@@ -1,0 +1,7 @@
+python3 -m ms_baseline.dsb_social.compose_post_service.server
+
+python3 -m ms_baseline.dsb_social.compose_post_service.client compose --username alice --user-id 2 --text "Hello world!"
+
+python3 -m ms_baseline.dsb_social.compose_post_service.client compose --username alice --user-id 2 --text "Check this out!" --media-ids 100 101 --media-types photo photo
+
+python3 -m ms_baseline.dsb_social.compose_post_service.client compose --username alice --user-id 2 --text "RT @bob great post" --post-type REPOST
