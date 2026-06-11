@@ -1,0 +1,4 @@
+python3 -m refactored_architecture.dsb_social.url_shorten_agent.server
+
+python3 -m refactored_architecture.dsb_social.url_shorten_agent.client shorten "https://www.example.com/some/very/long/path"
+python3 -m refactored_architecture.dsb_social.url_shorten_agent.client expand "http://dsbscl.com/1dPdgBMOxJ"
