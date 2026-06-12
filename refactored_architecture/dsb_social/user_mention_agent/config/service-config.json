@@ -1,0 +1,24 @@
+{
+  "UserMentionService": {
+    "port": 9093
+  },
+  "user-mention-mongodb": {
+    "host": "localhost",
+    "port": 27017,
+    "db": "dsb_social",
+    "collection": "user"
+  },
+  "user-mention-redis": {
+    "host": "localhost",
+    "port": 6385,
+    "db": 0
+  },
+  "jaeger": {
+    "service_name": "user-mention-agent",
+    "agent_host": "jaeger-agent",
+    "agent_port": 6831,
+    "sampler_type": "const",
+    "sampler_param": 1,
+    "reporter_log_spans": false
+  }
+}

@@ -1,0 +1,2 @@
+python3 -m refactored_architecture.dsb_social.user_mention_agent.server
+python3 -m refactored_architecture.dsb_social.user_mention_agent.client resolve alice bob charlie
