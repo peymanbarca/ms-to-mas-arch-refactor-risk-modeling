@@ -305,7 +305,7 @@ def make_apply_write_node(redis_client, mongo_col):
             logger.debug("apply_write MongoDB $push user_id=%d post_id=%d",
                          state["user_id"], pid)
         except Exception as exc:
-            from gen_py.social_network.ttypes import ServiceException, ErrorCode
+            from ms_baseline.dsb_social.gen_py.social_network.ttypes import ServiceException, ErrorCode
             logger.error("apply_write MongoDB failed: %s", exc)
             raise ServiceException(
                 errorCode=ErrorCode.SE_MONGODB_ERROR,
@@ -550,7 +550,7 @@ def make_hydrate_posts_node(post_pool: ThriftClientPool):
                          state["req_id"], len(posts))
             print(f"[hydrate_posts] OK  count={len(posts)}")
         except Exception as exc:
-            from gen_py.social_network.ttypes import ServiceException, ErrorCode
+            from ms_baseline.dsb_social.gen_py.social_network.ttypes import ServiceException, ErrorCode
             logger.error("hydrate_posts failed: %s", exc)
             raise ServiceException(
                 errorCode=ErrorCode.SE_THRIFT_HANDLER_ERROR,
