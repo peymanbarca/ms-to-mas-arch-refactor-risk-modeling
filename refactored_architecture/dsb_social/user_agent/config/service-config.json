@@ -1,0 +1,26 @@
+{
+  "UserService": {
+    "port": 9094,
+    "secret": "secret",
+    "jwt_expiry_seconds": 3600
+  },
+  "user-mongodb": {
+    "host": "localhost",
+    "port": 27017,
+    "db": "dsb_social",
+    "collection": "user"
+  },
+  "user-redis": {
+    "host": "localhost",
+    "port": 6379,
+    "db": 0
+  },
+  "jaeger": {
+    "service_name": "user-service",
+    "agent_host": "jaeger-agent",
+    "agent_port": 6831,
+    "sampler_type": "const",
+    "sampler_param": 1,
+    "reporter_log_spans": false
+  }
+}
