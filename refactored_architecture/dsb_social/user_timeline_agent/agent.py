@@ -405,7 +405,7 @@ def make_fetch_post_ids_node(redis_client, mongo_col):
                     except redis_lib.RedisError:
                         pass
             except Exception as exc:
-                from gen_py.social_network.ttypes import ServiceException, ErrorCode
+                from ms_baseline.dsb_social.gen_py.social_network.ttypes import ServiceException, ErrorCode
                 raise ServiceException(
                     errorCode=ErrorCode.SE_MONGODB_ERROR,
                     message=f"MongoDB read failed: {exc}",
