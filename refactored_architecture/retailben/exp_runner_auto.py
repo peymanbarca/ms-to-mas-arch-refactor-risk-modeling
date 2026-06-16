@@ -11,14 +11,15 @@ import os
 import statistics
 import random
 
+
 # ----------------- RUNTIME Configuration ----------------
-LLM = "qwen3:14b" # "llama3.2:3b" or "qwen3:14b"
-T = 0.8 # 0 or 0.8
+# LLM = "llama3.2:3b" # "llama3.2:3b" or "qwen3:14b"
+# T = 0 # 0 or 0.8
 
 # ----------------- Concurrency Configuration (low / high) ----------------
 
 N_TRIALS = 5000
-CONCURRENCY_RATE = 25  # Number of concurrent threads
+# CONCURRENCY_RATE = 5  # Number of concurrent threads
 total_full_trials_runs = 1
 
 
@@ -58,7 +59,7 @@ def real_db():
     return client, db
 
 
-def run_trial(trial_id: int, delay: float, drop_rate: int):
+def run_trial(trial_id: int, delay: float, drop_rate: int, CONCURRENCY_RATE: int):
     try:
         start = time.time()
         result = {"trial": trial_id, "threads": CONCURRENCY_RATE,
@@ -171,7 +172,7 @@ def get_final_state():
            final_ec_state, failure_rate
 
 
-def full_trials_runner():
+def full_trials_runner(CONCURRENCY_RATE):
     run_results = []
 
     for i in range(total_full_trials_runs):
@@ -189,7 +190,7 @@ def full_trials_runner():
 
         # ---------------- PARALLEL EXECUTION of TRIALS ----------------
         with ThreadPoolExecutor(max_workers=CONCURRENCY_RATE) as executor:
-            futures = [executor.submit(run_trial, i, DELAY, DROP_RATE) for i in range(1, N_TRIALS + 1)]
+            futures = [executor.submit(run_trial, i, DELAY, DROP_RATE, CONCURRENCY_RATE) for i in range(1, N_TRIALS + 1)]
             for future in as_completed(futures):
                 results.append(future.result())
 
@@ -233,12 +234,12 @@ def full_trials_runner():
     return run_results
 
 
-def run_experiment_of_architecture_step_full_predicate():
+def run_experiment_of_architecture_step_full_predicate(T, LLM, CONCURRENCY_RATE):
     log_telemetry_file = f"results/refactored_arch_results_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}.json"
     with open(log_telemetry_file, "w") as f:
         f.write("\n\n")
 
-    full_run_results = full_trials_runner()
+    full_run_results = full_trials_runner(CONCURRENCY_RATE)
 
     # Save all results
     with open(log_telemetry_file, "w") as f:
@@ -257,12 +258,12 @@ def run_experiment_of_architecture_step_full_predicate():
     return p95_latency, qa_inconsistency_rate, failure_rate, log_telemetry_file
 
 
-def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f, acceptance_predicate_mode, target_service, step):
+def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f, acceptance_predicate_mode, target_service, step, T, LLM, CONCURRENCY_RATE):
     
     latency_predicate_failed = None; qa_predicate_failed = None; failure_rate_predicate_failed = None
     
     # -------------- Real execution of the architecture step and evaluation of predicates --------------
-    # p95_latency, qa_inconsistency_rate, failure_rate, log_telemetry_file = run_experiment_of_architecture_step_full_predicate()
+    # p95_latency, qa_inconsistency_rate, failure_rate, log_telemetry_file = run_experiment_of_architecture_step_full_predicate(T=T, LLM=LLM, CONCURRENCY_RATE=CONCURRENCY_RATE)
     
     # p95_latency, qa_inconsistency_rate, failure_rate = 1.1, 0.1, 0.01 
     # latency_predicate_failed = True; qa_predicate_failed = True; failure_rate_predicate_failed = True
@@ -377,8 +378,9 @@ if __name__ == '__main__':
     previous_step_acceptance_type = sys.argv[11]
     temporal_propagation_effect_enabled = sys.argv[12]
     migration_sorting_strategy_services = sys.argv[13]
-    if len(sys.argv) < 14:
-        raise ValueError("Expected: migration_order predicate-mode step services agents epsilon_l epsilon_qa epsilon_f governance_mode target_service temporal_propagation_effect_enabled migration_sorting_strategy_services")
+    T_, LLM_, CONCURRENCY_RATE_ = sys.argv[14], sys.argv[15], sys.argv[16]
+    if len(sys.argv) < 17:
+        raise ValueError("Expected: migration_order predicate-mode step services agents epsilon_l epsilon_qa epsilon_f governance_mode target_service temporal_propagation_effect_enabled migration_sorting_strategy_services T LLM CONCURRENCY_RATE")
 
     acceptance_result = acceptance_of_architecture_step_predicate_based(
                                                                         epsilon_l=epsilon_l,
@@ -386,7 +388,10 @@ if __name__ == '__main__':
                                                                         epsilon_f=epsilon_f,
                                                                         acceptance_predicate_mode=acceptance_predicate_mode,
                                                                         target_service=target_service,
-                                                                        step=step)
+                                                                        step=step,
+                                                                        T=float(T_),
+                                                                        LLM=LLM_,
+                                                                        CONCURRENCY_RATE=int(CONCURRENCY_RATE_))
 
 
     # full_run_step_results = {"migration_order": migration_order, "migration_sorting_strategy_services": migration_sorting_strategy_services,
@@ -396,7 +401,7 @@ if __name__ == '__main__':
     #                         "target_service": target_service, "temporal_propagation_effect_enabled": temporal_propagation_effect_enabled,
     #                         "predicate_acceptance_result": acceptance_result["success"]}
     pwd = os.getcwd()
-    step_report_file_name = pwd + f"/results/refac_res_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}" \
+    step_report_file_name = pwd + f"/results/refac_res_llm_{LLM_}_T_{T_}_U_{CONCURRENCY_RATE_}" \
               f"_MO_{migration_order}_APM_{acceptance_predicate_mode}_GM_{governance_mode}_tprop_en_{temporal_propagation_effect_enabled}.json"
     # print(step_report_file_name, full_run_step_results)
     
