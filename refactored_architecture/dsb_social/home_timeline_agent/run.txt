@@ -1,0 +1,2 @@
+python3 -m ms_baseline.dsb_social.home_timeline_service.server
+python3 -m ms_baseline.dsb_social.home_timeline_service.client
