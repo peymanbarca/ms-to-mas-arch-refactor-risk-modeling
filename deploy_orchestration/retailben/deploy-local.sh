@@ -9,7 +9,7 @@
 #   services=shipment_service:8006,payment_service:8007,shopping_cart_service:8003 \
 #   agents=order_agent:8000,inventory_agent:8001
 
-echo "Parsing arguments..."
+# echo "Parsing arguments..."
 
 for arg in "$@"; do
   case $arg in
@@ -33,7 +33,7 @@ kill_port () {
   fi
 }
 
-echo "Cleaning ports..."
+# echo "Cleaning ports..."
 
 # Kill service ports
 IFS=',' read -ra SVC_LIST <<< "$SERVICES"
@@ -54,9 +54,9 @@ done
 # Optional: small delay to release ports
 sleep 1
 
-echo "Starting services..."
+# echo "Starting services..."
 
-cd ../../ms_baseline/retailben && rm *.log
+cd ../../ms_baseline/retailben && rm -f *.log
 
 for pair in "${SVC_LIST[@]}"; do
   NAME="${pair%%:*}"
@@ -67,9 +67,9 @@ for pair in "${SVC_LIST[@]}"; do
 done
 
 
-cd ../../refactored_architecture/retailben && rm *.log
+cd ../../refactored_architecture/retailben && rm -f *.log
 
-echo "Starting agents..."
+# echo "Starting agents..."
 
 for pair in "${AGENT_LIST[@]}"; do
   NAME="${pair%%:*}"

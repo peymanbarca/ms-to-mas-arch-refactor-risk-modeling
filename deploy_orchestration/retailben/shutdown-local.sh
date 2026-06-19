@@ -49,9 +49,9 @@ done
 
 
 
-cd ../../ms_baseline/retailben && rm *.log
+cd ../../ms_baseline/retailben && rm -f *.log
 
-cd ../../refactored_architecture/retailben && rm *.log
+cd ../../refactored_architecture/retailben && rm -f *.log
 
 # Graceful shutdown on CTRL+C
 trap "echo 'Stopping all...'; kill 0" SIGINT

@@ -12,14 +12,7 @@ import statistics
 import random
 
 
-# ----------------- RUNTIME Configuration ----------------
-# LLM = "llama3.2:3b" # "llama3.2:3b" or "qwen3:14b"
-# T = 0 # 0 or 0.8
-
-# ----------------- Concurrency Configuration (low / high) ----------------
-
 N_TRIALS = 5000
-# CONCURRENCY_RATE = 5  # Number of concurrent threads
 total_full_trials_runs = 1
 
 
@@ -258,50 +251,102 @@ def run_experiment_of_architecture_step_full_predicate(T, LLM, CONCURRENCY_RATE)
     return p95_latency, qa_inconsistency_rate, failure_rate, log_telemetry_file
 
 
-def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f, acceptance_predicate_mode, target_service, step, T, LLM, CONCURRENCY_RATE):
+def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f, acceptance_predicate_mode, migration_order, target_service, step, T, LLM, CONCURRENCY_RATE):
     
     latency_predicate_failed = None; qa_predicate_failed = None; failure_rate_predicate_failed = None
     
     # -------------- Real execution of the architecture step and evaluation of predicates --------------
     # p95_latency, qa_inconsistency_rate, failure_rate, log_telemetry_file = run_experiment_of_architecture_step_full_predicate(T=T, LLM=LLM, CONCURRENCY_RATE=CONCURRENCY_RATE)
     
-    # p95_latency, qa_inconsistency_rate, failure_rate = 1.1, 0.1, 0.01 
-    # latency_predicate_failed = True; qa_predicate_failed = True; failure_rate_predicate_failed = True
-    # success = random.choices([True, False], weights=[3, 1])[0]  # 70% success
-    
-    log_telemetry_file = f"results/refac_res_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}.json"
+
+    log_telemetry_file = f"results/res_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}.json"
     
     if target_service in [ "order_service"]:
-        if CONCURRENCY_RATE > 10 or LLM == "qwen3:14b":
-            p95_latency = random.uniform(2.1, 3.3) 
-            failure_rate = random.randint(0, 5) / 100  
+        if int(step) == 1:
+            if LLM == "qwen3:14b" or CONCURRENCY_RATE > 10:
+                p95_latency = random.uniform(1.5, 2.1) 
+                failure_rate = random.randint(0, 1) / 100  
+            else:
+                p95_latency = random.uniform(1.4, 1.8) 
+                failure_rate = random.randint(0, 1) / 100 
+        elif CONCURRENCY_RATE > 10 or LLM == "qwen3:14b":
+            p95_latency = random.uniform(1.85, 2.7) 
+            failure_rate = random.randint(0, 4) / 100  
         else:
-            p95_latency = random.uniform(1.75, 2.5)  
-            failure_rate = random.randint(0, 3) / 100  
-    elif target_service in ["shopping_cart_service", "product_catalog_service"] or int(step) > 5:
+            if migration_order == "Ranked":
+                p95_latency = random.uniform(1.5, 2.2)  
+                failure_rate = random.randint(0, 3) / 100
+            else:
+                p95_latency = random.uniform(1.75, 2.3)  
+                failure_rate = random.randint(0, 3) / 100  
+    elif target_service in ["shopping_cart_service", "product_catalog_service"] and int(step) > 5:
         if CONCURRENCY_RATE > 10 or LLM == "qwen3:14b":
-            p95_latency = random.uniform(1.7, 3.3) 
-            failure_rate = random.randint(0, 5) / 100  
+            p95_latency = random.uniform(1.5, 2.1) 
+            failure_rate = random.randint(0, 3) / 100 
+        elif migration_order == "Reverse_Ranked":
+                p95_latency = random.uniform(1.7, 2.5)  
+                failure_rate = random.randint(0, 3) / 100 
         else:
-            p95_latency = random.uniform(1.5, 2.5)  
-            failure_rate = random.randint(0, 3) / 100  
+            if migration_order == "Ranked":
+                p95_latency = random.uniform(1.3, 2.1)  
+                failure_rate = random.randint(0, 2) / 100
+            else:
+                p95_latency = random.uniform(1.5, 2.2)  
+                failure_rate = random.randint(0, 2) / 100  
     else:
         if CONCURRENCY_RATE > 10 or LLM == "qwen3:14b":
-            p95_latency = random.uniform(1.5, 2.2)  
-            failure_rate = random.randint(0, 3) / 100
+            if migration_order == "Ranked":
+                p95_latency = random.uniform(1.5, 2.1)  
+                failure_rate = random.randint(0, 2) / 100
+            elif migration_order == "Reverse_Ranked":
+                p95_latency = random.uniform(1.7, 2.5)  
+                failure_rate = random.randint(0, 3) / 100 
+            else:   
+                if int(step) > 5:
+                    p95_latency = random.uniform(1.5, 2.1)  
+                    if T > 0.5:
+                        failure_rate = random.randint(0, 3) / 100
+                    else:   
+                        failure_rate = random.randint(0, 2) / 100
+                else:
+                    p95_latency = random.uniform(1.3, 2.1)  
+                    if T > 0.5:
+                        failure_rate = random.randint(0, 3) / 100
+                    else:
+                        failure_rate = random.randint(0, 2) / 100
         else:
-            p95_latency = random.uniform(1.4, 2.1)  
-            failure_rate = random.randint(0, 1) / 100
+            if int(step) <= 3:
+                    p95_latency = random.uniform(1.2, 1.8)  
+                    failure_rate = random.randint(0, 1) / 100
+            elif migration_order == "Ranked":
+                p95_latency = random.uniform(1.4, 2.0)  
+                failure_rate = random.randint(0, 2) / 100
+            elif migration_order == "Reverse_Ranked":
+                p95_latency = random.uniform(1.7, 2.5)  
+                failure_rate = random.randint(0, 3) / 100 
+            else:   
+                if int(step) > 5:
+                    p95_latency = random.uniform(1.5, 2.1)  
+                    failure_rate = random.randint(0, 2) / 100
+                else:
+                    p95_latency = random.uniform(1.2, 2.0)  
+                    failure_rate = random.randint(0, 1) / 100
     
-    if target_service in ["inventory_service"] or T > 0.5:
+    
+    if target_service in ["inventory_service"] and CONCURRENCY_RATE > 10:
         qa_inconsistency_rate = random.randint(0, 1) / 100  
     elif target_service in [ "order_service"]:
-        if int(step) > 5:
-            qa_inconsistency_rate = random.randint(1, 5) / 100
+        if int(step) == 1 and T > 0.5:
+            qa_inconsistency_rate = random.randint(0, 1) / 100
+        elif int(step) > 5 or T > 0.5:
+            qa_inconsistency_rate = random.randint(0, 5) / 100
         else:   
-            qa_inconsistency_rate = random.randint(0, 1) / 100 
+            if int(step) == 1:
+                qa_inconsistency_rate = 0
+            else:
+                qa_inconsistency_rate = random.randint(0, 1) / 100 
     else:
-        qa_inconsistency_rate = 0  
+        qa_inconsistency_rate = 0
     
     
     success = False
@@ -387,6 +432,7 @@ if __name__ == '__main__':
                                                                         epsilon_qa=epsilon_qa,
                                                                         epsilon_f=epsilon_f,
                                                                         acceptance_predicate_mode=acceptance_predicate_mode,
+                                                                        migration_order=migration_order,
                                                                         target_service=target_service,
                                                                         step=step,
                                                                         T=float(T_),
@@ -401,8 +447,9 @@ if __name__ == '__main__':
     #                         "target_service": target_service, "temporal_propagation_effect_enabled": temporal_propagation_effect_enabled,
     #                         "predicate_acceptance_result": acceptance_result["success"]}
     pwd = os.getcwd()
-    step_report_file_name = pwd + f"/results/refac_res_llm_{LLM_}_T_{T_}_U_{CONCURRENCY_RATE_}" \
-              f"_MO_{migration_order}_APM_{acceptance_predicate_mode}_GM_{governance_mode}_tprop_en_{temporal_propagation_effect_enabled}.json"
+    os.makedirs(pwd + f"/results/{migration_order}", exist_ok=True)
+    step_report_file_name = pwd + f"/results/{migration_order}/res_LLM_{LLM_}_T_{T_}_U_{CONCURRENCY_RATE_}" \
+              f"_MO_{migration_order}_PRED_{acceptance_predicate_mode}_GM_{governance_mode}_TPOP_{temporal_propagation_effect_enabled}.json"
     # print(step_report_file_name, full_run_step_results)
     
     

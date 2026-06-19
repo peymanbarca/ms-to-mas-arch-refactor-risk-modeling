@@ -128,7 +128,8 @@ class PostActionAdjudicator:
         if mode == AdjudicationMode.NO_GOVERNANCE:
             # No human intervention
             decision = bool(metrics.predicate_overall_result)
-            return decision, "auto_decision_no_governance", evidence_summary, prediction_category
+            prediction_category = "auto_predicate_decision_no_governance"
+            return decision, "auto_predicate_decision_no_governance", evidence_summary, prediction_category
         
         elif mode == AdjudicationMode.SELECTIVE:
             # Only intervene on rejections
@@ -151,7 +152,7 @@ class PostActionAdjudicator:
                     
                     # auto reject without human intervention for selective mode
                     prediction_category = "true_rejection"
-                    return False, "rejected_by_predicate", evidence_summary, prediction_category
+                    return False, "true_rejected_by_predicate", evidence_summary, prediction_category
             else:
                 # Predicate accepted - auto-accept
                 is_false_acceptance, violation_reason = self._check_false_acceptance(metrics)
@@ -162,7 +163,7 @@ class PostActionAdjudicator:
                     return True, f"accepted_by_predicate_auto_pass_potential_false_acceptance_{violation_reason}", evidence_summary, prediction_category
                 else:
                     prediction_category = "true_acceptance"
-                    return True, "accepted_by_predicate_auto_pass", evidence_summary, prediction_category
+                    return True, "true_accepted_by_predicate_auto_pass", evidence_summary, prediction_category
         
         elif mode == AdjudicationMode.COMPREHENSIVE:
             # Intervene on both rejections and acceptances
@@ -184,7 +185,7 @@ class PostActionAdjudicator:
 
                     # auto reject without human intervention
                     prediction_category = "true_rejection"
-                    return False, "rejected_by_predicate", evidence_summary, prediction_category
+                    return False, "true_rejected_by_predicate", evidence_summary, prediction_category
             else:
                 # Predicate accepted - automated check for false acceptance
                 is_false_acceptance, violation_reason = self._check_false_acceptance(metrics)
@@ -212,7 +213,7 @@ class PostActionAdjudicator:
                     # )
                     # return human_decision, decision_type, evidence_summary
                     prediction_category = "true_acceptance"
-                    return True, "accepted_by_predicate_auto_pass", evidence_summary, prediction_category
+                    return True, "true_accepted_by_predicate_auto_pass", evidence_summary, prediction_category
 
         # Default fallback
         return bool(metrics.predicate_overall_result), "fallback_decision", evidence_summary, prediction_category
@@ -556,7 +557,7 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
     target_service = details.get("target_service", None)
     total_trials = details.get("total_trials", 5000)
     if log_telemetry_file:
-        print(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
+        # print(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
         try:
             with open(log_telemetry_file, "r") as f:
                 log_data = json.load(f)
@@ -568,7 +569,7 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
             pass
             
     
-    if target_service and target_service in ["order_service"]:
+    if target_service and target_service in ["order_service", "product_catalog_service"]:
         return random.uniform(0.25, 0.8) *  total_trials  # likely sustained
     else:
-        return random.uniform(0.1, 0.5) * total_trials  # → likely transient  
+        return random.uniform(0.1, 0.3) * total_trials  # → likely transient  
