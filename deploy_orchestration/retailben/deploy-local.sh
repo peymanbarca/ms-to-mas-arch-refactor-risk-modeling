@@ -52,7 +52,7 @@ for pair in "${AGENT_LIST[@]}"; do
 done
 
 # Optional: small delay to release ports
-sleep 1
+# sleep 0.1
 
 # echo "Starting services..."
 

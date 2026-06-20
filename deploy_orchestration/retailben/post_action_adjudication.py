@@ -126,10 +126,23 @@ class PostActionAdjudicator:
         prediction_category = None
         
         if mode == AdjudicationMode.NO_GOVERNANCE:
-            # No human intervention
+            # No human intervention, just evaluate to find predicate f1 score
+            is_false_rejection, override_reason = self._check_false_rejection(metrics)
+            is_false_acceptance, violation_reason = self._check_false_acceptance(metrics)
+
             decision = bool(metrics.predicate_overall_result)
             prediction_category = "auto_predicate_decision_no_governance"
-            return decision, "auto_predicate_decision_no_governance", evidence_summary, prediction_category
+            decision_type = "auto_predicate_decision_no_governance"
+            if is_false_rejection:
+                decision_type += "_but_false_rejection" 
+            elif is_false_acceptance:
+                decision_type += "_but_false_acceptance"
+            else: 
+                if not metrics.predicate_overall_result:
+                    decision_type += "_true_rejected_by_predicate"
+                else:
+                    decision_type += "_true_accepted_by_predicate"
+            return decision, decision_type, evidence_summary, prediction_category
         
         elif mode == AdjudicationMode.SELECTIVE:
             # Only intervene on rejections

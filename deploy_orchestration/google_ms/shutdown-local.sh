@@ -49,7 +49,7 @@ for pair in "${AGENT_LIST[@]}"; do
 done
 
 
-cd ../.. && rm *.log
+cd ../.. && rm -f *.log
 
 # Graceful shutdown on CTRL+C
 trap "echo 'Stopping all...'; kill 0" SIGINT

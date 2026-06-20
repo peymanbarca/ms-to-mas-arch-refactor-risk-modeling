@@ -12,7 +12,7 @@
 #
 
 
-echo "Parsing arguments..."
+# echo "Parsing arguments..."
 
 for arg in "$@"; do
   case $arg in
@@ -36,7 +36,7 @@ kill_port () {
   fi
 }
 
-echo "Cleaning ports..."
+# echo "Cleaning ports..."
 
 # Kill service ports
 IFS=',' read -ra SVC_LIST <<< "$SERVICES"
@@ -55,18 +55,18 @@ for pair in "${AGENT_LIST[@]}"; do
 done
 
 # Optional: small delay to release ports
-sleep 1
+# sleep 0.1
 
-echo "Starting services..."
+# echo "Starting services..."
 
-cd ../.. && rm *.log
+cd ../.. && rm -f *.log
 
 for pair in "${SVC_LIST[@]}"; do
   NAME="${pair%%:*}"
   PORT="${pair##*:}"
   PORT_REST=$((PORT + 1000)) # Assuming REST port is 1000 more than gRPC port
 
-  echo "Running service: $NAME on port $PORT, Swagger UI: http://localhost:$PORT_REST/docs"
+  # echo "Running service: $NAME on port $PORT, Swagger UI: http://localhost:$PORT_REST/docs"
 #   if [ "$NAME" == "ad_service" ]; then
 #      nohup python3 -m ms_baseline.google_ms.adservice.adservice >& ad_service.log &
 #   elif [ "$NAME" == "cart_service" ]; then
@@ -93,14 +93,14 @@ done
 
 
 
-echo "Starting agents..."
+# echo "Starting agents..."
 
 for pair in "${AGENT_LIST[@]}"; do
   NAME="${pair%%:*}"
   PORT="${pair##*:}"
   PORT_REST=$((PORT + 1000)) # Assuming REST port is 1000 more than gRPC port
 
-  echo "Running agent: $NAME on port $PORT, Swagger UI: http://localhost:$PORT_REST/docs"
+  # echo "Running agent: $NAME on port $PORT, Swagger UI: http://localhost:$PORT_REST/docs"
 #   if [ "$NAME" == "ad_agent" ]; then
 #      nohup python3 -m refactored_architecture.google_ms.adagent.adagent_as_service >& ad_agent.log &
 #   elif [ "$NAME" == "cart_agent" ]; then

@@ -1,9 +1,6 @@
-import random
 import subprocess
 import json
 import time
-
-import tqdm
 from post_action_adjudication import (
     PostActionAdjudicator,
     AdjudicationMode,
@@ -12,58 +9,57 @@ from post_action_adjudication import (
 )
 
 
+import random
+import tqdm
+
+
 # --------------------------------- Migration Strategy ---------------------------
 
-fanout = [["pricing_service:8003", 0],
-           ["product_catalog_service:8008", 2],
-           ["inventory_service:8001", 1],
-           ["shopping_cart_service:8003", 0],
-           ["payment_service:8007", 1], 
-           ["order_service:8000", 6],
-           ["subscription_service:8010", 1],
-           ["procurement_service:8009", 1],
-           ["shipment_service:8006", 1], 
-        #    ["notification_service:8011", 1]
+fanout = [["currency_service:5053", 0],
+           ["product_catalog_service:5055", 0],
+           ["ad_service:5057", 0],
+           ["cart_service:5054", 0],
+           ["recommendation_service:5058", 1], 
+           ["shipping_service:5051", 1],
+           ["email_service:5056", 1],
+           ["payment_service:5052", 1],
+           ["checkout_service:5050", 6]
            ]
 
-bc = [["pricing_service:8003", 0],
-           ["product_catalog_service:8008", 0.05],
-           ["inventory_service:8001", 0.22],
-           ["shopping_cart_service:8003", 0],
-           ["payment_service:8007", 0], 
-           ["order_service:8000", 0.7],
-           ["subscription_service:8010", 0.016],
-           ["procurement_service:8009", 0],
-           ["shipment_service:8006", 0], 
-        #    ["notification_service:8011", 0]
+bc = [["currency_service:5053", 0],
+           ["product_catalog_service:5055", 0],
+           ["ad_service:5057", 0],
+           ["cart_service:5054", 0],
+           ["recommendation_service:5058", 0], 
+           ["shipping_service:5051", 0],
+           ["email_service:5056", 0],
+           ["payment_service:5052", 0],
+           ["checkout_service:5050", 0.56]
            ]
 
-c_cyc = [["pricing_service:8003", 10],
-           ["product_catalog_service:8008", 22],
-           ["inventory_service:8001", 10],
-           ["shopping_cart_service:8003", 18],
-           ["payment_service:8007", 10], 
-           ["order_service:8000", 16],
-           ["subscription_service:8010", 12],
-           ["procurement_service:8009", 36],
-           ["shipment_service:8006", 33], 
-        #    ["notification_service:8011", 11]
+c_cyc = [["currency_service:5053", 8],
+           ["product_catalog_service:5055", 12],
+           ["ad_service:5057", 17],
+           ["cart_service:5054", 17],
+           ["recommendation_service:5058", 16], 
+           ["shipping_service:5051", 21],
+           ["email_service:5056", 23],
+           ["payment_service:5052", 41],
+           ["checkout_service:5050", 65]
            ]
 
 
 
-c_cog = [["pricing_service:8003", 8],
-           ["product_catalog_service:8008", 18],
-           ["inventory_service:8001", 14],
-           ["shopping_cart_service:8003", 14],
-           ["payment_service:8007", 6], 
-           ["order_service:8000", 28],
-           ["subscription_service:8010", 10],
-           ["procurement_service:8009", 26],
-           ["shipment_service:8006", 30], 
-        #    ["notification_service:8011", 4]
+c_cog = [["currency_service:5053", 4],
+           ["product_catalog_service:5055", 6],
+           ["ad_service:5057", 14],
+           ["cart_service:5054", 17],
+           ["recommendation_service:5058", 12], 
+           ["shipping_service:5051", 14],
+           ["email_service:5056", 25],
+           ["payment_service:5052", 36],
+           ["checkout_service:5050", 50]
            ]
-
 
 w_fanout = 0.2
 w_bc = 0.2
@@ -81,32 +77,32 @@ for i in range(len(fanout)):
                  w_t_prop * 0
     service_risk_scores.append([fanout[i][0], risk_score])
 
-# ranked services )
+# print("service_risk_scores: ",  service_risk_scores)
+
+# ranked services 
 ranked_services = [
-    # ["notification_service:8011", x[1] for x in service_risk_scores if x[0] == "notification_service:8011"][0]],
-    ["pricing_service:8003", [x[1] for x in service_risk_scores if x[0] == "pricing_service:8003"][0]],
-    ["payment_service:8007", [x[1] for x in service_risk_scores if x[0] == "payment_service:8007"][0]],
-    ["shopping_cart_service:8003", [x[1] for x in service_risk_scores if x[0] == "shopping_cart_service:8003"][0]],
-    ["subscription_service:8010", [x[1] for x in service_risk_scores if x[0] == "subscription_service:8010"][0]],
-    ["inventory_service:8001", [x[1] for x in service_risk_scores if x[0] == "inventory_service:8001"][0]],
-    ["product_catalog_service:8008", [x[1] for x in service_risk_scores if x[0] == "product_catalog_service:8008"][0]],
-    ["procurement_service:8009", [x[1] for x in service_risk_scores if x[0] == "procurement_service:8009"][0]],
-    ["shipment_service:8006", [x[1] for x in service_risk_scores if x[0] == "shipment_service:8006"][0]],
-    ["order_service:8000", [x[1] for x in service_risk_scores if x[0] == "order_service:8000"][0]],
+    ["currency_service:5053", [x[1] for x in service_risk_scores if x[0] == "currency_service:5053"][0]],
+    ["product_catalog_service:5055", [x[1] for x in service_risk_scores if x[0] == "product_catalog_service:5055"][0]],
+    ["ad_service:5057", [x[1] for x in service_risk_scores if x[0] == "ad_service:5057"][0]],
+    ["cart_service:5054", [x[1] for x in service_risk_scores if x[0] == "cart_service:5054"][0]],
+    ["recommendation_service:5058", [x[1] for x in service_risk_scores if x[0] == "recommendation_service:5058"][0]],
+    ["shipping_service:5051", [x[1] for x in service_risk_scores if x[0] == "shipping_service:5051"][0]],
+    ["email_service:5056", [x[1] for x in service_risk_scores if x[0] == "email_service:5056"][0]],
+    ["payment_service:5052", [x[1] for x in service_risk_scores if x[0] == "payment_service:5052"][0]],
+    ["checkout_service:5050", [x[1] for x in service_risk_scores if x[0] == "checkout_service:5050"][0]],
 ]
 
 # reverse-ranked services
 reverse_ranked_services = [
-    ["order_service:8000", [x[1] for x in service_risk_scores if x[0] == "order_service:8000"][0]],
-    ["shipment_service:8006", [x[1] for x in service_risk_scores if x[0] == "shipment_service:8006"][0]],
-    ["procurement_service:8009", [x[1] for x in service_risk_scores if x[0] == "procurement_service:8009"][0]],
-    ["product_catalog_service:8008", [x[1] for x in service_risk_scores if x[0] == "product_catalog_service:8008"][0]],
-    ["inventory_service:8001", [x[1] for x in service_risk_scores if x[0] == "inventory_service:8001"][0]],
-    ["subscription_service:8010", [x[1] for x in service_risk_scores if x[0] == "subscription_service:8010"][0]],
-    ["shopping_cart_service:8003", [x[1] for x in service_risk_scores if x[0] == "shopping_cart_service:8003"][0]],
-    ["payment_service:8007", [x[1] for x in service_risk_scores if x[0] == "payment_service:8007"][0]],
-    ["pricing_service:8003", [x[1] for x in service_risk_scores if x[0] == "pricing_service:8003"][0]],
-    # ["notification_service:8011", [x[1] for x in service_risk_scores if x[0] == "notification_service:8011"][0]]
+    ["checkout_service:5050",[x[1] for x in service_risk_scores if x[0] == "checkout_service:5050"][0]],
+    ["payment_service:5052", [x[1] for x in service_risk_scores if x[0] == "payment_service:5052"][0]],
+    ["email_service:5056", [x[1] for x in service_risk_scores if x[0] == "email_service:5056"][0]],
+    ["shipping_service:5051", [x[1] for x in service_risk_scores if x[0] == "shipping_service:5051"][0]],
+    ["recommendation_service:5058", [x[1] for x in service_risk_scores if x[0] == "recommendation_service:5058"][0]],
+    ["cart_service:5054", [x[1] for x in service_risk_scores if x[0] == "cart_service:5054"][0]],
+    ["ad_service:5057", [x[1] for x in service_risk_scores if x[0] == "ad_service:5057"][0]],
+    ["product_catalog_service:5055", [x[1] for x in service_risk_scores if x[0] == "product_catalog_service:5055"][0]],
+    ["currency_service:5053", [x[1] for x in service_risk_scores if x[0] == "currency_service:5053"][0]],
 ]
 
 # random-ranked services 
@@ -151,23 +147,22 @@ complexity_ranked_services = [[s[0], s[1]] for s in sorted(service_risk_scores3,
 
 # mapping service -> agent
 service_to_agent = {
-    "inventory_service:8001": "inventory_agent:8001",
-    "order_service:8000": "order_agent:8000",
-    "payment_service:8007": "payment_agent:8007",
-    "shipment_service:8006": "shipment_agent:8006",
-    "shopping_cart_service:8003": "shopping_cart_agent:8003",
-    "product_catalog_service:8008": "product_catalog_agent:8008",
-    "pricing_service:8003": "pricing_agent:8003",
-    "subscription_service:8010": "subscription_agent:8010",
-    "procurement_service:8009": "procurement_agent:8009",
-    # "notification_service:8011": "notification_agent:8011"
+    "checkout_service:5050": "checkout_agent:5050",
+    "payment_service:5052": "payment_agent:5052",
+    "email_service:5056": "email_agent:5056",
+    "shipping_service:5051": "shipping_agent:5051",
+    "recommendation_service:5058": "recommendation_agent:5058",
+    "cart_service:5054": "cart_agent:5054",
+    "ad_service:5057": "ad_agent:5057",
+    "product_catalog_service:5055": "product_catalog_agent:5055",
+    "currency_service:5053": "currency_agent:5053",
 }
 
 # -------------------------- Apply ranking strategy -------------------------
 migration_order_strategy = "Complexity_Based" # ["Ranked", "Reverse_Ranked", "Random", "Dependency_Based", "Complexity_Based"]
 
 if migration_order_strategy == "Ranked":
-    current_services_with_scores = ranked_services.copy() 
+    current_services_with_scores = ranked_services.copy()
 elif migration_order_strategy == "Reverse_Ranked":
     current_services_with_scores = reverse_ranked_services.copy()
 elif migration_order_strategy == "Random":
@@ -185,6 +180,7 @@ acceptance_predicate_modes =  ["Full", "Latency-Only", "Failure-Only", "QA-Only"
 # --------------------------------- Governance Mechanism  ---------------------------
 governance_policies = ["No", "Post-Audit-Selective-Only", "Post-Audit-Comprehensive"]
 
+
 # Initialize the Post-Action Adjudicator with custom criteria
 adjudication_criteria = AdjudicationCriteria(
     delta_qa=0,  # tolerance on QA inconsistency rate
@@ -195,25 +191,21 @@ adjudication_criteria = AdjudicationCriteria(
 )
 post_action_adjudicator = PostActionAdjudicator(adjudication_criteria)
 
-
 temporal_propagation_enabled = False
 temporal_propagation_dependency_influence_weight = {
-    "subscription_service->order_service": 0.5,
-    "pricing_service->product_catalog_service": 0.5,
-    "pricing_service->order_service": 0.5,
-    "inventory_service->product_catalog_service": 0.5,
-    "inventory_service->order_service": 0.5,
-    "payment_service->order_service": 0.5,
-    "payment_service->subscription_service": 0.5,
-    "procurement_service->inventory_service": 0.3,
-    "shipment_service->order_service": 0.5,
-    "notification_service->order_service": 0.5,
+    "product_catalog_service->checkout_service": 0.5,
+    "product_catalog_service->recommendation_service": 1,
+    "cart_service->checkout_service": 0.5,
+    "currency_service->checkout_service": 0.5,
+    "payment_service->checkout_service": 0.5,
+    "shipping_service->checkout_service": 0.5,
+    "email_service->checkout_service": 0.5,
 }
 
 
 # ----------------- RUNTIME Configurations ----------------
 LLM = ["llama3.2:3b", "qwen3:14b"] # "llama3.2:3b" or "qwen3:14b"
-T = [0.0, 0.8] # 0 or 0.8
+T = [0, 0.8] # 0 or 0.8
 CONCURRENCY_RATE = [5, 25] # 5 or 25 concurrent requests
 
 
@@ -285,18 +277,19 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         epsilon_qa = -1
 
     step_result = subprocess.run(
-        ["python3", "exp_runner_auto.py",
+        ["python3", "-m", "refactored_architecture.google_ms.exp_runner_auto",
          migration_order,
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
-         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy),
-         str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled), 
+         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy), 
+         str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled),
          str(migration_sorting_strategy_services), str(T), str(LLM), str(CONCURRENCY_RATE)
-         ],
-        cwd="../../refactored_architecture/retailben",
+        ],
+        cwd="../..",
         capture_output=True,
-        text=True
+        text=True,
+        check=True  # Raise exception if subprocess fails
     )
-
+    
     # Debug output
     # if step_result.stdout.strip():
     #     print(f"Raw experiment output for step {step_num}:", step_result.stdout.strip())
@@ -314,8 +307,8 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         raise ValueError(f"Invalid JSON output from experiment: {e}")
     
     # print(f"Experiment output for step {step_num}:", step_result_parsed)
-
     # acceptance_result = step_result_parsed["result"]
+    # step_self_temporal_propagation = step_result_parsed.get("step_self_temporal_propagation", 0)
 
 
     # ============================================================================
@@ -352,8 +345,8 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         step_self_temporal_propagation = step_result_parsed.get("step_self_temporal_propagation", 0)
     step_report_file_name = step_result_parsed.get("step_report_file_name", None)
 
-        
-    # Extract execution metrics from step result
+
+   # Extract execution metrics from step result
     execution_metrics = create_execution_metrics_from_step_result(
         step_result=step_result_parsed,
         step_number=step_num,
@@ -397,6 +390,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
 
 # ---- Main Refactoring LOOP ----
 
+subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
     
 def init_conditions():
     subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
