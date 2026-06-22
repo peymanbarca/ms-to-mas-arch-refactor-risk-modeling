@@ -126,7 +126,7 @@ def total_best_avg_same_baseline_compare():
 def most_representative_results_for_each_runtime_cond():
     
     for LLM in ["llama3.2:3b", "qwen3:14b"]:
-        for T in [0.0, 0.8]:
+        for T in [0, 0.8]:
             for C in [5, 25]:
                 all_results_runtime = []
 

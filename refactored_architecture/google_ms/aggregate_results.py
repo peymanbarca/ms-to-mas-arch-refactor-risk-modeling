@@ -92,7 +92,7 @@ for file in os.listdir(pwd + '/results/Dependency_Based'):   # Ranked, Reverse_R
     if file.endswith('.json'):
         results_file = os.path.join(pwd + '/results/Dependency_Based', file)
         results = analyze_results(results_file)
-        print(json.dumps(results, indent=4))
+        # print(json.dumps(results, indent=4))
         final_results.append(results)
 
 print(len(final_results))
