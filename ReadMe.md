@@ -81,6 +81,7 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
 
     # the full evaluation results will be gathered in ms_baseline/retailben/results folder.
 
+-----------------------------
 
 
 ## Running migration loops for all baselines, by deployment of hybrid architectures (at each migration step) and gather step-wise and complete metrics 
@@ -140,4 +141,22 @@ For each migration step for each of baselines, the target hybrid architecture is
     # analyze all aggregated results, to find the best, worst, selective strategy
     python3 analyze_results.py
 
+
+--------------------------
+
+
 ### Run Explainability, Robustness and Tuning experiments
+
+
+#### Explainability analysis with weights ablation
+
+
+#### Explainability with Shapley-based perturbation
+
+
+#### Robustness analysis with weights sampling and Monte Carlo simulation
+
+
+#### Optimization analysis with weights tuning
+
+

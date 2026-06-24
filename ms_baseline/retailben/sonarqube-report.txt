@@ -11,31 +11,3 @@ If you find that a specific microservice has a higher cognitive complexity than 
 
 
 
------------------------- Cognitive Complexity
-
-exp_runner.py 18
-inventory_service.py 47
-notification_service.py 4
-order_service.py 28
-payment_service.py 0
-pricing_service.py 19
-procurement_service.py 4
-product_search_service.py 11
-shipment_service.py 3
-shopping_cart_service.py 10
-subscription_service.py 4
-
-
------------------------- Cyclomatic Complexity
-
-exp_runner.py 22
-inventory_service.py 32
-notification_service.py 11
-order_service.py 15
-payment_service.py 2
-pricing_service.py 14
-procurement_service.py 6
-product_search_service.py 12
-shipment_service.py 6
-shopping_cart_service.py 15
-subscription_service.py 14
