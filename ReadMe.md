@@ -1,7 +1,141 @@
-# Architecture Refactoring Microservice Systems To LLM-Based Multi-Agent Systems
+# Stabilizing Agentification (Architecture Refactoring) of Microservice Systems To LLM-Based Agentic-AI Systems
 
-## Microservice System Baseline:
+## Microservice System Benchmarks:
 
-- RetailBen
-- Google Online Boutique Microservices
-- DeathStarBench Social Network
+- **RetailBen** (ms_baseline/google_ms)
+- **Google Online Boutique Microservices** (ms_baseline/retailben)
+- **DeathStarBench Social Network** (ms_baseline/dsb_social)
+  
+  
+- (still working, not ready yet!) 
+
+----------------------------
+
+
+## AI Agents Implementation:
+
+All AI agents are implemented using Python, Langgraph framework, and communicating via Ollama server via API (local in our setup but can modified to a remote server) to use open sources LLMs, while can also use major AI vendors by API key (e.g., gemini, claude, openAI).
+
+For each microservice in each benchmark, an equivalent AI agent is implemented with the same database technology, DDD entities, communication interface (e.g., RESTful APIs, gRPC or thrift) are used for agents, and only the static functionality and logic of services converted as dynamic reasoning. Hence, the AI agents are pluggable in the system, so each component in the benchmarks can deployed either as service or AI agent.
+
+- **RetailBen** (refactored_architecture/google_ms)
+- **Google Online Boutique Microservices** (refactored_architecture/retailben)
+- **DeathStarBench Social Network** (still working, not ready yet!) 
+
+----------------------------
+
+# Prerequisite
+
+## Run Ollama server (locally / remote server)
+
+The ollama server should be installed first, then ready to be started and pull open sourced models:
+
+    systemctl start ollama
+    ollama pull llama3.2:3b
+    ollama pull qwen3:14b
+
+    # warm up (load the model in memory)
+    ollama run llama3.2:3b "Explain CAP theorem in 3 sentences."
+    ollama run qwen3:14b "Explain CAP theorem in 3 sentences."
+
+
+## Run local dockerized database
+
+- MongoDB: docker compose up -d mongodb redis
+- Redis: docker compose up -d mongodb redis
+
+----------------------------
+
+
+# Deploy architectures (Microservice or Hybrid with agents) and Run Experiments
+
+There is a **deploy-local.sh** script in the deploy_orchestration folder for each benchmark, which recieves the list of service (with ports) and agents to deploy each component as service or AI agent.  
+
+## Deployment of microservice baseline and gather metrics
+
+1-  **Google Online Boutique Microservices**
+
+    
+    # 1. Deploy locally
+
+    cd deploy_orchestration/google_ms
+    
+    ./deploy-local.sh services=ad_service:5057,cart_service:5054,checkout_service:5050,currency_service:5053,email_service:5056,payment_service:5052,product_catalog_service:5055,recommendation_service:5058,shipping_service:5051 agents=
+
+    # 2. Evaluate with workload and gather metrics
+    python3 -m ms_baseline.google_ms.exp_runner
+    
+    # the full evaluation results will be gathered in ms_baseline/google_ms/results folder.
+
+
+2-  **RetailBen**
+
+    
+    # 1. Deploy locally
+
+    cd deploy_orchestration/retailben
+    
+    ./deploy-local.sh services=payment_service:8007,inventory_service:8001,shipment_service:8006,shopping_cart_service:8003,pricing_service:8002,product_search_service:8008,procurement_service:8009,order_service:8000,subscription_service:8010,notification_service:8011 agents=
+
+    # 2. Evaluate with workload and gather metrics
+    cd ms_baseline/retailben
+    python3 exp_runner.py
+
+    # the full evaluation results will be gathered in ms_baseline/retailben/results folder.
+
+
+
+## Running migration loops for all baselines, by deployment of hybrid architectures (at each migration step) and gather step-wise and complete metrics 
+
+For each baseline migration cycle based on a ranking strategy, acceptability predicate mode, and governance mechanism, the outcome metrics should be gathered, and then be aggregated.
+
+
+### Run baselines migration loops
+
+Run full migration cycle for each baseline, by looping over model setting, temperature, concurrency levels, ranking strategy (here with equal weights of risk metrics), predicate mode and governance mode:
+
+1-  **Google Online Boutique Microservices**
+
+    
+    cd deploy_orchestration/google_ms
+    
+    python3 baseline_ablation_progressive_refactor_orchestrator.py
+
+    
+    # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy.
+
+
+2-  **RetailBen**
+
+    
+    cd deploy_orchestration/retailben
+    
+    python3 baseline_ablation_progressive_refactor_orchestrator.py
+
+    
+    # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy.
+
+
+### Aggregate and analyze baseline results
+
+1-  **Google Online Boutique Microservices**
+
+    cd refactored_architecture/google_ms
+
+    # aggregate all individual results for each ranking strategy
+    python3 aggregate_results.py
+
+    # analyze all aggregated results, to find the best, worst, selective strategy
+    python3 analyze_results.py
+
+2-  **RetailBen**
+
+    cd refactored_architecture/retailben
+
+    # aggregate all individual results for each ranking strategy
+    python3 aggregate_results.py
+
+    # analyze all aggregated results, to find the best, worst, selective strategy
+    python3 analyze_results.py
+
+### Run Explainability, Robustness and Tuning experiments

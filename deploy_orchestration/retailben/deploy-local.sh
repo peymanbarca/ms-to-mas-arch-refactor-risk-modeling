@@ -52,9 +52,9 @@ for pair in "${AGENT_LIST[@]}"; do
 done
 
 # Optional: small delay to release ports
-# sleep 0.1
+sleep 0.1
 
-# echo "Starting services..."
+echo "Starting services..."
 
 cd ../../ms_baseline/retailben && rm -f *.log
 
@@ -62,21 +62,21 @@ for pair in "${SVC_LIST[@]}"; do
   NAME="${pair%%:*}"
   PORT="${pair##*:}"
 
-  # echo "Running service: $NAME on port $PORT, Swagger UI: http://localhost:$PORT/docs"
-  #nohup python3 run_service.py "$NAME" "$PORT" >& "$NAME".log &
+  echo "Running service: $NAME on port $PORT, Swagger UI: http://localhost:$PORT/docs"
+  nohup python3 run_service.py "$NAME" "$PORT" >& "$NAME".log &
 done
 
 
 cd ../../refactored_architecture/retailben && rm -f *.log
 
-# echo "Starting agents..."
+echo "Starting agents..."
 
 for pair in "${AGENT_LIST[@]}"; do
   NAME="${pair%%:*}"
   PORT="${pair##*:}"
 
-  # echo "Running agent: $NAME on port $PORT, Swagger UI: http://localhost:$PORT/docs"
-  #nohup python3 run_as_service.py "$NAME" "$PORT" >& "$NAME".log &
+  echo "Running agent: $NAME on port $PORT, Swagger UI: http://localhost:$PORT/docs"
+  nohup python3 run_as_service.py "$NAME" "$PORT" >& "$NAME".log &
 done
 
 # Graceful shutdown on CTRL+C

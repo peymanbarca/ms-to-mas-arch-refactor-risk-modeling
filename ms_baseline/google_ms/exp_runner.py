@@ -56,7 +56,7 @@ from .shared import demo_pb2_grpc
 
 SEARCH_KEYWORD  = os.environ.get("SEARCH_KEYWORD",   "sunglass")
 ITEM_QTY        = int(os.environ.get("ITEM_QTY",     "2"))
-N_TRIALS        = int(os.environ.get("N_TRIALS",     "100"))
+N_TRIALS        = int(os.environ.get("N_TRIALS",     "5000"))
 MAX_WORKERS     = int(os.environ.get("MAX_WORKERS",  str(max(1, N_TRIALS // 10))))
 TOTAL_RUNS      = int(os.environ.get("TOTAL_RUNS",   "1"))
 DELAY           = float(os.environ.get("DELAY",      "0"))
