@@ -8,6 +8,8 @@ __pycache__/
 /alembic/script.py.mako
 *.html
 .sonar/
+refactored_architecture/google_ms/exp_runner_auto2.py
+refactored_architecture/retailben/exp_runner_auto2.py
 refactored_architecture/google_ms/results/*.json
 refactored_architecture/retailben/results/*.json
 refactored_architecture/dsb_social/results/*.json

@@ -2,12 +2,10 @@
 
 ## Microservice System Benchmarks:
 
-- **RetailBen** (ms_baseline/google_ms)
-- **Google Online Boutique Microservices** (ms_baseline/retailben)
-- **DeathStarBench Social Network** (ms_baseline/dsb_social)
-  
-  
-- (still working, not ready yet!) 
+- **RetailBen (ms_baseline/google_ms)
+- **[*Google Online Boutique Microservices](https://github.com/GoogleCloudPlatform/microservices-demo)** (ms_baseline/retailben)
+- **[DeathStarBench Social Network](https://github.com/delimitrou/DeathStarBench/tree/master/socialNetwork)** (ms_baseline/dsb_social)
+   
 
 ----------------------------
 
@@ -49,7 +47,7 @@ The ollama server should be installed first, then ready to be started and pull o
 
 # Deploy architectures (Microservice or Hybrid with agents) and Run Experiments
 
-There is a **deploy-local.sh** script in the deploy_orchestration folder for each benchmark, which recieves the list of service (with ports) and agents to deploy each component as service or AI agent.  
+There is a **deploy-local.sh** script in the deploy_orchestration folder for each benchmark, which receives the list of service (with ports) and agents to deploy each component as service or AI agent.  
 
 ## Deployment of microservice baseline and gather metrics
 
@@ -92,7 +90,11 @@ For each baseline migration cycle based on a ranking strategy, acceptability pre
 
 ### Run baselines migration loops
 
-Run full migration cycle for each baseline, by looping over model setting, temperature, concurrency levels, ranking strategy (here with equal weights of risk metrics), predicate mode and governance mode:
+Run full migration cycle for each baseline, by looping over model setting, temperature, concurrency levels, ranking strategy (here with equal weights of risk metrics), predicate mode and governance mode.
+
+For each migration step for each of baselines, the target hybrid architecture is deployed locally (internally using **deploy-local.sh** script explained before), the full multi-trial evaluation is performed and all outcome metrics are gathered), and then the architecture is shutdown (internally using shutdown-local.sh script besides deploy-local.sh) to be ready for next step. The full procedure is automated by these DevOps based scripts and be run for all migration cycles for each baseline, in each benchmark, by only running the **baseline_ablation_progressive_refactor_orchestrator.py** python script as below:
+
+
 
 1-  **Google Online Boutique Microservices**
 

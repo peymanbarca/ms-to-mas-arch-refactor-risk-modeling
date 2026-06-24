@@ -842,7 +842,7 @@ def serialize_trial(t: TrialResult) -> dict:
     }
 
 
-def full_trials_runner():
+def full_trials_runner(LLM, T, CONCURRENCY_RATE):
     # ── Clear log files ───────────────────────────────────────────────────────
     for log_path in LOG_FILES:
         os.makedirs(os.path.dirname(log_path), exist_ok=True)
@@ -850,7 +850,7 @@ def full_trials_runner():
             f.write("")
 
     output_file = (
-        os.path.dirname(__file__) + f"/results/ms_baseline_results_delay_{DELAY}_drop_{DROP_RATE}.json"
+        os.path.dirname(__file__) + f"/results/refactored_architecture_results_delay_{DELAY}_drop_{DROP_RATE}.json"
     )
     with open(output_file, "w") as f:
         f.write("")
