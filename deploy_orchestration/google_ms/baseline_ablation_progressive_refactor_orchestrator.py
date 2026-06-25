@@ -191,7 +191,7 @@ adjudication_criteria = AdjudicationCriteria(
 )
 post_action_adjudicator = PostActionAdjudicator(adjudication_criteria)
 
-temporal_propagation_enabled = False
+temporal_propagation_enabled = True
 temporal_propagation_dependency_influence_weight = {
     "product_catalog_service->checkout_service": 0.5,
     "product_catalog_service->recommendation_service": 1,

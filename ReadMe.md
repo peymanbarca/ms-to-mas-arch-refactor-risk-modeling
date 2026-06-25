@@ -145,18 +145,28 @@ For each migration step for each of baselines, the target hybrid architecture is
 --------------------------
 
 
-### Run Explainability, Robustness and Tuning experiments
+### Run Explainability (weights ablation + Shapley-based analysis to find contribution), Robustness (by Monte Carlo simulation with weights sampling from Dirichlet simplex distribution) and Tuning experiments (by grid search of weights to minimize total disturbances)
 
 
-#### Explainability analysis with weights ablation
 
 
-#### Explainability with Shapley-based perturbation
+1-  **Google Online Boutique Microservices**
 
+    cd deploy_orchestration/google_ms
+    
+    python3 weight_study_progressive_refactor_orchestrator.py
 
-#### Robustness analysis with weights sampling and Monte Carlo simulation
+    
+    # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy.
 
+2-  **RetailBen**
 
-#### Optimization analysis with weights tuning
+    cd deploy_orchestration/retailben
+    
+    python3 weight_study_progressive_refactor_orchestrator.py
+
+    
+    # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy.
+
 
 
