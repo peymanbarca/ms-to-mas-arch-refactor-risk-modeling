@@ -91,7 +91,9 @@ For each baseline migration cycle based on a ranking strategy, acceptability pre
 
 ### Run baselines migration loops
 
-Run full migration cycle for each baseline, by looping over model setting, temperature, concurrency levels, ranking strategy (here with equal weights of risk metrics), predicate mode and governance mode.
+**Run full migration cycle for each baseline, by looping over model size (x2), temperature (x2), concurrency levels (x2), ranking strategy (x6) (here with equal weights of risk metrics), predicate mode (x4) and governance mode (x3)**
+
+Hence there are total 576 full migration cycle experiments for each benchmark.
 
 For each migration step for each of baselines, the target hybrid architecture is deployed locally (internally using **deploy-local.sh** script explained before), the full multi-trial evaluation is performed and all outcome metrics are gathered), and then the architecture is shutdown (internally using shutdown-local.sh script besides deploy-local.sh) to be ready for next step. The full procedure is automated by these DevOps based scripts and be run for all migration cycles for each baseline, in each benchmark, by only running the **baseline_ablation_progressive_refactor_orchestrator.py** python script as below:
 
@@ -145,7 +147,7 @@ For each migration step for each of baselines, the target hybrid architecture is
 --------------------------
 
 
-### Run Explainability (weights ablation + Shapley-based analysis to find contribution), Robustness (by Monte Carlo simulation with weights sampling from Dirichlet simplex distribution) and Tuning experiments (by grid search of weights to minimize total disturbances)
+### Run Explainability (weights ablation (x7) + Shapley-based analysis (x32) to find contribution), Robustness (by Monte Carlo simulation with weights sampling from Dirichlet simplex distribution (x100)) and Tuning experiments (by grid search of weights to minimize total disturbances)
 
 
 
@@ -157,7 +159,7 @@ For each migration step for each of baselines, the target hybrid architecture is
     python3 weight_study_progressive_refactor_orchestrator.py
 
     
-    # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy.
+    # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy, then analyzed manually.
 
 2-  **RetailBen**
 
@@ -166,7 +168,7 @@ For each migration step for each of baselines, the target hybrid architecture is
     python3 weight_study_progressive_refactor_orchestrator.py
 
     
-    # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy.
+    # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy, then analyzed manually
 
 
 

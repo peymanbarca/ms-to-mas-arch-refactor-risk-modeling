@@ -861,4 +861,4 @@ def run_migration_loop():
 
 if __name__ == '__main__':
     print('------------')
-    # run_migration_loop()
+    run_migration_loop()
