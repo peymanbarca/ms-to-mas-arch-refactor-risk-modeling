@@ -2,9 +2,21 @@
 
 ## Microservice System Benchmarks:
 
-- **RetailBen (ms_baseline/google_ms)
-- **[*Google Online Boutique Microservices](https://github.com/GoogleCloudPlatform/microservices-demo)** (ms_baseline/retailben)
+- **RetailBen** (ms_baseline/retailben) (Own Designed)
+  
+  ![SDG](figures/RetailBen.drawio.png)
+
+-------------------
+
+- **[*Google Online Boutique Microservices](https://github.com/GoogleCloudPlatform/microservices-demo)** (ms_baseline/google_ms)
+  
+   ![SDG](figures/google-benchmark.drawio.png)
+
+------------------
+
 - **[DeathStarBench Social Network](https://github.com/delimitrou/DeathStarBench/tree/master/socialNetwork)** (ms_baseline/dsb_social)
+  
+   ![SDG](figures/DSB-social.drawio.png)
    
 
 ----------------------------
