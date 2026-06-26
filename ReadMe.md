@@ -28,9 +28,9 @@ All AI agents are implemented using Python, Langgraph framework, and communicati
 
 For each microservice in each benchmark, an equivalent AI agent is implemented with the same database technology, DDD entities, communication interface (e.g., RESTful APIs, gRPC or thrift) are used for agents, and only the static functionality and logic of services converted as dynamic reasoning. Hence, the AI agents are pluggable in the system, so each component in the benchmarks can deployed either as service or AI agent.
 
-- **RetailBen** (refactored_architecture/google_ms)
-- **Google Online Boutique Microservices** (refactored_architecture/retailben)
-- **DeathStarBench Social Network** (still working, not ready yet!) 
+- **RetailBen** (refactored_architecture/retailben)
+- **Google Online Boutique Microservices** (refactored_architecture/google_ms)
+- **DeathStarBench Social Network** (**still working, not ready yet!**) 
 
 ----------------------------
 
