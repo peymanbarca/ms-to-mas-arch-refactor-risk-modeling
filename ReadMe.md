@@ -39,8 +39,17 @@ The ollama server should be installed first, then ready to be started and pull o
 
 ## Run local dockerized database
 
-- MongoDB: docker compose up -d mongodb redis
-- Redis: docker compose up -d mongodb redis
+- MongoDB: 
+    ```
+    docker compose up -d mongodb
+    ```
+
+- Redis: 
+    ```
+    docker compose up -d redis
+    ```
+
+**Check default user/password/db_name that set here in codes respectively, thereafter.**
 
 ----------------------------
 
