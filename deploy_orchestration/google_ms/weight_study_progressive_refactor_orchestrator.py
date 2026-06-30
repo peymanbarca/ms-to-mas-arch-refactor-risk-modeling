@@ -531,8 +531,8 @@ temporal_propagation_dependency_influence_weight = {
 
 # ----------------- RUNTIME Configurations: most challenging ----------------
 LLM = ["llama3.2:3b"] # "llama3.2:3b"
-T = [0.8]
-CONCURRENCY_RATE = [25]
+T = [0.0, 0.8]
+CONCURRENCY_RATE = [20, 100] # concurrent requests
 
 
 # ---- HELPERS ----

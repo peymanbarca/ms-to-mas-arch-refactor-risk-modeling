@@ -19,7 +19,7 @@ fanout = [["pricing_service:8003", 0],
            ["inventory_service:8001", 1],
            ["shopping_cart_service:8003", 0],
            ["payment_service:8007", 1], 
-           ["order_service:8000", 6],
+           ["order_service:8000", 7],
            ["subscription_service:8010", 1],
            ["procurement_service:8009", 1],
            ["shipment_service:8006", 1], 
@@ -214,7 +214,7 @@ temporal_propagation_dependency_influence_weight = {
 # ----------------- RUNTIME Configurations ----------------
 LLM = ["llama3.2:3b", "qwen3:14b"] # "llama3.2:3b" or "qwen3:14b"
 T = [0.0, 0.8] # 0 or 0.8
-CONCURRENCY_RATE = [5, 25] # 5 or 25 concurrent requests
+CONCURRENCY_RATE = [20, 100] # concurrent requests
 
 
 # ---- HELPERS ----

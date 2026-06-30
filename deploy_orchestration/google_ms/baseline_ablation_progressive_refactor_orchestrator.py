@@ -205,8 +205,8 @@ temporal_propagation_dependency_influence_weight = {
 
 # ----------------- RUNTIME Configurations ----------------
 LLM = ["llama3.2:3b", "qwen3:14b"] # "llama3.2:3b" or "qwen3:14b"
-T = [0, 0.8] # 0 or 0.8
-CONCURRENCY_RATE = [5, 25] # 5 or 25 concurrent requests
+T = [0.0, 0.8] # 0 or 0.8
+CONCURRENCY_RATE = [20, 100] # concurrent requests
 
 
 # ---- HELPERS ----
