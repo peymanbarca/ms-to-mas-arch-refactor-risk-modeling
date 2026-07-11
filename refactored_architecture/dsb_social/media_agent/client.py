@@ -18,11 +18,11 @@ def make_client(host="127.0.0.1", port=9091):
 if __name__ == "__main__":
     client, transport = make_client()
     try:
-        for i in range(5):
+        for i in range(3):
             uid = client.ComposeMedia(
                 req_id=i,
                 media_types=["photo", "video"],
-                media_ids=[12, 23],
+                media_ids=[123, 234],
                 carrier={}
             )
             print(f"req_id={i}  ->  uid={uid}")

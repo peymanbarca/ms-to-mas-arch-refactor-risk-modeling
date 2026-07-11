@@ -75,7 +75,7 @@ def build_server(config: dict, port: int) -> TServer.TThreadedServer:
         host=post_host,
         port=post_port,
         size=16,
-        timeout_ms=5000,
+        timeout_ms=30000,
     )
 
     # ---- SocialGraphService client pool ----
@@ -89,7 +89,7 @@ def build_server(config: dict, port: int) -> TServer.TThreadedServer:
         host=graph_host,
         port=graph_port,
         size=16,
-        timeout_ms=5000,
+        timeout_ms=30000,
     )
 
     # ---- Tracer ----

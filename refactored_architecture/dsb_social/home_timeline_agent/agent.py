@@ -77,12 +77,12 @@ from langchain_ollama import ChatOllama
 
 import redis as redis_lib
 
-from thrift_pool import ThriftClientPool
+from .thrift_pool import ThriftClientPool
 
 logger = logging.getLogger("home-timeline-agent")
 
 # ── LLM ─────────────────────────────────────────────────────────────────────
-llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)
+llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
 
 # ── Redis key prefix ─────────────────────────────────────────────────────────
 _REDIS_KEY_PREFIX = "home-timeline:"   # home-timeline:<user_id>
@@ -208,6 +208,7 @@ Schema:
             "LLM reason_fanout_targets req_id=%d followers=%d mentions=%d",
             state["req_id"], len(followers), len(mentions),
         )
+        logger.info("LLM reason_fanout_targets for write home timeline:\n prompt=%r", prompt)
         response = await asyncio.to_thread(llm.invoke, prompt)
         raw      = response.text()
         in_tok   = response.usage_metadata.get("input_tokens",  0)
@@ -480,6 +481,8 @@ Schema:
             "LLM reason_paginate req_id=%d uid=%d start=%d stop=%d total=%d",
             state["req_id"], state["user_id"], start, stop, len(all_ids),
         )
+        logger.info("LLM reason_paginate for read home timeline:\n prompt=%r", prompt)
+
         response = await asyncio.to_thread(llm.invoke, prompt)
         raw      = response.text()
         in_tok   = response.usage_metadata.get("input_tokens",  0)

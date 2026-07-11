@@ -23,6 +23,7 @@ Downstream dependencies
 
 import logging
 from typing import Any
+import asyncio
 
 import opentracing
 from opentracing.ext import tags as ot_tags
@@ -226,10 +227,32 @@ class HomeTimelineHandler(HomeTimelineService.Iface):
     # Private — graph invocation
     # ==================================================================
 
-    def _run_graph(self, graph: Any, initial: dict, span, op_name: str, req_id: int) -> dict:
-        """Invoke a compiled LangGraph and translate failures into ServiceException."""
+    # def _run_graph(self, graph: Any, initial: dict, span, op_name: str, req_id: int) -> dict:
+    #     """Invoke a compiled LangGraph and translate failures into ServiceException."""
+    #     try:
+    #         return graph.invoke(initial)
+    #     except ServiceException:
+    #         span.set_tag("error", True)
+    #         raise
+    #     except Exception as exc:
+    #         logger.exception("%s graph failed req_id=%d", op_name, req_id)
+    #         span.set_tag("error", True)
+    #         raise ServiceException(
+    #             errorCode=ErrorCode.SE_THRIFT_HANDLER_ERROR,
+    #             message=f"{op_name} agent failed: {exc}",
+    #         )
+
+    def _run_graph(
+        self,
+        graph: Any,
+        initial: dict,
+        span,
+        op_name: str,
+        req_id: int,
+    ) -> dict:
+        """Invoke async LangGraph from synchronous Thrift handler."""
         try:
-            return graph.invoke(initial)
+            return asyncio.run(graph.ainvoke(initial))
         except ServiceException:
             span.set_tag("error", True)
             raise
@@ -240,7 +263,7 @@ class HomeTimelineHandler(HomeTimelineService.Iface):
                 errorCode=ErrorCode.SE_THRIFT_HANDLER_ERROR,
                 message=f"{op_name} agent failed: {exc}",
             )
-
+            
     # ==================================================================
     # Private — logging + tracing helpers
     # ==================================================================
