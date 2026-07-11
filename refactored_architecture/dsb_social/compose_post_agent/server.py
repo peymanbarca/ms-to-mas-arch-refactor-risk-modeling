@@ -126,7 +126,7 @@ def build_server(config: dict, port: int) -> TServer.TThreadedServer:
     tracer = init_tracer(config.get("jaeger", {}))
 
     ollama_cfg = config.get("ollama", {})
-    model_name = ollama_cfg.get("model", "qwen3:8b")
+    model_name = ollama_cfg.get("model", "llama3.2:3b")
     base_url = ollama_cfg.get("base_url", "http://localhost:11434")
     temperature = float(ollama_cfg.get("temperature", 0.0))
 

@@ -76,7 +76,7 @@ class ComposePostClient:
     Parameters
     ----------
     host, port      : service address
-    timeout_ms      : socket timeout ms    (default 10000 — ComposePost is slow)
+    timeout_ms      : socket timeout ms    (default 100000 — ComposePost is slow)
     max_retries     : connection attempts  (default 3)
     retry_delay     : seconds between retries (default 0.5)
     """
@@ -85,7 +85,7 @@ class ComposePostClient:
         self,
         host: str = "127.0.0.1",
         port: int = 9100,
-        timeout_ms: int = 10000,   # longer default — orchestrates many services
+        timeout_ms: int = 100000,   # longer default — orchestrates many services
         max_retries: int = 3,
         retry_delay: float = 0.5,
         req_id: int | None = None,
@@ -275,7 +275,7 @@ def main() -> None:
     )
     parser.add_argument("--host",    default="127.0.0.1")
     parser.add_argument("--port",    default=9100, type=int)
-    parser.add_argument("--timeout", default=10000, type=int)
+    parser.add_argument("--timeout", default=200000, type=int)
     parser.add_argument("--retries", default=3,     type=int)
     parser.add_argument("-v", "--verbose", action="store_true")
 

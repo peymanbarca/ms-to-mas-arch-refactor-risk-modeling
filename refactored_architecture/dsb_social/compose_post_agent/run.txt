@@ -1,7 +1,7 @@
-python3 -m ms_baseline.dsb_social.compose_post_service.server
+python3 -m refactored_architecture.dsb_social.compose_post_agent.server
 
-python3 -m ms_baseline.dsb_social.compose_post_service.client compose --username alice --user-id 2 --text "Hello world!"
+python3 -m refactored_architecture.dsb_social.compose_post_agent.client compose --username alice --user-id 2 --text "Hello world agent!"
 
-python3 -m ms_baseline.dsb_social.compose_post_service.client compose --username alice --user-id 2 --text "Check this out!" --media-ids 100 101 --media-types photo photo
+python3 -m refactored_architecture.dsb_social.compose_post_agent.client compose --username alice --user-id 2 --text "Check this out agent!" --media-ids 100 101 --media-types photo photo
 
-python3 -m ms_baseline.dsb_social.compose_post_service.client compose --username alice --user-id 2 --text "RT @bob great post" --post-type REPOST
+python3 -m refactored_architecture.dsb_social.compose_post_agent.client compose --username alice --user-id 2 --text "RT @bob great post agent" --post-type REPOST

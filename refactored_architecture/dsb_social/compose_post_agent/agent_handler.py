@@ -44,6 +44,7 @@ import logging
 import re
 import time
 from typing import Any, TypedDict
+import asyncio
 
 import opentracing
 from opentracing.ext import tags as ot_tags
@@ -97,6 +98,10 @@ class ComposePostState(TypedDict, total=False):
     next_action: str
     history: list[dict]
     done: bool
+    
+    total_input_tokens: int
+    total_output_tokens: int
+    total_llm_calls: int
 
 
 class ComposePostHandler(ComposePostService.Iface):
@@ -122,7 +127,7 @@ class ComposePostHandler(ComposePostService.Iface):
         ollama_base_url: str = "http://localhost:11434",
         temperature: float = 0.0,
         num_workers: int = 8,
-        max_steps: int = 16,
+        max_steps: int = 20,
     ):
         self._unique_id_pool = unique_id_pool
         self._text_pool = text_pool
@@ -139,8 +144,8 @@ class ComposePostHandler(ComposePostService.Iface):
         self._max_steps = max_steps
 
         self._model = ChatOllama(
-            model="llama3.2:3b",
-            base_url="http://localhost:11434",
+            model=ollama_model,
+            base_url=ollama_base_url,
             temperature=0.0,
             reasoning=False
         )
@@ -201,6 +206,9 @@ class ComposePostHandler(ComposePostService.Iface):
                 "publish_home_timeline_done": False,
                 "history": [],
                 "done": False,
+                "total_input_tokens": 0,
+                "total_output_tokens": 0,
+                "total_llm_calls": 0,
             }
 
             try:
@@ -229,9 +237,12 @@ class ComposePostHandler(ComposePostService.Iface):
             span.set_tag("post_id", final_state.get("post_id"))
             span.set_tag("timestamp", final_state.get("timestamp"))
             logger.debug(
-                "ComposePost req_id=%d completed post_id=%s",
+                "ComposePost req_id=%d completed post_id=%s, total_input_tokens=%d, total_output_tokens=%d, total_llm_calls=%d",
                 req_id,
                 final_state.get("post_id"),
+                final_state.get("total_input_tokens", 0),
+                final_state.get("total_output_tokens", 0),
+                final_state.get("total_llm_calls", 0),
             )
 
     # ------------------------------------------------------------------
@@ -268,10 +279,34 @@ class ComposePostHandler(ComposePostService.Iface):
         allowed = self._allowed_actions(state)
 
         prompt = self._system_prompt(allowed, state)
-        response = self._model.invoke([SystemMessage(content=prompt)])
-        raw = (response.content or "").strip()
 
-        action = self._parse_action(raw, allowed)
+        logger.info(
+            "\n\n ------------------------- ComposePost reason req_id=%d prompt=%s \n\n ------------------------- ",
+            state["req_id"],
+            prompt,
+        )
+
+        # Async invocation (same pattern as the other agents)
+        response = self._model.invoke(prompt)                
+
+        raw = (response.text() or "").strip()
+
+        usage = getattr(response, "usage_metadata", {}) or {}
+
+        input_tokens = usage.get("input_tokens", 0)
+        output_tokens = usage.get("output_tokens", 0)
+
+        action = self._parse_action(raw, allowed=None)
+
+        logger.info(
+            "\n\n ------------------------- ComposePost reason req_id=%d raw=%s action=%s in_tokens=%d out_tokens=%d \n\n ------------------------- ",
+            state["req_id"],
+            raw,
+            action,
+            input_tokens,
+            output_tokens,
+        )
+
         history = list(state.get("history", []))
         history.append(
             {
@@ -279,12 +314,20 @@ class ComposePostHandler(ComposePostService.Iface):
                 "allowed": allowed,
                 "raw": raw,
                 "chosen_action": action,
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
             }
         )
 
         return {
             "next_action": action,
             "history": history,
+            "total_input_tokens": state.get("total_input_tokens", 0)
+            + input_tokens,
+            "total_output_tokens": state.get("total_output_tokens", 0)
+            + output_tokens,
+            "total_llm_calls": state.get("total_llm_calls", 0)
+            + 1,
         }
 
     def _system_prompt(self, allowed: list[str], state: ComposePostState) -> str:
@@ -308,26 +351,28 @@ class ComposePostHandler(ComposePostService.Iface):
         }
 
         return f"""
-You are ComposePostAgent, a ReAct controller for a social-network compose-post workflow.
+            You are ComposePostAgent, a ReAct controller for a social-network compose-post workflow.
 
-You may choose exactly one next action from this list:
-{allowed}
+            You may choose exactly one next action from this list:
+            {allowed}
+            
+            Output strictly JSON in this shape without any extra text or reasoning details:
+            {{"action":"<one allowed action>"}}
 
-Rules:
-- Do not invent values.
-- Use only the current state.
-- If any phase-1 field is missing, choose one missing phase-1 tool.
-- After phase 1, choose assemble_post.
-- Then choose store_post, then write_user_timeline, then publish_home_timeline, then finish.
-- If a media list is empty, compose_media is unnecessary.
-- Output strictly JSON in this shape:
-  {{"action":"<one allowed action>"}}
+            Rules:
+            - Do not invent values.
+            - Use only the current state.
+            - If any phase-1 field is missing, choose one missing phase-1 tool.
+            - After phase 1, choose assemble_post.
+            - Then choose store_post, then write_user_timeline, then publish_home_timeline, then finish.
+            - If a media list is empty, compose_media is unnecessary.
 
-Current state:
-{json.dumps(state_view, default=str)}
-""".strip()
 
-    def _parse_action(self, raw: str, allowed: list[str]) -> str:
+            Current state:
+            {json.dumps(state_view, default=str)}
+            """.strip()
+
+    def _parse_action(self, raw: str, allowed: list[str] | None) -> str:
         action = ""
         try:
             # Prefer a direct JSON object.
@@ -337,9 +382,12 @@ Current state:
         except Exception:
             action = ""
 
-        if action not in allowed:
-            action = allowed[0]
-        return action
+        if allowed is None: # raw stochastic output, no constraints
+            return action
+        else: # deterministic fallback to first allowed action if the model output is invalid
+            if action not in allowed:
+                action = allowed[0]
+            return action
 
     # ------------------------------------------------------------------
     # Act node
