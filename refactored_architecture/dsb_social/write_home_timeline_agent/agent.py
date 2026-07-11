@@ -71,13 +71,13 @@ from typing import TypedDict, Optional, List, Dict, Any
 from langgraph.graph import StateGraph, END
 from langchain_ollama import ChatOllama
 
-from message import decode, WriteHomeTimelineMessage
+from .message import decode, WriteHomeTimelineMessage
 from .thrift_pool import ThriftClientPool
 
 logger = logging.getLogger("write-home-timeline-agent")
 
 # ── LLM ─────────────────────────────────────────────────────────────────────
-llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)
+llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
 
 # Timestamp bounds (ms): year 2000 → year 2100
 _TS_MIN = 946_684_800_000
@@ -249,8 +249,8 @@ Schema:
 """
 
     logger.info(
-        "LLM reason_validate_message req_id=%d post_id=%d",
-        state["req_id"] or 0, state["post_id"] or 0,
+        "LLM reason_validate_message req_id=%d post_id=%d, prompt=%r",
+        state["req_id"] or 0, state["post_id"] or 0, prompt
     )
     response = await asyncio.to_thread(llm.invoke, prompt)
     raw      = response.text()
