@@ -275,7 +275,7 @@ def main() -> None:
     )
     parser.add_argument("--host",    default="127.0.0.1")
     parser.add_argument("--port",    default=9100, type=int)
-    parser.add_argument("--timeout", default=10000, type=int)
+    parser.add_argument("--timeout", default=600000, type=int)
     parser.add_argument("--retries", default=3,     type=int)
     parser.add_argument("-v", "--verbose", action="store_true")
 

@@ -57,7 +57,7 @@ def build_consumer(config: dict) -> WriteHomeTimelineConsumer:
         host=htc.get("host", "home-timeline-service"),
         port=int(htc.get("port", 9099)),
         size=int(svc.get("num_workers", 4)) * 2,   # 2x workers for headroom
-        timeout_ms=30000
+        timeout_ms=600000
     )
     logger.info(
         "HomeTimelineService pool: %s:%s", htc.get("host"), htc.get("port")

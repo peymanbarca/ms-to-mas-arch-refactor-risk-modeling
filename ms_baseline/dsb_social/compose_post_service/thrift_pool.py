@@ -26,11 +26,11 @@ class ThriftClientPool:
     host         : downstream service host
     port         : downstream service port
     size         : pool capacity (default 8)
-    timeout_ms   : socket timeout in ms (default 5000)
+    timeout_ms   : socket timeout in ms (default 600000)
     """
 
     def __init__(self, client_class, host: str, port: int,
-                 size: int = 8, timeout_ms: int = 5000):
+                 size: int = 8, timeout_ms: int = 600000):
         self._client_class = client_class
         self._host         = host
         self._port         = port

@@ -129,7 +129,7 @@ def _pool(client_class, cfg_key: str, config: dict, size: int) -> ThriftClientPo
     host = sec.get("host", cfg_key)
     port = int(sec.get("port", 9090))
     logger.info("Pool %-28s %s:%d  size=%d", cfg_key, host, port, size)
-    return ThriftClientPool(client_class, host, port, size=size)
+    return ThriftClientPool(client_class, host, port, size=size, timeout_ms=600000)
 
 
 def build_server(config: dict, port: int) -> TServer.TThreadedServer:
