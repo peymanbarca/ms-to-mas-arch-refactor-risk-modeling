@@ -36,10 +36,19 @@ For each microservice in each benchmark, an equivalent AI agent is implemented w
 
 # Prerequisite
 
-## Run Ollama server (locally / remote server)
+## Run Ollama server (locally / remote server) 
+### (Needs a GPU node with at least 48GB of memory)
 
-The ollama server should be installed first, then ready to be started and pull open sourced models:
+The ollama server should be installed first, then ready to be started (with inference optimization) and pull open sourced models:
 
+```bash
+    # configuration for inference optimization (required for maximum throughput and memory usage efficiency)
+    setenv OLLAMA_FLASH_ATTENTION 1 # Enables Flash Attention on modern GPUs
+    setenv OLLAMA_KV_CACHE_TYPE q4_0 # Compresses the KV cache with lower quantization
+    setenv OLLAMA_KEEP_ALIVE 2h # keeps the model for 2h, eliminating "cold start" for subsequent requests.
+    setenv OLLAMA_NUM_PARALLEL 100 # Defines how many simultaneous requests a single model will process.
+
+    # start server
     systemctl start ollama
     ollama pull llama3.2:3b
     ollama pull qwen3:14b
@@ -47,9 +56,9 @@ The ollama server should be installed first, then ready to be started and pull o
     # warm up (load the model in memory)
     ollama run llama3.2:3b "Explain CAP theorem in 3 sentences."
     ollama run qwen3:14b "Explain CAP theorem in 3 sentences."
+```
 
-
-## Run local dockerized database
+## Run local dockerized database and message broker
 
 - MongoDB: 
     ```
@@ -59,6 +68,11 @@ The ollama server should be installed first, then ready to be started and pull o
 - Redis: 
     ```
     docker compose up -d redis
+    ```
+
+- RabbitMQ: 
+    ```
+    docker compose up -d rabbitmq
     ```
 
 **Check default user/password/db_name that set here in codes respectively, thereafter.**
@@ -77,6 +91,7 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
     
     # 1. Deploy locally
 
+```bash
     cd deploy_orchestration/google_ms
     
     ./deploy-local.sh services=ad_service:5057,cart_service:5054,checkout_service:5050,currency_service:5053,email_service:5056,payment_service:5052,product_catalog_service:5055,recommendation_service:5058,shipping_service:5051 agents=
@@ -85,11 +100,11 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
     python3 -m ms_baseline.google_ms.exp_runner
     
     # the full evaluation results will be gathered in ms_baseline/google_ms/results folder.
-
+```
 
 2-  **RetailBen**
 
-    
+```bash
     # 1. Deploy locally
 
     cd deploy_orchestration/retailben
@@ -101,6 +116,7 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
     python3 exp_runner.py
 
     # the full evaluation results will be gathered in ms_baseline/retailben/results folder.
+```
 
 -----------------------------
 
@@ -122,30 +138,31 @@ For each migration step for each of baselines, the target hybrid architecture is
 
 1-  **Google Online Boutique Microservices**
 
-    
+ ```bash   
     cd deploy_orchestration/google_ms
     
     python3 baseline_ablation_progressive_refactor_orchestrator.py
 
     
     # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy.
-
+```
 
 2-  **RetailBen**
 
-    
+ ```bash   
     cd deploy_orchestration/retailben
     
     python3 baseline_ablation_progressive_refactor_orchestrator.py
 
     
     # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy.
-
+```
 
 ### Aggregate and analyze baseline results
 
 1-  **Google Online Boutique Microservices**
 
+```bash
     cd refactored_architecture/google_ms
 
     # aggregate all individual results for each ranking strategy
@@ -153,9 +170,12 @@ For each migration step for each of baselines, the target hybrid architecture is
 
     # analyze all aggregated results, to find the best, worst, selective strategy
     python3 analyze_results.py
+```
+
 
 2-  **RetailBen**
 
+```bash
     cd refactored_architecture/retailben
 
     # aggregate all individual results for each ranking strategy
@@ -163,7 +183,7 @@ For each migration step for each of baselines, the target hybrid architecture is
 
     # analyze all aggregated results, to find the best, worst, selective strategy
     python3 analyze_results.py
-
+```
 
 --------------------------
 
@@ -175,21 +195,24 @@ For each migration step for each of baselines, the target hybrid architecture is
 
 1-  **Google Online Boutique Microservices**
 
+```bash
     cd deploy_orchestration/google_ms
     
     python3 weight_study_progressive_refactor_orchestrator.py
 
     
     # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy, then analyzed manually.
+```
 
 2-  **RetailBen**
 
+```bash
     cd deploy_orchestration/retailben
     
     python3 weight_study_progressive_refactor_orchestrator.py
 
     
     # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy, then analyzed manually
-
+```
 
 
