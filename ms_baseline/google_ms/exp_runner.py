@@ -9,7 +9,8 @@ Workflow per trial (mirrors a real user session):
   3. ListRecommendations     → RecommendationService  (similar products)
   4. GetAds                  → AdService              (contextual ads)
   5. AddItem                 → CartService            (add to cart)
-  6. PlaceOrder              → CheckoutService        (full checkout)
+  6. Verify Cart & GetShippingQuote → CartService + ShippingService (best-effort)
+  7. PlaceOrder              → CheckoutService        (full checkout)
 
 Each stage records:
   • latency_s        – wall-clock seconds for that single gRPC call

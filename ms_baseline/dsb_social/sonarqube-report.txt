@@ -1,0 +1,14 @@
+All shared/*.py and client.py are excluded
+
+
+Cognitive complexity is usually lower than cyclomatic complexity in well-written microservice codebases.
+
+Because microservices are designed to be small, single-purpose, and loosely coupled, their internal codebase naturally leans toward 
+    a linear architecture that maps cleanly to how human brains process information. Microservices inherently avoid the deep,
+    tangled logic structures that cause cognitive complexity to explode. 
+
+If you find that a specific microservice has a higher cognitive complexity than cyclomatic complexity,
+ it is a strong code smell.
+ It usually means that business logic is heavily nested, or that the microservice has grown too large and is turning back into a "mini-monolith."
+
+
