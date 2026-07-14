@@ -21,7 +21,7 @@ from ms_baseline.dsb_social.gen_py.social_network import (
     UserTimelineService,
 )
 
-from .agent_handler import ComposePostHandler
+from .agent_handler_v2 import ComposePostHandler
 from .thrift_pool import ThriftClientPool
 from .tracing import init_tracer
 
