@@ -97,6 +97,14 @@ pysonar \
   --sonar-coverage-exclusions=**/shared/**,**/client.py
 
 
+# run with pysonar: dsb_social
+
+pysonar \
+  --sonar-host-url=http://localhost:9000 \
+  --sonar-token=sqp_9d694f864c105c184c06f58f0b1921b15c0bb65f \
+  --sonar-project-key=dsb_social \
+  --sonar-coverage-exclusions=**/gen_py/**,**/source_code/**,**/client.py
+
 ## Step 5: View Results
 
 After the scan completes (2-5 minutes depending on code size):

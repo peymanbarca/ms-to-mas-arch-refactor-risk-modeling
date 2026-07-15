@@ -12,3 +12,35 @@ If you find that a specific microservice has a higher cognitive complexity than 
  It usually means that business logic is heavily nested, or that the microservice has grown too large and is turning back into a "mini-monolith."
 
 
+------------------------------
+
+
+Cognitive Complexity
+
+    - compose_post_service      21
+    - home_timeline_service     21
+    - media_service             15
+    - post_storage_service      25
+    - social_graph_service      28
+    - text_service              17
+    - unique_id_service         15
+    - url_shorten_service       20
+    - user_mention_service      15
+    - user_service              27
+    - user_timeline_service     28
+    - write_home_timeline_service   27
+
+Cyclomatic Complexity
+
+    - compose_post_service      31
+    - home_timeline_service     27
+    - media_service             15
+    - post_storage_service      28
+    - social_graph_service      37
+    - text_service              29
+    - unique_id_service         16
+    - url_shorten_service       30
+    - user_mention_service      18
+    - user_service              40
+    - user_timeline_service     33
+    - write_home_timeline_service   31  
