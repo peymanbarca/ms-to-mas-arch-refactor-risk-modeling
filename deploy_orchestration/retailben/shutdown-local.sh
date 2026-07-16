@@ -21,10 +21,12 @@ done
 kill_port () {
   PORT=$1
   PID=$(lsof -ti tcp:$PORT)
+  echo "Checking port $PORT for running processes... $PID"
 
   if [ ! -z "$PID" ]; then
     echo "Killing process on port $PORT (PID=$PID)"
     kill -9 $PID
+    echo "Process on port $PORT (PID=$PID) killed."
   fi
 }
 

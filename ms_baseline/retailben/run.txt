@@ -1,0 +1,77 @@
+Agents:
+    ps -ef | grep agent
+
+    Pricing Agent:
+        
+        nohup python3 run_as_service.py pricing_agent 8002 >& pricing_agent.log &
+
+        curl -X 'POST' 'http://127.0.0.1:8002/price' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"items": [{"product_id": "4cc0770f-91bc-4c0d-a26f-7b872f02ca94","qty": 2}],"promo_codes": [],"currency": "USD"}'
+
+        curl -X 'POST' 'http://127.0.0.1:8002/price' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"items": [{"product_id": "b2926dc2-cc6d-4c3e-ae40-7a127c173b16","qty": 2}],"promo_codes": [],"currency": "USD"}'
+
+        curl -X 'POST' 'http://127.0.0.1:8002/price/put' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"product_id": "4cc0770f-91bc-4c0d-a26f-7b872f02ca94","price": 2000}'
+
+        curl -X 'POST' 'http://127.0.0.1:8002/price/put' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"product_id": "b2926dc2-cc6d-4c3e-ae40-7a127c173b16","price": 200}'
+
+    Inventory Agent:
+
+            nohup python3 run_as_service.py inventory_agent 8001 >& inventory_agent.log &
+
+            curl -X 'POST' 'http://127.0.0.1:8001/reserve' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"order_id":"a", "items": [{"sku": "b2926dc2-cc6d-4c3e-ae40-7a127c173b16","qty": 2}]}'
+
+            curl -X 'POST' 'http://127.0.0.1:8001/reset_stocks' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"items": [{"sku": "4cc0770f-91bc-4c0d-a26f-7b872f02ca94","stock": 10}]}'
+
+            curl -X 'POST' 'http://127.0.0.1:8001/reset_stocks' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"items": [{"sku": "b2926dc2-cc6d-4c3e-ae40-7a127c173b16","stock": 10}]}'
+
+    Payment Agent:
+
+            nohup python3 run_as_service.py payment_agent 8007 >& payment_agent.log &
+            
+            curl -X 'POST' 'http://127.0.0.1:8007/pay-order' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"order_id":"a", "final_price": 2000}'
+
+    Shipment Agent:
+
+            nohup python3 run_as_service.py shipment_agent 8006 >& shipment_agent.log &
+
+            curl -X 'POST' 'http://127.0.0.1:8006/book' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"order_id":"a", "address": "abc"}'
+
+    Shopping Cart Agent:
+
+            nohup python3 run_as_service.py shopping_cart_agent 8003 >& shopping_cart_agent.log &
+
+            curl -X 'GET' 'http://127.0.0.1:8003/cart/189d3922-adf7-42d6-9664-92467f3a281c' -H 'accept: application/json'
+
+            curl -X 'POST' 'http://127.0.0.1:8003/cart/-1/items' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"4cc0770f-91bc-4c0d-a26f-7b872f02ca94", "qty": 2}'
+
+
+    Product Search Agent:
+
+            nohup python3 run_as_service.py product_search_agent_stateful 8008 >& product_search_agent_stateful.log &
+            
+            curl -X 'GET' 'http://127.0.0.1:8008/search?q=looking%20for%20headphone%20with%20noise%20cancelling%20under%20300$,%20and%20wanna%20delivery%20cheap%20and%20only%20on%20week%20days%20within%203%20days&user_id=123' -H 'accept: application/json'
+
+            curl -X 'POST' 'http://127.0.0.1:8008/products' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"b2926dc2-cc6d-4c3e-ae40-7a127c173b16", "name": "Airpod", "description": "Noise cancelling headphone Airpod"}'
+
+ 
+    Order Agent:
+            
+            nohup python3 run_as_service.py order_agent 8000 >& order_agent.log &
+
+            curl -X 'POST' 'http://127.0.0.1:8000/cart/{}/checkout'
+
+            curl -X 'POST' 'http://127.0.0.1:8000/cart/b70e352b-3854-40d9-b7e8-e0a2288b9041/checkout' -H 'Content-Type: application/json' -d '{"cart_id":"b70e352b-3854-40d9-b7e8-e0a2288b9041"}'
+
+            curl -X 'POST' 'http://127.0.0.1:8000/cart/checkout?user_id=1' -H 'Content-Type: application/json' -d '{"cart_id":"189d3922-adf7-42d6-9664-92467f3a281c", "shipment_prompt": "Please ship this between Monday to Wednesday with the fastest shipping option available"}'
+
+Microservices:
+    ps -ef | grep agent
+
+    nohup python3 run_service.py payment_service 8007 >& payment_service.log &
+    nohup python3 run_service.py inventory_service 8001 >& inventory_service.log &
+    nohup python3 run_service.py shipment_service 8006 >& shipment_service.log &
+    nohup python3 run_service.py shopping_cart_service 8003 >& shopping_cart_service.log &
+    nohup python3 run_service.py pricing_service 8002 >& pricing_service.log &
+    nohup python3 run_service.py product_search_service 8008 >& product_search_service.log &
+    nohup python3 run_service.py procurement_service 8009 >& procurement_service.log &
+    nohup python3 run_service.py order_service 8000 >& order_service.log &
+

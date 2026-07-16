@@ -17,7 +17,7 @@ from post_action_adjudication import (
 
 # --------------------------------- Migration Strategy ---------------------------
 
-fanout = [["pricing_service:8003", 0],
+fanout = [["pricing_service:8002", 0],
            ["product_catalog_service:8008", 2],
            ["inventory_service:8001", 1],
            ["shopping_cart_service:8003", 0],
@@ -29,7 +29,7 @@ fanout = [["pricing_service:8003", 0],
         #    ["notification_service:8011", 1]
            ]
 
-bc = [["pricing_service:8003", 0],
+bc = [["pricing_service:8002", 0],
            ["product_catalog_service:8008", 0.05],
            ["inventory_service:8001", 0.22],
            ["shopping_cart_service:8003", 0],
@@ -41,7 +41,7 @@ bc = [["pricing_service:8003", 0],
         #    ["notification_service:8011", 0]
            ]
 
-c_cyc = [["pricing_service:8003", 10],
+c_cyc = [["pricing_service:8002", 10],
            ["product_catalog_service:8008", 22],
            ["inventory_service:8001", 10],
            ["shopping_cart_service:8003", 18],
@@ -55,7 +55,7 @@ c_cyc = [["pricing_service:8003", 10],
 
 
 
-c_cog = [["pricing_service:8003", 8],
+c_cog = [["pricing_service:8002", 8],
            ["product_catalog_service:8008", 18],
            ["inventory_service:8001", 14],
            ["shopping_cart_service:8003", 14],
@@ -497,7 +497,7 @@ service_to_agent = {
     "shipment_service:8006": "shipment_agent:8006",
     "shopping_cart_service:8003": "shopping_cart_agent:8003",
     "product_catalog_service:8008": "product_catalog_agent:8008",
-    "pricing_service:8003": "pricing_agent:8003",
+    "pricing_service:8002": "pricing_agent:8002",
     "subscription_service:8010": "subscription_agent:8010",
     "procurement_service:8009": "procurement_agent:8009",
     # "notification_service:8011": "notification_agent:8011"

@@ -1,0 +1,3007 @@
+2026-07-16 15:24:18,646 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:24:44,290 - INFO - Request for checkout_cart, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, state={'trace_id': '7f00299c-8e81-4d2f-9808-a1869ac3a12e', 'order_id': 'a7750d7a-6d4b-477a-b311-c3ea7d3da3c6', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': None, 'status': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-07-16 15:24:44,295 - INFO - Order reasoning prompt trace=7f00299c-8e81-4d2f-9808-a1869ac3a12e
+You are an Order Orchestrator.
+
+        Your job is to choose EXACTLY ONE next action.
+
+        Current order state
+
+        {
+  "trace_id": "7f00299c-8e81-4d2f-9808-a1869ac3a12e",
+  "order_id": "a7750d7a-6d4b-477a-b311-c3ea7d3da3c6",
+  "cart_id": "b70e352b-3854-40d9-b7e8-e0a2288b9041",
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+        Allowed actions
+
+        ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'ROLLBACK_INVENTORY', 'FINISH']
+
+        Decision policy
+
+        NORMAL FLOW
+
+        FETCH_CART
+        ↓
+
+        PRICE_CART
+        ↓
+
+        RESERVE_INVENTORY
+        ↓
+
+        PROCESS_PAYMENT
+        ↓
+
+        BOOK_SHIPMENT
+        ↓
+
+        FINISH
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK
+
+        choose
+
+        FINISH
+
+        • If status == PAYMENT_FAILED
+
+        choose
+
+        ROLLBACK_INVENTORY
+
+        • If rollback_inventory_done == True
+
+        choose
+
+        FINISH
+
+        Rules
+
+        • Never repeat a completed stage.
+
+        • Never skip a stage.
+
+        • Never go backwards.
+
+        • Choose the first unfinished workflow stage.
+
+        • Ignore previous actions.
+
+        • Base your decision only on the workflow and current state.
+
+        Return ONLY JSON.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:25:28,019 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:27:38,506 - INFO - MongoDB connection closed
+2026-07-16 15:27:43,177 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:27:48,445 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:27:50,349 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:28:06,218 - INFO - MongoDB connection closed
+2026-07-16 15:28:08,756 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:28:55,450 - INFO - MongoDB connection closed
+2026-07-16 15:29:00,090 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:30:02,723 - INFO - MongoDB connection closed
+2026-07-16 15:30:06,044 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:30:08,965 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:30:32,864 - INFO - MongoDB connection closed
+2026-07-16 15:30:35,372 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:30:37,285 - INFO - MongoDB connection closed
+2026-07-16 15:30:40,901 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:31:17,554 - INFO - MongoDB connection closed
+2026-07-16 15:31:21,454 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:31:24,691 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:31:27,950 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:31:30,868 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:31:31,472 - INFO - MongoDB connection closed
+2026-07-16 15:31:34,826 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:31:37,456 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:31:39,165 - INFO - MongoDB connection closed
+2026-07-16 15:31:41,564 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:31:58,658 - INFO - MongoDB connection closed
+2026-07-16 15:32:01,123 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:32:04,936 - INFO - MongoDB connection closed
+2026-07-16 15:32:07,824 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:32:10,074 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:33:16,933 - INFO - MongoDB connection closed
+2026-07-16 15:33:21,438 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:33:27,268 - INFO - MongoDB connection closed
+2026-07-16 15:33:31,422 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:33:35,052 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:33:37,794 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:33:41,215 - INFO - MongoDB connection closed
+2026-07-16 15:33:43,330 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:34:02,308 - INFO - MongoDB connection closed
+2026-07-16 15:34:04,876 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:34:06,781 - INFO - MongoDB connection closed
+2026-07-16 15:34:09,584 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:34:12,789 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:34:13,396 - INFO - MongoDB connection closed
+2026-07-16 15:34:15,676 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:34:21,602 - INFO - MongoDB connection closed
+2026-07-16 15:34:24,838 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:34:43,524 - INFO - MongoDB connection closed
+2026-07-16 15:34:47,971 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:35:08,657 - INFO - MongoDB connection closed
+2026-07-16 15:35:12,072 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:35:15,392 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:35:21,223 - INFO - MongoDB connection closed
+2026-07-16 15:35:24,178 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:35:25,786 - INFO - MongoDB connection closed
+2026-07-16 15:35:28,065 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:35:58,088 - INFO - MongoDB connection closed
+2026-07-16 15:36:01,813 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:36:05,431 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:36:33,659 - INFO - Request for checkout_cart, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, state={'trace_id': 'bafff73e-e88b-47a8-8a69-b8bdc81de327', 'order_id': '15f6235c-a595-4a7b-85c1-3b7d94b46437', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': None, 'status': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-07-16 15:36:33,666 - INFO - Order reasoning prompt trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:37:06,354 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:37:08,006 - INFO - Order reasoning raw response trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 15:37:08,007 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 15:37:08,008 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': 'bafff73e-e88b-47a8-8a69-b8bdc81de327', 'order_id': '15f6235c-a595-4a7b-85c1-3b7d94b46437', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 34.341}], 'total_input_tokens': 398, 'total_output_tokens': 12, 'total_llm_calls': 1}
+2026-07-16 15:37:08,048 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:37:08,049 - INFO - Order reasoning prompt trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:37:08,290 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:37:10,047 - INFO - Order reasoning raw response trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 15:37:10,047 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 15:37:10,048 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': 'bafff73e-e88b-47a8-8a69-b8bdc81de327', 'order_id': '15f6235c-a595-4a7b-85c1-3b7d94b46437', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 34.341}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 1.998}], 'total_input_tokens': 796, 'total_output_tokens': 24, 'total_llm_calls': 2}
+2026-07-16 15:37:10,058 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:37:10,059 - INFO - Order reasoning prompt trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:37:10,359 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:37:12,685 - INFO - Order reasoning raw response trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 15:37:12,685 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 15:37:12,686 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': 'bafff73e-e88b-47a8-8a69-b8bdc81de327', 'order_id': '15f6235c-a595-4a7b-85c1-3b7d94b46437', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 34.341}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 1.998}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.626}], 'total_input_tokens': 1194, 'total_output_tokens': 36, 'total_llm_calls': 3}
+2026-07-16 15:37:12,691 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:37:12,691 - INFO - Order reasoning prompt trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:37:13,095 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:37:15,237 - INFO - Order reasoning raw response trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 15:37:15,237 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 15:37:15,238 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': 'bafff73e-e88b-47a8-8a69-b8bdc81de327', 'order_id': '15f6235c-a595-4a7b-85c1-3b7d94b46437', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 34.341}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 1.998}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.626}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.546}], 'total_input_tokens': 1592, 'total_output_tokens': 48, 'total_llm_calls': 4}
+2026-07-16 15:37:15,243 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:37:15,243 - INFO - Order reasoning prompt trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:37:15,489 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:37:17,548 - INFO - Order reasoning raw response trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 15:37:17,549 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 15:37:17,549 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': 'bafff73e-e88b-47a8-8a69-b8bdc81de327', 'order_id': '15f6235c-a595-4a7b-85c1-3b7d94b46437', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 34.341}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 1.998}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.626}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.546}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.305}], 'total_input_tokens': 1990, 'total_output_tokens': 60, 'total_llm_calls': 5}
+2026-07-16 15:37:17,554 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:37:17,555 - INFO - Order reasoning prompt trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:37:17,870 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:37:20,087 - INFO - Order reasoning raw response trace=bafff73e-e88b-47a8-8a69-b8bdc81de327
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 15:37:20,087 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 15:37:20,089 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': 'bafff73e-e88b-47a8-8a69-b8bdc81de327', 'order_id': '15f6235c-a595-4a7b-85c1-3b7d94b46437', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 34.341}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 1.998}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.626}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.546}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.305}, {'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.532}], 'total_input_tokens': 2388, 'total_output_tokens': 72, 'total_llm_calls': 6}
+2026-07-16 15:37:20,095 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:39:20,673 - INFO - MongoDB connection closed
+2026-07-16 15:39:24,041 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:39:32,131 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:39:54,022 - INFO - MongoDB connection closed
+2026-07-16 15:39:58,659 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:40:03,400 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:40:03,603 - INFO - MongoDB connection closed
+2026-07-16 15:40:06,664 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:40:09,080 - INFO - MongoDB connection closed
+2026-07-16 15:40:12,499 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:40:13,909 - INFO - MongoDB connection closed
+2026-07-16 15:40:16,497 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:40:23,228 - INFO - MongoDB connection closed
+2026-07-16 15:40:26,242 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:40:28,436 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:40:35,359 - INFO - MongoDB connection closed
+2026-07-16 15:40:37,586 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:40:40,510 - INFO - MongoDB connection closed
+2026-07-16 15:40:42,831 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:40:56,785 - INFO - MongoDB connection closed
+2026-07-16 15:41:01,771 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:41:04,849 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:41:29,648 - INFO - MongoDB connection closed
+2026-07-16 15:41:33,417 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:41:37,008 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:41:39,142 - INFO - MongoDB connection closed
+2026-07-16 15:41:41,795 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:41:47,023 - INFO - MongoDB connection closed
+2026-07-16 15:41:50,150 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:41:51,055 - INFO - MongoDB connection closed
+2026-07-16 15:41:56,688 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:41:59,672 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:42:02,287 - INFO - MongoDB connection closed
+2026-07-16 15:42:06,420 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:42:08,569 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:42:19,729 - INFO - MongoDB connection closed
+2026-07-16 15:42:22,473 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:42:24,885 - INFO - MongoDB connection closed
+2026-07-16 15:42:27,675 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:42:29,991 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:43:00,204 - INFO - MongoDB connection closed
+2026-07-16 15:43:03,998 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:43:06,879 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:43:08,789 - INFO - MongoDB connection closed
+2026-07-16 15:43:12,020 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:43:14,861 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:43:27,310 - INFO - MongoDB connection closed
+2026-07-16 15:43:29,676 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:44:06,624 - INFO - MongoDB connection closed
+2026-07-16 15:44:09,164 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:44:13,391 - INFO - MongoDB connection closed
+2026-07-16 15:44:16,101 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:44:21,324 - INFO - MongoDB connection closed
+2026-07-16 15:44:23,525 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:44:31,357 - INFO - MongoDB connection closed
+2026-07-16 15:44:33,741 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:45:31,273 - INFO - MongoDB connection closed
+2026-07-16 15:45:34,066 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:45:50,529 - INFO - MongoDB connection closed
+2026-07-16 15:45:53,673 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:45:56,890 - INFO - MongoDB connection closed
+2026-07-16 15:45:59,794 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:46:03,618 - INFO - MongoDB connection closed
+2026-07-16 15:46:06,116 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:46:12,235 - INFO - MongoDB connection closed
+2026-07-16 15:46:14,625 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:46:17,042 - INFO - MongoDB connection closed
+2026-07-16 15:46:19,724 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:46:39,991 - INFO - MongoDB connection closed
+2026-07-16 15:46:44,279 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:46:54,514 - INFO - MongoDB connection closed
+2026-07-16 15:46:58,521 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:46:59,130 - INFO - MongoDB connection closed
+2026-07-16 15:47:03,057 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:47:03,661 - INFO - MongoDB connection closed
+2026-07-16 15:47:06,280 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:47:08,990 - INFO - MongoDB connection closed
+2026-07-16 15:47:11,536 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:47:12,742 - INFO - MongoDB connection closed
+2026-07-16 15:47:15,085 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:47:40,688 - INFO - MongoDB connection closed
+2026-07-16 15:47:43,865 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:48:01,442 - INFO - MongoDB connection closed
+2026-07-16 15:48:03,748 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:48:10,981 - INFO - MongoDB connection closed
+2026-07-16 15:48:14,263 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:48:15,569 - INFO - MongoDB connection closed
+2026-07-16 15:48:18,245 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:48:21,666 - INFO - MongoDB connection closed
+2026-07-16 15:48:26,398 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:48:32,628 - INFO - MongoDB connection closed
+2026-07-16 15:48:35,500 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:48:37,600 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:48:56,779 - INFO - MongoDB connection closed
+2026-07-16 15:49:00,186 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:49:00,386 - INFO - MongoDB connection closed
+2026-07-16 15:49:03,098 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:49:07,316 - INFO - MongoDB connection closed
+2026-07-16 15:49:10,264 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:49:12,510 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:49:20,840 - INFO - MongoDB connection closed
+2026-07-16 15:49:23,244 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:51:11,700 - INFO - Request for checkout_cart, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, state={'trace_id': '11f59b35-93f7-4b7f-a413-8cdd71e34e14', 'order_id': '9e001ae5-3932-4e4e-9db4-0a07d015dec0', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': None, 'status': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-07-16 15:51:11,706 - INFO - Order reasoning prompt trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:51:12,028 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:51:13,879 - INFO - Order reasoning raw response trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 15:51:13,880 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 15:51:13,881 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': '11f59b35-93f7-4b7f-a413-8cdd71e34e14', 'order_id': '9e001ae5-3932-4e4e-9db4-0a07d015dec0', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.174}], 'total_input_tokens': 398, 'total_output_tokens': 12, 'total_llm_calls': 1}
+2026-07-16 15:51:13,887 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:51:13,888 - INFO - Order reasoning prompt trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:51:45,081 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:51:46,712 - INFO - Order reasoning raw response trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+{
+  "next_action": "PRICE_CART"
+}
+2026-07-16 15:51:46,712 - INFO - Order decision=PRICE_CART input=394 output=12
+2026-07-16 15:51:46,713 - INFO - Calling pricing_node tool ... 
+ Current State is {'trace_id': '11f59b35-93f7-4b7f-a413-8cdd71e34e14', 'order_id': '9e001ae5-3932-4e4e-9db4-0a07d015dec0', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'PRICE_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.174}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 32.824}], 'fetch_cart_done': True, 'total_input_tokens': 792, 'total_output_tokens': 24, 'total_llm_calls': 2}
+2026-07-16 15:51:46,929 - INFO - Response of pricing_node tool ==> {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2, 'unit_price': 200.0, 'line_total': 400.0, 'discounts': 0.0}], 'subtotal': 400.0, 'total_discount': 0.0, 'total': 400.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:51:46,931 - INFO - Order reasoning prompt trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:52:19,685 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:52:21,729 - INFO - Order reasoning raw response trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+{
+  "next_action": "RESERVE_INVENTORY"
+}
+2026-07-16 15:52:21,729 - INFO - Order decision=RESERVE_INVENTORY input=390 output=14
+2026-07-16 15:52:21,730 - INFO - Calling reserve_inventory_node tool ... 
+ Current State is {'trace_id': '11f59b35-93f7-4b7f-a413-8cdd71e34e14', 'order_id': '9e001ae5-3932-4e4e-9db4-0a07d015dec0', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'RESERVE_INVENTORY', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.174}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 32.824}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.217}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 34.799}], 'fetch_cart_done': True, 'price_cart_done': True, 'total_input_tokens': 1182, 'total_output_tokens': 38, 'total_llm_calls': 3}
+2026-07-16 15:52:22,020 - INFO - Response of reserve_inventory_node tool ==> {'order_id': '9e001ae5-3932-4e4e-9db4-0a07d015dec0', 'status': 'RESERVED', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 8}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:52:22,021 - INFO - Order reasoning prompt trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": "RESERVED",
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:52:57,412 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:52:59,082 - INFO - Order reasoning raw response trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+{
+  "next_action": "PROCESS_PAYMENT"
+}
+2026-07-16 15:52:59,082 - INFO - Order decision=PROCESS_PAYMENT input=386 output=12
+2026-07-16 15:52:59,084 - INFO - Calling payment_node tool ... 
+ Current State is {'trace_id': '11f59b35-93f7-4b7f-a413-8cdd71e34e14', 'order_id': '9e001ae5-3932-4e4e-9db4-0a07d015dec0', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': 'RESERVED', 'payment_status': None, 'shipment_status': None, 'decision': 'PROCESS_PAYMENT', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.174}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 32.824}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.217}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 34.799}, {'stage': 'act', 'action': 'RESERVE_INVENTORY', 'result': {'inventory_status': 'RESERVED'}, 'duration': 0.29}, {'stage': 'reason', 'raw': '{\n  "next_action": "PROCESS_PAYMENT"\n}', 'chosen_action': 'PROCESS_PAYMENT', 'input_tokens': 386, 'output_tokens': 12, 'duration': 37.061}], 'fetch_cart_done': True, 'price_cart_done': True, 'reserve_inventory_done': True, 'total_input_tokens': 1568, 'total_output_tokens': 50, 'total_llm_calls': 4}
+2026-07-16 15:52:59,617 - INFO - Response of payment_node tool ==> {'order_id': '9e001ae5-3932-4e4e-9db4-0a07d015dec0', 'status': 'SUCCESS', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:52:59,620 - INFO - Order reasoning prompt trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "PAYMENT_SUCCEED",
+  "inventory_status": "RESERVED",
+  "payment_status": "SUCCESS",
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": true,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:53:31,736 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:53:33,912 - INFO - Order reasoning raw response trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+{
+  "next_action" : "BOOK_SHIPMENT"
+}
+2026-07-16 15:53:33,912 - INFO - Order decision=BOOK_SHIPMENT input=388 output=15
+2026-07-16 15:53:33,913 - INFO - Calling shipment_node tool ... 
+ Current State is {'trace_id': '11f59b35-93f7-4b7f-a413-8cdd71e34e14', 'order_id': '9e001ae5-3932-4e4e-9db4-0a07d015dec0', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': 'RESERVED', 'payment_status': 'SUCCESS', 'shipment_status': None, 'decision': 'BOOK_SHIPMENT', 'status': 'PAYMENT_SUCCEED', 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 2.174}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 32.824}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.217}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 34.799}, {'stage': 'act', 'action': 'RESERVE_INVENTORY', 'result': {'inventory_status': 'RESERVED'}, 'duration': 0.29}, {'stage': 'reason', 'raw': '{\n  "next_action": "PROCESS_PAYMENT"\n}', 'chosen_action': 'PROCESS_PAYMENT', 'input_tokens': 386, 'output_tokens': 12, 'duration': 37.061}, {'stage': 'act', 'action': 'PROCESS_PAYMENT', 'result': {'payment_status': 'SUCCESS'}, 'duration': 0.535}, {'stage': 'reason', 'raw': '{\n  "next_action" : "BOOK_SHIPMENT"\n}', 'chosen_action': 'BOOK_SHIPMENT', 'input_tokens': 388, 'output_tokens': 15, 'duration': 34.292}], 'fetch_cart_done': True, 'price_cart_done': True, 'reserve_inventory_done': True, 'process_payment_done': True, 'total_input_tokens': 1956, 'total_output_tokens': 65, 'total_llm_calls': 5}
+2026-07-16 15:53:34,380 - INFO - Response of shipment_node tool ==> {'shipment_id': 'e2751339-4309-4ce3-98cd-472546c5dd21', 'tracking_id': '61b34947-d374-4407-ac9e-7ed91cba2913', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:53:34,383 - INFO - Order reasoning prompt trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "COMPLETED",
+  "inventory_status": "RESERVED",
+  "payment_status": "SUCCESS",
+  "shipment_status": "BOOKED",
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        []
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:53:54,712 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:53:56,367 - INFO - Order reasoning raw response trace=11f59b35-93f7-4b7f-a413-8cdd71e34e14
+{
+    "next_action": "FINISH"
+}
+2026-07-16 15:53:56,367 - INFO - Order decision=FINISH input=251 output=12
+2026-07-16 15:53:56,368 - INFO - Request for checkout_cart processed successfully, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, result={'order_id': '9e001ae5-3932-4e4e-9db4-0a07d015dec0', 'status': 'COMPLETED', 'total_input_tokens': 2207, 'total_output_tokens': 77, 'total_llm_calls': 6}
+2026-07-16 15:54:21,745 - INFO - Request for checkout_cart, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, state={'trace_id': '5bcc46c7-726d-4412-b554-03bf2472b5a9', 'order_id': '25fa27d0-8130-4e6e-9f2b-5bcfd019255b', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': None, 'status': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-07-16 15:54:21,749 - INFO - Order reasoning prompt trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:54:51,860 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:54:53,889 - INFO - Order reasoning raw response trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 15:54:53,889 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 15:54:53,890 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': '5bcc46c7-726d-4412-b554-03bf2472b5a9', 'order_id': '25fa27d0-8130-4e6e-9f2b-5bcfd019255b', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.14}], 'total_input_tokens': 398, 'total_output_tokens': 12, 'total_llm_calls': 1}
+2026-07-16 15:54:53,897 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:54:53,898 - INFO - Order reasoning prompt trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:55:29,076 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:55:31,392 - INFO - Order reasoning raw response trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+{
+  "next_action": "PRICE_CART"
+}
+2026-07-16 15:55:31,392 - INFO - Order decision=PRICE_CART input=394 output=12
+2026-07-16 15:55:31,393 - INFO - Calling pricing_node tool ... 
+ Current State is {'trace_id': '5bcc46c7-726d-4412-b554-03bf2472b5a9', 'order_id': '25fa27d0-8130-4e6e-9f2b-5bcfd019255b', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'PRICE_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.14}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.008}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 37.494}], 'fetch_cart_done': True, 'total_input_tokens': 792, 'total_output_tokens': 24, 'total_llm_calls': 2}
+2026-07-16 15:55:31,399 - INFO - Response of pricing_node tool ==> {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2, 'unit_price': 200.0, 'line_total': 400.0, 'discounts': 0.0}], 'subtotal': 400.0, 'total_discount': 0.0, 'total': 400.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:55:31,400 - INFO - Order reasoning prompt trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:56:03,426 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:56:05,814 - INFO - Order reasoning raw response trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+{
+  "next_action": "RESERVE_INVENTORY"
+}
+2026-07-16 15:56:05,814 - INFO - Order decision=RESERVE_INVENTORY input=390 output=14
+2026-07-16 15:56:05,815 - INFO - Calling reserve_inventory_node tool ... 
+ Current State is {'trace_id': '5bcc46c7-726d-4412-b554-03bf2472b5a9', 'order_id': '25fa27d0-8130-4e6e-9f2b-5bcfd019255b', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'RESERVE_INVENTORY', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.14}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.008}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 37.494}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 34.414}], 'fetch_cart_done': True, 'price_cart_done': True, 'total_input_tokens': 1182, 'total_output_tokens': 38, 'total_llm_calls': 3}
+2026-07-16 15:56:05,821 - INFO - Response of reserve_inventory_node tool ==> {'order_id': '25fa27d0-8130-4e6e-9f2b-5bcfd019255b', 'status': 'RESERVED', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 6}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:56:05,822 - INFO - Order reasoning prompt trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": "RESERVED",
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:56:36,752 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:56:38,420 - INFO - Order reasoning raw response trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+{
+  "next_action": "PROCESS_PAYMENT"
+}
+2026-07-16 15:56:38,420 - INFO - Order decision=PROCESS_PAYMENT input=386 output=12
+2026-07-16 15:56:38,421 - INFO - Calling payment_node tool ... 
+ Current State is {'trace_id': '5bcc46c7-726d-4412-b554-03bf2472b5a9', 'order_id': '25fa27d0-8130-4e6e-9f2b-5bcfd019255b', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': 'RESERVED', 'payment_status': None, 'shipment_status': None, 'decision': 'PROCESS_PAYMENT', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.14}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.008}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 37.494}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 34.414}, {'stage': 'act', 'action': 'RESERVE_INVENTORY', 'result': {'inventory_status': 'RESERVED'}, 'duration': 0.007}, {'stage': 'reason', 'raw': '{\n  "next_action": "PROCESS_PAYMENT"\n}', 'chosen_action': 'PROCESS_PAYMENT', 'input_tokens': 386, 'output_tokens': 12, 'duration': 32.599}], 'fetch_cart_done': True, 'price_cart_done': True, 'reserve_inventory_done': True, 'total_input_tokens': 1568, 'total_output_tokens': 50, 'total_llm_calls': 4}
+2026-07-16 15:56:38,740 - INFO - Response of payment_node tool ==> {'order_id': '25fa27d0-8130-4e6e-9f2b-5bcfd019255b', 'status': 'SUCCESS', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:56:38,743 - INFO - Order reasoning prompt trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "PAYMENT_SUCCEED",
+  "inventory_status": "RESERVED",
+  "payment_status": "SUCCESS",
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": true,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:57:06,861 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:57:08,965 - INFO - Order reasoning raw response trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+{
+  "next_action" : "BOOK_SHIPMENT"
+}
+2026-07-16 15:57:08,965 - INFO - Order decision=BOOK_SHIPMENT input=388 output=15
+2026-07-16 15:57:08,966 - INFO - Calling shipment_node tool ... 
+ Current State is {'trace_id': '5bcc46c7-726d-4412-b554-03bf2472b5a9', 'order_id': '25fa27d0-8130-4e6e-9f2b-5bcfd019255b', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': 'RESERVED', 'payment_status': 'SUCCESS', 'shipment_status': None, 'decision': 'BOOK_SHIPMENT', 'status': 'PAYMENT_SUCCEED', 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.14}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.008}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 37.494}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 34.414}, {'stage': 'act', 'action': 'RESERVE_INVENTORY', 'result': {'inventory_status': 'RESERVED'}, 'duration': 0.007}, {'stage': 'reason', 'raw': '{\n  "next_action": "PROCESS_PAYMENT"\n}', 'chosen_action': 'PROCESS_PAYMENT', 'input_tokens': 386, 'output_tokens': 12, 'duration': 32.599}, {'stage': 'act', 'action': 'PROCESS_PAYMENT', 'result': {'payment_status': 'SUCCESS'}, 'duration': 0.32}, {'stage': 'reason', 'raw': '{\n  "next_action" : "BOOK_SHIPMENT"\n}', 'chosen_action': 'BOOK_SHIPMENT', 'input_tokens': 388, 'output_tokens': 15, 'duration': 30.222}], 'fetch_cart_done': True, 'price_cart_done': True, 'reserve_inventory_done': True, 'process_payment_done': True, 'total_input_tokens': 1956, 'total_output_tokens': 65, 'total_llm_calls': 5}
+2026-07-16 15:57:09,191 - INFO - Response of shipment_node tool ==> {'shipment_id': '14e05ff8-658f-49d1-a23e-fc77eb11c706', 'tracking_id': 'f0ad38c9-2308-49c0-937d-9ffe82f19f01', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 15:57:09,192 - INFO - Order reasoning prompt trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "COMPLETED",
+  "inventory_status": "RESERVED",
+  "payment_status": "SUCCESS",
+  "shipment_status": "BOOKED",
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        []
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 15:57:27,808 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 15:57:29,468 - INFO - Order reasoning raw response trace=5bcc46c7-726d-4412-b554-03bf2472b5a9
+{
+    "next_action": "FINISH"
+}
+2026-07-16 15:57:29,469 - INFO - Order decision=FINISH input=251 output=12
+2026-07-16 15:57:29,469 - INFO - Request for checkout_cart processed successfully, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, result={'order_id': '25fa27d0-8130-4e6e-9f2b-5bcfd019255b', 'status': 'COMPLETED', 'total_input_tokens': 2207, 'total_output_tokens': 77, 'total_llm_calls': 6}
+2026-07-16 15:58:42,957 - INFO - MongoDB connection closed
+2026-07-16 15:58:52,449 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:58:55,564 - INFO - MongoDB connection closed
+2026-07-16 15:58:57,993 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:59:02,715 - INFO - MongoDB connection closed
+2026-07-16 15:59:06,694 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:59:09,257 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:59:11,391 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:59:30,668 - INFO - MongoDB connection closed
+2026-07-16 15:59:33,941 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:59:36,882 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:59:37,086 - INFO - MongoDB connection closed
+2026-07-16 15:59:39,584 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:59:46,411 - INFO - MongoDB connection closed
+2026-07-16 15:59:48,743 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 15:59:54,569 - INFO - MongoDB connection closed
+2026-07-16 15:59:57,481 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 16:00:00,227 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 16:00:02,233 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 16:00:06,457 - INFO - MongoDB connection closed
+2026-07-16 16:00:09,396 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 16:00:11,415 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 16:00:34,004 - INFO - Request for checkout_cart, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, state={'trace_id': '8efc8510-f55b-4a7a-892a-f997b61cd6e3', 'order_id': '1ef56f29-a618-4f54-843b-0af381b57b72', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': None, 'status': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-07-16 16:00:34,009 - INFO - Order reasoning prompt trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:01:04,712 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:01:06,414 - INFO - Order reasoning raw response trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 16:01:06,415 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 16:01:06,417 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': '8efc8510-f55b-4a7a-892a-f997b61cd6e3', 'order_id': '1ef56f29-a618-4f54-843b-0af381b57b72', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.406}], 'total_input_tokens': 398, 'total_output_tokens': 12, 'total_llm_calls': 1}
+2026-07-16 16:01:06,429 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:01:06,430 - INFO - Order reasoning prompt trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:01:35,961 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:01:37,694 - INFO - Order reasoning raw response trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+{
+  "next_action": "PRICE_CART"
+}
+2026-07-16 16:01:37,695 - INFO - Order decision=PRICE_CART input=394 output=12
+2026-07-16 16:01:37,696 - INFO - Calling pricing_node tool ... 
+ Current State is {'trace_id': '8efc8510-f55b-4a7a-892a-f997b61cd6e3', 'order_id': '1ef56f29-a618-4f54-843b-0af381b57b72', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'PRICE_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.406}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.012}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 31.265}], 'fetch_cart_done': True, 'total_input_tokens': 792, 'total_output_tokens': 24, 'total_llm_calls': 2}
+2026-07-16 16:01:37,709 - INFO - Response of pricing_node tool ==> {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2, 'unit_price': 200.0, 'line_total': 400.0, 'discounts': 0.0}], 'subtotal': 400.0, 'total_discount': 0.0, 'total': 400.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:01:37,711 - INFO - Order reasoning prompt trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:02:07,438 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:02:09,421 - INFO - Order reasoning raw response trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+{
+  "next_action": "RESERVE_INVENTORY"
+}
+2026-07-16 16:02:09,421 - INFO - Order decision=RESERVE_INVENTORY input=390 output=14
+2026-07-16 16:02:09,422 - INFO - Calling reserve_inventory_node tool ... 
+ Current State is {'trace_id': '8efc8510-f55b-4a7a-892a-f997b61cd6e3', 'order_id': '1ef56f29-a618-4f54-843b-0af381b57b72', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'RESERVE_INVENTORY', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.406}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.012}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 31.265}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.015}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 31.71}], 'fetch_cart_done': True, 'price_cart_done': True, 'total_input_tokens': 1182, 'total_output_tokens': 38, 'total_llm_calls': 3}
+2026-07-16 16:02:09,437 - INFO - Response of reserve_inventory_node tool ==> {'order_id': '1ef56f29-a618-4f54-843b-0af381b57b72', 'status': 'RESERVED', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 0}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:02:09,438 - INFO - Order reasoning prompt trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": "RESERVED",
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:02:41,146 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:02:42,952 - INFO - Order reasoning raw response trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+{
+  "next_action": "PROCESS_PAYMENT"
+}
+2026-07-16 16:02:42,952 - INFO - Order decision=PROCESS_PAYMENT input=386 output=12
+2026-07-16 16:02:42,953 - INFO - Calling payment_node tool ... 
+ Current State is {'trace_id': '8efc8510-f55b-4a7a-892a-f997b61cd6e3', 'order_id': '1ef56f29-a618-4f54-843b-0af381b57b72', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': 'RESERVED', 'payment_status': None, 'shipment_status': None, 'decision': 'PROCESS_PAYMENT', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.406}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.012}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 31.265}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.015}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 31.71}, {'stage': 'act', 'action': 'RESERVE_INVENTORY', 'result': {'inventory_status': 'RESERVED'}, 'duration': 0.016}, {'stage': 'reason', 'raw': '{\n  "next_action": "PROCESS_PAYMENT"\n}', 'chosen_action': 'PROCESS_PAYMENT', 'input_tokens': 386, 'output_tokens': 12, 'duration': 33.514}], 'fetch_cart_done': True, 'price_cart_done': True, 'reserve_inventory_done': True, 'total_input_tokens': 1568, 'total_output_tokens': 50, 'total_llm_calls': 4}
+2026-07-16 16:02:43,275 - INFO - Response of payment_node tool ==> {'order_id': '1ef56f29-a618-4f54-843b-0af381b57b72', 'status': 'SUCCESS', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:02:43,278 - INFO - Order reasoning prompt trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "PAYMENT_SUCCEED",
+  "inventory_status": "RESERVED",
+  "payment_status": "SUCCESS",
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": true,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:03:12,564 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:03:14,651 - INFO - Order reasoning raw response trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+{
+  "next_action" : "BOOK_SHIPMENT"
+}
+2026-07-16 16:03:14,651 - INFO - Order decision=BOOK_SHIPMENT input=388 output=15
+2026-07-16 16:03:14,652 - INFO - Calling shipment_node tool ... 
+ Current State is {'trace_id': '8efc8510-f55b-4a7a-892a-f997b61cd6e3', 'order_id': '1ef56f29-a618-4f54-843b-0af381b57b72', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': 'RESERVED', 'payment_status': 'SUCCESS', 'shipment_status': None, 'decision': 'BOOK_SHIPMENT', 'status': 'PAYMENT_SUCCEED', 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 32.406}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.012}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 31.265}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.015}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 31.71}, {'stage': 'act', 'action': 'RESERVE_INVENTORY', 'result': {'inventory_status': 'RESERVED'}, 'duration': 0.016}, {'stage': 'reason', 'raw': '{\n  "next_action": "PROCESS_PAYMENT"\n}', 'chosen_action': 'PROCESS_PAYMENT', 'input_tokens': 386, 'output_tokens': 12, 'duration': 33.514}, {'stage': 'act', 'action': 'PROCESS_PAYMENT', 'result': {'payment_status': 'SUCCESS'}, 'duration': 0.323}, {'stage': 'reason', 'raw': '{\n  "next_action" : "BOOK_SHIPMENT"\n}', 'chosen_action': 'BOOK_SHIPMENT', 'input_tokens': 388, 'output_tokens': 15, 'duration': 31.373}], 'fetch_cart_done': True, 'price_cart_done': True, 'reserve_inventory_done': True, 'process_payment_done': True, 'total_input_tokens': 1956, 'total_output_tokens': 65, 'total_llm_calls': 5}
+2026-07-16 16:03:14,869 - INFO - Response of shipment_node tool ==> {'shipment_id': '8805f3fd-0bfe-4c27-b37c-6bd42df874f9', 'tracking_id': '61e217d5-989d-4cfc-a7cb-de772c945a8d', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:03:14,870 - INFO - Order reasoning prompt trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "COMPLETED",
+  "inventory_status": "RESERVED",
+  "payment_status": "SUCCESS",
+  "shipment_status": "BOOKED",
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        []
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:03:32,188 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:03:33,836 - INFO - Order reasoning raw response trace=8efc8510-f55b-4a7a-892a-f997b61cd6e3
+{
+    "next_action": "FINISH"
+}
+2026-07-16 16:03:33,836 - INFO - Order decision=FINISH input=251 output=12
+2026-07-16 16:03:33,846 - INFO - Request for checkout_cart processed successfully, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, result={'order_id': '1ef56f29-a618-4f54-843b-0af381b57b72', 'status': 'COMPLETED', 'total_input_tokens': 2207, 'total_output_tokens': 77, 'total_llm_calls': 6}
+2026-07-16 16:05:36,137 - INFO - MongoDB connection closed
+2026-07-16 16:05:39,010 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 16:05:40,981 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 16:06:03,277 - INFO - MongoDB connection closed
+2026-07-16 16:06:06,629 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 16:06:08,630 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-07-16 16:06:34,280 - INFO - Request for checkout_cart, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, state={'trace_id': 'bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8', 'order_id': 'bdfb4c9c-a1c5-4c73-8411-ec0009a4ce52', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': None, 'status': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-07-16 16:06:34,288 - INFO - Order reasoning prompt trace=bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:07:02,278 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:07:03,868 - INFO - Order reasoning raw response trace=bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 16:07:03,868 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 16:07:03,869 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': 'bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8', 'order_id': 'bdfb4c9c-a1c5-4c73-8411-ec0009a4ce52', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.581}], 'total_input_tokens': 398, 'total_output_tokens': 12, 'total_llm_calls': 1}
+2026-07-16 16:07:03,875 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:07:03,875 - INFO - Order reasoning prompt trace=bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:07:33,641 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:07:35,327 - INFO - Order reasoning raw response trace=bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8
+{
+  "next_action": "PRICE_CART"
+}
+2026-07-16 16:07:35,327 - INFO - Order decision=PRICE_CART input=394 output=12
+2026-07-16 16:07:35,328 - INFO - Calling pricing_node tool ... 
+ Current State is {'trace_id': 'bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8', 'order_id': 'bdfb4c9c-a1c5-4c73-8411-ec0009a4ce52', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'PRICE_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.581}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 31.452}], 'fetch_cart_done': True, 'total_input_tokens': 792, 'total_output_tokens': 24, 'total_llm_calls': 2}
+2026-07-16 16:07:35,334 - INFO - Response of pricing_node tool ==> {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2, 'unit_price': 200.0, 'line_total': 400.0, 'discounts': 0.0}], 'subtotal': 400.0, 'total_discount': 0.0, 'total': 400.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:07:35,337 - INFO - Order reasoning prompt trace=bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:08:04,968 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:08:06,973 - INFO - Order reasoning raw response trace=bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8
+{
+  "next_action": "RESERVE_INVENTORY"
+}
+2026-07-16 16:08:06,973 - INFO - Order decision=RESERVE_INVENTORY input=390 output=14
+2026-07-16 16:08:06,974 - INFO - Calling reserve_inventory_node tool ... 
+ Current State is {'trace_id': 'bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8', 'order_id': 'bdfb4c9c-a1c5-4c73-8411-ec0009a4ce52', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'RESERVE_INVENTORY', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.581}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 31.452}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.008}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 31.636}], 'fetch_cart_done': True, 'price_cart_done': True, 'total_input_tokens': 1182, 'total_output_tokens': 38, 'total_llm_calls': 3}
+2026-07-16 16:08:06,979 - INFO - Response of reserve_inventory_node tool ==> {'order_id': 'bdfb4c9c-a1c5-4c73-8411-ec0009a4ce52', 'status': 'OUT_OF_STOCK', 'reason': 'Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:08:06,980 - INFO - Order reasoning prompt trace=bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "OUT_OF_STOCK",
+  "inventory_status": "OUT_OF_STOCK",
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:08:36,615 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:08:38,147 - INFO - Order reasoning raw response trace=bcf00617-ade2-4f3f-8ab8-d8b70df4b1c8
+{
+"next_action": "FINISH"
+}
+2026-07-16 16:08:38,147 - INFO - Order decision=FINISH input=390 output=11
+2026-07-16 16:08:38,148 - INFO - History for cart_id=b70e352b-3854-40d9-b7e8-e0a2288b9041: [{"stage": "reason", "raw": "{\n  \"next_action\": \"FETCH_CART\"\n}", "chosen_action": "FETCH_CART", "input_tokens": 398, "output_tokens": 12, "duration": 29.581}, {"stage": "act", "action": "FETCH_CART", "result": {"items": [{"sku": "b2926dc2-cc6d-4c3e-ae40-7a127c173b16", "qty": 2}]}, "duration": 0.006}, {"stage": "reason", "raw": "{\n  \"next_action\": \"PRICE_CART\"\n}", "chosen_action": "PRICE_CART", "input_tokens": 394, "output_tokens": 12, "duration": 31.452}, {"stage": "act", "action": "PRICE_CART", "result": {"final_price": 400.0}, "duration": 0.008}, {"stage": "reason", "raw": "{\n  \"next_action\": \"RESERVE_INVENTORY\"\n}", "chosen_action": "RESERVE_INVENTORY", "input_tokens": 390, "output_tokens": 14, "duration": 31.636}, {"stage": "act", "action": "RESERVE_INVENTORY", "result": {"inventory_status": "OUT_OF_STOCK"}, "duration": 0.005}, {"stage": "reason", "raw": "{\n\"next_action\": \"FINISH\"\n}", "chosen_action": "FINISH", "input_tokens": 390, "output_tokens": 11, "duration": 31.168}]
+2026-07-16 16:08:38,149 - INFO - Order flow completed for cart_id=b70e352b-3854-40d9-b7e8-e0a2288b9041, order_id=bdfb4c9c-a1c5-4c73-8411-ec0009a4ce52, total_input_tokens=1572, total_output_tokens=49, total_llm_calls=4
+2026-07-16 16:08:38,149 - INFO - Request for checkout_cart processed successfully, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, result={'order_id': 'bdfb4c9c-a1c5-4c73-8411-ec0009a4ce52', 'status': 'OUT_OF_STOCK', 'total_input_tokens': 1572, 'total_output_tokens': 49, 'total_llm_calls': 4}
+2026-07-16 16:09:00,070 - INFO - Request for checkout_cart, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, state={'trace_id': '23ad6f47-c683-4d75-82cc-0509c9b823a0', 'order_id': '76a70a35-e14f-48fd-986f-c4b17033c3fc', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': None, 'status': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-07-16 16:09:00,075 - INFO - Order reasoning prompt trace=23ad6f47-c683-4d75-82cc-0509c9b823a0
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:09:27,742 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:09:29,596 - INFO - Order reasoning raw response trace=23ad6f47-c683-4d75-82cc-0509c9b823a0
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 16:09:29,596 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 16:09:29,597 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': '23ad6f47-c683-4d75-82cc-0509c9b823a0', 'order_id': '76a70a35-e14f-48fd-986f-c4b17033c3fc', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.522}], 'total_input_tokens': 398, 'total_output_tokens': 12, 'total_llm_calls': 1}
+2026-07-16 16:09:29,602 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:09:29,603 - INFO - Order reasoning prompt trace=23ad6f47-c683-4d75-82cc-0509c9b823a0
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:09:58,848 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:10:00,558 - INFO - Order reasoning raw response trace=23ad6f47-c683-4d75-82cc-0509c9b823a0
+{
+  "next_action": "PRICE_CART"
+}
+2026-07-16 16:10:00,558 - INFO - Order decision=PRICE_CART input=394 output=12
+2026-07-16 16:10:00,559 - INFO - Calling pricing_node tool ... 
+ Current State is {'trace_id': '23ad6f47-c683-4d75-82cc-0509c9b823a0', 'order_id': '76a70a35-e14f-48fd-986f-c4b17033c3fc', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'PRICE_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.522}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.005}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 30.955}], 'fetch_cart_done': True, 'total_input_tokens': 792, 'total_output_tokens': 24, 'total_llm_calls': 2}
+2026-07-16 16:10:00,570 - INFO - Response of pricing_node tool ==> {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2, 'unit_price': 200.0, 'line_total': 400.0, 'discounts': 0.0}], 'subtotal': 400.0, 'total_discount': 0.0, 'total': 400.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:10:00,571 - INFO - Order reasoning prompt trace=23ad6f47-c683-4d75-82cc-0509c9b823a0
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:10:29,178 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:10:31,190 - INFO - Order reasoning raw response trace=23ad6f47-c683-4d75-82cc-0509c9b823a0
+{
+  "next_action": "RESERVE_INVENTORY"
+}
+2026-07-16 16:10:31,190 - INFO - Order decision=RESERVE_INVENTORY input=390 output=14
+2026-07-16 16:10:31,191 - INFO - Calling reserve_inventory_node tool ... 
+ Current State is {'trace_id': '23ad6f47-c683-4d75-82cc-0509c9b823a0', 'order_id': '76a70a35-e14f-48fd-986f-c4b17033c3fc', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'RESERVE_INVENTORY', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.522}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.005}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 30.955}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.011}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 30.619}], 'fetch_cart_done': True, 'price_cart_done': True, 'total_input_tokens': 1182, 'total_output_tokens': 38, 'total_llm_calls': 3}
+2026-07-16 16:10:31,195 - INFO - Response of reserve_inventory_node tool ==> {'order_id': '76a70a35-e14f-48fd-986f-c4b17033c3fc', 'status': 'OUT_OF_STOCK', 'reason': 'Out of stock: b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:10:31,196 - INFO - Order reasoning prompt trace=23ad6f47-c683-4d75-82cc-0509c9b823a0
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "OUT_OF_STOCK",
+  "inventory_status": "OUT_OF_STOCK",
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:11:00,466 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:11:02,686 - INFO - Order reasoning raw response trace=23ad6f47-c683-4d75-82cc-0509c9b823a0
+{
+"next_action": "FINISH"
+}
+2026-07-16 16:11:02,686 - INFO - Order decision=FINISH input=390 output=11
+2026-07-16 16:11:02,687 - INFO - History for cart_id=b70e352b-3854-40d9-b7e8-e0a2288b9041: [{"stage": "reason", "raw": "{\n  \"next_action\": \"FETCH_CART\"\n}", "chosen_action": "FETCH_CART", "input_tokens": 398, "output_tokens": 12, "duration": 29.522}, {"stage": "act", "action": "FETCH_CART", "result": {"items": [{"sku": "b2926dc2-cc6d-4c3e-ae40-7a127c173b16", "qty": 2}]}, "duration": 0.005}, {"stage": "reason", "raw": "{\n  \"next_action\": \"PRICE_CART\"\n}", "chosen_action": "PRICE_CART", "input_tokens": 394, "output_tokens": 12, "duration": 30.955}, {"stage": "act", "action": "PRICE_CART", "result": {"final_price": 400.0}, "duration": 0.011}, {"stage": "reason", "raw": "{\n  \"next_action\": \"RESERVE_INVENTORY\"\n}", "chosen_action": "RESERVE_INVENTORY", "input_tokens": 390, "output_tokens": 14, "duration": 30.619}, {"stage": "act", "action": "RESERVE_INVENTORY", "result": {"inventory_status": "OUT_OF_STOCK"}, "duration": 0.005}, {"stage": "reason", "raw": "{\n\"next_action\": \"FINISH\"\n}", "chosen_action": "FINISH", "input_tokens": 390, "output_tokens": 11, "duration": 31.49}]
+2026-07-16 16:11:02,687 - INFO - Order flow completed for cart_id=b70e352b-3854-40d9-b7e8-e0a2288b9041, order_id=76a70a35-e14f-48fd-986f-c4b17033c3fc, total_input_tokens=1572, total_output_tokens=49, total_llm_calls=4
+2026-07-16 16:11:02,687 - INFO - Request for checkout_cart processed successfully, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, result={'order_id': '76a70a35-e14f-48fd-986f-c4b17033c3fc', 'status': 'OUT_OF_STOCK', 'total_input_tokens': 1572, 'total_output_tokens': 49, 'total_llm_calls': 4}
+2026-07-16 16:11:39,004 - INFO - Request for checkout_cart, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, state={'trace_id': 'a039047e-ce89-4acb-9f50-3698f24c6145', 'order_id': '847448d6-27fd-4f98-b025-a13bb2674ea5', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': None, 'status': None, 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}
+2026-07-16 16:11:39,010 - INFO - Order reasoning prompt trace=a039047e-ce89-4acb-9f50-3698f24c6145
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FETCH_CART', 'PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": false,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:12:06,378 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:12:08,042 - INFO - Order reasoning raw response trace=a039047e-ce89-4acb-9f50-3698f24c6145
+{
+  "next_action": "FETCH_CART"
+}
+2026-07-16 16:12:08,043 - INFO - Order decision=FETCH_CART input=398 output=12
+2026-07-16 16:12:08,043 - INFO - Calling fetch_cart_node tool ... 
+ Current State is {'trace_id': 'a039047e-ce89-4acb-9f50-3698f24c6145', 'order_id': '847448d6-27fd-4f98-b025-a13bb2674ea5', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'FETCH_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.033}], 'total_input_tokens': 398, 'total_output_tokens': 12, 'total_llm_calls': 1}
+2026-07-16 16:12:08,048 - INFO - Response of fetch_cart_node tool ==> {'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:12:08,049 - INFO - Order reasoning prompt trace=a039047e-ce89-4acb-9f50-3698f24c6145
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PRICE_CART', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": false,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:12:39,304 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:12:41,436 - INFO - Order reasoning raw response trace=a039047e-ce89-4acb-9f50-3698f24c6145
+{
+  "next_action": "PRICE_CART"
+}
+2026-07-16 16:12:41,437 - INFO - Order decision=PRICE_CART input=394 output=12
+2026-07-16 16:12:41,438 - INFO - Calling pricing_node tool ... 
+ Current State is {'trace_id': 'a039047e-ce89-4acb-9f50-3698f24c6145', 'order_id': '847448d6-27fd-4f98-b025-a13bb2674ea5', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 0.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'PRICE_CART', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.033}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.005}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 33.388}], 'fetch_cart_done': True, 'total_input_tokens': 792, 'total_output_tokens': 24, 'total_llm_calls': 2}
+2026-07-16 16:12:41,442 - INFO - Response of pricing_node tool ==> {'items': [{'product_id': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2, 'unit_price': 200.0, 'line_total': 400.0, 'discounts': 0.0}], 'subtotal': 400.0, 'total_discount': 0.0, 'total': 400.0, 'currency': 'USD', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:12:41,443 - INFO - Order reasoning prompt trace=a039047e-ce89-4acb-9f50-3698f24c6145
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": null,
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": false,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:13:14,147 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:13:16,129 - INFO - Order reasoning raw response trace=a039047e-ce89-4acb-9f50-3698f24c6145
+{
+  "next_action": "RESERVE_INVENTORY"
+}
+2026-07-16 16:13:16,129 - INFO - Order decision=RESERVE_INVENTORY input=390 output=14
+2026-07-16 16:13:16,130 - INFO - Calling reserve_inventory_node tool ... 
+ Current State is {'trace_id': 'a039047e-ce89-4acb-9f50-3698f24c6145', 'order_id': '847448d6-27fd-4f98-b025-a13bb2674ea5', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': None, 'payment_status': None, 'shipment_status': None, 'decision': 'RESERVE_INVENTORY', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.033}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.005}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 33.388}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.005}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 34.686}], 'fetch_cart_done': True, 'price_cart_done': True, 'total_input_tokens': 1182, 'total_output_tokens': 38, 'total_llm_calls': 3}
+2026-07-16 16:13:16,135 - INFO - Response of reserve_inventory_node tool ==> {'order_id': '847448d6-27fd-4f98-b025-a13bb2674ea5', 'status': 'RESERVED', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'remaining': 8}], 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:13:16,136 - INFO - Order reasoning prompt trace=a039047e-ce89-4acb-9f50-3698f24c6145
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['PROCESS_PAYMENT', 'BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": null,
+  "inventory_status": "RESERVED",
+  "payment_status": null,
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": false,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:13:44,355 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:13:46,031 - INFO - Order reasoning raw response trace=a039047e-ce89-4acb-9f50-3698f24c6145
+{
+  "next_action": "PROCESS_PAYMENT"
+}
+2026-07-16 16:13:46,031 - INFO - Order decision=PROCESS_PAYMENT input=386 output=12
+2026-07-16 16:13:46,032 - INFO - Calling payment_node tool ... 
+ Current State is {'trace_id': 'a039047e-ce89-4acb-9f50-3698f24c6145', 'order_id': '847448d6-27fd-4f98-b025-a13bb2674ea5', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': 'RESERVED', 'payment_status': None, 'shipment_status': None, 'decision': 'PROCESS_PAYMENT', 'status': None, 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.033}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.005}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 33.388}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.005}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 34.686}, {'stage': 'act', 'action': 'RESERVE_INVENTORY', 'result': {'inventory_status': 'RESERVED'}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "PROCESS_PAYMENT"\n}', 'chosen_action': 'PROCESS_PAYMENT', 'input_tokens': 386, 'output_tokens': 12, 'duration': 29.895}], 'fetch_cart_done': True, 'price_cart_done': True, 'reserve_inventory_done': True, 'total_input_tokens': 1568, 'total_output_tokens': 50, 'total_llm_calls': 4}
+2026-07-16 16:13:46,338 - INFO - Response of payment_node tool ==> {'order_id': '847448d6-27fd-4f98-b025-a13bb2674ea5', 'status': 'SUCCESS', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:13:46,340 - INFO - Order reasoning prompt trace=a039047e-ce89-4acb-9f50-3698f24c6145
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['BOOK_SHIPMENT', 'FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "PAYMENT_SUCCEED",
+  "inventory_status": "RESERVED",
+  "payment_status": "SUCCESS",
+  "shipment_status": null,
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        [
+  {
+    "action": "FETCH_CART",
+    "completed": true,
+    "rank": 1
+  },
+  {
+    "action": "PRICE_CART",
+    "completed": true,
+    "rank": 2
+  },
+  {
+    "action": "RESERVE_INVENTORY",
+    "completed": true,
+    "rank": 3
+  },
+  {
+    "action": "PROCESS_PAYMENT",
+    "completed": true,
+    "rank": 4
+  },
+  {
+    "action": "BOOK_SHIPMENT",
+    "completed": false,
+    "rank": 5
+  }
+]
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:14:16,515 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:14:18,619 - INFO - Order reasoning raw response trace=a039047e-ce89-4acb-9f50-3698f24c6145
+{
+  "next_action" : "BOOK_SHIPMENT"
+}
+2026-07-16 16:14:18,619 - INFO - Order decision=BOOK_SHIPMENT input=388 output=15
+2026-07-16 16:14:18,620 - INFO - Calling shipment_node tool ... 
+ Current State is {'trace_id': 'a039047e-ce89-4acb-9f50-3698f24c6145', 'order_id': '847448d6-27fd-4f98-b025-a13bb2674ea5', 'cart_id': 'b70e352b-3854-40d9-b7e8-e0a2288b9041', 'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}], 'final_price': 400.0, 'atomic_update': True, 'delay': 0.0, 'drop': 0, 'inventory_status': 'RESERVED', 'payment_status': 'SUCCESS', 'shipment_status': None, 'decision': 'BOOK_SHIPMENT', 'status': 'PAYMENT_SUCCEED', 'history': [{'stage': 'reason', 'raw': '{\n  "next_action": "FETCH_CART"\n}', 'chosen_action': 'FETCH_CART', 'input_tokens': 398, 'output_tokens': 12, 'duration': 29.033}, {'stage': 'act', 'action': 'FETCH_CART', 'result': {'items': [{'sku': 'b2926dc2-cc6d-4c3e-ae40-7a127c173b16', 'qty': 2}]}, 'duration': 0.005}, {'stage': 'reason', 'raw': '{\n  "next_action": "PRICE_CART"\n}', 'chosen_action': 'PRICE_CART', 'input_tokens': 394, 'output_tokens': 12, 'duration': 33.388}, {'stage': 'act', 'action': 'PRICE_CART', 'result': {'final_price': 400.0}, 'duration': 0.005}, {'stage': 'reason', 'raw': '{\n  "next_action": "RESERVE_INVENTORY"\n}', 'chosen_action': 'RESERVE_INVENTORY', 'input_tokens': 390, 'output_tokens': 14, 'duration': 34.686}, {'stage': 'act', 'action': 'RESERVE_INVENTORY', 'result': {'inventory_status': 'RESERVED'}, 'duration': 0.006}, {'stage': 'reason', 'raw': '{\n  "next_action": "PROCESS_PAYMENT"\n}', 'chosen_action': 'PROCESS_PAYMENT', 'input_tokens': 386, 'output_tokens': 12, 'duration': 29.895}, {'stage': 'act', 'action': 'PROCESS_PAYMENT', 'result': {'payment_status': 'SUCCESS'}, 'duration': 0.307}, {'stage': 'reason', 'raw': '{\n  "next_action" : "BOOK_SHIPMENT"\n}', 'chosen_action': 'BOOK_SHIPMENT', 'input_tokens': 388, 'output_tokens': 15, 'duration': 32.28}], 'fetch_cart_done': True, 'price_cart_done': True, 'reserve_inventory_done': True, 'process_payment_done': True, 'total_input_tokens': 1956, 'total_output_tokens': 65, 'total_llm_calls': 5}
+2026-07-16 16:14:18,833 - INFO - Response of shipment_node tool ==> {'shipment_id': 'bd9920e8-ef23-475e-b453-655be73e6bbc', 'tracking_id': 'f4c79d39-76d1-4154-bd7d-2bafbff25fa4', 'total_input_tokens': 0, 'total_output_tokens': 0, 'total_llm_calls': 0}, 
+-------------------------------------
+2026-07-16 16:14:18,834 - INFO - Order reasoning prompt trace=a039047e-ce89-4acb-9f50-3698f24c6145
+You are an Order workflow orchestrator.
+
+        Your job is to choose exactly ONE next action from this list: ['FINISH', 'ROLLBACK_INVENTORY'] based on decision policy and current workflow state.
+
+        Decision policy:
+        - If all stages in the workflow are completed or workflow is empty, choose "finish" as the next action.
+        - Choose the first stage in the rank order from workflow which is not completed as next action.
+        - Never skip a stage, choose any earlier stage or repeat a completed stage.
+        
+
+        Exception policy
+
+        • If status == OUT_OF_STOCK choose FINISH
+        • If status == PAYMENT_FAILED choose ROLLBACK_INVENTORY
+        • If rollback_inventory_done == True choose FINISH
+
+
+        Current order state:
+
+        {
+  "status": "COMPLETED",
+  "inventory_status": "RESERVED",
+  "payment_status": "SUCCESS",
+  "shipment_status": "BOOKED",
+  "atomic_update": true
+}
+
+        Current workflow state:
+
+        []
+
+
+        Return ONLY JSON without intermediate reasoning and justification.
+
+        {
+            "next_action":"..."
+        }
+2026-07-16 16:14:35,684 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-07-16 16:14:37,481 - INFO - Order reasoning raw response trace=a039047e-ce89-4acb-9f50-3698f24c6145
+{
+    "next_action": "FINISH"
+}
+2026-07-16 16:14:37,481 - INFO - Order decision=FINISH input=251 output=12
+2026-07-16 16:14:37,482 - INFO - History for cart_id=b70e352b-3854-40d9-b7e8-e0a2288b9041: [{"stage": "reason", "raw": "{\n  \"next_action\": \"FETCH_CART\"\n}", "chosen_action": "FETCH_CART", "input_tokens": 398, "output_tokens": 12, "duration": 29.033}, {"stage": "act", "action": "FETCH_CART", "result": {"items": [{"sku": "b2926dc2-cc6d-4c3e-ae40-7a127c173b16", "qty": 2}]}, "duration": 0.005}, {"stage": "reason", "raw": "{\n  \"next_action\": \"PRICE_CART\"\n}", "chosen_action": "PRICE_CART", "input_tokens": 394, "output_tokens": 12, "duration": 33.388}, {"stage": "act", "action": "PRICE_CART", "result": {"final_price": 400.0}, "duration": 0.005}, {"stage": "reason", "raw": "{\n  \"next_action\": \"RESERVE_INVENTORY\"\n}", "chosen_action": "RESERVE_INVENTORY", "input_tokens": 390, "output_tokens": 14, "duration": 34.686}, {"stage": "act", "action": "RESERVE_INVENTORY", "result": {"inventory_status": "RESERVED"}, "duration": 0.006}, {"stage": "reason", "raw": "{\n  \"next_action\": \"PROCESS_PAYMENT\"\n}", "chosen_action": "PROCESS_PAYMENT", "input_tokens": 386, "output_tokens": 12, "duration": 29.895}, {"stage": "act", "action": "PROCESS_PAYMENT", "result": {"payment_status": "SUCCESS"}, "duration": 0.307}, {"stage": "reason", "raw": "{\n  \"next_action\" : \"BOOK_SHIPMENT\"\n}", "chosen_action": "BOOK_SHIPMENT", "input_tokens": 388, "output_tokens": 15, "duration": 32.28}, {"stage": "act", "action": "BOOK_SHIPMENT", "result": {"shipment_status": "BOOKED"}, "duration": 0.213}, {"stage": "reason", "raw": "{\n    \"next_action\": \"FINISH\"\n}", "chosen_action": "FINISH", "input_tokens": 251, "output_tokens": 12, "duration": 18.647}]
+2026-07-16 16:14:37,482 - INFO - Order flow completed for cart_id=b70e352b-3854-40d9-b7e8-e0a2288b9041, order_id=847448d6-27fd-4f98-b025-a13bb2674ea5, total_input_tokens=2207, total_output_tokens=77, total_llm_calls=6
+2026-07-16 16:14:37,482 - INFO - Request for checkout_cart processed successfully, cart_id = b70e352b-3854-40d9-b7e8-e0a2288b9041, result={'order_id': '847448d6-27fd-4f98-b025-a13bb2674ea5', 'status': 'COMPLETED', 'total_input_tokens': 2207, 'total_output_tokens': 77, 'total_llm_calls': 6}

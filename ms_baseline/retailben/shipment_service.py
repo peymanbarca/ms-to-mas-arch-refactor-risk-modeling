@@ -34,7 +34,7 @@ http_client: httpx.AsyncClient = httpx.AsyncClient(timeout=10)
 class ShipmentRequest(BaseModel):
     order_id: str
     address: str
-    shipment_date: Optional[datetime.datetime] = time.now() + datetime.timedelta(days=2)
+    shipment_date: Optional[datetime.datetime] = datetime.datetime.now() + datetime.timedelta(days=2)
 
 
 class ShipmentResponse(BaseModel):
