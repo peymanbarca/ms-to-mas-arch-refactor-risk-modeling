@@ -236,7 +236,10 @@ class ComposePostHandler(ComposePostService.Iface):
 
             span.set_tag("post_id", final_state.get("post_id"))
             span.set_tag("timestamp", final_state.get("timestamp"))
-            logger.debug(
+            
+            logger.info("History for req_id=%d: %s", req_id, json.dumps(final_state.get("history", [])))
+            
+            logger.info(
                 "ComposePost req_id=%d completed post_id=%s, total_input_tokens=%d, total_output_tokens=%d, total_llm_calls=%d",
                 req_id,
                 final_state.get("post_id"),
@@ -276,9 +279,10 @@ class ComposePostHandler(ComposePostService.Iface):
     # ------------------------------------------------------------------
 
     def _reason(self, state: ComposePostState):
-        allowed = self._allowed_actions(state)
+        # allowed = self._allowed_actions(state)
 
-        prompt = self._system_prompt(allowed, state)
+        t1 = time.time()
+        prompt = self._system_prompt(state)
 
         logger.info(
             "\n\n ------------------------- ComposePost reason req_id=%d prompt=%s \n\n ------------------------- ",
@@ -296,6 +300,7 @@ class ComposePostHandler(ComposePostService.Iface):
         input_tokens = usage.get("input_tokens", 0)
         output_tokens = usage.get("output_tokens", 0)
 
+        t2 = time.time()
         action = self._parse_action(raw, allowed=None)
 
         logger.info(
@@ -311,11 +316,12 @@ class ComposePostHandler(ComposePostService.Iface):
         history.append(
             {
                 "stage": "reason",
-                "allowed": allowed,
+                # "allowed": allowed,
                 "raw": raw,
                 "chosen_action": action,
                 "input_tokens": input_tokens,
                 "output_tokens": output_tokens,
+                "duration": round(t2 - t1, 3),
             }
         )
 
@@ -330,7 +336,7 @@ class ComposePostHandler(ComposePostService.Iface):
             + 1,
         }
 
-    def _system_prompt(self, allowed: list[str], state: ComposePostState) -> str:
+    def _system_prompt(self, state: ComposePostState) -> str:
         state_view = {
             "req_id": state.get("req_id"),
             "user_id": state.get("user_id"),
@@ -452,28 +458,34 @@ class ComposePostHandler(ComposePostService.Iface):
 
         try:
             if action == "compose_unique_id":
+                t1 = time.time()
                 post_id = self._call_unique_id(
                     state["req_id"], state["post_type"], state["carrier"]
                 )
                 updates["post_id"] = post_id
+                t2 = time.time()
                 history.append(
-                    {"stage": "act", "action": action, "result": {"post_id": post_id}}
+                    {"stage": "act", "action": action, "result": {"post_id": post_id}, "duration": round(t2 - t1, 3)}
                 )
 
             elif action == "compose_text":
+                t1 = time.time()
                 text_result = self._call_text(
                     state["req_id"], state["text"], state["carrier"]
                 )
                 updates["text_result"] = text_result
+                t2 = time.time()
                 history.append(
                     {
                         "stage": "act",
                         "action": action,
                         "result": {"text_result": str(text_result)},
+                        "duration": round(t2 - t1, 3)
                     }
                 )
 
             elif action == "compose_creator":
+                t1 = time.time()
                 creator = self._call_compose_creator(
                     state["req_id"],
                     state["user_id"],
@@ -481,15 +493,18 @@ class ComposePostHandler(ComposePostService.Iface):
                     state["carrier"],
                 )
                 updates["creator"] = creator
+                t2 = time.time()
                 history.append(
                     {
                         "stage": "act",
                         "action": action,
                         "result": {"creator": str(creator)},
+                        "duration": round(t2 - t1, 3)
                     }
                 )
 
             elif action == "compose_media":
+                t1 = time.time()
                 media_list = self._call_media(
                     state["req_id"],
                     state["media_types"],
@@ -497,18 +512,22 @@ class ComposePostHandler(ComposePostService.Iface):
                     state["carrier"],
                 )
                 updates["media_list"] = media_list
+                t2 = time.time()
                 history.append(
                     {
                         "stage": "act",
                         "action": action,
                         "result": {"media_count": len(media_list or [])},
+                        "duration": round(t2 - t1, 3)
                     }
                 )
 
             elif action == "assemble_post":
+                t1 = time.time()
                 post = self._assemble_post(state)
                 updates["post"] = post
                 updates["timestamp"] = post.timestamp
+                t2 = time.time()
                 history.append(
                     {
                         "stage": "act",
@@ -517,15 +536,19 @@ class ComposePostHandler(ComposePostService.Iface):
                             "post_id": post.post_id,
                             "timestamp": post.timestamp,
                         },
+                        "duration": round(t2 - t1, 3)
                     }
                 )
 
             elif action == "store_post":
+                t1 = time.time()
                 self._store_post(state["req_id"], state["post"], state["carrier"])
                 updates["write_post_done"] = True
-                history.append({"stage": "act", "action": action, "result": "ok"})
+                t2 = time.time()
+                history.append({"stage": "act", "action": action, "result": "ok", "duration": round(t2 - t1, 3)})
 
             elif action == "write_user_timeline":
+                t1 = time.time()
                 self._write_user_timeline(
                     state["req_id"],
                     state["post"].post_id,
@@ -534,9 +557,11 @@ class ComposePostHandler(ComposePostService.Iface):
                     state["carrier"],
                 )
                 updates["write_user_timeline_done"] = True
-                history.append({"stage": "act", "action": action, "result": "ok"})
+                t2 = time.time()
+                history.append({"stage": "act", "action": action, "result": "ok", "duration": round(t2 - t1, 3)})
 
             elif action == "publish_home_timeline":
+                t1 = time.time()
                 mention_ids = [
                     m.user_id
                     for m in (_attr(state.get("text_result"), "user_mentions", []) or [])
@@ -550,7 +575,8 @@ class ComposePostHandler(ComposePostService.Iface):
                     state["carrier"],
                 )
                 updates["publish_home_timeline_done"] = True
-                history.append({"stage": "act", "action": action, "result": "ok"})
+                t2 = time.time()
+                history.append({"stage": "act", "action": action, "result": "ok", "duration": round(t2 - t1, 3)})
 
             elif action == "finish":
                 updates["done"] = True
