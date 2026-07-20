@@ -53,6 +53,7 @@ Parallelism
 
 import concurrent.futures
 import logging
+import time
 
 import opentracing
 from opentracing.ext import tags as ot_tags
@@ -135,8 +136,14 @@ class HomeTimelineHandler(HomeTimelineService.Iface):
             },
         ) as scope:
             span = scope.span
+            
+            logger.info(
+                "\n\n-------------------- WriteHomeTimeline new Request req_id=%d user_id=%d post_id=%d\n\n",
+                req_id, user_id, post_id,
+            )
 
             # ---- 1. Get followers from SocialGraphService (async) ----
+            t1 = time.time()
             child_carrier = self._inject_ctx(span)
             followers_future = self._executor.submit(
                 self._get_followers, user_id, req_id, child_carrier
@@ -157,6 +164,11 @@ class HomeTimelineHandler(HomeTimelineService.Iface):
                     errorCode=ErrorCode.SE_THRIFT_HANDLER_ERROR,
                     message=f"GetFollowers failed: {exc}",
                 )
+            t2 = time.time()
+            logger.info(
+                "GetFollowers req_id=%d user_id=%d -> %d followers took %.3f sec",
+                req_id, user_id, len(followers), t2 - t1,
+            )
 
             # ---- 2. Build deduplicated target set ----
             # followers + mentioned users — each gets the post in their feed
@@ -175,6 +187,11 @@ class HomeTimelineHandler(HomeTimelineService.Iface):
 
             # ---- 3. Fan-out: ZADD into each target's home timeline ----
             self._redis_fanout(post_id, timestamp, targets, span)
+            t3 = time.time()
+            logger.info(
+                "WriteHomeTimeline req_id=%d post_id=%d fanout to %d targets, totally took %.3f sec",
+                req_id, post_id, len(targets), t3 -t1,
+            )
 
     # ------------------------------------------------------------------
     # ReadHomeTimeline

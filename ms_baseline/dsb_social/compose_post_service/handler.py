@@ -54,7 +54,7 @@ from ms_baseline.dsb_social.gen_py.social_network.ttypes import (
 from .thrift_pool import ThriftClientPool
 
 logger = logging.getLogger("compose-post-service")
-
+logging.getLogger("pika").setLevel(logging.WARNING)
 
 class ComposePostHandler(ComposePostService.Iface):
     """
@@ -139,10 +139,17 @@ class ComposePostHandler(ComposePostService.Iface):
             },
         ) as scope:
             span = scope.span
+            
+            logger.info(
+                "\n\n-------------------- ComposePost Orchestration new Request req_id=%d user_id=%d username=%s post_type=%s\n\n",
+                req_id, user_id, username, post_type,
+            )
 
             # ================================================================
             # Phase 1 — Parallel fan-out: 4 async RPC calls simultaneously
             # ================================================================
+            t1 = time.time()
+
             uid_carrier    = self._inject_ctx(span)
             text_carrier   = self._inject_ctx(span)
             user_carrier   = self._inject_ctx(span)
@@ -160,6 +167,7 @@ class ComposePostHandler(ComposePostService.Iface):
             media_future = self._executor.submit(
                 self._call_media, req_id, media_types, media_ids, media_carrier
             )
+            t2 = time.time()
 
             # ---- Collect all 4 results ----
             try:
@@ -167,6 +175,10 @@ class ComposePostHandler(ComposePostService.Iface):
                 text_result       = text_future.result()
                 creator           = creator_future.result()
                 media_list        = media_future.result()
+                logger.info(
+                    "Phase 1 fan-out completed, post_id=%d req_id=%d took %.3f sec",
+                    post_id, req_id, t2 - t1,
+                )
             except ServiceException:
                 span.set_tag("error", True)
                 raise
@@ -232,17 +244,29 @@ class ComposePostHandler(ComposePostService.Iface):
 
     def _call_unique_id(self, req_id: int, post_type, carrier: dict) -> int:
         with self._unique_id_pool.connection() as client:
-            return client.ComposeUniqueId(req_id, post_type, carrier)
+            t1 = time.time()
+            result = client.ComposeUniqueId(req_id, post_type, carrier)
+            t2 = time.time()
+            logger.info("Unique ID call req_id=%d post_id=%d took %.3f sec", req_id, result, t2 - t1)
+            return result
 
     def _call_text(self, req_id: int, text: str, carrier: dict):
         with self._text_pool.connection() as client:
-            return client.ComposeText(req_id, text, carrier)
+            t1 = time.time()
+            result = client.ComposeText(req_id, text, carrier)
+            t2 = time.time()
+            logger.info("Text call req_id=%d took %.3f sec", req_id, t2 - t1)
+            return result
 
     def _call_compose_creator(
         self, req_id: int, user_id: int, username: str, carrier: dict
     ):
         with self._user_pool.connection() as client:
-            return client.ComposeCreatorWithUserId(req_id, user_id, username, carrier)
+            t1 = time.time()
+            result = client.ComposeCreatorWithUserId(req_id, user_id, username, carrier)
+            t2 = time.time()
+            logger.info("Creator call req_id=%d took %.3f sec", req_id, t2 - t1)
+            return result
 
     def _call_media(
         self,
@@ -254,7 +278,11 @@ class ComposePostHandler(ComposePostService.Iface):
         if not media_ids:
             return []
         with self._media_pool.connection() as client:
-            return client.ComposeMedia(req_id, media_types, media_ids, carrier)
+            t1 = time.time()
+            result = client.ComposeMedia(req_id, media_types, media_ids, carrier)
+            t2 = time.time()
+            logger.info("Media call req_id=%d took %.3f sec", req_id, t2 - t1)
+            return result
 
     # ==================================================================
     # Private — Phase 3 writes
@@ -264,7 +292,10 @@ class ComposePostHandler(ComposePostService.Iface):
         child_carrier = self._inject_ctx(span)
         try:
             with self._post_storage_pool.connection() as client:
+                t1 = time.time()
                 client.StorePost(req_id, post, child_carrier)
+                t2 = time.time()
+                logger.info("StorePost call req_id=%d took %.3f sec", req_id, t2 - t1)
         except ServiceException:
             raise
         except Exception as exc:
@@ -286,8 +317,11 @@ class ComposePostHandler(ComposePostService.Iface):
         child_carrier = self._inject_ctx(span)
         try:
             with self._timeline_pool.connection() as client:
+                t1 = time.time()
                 client.WriteUserTimeline(req_id, post_id, user_id, timestamp,
                                          child_carrier)
+                t2 = time.time()
+                logger.info("WriteUserTimeline call req_id=%d took %.3f sec", req_id, t2 - t1)
         except ServiceException:
             raise
         except Exception as exc:
@@ -309,6 +343,7 @@ class ComposePostHandler(ComposePostService.Iface):
     ) -> None:
         out_carrier = self._inject_ctx(span)
         try:
+            t1 = time.time()
             self._publisher.publish(
                 req_id=req_id,
                 post_id=post_id,
@@ -317,6 +352,8 @@ class ComposePostHandler(ComposePostService.Iface):
                 user_mentions_id=mention_ids,
                 carrier=out_carrier,
             )
+            t2 = time.time()
+            logger.info("RabbitMQ publish req_id=%d post_id=%d took %.3f sec", req_id, post_id, t2 - t1)
         except Exception as exc:
             # RabbitMQ publish failure is logged but not fatal — the post is
             # already stored and the user timeline is written. Home timeline

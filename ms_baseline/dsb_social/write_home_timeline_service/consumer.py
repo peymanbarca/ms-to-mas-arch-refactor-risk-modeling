@@ -35,6 +35,7 @@ import pika.exceptions
 from .worker import MessageWorker
 
 logger = logging.getLogger("write-home-timeline-service.consumer")
+logging.getLogger("pika").setLevel(logging.WARNING)
 
 # Backoff settings for reconnect loop
 _RECONNECT_INITIAL_DELAY = 1.0    # seconds

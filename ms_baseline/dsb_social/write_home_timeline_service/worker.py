@@ -21,6 +21,7 @@ pika connection per worker thread started from the main server loop.
 """
 
 import logging
+import time
 
 import opentracing
 from opentracing.propagation import Format
@@ -60,6 +61,9 @@ class MessageWorker:
         ----------
         body : raw AMQP message body bytes
         """
+        
+        t1 = time.time()
+        
         # ---- 1. Decode ----
         try:
             msg = decode(body)
@@ -127,3 +131,5 @@ class MessageWorker:
                 span.set_tag("error", True)
                 span.log_kv({"event": "error", "message": str(exc)})
                 raise
+        t2 = time.time()
+        logger.info("WriteHomeTimeline consumer req_id=%d post_id=%d took %.3f sec", msg.req_id, msg.post_id, t2 - t1)
