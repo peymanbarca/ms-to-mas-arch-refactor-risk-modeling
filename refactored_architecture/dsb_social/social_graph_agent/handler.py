@@ -153,6 +153,7 @@ class SocialGraphHandler(SocialGraphService.Iface):
             },
         ) as scope:
             span = scope.span
+            t1 = time.time()
             try:
                 self._col.update_one(
                     {"user_id": user_id},
@@ -172,7 +173,8 @@ class SocialGraphHandler(SocialGraphService.Iface):
                     errorCode=ErrorCode.SE_MONGODB_ERROR,
                     message=f"MongoDB write failed: {exc}",
                 )
-            logger.debug("InsertUser req_id=%d user_id=%d", req_id, user_id)
+            t2 = time.time()
+            logger.info("InsertUser req_id=%d user_id=%d completed in %.3f seconds", req_id, user_id, t2 - t1)
 
     # ------------------------------------------------------------------
     # GetFollowers
@@ -191,6 +193,7 @@ class SocialGraphHandler(SocialGraphService.Iface):
             },
         ) as scope:
             span = scope.span
+            t1 = time.time()
 
             initial: GetGraphAgentState = {
                 "req_id": req_id,
@@ -217,6 +220,8 @@ class SocialGraphHandler(SocialGraphService.Iface):
             result = list(out.get("final_ids") or [])
             span.set_tag("count", len(result))
             self._log_metrics("GetFollowers", req_id, out, span)
+            t2 = time.time()
+            logger.info("GetFollowers req_id=%d user_id=%d count=%d completed in %.3f seconds", req_id, user_id, len(result), t2 - t1)
             return result
 
     # ------------------------------------------------------------------

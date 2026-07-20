@@ -167,7 +167,6 @@ class ComposePostHandler(ComposePostService.Iface):
             media_future = self._executor.submit(
                 self._call_media, req_id, media_types, media_ids, media_carrier
             )
-            t2 = time.time()
 
             # ---- Collect all 4 results ----
             try:
@@ -175,6 +174,7 @@ class ComposePostHandler(ComposePostService.Iface):
                 text_result       = text_future.result()
                 creator           = creator_future.result()
                 media_list        = media_future.result()
+                t2 = time.time()
                 logger.info(
                     "Phase 1 fan-out completed, post_id=%d req_id=%d took %.3f sec",
                     post_id, req_id, t2 - t1,

@@ -184,7 +184,7 @@ def run_trial(trial_id: int, worker_id: int, runner: CommandRunner) -> TrialResu
     """Execute a single end-to-end trial across all 3 stages."""
     uid      = _next_user_id()
     username = f"user_{uid}_{trial_id}"
-    password = "secret123"
+    password = "secret123A"
 
     trial = TrialResult(
         trial_id=trial_id,
@@ -276,7 +276,7 @@ def run_trial(trial_id: int, worker_id: int, runner: CommandRunner) -> TrialResu
     t_s3 = time.perf_counter()
 
     posts = [
-        {"username": username,  "user_id": uid,      "text": f"Hello world from {username}!"},
+        {"username": username,  "user_id": uid,      "text": f"Hello world from {username}! check this url: https://www.example.com/some/very/long/path"},
         {"username": username,  "user_id": fol_id_2, "text": f"Hello world2 from {fol_id_2}!"},
         {"username": username,  "user_id": fol_id_3, "text": f"Hello world3 from {fol_id_3}!"},
         {"username": username,  "user_id": fol_id_2, "text": "Check this out!",

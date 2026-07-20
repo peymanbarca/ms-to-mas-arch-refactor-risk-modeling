@@ -10,6 +10,7 @@ The graph performs the downstream service call.
 
 import asyncio
 import logging
+import time
 
 import opentracing
 from opentracing.propagation import Format
@@ -19,7 +20,7 @@ from .message import decode, WriteHomeTimelineMessage
 from .agent import build_write_home_timeline_agent, WriteHomeTimelineAgentState
 from .thrift_pool import ThriftClientPool
 
-logger = logging.getLogger("write-home-timeline-service.worker")
+logger = logging.getLogger("write-home-timeline-agent.worker")
 
 
 class MessageWorker:
@@ -75,7 +76,7 @@ class MessageWorker:
             child_of=parent_ctx,
         ) as scope:
             span = scope.span
-
+            t1 = time.time()
             if preview is not None:
                 span.set_tag("req_id", preview.req_id)
                 span.set_tag("post_id", preview.post_id)
@@ -86,6 +87,13 @@ class MessageWorker:
                 self._tracer.inject(span.context, Format.TEXT_MAP, out_carrier)
             except Exception:
                 out_carrier = {}
+            
+            logger.info(
+                "WriteHomeTimeline consumer starting for msg: req_id=%s post_id=%s user_id=%s",
+                preview.req_id if preview else None,
+                preview.post_id if preview else None,
+                preview.user_id if preview else None,
+            )
 
             initial: WriteHomeTimelineAgentState = {
                 "body": body,
@@ -126,17 +134,21 @@ class MessageWorker:
             approved = bool(out.get("approved", False))
 
             logger.info(
-                "WriteHomeTimeline graph done req_id=%s post_id=%s approved=%s",
+                "WriteHomeTimeline consumer graph done req_id=%s post_id=%s approved=%s",
                 out.get("req_id"),
                 out.get("post_id"),
                 approved,
-            )
-            print(
-                f"[worker] req_id={out.get('req_id')} "
-                f"post_id={out.get('post_id')} approved={approved}"
             )
 
             span.set_tag("approved", approved)
             span.set_tag("fallback", out.get("fallback_used", False))
 
+            t2 = time.time()
+            logger.info(
+                "WriteHomeTimeline consumer req_id=%s post_id=%s completed in %.3f seconds",
+                out.get("req_id"),
+                out.get("post_id"),
+                t2 - t1,
+            )
+            
             return approved

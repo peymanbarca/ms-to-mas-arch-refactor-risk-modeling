@@ -10,6 +10,7 @@ The final TextServiceReturn is assembled from:
 
 import asyncio
 import logging
+import time
 
 import opentracing
 from opentracing.ext import tags as ot_tags
@@ -66,6 +67,7 @@ class TextHandler(TextService.Iface):
             },
         ) as scope:
             span = scope.span
+            t1 = time.time()
 
             # Inject child carrier for tool calls
             child_carrier = {}
@@ -119,11 +121,12 @@ class TextHandler(TextService.Iface):
                 )
                 for u in (out["final_urls"] or [])
             ]
+            t2 = time.time()
 
             logger.info(
                 "ComposeText req_id=%d text_len=%d->%d "
                 "urls=%d mentions=%d llm_calls=%d "
-                "in_tokens=%d out_tokens=%d fallback=%s",
+                "in_tokens=%d out_tokens=%d fallback=%s took=%.3fs",
                 req_id,
                 len(text), len(out["final_text"] or ""),
                 len(urls), len(user_mentions),
@@ -131,14 +134,9 @@ class TextHandler(TextService.Iface):
                 out["total_input_tokens"],
                 out["total_output_tokens"],
                 out["fallback_used"],
+                t2 - t1
             )
-            print(
-                f"[handler] req_id={req_id} "
-                f"llm_calls={out['total_llm_calls']} "
-                f"in_tokens={out['total_input_tokens']} "
-                f"out_tokens={out['total_output_tokens']} "
-                f"fallback={out['fallback_used']}"
-            )
+
 
             span.set_tag("llm_calls",  out["total_llm_calls"])
             span.set_tag("fallback",   out["fallback_used"])

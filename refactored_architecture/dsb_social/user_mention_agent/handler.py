@@ -10,6 +10,7 @@ and logged per-request.
 
 import asyncio
 import logging
+import time
 
 import opentracing
 from opentracing.ext import tags as ot_tags
@@ -96,7 +97,7 @@ class UserMentionHandler(UserMentionService.Iface):
             },
         ) as scope:
             span = scope.span
-
+            t1 = time.time()
             # De-duplicate while preserving order — process each unique username once
             seen:   dict[str, UserMention] = {}   # username -> resolved UserMention
             result: list[UserMention]      = []
@@ -153,10 +154,11 @@ class UserMentionHandler(UserMentionService.Iface):
                 seen[username] = mention
                 result.append(mention)
 
+            t2 = time.time()
             logger.info(
                 "ComposeUserMentions req_id=%d usernames=%d resolved=%d llm_calls=%d "
-                "in_tokens=%d out_tokens=%d",
-                req_id, len(usernames), len(seen), total_calls, total_in, total_out,
+                "in_tokens=%d out_tokens=%d took=%.3fs",
+                req_id, len(usernames), len(seen), total_calls, total_in, total_out, t2 - t1,
             )
             span.set_tag("resolved_count", len(seen))
             span.set_tag("llm_calls",      total_calls)

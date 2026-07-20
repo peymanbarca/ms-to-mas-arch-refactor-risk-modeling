@@ -35,7 +35,8 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)-8s %(name)s  %(message)s",
 )
-logger = logging.getLogger("write-home-timeline-service")
+logger = logging.getLogger("write-home-timeline-agent")
+logging.getLogger("pika").setLevel(logging.WARNING)
 
 DEFAULT_CONFIG = os.path.join(
     os.path.dirname(__file__), "config", "service-config.json"

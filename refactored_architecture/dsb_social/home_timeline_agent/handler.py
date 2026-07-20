@@ -24,6 +24,7 @@ Downstream dependencies
 import logging
 from typing import Any
 import asyncio
+import time
 
 import opentracing
 from opentracing.ext import tags as ot_tags
@@ -43,7 +44,7 @@ from .agent import (
     ReadHomeTimelineState,
 )
 
-logger = logging.getLogger("home-timeline-service")
+logger = logging.getLogger("home-timeline-agent")
 
 _REDIS_KEY_PREFIX = "home-timeline:"   # home-timeline:<user_id>
 
@@ -107,6 +108,7 @@ class HomeTimelineHandler(HomeTimelineService.Iface):
             },
         ) as scope:
             span = scope.span
+            t1 = time.time()
 
             initial: WriteHomeTimelineState = {
                 "req_id": req_id,
@@ -151,12 +153,14 @@ class HomeTimelineHandler(HomeTimelineService.Iface):
                     message="WriteHomeTimeline agent failed to produce targets",
                 )
 
-            logger.debug(
-                "WriteHomeTimeline req_id=%d post_id=%d user_id=%d targets=%d",
+            t2 = time.time()
+            logger.info(
+                "WriteHomeTimeline req_id=%d post_id=%d user_id=%d targets=%d completed in %.3f seconds",
                 req_id,
                 post_id,
                 user_id,
                 len(out.get("final_targets") or []),
+                t2 - t1
             )
 
     # ------------------------------------------------------------------

@@ -37,7 +37,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)-8s %(name)s  %(message)s",
 )
-logger = logging.getLogger("home-timeline-service")
+logger = logging.getLogger("home-timeline-agent")
 
 DEFAULT_CONFIG = os.path.join(os.path.dirname(__file__), "config", "service-config.json")
 

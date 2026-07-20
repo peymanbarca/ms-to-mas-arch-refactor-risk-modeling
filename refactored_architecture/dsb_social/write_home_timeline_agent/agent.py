@@ -73,6 +73,7 @@ from langchain_ollama import ChatOllama
 
 from .message import decode, WriteHomeTimelineMessage
 from .thrift_pool import ThriftClientPool
+import time
 
 logger = logging.getLogger("write-home-timeline-agent")
 
@@ -243,11 +244,12 @@ Return ONLY valid JSON — no explanation, no code, no markdown.
 Schema:
 {{
   "approved":         true | false,
-  "reason":           "<short explanation>",
+  "reason":           "<short explanation>", // only if approved=false
   "cleaned_mentions": [<positive integers only>]
 }}
 """
 
+    t1 = time.time()
     logger.info(
         "LLM reason_validate_message req_id=%d post_id=%d, prompt=%r",
         state["req_id"] or 0, state["post_id"] or 0, prompt
@@ -257,7 +259,7 @@ Schema:
     in_tok   = response.usage_metadata.get("input_tokens",  0)
     out_tok  = response.usage_metadata.get("output_tokens", 0)
 
-    logger.info("LLM raw=%r  in=%d out=%d", raw[:200], in_tok, out_tok)
+    logger.info("LLM raw=%r  in=%d out=%d, too=%d", raw, in_tok, out_tok, time.time() - t1)
     print(f"[reason_validate_message] raw={raw[:120]!r}  in={in_tok} out={out_tok}")
 
     parsed   = _parse_json(raw)

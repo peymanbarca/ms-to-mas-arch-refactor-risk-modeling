@@ -11,6 +11,7 @@ logged per-request with fallback statistics.
 
 import asyncio
 import logging
+import time
 
 import opentracing
 from opentracing.ext import tags as ot_tags
@@ -84,7 +85,7 @@ class UrlShortenHandler(UrlShortenService.Iface):
             },
         ) as scope:
             span = scope.span
-
+            t1 = time.time()
             total_in = total_out = total_calls = fallbacks = 0
             results = []
 
@@ -128,10 +129,11 @@ class UrlShortenHandler(UrlShortenService.Iface):
                     expanded_url=expanded_url,
                 ))
 
+            t2 = time.time()
             logger.info(
                 "ComposeUrls req_id=%d urls=%d llm_calls=%d "
-                "in_tokens=%d out_tokens=%d fallbacks=%d",
-                req_id, len(urls), total_calls, total_in, total_out, fallbacks,
+                "in_tokens=%d out_tokens=%d fallbacks=%d took=%.3fs",
+                req_id, len(urls), total_calls, total_in, total_out, fallbacks, t2 - t1,
             )
             span.set_tag("llm_calls",  total_calls)
             span.set_tag("fallbacks",  fallbacks)

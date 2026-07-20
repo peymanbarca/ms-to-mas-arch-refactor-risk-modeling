@@ -12,7 +12,7 @@ import queue
 from thrift.transport import TSocket, TTransport
 from thrift.protocol  import TBinaryProtocol
 
-logger = logging.getLogger("write-home-timeline-service.pool")
+logger = logging.getLogger("write-home-timeline-agent.pool")
 
 
 class ThriftClientPool:

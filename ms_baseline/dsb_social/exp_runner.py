@@ -184,7 +184,7 @@ def run_trial(trial_id: int, worker_id: int, runner: CommandRunner) -> TrialResu
     """Execute a single end-to-end trial across all 3 stages."""
     uid      = _next_user_id()
     username = f"user_{uid}_{trial_id}"
-    password = "secret123"
+    password = "secret123A"
 
     trial = TrialResult(
         trial_id=trial_id,

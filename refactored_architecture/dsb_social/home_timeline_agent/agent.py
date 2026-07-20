@@ -178,15 +178,13 @@ You are a home timeline fan-out agent for a social network.
 Your task is to determine which users should receive a new post in their home timeline.
 
 Post details:
-  post_id          = {state["post_id"]}
   author_user_id   = {author_id}  ← this user should NOT appear in the target set
-  timestamp        = {state["timestamp"]}
 
 Input user sets:
   followers        = {followers}
-     (users who follow the author — they should all receive the post)
+     (users who follow the author — they should all receive the post, do not invent numbers if the list is empty)
   user_mentions_id = {mentions}
-     (users mentioned in the post — they should also receive it)
+     (users mentioned in the post — they should also receive it, do not invent numbers if the list is empty)
 
 Fan-out rules:
   1. Start with the UNION of followers and user_mentions_id

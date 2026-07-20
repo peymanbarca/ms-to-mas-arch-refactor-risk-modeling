@@ -2,7 +2,7 @@
 import logging
 import opentracing
 
-logger = logging.getLogger("home-timeline-service.tracing")
+logger = logging.getLogger("home-timeline-agent.tracing")
 
 
 def init_tracer(jaeger_cfg: dict) -> opentracing.Tracer:
@@ -20,7 +20,7 @@ def init_tracer(jaeger_cfg: dict) -> opentracing.Tracer:
                 },
                 "logging": bool(jaeger_cfg.get("reporter_log_spans", False)),
             },
-            service_name=jaeger_cfg.get("service_name", "home-timeline-service"),
+            service_name=jaeger_cfg.get("service_name", "home-timeline-agent"),
             validate=True,
         )
         tracer = cfg.initialize_tracer()

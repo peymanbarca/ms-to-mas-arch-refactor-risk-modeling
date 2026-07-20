@@ -16,7 +16,8 @@ import pika.exceptions
 
 from .worker import MessageWorker
 
-logger = logging.getLogger("write-home-timeline-service.consumer")
+logger = logging.getLogger("write-home-timeline-agent.consumer")
+logging.getLogger("pika").setLevel(logging.WARNING)
 
 _RECONNECT_INITIAL_DELAY = 1.0
 _RECONNECT_MAX_DELAY = 30.0
@@ -151,18 +152,25 @@ class WriteHomeTimelineConsumer:
 
                 # Intentional reject is NOT a runtime failure.
                 # ACK it so it doesn't poison the queue forever.
+                t1 = time.time()
+                
                 channel.basic_ack(delivery_tag=delivery_tag)
 
                 if approved:
-                    logger.debug(
+                    logger.info(
                         "Worker %d: ACK delivery_tag=%d approved=True",
                         worker_id, delivery_tag,
                     )
                 else:
-                    logger.debug(
+                    logger.info(
                         "Worker %d: ACK delivery_tag=%d approved=False (rejected)",
                         worker_id, delivery_tag,
                     )
+                t2 = time.time()
+                logger.debug(
+                    "Worker %d: delivery_tag=%d processing time=%.3fs",
+                    worker_id, delivery_tag, t2 - t1,
+                )
 
             except Exception as exc:
                 logger.warning(

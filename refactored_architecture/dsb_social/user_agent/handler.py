@@ -24,6 +24,7 @@ from opentracing.ext import tags as ot_tags
 from opentracing.propagation import Format
 from pymongo import MongoClient
 import redis
+import time
 
 from ms_baseline.dsb_social.gen_py.social_network import UserService
 from ms_baseline.dsb_social.gen_py.social_network.ttypes import (
@@ -145,6 +146,7 @@ class UserHandler(UserService.Iface):
                   "req_id": req_id, "username": username},
         ) as scope:
             span = scope.span
+            t1 = time.time()
 
             initial: LoginAgentState = {
                 "req_id": req_id,
@@ -184,6 +186,8 @@ class UserHandler(UserService.Iface):
                     errorCode=ErrorCode.SE_THRIFT_HANDLER_ERROR,
                     message="Login agent did not produce a token",
                 )
+            t2 = time.time()
+            logger.info("Login req_id=%d username=%r completed in %.3f seconds", req_id, initial["username"], t2 - t1)
             return token
 
     # ------------------------------------------------------------------
@@ -288,6 +292,7 @@ class UserHandler(UserService.Iface):
     def _run_register(self, req_id, first_name, last_name,
                       username, password, user_id, span) -> None:
         """Invoke register_graph. Propagates ServiceException on failure."""
+        t1 = time.time()
         initial: RegisterAgentState = {
             "req_id": req_id,
             "first_name": first_name,
@@ -316,6 +321,8 @@ class UserHandler(UserService.Iface):
                 message=f"Register agent failed: {exc}",
             )
         self._log_metrics("Register", req_id, out, span)
+        t2 = time.time()
+        logger.info("Register req_id=%d user_name=%r completed in %.3f seconds", req_id, initial["username"], t2 - t1)
 
 
     # ==================================================================

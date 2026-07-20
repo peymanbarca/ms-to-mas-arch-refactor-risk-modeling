@@ -19,6 +19,7 @@ the original handler.
 
 import asyncio
 import logging
+import time
 
 import opentracing
 from opentracing.ext import tags as ot_tags
@@ -72,6 +73,7 @@ class UniqueIdHandler(UniqueIdService.Iface):
             },
         ) as scope:
             span = scope.span
+            t1 = time.time()
             try:
                 # ---- Step 1: get raw inputs from the generator ----
                 timestamp_ms, machine_id, sequence = self._gen.next_inputs()
@@ -107,12 +109,14 @@ class UniqueIdHandler(UniqueIdService.Iface):
                     out["total_output_tokens"],
                     out["fallback_used"],
                 )
-                print(
+                t2 = time.time()
+                logger.info(
                     f"[handler] req_id={req_id} unique_id={unique_id} "
                     f"llm_calls={out['total_llm_calls']} "
                     f"in_tokens={out['total_input_tokens']} "
                     f"out_tokens={out['total_output_tokens']} "
-                    f"fallback={out['fallback_used']}"
+                    f"fallback={out['fallback_used']} "
+                    f"took={t2 - t1:.3f}s"
                 )
 
                 span.set_tag("unique_id",      unique_id)
