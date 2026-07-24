@@ -1,0 +1,262 @@
+
+  
+--------- register  
+
+2026-07-24 18:01:52,647 INFO     user-agent.handler  Register req_id=1547960364 llm_calls=1 in=127 out=9 fallback=False
+2026-07-24 18:01:52,647 INFO     user-agent.handler  Register req_id=1547960364 user_name='user_100_1' completed in 0.551 seconds
+
+--------- login
+
+2026-07-24 18:01:53,292 INFO     user-agent.handler  Login req_id=930390261 llm_calls=1 in=146 out=10 fallback=False
+2026-07-24 18:01:53,292 INFO     user-agent.handler  Login req_id=930390261 username='user_100_1' completed in 0.520 seconds
+
+
+-------------- follow / get follower/followee
+
+2026-07-24 18:01:56,556 INFO     social-graph-agent  LLM raw='{"valid":true,"cleaned_ids":[2100]}'  in=220 out=13
+2026-07-24 18:01:56,557 INFO     social-graph-agent  validate_list FALLBACK req_id=1054788181 llm_valid=True llm_count=1 db_count=2 (using DB result)
+2026-07-24 18:01:56,559 INFO     social-graph-service  GetFollowees req_id=1054788181 llm_calls=1 in=220 out=13 fallback=True
+
+
+2026-07-24 18:05:03,965 INFO     social-graph-agent  LLM raw='{"valid":true,"cleaned_ids":[100]}'  in=217 out=12
+2026-07-24 18:05:03,966 INFO     social-graph-agent  validate_list PASS req_id=316840434 count=1
+2026-07-24 18:05:03,970 INFO     social-graph-service  GetFollowers req_id=316840434 llm_calls=1 in=217 out=12 fallback=False
+2026-07-24 18:05:03,970 INFO     social-graph-service  GetFollowers req_id=316840434 user_id=2100 count=1 completed in 0.710 seconds
+
+2026-07-24 18:04:44,309 INFO     social-graph-agent  LLM raw='{"valid":true,"cleaned_ids":[2100]}'  in=220 out=13
+2026-07-24 18:04:44,310 INFO     social-graph-agent  validate_list FALLBACK req_id=2061720363 llm_valid=True llm_count=1 db_count=2 (using DB result)
+2026-07-24 18:04:44,312 INFO     social-graph-service  GetFollowees req_id=2061720363 llm_calls=1 in=220 out=13 fallback=True
+
+
+---------------- generate unique id
+
+
+2026-07-24 18:04:45,089 INFO     unique-id-agent.handler  ComposeUniqueId req_id=1149435762 post_type=0 -> 7486541909456846848  llm_calls=1 in_tokens=264 out_tokens=14 fallback=True
+2026-07-24 18:04:45,089 INFO     unique-id-agent.handler  [handler] req_id=1149435762 unique_id=7486541909456846848 llm_calls=1 in_tokens=264 out_tokens=14 fallback=True took=0.652s
+
+2026-07-24 18:04:49,761 INFO     unique-id-agent.handler  ComposeUniqueId req_id=1105831402 post_type=0 -> 7486541926942900224  llm_calls=1 in_tokens=264 out_tokens=15 fallback=True
+2026-07-24 18:04:49,761 INFO     unique-id-agent.handler  [handler] req_id=1105831402 unique_id=7486541926942900224 llm_calls=1 in_tokens=264 out_tokens=15 fallback=True took=1.155s
+
+2026-07-24 18:04:53,193 INFO     unique-id-agent.handler  ComposeUniqueId req_id=316840434 post_type=0 -> 7486541939521617920  llm_calls=1 in_tokens=264 out_tokens=24 fallback=True
+2026-07-24 18:04:53,193 INFO     unique-id-agent.handler  [handler] req_id=316840434 unique_id=7486541939521617920 llm_calls=1 in_tokens=264 out_tokens=24 fallback=True took=1.588s
+
+
+
+------------- handle text (url shorten) (downstream)
+
+2026-07-24 18:04:45,043 INFO     url-shorten-agent  LLM raw='{"token":"6K4P7T"}'  in_tokens=303 out_tokens=11
+2026-07-24 18:04:45,044 WARNING  url-shorten-agent  validate_token FALLBACK req_id=1149435762 llm_token='6K4P7T' -> fallback=1dPdgBMOxJ
+2026-07-24 18:04:45,047 INFO     url-shorten-agent  persist MongoDB upsert req_id=1149435762 https://www.example.com/some/very/long/path -> http://dsbscl.com/1dPdgBMOxJ
+2026-07-24 18:04:45,051 INFO     url-shorten-agent.handler  ComposeUrls req_id=1149435762 urls=1 llm_calls=1 in_tokens=303 out_tokens=11 fallbacks=1 took=0.598s
+
+-------------  handle text (user mention) (downstream)
+
+2026-07-24 18:05:05,828 INFO     user-mention-agent  check_cache MISS req_id=2025553175 username='user_100_1'
+2026-07-24 18:05:05,830 INFO     user-mention-agent  ReACT step 1 (REASON) req_id=2025553175 username='user_100_1'
+2026-07-24 18:05:08,741 INFO     user-mention-agent  ReACT reason response: 'To resolve the username "user_100_1" to a user_id, I would:\n\n1. Split the username into parts using '  in=69 out=74
+2026-07-24 18:05:08,742 INFO     user-mention-agent  ReACT step 2 (ACT) req_id=2025553175 calling tool for username='user_100_1'
+2026-07-24 18:05:08,744 INFO     user-mention-agent  ReACT tool result: {'found': True, 'user_id': 9, 'username': 'user_100_1'}
+2026-07-24 18:05:08,744 INFO     user-mention-agent  ReACT step 3 (OBSERVE & REASON) req_id=2025553175
+2026-07-24 18:05:09,223 INFO     user-mention-agent  ReACT observe response: 'The user_id is 9.'  in=115 out=8
+2026-07-24 18:05:09,224 INFO     user-mention-agent  ReACT resolved req_id=2025553175 username='user_100_1' -> user_id=9
+2026-07-24 18:05:09,224 INFO     user-mention-agent  validate_resolved PASS req_id=2025553175 username='user_100_1' user_id=9
+2026-07-24 18:05:09,226 INFO     user-mention-agent  persist_cache OK req_id=2025553175 username='user_100_1' user_id=9
+2026-07-24 18:05:09,229 INFO     user-mention-agent.handler  ComposeUserMentions req_id=2025553175 usernames=1 resolved=1 llm_calls=2 in_tokens=184 out_tokens=82 took=3.403s
+
+
+-------- handle text (upstream)
+
+2026-07-24 18:04:49,926 INFO     compose-post-service  Text call req_id=1105831402 took 1.321 sec
+2026-07-24 18:05:03,547 INFO     compose-post-service  Text call req_id=1504319887 took 1.541 sec
+2026-07-24 18:04:46,967 INFO     compose-post-service  Text call req_id=1149435762 took 2.531 sec
+2026-07-24 18:02:23,620 INFO     compose-post-service  Text call req_id=2030394472 took 4.286 sec
+
+
+2026-07-24 18:04:46,964 INFO     text-agent  LLM raw='{"text": "Hello world from user_100_1! check this url: http://dsbscl.com/1dPdgBMOxJ", "user_mentions": [], "urls": [{"shortened_url": "http://dsbscl.com/1dPdgBMOxJ", "expanded_url": "https://www.example.com/some/very/long/path"}]}'  in=311 out=83
+2026-07-24 18:04:46,965 INFO     text-agent  validate_output PASS req_id=1149435762
+2026-07-24 18:04:46,967 INFO     text-agent.handler  ComposeText req_id=1149435762 text_len=88->73 urls=1 mentions=0 llm_calls=1 in_tokens=311 out_tokens=83 fallback=False took=2.530s
+
+2026-07-24 18:04:49,923 INFO     text-agent  validate_output PASS req_id=1105831402
+2026-07-24 18:04:49,926 INFO     text-agent.handler  ComposeText req_id=1105831402 text_len=23->23 urls=0 mentions=0 llm_calls=1 in_tokens=260 out_tokens=23 fallback=False took=1.320s
+
+2026-07-24 18:05:10,361 INFO     text-agent  LLM raw='{"text": "RT @9 great post", "user_mentions": [{"user_id": 9, "username": "user_100_1"}], "urls": []}'  in=286 out=38
+2026-07-24 18:05:10,362 INFO     text-agent  validate_output PASS req_id=2025553175
+2026-07-24 18:05:10,364 INFO     text-agent.handler  ComposeText req_id=2025553175 text_len=25->16 urls=0 mentions=1 llm_calls=1 in_tokens=286 out_tokens=38 fallback=False took=4.542s
+
+------------------ handle media
+
+2026-07-24 18:05:04,134 INFO     compose-post-service  Media call req_id=1504319887 took 2.127 sec
+
+
+2026-07-24 18:05:04,124 INFO     media-agent  LLM raw='{\n  "validated_items": [\n    {"media_id": 100, "validated_type": "photo"},\n    {"media_id": 101, "validated_type": "photo"}\n  ]\n}'  in=368 out=41
+2026-07-24 18:05:04,125 INFO     media-agent  validate_output PASS req_id=1504319887 types=['photo', 'photo']
+2026-07-24 18:05:04,134 INFO     media-agent.handler  ComposeMedia req_id=1504319887 count=2 llm_calls=1 in_tokens=368 out_tokens=41 fallback=False
+
+2026-07-24 18:02:17,392 INFO     media-agent  LLM raw='{\n  "validated_items": [\n    {"media_id": 100, "validated_type": "photo"},\n    {"media_id": 101, "validated_type": "photo"}\n  ]\n}'  in=368 out=41
+2026-07-24 18:02:17,392 INFO     media-agent  validate_output PASS req_id=1703625016 types=['photo', 'photo']
+2026-07-24 18:02:17,403 INFO     media-agent.handler  ComposeMedia req_id=1703625016 count=2 llm_calls=1 in_tokens=368 out_tokens=41 fallback=False
+
+
+------------------- store post data
+
+2026-07-24 18:04:50,764 INFO     compose-post-service  StorePost call req_id=1105831402 took 0.819 sec
+2026-07-24 18:05:01,152 INFO     compose-post-service  StorePost call req_id=316840434 took 0.769 sec
+
+2026-07-24 18:02:00,905 INFO     post-storage-agent  LLM raw='{\n  "valid": true,\n  "issues": []\n}'  in=333 out=14
+2026-07-24 18:02:00,906 INFO     post-storage-agent  validate_store PASS req_id=225768295 valid=True
+2026-07-24 18:02:00,941 INFO     post-storage-service  StorePost req_id=225768295 llm_calls=1 in=333 out=14 fallback=False
+
+2026-07-24 18:02:18,506 INFO     post-storage-agent  LLM raw='{"valid":true,"issues":[]}'  in=310 out=10
+2026-07-24 18:02:18,507 INFO     post-storage-agent  validate_store PASS req_id=1703625016 valid=True
+2026-07-24 18:02:18,514 INFO     post-storage-service  StorePost req_id=1703625016 llm_calls=1 in=310 out=10 fallback=False
+
+
+
+----------------- Write user timeline
+
+2026-07-24 18:05:05,659 INFO     compose-post-service  WriteUserTimeline call req_id=1504319887 took 0.695 sec
+2026-07-24 18:05:11,730 INFO     compose-post-service  WriteUserTimeline call req_id=2025553175 took 0.670 sec
+2026-07-24 18:05:01,834 INFO     compose-post-service  WriteUserTimeline call req_id=316840434 took 0.659 sec
+2026-07-24 18:04:48,429 INFO     compose-post-service  WriteUserTimeline call req_id=1149435762 took 0.658 sec
+
+2026-07-24 18:02:01,676 INFO     user-timeline-agent  LLM raw='{"approved":true,"reason":""}'  in=300 out=9
+2026-07-24 18:02:01,677 INFO     user-timeline-agent  validate_write PASS req_id=225768295 approved=True
+2026-07-24 18:02:01,683 INFO     user-timeline-service  WriteUserTimeline req_id=225768295 llm_calls=1 in=300 out=9 fallback=False
+
+2026-07-24 18:02:05,068 INFO     user-timeline-agent  LLM raw='{"approved":true,"reason":""}'  in=301 out=9
+2026-07-24 18:02:05,068 INFO     user-timeline-agent  validate_write PASS req_id=292543376 approved=True
+2026-07-24 18:02:05,075 INFO     user-timeline-service  WriteUserTimeline req_id=292543376 llm_calls=1 in=301 out=9 fallback=False
+
+----------------- Async Leg Consumer (write home timeline agent)
+
+2026-07-24 18:02:03,149 INFO     write-home-timeline-agent  LLM raw='{"approved":true,"cleaned_mentions":[],"reason":""}'  in=327 out=14, too=1
+2026-07-24 18:02:03,150 INFO     write-home-timeline-agent  validate_decision PASS req_id=225768295 approved=True
+2026-07-24 18:02:04,306 INFO     write-home-timeline-agent  forward_to_home_timeline OK req_id=225768295 post_id=7486541205996568576 user_id=100
+2026-07-24 18:02:04,309 INFO     write-home-timeline-agent.worker  WriteHomeTimeline consumer graph done req_id=225768295 post_id=7486541205996568576 approved=True
+2026-07-24 18:02:04,310 INFO     write-home-timeline-agent.worker  WriteHomeTimeline consumer req_id=225768295 post_id=7486541205996568576 completed in 2.611 seconds
+
+2026-07-24 18:02:20,501 INFO     write-home-timeline-agent  LLM raw='{"approved":true,"cleaned_mentions":[],"reason":"","carrier":{"}}'  in=329 out=16, too=1
+2026-07-24 18:02:20,501 WARNING  write-home-timeline-agent  JSON parse error: Unterminated string starting at: line 1 column 63 (char 62) � raw: '{"approved":true,"cleaned_mentions":[],"reason":"","carrier":{"}}'
+2026-07-24 18:02:20,502 WARNING  write-home-timeline-agent  validate_decision FALLBACK req_id=1703625016 llm=None -> det=True reason='' issues=[]
+2026-07-24 18:02:21,839 INFO     write-home-timeline-agent  forward_to_home_timeline OK req_id=1703625016 post_id=7486541282077048832 user_id=1100
+2026-07-24 18:02:21,841 INFO     write-home-timeline-agent.worker  WriteHomeTimeline consumer graph done req_id=1703625016 post_id=7486541282077048832 approved=True
+2026-07-24 18:02:21,841 INFO     write-home-timeline-agent.worker  WriteHomeTimeline consumer req_id=1703625016 post_id=7486541282077048832 completed in 2.646 seconds
+
+2026-07-24 18:04:49,680 INFO     write-home-timeline-agent  LLM raw='{"approved":true,"cleaned_mentions":[],"reason":""}'  in=328 out=14, too=1
+2026-07-24 18:04:49,681 INFO     write-home-timeline-agent  validate_decision PASS req_id=1149435762 approved=True
+2026-07-24 18:04:50,485 INFO     write-home-timeline-agent  forward_to_home_timeline OK req_id=1149435762 post_id=7486541909456846848 user_id=100
+2026-07-24 18:04:50,488 INFO     write-home-timeline-agent.worker  WriteHomeTimeline consumer graph done req_id=1149435762 post_id=7486541909456846848 approved=True
+2026-07-24 18:04:50,488 INFO     write-home-timeline-agent.worker  WriteHomeTimeline consumer req_id=1149435762 post_id=7486541909456846848 completed in 2.042 seconds
+
+--------------------------  home timeline (write action)
+
+2026-07-24 18:02:04,298 INFO     home-timeline-agent  LLM raw='{"targets":[],"excluded_author":true}'  in=265 out=11
+2026-07-24 18:02:04,300 INFO     home-timeline-agent  validate_targets PASS req_id=225768295 count=0
+2026-07-24 18:02:04,302 INFO     home-timeline-agent  apply_fanout SKIPPED req_id=225768295 (no targets)
+2026-07-24 18:02:04,306 INFO     home-timeline-agent  WriteHomeTimeline req_id=225768295 post_id=7486541205996568576 -> no targets
+2026-07-24 18:02:04,306 INFO     home-timeline-agent  WriteHomeTimeline req_id=225768295 llm_calls=1 in=265 out=11 fallback=False
+2026-07-24 18:02:04,306 INFO     home-timeline-agent  WriteHomeTimeline req_id=225768295 post_id=7486541205996568576 user_id=100 targets=0 completed in 1.152 seconds
+2026-07-24 18:02:07,411 INFO     home-timeline-agent  fetch_followers req_id=292543376 user_id=1100 followers=1
+2026-07-24 18:02:07,412 INFO     home-timeline-agent  LLM reason_fanout_targets req_id=292543376 followers=1 mentions=0
+
+2026-07-24 18:02:08,407 INFO     home-timeline-agent  LLM raw='{"targets": [100], "excluded_author": true}'  in=269 out=14
+2026-07-24 18:02:08,408 INFO     home-timeline-agent  validate_targets PASS req_id=292543376 count=1
+2026-07-24 18:02:08,416 INFO     home-timeline-agent  apply_fanout OK req_id=292543376 post_id=7486541227500765184 ts=1784930523374 targets=1
+2026-07-24 18:02:08,419 INFO     home-timeline-agent  WriteHomeTimeline req_id=292543376 llm_calls=1 in=269 out=14 fallback=False
+2026-07-24 18:02:08,419 INFO     home-timeline-agent  WriteHomeTimeline req_id=292543376 post_id=7486541227500765184 user_id=1100 targets=1 completed in 1.930 seconds
+2026-07-24 18:02:17,559 INFO     home-timeline-agent  fetch_followers req_id=1496896581 user_id=2100 followers=1
+2026-07-24 18:02:17,560 INFO     home-timeline-agent  LLM reason_fanout_targets req_id=1496896581 followers=1 mentions=0
+
+
+2026-07-24 18:02:21,832 INFO     home-timeline-agent  LLM raw='{"targets":[100],"excluded_author":true}'  in=269 out=12
+2026-07-24 18:02:21,833 INFO     home-timeline-agent  validate_targets PASS req_id=1703625016 count=1
+2026-07-24 18:02:21,835 INFO     home-timeline-agent  apply_fanout OK req_id=1703625016 post_id=7486541282077048832 ts=1784930537404 targets=1
+2026-07-24 18:02:21,838 INFO     home-timeline-agent  WriteHomeTimeline req_id=1703625016 llm_calls=1 in=269 out=12 fallback=False
+2026-07-24 18:02:21,838 INFO     home-timeline-agent  WriteHomeTimeline req_id=1703625016 post_id=7486541282077048832 user_id=1100 targets=1 completed in 1.334 seconds
+2026-07-24 18:02:26,398 INFO     home-timeline-agent  fetch_followers req_id=2030394472 user_id=1100 followers=1
+2026-07-24 18:02:26,398 INFO     home-timeline-agent  LLM reason_fanout_targets req_id=2030394472 followers=1 mentions=1
+
+2026-07-24 18:04:50,481 INFO     home-timeline-agent  LLM raw='{"targets":[],"excluded_author":true}'  in=265 out=11
+2026-07-24 18:04:50,482 INFO     home-timeline-agent  validate_targets PASS req_id=1149435762 count=0
+2026-07-24 18:04:50,482 INFO     home-timeline-agent  apply_fanout SKIPPED req_id=1149435762 (no targets)
+2026-07-24 18:04:50,485 INFO     home-timeline-agent  WriteHomeTimeline req_id=1149435762 post_id=7486541909456846848 -> no targets
+2026-07-24 18:04:50,485 INFO     home-timeline-agent  WriteHomeTimeline req_id=1149435762 llm_calls=1 in=265 out=11 fallback=False
+2026-07-24 18:04:50,485 INFO     home-timeline-agent  WriteHomeTimeline req_id=1149435762 post_id=7486541909456846848 user_id=100 targets=0 completed in 0.801 seconds
+
+
+
+-------------------- ComposePost Orchestration new Request req_id=1149435762 user_id=100 username=user_100_1 post_type=0
+
+
+2026-07-24 18:04:44,437 INFO     compose-post-service  Creator call req_id=1149435762 took 0.001 sec
+2026-07-24 18:04:45,089 INFO     compose-post-service  Unique ID call req_id=1149435762 post_id=7486541909456846848 took 0.653 sec
+2026-07-24 18:04:46,967 INFO     compose-post-service  Text call req_id=1149435762 took 2.531 sec
+2026-07-24 18:04:46,967 INFO     compose-post-service  Phase 1 fan-out completed, post_id=7486541909456846848 req_id=1149435762 took 2.532 sec
+2026-07-24 18:04:47,754 INFO     compose-post-service  StorePost call req_id=1149435762 took 0.775 sec
+2026-07-24 18:04:48,429 INFO     compose-post-service  WriteUserTimeline call req_id=1149435762 took 0.658 sec
+2026-07-24 18:04:48,447 INFO     compose-post-service  RabbitMQ publish req_id=1149435762 post_id=7486541909456846848 took 0.018 sec
+2026-07-24 18:04:48,604 INFO     compose-post-service  
+
+-------------------- ComposePost Orchestration new Request req_id=1105831402 user_id=1100 username=user_100_1 post_type=0
+
+
+2026-07-24 18:04:48,606 INFO     compose-post-service  Creator call req_id=1105831402 took 0.001 sec
+2026-07-24 18:04:49,761 INFO     compose-post-service  Unique ID call req_id=1105831402 post_id=7486541926942900224 took 1.156 sec
+2026-07-24 18:04:49,926 INFO     compose-post-service  Text call req_id=1105831402 took 1.321 sec
+2026-07-24 18:04:49,926 INFO     compose-post-service  Phase 1 fan-out completed, post_id=7486541926942900224 req_id=1105831402 took 1.322 sec
+2026-07-24 18:04:50,764 INFO     compose-post-service  StorePost call req_id=1105831402 took 0.819 sec
+2026-07-24 18:04:51,443 INFO     compose-post-service  WriteUserTimeline call req_id=1105831402 took 0.655 sec
+2026-07-24 18:04:51,460 INFO     compose-post-service  RabbitMQ publish req_id=1105831402 post_id=7486541926942900224 took 0.017 sec
+2026-07-24 18:04:51,604 INFO     compose-post-service  
+
+-------------------- ComposePost Orchestration new Request req_id=316840434 user_id=2100 username=user_100_1 post_type=0
+
+
+2026-07-24 18:04:51,606 INFO     compose-post-service  Creator call req_id=316840434 took 0.001 sec
+2026-07-24 18:04:53,194 INFO     compose-post-service  Unique ID call req_id=316840434 post_id=7486541939521617920 took 1.589 sec
+2026-07-24 18:05:00,383 INFO     compose-post-service  Text call req_id=316840434 took 8.778 sec
+2026-07-24 18:05:00,383 INFO     compose-post-service  Phase 1 fan-out completed, post_id=7486541939521617920 req_id=316840434 took 8.779 sec
+2026-07-24 18:05:01,152 INFO     compose-post-service  StorePost call req_id=316840434 took 0.769 sec
+2026-07-24 18:05:01,834 INFO     compose-post-service  WriteUserTimeline call req_id=316840434 took 0.659 sec
+2026-07-24 18:05:01,850 INFO     compose-post-service  RabbitMQ publish req_id=316840434 post_id=7486541939521617920 took 0.016 sec
+2026-07-24 18:05:02,005 INFO     compose-post-service  
+
+-------------------- ComposePost Orchestration new Request req_id=1504319887 user_id=1100 username=user_100_1 post_type=0
+
+
+2026-07-24 18:05:02,008 INFO     compose-post-service  Creator call req_id=1504319887 took 0.001 sec
+2026-07-24 18:05:03,306 INFO     compose-post-service  Unique ID call req_id=1504319887 post_id=7486541983150768128 took 1.300 sec
+2026-07-24 18:05:03,547 INFO     compose-post-service  Text call req_id=1504319887 took 1.541 sec
+2026-07-24 18:05:04,134 INFO     compose-post-service  Media call req_id=1504319887 took 2.127 sec
+2026-07-24 18:05:04,134 INFO     compose-post-service  Phase 1 fan-out completed, post_id=7486541983150768128 req_id=1504319887 took 2.129 sec
+2026-07-24 18:05:04,943 INFO     compose-post-service  StorePost call req_id=1504319887 took 0.808 sec
+2026-07-24 18:05:05,659 INFO     compose-post-service  WriteUserTimeline call req_id=1504319887 took 0.695 sec
+2026-07-24 18:05:05,674 INFO     compose-post-service  RabbitMQ publish req_id=1504319887 post_id=7486541983150768128 took 0.015 sec
+2026-07-24 18:05:05,820 INFO     compose-post-service  
+
+-------------------- ComposePost Orchestration new Request req_id=2025553175 user_id=1100 username=user_100_1 post_type=1
+
+
+
+
+
+  Stage                                        N     Mean      p50      p95      p99      Max
+  ---------------------------------------- ----- -------- -------- -------- -------- --------
+  EndToEnd:TOTAL                               1 31858.8ms 31858.8ms 31858.8ms 31858.8ms 31858.8ms
+  Stage1:Login                                 1   610.2ms   610.2ms   610.2ms   610.2ms   610.2ms
+  Stage1:RegisterUser                          1  1042.4ms  1042.4ms  1042.4ms  1042.4ms  1042.4ms
+  Stage1:TOTAL                                 1  1652.7ms  1652.7ms  1652.7ms  1652.7ms  1652.7ms
+  Stage2:Follow(100->1100)                     1   943.4ms   943.4ms   943.4ms   943.4ms   943.4ms
+  Stage2:Follow(100->2100)                     1   911.8ms   911.8ms   911.8ms   911.8ms   911.8ms
+  Stage2:GetFollowees                          1   650.6ms   650.6ms   650.6ms   650.6ms   650.6ms
+  Stage2:InsertUser(1100)                      1   132.3ms   132.3ms   132.3ms   132.3ms   132.3ms
+  Stage2:InsertUser(2100)                      1   132.2ms   132.2ms   132.2ms   132.2ms   132.2ms
+  Stage2:TOTAL                                 1  2770.4ms  2770.4ms  2770.4ms  2770.4ms  2770.4ms
+  Stage3:ComposePost(1)                        1  4143.2ms  4143.2ms  4143.2ms  4143.2ms  4143.2ms
+  Stage3:ComposePost(2)                        1  3008.2ms  3008.2ms  3008.2ms  3008.2ms  3008.2ms
+  Stage3:ComposePost(3)                        1 10389.3ms 10389.3ms 10389.3ms 10389.3ms 10389.3ms
+  Stage3:ComposePost(4)                        1  3824.1ms  3824.1ms  3824.1ms  3824.1ms  3824.1ms
+  Stage3:ComposePost(5)                        1  6070.8ms  6070.8ms  6070.8ms  6070.8ms  6070.8ms
+  Stage3:TOTAL                                 1 27435.7ms 27435.7ms 27435.7ms 27435.7ms 27435.7ms
+  
+  
