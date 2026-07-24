@@ -127,9 +127,9 @@ def build_server(config: dict, port: int) -> TServer.TThreadedServer:
     tracer = init_tracer(config.get("jaeger", {}))
 
     ollama_cfg = config.get("ollama", {})
-    model_name = ollama_cfg.get("model", "llama3.2:3b")
+    model_name = ollama_cfg.get("model", "llama3.2:3b") # llama3.2:3b , qwen3:14b
     base_url = ollama_cfg.get("base_url", "http://localhost:11434")
-    temperature = float(ollama_cfg.get("temperature", 0.0))
+    temperature = float(ollama_cfg.get("temperature", 0.0)) # 0.0 ,  0.8
 
     handler = ComposePostHandler(
         unique_id_pool=unique_id_pool,
