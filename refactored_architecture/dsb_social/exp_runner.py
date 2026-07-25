@@ -760,15 +760,15 @@ def check_consistency(
 # CLI
 # ─────────────────────────────────────────────────────────────────────────────
 
-def main():
+def main(trials:int = 1, concurrency:int = 1):
     parser = argparse.ArgumentParser(
         description="End-to-end load generator for DSB Social Network",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
-    parser.add_argument("--trials",        type=int,   default=1,
+    parser.add_argument("--trials",        type=int,   default=trials,
                         help="Total number of end-to-end trials (default: 1)")
-    parser.add_argument("--concurrency",   type=int,   default=1,
+    parser.add_argument("--concurrency",   type=int,   default=concurrency,
                         help="Parallel worker threads (default: 1)")
     parser.add_argument("--mongo-uri",     default="mongodb://localhost:27017/",
                         help="MongoDB URI")
@@ -869,6 +869,7 @@ def main():
         print(f"  Report saved to {report_path}")
     except Exception as exc:
         print(f"  Warning: could not save report: {exc}")
+    return report
 
 if __name__ == "__main__":
-    main()
+    report = main()

@@ -121,6 +121,8 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
 -----------------------------
 
 
+## Ablation Study
+
 ## Running migration loops for all baselines, by deployment of hybrid architectures (at each migration step) and gather step-wise and complete metrics 
 
 For each baseline migration cycle based on a ranking strategy, acceptability predicate mode, and governance mechanism, the outcome metrics should be gathered, and then be aggregated.
@@ -184,6 +186,12 @@ For each migration step for each of baselines, the target hybrid architecture is
     # analyze all aggregated results, to find the best, worst, selective strategy
     python3 analyze_results.py
 ```
+
+--------------------------
+
+### Evaluate Scalability Envelope
+
+For each baseline, the resulting final architecture should be deployed (using deploy-local.sh script which allows deploy any component as service or agent), and the workload experiment runner (available for each benchmark in its folder in refactored_architecture folder) should be executed on the architecture with varying concurrency level (u) (starting 10 and go up by 5 each time) to find the u_max (maximum concurrency level which the final architecture is not accepted).
 
 --------------------------
 

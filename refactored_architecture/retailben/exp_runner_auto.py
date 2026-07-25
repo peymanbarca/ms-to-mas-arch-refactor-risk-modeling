@@ -295,7 +295,8 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
               (success_f if epsilon_f and epsilon_f > -1 else True) 
 
 
-    step_self_temporal_propagation = qa_inconsistency_rate + failure_rate  + p95_latency / N_TRIALS
+    alpha = beta = gamma = 1
+    step_self_temporal_propagation = alpha * qa_inconsistency_rate + beta * failure_rate  + gamma * p95_latency / N_TRIALS
     
         
     result = {

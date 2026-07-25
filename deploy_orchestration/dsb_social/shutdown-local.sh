@@ -2,7 +2,7 @@
 
 
 
-echo "Parsing arguments..."
+# echo "Parsing arguments..."
 
 for arg in "$@"; do
   case $arg in
@@ -21,7 +21,7 @@ kill_port () {
   PID=$(lsof -ti tcp:$PORT)
 
   if [ ! -z "$PID" ]; then
-    echo "Killing process on port $PORT (PID=$PID)"
+    # echo "Killing process on port $PORT (PID=$PID)"
     kill -9 $PID
   fi
 }
@@ -33,7 +33,7 @@ IFS=',' read -ra SVC_LIST <<< "$SERVICES"
 for pair in "${SVC_LIST[@]}"; do
   NAME="${pair%%:*}"
   PORT="${pair##*:}"
-  kill_port $PORT
+  #kill_port $PORT
 done
 
 # Kill agent ports
@@ -41,7 +41,7 @@ IFS=',' read -ra AGENT_LIST <<< "$AGENTS"
 for pair in "${AGENT_LIST[@]}"; do
   NAME="${pair%%:*}"
   PORT="${pair##*:}"
-  kill_port $PORT
+  #kill_port $PORT
 done
 
 

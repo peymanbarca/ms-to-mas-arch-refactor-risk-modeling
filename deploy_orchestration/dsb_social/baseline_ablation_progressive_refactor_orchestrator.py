@@ -15,50 +15,62 @@ import tqdm
 
 # --------------------------------- Migration Strategy ---------------------------
 
-fanout = [["currency_service:5053", 0],
-           ["product_catalog_service:5055", 0],
-           ["ad_service:5057", 0],
-           ["cart_service:5054", 0],
-           ["recommendation_service:5058", 1], 
-           ["shipping_service:5051", 1],
-           ["email_service:5056", 1],
-           ["payment_service:5052", 1],
-           ["checkout_service:5050", 6]
+fanout = [["media_service:9091", 0],
+           ["user_mention_service:9093", 0],
+           ["unique_id_service:9090", 0],
+           ["url_shorten_service:9092", 0],
+           ["social_graph_service:9097", 0], 
+           ["text_service:9095", 2],
+           ["post_storage_service:9096", 0],
+           ["user_timeline_service:9098", 0],
+           ["home_timeline_service:9099", 1],
+           ["write_home_timeline_service:8999", 1],
+           ["user_service:9094", 0],
+           ["compose_post_service:9100", 6],
            ]
 
-bc = [["currency_service:5053", 0],
-           ["product_catalog_service:5055", 0],
-           ["ad_service:5057", 0],
-           ["cart_service:5054", 0],
-           ["recommendation_service:5058", 0], 
-           ["shipping_service:5051", 0],
-           ["email_service:5056", 0],
-           ["payment_service:5052", 0],
-           ["checkout_service:5050", 0.56]
+bc = [["media_service:9091", 0],
+           ["user_mention_service:9093", 0],
+           ["unique_id_service:9090", 0],
+           ["url_shorten_service:9092", 0],
+           ["social_graph_service:9097", 0], 
+           ["text_service:9095", 0.27],
+           ["post_storage_service:9096", 0],
+           ["user_timeline_service:9098", 0],
+           ["home_timeline_service:9099", 0.03],
+           ["write_home_timeline_service:8999", 0.05],
+           ["user_service:9094", 0],
+           ["compose_post_service:9100", 0.65],
            ]
 
-c_cyc = [["currency_service:5053", 8],
-           ["product_catalog_service:5055", 12],
-           ["ad_service:5057", 17],
-           ["cart_service:5054", 17],
-           ["recommendation_service:5058", 16], 
-           ["shipping_service:5051", 21],
-           ["email_service:5056", 23],
-           ["payment_service:5052", 41],
-           ["checkout_service:5050", 65]
+c_cyc = [["media_service:9091", 15],
+           ["user_mention_service:9093", 15],
+           ["unique_id_service:9090", 15],
+           ["url_shorten_service:9092", 20],
+           ["social_graph_service:9097", 23], 
+           ["text_service:9095", 17],
+           ["post_storage_service:9096", 25],
+           ["user_timeline_service:9098", 28],
+           ["home_timeline_service:9099", 21],
+           ["write_home_timeline_service:8999", 27],
+           ["user_service:9094", 48],
+           ["compose_post_service:9100", 21],
            ]
 
 
 
-c_cog = [["currency_service:5053", 4],
-           ["product_catalog_service:5055", 6],
-           ["ad_service:5057", 14],
-           ["cart_service:5054", 17],
-           ["recommendation_service:5058", 12], 
-           ["shipping_service:5051", 14],
-           ["email_service:5056", 25],
-           ["payment_service:5052", 36],
-           ["checkout_service:5050", 50]
+c_cog = [["media_service:9091", 15],
+           ["user_mention_service:9093", 16],
+           ["unique_id_service:9090", 18],
+           ["url_shorten_service:9092", 30],
+           ["social_graph_service:9097", 31], 
+           ["text_service:9095", 22],
+           ["post_storage_service:9096", 30],
+           ["user_timeline_service:9098", 33],
+           ["home_timeline_service:9099", 27],
+           ["write_home_timeline_service:8999", 31],
+           ["user_service:9094", 58],
+           ["compose_post_service:9100", 31],
            ]
 
 w_fanout = 0.2
@@ -77,32 +89,39 @@ for i in range(len(fanout)):
                  w_t_prop * 0
     service_risk_scores.append([fanout[i][0], risk_score])
 
-# print("service_risk_scores: ",  service_risk_scores)
+service_risk_scores.sort(key=lambda x: x[1], reverse=False)
+print("service_risk_scores: ",  service_risk_scores)
 
 # ranked services 
 ranked_services = [
-    ["currency_service:5053", [x[1] for x in service_risk_scores if x[0] == "currency_service:5053"][0]],
-    ["product_catalog_service:5055", [x[1] for x in service_risk_scores if x[0] == "product_catalog_service:5055"][0]],
-    ["ad_service:5057", [x[1] for x in service_risk_scores if x[0] == "ad_service:5057"][0]],
-    ["cart_service:5054", [x[1] for x in service_risk_scores if x[0] == "cart_service:5054"][0]],
-    ["recommendation_service:5058", [x[1] for x in service_risk_scores if x[0] == "recommendation_service:5058"][0]],
-    ["shipping_service:5051", [x[1] for x in service_risk_scores if x[0] == "shipping_service:5051"][0]],
-    ["email_service:5056", [x[1] for x in service_risk_scores if x[0] == "email_service:5056"][0]],
-    ["payment_service:5052", [x[1] for x in service_risk_scores if x[0] == "payment_service:5052"][0]],
-    ["checkout_service:5050", [x[1] for x in service_risk_scores if x[0] == "checkout_service:5050"][0]],
+    ["media_service:9091", [x[1] for x in service_risk_scores if x[0] == "media_service:9091"][0]],
+    ["user_mention_service:9093", [x[1] for x in service_risk_scores if x[0] == "user_mention_service:9093"][0]],
+    ["unique_id_service:9090", [x[1] for x in service_risk_scores if x[0] == "unique_id_service:9090"][0]],
+    ["url_shorten_service:9092", [x[1] for x in service_risk_scores if x[0] == "url_shorten_service:9092"][0]],
+    ["social_graph_service:9097", [x[1] for x in service_risk_scores if x[0] == "social_graph_service:9097"][0]],
+    ["post_storage_service:9096", [x[1] for x in service_risk_scores if x[0] == "post_storage_service:9096"][0]],
+    ["user_timeline_service:9098", [x[1] for x in service_risk_scores if x[0] == "user_timeline_service:9098"][0]],
+    ["home_timeline_service:9099", [x[1] for x in service_risk_scores if x[0] == "home_timeline_service:9099"][0]],
+    ["write_home_timeline_service:8999", [x[1] for x in service_risk_scores if x[0] == "write_home_timeline_service:8999"][0]],
+    ["user_service:9094", [x[1] for x in service_risk_scores if x[0] == "user_service:9094"][0]],
+    ["text_service:9095", [x[1] for x in service_risk_scores if x[0] == "text_service:9095"][0]],
+    ["compose_post_service:9100", [x[1] for x in service_risk_scores if x[0] == "compose_post_service:9100"][0]],
 ]
 
 # reverse-ranked services
 reverse_ranked_services = [
-    ["checkout_service:5050",[x[1] for x in service_risk_scores if x[0] == "checkout_service:5050"][0]],
-    ["payment_service:5052", [x[1] for x in service_risk_scores if x[0] == "payment_service:5052"][0]],
-    ["email_service:5056", [x[1] for x in service_risk_scores if x[0] == "email_service:5056"][0]],
-    ["shipping_service:5051", [x[1] for x in service_risk_scores if x[0] == "shipping_service:5051"][0]],
-    ["recommendation_service:5058", [x[1] for x in service_risk_scores if x[0] == "recommendation_service:5058"][0]],
-    ["cart_service:5054", [x[1] for x in service_risk_scores if x[0] == "cart_service:5054"][0]],
-    ["ad_service:5057", [x[1] for x in service_risk_scores if x[0] == "ad_service:5057"][0]],
-    ["product_catalog_service:5055", [x[1] for x in service_risk_scores if x[0] == "product_catalog_service:5055"][0]],
-    ["currency_service:5053", [x[1] for x in service_risk_scores if x[0] == "currency_service:5053"][0]],
+    ["compose_post_service:9100", [x[1] for x in service_risk_scores if x[0] == "compose_post_service:9100"][0]],
+    ["text_service:9095", [x[1] for x in service_risk_scores if x[0] == "text_service:9095"][0]],
+    ["user_service:9094", [x[1] for x in service_risk_scores if x[0] == "user_service:9094"][0]],
+    ["write_home_timeline_service:8999", [x[1] for x in service_risk_scores if x[0] == "write_home_timeline_service:8999"][0]],
+    ["home_timeline_service:9099", [x[1] for x in service_risk_scores if x[0] == "home_timeline_service:9099"][0]],
+    ["user_timeline_service:9098", [x[1] for x in service_risk_scores if x[0] == "user_timeline_service:9098"][0]],
+    ["post_storage_service:9096", [x[1] for x in service_risk_scores if x[0] == "post_storage_service:9096"][0]],
+    ["social_graph_service:9097", [x[1] for x in service_risk_scores if x[0] == "social_graph_service:9097"][0]],
+    ["url_shorten_service:9092", [x[1] for x in service_risk_scores if x[0] == "url_shorten_service:9092"][0]],
+    ["unique_id_service:9090", [x[1] for x in service_risk_scores if x[0] == "unique_id_service:9090"][0]],
+    ["user_mention_service:9093", [x[1] for x in service_risk_scores if x[0] == "user_mention_service:9093"][0]],
+    ["media_service:9091", [x[1] for x in service_risk_scores if x[0] == "media_service:9091"][0]],
 ]
 
 # random-ranked services 
@@ -147,15 +166,18 @@ complexity_ranked_services = [[s[0], s[1]] for s in sorted(service_risk_scores3,
 
 # mapping service -> agent
 service_to_agent = {
-    "checkout_service:5050": "checkout_agent:5050",
-    "payment_service:5052": "payment_agent:5052",
-    "email_service:5056": "email_agent:5056",
-    "shipping_service:5051": "shipping_agent:5051",
-    "recommendation_service:5058": "recommendation_agent:5058",
-    "cart_service:5054": "cart_agent:5054",
-    "ad_service:5057": "ad_agent:5057",
-    "product_catalog_service:5055": "product_catalog_agent:5055",
-    "currency_service:5053": "currency_agent:5053",
+    "media_service:9091": "media_agent:9091",
+    "user_mention_service:9093": "user_mention_agent:9093",
+    "unique_id_service:9090": "unique_id_agent:9090",
+    "url_shorten_service:9092": "url_shorten_agent:9092",
+    "social_graph_service:9097": "social_graph_agent:9097",
+    "post_storage_service:9096": "post_storage_agent:9096",
+    "user_timeline_service:9098": "user_timeline_agent:9098",
+    "home_timeline_service:9099": "home_timeline_agent:9099",
+    "write_home_timeline_service:8999": "write_home_timeline_agent:8999",
+    "user_service:9094": "user_agent:9094",
+    "text_service:9095": "text_agent:9095",
+    "compose_post_service:9100": "compose_post_agent:9100",
 }
 
 # -------------------------- Apply ranking strategy -------------------------
@@ -191,15 +213,18 @@ adjudication_criteria = AdjudicationCriteria(
 )
 post_action_adjudicator = PostActionAdjudicator(adjudication_criteria)
 
-temporal_propagation_enabled = True
+temporal_propagation_enabled = False
 temporal_propagation_dependency_influence_weight = {
-    "product_catalog_service->checkout_service": 1,
-    "product_catalog_service->recommendation_service": 1,
-    "cart_service->checkout_service": 1,
-    "currency_service->checkout_service": 1,
-    "payment_service->checkout_service": 1,
-    "shipping_service->checkout_service": 1,
-    "email_service->checkout_service": 1,
+    "media_service->compose_post_service": 1,
+    "user_mention_service->text_service": 1,
+    "unique_id_service->compose_post_service": 1,
+    "url_shorten_service->text_service": 1,
+    "social_graph_service->home_timeline_service": 1,
+    "post_storage_service->compose_post_service": 1,
+    "user_timeline_service->compose_post_service": 1,
+    "home_timeline_service->write_home_timeline_service": 1,
+    "write_home_timeline_service->compose_post_service": 1,
+    "text_service->compose_post_service": 1,
 }
 
 
@@ -207,6 +232,7 @@ temporal_propagation_dependency_influence_weight = {
 LLM = ["llama3.2:3b", "qwen3:14b"] # "llama3.2:3b" or "qwen3:14b"
 T = [0.0, 0.8] # 0 or 0.8
 CONCURRENCY_RATE = [20, 100] # concurrent requests
+
 
 
 # ---- HELPERS ----
@@ -277,7 +303,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         epsilon_qa = -1
 
     step_result = subprocess.run(
-        ["python3", "-m", "refactored_architecture.google_ms.exp_runner_auto",
+        ["python3", "-m", "refactored_architecture.dsb_social.exp_runner_auto",
          migration_order,
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
          str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy), 

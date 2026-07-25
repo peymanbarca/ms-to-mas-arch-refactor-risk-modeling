@@ -10,7 +10,7 @@ from pymongo import MongoClient
 import os
 import statistics
 import random
-from .exp_runner import full_trials_runner
+from .exp_runner import main
 from pathlib import Path
 
 
@@ -22,7 +22,7 @@ def run_experiment_of_architecture_step_full_predicate(LLM, T, CONCURRENCY_RATE,
     with open(log_telemetry_file, "w") as f:
         f.write("\n\n")
 
-    full_run_results = full_trials_runner()
+    full_run_results = main(trials=N_TRIALS, concurrency=CONCURRENCY_RATE)
 
     # Save all results
     with open(f"./results/refactored_arch_results_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}"
@@ -31,11 +31,12 @@ def run_experiment_of_architecture_step_full_predicate(LLM, T, CONCURRENCY_RATE,
         json.dump(full_run_results, f)
         f.write("\n\n")
 
-    p95_latency = full_run_results[0]["final_summary"]["p95_latency"]
-    qa_inconsistency_rate = full_run_results[0]["final_summary"]["qa_inconsistency_rate"]
-    failure_rate = (full_run_results[0]["final_summary"]["total_api_calls_failure"]
-                    / full_run_results[0]["final_summary"]["total_api_calls"]) \
-        if full_run_results[0]["final_summary"]["total_api_calls"] > 0 else 0
+    p95_latency = full_run_results["latency_stats"]["EndToEnd:TOTAL"]["p95"]
+    consistency_ratio = full_run_results["consistency"]["ratio"]
+    qa_inconsistency_rate = 1 - round(int(consistency_ratio.split("/")[0]) / int(consistency_ratio.split("/")[1]), 2)
+    failure_rate = (full_run_results["final_summary"]["total_api_calls_failure"]
+                    / full_run_results["final_summary"]["total_api_calls"]) \
+        if full_run_results["final_summary"]["total_api_calls"] > 0 else 0
     print(f"Final p95 latency: {p95_latency}, QA inconsistency rate: {qa_inconsistency_rate}%,"
           f" failure rate: {failure_rate*100}%")
 
