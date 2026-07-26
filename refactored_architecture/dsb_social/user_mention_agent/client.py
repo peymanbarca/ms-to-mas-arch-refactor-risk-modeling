@@ -76,7 +76,7 @@ class UserMentionClient:
         self,
         host: str = "127.0.0.1",
         port: int = 9093,
-        timeout_ms: int = 5000,
+        timeout_ms: int = 25000,
         max_retries: int = 3,
         retry_delay: float = 0.5,
         req_id: int | None = None,
@@ -284,7 +284,7 @@ def main() -> None:
     )
     parser.add_argument("--host",    default="127.0.0.1", help="Service host")
     parser.add_argument("--port",    default=9093, type=int, help="Service port")
-    parser.add_argument("--timeout", default=5000, type=int, help="Socket timeout ms")
+    parser.add_argument("--timeout", default=25000, type=int, help="Socket timeout ms")
     parser.add_argument("--retries", default=3,    type=int, help="Max retries")
     parser.add_argument("-v", "--verbose", action="store_true")
 

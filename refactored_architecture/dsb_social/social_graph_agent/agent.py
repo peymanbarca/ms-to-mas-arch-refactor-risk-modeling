@@ -206,41 +206,44 @@ def make_reason_relationship_node():
         already_fol = fid in followees
 
         prompt = f"""
-You are a social graph validation agent for a social network.
+            You are a social graph validation agent for a social network.
 
-Your task is to decide whether a {op.upper()} operation should be approved.
+            Your task is to decide whether a {op.upper()} operation should be approved.
 
-Operation: {op.upper()}
-  user_id    = {uid}   (the user performing the action)
-  followee_id = {fid}  (the target user)
+            Operation: {op.upper()}
+            user_id    = {uid}   (the user performing the action)
+            followee_id = {fid}  (the target user)
 
-Current graph state:
-  user_id currently follows these IDs: {followees}
-  followee_id is already followed by user_id: {already_fol}
+            Current graph state:
+            - user_id currently follows these IDs: {followees}
+            - user_id is already following followee_id: {already_fol}
 
-Validation rules:
-  1. Self-{op} is NEVER allowed (user_id must NOT equal followee_id)
-  2. For FOLLOW:   approve only if user_id is NOT already following followee_id
-  3. For UNFOLLOW: approve only if user_id IS currently following followee_id
-  4. Both user_id and followee_id must be positive integers
+            Validation rules:
+            1. approve only user_id NOT equal to followee_id, otherwise return false with reason Self-{op} is NEVER allowed.
+            2. For FOLLOW:   approve only if user_id is NOT already following followee_id
+            3. For UNFOLLOW: approve only if user_id IS currently following followee_id
+            4. Both user_id and followee_id must be positive integers
 
-Return ONLY valid JSON — no explanation, no code, no markdown.
+            Return ONLY valid JSON — no explanation, no code, no markdown.
 
-Schema:
-{{
-  "approved": true | false,
-  "reason":   "<short explanation>"
-}}
-"""
+            Schema:
+            {{
+            "approved": true | false,
+            "reason":   "<short explanation>" //  only in case of approved=false.
+            }}
+            """
 
-        logger.info("LLM reason_relationship req_id=%d op=%s", state["req_id"], op)
+        logger.info("LLM reason_relationship req_id=%d op=%s, prompt=%r", state["req_id"], op, prompt)
+        t1 = time.time()
         response = await asyncio.to_thread(llm.invoke, prompt)
         raw      = response.text()
         in_tok   = response.usage_metadata.get("input_tokens",  0)
         out_tok  = response.usage_metadata.get("output_tokens", 0)
+        t2 = time.time()
+        took = t2 - t1
 
-        logger.info("LLM raw=%r  in=%d out=%d", raw[:150], in_tok, out_tok)
-        print(f"[reason_relationship] op={op} raw={raw[:100]!r} in={in_tok} out={out_tok}")
+        logger.info("LLM raw response=%r  in=%d out=%d, took=%.3f seconds", raw, in_tok, out_tok, took)
+        # print(f"[reason_relationship] op={op} raw={raw[:100]!r} in={in_tok} out={out_tok}")
 
         parsed   = _parse_json(raw)
         approved = parsed.get("approved") if parsed else None
@@ -460,40 +463,43 @@ def make_reason_verify_list_node():
             return state
 
         prompt = f"""
-You are a social graph verification agent for a social network.
+            You are a social graph verification agent for a social network.
 
-Your task is to verify that a list of user IDs representing social connections is valid.
+            Your task is to verify that a list of user IDs representing social connections is valid.
 
-Context:
-  user_id   = {uid}
-  direction = {direction}  ({"users who follow this user" if direction == "followers" else "users this user follows"})
-  raw_ids   = {raw_ids}
+            Context:
+            user_id   = {uid}
+            direction = {direction}  ({"users who follow this user" if direction == "followers" else "users this user follows"})
+            raw_ids   = {raw_ids}
 
-Validation rules:
-  1. All IDs must be positive integers (> 0)
-  2. No duplicates in the list
-  3. The user themselves (user_id={uid}) must NOT appear in the list (no self-reference)
-  4. If the list passes all checks: valid=true, return the same list as cleaned_ids
-  5. If there are issues: valid=false, return cleaned_ids with invalid entries removed
+            Validation rules:
+            1. All IDs must be positive integers (> 0)
+            2. No duplicates in the list
+            3. The user themselves (user_id={uid}) must NOT appear in the list (no self-reference)
+            4. If the list passes all checks: valid=true, return the same list as cleaned_ids
+            5. If there are issues: valid=false, return cleaned_ids with invalid entries removed
 
-Return ONLY valid JSON — no explanation, no code, no markdown.
+            Return ONLY valid JSON — no explanation, no code, no markdown.
 
-Schema:
-{{
-  "valid":       true | false,
-  "cleaned_ids": [<integer>, ...]
-}}
-"""
+            Schema:
+            {{
+            "valid":       true | false,
+            "cleaned_ids": [<integer>, ...]
+            }}
+            """
 
-        logger.info("LLM reason_verify_list req_id=%d uid=%d dir=%s count=%d",
-                    state["req_id"], uid, direction, len(raw_ids))
+        logger.info("LLM reason_verify_list req_id=%d uid=%d dir=%s count=%d, prompt=%r",
+                    state["req_id"], uid, direction, len(raw_ids), prompt)
+        t1 = time.time()
         response = await asyncio.to_thread(llm.invoke, prompt)
         raw      = response.text()
         in_tok   = response.usage_metadata.get("input_tokens",  0)
         out_tok  = response.usage_metadata.get("output_tokens", 0)
+        t2 = time.time()
+        took = t2 - t1
 
-        logger.info("LLM raw=%r  in=%d out=%d", raw[:150], in_tok, out_tok)
-        print(f"[reason_verify_list] raw={raw[:100]!r}  in={in_tok} out={out_tok}")
+        logger.info("LLM raw response=%r  in=%d out=%d, took=%.3f seconds", raw, in_tok, out_tok, took)
+        # print(f"[reason_verify_list] raw={raw[:100]!r}  in={in_tok} out={out_tok}")
 
         parsed      = _parse_json(raw)
         llm_valid   = None

@@ -278,8 +278,8 @@ def run_trial(trial_id: int, worker_id: int, runner: CommandRunner) -> TrialResu
     posts = [
         {"username": username,  "user_id": uid,      "text": f"Hello world from {username}! check this url: https://www.example.com/some/very/long/path"},
         {"username": username,  "user_id": fol_id_2, "text": f"Hello world2 from {fol_id_2}!"},
-        {"username": username,  "user_id": fol_id_3, "text": f"Hello world3 from {fol_id_3}!"},
-        {"username": username,  "user_id": fol_id_2, "text": "Check this out!",
+        {"username": username,  "user_id": fol_id_3, "text": f"Hello world3 from {fol_id_3}! @{username}"},
+        {"username": username,  "user_id": fol_id_2, "text": f"Check this out! @{username}",
          "extra_args": ["--media-ids", "100", "101", "--media-types", "photo", "photo"]},
         {"username": username,  "user_id": fol_id_2, "text": f"RT @{username} great post",
          "extra_args": ["--post-type", "REPOST"]},

@@ -1,5 +1,28 @@
 """
-USER MENTION AGENT - ReACT-based Graph Topology with Tool Use
+# USER MENTION AGENT - ReACT-based Graph Topology with Tool Use
+
+# ComposeUserMentions graph (per username) — ReACT Pattern:
+#     START
+#       |
+#       v
+#   [check_cache]         Deterministic — Redis lookup (username → user_id)
+#       |
+#       v  (cache miss only)
+#   [reason_and_act_loop] ReACT Loop — LLM reasons and calls tools:
+#       |                   1. LLM reasons: "I need to query MongoDB for username"
+#       |                   2. Tool call: execute_mongodb_query(username)
+#       |                   3. LLM receives document, reasons: "Extract user_id=X"
+#       |                   4. Repeat until final answer (user_id or null)
+#       v
+#   [validate_resolved]   Deterministic guard — verify user_id is valid int;
+#       |                   if missing/invalid, signals not found
+#       v
+#   [persist_cache]       Deterministic — Redis cache set (username → user_id)
+#       |
+#       v
+#      END  →  UserMention(user_id, username)
+
+USER MENTION AGENT - CoT Graph Topology with Tool Use
 
 ComposeUserMentions graph (per username) — ReACT Pattern:
     START
@@ -8,11 +31,10 @@ ComposeUserMentions graph (per username) — ReACT Pattern:
   [check_cache]         Deterministic — Redis lookup (username → user_id)
       |
       v  (cache miss only)
-  [reason_and_act_loop] ReACT Loop — LLM reasons and calls tools:
-      |                   1. LLM reasons: "I need to query MongoDB for username"
-      |                   2. Tool call: execute_mongodb_query(username)
-      |                   3. LLM receives document, reasons: "Extract user_id=X"
-      |                   4. Repeat until final answer (user_id or null)
+  [reasoning] — LLM reasons over invoked tool result:
+      |                   1. Tool call: execute_mongodb_query(username) (deterministic always be called)
+      |                   2. LLM receives document, reasons: "Extract user_id=X"
+      |                   3. Return final answer (user_id or null)
       v
   [validate_resolved]   Deterministic guard — verify user_id is valid int;
       |                   if missing/invalid, signals not found
@@ -21,6 +43,8 @@ ComposeUserMentions graph (per username) — ReACT Pattern:
       |
       v
      END  →  UserMention(user_id, username)
+
+Key Design Decisions
 
 Key Design Decisions
 --------------------
@@ -39,6 +63,7 @@ import json
 import logging
 import re
 import asyncio
+import time
 
 from typing import TypedDict, Optional, List, Any
 from langgraph.graph import StateGraph, END
@@ -258,6 +283,7 @@ def make_reason_resolve_node(mongo_col):
     query_tool = make_mongodb_query_tool(mongo_col)
     
     async def reason_and_act_loop(state: ResolveUsernameAgentState) -> ResolveUsernameAgentState:
+        t1 = time.time()
         # Skip if cache hit
         if state["cache_hit"]:
             logger.info("reason_and_act_loop SKIPPED (cache hit) req_id=%d", state["req_id"])
@@ -267,93 +293,99 @@ def make_reason_resolve_node(mongo_col):
 
         # --------- STEP 1: LLM REASON & PLAN ---------
         # Ask LLM to reason about what it needs to do
-        reason_prompt = f"""You are resolving a username to a user_id.
+        # reason_prompt = f"""You are resolving a username to a user_id.
 
-Username: {username}
+        # Username: {username}
 
-REASON: What do you need to do to resolve this username to a user_id?
-Think through the steps. Be concise."""
+        # REASON: What do you need to do to resolve this username to a user_id?
+        # Think through the steps. Be concise."""
 
-        logger.info("ReACT step 1 (REASON) req_id=%d username=%r", state["req_id"], username)
+        # logger.info("ReACT step 1 (REASON) req_id=%d username=%r reason_prompt=%r", state["req_id"], username, reason_prompt)
         
-        try:
-            # Use asyncio.to_thread to call blocking LLM
-            reason_response = await asyncio.to_thread(llm.invoke, reason_prompt)
-            reason_text = _extract_text_from_response(reason_response)
-            in_tok_1, out_tok_1 = _extract_usage_metadata(reason_response)
+        # try:
+        #     # Use asyncio.to_thread to call blocking LLM
+        #     reason_response = await asyncio.to_thread(llm.invoke, reason_prompt)
+        #     reason_text = _extract_text_from_response(reason_response)
+        #     in_tok_1, out_tok_1 = _extract_usage_metadata(reason_response)
             
-            logger.info("ReACT reason response: %r  in=%d out=%d", reason_text[:100], in_tok_1, out_tok_1)
-            print(f"[reason_and_act_loop STEP 1] reasoning={reason_text[:100]!r}")
+        #     logger.info("ReACT reason response: %r  in=%d out=%d", reason_text, in_tok_1, out_tok_1)
+        #     print(f"[reason_and_act_loop STEP 1] reasoning={reason_text!r}")
 
-        except Exception as exc:
-            logger.error("ReACT STEP 1 FAILED req_id=%d username=%r: %s", state["req_id"], username, exc, exc_info=True)
-            print(f"[reason_and_act_loop STEP 1] ERROR: {exc}")
-            state["user_id"] = None
-            return state
+        # except Exception as exc:
+        #     logger.error("ReACT STEP 1 FAILED req_id=%d username=%r: %s", state["req_id"], username, exc, exc_info=True)
+        #     print(f"[reason_and_act_loop STEP 1] ERROR: {exc}")
+        #     state["user_id"] = None
+        #     return state
 
-        # --------- STEP 2: ACT (Execute the tool) ---------
-        logger.info("ReACT step 2 (ACT) req_id=%d calling tool for username=%r", 
+        # --------- STEP 1: ACT (Execute the mongoDB tool) ---------
+        logger.info("step 1 (ACT) req_id=%d calling tool for username=%r", 
                    state["req_id"], username)
         
         try:
             tool_result = query_tool(username)
-            logger.info("ReACT tool result: %r", tool_result)
-            print(f"[reason_and_act_loop STEP 2] tool_result={tool_result!r}")
+            logger.info(" tool result: %r", tool_result)
+            # print(f"[ STEP 1] tool_result={tool_result!r}")
         except Exception as exc:
-            logger.error("ReACT STEP 2 FAILED req_id=%d username=%r: %s", state["req_id"], username, exc, exc_info=True)
-            print(f"[reason_and_act_loop STEP 2] ERROR: {exc}")
+            logger.error(" STEP 1 FAILED req_id=%d username=%r: %s", state["req_id"], username, exc, exc_info=True)
+            # print(f"[ STEP 1] ERROR: {exc}")
             state["user_id"] = None
             return state
 
-        # --------- STEP 3: OBSERVE & REASON AGAIN ---------
+        # --------- STEP 2: OBSERVE & REASON ---------
         # Present the tool result to the LLM and ask it to extract user_id
         observe_prompt = f"""You just queried a MongoDB user collection with username: {username}
 
-Tool result: {json.dumps(tool_result)}
+        Tool result: {json.dumps(tool_result)}
 
-OBSERVE the result and REASON:
-- If found=True, what is the user_id?
-- If found=False, the user was not found.
+        OBSERVE the result and REASON:
+        - If found=True, what is the user_id?
+        - If found=False, the user was not found.
 
-Respond clearly with: "The user_id is <number>" or "User not found"."""
+        Do not generate any code or justification or explain.
+        Respond clearly with only: "The user_id is <number>" or "User not found".
+        
+        """
 
-        logger.info("ReACT step 3 (OBSERVE & REASON) req_id=%d", state["req_id"])
+        logger.info(" step 2 (OBSERVE & REASON) req_id=%d, prompt=%r", state["req_id"], observe_prompt)
         
         try:
             observe_response = await asyncio.to_thread(llm.invoke, observe_prompt)
             observe_text = _extract_text_from_response(observe_response)
             in_tok_2, out_tok_2 = _extract_usage_metadata(observe_response)
             
-            logger.info("ReACT observe response: %r  in=%d out=%d", observe_text[:100], in_tok_2, out_tok_2)
-            print(f"[reason_and_act_loop STEP 3] observe={observe_text[:100]!r}")
+            logger.info(" observe response: %r  in=%d out=%d", observe_text, in_tok_2, out_tok_2)
+            # print(f"[ STEP 2] observe response={observe_text!r}")
 
         except Exception as exc:
-            logger.error("ReACT STEP 3 FAILED req_id=%d username=%r: %s", state["req_id"], username, exc, exc_info=True)
-            print(f"[reason_and_act_loop STEP 3] ERROR: {exc}")
+            logger.error(" STEP 2 FAILED req_id=%d username=%r: %s", state["req_id"], username, exc, exc_info=True)
+            # print(f"[ STEP 2] ERROR: {exc}")
             state["user_id"] = None
             return state
 
-        # --------- STEP 4: Extract user_id from final reasoning ---------
+        # --------- STEP 3: Extract user_id from final reasoning ---------
         try:
             user_id = _extract_user_id_from_response(observe_text)
 
             state["user_id"]                = user_id
-            state["total_input_tokens"]    += in_tok_1 + in_tok_2
-            state["total_output_tokens"]   += out_tok_1 + out_tok_2
-            state["total_llm_calls"]       += 2  # 2 LLM calls: reason + observe
+            state["total_input_tokens"]    += in_tok_2
+            state["total_output_tokens"]   += out_tok_2
+            state["total_llm_calls"]       += 1  # 1 LLM calls:  observe tool result and reason over it
+            
+            t2 = time.time()
+            took = round((t2-t1), 3)
             
             if user_id is not None:
-                logger.info("ReACT resolved req_id=%d username=%r -> user_id=%d",
-                           state["req_id"], username, user_id)
-                print(f"[reason_and_act_loop] RESOLVED {username} -> {user_id}")
+                logger.info(" resolved req_id=%d username=%r -> user_id=%d, total_input_tokens=%d, total_output_tokens=%d, total_llm_calls=%d, took=%f ms",
+                           state["req_id"], username, user_id, state["total_input_tokens"], state["total_output_tokens"], state["total_llm_calls"], took)
+                # print(f"[reason_and_act_loop] RESOLVED {username} -> {user_id}")
             else:
-                logger.warning("ReACT failed to extract user_id req_id=%d username=%r response=%r",
+                logger.warning(" failed to extract user_id req_id=%d username=%r response=%r",
                               state["req_id"], username, observe_text)
-                print(f"[reason_and_act_loop] FAILED to extract user_id for {username}")
+                # print(f"[reason_and_act_loop] FAILED to extract user_id for {username}")
 
         except Exception as exc:
-            logger.error("ReACT STEP 4 FAILED req_id=%d username=%r: %s", state["req_id"], username, exc, exc_info=True)
-            print(f"[reason_and_act_loop STEP 4] ERROR: {exc}")
+            logger.error(" STEP 3 FAILED req_id=%d username=%r: %s", state["req_id"], username, exc, exc_info=True)
+            # print(f"[reason_and_act_loop STEP 4] ERROR: {exc}")
             state["user_id"] = None
 
         return state
