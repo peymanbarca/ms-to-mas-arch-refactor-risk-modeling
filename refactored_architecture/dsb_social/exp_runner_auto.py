@@ -32,11 +32,8 @@ def run_experiment_of_architecture_step_full_predicate(LLM, T, CONCURRENCY_RATE,
         f.write("\n\n")
 
     p95_latency = full_run_results["latency_stats"]["EndToEnd:TOTAL"]["p95"]
-    consistency_ratio = full_run_results["consistency"]["ratio"]
-    qa_inconsistency_rate = 1 - round(int(consistency_ratio.split("/")[0]) / int(consistency_ratio.split("/")[1]), 2)
-    failure_rate = (full_run_results["final_summary"]["total_api_calls_failure"]
-                    / full_run_results["final_summary"]["total_api_calls"]) \
-        if full_run_results["final_summary"]["total_api_calls"] > 0 else 0
+    qa_inconsistency_rate = full_run_results["consistency"]["inconsistency_percentage"]
+    failure_rate = full_run_results["summary"]["trial_failure_rate"]
     print(f"Final p95 latency: {p95_latency}, QA inconsistency rate: {qa_inconsistency_rate}%,"
           f" failure rate: {failure_rate*100}%")
 

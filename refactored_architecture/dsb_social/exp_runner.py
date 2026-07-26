@@ -70,7 +70,7 @@ class StageResult:
     success:     bool
     error:       Optional[str] = None
     output:      str = ""
-
+    failure_kind: Optional[str] = None
 
 @dataclass
 class TrialResult:
@@ -131,12 +131,19 @@ class CommandRunner:
             if result.returncode != 0:
                 if self.verbose:
                     print(f"    ✗ FAILED ({elapsed_ms:.1f} ms): {output[:200]}")
+                # Classify: distinguish Thrift ServiceException from other errors
+                kind = (
+                    "service_error"
+                    if "SERVICE ERROR" in output or "ServiceException" in output
+                    else "error"
+                )
                 return StageResult(
                     name=label,
                     latency_ms=elapsed_ms,
                     success=False,
                     error=output[:500],
                     output=output,
+                    failure_kind=kind,
                 )
             if self.verbose:
                 print(f"    ✓ OK ({elapsed_ms:.1f} ms): {output[:120]}")
@@ -145,6 +152,7 @@ class CommandRunner:
                 latency_ms=elapsed_ms,
                 success=True,
                 output=output,
+                failure_kind=None
             )
         except subprocess.TimeoutExpired as exc:
             elapsed_ms = (time.perf_counter() - t0) * 1000.0
@@ -153,6 +161,7 @@ class CommandRunner:
                 latency_ms=elapsed_ms,
                 success=False,
                 error=f"TIMEOUT after 600s",
+                failure_kind="timeout",
             )
         except Exception as exc:
             elapsed_ms = (time.perf_counter() - t0) * 1000.0
@@ -161,6 +170,7 @@ class CommandRunner:
                 latency_ms=elapsed_ms,
                 success=False,
                 error=str(exc),
+                failure_kind="error",
             )
 
 
@@ -275,6 +285,7 @@ def run_trial(trial_id: int, worker_id: int, runner: CommandRunner) -> TrialResu
     # ──────────────────────────────────────────────────────────────
     t_s3 = time.perf_counter()
 
+    # 5 posts with different structures (url, user-mention, media) fro, different users
     posts = [
         {"username": username,  "user_id": uid,      "text": f"Hello world from {username}! check this url: https://www.example.com/some/very/long/path"},
         {"username": username,  "user_id": fol_id_2, "text": f"Hello world2 from {fol_id_2}!"},
@@ -443,6 +454,135 @@ def print_latency_report(stats: Dict[str, dict], results: List[TrialResult]):
         print(f"  ▶  p95 End-to-End Tail Latency: {p95:.1f} ms")
     print()
 
+
+def analyze_failures(results: List[TrialResult]) -> Dict[str, dict]:
+    """
+    Compute per-stage failure rates and breakdowns by failure_kind.
+ 
+    Returns a dict keyed by stage name:
+    {
+      "calls":         int,   # total times this stage was attempted
+      "failures":      int,   # number of failures
+      "failure_rate":  float, # failures / calls  (0.0 – 1.0)
+      "timeout":       int,   # failures classified as timeout
+      "service_error": int,   # failures classified as service_error
+      "error":         int,   # failures classified as generic error
+      "top_errors":    [str], # up to 3 most common error snippets
+    }
+ 
+    Trial-level failure rate is reported separately (see print_failure_report).
+    """
+    # stage name → accumulator
+    stage_stats: Dict[str, Dict] = {}
+ 
+    for trial in results:
+        for stage in trial.stages:
+            s = stage_stats.setdefault(stage.name, {
+                "calls":         0,
+                "failures":      0,
+                "timeout":       0,
+                "service_error": 0,
+                "error":         0,
+                "_errors":       [],   # raw error strings for top_errors
+            })
+            s["calls"] += 1
+            if not stage.success:
+                s["failures"] += 1
+                kind = stage.failure_kind or "error"
+                s[kind] = s.get(kind, 0) + 1
+                if stage.error:
+                    # Keep only the first line of the error for readability
+                    snippet = stage.error.splitlines()[0][:120]
+                    s["_errors"].append(snippet)
+ 
+    result = {}
+    for name, s in stage_stats.items():
+        calls    = s["calls"]
+        failures = s["failures"]
+        # Compute top-3 most frequent error snippets
+        from collections import Counter
+        top_errors = [
+            err for err, _ in Counter(s["_errors"]).most_common(3)
+        ]
+        result[name] = {
+            "calls":         calls,
+            "failures":      failures,
+            "failure_rate":  failures / calls if calls > 0 else 0.0,
+            "timeout":       s.get("timeout",       0),
+            "service_error": s.get("service_error", 0),
+            "error":         s.get("error",         0),
+            "top_errors":    top_errors,
+        }
+    return result
+ 
+ 
+def print_failure_report(
+    failure_stats: Dict[str, dict],
+    results: List[TrialResult],
+):
+    total_trials   = len(results)
+    failed_trials  = sum(1 for r in results if not r.success)
+    trial_fail_pct = (failed_trials / total_trials * 100) if total_trials else 0.0
+ 
+    print("═" * 88)
+    print("  FAILURE RATE REPORT")
+    print("═" * 88)
+    print(
+        f"  Trial-level:  {failed_trials}/{total_trials} failed "
+        f"({trial_fail_pct:.1f}%)"
+    )
+    print()
+    print(
+        f"  {'Stage':<40} {'Calls':>6} {'Fails':>6} {'Rate':>7} "
+        f"{'Timeout':>8} {'SvcErr':>8} {'Error':>7}"
+    )
+    print(
+        f"  {'-'*40} {'-'*6} {'-'*6} {'-'*7} "
+        f"{'-'*8} {'-'*8} {'-'*7}"
+    )
+ 
+    # Print in the same sort order as the latency report
+    order = sorted(failure_stats.keys(), key=lambda k: (
+        0 if k.startswith("EndToEnd") else
+        1 if "Stage1" in k else
+        2 if "Stage2" in k else
+        3 if "Stage3" in k else 4,
+        k,
+    ))
+ 
+    any_failures = False
+    for name in order:
+        s    = failure_stats[name]
+        rate = s["failure_rate"] * 100
+        flag = " ◀" if rate > 0 else ""
+        print(
+            f"  {name:<40} {s['calls']:>6} {s['failures']:>6} "
+            f"{rate:>6.1f}% "
+            f"{s['timeout']:>8} {s['service_error']:>8} {s['error']:>7}"
+            f"{flag}"
+        )
+        if s["top_errors"]:
+            any_failures = True
+            for err in s["top_errors"]:
+                print(f"    {'':40}   └ {err}")
+ 
+    print("═" * 88)
+ 
+    # Highlight stages with the highest failure rate
+    if any_failures:
+        worst = max(
+            ((n, d) for n, d in failure_stats.items() if d["failures"] > 0),
+            key=lambda nd: nd[1]["failure_rate"],
+            default=None,
+        )
+        if worst:
+            wn, wd = worst
+            print(
+                f"\n  ▶  Highest failure rate: {wn}  "
+                f"{wd['failure_rate']*100:.1f}%  "
+                f"({wd['failures']}/{wd['calls']} calls)"
+            )
+    print()
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Consistency checker
@@ -822,6 +962,9 @@ def main(trials:int = 1, concurrency:int = 1):
     stats = analyze_latencies(results)
     print_latency_report(stats, results)
 
+    # ── Failure rate report ──
+    failure_stats = analyze_failures(results)
+    print_failure_report(failure_stats, results)
 
 
     # ── Consistency checks ──
@@ -844,6 +987,10 @@ def main(trials:int = 1, concurrency:int = 1):
     print(f"\n  Saving JSON report to {current_file_path}/results/load_generator_report.json …")
     
     report_path = current_file_path + "/results/load_generator_report.json"
+    
+    total_trials  = len(results)
+    failed_trials = sum(1 for r in results if not r.success)
+    
     try:
         report = {
             "config": {
@@ -855,13 +1002,21 @@ def main(trials:int = 1, concurrency:int = 1):
                 "total_trials":    len(results),
                 "successful":      sum(1 for r in results if r.success),
                 "failed":          sum(1 for r in results if not r.success),
+                "trial_failure_rate": (
+                    failed_trials / total_trials if total_trials else 0.0
+                ),
                 "wall_time_sec":   wall_ms / 1000,
+                "throughput_tps":     (
+                    total_trials / (wall_ms / 1000) if wall_ms > 0 else 0.0
+                ),
             },
             "latency_stats": stats,
+            "failure_stats":  failure_stats,
             "consistency": {
                 "passed": passed,
                 "failed": failed,
                 "ratio": f"{passed}/{passed + failed}" if (passed + failed) > 0 else "N/A",
+                "inconsistency_percentage": (failed / (passed + failed)) * 100 if (passed + failed) > 0 else None
             },
         }
         with open(report_path, "w") as fh:
