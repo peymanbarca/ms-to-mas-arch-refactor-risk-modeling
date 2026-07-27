@@ -372,7 +372,7 @@ class ComposePostHandler(ComposePostService.Iface):
             },
             {
                 "action": "compose_media",
-                "completed": state.get("media_list") is not None or len(state.get("media_ids", [])) == 0,
+                "completed": state.get("media_list") is not None,
                 "rank": 4,
             },
             {
@@ -403,6 +403,11 @@ class ComposePostHandler(ComposePostService.Iface):
         ]
         
         actions = [x["action"] for x in workflow if x['completed'] is False] + ["finish"]
+        
+        # remove compose_media from workflow if the post does not have media content
+        if len(state.get("media_ids", [])) == 0:
+            workflow = [item for item in workflow if item.get("action") != "compose_media"]
+            
         all_done = all(stage.get("completed") is True for stage in workflow)  
         if all_done:
             workflow = []  # if all stages are completed, the workflow is empty 
