@@ -58,7 +58,7 @@
 
 ```
 
-## Hybrid at each step
+## Hybrid (at each step or final architecture)
 
 ``` bash
 
