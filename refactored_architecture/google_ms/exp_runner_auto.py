@@ -31,11 +31,9 @@ def run_experiment_of_architecture_step_full_predicate(LLM, T, CONCURRENCY_RATE,
         json.dump(full_run_results, f)
         f.write("\n\n")
 
-    p95_latency = full_run_results[0]["final_summary"]["p95_latency"]
-    qa_inconsistency_rate = full_run_results[0]["final_summary"]["qa_inconsistency_rate"]
-    failure_rate = (full_run_results[0]["final_summary"]["total_api_calls_failure"]
-                    / full_run_results[0]["final_summary"]["total_api_calls"]) \
-        if full_run_results[0]["final_summary"]["total_api_calls"] > 0 else 0
+    p95_latency = full_run_results[0]["summary"]["latency"]["p95_s"]
+    qa_inconsistency_rate = full_run_results[0]["summary"]["qa_failure_count"] / full_run_results[0]["summary"]["n_trials"]
+    failure_rate = 100 - full_run_results[0]["summary"]["success_rate_pct"]
     print(f"Final p95 latency: {p95_latency}, QA inconsistency rate: {qa_inconsistency_rate}%,"
           f" failure rate: {failure_rate*100}%")
 

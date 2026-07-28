@@ -61,17 +61,17 @@ The ollama server should be installed first, then ready to be started (with infe
 ## Run local dockerized database and message broker
 
 - MongoDB: 
-    ```
+    ``` bash
     docker compose up -d mongodb
     ```
 
 - Redis: 
-    ```
+    ``` bash
     docker compose up -d redis
     ```
 
 - RabbitMQ: 
-    ```
+    ``` bash
     docker compose up -d rabbitmq
     ```
 
@@ -87,9 +87,6 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
 ## Deployment of microservice baseline and gather metrics
 
 1-  **Google Online Boutique Microservices**
-
-    
-    # 1. Deploy locally
 
 ```bash
     cd deploy_orchestration/google_ms
@@ -123,12 +120,12 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
 
 ## Ablation Study
 
-## Running migration loops for all baselines, by deployment of hybrid architectures (at each migration step) and gather step-wise and complete metrics 
+### Running migration loops for all baselines, by deployment of hybrid architectures (at each migration step) and gather step-wise and complete metrics 
 
 For each baseline migration cycle based on a ranking strategy, acceptability predicate mode, and governance mechanism, the outcome metrics should be gathered, and then be aggregated.
 
 
-### Run baselines migration loops
+### Step 1: Run baselines migration loops
 
 **Run full migration cycle for each baseline, by looping over model size (x2), temperature (x2), concurrency levels (x2), ranking strategy (x6) (here with equal weights of risk metrics), predicate mode (x4) and governance mode (x3)**
 
@@ -160,7 +157,7 @@ For each migration step for each of baselines, the target hybrid architecture is
     # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy.
 ```
 
-### Aggregate and analyze baseline results
+### Step 2: Aggregate and analyze baseline results
 
 1-  **Google Online Boutique Microservices**
 
