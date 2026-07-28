@@ -66,7 +66,7 @@ c_cog = [["currency_service:5053", 4],
 
 
 all_rankings_with_different_weights = []    
-
+all_rankings_with_different_weights_scores = []
 
 # --------------------------------------------------
 # Build normalized metric dictionaries
@@ -151,6 +151,7 @@ for i, (svc, score) in enumerate(original_ranked_services):
 
 
 all_rankings_with_different_weights.append(original_rank_names)
+all_rankings_with_different_weights_scores.append([0.2, 0.2, 0.2, 0.2, 0.2])
 
 def ranking_similarity(candidate_ranking):
 
@@ -252,6 +253,7 @@ for removed_features in ablation_sets:
     )
     
     all_rankings_with_different_weights.append(ranking)
+    all_rankings_with_different_weights_scores.append([weights["fanout"], weights["bc"], weights["c_cyc"], weights["c_cog"], weights["t_prop"]])
 
     rho, tau = ranking_similarity(
         ranking
@@ -311,6 +313,8 @@ for coalition in all_coalitions:
     )
     
     all_rankings_with_different_weights.append(ranking)
+    all_rankings_with_different_weights_scores.append([weights["fanout"], weights["bc"], weights["c_cyc"], weights["c_cog"], weights["t_prop"]])
+
 
 
     rho, tau = ranking_similarity(
@@ -357,6 +361,7 @@ for i, w in enumerate(samples):
     )
 
     all_rankings_with_different_weights.append(ranking)
+    all_rankings_with_different_weights_scores.append([*w])
 
     rho, tau = ranking_similarity(
         ranking
@@ -436,6 +441,7 @@ for wf in values:
                 )
                 
                 all_rankings_with_different_weights.append(ranking)
+                all_rankings_with_different_weights_scores.append([wf, wb, wcyc, wcog, wt])
 
 
                 rho, tau = ranking_similarity(
@@ -481,7 +487,10 @@ for r in grid_results[-10:]:
 
 print('\n---------------------------------------------------')
 print(f'Total Rankings for experiments: {len(all_rankings_with_different_weights)}',
-      f'Total ablations: {cnt_ablation}, Total Shapley: {cnt_shapley}, Total Dirichlet Sampling: {cnt_dirichlet}, Total Tuning: {cnt_tuning}')
+      f'Total ablations: {cnt_ablation}', 
+      f'Total Shapley: {cnt_shapley}', 
+      f'Total Dirichlet Sampling: {cnt_dirichlet}',
+      f'Total Tuning: {cnt_tuning}')
     
 # ---------------------------------------------------------------------------------------------------------
 
@@ -531,8 +540,8 @@ temporal_propagation_dependency_influence_weight = {
 
 # ----------------- RUNTIME Configurations: most challenging ----------------
 LLM = ["llama3.2:3b"] # "llama3.2:3b"
-T = [0.0, 0.8]
-CONCURRENCY_RATE = [20, 100] # concurrent requests
+T = [0.8]
+CONCURRENCY_RATE = [100] # concurrent requests
 
 
 # ---- HELPERS ----
@@ -544,12 +553,16 @@ def build_args(services, agents):
     """
     svc_pairs = []
     for s in services:
+        if type(s) == list:
+            s = s[0]
         name = s.split(":")[0]
         port = int(s.split(":")[1])
         svc_pairs.append(f"{name}:{port}")
 
     agent_pairs = []
     for a in agents:
+        if type(a) == list:
+            a = a[0]
         name = a.split(":")[0]
         port = int(a.split(":")[1])
         agent_pairs.append(f"{name}:{port}")
@@ -720,11 +733,18 @@ def run_migration_loop():
     
     # -------------------------- Apply ranking strategy -------------------------
     migration_order_strategy = "Ranked" 
+    total = len(all_rankings_with_different_weights)
 
     with tqdm.tqdm(total=total, desc="Experiments") as pbar:
         for ranked_services in all_rankings_with_different_weights:
             
+            index = all_rankings_with_different_weights.index(ranked_services)
+            weights = all_rankings_with_different_weights_scores[index]
+            weights = [round(w, 2) for w in weights]
+            print(f'weights: {weights}')
             
+            migration_order_strategy_with_weights = migration_order_strategy + "_weights_" + ','.join([str(w) for w in weights])
+             
             def init_conditions():
                 subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
 
@@ -735,13 +755,6 @@ def run_migration_loop():
                 
                 return migration_sorting_strategy_services, current_services_with_scores, previous_step_acceptance_types, temporal_propagations
 
-            total = (
-                len(acceptance_predicate_modes)
-                * len(governance_policies)
-                * len(LLM)
-                * len(T)
-                * len(CONCURRENCY_RATE)
-            )
 
             for predicate_mode in acceptance_predicate_modes:
                 for governance_policy in governance_policies:
@@ -749,14 +762,14 @@ def run_migration_loop():
                         for T_ in T:
                             for CONCURRENCY_RATE_ in CONCURRENCY_RATE:
                             
-                                print(f"\n\n============================== Starting Migration Strategy: {migration_order_strategy}, Predicate Mode: {predicate_mode}, Governance Policy: {governance_policy}, T: {T_}, LLM: {LLM_}, CONCURRENCY_RATE: {CONCURRENCY_RATE_} ==============================\n\n")
+                                print(f"\n\n============================== Starting Migration Strategy: {migration_order_strategy_with_weights}, Predicate Mode: {predicate_mode}, Governance Policy: {governance_policy}, T: {T_}, LLM: {LLM_}, CONCURRENCY_RATE: {CONCURRENCY_RATE_} ==============================\n\n")
 
                                 try:
                                     
                                     # ---------------- State Tracking for Current Architecture --------------
 
                                     # Initialize: all services running, no agents yet
-                                    current_services = [s[0] for s in ranked_services]
+                                    current_services = [s for s in ranked_services]
                                     current_agents = []
                                     migration_sorting_strategy_services, current_services_with_scores, previous_step_acceptance_types, temporal_propagations = init_conditions()
 
@@ -775,7 +788,7 @@ def run_migration_loop():
                                         # candidate configuration: remove current service, add as agent
                                         candidate_services = [s for s in current_services if s != svc]
                                         candidate_agents = current_agents + [agent]
-
+                                        
                                         # deploy candidate
                                         deploy(candidate_services, candidate_agents)
 
@@ -785,10 +798,10 @@ def run_migration_loop():
 
                                         # input("Press Enter to run the experiment for this configuration...")
 
-                                        final_decision, step_self_temporal_propagation, decision_type, prediction_category = run_experiment_for_step(migration_order_strategy, step, predicate_mode, governance_policy,
-                                                                                    candidate_services, candidate_agents, svc.split(":")[0],
+                                        final_decision, step_self_temporal_propagation, decision_type, prediction_category = run_experiment_for_step(migration_order_strategy_with_weights, step, predicate_mode, governance_policy,
+                                                                                    str(candidate_services), str(candidate_agents), svc.split(":")[0] if type(svc.split(":")[0])==str else '',
                                                                                     temporal_propagation_enabled, previous_step_acceptance_types[-1],
-                                                                                    migration_sorting_strategy_services, T_, LLM_, CONCURRENCY_RATE_)
+                                                                                    str(migration_sorting_strategy_services), T_, LLM_, CONCURRENCY_RATE_)
                                         previous_step_acceptance_types.append(decision_type)
 
                                         if final_decision is True:

@@ -777,13 +777,6 @@ def run_migration_loop():
                 
                 return migration_sorting_strategy_services, current_services_with_scores, previous_step_acceptance_types, temporal_propagations
 
-            total = (
-                len(acceptance_predicate_modes)
-                * len(governance_policies)
-                * len(LLM)
-                * len(T)
-                * len(CONCURRENCY_RATE)
-            )
 
             for predicate_mode in acceptance_predicate_modes:
                 for governance_policy in governance_policies:

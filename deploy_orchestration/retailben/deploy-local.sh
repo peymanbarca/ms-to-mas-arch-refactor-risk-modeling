@@ -20,7 +20,7 @@
 #   agents=order_agent_new:8000
 
 
-# echo "Parsing arguments..."
+echo "Parsing arguments..."
 
 for arg in "$@"; do
   case $arg in

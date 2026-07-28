@@ -337,8 +337,8 @@ if __name__ == '__main__':
 
 
     pwd = os.getcwd()
-    os.makedirs(pwd + f"/results/{migration_order}", exist_ok=True)
-    step_report_file_name = pwd + f"/results/{migration_order}/res_LLM_{LLM_}_T_{T_}_U_{CONCURRENCY_RATE_}" \
+    os.makedirs(pwd + f"/results/{migration_order.split('_weight')[0]}", exist_ok=True)
+    step_report_file_name = pwd + f"/results/{migration_order.split('_weight')[0]}/res_LLM_{LLM_}_T_{T_}_U_{CONCURRENCY_RATE_}" \
               f"_MO_{migration_order}_PRED_{acceptance_predicate_mode}_GM_{governance_mode}_TPOP_{temporal_propagation_effect_enabled}.json"
               
     acceptance_result = acceptance_of_architecture_step_predicate_based(

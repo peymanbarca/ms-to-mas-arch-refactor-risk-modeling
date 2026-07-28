@@ -12,7 +12,7 @@
 #
 
 
-# echo "Parsing arguments..."
+echo "Parsing arguments..."
 
 for arg in "$@"; do
   case $arg in

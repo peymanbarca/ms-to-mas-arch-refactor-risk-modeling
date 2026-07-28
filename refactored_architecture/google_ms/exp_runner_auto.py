@@ -132,9 +132,11 @@ if __name__ == '__main__':
     
     pwd = os.getcwd()
     script_dir = str(Path(__file__).resolve().parent)
-    os.makedirs(script_dir + f"/results/{migration_order}", exist_ok=True)
 
-    step_report_file_name = script_dir + f"/results/{migration_order}/res_LLM_{LLM_}_T_{T_}_U_{CONCURRENCY_RATE_}" \
+
+    os.makedirs(script_dir + f"/results/{migration_order.split('_weight')[0]}", exist_ok=True)
+
+    step_report_file_name = script_dir + f"/results/{migration_order.split('_weight')[0]}/res_LLM_{LLM_}_T_{T_}_U_{CONCURRENCY_RATE_}" \
               f"_MO_{migration_order}_PRED_{acceptance_predicate_mode}_GM_{governance_mode}_TPOP_{temporal_propagation_effect_enabled}.json"
      
     # print(step_report_file_name)
