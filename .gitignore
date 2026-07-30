@@ -6,7 +6,6 @@
 __pycache__/
 *.mako
 /alembic/script.py.mako
-*.html
 .sonar/
 refactored_architecture/google_ms/exp_runner_auto2.py
 refactored_architecture/retailben/exp_runner_auto2.py

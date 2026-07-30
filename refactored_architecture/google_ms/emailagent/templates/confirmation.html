@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation – {{ order.order_id }}</title>
+  <style>
+    body        { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; padding:0; }
+    .wrapper    { max-width:640px; margin:32px auto; background:#fff;
+                  border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.1); }
+    .header     { background:#4285f4; color:#fff; padding:28px 32px; }
+    .header h1  { margin:0; font-size:22px; }
+    .header p   { margin:4px 0 0; font-size:13px; opacity:.85; }
+    .body       { padding:28px 32px; color:#333; }
+    .section    { margin-bottom:24px; }
+    .section h2 { font-size:15px; color:#4285f4; border-bottom:1px solid #e8e8e8;
+                  padding-bottom:6px; margin-bottom:12px; }
+    .meta-row   { display:flex; justify-content:space-between; font-size:13px;
+                  padding:4px 0; border-bottom:1px solid #f0f0f0; }
+    .meta-row .label { color:#888; }
+    .meta-row .value { font-weight:600; color:#222; }
+    table        { width:100%; border-collapse:collapse; font-size:13px; }
+    th           { background:#f8f8f8; text-align:left; padding:8px 10px;
+                   font-weight:600; color:#555; border-bottom:2px solid #e8e8e8; }
+    td           { padding:8px 10px; border-bottom:1px solid #f0f0f0; color:#333; }
+    tr:last-child td { border-bottom:none; }
+    .total-row td { font-weight:700; background:#fafafa; }
+    .badge      { display:inline-block; background:#34a853; color:#fff;
+                  font-size:11px; padding:2px 8px; border-radius:10px; }
+    .footer     { background:#f8f8f8; padding:16px 32px; font-size:12px;
+                  color:#999; text-align:center; border-top:1px solid #e8e8e8; }
+    .ai-note    { background:#fff8e1; border-left:4px solid #fbbc04;
+                  padding:10px 14px; margin-top:16px; font-size:12px; color:#555;
+                  border-radius:0 4px 4px 0; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Order Confirmation</h1>
+    <p>Thank you for your purchase! Your order has been received.</p>
+  </div>
+
+  <div class="body">
+
+    <!-- Order summary -->
+    <div class="section">
+      <h2>Order Summary</h2>
+      <div class="meta-row">
+        <span class="label">Order ID</span>
+        <span class="value">{{ order.order_id }}</span>
+      </div>
+      <div class="meta-row">
+        <span class="label">Tracking ID</span>
+        <span class="value">{{ order.shipping_tracking_id }}</span>
+      </div>
+      <div class="meta-row">
+        <span class="label">Status</span>
+        <span class="value"><span class="badge">Confirmed</span></span>
+      </div>
+    </div>
+
+    <!-- Items ordered -->
+    <div class="section">
+      <h2>Items Ordered</h2>
+      {% if order.items %}
+      <table>
+        <thead>
+          <tr>
+            <th>Product ID</th>
+            <th style="text-align:center">Qty</th>
+            <th style="text-align:right">Unit Price</th>
+            <th style="text-align:right">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr class="total-row">
+            <td colspan="3">Shipping</td>
+            <td style="text-align:right">
+              {{ order.shipping_cost.currency_code }}
+              {{ order.shipping_cost.units }}.{{ "%02d"|format(order.shipping_cost.nanos // 10000000) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      {% else %}
+      <p style="color:#888;font-size:13px">No item details available.</p>
+      {% endif %}
+    </div>
+
+    <!-- Shipping address -->
+    <div class="section">
+      <h2>Shipping Address</h2>
+      <p style="font-size:14px; line-height:1.7; margin:0">
+        {{ order.shipping_address.street_address }}<br>
+        {{ order.shipping_address.city }}, {{ order.shipping_address.state }}
+        {{ order.shipping_address.zip_code }}<br>
+        {{ order.shipping_address.country }}
+      </p>
+    </div>
+
+    <!-- AI-generated personalisation slot (injected by agent) -->
+    {% if personalised_message %}
+    <div class="section">
+      <h2>A Note for You</h2>
+      <p style="font-size:14px; line-height:1.7">{{ personalised_message }}</p>
+      <div class="ai-note">✨ This message was personalised for your order by our AI assistant.</div>
+    </div>
+    {% endif %}
+
+  </div><!-- /body -->
+
+  <div class="footer">
+    Online Boutique &nbsp;·&nbsp; This is an automated message, please do not reply.
+  </div>
+</div>
+</body>
+</html>

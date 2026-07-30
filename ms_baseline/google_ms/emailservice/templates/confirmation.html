@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 20px;
+        }
+        .order-details {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+        .item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #3498db;
+        }
+        .address-block {
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 3px;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #27ae60;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✓ Order Confirmation</h1>
+        <p>Dear Customer,</p>
+        <p>Thank you for your order! We're excited to send your items to you.</p>
+
+        <h2>Order Details</h2>
+        <div class="order-details">
+            <p><strong>Order ID:</strong> <code>{{ order.order_id }}</code></p>
+            <p><strong>Shipping Tracking ID:</strong> <code>{{ order.shipping_tracking_id }}</code></p>
+        </div>
+
+        <h2>Items Ordered</h2>
+
+        <h2>Shipping Information</h2>
+        <div class="address-block">
+            <p>
+                <strong>Address:</strong><br>
+                {{ order.shipping_address.street_address }}<br>
+                {{ order.shipping_address.city }}, {{ order.shipping_address.state }} {{ order.shipping_address.zip_code }}<br>
+                {{ order.shipping_address.country }}
+            </p>
+        </div>
+
+        <h2>Shipping Cost</h2>
+        <div class="order-details">
+            <p class="total">
+                ${{ order.shipping_cost.units }}.{{ "%09d" | format(order.shipping_cost.nanos) }} {{ order.shipping_cost.currency_code }}
+            </p>
+        </div>
+
+        <p>We will send you a shipping notification with tracking information shortly. You can track your package using the Shipping Tracking ID above.</p>
+
+        <p>If you have any questions about your order, please don't hesitate to contact our customer support team.</p>
+
+        <div class="footer">
+            <p>Thank you for your business!</p>
+            <p>&copy; 2024 Our Store. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+Browser
+   |
+   | POST /run-experiment
+   |
+FastAPI
+   |
+   |---- save config.json
+   |
+   |---- subprocess.Popen(run_experiment.py)
+   |
+Experiment
+   |
+   | print logs
+   |
+FastAPI log buffer
+   |
+   | GET /logs
+   |
+Browser (refresh every 1 sec)
