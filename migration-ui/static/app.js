@@ -227,6 +227,105 @@ function computeScores(){
 computeScores();
 
 
+// function updateSliderValue(id){
+
+//     const slider=document.getElementById(id);
+
+//     const value=document.getElementById(id+"Value");
+
+//     if(id==="deltaTP"){
+
+//         label.innerHTML=parseFloat(slider.value).toFixed(2);
+
+//     }
+//     else if(id==="deltaSLO" || id==="failureThreshold"){
+
+//         label.innerHTML=parseFloat(slider.value).toFixed(1)+"%";
+
+//     }
+//     else{
+
+//         label.innerHTML=slider.value+"%";
+
+//     }
+
+// }
+
+function updateSliderValue(id){
+
+    const slider=document.getElementById(id);
+
+    const bubble=document.getElementById(id+"Value");
+
+    const min=Number(slider.min);
+
+    const max=Number(slider.max);
+
+    const value=Number(slider.value);
+
+    // text
+    if(id==="deltaTP")
+        bubble.innerHTML=value.toFixed(2);
+    else if(id==="failureThreshold" || id==="deltaSLO")
+        bubble.innerHTML=value.toFixed(1)+"%";
+    else if(id==="temperature"){
+
+        bubble.innerHTML =value.toFixed(2);
+
+    }
+    else if(id==="concurrency" || id==="totalRequests"){
+
+        bubble.innerHTML =value;
+
+    }
+    else
+        bubble.innerHTML=value+"%";
+
+    // position bubble
+    const percent=(value-min)/(max-min);
+
+    bubble.style.left=`calc(${percent*100}% + (${8-percent*16}px))`;
+}
+
+[
+    "beta",
+    "gmid",
+    "deltaL",
+    "deltaSLO",
+    "deltaTP",
+    "gpost"
+].forEach(updateSliderValue);
+
+[
+    "qa",
+    "latency",
+    "failure"
+].forEach(togglePredicate);
+
+[
+    "qaThreshold",
+    "latencyThreshold",
+    "failureThreshold"
+].forEach(updateSliderValue);
+
+[
+    "totalRequests",
+    "concurrency",
+    "temperature"
+].forEach(updateSliderValue);
+
+
+function togglePredicate(name){
+
+    const checkbox=document.getElementById(name);
+
+    const slider=document.getElementById(name+"Threshold");
+
+    slider.disabled=!checkbox.checked;
+
+}
+
+
 function validatePredicates(){
 
     let checked=0;
@@ -330,15 +429,26 @@ document.getElementById("start").onclick=function(){
 
     runtime:{
 
+        model:
+        document.getElementById("llmModel").value,
 
-    model:"llama3.2:3b",
 
-    temperature:0.2,
+        temperature:
+        parseFloat(
+            document.getElementById("temperature").value
+        ),
 
-    R:5000,
 
-    concurrency:10
+        R:
+        parseInt(
+            document.getElementById("totalRequests").value
+        ),
 
+
+        concurrency:
+        parseInt(
+            document.getElementById("concurrency").value
+        )
 
     },
 

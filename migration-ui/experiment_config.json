@@ -7,7 +7,7 @@
         "failure": true,
         "failure_threshold": "2"
     },
-    "governance_mode": "auto",
+    "governance_mode": "off",
     "governance_thresholds": {
         "beta": "30",
         "gmid": "20",
@@ -20,7 +20,7 @@
         "model": "llama3.2:3b",
         "temperature": 0.2,
         "R": 5000,
-        "concurrency": 10
+        "concurrency": 20
     },
     "ranking_weights": {
         "fanout": 0.2,
