@@ -11,14 +11,6 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
 )
 
-config_file=sys.argv[1]
-
-
-with open(config_file) as f:
-
-    config=json.load(f)
-
-
 
 logger.info("========== Migration Started ==========")
 
@@ -55,10 +47,6 @@ logger.info(
 )
 
 
-
-logger.info(
-    "\nMigration Ranking:"
-)
 
 
 for i,service in enumerate(

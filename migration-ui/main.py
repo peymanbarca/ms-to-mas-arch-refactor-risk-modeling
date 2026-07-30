@@ -9,7 +9,9 @@ import threading
 import time
 import os
 import logging
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 app = FastAPI()
 
@@ -21,8 +23,8 @@ logging.basicConfig(
 )
 
 
-LOG_FILE="logs/experiment.log"
-
+# LOG_FILE="logs/experiment.log"
+LOG_FILE = str(BASE_DIR) + '/deploy_orchestration/retailben/logs/experiment.log'
 
 process=None
 
@@ -51,10 +53,10 @@ def run_process(config):
     global process
 
 
-    os.makedirs(
-        "logs",
-        exist_ok=True
-    )
+    # os.makedirs(
+    #     "logs",
+    #     exist_ok=True
+    # )
 
 
     with open(
@@ -79,36 +81,58 @@ def run_process(config):
 
 
 
+    # process=subprocess.Popen(
+
+    #     [
+    #         "python3",
+    #         "run_experiment_sample.py",
+    #         "experiment_config.json"
+    #     ],
+
+    #     stdout=subprocess.PIPE,
+
+    #     stderr=subprocess.STDOUT,
+
+    #     text=True
+
+    # )
+
+
+
+    # with open(
+    #     LOG_FILE,
+    #     "a"
+    # ) as log:
+
+
+    #     for line in process.stdout:
+
+    #         logger.info(line)
+    #         log.write(line)
+    #         log.flush()
+
+
+    config_json = json.dumps(config)
+    logger.info(f"Calling str(BASE_DIR) + '/deploy_orchestration/retailben/live_progressive_refactor_orchestrator.py' with config: {config_json} ")
+    
     process=subprocess.Popen(
 
         [
             "python3",
-            "run_experiment.py",
-            "experiment_config.json"
+            str(BASE_DIR) + '/deploy_orchestration/retailben/live_progressive_refactor_orchestrator.py',
+            config_json
         ],
 
         stdout=subprocess.PIPE,
 
         stderr=subprocess.STDOUT,
 
-        text=True
+        text=True,
+        cwd=str(BASE_DIR) + "/deploy_orchestration/retailben",
 
     )
-
-
-
-    with open(
-        LOG_FILE,
-        "a"
-    ) as log:
-
-
-        for line in process.stdout:
-
-            logger.info(line)
-            log.write(line)
-            log.flush()
-
+    
+    # logger.info(f"Process Run: {process.stdout}")
 
 
 @app.post("/run-experiment")
@@ -139,7 +163,7 @@ def run_experiment(config:ExperimentConfig):
 def get_logs():
 
     if not os.path.exists(LOG_FILE):
-
+        logger.error("log file does not exist.")
         return {
             "logs":""
         }
@@ -156,6 +180,16 @@ def get_logs():
 
         }
         
+
+
+app.mount(
+    "/figures",
+    StaticFiles(
+        directory=str(BASE_DIR) + "/figures"
+    ),
+    name="figures"
+)
+
 
 
 app.mount(

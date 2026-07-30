@@ -3,9 +3,11 @@
         "qa": true,
         "qa_threshold": "100",
         "latency": true,
-        "failure": true
+        "latency_threshold": "90",
+        "failure": true,
+        "failure_threshold": "2"
     },
-    "governance_mode": "off",
+    "governance_mode": "auto",
     "governance_thresholds": {
         "beta": "30",
         "gmid": "20",

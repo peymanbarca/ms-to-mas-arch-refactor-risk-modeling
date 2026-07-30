@@ -4,3 +4,28 @@
 2026-07-30 13:30:10,911 - INFO - previous log file trimmed.
 2026-07-30 13:33:36,993 - INFO - run_experiment thread started.
 2026-07-30 13:33:36,996 - INFO - previous log file trimmed.
+2026-07-30 13:40:25,301 - INFO - /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling
+2026-07-30 13:41:56,230 - INFO - /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling
+2026-07-30 13:42:36,564 - INFO - /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling
+2026-07-30 13:45:43,356 - INFO - /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling
+2026-07-30 13:46:54,950 - INFO - /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling
+2026-07-30 13:46:56,367 - INFO - /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling
+2026-07-30 13:47:09,077 - INFO - run_experiment thread started.
+2026-07-30 13:47:09,080 - INFO - previous log file trimmed.
+2026-07-30 16:10:55,296 - INFO - run_experiment thread started.
+2026-07-30 16:10:55,299 - INFO - previous log file trimmed.
+2026-07-30 16:31:33,548 - INFO - run_experiment thread started.
+2026-07-30 16:31:33,551 - INFO - previous log file trimmed.
+2026-07-30 16:34:13,189 - INFO - run_experiment thread started.
+2026-07-30 16:34:13,191 - INFO - previous log file trimmed.
+2026-07-30 16:34:13,198 - INFO - Process Run: <_io.TextIOWrapper name=21 encoding='UTF-8'>
+2026-07-30 16:36:58,409 - INFO - run_experiment thread started.
+2026-07-30 16:36:58,418 - INFO - previous log file trimmed.
+2026-07-30 16:36:58,431 - INFO - Process Run: <_io.TextIOWrapper name=21 encoding='UTF-8'>
+2026-07-30 16:39:56,537 - INFO - run_experiment thread started.
+2026-07-30 16:39:56,543 - INFO - previous log file trimmed.
+2026-07-30 16:44:30,498 - INFO - run_experiment thread started.
+2026-07-30 16:44:30,502 - INFO - previous log file trimmed.
+2026-07-30 16:47:53,940 - INFO - run_experiment thread started.
+2026-07-30 16:47:53,942 - INFO - previous log file trimmed.
+2026-07-30 16:47:53,942 - INFO - Calling str(BASE_DIR) + '/deploy_orchestration/retailben/live_progressive_refactor_orchestrator.py' with config: {"predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "auto", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3.2:3b", "temperature": 0.2, "R": 5000, "concurrency": 10}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Notification", "score": "0.029"}, {"rank": "2", "service": "Pricing", "score": "0.045"}, {"rank": "3", "service": "Payment", "score": "0.058"}, {"rank": "4", "service": "Subscription", "score": "0.106"}, {"rank": "5", "service": "Shopping Cart", "score": "0.148"}, {"rank": "6", "service": "Inventory", "score": "0.177"}, {"rank": "7", "service": "Product Catalog", "score": "0.273"}, {"rank": "8", "service": "Procurement", "score": "0.398"}, {"rank": "9", "service": "Shipment", "score": "0.407"}, {"rank": "10", "service": "Order", "score": "0.635"}]} 

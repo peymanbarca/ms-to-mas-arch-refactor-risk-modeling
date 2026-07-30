@@ -276,9 +276,14 @@ document.getElementById("start").onclick=function(){
     latency:
     document.getElementById("latency").checked,
 
+    latency_threshold:
+    document.getElementById("latencyThreshold").value,
 
     failure:
-    document.getElementById("failure").checked
+    document.getElementById("failure").checked,
+
+    failure_threshold:
+    document.getElementById("failureThreshold").value
 
     },
 

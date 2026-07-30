@@ -1,7 +1,8 @@
-import random
 import subprocess
 import json
 import time
+import logging 
+import sys
 
 import tqdm
 from post_action_adjudication import (
@@ -11,143 +12,113 @@ from post_action_adjudication import (
     create_execution_metrics_from_step_result
 )
 
+logger = logging.getLogger("migration-experiment-runner")
+logging.basicConfig(
+    filename='./logs/experiment.log',
+    level=logging.INFO,  # Log all messages with severity DEBUG or higher
+    format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
+)
 
-# --------------------------------- Migration Strategy ---------------------------
+with open('./logs/experiment.log', 'w') as f:
+    f.write('')
 
-fanout = [["pricing_service:8002", 0],
-           ["product_catalog_service:8008", 2],
-           ["inventory_service:8001", 1],
-           ["shopping_cart_service:8003", 0],
-           ["payment_service:8007", 1], 
-           ["order_service:8000", 7],
-           ["subscription_service:8010", 1],
-           ["procurement_service:8009", 1],
-           ["shipment_service:8006", 1], 
-        #    ["notification_service:8011", 1]
-           ]
-
-bc = [["pricing_service:8002", 0],
-           ["product_catalog_service:8008", 0.05],
-           ["inventory_service:8001", 0.22],
-           ["shopping_cart_service:8003", 0],
-           ["payment_service:8007", 0], 
-           ["order_service:8000", 0.7],
-           ["subscription_service:8010", 0.016],
-           ["procurement_service:8009", 0],
-           ["shipment_service:8006", 0], 
-        #    ["notification_service:8011", 0]
-           ]
-
-c_cyc = [["pricing_service:8002", 10],
-           ["product_catalog_service:8008", 22],
-           ["inventory_service:8001", 10],
-           ["shopping_cart_service:8003", 18],
-           ["payment_service:8007", 10], 
-           ["order_service:8000", 16],
-           ["subscription_service:8010", 12],
-           ["procurement_service:8009", 36],
-           ["shipment_service:8006", 33], 
-        #    ["notification_service:8011", 11]
-           ]
-
-
-
-c_cog = [["pricing_service:8002", 8],
-           ["product_catalog_service:8008", 18],
-           ["inventory_service:8001", 14],
-           ["shopping_cart_service:8003", 14],
-           ["payment_service:8007", 6], 
-           ["order_service:8000", 28],
-           ["subscription_service:8010", 10],
-           ["procurement_service:8009", 26],
-           ["shipment_service:8006", 30], 
-        #    ["notification_service:8011", 4]
-           ]
+'''
+Example experiment_config.json
+{
+  "predicates": {
+    "qa": true,
+    "qa_threshold": 100,
+    "latency": true,
+    "latency_threshold": 90,
+    "failure": true,
+    "failure_threshold": 2
+  },
+  "governance_mode": "human",
+  "governance_thresholds": {
+    "beta": 30,
+    "gmid": 20,
+    "deltaL": 10,
+    "deltaSLO": 0.5,
+    "deltaTProp": 0.1,
+    "gpost": 30
+  },
+  "runtime": {
+    "model": "llama3.2:3b",
+    "temperature": 0.0,
+    "R": 5000,
+    "concurrency": 20
+  },
+  "ranking_weights": {
+    "fanout": 0.2,
+    "bc": 0.2,
+    "ccyl": 0.2,
+    "ccog": 0.2,
+    "tprop": 0.2
+  },
+  "ranked_services": [
+    {
+      "rank": 1,
+      "service": "pricing_service:8002",
+      "score": 0.12
+    },
+    {
+      "rank": 2,
+      "service": "payment_service:8007",
+      "score": 0.15
+    }
+  ]
+}
+'''
 
 
-w_fanout = 0.2
-w_bc = 0.2
-w_c_cyc = 0.2
-w_c_cog = 0.2
-w_t_prop = 0.2
+config = json.loads(sys.argv[1])
+logger.info(f"Config: {config}")
 
-service_risk_scores = []
 
-for i in range(len(fanout)):
-    risk_score = w_fanout * (fanout[i][1] / sum([f[1] for f in fanout])) + \
-                 w_bc * (bc[i][1] / sum([b[1] for b in bc])) + \
-                 w_c_cyc * (c_cyc[i][1] / sum([c[1] for c in c_cyc])) + \
-                 w_c_cog * (c_cog[i][1] / sum([c[1] for c in c_cog])) + \
-                 w_t_prop * 0
-    service_risk_scores.append([fanout[i][0], risk_score])
+# ranked_services = [
+#     # ["notification_service:8011", 1],
+#     ["pricing_service:8002", 1],
+#     ["payment_service:8007", 2],
+#     ["shopping_cart_service:8003", 3],
+#     ["subscription_service:8010", 4],
+#     ["inventory_service:8001", 5],
+#     ["product_catalog_service:8008", 6],
+#     ["procurement_service:8009", 7],
+#     ["shipment_service:8006", 8],
+#     ["order_service:8000", 9],
+# ]
 
-# ranked services )
+def get_service_port(s_name):
+    if s_name == 'notification_service':
+        return 8011
+    elif s_name == 'pricing_service':
+        return 8002
+    elif s_name == 'payment_service':
+        return 8007
+    elif s_name == 'shopping_cart_service':
+        return 8003
+    elif s_name == 'subscription_service':
+        return 8010
+    elif s_name == 'inventory_service':
+        return 8001
+    elif s_name == 'product_catalog_service':
+        return 8008
+    elif s_name == 'procurement_service':
+        return 8009
+    elif s_name == 'shipment_service':
+        return 8006
+    elif s_name == 'order_service':
+        return 8000    
+                                
 ranked_services = [
-    # ["notification_service:8011", x[1] for x in service_risk_scores if x[0] == "notification_service:8011"][0]],
-    ["pricing_service:8002", [x[1] for x in service_risk_scores if x[0] == "pricing_service:8002"][0]],
-    ["payment_service:8007", [x[1] for x in service_risk_scores if x[0] == "payment_service:8007"][0]],
-    ["shopping_cart_service:8003", [x[1] for x in service_risk_scores if x[0] == "shopping_cart_service:8003"][0]],
-    ["subscription_service:8010", [x[1] for x in service_risk_scores if x[0] == "subscription_service:8010"][0]],
-    ["inventory_service:8001", [x[1] for x in service_risk_scores if x[0] == "inventory_service:8001"][0]],
-    ["product_catalog_service:8008", [x[1] for x in service_risk_scores if x[0] == "product_catalog_service:8008"][0]],
-    ["procurement_service:8009", [x[1] for x in service_risk_scores if x[0] == "procurement_service:8009"][0]],
-    ["shipment_service:8006", [x[1] for x in service_risk_scores if x[0] == "shipment_service:8006"][0]],
-    ["order_service:8000", [x[1] for x in service_risk_scores if x[0] == "order_service:8000"][0]],
+    [
+        str(s["service"]).lower().replace(' ','_') + '_service' + ':' + 
+            str(get_service_port(str(s["service"]).lower().replace(' ','_') + '_service')),
+        float(s["score"])
+    ]
+    for s in config["ranked_services"]
 ]
 
-# reverse-ranked services
-reverse_ranked_services = [
-    ["order_service:8000", [x[1] for x in service_risk_scores if x[0] == "order_service:8000"][0]],
-    ["shipment_service:8006", [x[1] for x in service_risk_scores if x[0] == "shipment_service:8006"][0]],
-    ["procurement_service:8009", [x[1] for x in service_risk_scores if x[0] == "procurement_service:8009"][0]],
-    ["product_catalog_service:8008", [x[1] for x in service_risk_scores if x[0] == "product_catalog_service:8008"][0]],
-    ["inventory_service:8001", [x[1] for x in service_risk_scores if x[0] == "inventory_service:8001"][0]],
-    ["subscription_service:8010", [x[1] for x in service_risk_scores if x[0] == "subscription_service:8010"][0]],
-    ["shopping_cart_service:8003", [x[1] for x in service_risk_scores if x[0] == "shopping_cart_service:8003"][0]],
-    ["payment_service:8007", [x[1] for x in service_risk_scores if x[0] == "payment_service:8007"][0]],
-    ["pricing_service:8002", [x[1] for x in service_risk_scores if x[0] == "pricing_service:8002"][0]],
-    # ["notification_service:8011", [x[1] for x in service_risk_scores if x[0] == "notification_service:8011"][0]]
-]
-
-# random-ranked services 
-random_ranked_services = ranked_services.copy()
-random.shuffle(random_ranked_services)
-# print(f"Random-ranked services: {random_ranked_services}")
-
-
-# dependency-based ranked services (based on fanout and bc only)
-w2_fanout = 0.5
-w2_bc = 0.5
-w2_c_cyc = 0
-w2_c_cog = 0
-w2_t_prop = 0
-
-service_risk_scores2 = []
-
-for i in range(len(fanout)):
-    risk_score = w2_fanout * (fanout[i][1] / sum([f[1] for f in fanout])) + \
-                 w2_bc * (bc[i][1] / sum([b[1] for b in bc]))
-    service_risk_scores2.append([fanout[i][0], risk_score])
-
-# sorted by risk score based on fanout and bc only
-dependency_ranked_services = [[s[0], s[1]] for s in sorted(service_risk_scores2, key=lambda x: x[1], reverse=False)]
-
-# complexity-based ranked services (based on c_cyl and c_cog only)
-w3_fanout = 0
-w3_bc = 0
-w3_c_cyc = 0.5
-w3_c_cog = 0.5
-w3_t_prop = 0
-
-service_risk_scores3 = []
-
-for i in range(len(c_cyc)):
-    risk_score = w3_c_cyc * (c_cyc[i][1] / sum([c[1] for c in c_cyc])) + \
-                 w3_c_cog * (c_cog[i][1] / sum([c[1] for c in c_cog]))
-    service_risk_scores3.append([c_cyc[i][0], risk_score])
-
-# sorted by risk score based on c_cyl and c_cog only
-complexity_ranked_services = [[s[0], s[1]] for s in sorted(service_risk_scores3, key=lambda x: x[1], reverse=False)]
 
 # mapping service -> agent
 service_to_agent = {
@@ -160,41 +131,101 @@ service_to_agent = {
     "pricing_service:8002": "pricing_agent:8002",
     "subscription_service:8010": "subscription_agent:8010",
     "procurement_service:8009": "procurement_agent:8009",
-    # "notification_service:8011": "notification_agent:8011"
+    "notification_service:8011": "notification_agent:8011"
 }
 
 # -------------------------- Apply ranking strategy -------------------------
-migration_order_strategy = "Complexity_Based" # ["Ranked", "Reverse_Ranked", "Random", "Dependency_Based", "Complexity_Based"]
+migration_order_strategy = "Ranked"
 
-if migration_order_strategy == "Ranked":
-    current_services_with_scores = ranked_services.copy() 
-elif migration_order_strategy == "Reverse_Ranked":
-    current_services_with_scores = reverse_ranked_services.copy()
-elif migration_order_strategy == "Random":
-    current_services_with_scores = random_ranked_services.copy()
-elif migration_order_strategy == "Dependency_Based":
-    current_services_with_scores = dependency_ranked_services.copy()
-elif migration_order_strategy == "Complexity_Based":
-    current_services_with_scores = complexity_ranked_services.copy()
-else:
-    raise ValueError(f"Invalid migration order strategy: {migration_order_strategy}")
 
 # --------------------------------- Acceptance Predicate ---------------------------
-acceptance_predicate_modes =  ["Full", "Latency-Only", "Failure-Only", "QA-Only"]
+# acceptance_predicate_modes = ["Full"] #  ["Full", "Latency-Only", "Failure-Only", "QA-Only"]
+# QA_threshold = 0
+# latency_threshold = 90
+# failure_threshold = 2
+
+pred = config["predicates"]
+
+enabled = []
+
+if pred["qa"]:
+    enabled.append("QA")
+
+if pred["latency"]:
+    enabled.append("Latency")
+
+if pred["failure"]:
+    enabled.append("Failure")
+
+if len(enabled) == 3:
+    acceptance_predicate_modes = ["Full"]
+
+elif enabled == ["QA"]:
+    acceptance_predicate_modes = ["QA-Only"]
+
+elif enabled == ["Latency"]:
+    acceptance_predicate_modes = ["Latency-Only"]
+
+elif enabled == ["Failure"]:
+    acceptance_predicate_modes = ["Failure-Only"]
+
+else:
+    acceptance_predicate_modes = enabled
+
+QA_threshold = float(pred["qa_threshold"])
+latency_threshold = float(pred["latency_threshold"])
+failure_threshold = float(pred["failure_threshold"])
+
 
 # --------------------------------- Governance Mechanism  ---------------------------
-governance_policies = ["No", "Post-Audit-Selective-Only", "Post-Audit-Comprehensive"]
+# governance_policies = ["Post-Audit-Comprehensive"] # ["No", "Post-Audit-Selective-Only", "Post-Audit-Comprehensive"]
 
-# Initialize the Post-Action Adjudicator with custom criteria
+# # Initialize the Post-Action Adjudicator with custom criteria
+# adjudication_criteria = AdjudicationCriteria(
+#     delta_qa=0,  # tolerance on QA inconsistency rate
+#     delta_latency=0.1,  # 0.1s tolerance on p95 latency
+#     delta_failure=0.005,  # tolerance on failure rate
+#     delta_temporal_prop=0.1,  # 0.1 tolerance on temporal propagation
+#     grace_window_fraction=0.3  # 30% of trials as grace window for transient violations
+# )
+
+mode = config["governance_mode"]
+
+if mode == "off":
+
+    governance_policies = ["No"]
+
+elif mode == "auto":
+
+    governance_policies = [
+        "Post-Audit-Comprehensive"
+    ]
+
+elif mode == "human":
+
+    governance_policies = [
+        "Post-Audit-Comprehensive"
+    ]
+
+gov = config["governance_thresholds"]
+
 adjudication_criteria = AdjudicationCriteria(
-    delta_qa=0,  # tolerance on QA inconsistency rate
-    delta_latency=0.1,  # 0.1s tolerance on p95 latency
-    delta_failure=0.005,  # tolerance on failure rate
-    delta_temporal_prop=0.1,  # 0.1 tolerance on temporal propagation
-    grace_window_fraction=0.3  # 30% of trials as grace window for transient violations
+
+    delta_qa=0,
+
+    delta_latency=float(gov["deltaL"])/100,
+
+    delta_failure=float(gov["deltaSLO"])/100,
+
+    delta_temporal_prop=float(gov["deltaTProp"]),
+
+    grace_window_fraction=float(gov["beta"])/100
+
 )
 post_action_adjudicator = PostActionAdjudicator(adjudication_criteria)
 
+
+# ------------------------------------------- TProp ------------------
 
 temporal_propagation_enabled = True
 temporal_propagation_dependency_influence_weight = {
@@ -212,10 +243,25 @@ temporal_propagation_dependency_influence_weight = {
 
 
 # ----------------- RUNTIME Configurations ----------------
-LLM = ["llama3.2:3b", "qwen3:14b"] # "llama3.2:3b" or "qwen3:14b"
-T = [0.0, 0.8] # 0 or 0.8
-CONCURRENCY_RATE = [20, 100] # concurrent requests
+# LLM = ["llama3.2:3b"]  # "llama3.2:3b" or "qwen3:14b"
+# T = [0.0] # 0 or 0.8
+# CONCURRENCY_RATE = [20] # [20, 100] # concurrent requests
 
+runtime = config["runtime"]
+
+LLM = [
+    runtime["model"]
+]
+
+T = [
+    runtime["temperature"]
+]
+
+CONCURRENCY_RATE = [
+    runtime["concurrency"]
+]
+
+TOTAL_REQUESTS = runtime["R"]
 
 # ---- HELPERS ----
 
@@ -250,30 +296,32 @@ def deploy(services, agents):
     print("Services:", services)
     print("Agents:", agents)
 
-    subprocess.run([DEPLOY_SCRIPT] + args, check=True)
+    #subprocess.run([DEPLOY_SCRIPT] + args, check=True)
 
 def shutdown(services, agents):
     SD_SCRIPT = "./shutdown-local.sh"
     args = build_args(services, agents)
 
-    print("\nShutting Down:")
-    print("Services:", services)
-    print("Agents:", agents)
+    logger.info("\nShutting Down:")
+    logger.info(f"Services: {services}")
+    logger.info(f"Agents: {agents}")
 
-    subprocess.run([SD_SCRIPT] + args, check=True)
+    #subprocess.run([SD_SCRIPT] + args, check=True)
 
 
 def run_experiment_for_step(migration_order, step_num, predicate_mode, governance_policy, services, agents,
                             target_service, temporal_propagation_enabled, previous_step_acceptance_type,
                             migration_sorting_strategy_services, T, LLM, CONCURRENCY_RATE):
-    print(f"🧪 Running Predicate-based Acceptance Experiment for step {step_num}...")
+    logger.info(f"🧪 Running Predicate-based Acceptance Experiment for step {step_num}...")
     # time.sleep(2/10)  
 
     # ---------- Specify predicates thresholds based on predicate mode ----------
     baseline_latency_p95 = 1
-    epsilon_l = baseline_latency_p95 * 1.9
-    epsilon_qa = 0
-    epsilon_f = 0.02
+   
+    epsilon_l = baseline_latency_p95 * (100 + latency_threshold)/100
+    epsilon_qa = 100 - QA_threshold
+    epsilon_f = failure_threshold / 100
+   
     if predicate_mode == "QA-Only":
         epsilon_l = -1
         epsilon_f = -1
@@ -285,7 +333,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         epsilon_qa = -1
 
     step_result = subprocess.run(
-        ["python3", "exp_runner_auto.py",
+        ["python3", "exp_runner_auto2.py",
          migration_order,
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
          str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy),
@@ -299,9 +347,9 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
 
     # Debug output
     # if step_result.stdout.strip():
-    #     print(f"Raw experiment output for step {step_num}:", step_result.stdout.strip())
+    #     logger.info(f"Raw experiment output for step {step_num}: {step_result.stdout.strip()}")
     if step_result.stderr.strip():
-        print(f"⚠️  Experiment stderr for step {step_num}:", step_result.stderr.strip())
+        logger.info(f"⚠️  Experiment stderr for step {step_num}: {step_result.stderr.strip()}")
     
     if not step_result.stdout.strip():
         raise RuntimeError(f"Experiment for step {step_num} produced no output. Check stderr above.")
@@ -309,8 +357,8 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
     try:
         step_result_parsed = json.loads(step_result.stdout.strip())
     except json.JSONDecodeError as e:
-        print(f"❌ Failed to parse JSON from step {step_num} output:")
-        print(f"Raw output: {step_result.stdout}")
+        logger.error(f"❌ Failed to parse JSON from step {step_num} output:")
+        logger.error(f"Raw output: {step_result.stdout}")
         raise ValueError(f"Invalid JSON output from experiment: {e}")
     
     # print(f"Experiment output for step {step_num}:", step_result_parsed)
@@ -345,7 +393,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
             upstream_effect = True
     
     if not upstream_effect:
-        print("  No temporal propagation influence detected for this step.")
+        logger.info("  No temporal propagation influence detected for this step.")
         step_self_temporal_propagation = 0
         step_result_parsed["step_self_temporal_propagation"] = 0
     else:
@@ -371,7 +419,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         }
     )
     # print(f"Evidence Summary for step {step_num}:", evidence_summary)
-    print(f"Prediction Category for step {step_num}:", prediction_category)
+    logger.info(f"Prediction Category for step {step_num}: {prediction_category}")
     if str(step_num)=="1":
          # For the first step, we create a new report file (overwriting if it already exists)
         with open(step_report_file_name, "w") as f:
@@ -401,8 +449,8 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
 def init_conditions():
     subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
 
-    migration_sorting_strategy_services = complexity_ranked_services # ranked_services, reverse_ranked_services, random_ranked_services, dependency_ranked_services, complexity_ranked_services
-    current_services_with_scores = complexity_ranked_services.copy() # ranked_services, reverse_ranked_services, random_ranked_services, dependency_ranked_services, complexity_ranked_services
+    migration_sorting_strategy_services = ranked_services
+    current_services_with_scores = ranked_services.copy()
     previous_step_acceptance_types = ['N/A']
     temporal_propagations = []
     
@@ -424,7 +472,7 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                 for T_ in T:
                     for CONCURRENCY_RATE_ in CONCURRENCY_RATE:
                     
-                        print(f"\n\n============================== Starting Migration Strategy: {migration_order_strategy}, Predicate Mode: {predicate_mode}, Governance Policy: {governance_policy}, T: {T_}, LLM: {LLM_}, CONCURRENCY_RATE: {CONCURRENCY_RATE_} ==============================\n\n")
+                        logger.info(f"\n\n============================== Starting Migration Strategy: {migration_order_strategy}, Predicate Mode: {predicate_mode}, Governance Policy: {governance_policy}, T: {T_}, LLM: {LLM_}, CONCURRENCY_RATE: {CONCURRENCY_RATE_} ==============================\n\n")
 
                         try:
                             
@@ -437,13 +485,13 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
 
                             
                             for step in range(1, len(migration_sorting_strategy_services)+1):
-                                print(f"\n============================== Starting Step {step}/{len(migration_sorting_strategy_services)} ==============================")
-                                print("current services with scores:", migration_sorting_strategy_services)
+                                logger.info(f"\n============================== Starting Step {step}/{len(migration_sorting_strategy_services)} ==============================")
+                                logger.info(f"current services with scores: {migration_sorting_strategy_services}")
                                 
                                 
                                 svc = migration_sorting_strategy_services[step-1][0]
                                 risk_score = migration_sorting_strategy_services[step-1][1]
-                                print(f"\n=== Step:{step}, Refactoring {svc} with risk score {risk_score} as AI agent ===")
+                                logger.info(f"\n=== Step:{step}, Refactoring {svc} with risk score {risk_score} as AI agent ===")
 
                                 agent = service_to_agent[svc]
 
@@ -455,7 +503,7 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                                 deploy(candidate_services, candidate_agents)
 
                                 # optional: wait for services to stabilize
-                                print("... Waiting for the deployment to stabilize ...")
+                                logger.info("... Waiting for the deployment to stabilize ...")
                                 # time.sleep(0.1)
 
                                 # input("Press Enter to run the experiment for this configuration...")
@@ -467,11 +515,11 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                                 previous_step_acceptance_types.append(decision_type)
 
                                 if final_decision is True:
-                                    print(f"✅ ACCEPTED: {svc} → {agent}, decision type: {decision_type}")
+                                    logger.info(f"✅ ACCEPTED: {svc} → {agent}, decision type: {decision_type}")
                                     current_services = candidate_services
                                     current_agents = candidate_agents
                                 else:
-                                    print(f"❌ REJECTED: {svc} remains as service, decision type: {decision_type}")
+                                    logger.info(f"❌ REJECTED: {svc} remains as service, decision type: {decision_type}")
                                     # current_services and current_agents remain unchanged
                                     
                                 # handle temporal propagation influence on next steps if this step is accepted and has temporal propagation influence, and if the strategy is ranked (so we can adjust ranking)
@@ -481,7 +529,7 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                                     temporal_propagations.append(step_self_temporal_propagation)
                                     step_self_temporal_propagation_normalized = step_self_temporal_propagation / max(temporal_propagations) if temporal_propagations else 0
                                     
-                                    print(f"🔄 Detecting Temporal Propagation Influence ...")
+                                    logger.info(f"🔄 Detecting Temporal Propagation Influence ...")
                                     # Adjust the ranking of remaining services based on temporal propagation influence
                                     affecting_services = []
                                     for dependency, weight in temporal_propagation_dependency_influence_weight.items():
@@ -493,7 +541,7 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                                             affecting_services.append((upstream, weight))
                                     
                                     if not affecting_services:
-                                        print("  No temporal propagation influence detected for this step.")
+                                        logger.info("  No temporal propagation influence detected for this step.")
                                     
                                     # Update ranking for affected services
                                     if affecting_services:
@@ -508,7 +556,7 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                                                     old_score = score
                                                     new_score = score + (step_self_temporal_propagation_normalized * influence_weight)
                                                     current_services_with_scores[i] = [service_name_with_port, new_score]
-                                                    print(f"    Updated {service_name_with_port}: score {old_score:.3f} → {new_score:.3f} due to temporal propagation influence from {svc} with weight {influence_weight}")
+                                                    logger.info(f"    Updated {service_name_with_port}: score {old_score:.3f} → {new_score:.3f} due to temporal propagation influence from {svc} with weight {influence_weight}")
                                                     break
                                         
                                         # Re-sort services based on updated scores (lowest first)
@@ -519,14 +567,14 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                                         migration_sorting_strategy_services = current_services_with_scores.copy()
                                         # print(f"  Migration strategy updated for next steps: {[s[0] for s in migration_sorting_strategy_services]}")
 
-                            print("\n🎯 Final architecture:")
-                            print("Services:", current_services)
-                            print("Agents:", current_agents)
+                            logger.info("\n\n\n\n------------------------------- 🎯 Final architecture: -------------------- \n\n")
+                            logger.info(f"Services: {current_services}")
+                            logger.info(f"Agents: {current_agents}")
 
                             # input("Press Enter to gracefully shutdown final configuration...")
                             shutdown(current_services, current_agents)
                         except Exception as e:
-                            print(f"❌ Exception occurred during step {step}: {e}")
+                            logger.error(f"❌ Exception occurred during step {step}: {e}")
                             # Attempt to shutdown any deployed services/agents before exiting
                             shutdown(current_services, current_agents)
                             continue
