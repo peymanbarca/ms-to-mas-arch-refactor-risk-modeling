@@ -9,16 +9,16 @@ from matplotlib import cm
 
 row_titles = [
     "Overall",
-    "Risk-aware\nmigration order",
-    "Temporal\npropagation",
-    "Two-tier\ngovernance"
+    "Risk-aware \n migration order\n",
+    "Temporal propagation\n",
+    "Two-tier governance\n"
 ]
 
 row_desc = [
-    "(8 vs. all 568 alternative\nordinary baselines)",
-    "(96 vs. 480 static/random\nordered baselines)",
-    "(vs. fully static\nordered baseline)",
-    "(192 vs. 384 partial /\nnon-governed baselines)"
+    "(8 vs. all 568 alternative \n ordinary baselines)",
+    "(96 vs. 480 static/random \n ordered baselines)",
+    "(vs. fully static ordered baseline)",
+    "(192 vs. 384 partial / \n non-governed baselines)"
 ]
 
 qa_values = np.array([
@@ -49,6 +49,139 @@ latency_errors = np.array([
     [ 0.36, 0.31, 0.92]
 ])
 
+failure_values = np.array([
+    [26.36,
+36.95,
+34.25,],
+    [22.62,
+31.53,
+28.40,],
+    [1.00,
+3.00,
+3.00,],
+    [3.12,
+5.59,
+4.80]
+])
+
+failure_errors = np.array([
+    [2.07,
+4.95,
+8.15,],
+    [1.98,
+3.12,
+6.77,],
+    [0.00, 0.00, 0.00],
+    [0.65,
+0.89,
+2.18]
+])
+
+cost_values = np.array([
+    [8.64, 
+13.16,
+11.18,],
+    [6.86, 
+ 11.65,
+ 9.37,],
+    [0, 3, 1],
+    [1.98,
+2.12,
+2.05]
+])
+
+cost_errors = np.array([
+    [3.31,
+4.88,
+5.31,],
+    [4.15,
+5.03,
+6.16,],
+    [0.00, 0.00, 0.00],
+    [0.20,
+0.75,
+0.56]
+])
+
+r_values = np.array([
+    [2,
+3,
+2,],
+    [2,
+2,
+2,],
+    [1,
+1,
+1,],
+    [0,
+1,
+0]
+])
+
+r_errors = np.array([
+    [0 , 0, 0],
+    [0 , 0, 0],
+    [0.00, 0.00, 0.00],
+    [0, 0, 0]
+])
+
+
+f1_values = np.array([
+    [0.18,
+0.27,
+0.33,],
+    [0.15,
+0.22,
+0.28,],
+    [0,   
+0.11,
+0.08,],
+    [0,
+0,
+0]
+])
+
+f1_errors = np.array([
+    [0.05,
+0.05,
+0.08,],
+    [0.05,
+0.09,
+0.06,],
+    [0.00, 0.00, 0.00],
+    [0,
+0,
+0]
+])
+
+gov_values = np.array([
+    [17.7,
+26.3,
+31.7,],
+    [14.6,
+20.8,
+27.9,],
+    [0,
+0,
+2,],
+    [2.1,
+4.5,
+3.6]
+])
+
+gov_errors = np.array([
+    [5.5, 
+7.1, 
+13.1,],
+    [6.8, 
+8.2, 
+12.7,],
+    [0.00, 0.00, 0.00],
+    [0.3,
+0.8,
+0.4]
+])
+
 metrics = [
     (r"$\Sigma\Delta QA^{pp}\downarrow$", 
         qa_values,
@@ -60,18 +193,33 @@ metrics = [
         latency_errors
     ),
 
-    # ("Failure (pp)", np.array([
-    #     [26.36,36.95,34.25],
-    #     [22.62,31.53,28.40],
-    #     [3.12,5.59,4.80]
-    # ])),
+    (r"$\Sigma\Delta F^{pp}\downarrow$",
+        failure_values,
+        failure_errors
+    ),
 
-    # ("Cost (%)", np.array([
-    #     [18.64,23.16,27.18],
-    #     [15.86,17.65,23.37],
-    #     [1.98,4.12,3.05]
-    # ]))
+    (r"$\Sigma\Delta C^{\%}\downarrow$",
+        cost_values,
+        cost_errors
+    ),
+    
+    (r"$N_{RB}\downarrow$",
+        r_values,
+        r_errors
+    ),
+ 
+     (r"Predicate $f_1 \uparrow$",
+        f1_values,
+        f1_errors
+    ),
+        
+    (r"$\Sigma Gov^{\%}_{Int}\downarrow$",
+        gov_values,
+        gov_errors
+    ),
 ]
+
+
 
 benchmarks = ["B1","B2","B3"]
 
@@ -79,7 +227,7 @@ benchmarks = ["B1","B2","B3"]
 # Plot settings
 # ==========================================================
 
-fig, ax = plt.subplots(figsize=(11,3.8))
+fig, ax = plt.subplots(figsize=(18,3.8))
 
 ax.set_xlim(0, len(metrics)*3)
 ax.set_ylim(0, len(row_titles))
@@ -166,7 +314,7 @@ for metric_id, (metric_name, values, errors) in enumerate(metrics):
             ci = errors[i, j]   # matrix with same shape as values
 
             main_text = f"{mean:.2f}".rstrip('0').rstrip('.')
-            ci_text = f"±{ci:.2f}".rstrip('0').rstrip('.')
+            ci_text = f"±{ci:.2f}".rstrip('0').rstrip('.') if ci > 0 else ""
 
             # Main value
             ax.text(
@@ -175,7 +323,7 @@ for metric_id, (metric_name, values, errors) in enumerate(metrics):
                 main_text,
                 ha='center',
                 va='center',
-                fontsize=15,
+                fontsize=13,
                 color=txt_color,
                 fontweight='bold'
             )
@@ -214,7 +362,7 @@ for i, (title, desc) in enumerate(zip(row_titles, row_desc)):
         y + 0.15,
         desc,
         fontsize=10,
-        color="dimgray",
+        color="black",
         ha="right",
         va="top",
     )
@@ -233,6 +381,6 @@ for s in ax.spines.values():
 
 plt.tight_layout()
 
-plt.savefig("heatmap_contributions.png", dpi=300, bbox_inches="tight")
+plt.savefig("heatmap_contributions.png", dpi=400, bbox_inches="tight")
 
 plt.show()

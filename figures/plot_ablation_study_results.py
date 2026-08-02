@@ -435,9 +435,9 @@ def latency_plot():
 def cost_plot(): 
     # Mean improvements (Failure Rate)
     means = {
-        "B1": [8.64, 6.86, 0, 1.98],
+        "B1": [8.64, 6.86, 0,   1.98],
         "B2": [13.16, 11.65, 3, 2.12],
-        "B3": [11.18, 9.37, 1, 2.05],
+        "B3": [11.18, 9.37, 1,  2.05],
     }
 
     # Half-width of 95% bootstrap CI
@@ -576,8 +576,8 @@ def gov_plot():
 
     # Half-width of 95% bootstrap CI
     errs = {
-        "B1": [5.5, 6.8, 0.00, 0.3],
-        "B2": [7.1, 8.2, 0.00, 0.8],
+        "B1": [5.5,  6.8,  0.00, 0.3],
+        "B2": [7.1,  8.2,  0.00, 0.8],
         "B3": [13.1, 12.7, 0.00, 0.4],   # replace when available
     }
 
@@ -837,7 +837,7 @@ def rollback_plot():
 def f1_plot(): 
     # Mean improvements (Failure Rate)
     means = {
-        "B1": [0.18, 0.15, 0, 0],
+        "B1": [0.18, 0.15, 0,    0],
         "B2": [0.27, 0.22, 0.11, 0],
         "B3": [0.33, 0.28, 0.08, 0],
     }
