@@ -311,7 +311,7 @@ def shutdown(services, agents):
 
 def run_experiment_for_step(migration_order, step_num, predicate_mode, governance_policy, services, agents,
                             target_service, temporal_propagation_enabled, previous_step_acceptance_type,
-                            migration_sorting_strategy_services, T, LLM, CONCURRENCY_RATE):
+                            migration_sorting_strategy_services, T, LLM, CONCURRENCY_RATE, R):
     logger.info(f"🧪 Running Predicate-based Acceptance Experiment for step {step_num}...")
     # time.sleep(2/10)  
 
@@ -338,7 +338,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
          str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy),
          str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled), 
-         str(migration_sorting_strategy_services), str(T), str(LLM), str(CONCURRENCY_RATE)
+         str(migration_sorting_strategy_services), str(T), str(LLM), str(CONCURRENCY_RATE), str(R)
          ],
         cwd="../../refactored_architecture/retailben",
         capture_output=True,
@@ -504,14 +504,14 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
 
                                 # optional: wait for services to stabilize
                                 logger.info("... Waiting for the deployment to stabilize ...")
-                                # time.sleep(0.1)
+                                time.sleep(0.1)
 
                                 # input("Press Enter to run the experiment for this configuration...")
 
                                 final_decision, step_self_temporal_propagation, decision_type, prediction_category = run_experiment_for_step(migration_order_strategy, step, predicate_mode, governance_policy,
                                                                             candidate_services, candidate_agents, svc.split(":")[0],
                                                                             temporal_propagation_enabled, previous_step_acceptance_types[-1],
-                                                                            migration_sorting_strategy_services, T_, LLM_, CONCURRENCY_RATE_)
+                                                                            migration_sorting_strategy_services, T_, LLM_, CONCURRENCY_RATE_, R=TOTAL_REQUESTS)
                                 previous_step_acceptance_types.append(decision_type)
 
                                 if final_decision is True:

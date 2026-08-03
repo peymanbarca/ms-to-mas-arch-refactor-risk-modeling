@@ -164,7 +164,7 @@ def get_final_state():
            final_ec_state, failure_rate
 
 
-def full_trials_runner(T, LLM, CONCURRENCY_RATE):
+def full_trials_runner(T, LLM, CONCURRENCY_RATE, R=N_TRIALS):
     run_results = []
 
     for i in range(total_full_trials_runs):
@@ -226,11 +226,11 @@ def full_trials_runner(T, LLM, CONCURRENCY_RATE):
     return run_results
 
 
-def run_experiment_of_architecture_step_full_predicate(T, LLM, CONCURRENCY_RATE, log_telemetry_file):
+def run_experiment_of_architecture_step_full_predicate(T, LLM, CONCURRENCY_RATE, log_telemetry_file, R=N_TRIALS):
     with open(log_telemetry_file, "w") as f:
         f.write("\n\n")
 
-    full_run_results = full_trials_runner(T, LLM, CONCURRENCY_RATE)
+    full_run_results = full_trials_runner(T, LLM, CONCURRENCY_RATE, R=R)
 
     # Save all results
     with open(log_telemetry_file, "w") as f:
@@ -249,13 +249,13 @@ def run_experiment_of_architecture_step_full_predicate(T, LLM, CONCURRENCY_RATE,
     return p95_latency, qa_inconsistency_rate, failure_rate
 
 
-def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f, acceptance_predicate_mode, migration_order, target_service, step, T, LLM, CONCURRENCY_RATE, log_telemetry_file):
+def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f, acceptance_predicate_mode, migration_order, target_service, step, T, LLM, CONCURRENCY_RATE, log_telemetry_file, R=N_TRIALS):
     
     log_telemetry_file = log_telemetry_file.replace("res_LLM", "telemetry_res_LLM") 
     latency_predicate_failed = None; qa_predicate_failed = None; failure_rate_predicate_failed = None
     
     # --------------  Execution of the architecture step and evaluation of predicates --------------
-    p95_latency, qa_inconsistency_rate, failure_rate = run_experiment_of_architecture_step_full_predicate(T=T, LLM=LLM, CONCURRENCY_RATE=CONCURRENCY_RATE, log_telemetry_file=log_telemetry_file)
+    p95_latency, qa_inconsistency_rate, failure_rate = run_experiment_of_architecture_step_full_predicate(T=T, LLM=LLM, CONCURRENCY_RATE=CONCURRENCY_RATE, log_telemetry_file=log_telemetry_file, R=R)
     
     
     success = False
@@ -296,7 +296,7 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
 
 
     alpha = beta = gamma = 1
-    step_self_temporal_propagation = alpha * qa_inconsistency_rate + beta * failure_rate  + gamma * p95_latency / N_TRIALS
+    step_self_temporal_propagation = alpha * qa_inconsistency_rate + beta * failure_rate  + gamma * p95_latency / R
     
         
     result = {
@@ -313,7 +313,7 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
         "success": success,
         "step_self_temporal_propagation": step_self_temporal_propagation,
         "target_service": target_service,
-        "total_trials": N_TRIALS
+        "total_trials": R
     }
     return result
 
@@ -332,6 +332,8 @@ if __name__ == '__main__':
     temporal_propagation_effect_enabled = sys.argv[12]
     migration_sorting_strategy_services = sys.argv[13]
     T_, LLM_, CONCURRENCY_RATE_ = sys.argv[14], sys.argv[15], sys.argv[16]
+    R = int(sys.argv[17]) if len(sys.argv) > 17 else N_TRIALS
+   
     if len(sys.argv) < 17:
         raise ValueError("Expected: migration_order predicate-mode step services agents epsilon_l epsilon_qa epsilon_f governance_mode target_service temporal_propagation_effect_enabled migration_sorting_strategy_services T LLM CONCURRENCY_RATE")
 
@@ -352,7 +354,7 @@ if __name__ == '__main__':
                                                                         T=float(T_),
                                                                         LLM=LLM_,
                                                                         CONCURRENCY_RATE=int(CONCURRENCY_RATE_),
-                                                                        log_telemetry_file=step_report_file_name)
+                                                                        log_telemetry_file=step_report_file_name, R=R)
 
 
 

@@ -5,80 +5,80 @@
         "latency": true,
         "latency_threshold": "90",
         "failure": true,
-        "failure_threshold": "2"
+        "failure_threshold": "1.4"
     },
-    "governance_mode": "off",
+    "governance_mode": "auto",
     "governance_thresholds": {
         "beta": "30",
         "gmid": "20",
-        "deltaL": "10",
+        "deltaL": "13",
         "deltaSLO": "0.5",
         "deltaTProp": "0.1",
         "gpost": "30"
     },
     "runtime": {
         "model": "llama3.2:3b",
-        "temperature": 0.2,
-        "R": 5000,
-        "concurrency": 20
+        "temperature": 0,
+        "R": 3800,
+        "concurrency": 50
     },
     "ranking_weights": {
-        "fanout": 0.2,
-        "bc": 0.2,
-        "ccyl": 0.2,
-        "ccog": 0.2,
-        "tprop": 0.2
+        "fanout": 0.5,
+        "bc": 0.5,
+        "ccyl": 0,
+        "ccog": 0,
+        "tprop": 0
     },
     "ranked_services": [
         {
             "rank": "1",
-            "service": "Notification",
-            "score": "0.029"
+            "service": "Pricing",
+            "score": "0.000"
         },
         {
             "rank": "2",
-            "service": "Pricing",
-            "score": "0.045"
+            "service": "Shopping Cart",
+            "score": "0.000"
         },
         {
             "rank": "3",
-            "service": "Payment",
-            "score": "0.058"
+            "service": "Notification",
+            "score": "0.071"
         },
         {
             "rank": "4",
-            "service": "Subscription",
-            "score": "0.106"
+            "service": "Payment",
+            "score": "0.071"
         },
         {
             "rank": "5",
-            "service": "Shopping Cart",
-            "score": "0.148"
+            "service": "Procurement",
+            "score": "0.071"
         },
         {
             "rank": "6",
-            "service": "Inventory",
-            "score": "0.177"
+            "service": "Shipment",
+            "score": "0.071"
         },
         {
             "rank": "7",
-            "service": "Product Catalog",
-            "score": "0.273"
+            "service": "Subscription",
+            "score": "0.078"
         },
         {
             "rank": "8",
-            "service": "Procurement",
-            "score": "0.398"
+            "service": "Product Catalog",
+            "score": "0.163"
         },
         {
             "rank": "9",
-            "service": "Shipment",
-            "score": "0.407"
+            "service": "Inventory",
+            "score": "0.215"
         },
         {
             "rank": "10",
             "service": "Order",
-            "score": "0.635"
+            "score": "1.000"
         }
     ]
 }

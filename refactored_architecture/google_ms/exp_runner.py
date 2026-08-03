@@ -60,8 +60,8 @@ from .shared import demo_pb2_grpc
 
 SEARCH_KEYWORD  = os.environ.get("SEARCH_KEYWORD",   "sunglass")
 ITEM_QTY        = int(os.environ.get("ITEM_QTY",     "2"))
-N_TRIALS        = int(os.environ.get("N_TRIALS",     "100"))
-MAX_WORKERS     = int(os.environ.get("MAX_WORKERS",  str(max(1, N_TRIALS // 10))))
+N_TRIALS        = int(os.environ.get("N_TRIALS",     "5000"))
+MAX_WORKERS     = int(os.environ.get("MAX_WORKERS",  str(max(1, 20))))
 TOTAL_RUNS      = int(os.environ.get("TOTAL_RUNS",   "1"))
 DELAY           = float(os.environ.get("DELAY",      "0"))
 DROP_RATE       = int(os.environ.get("DROP_RATE",    "0"))
@@ -843,7 +843,7 @@ def serialize_trial(t: TrialResult) -> dict:
     }
 
 
-def full_trials_runner(LLM, T, CONCURRENCY_RATE):
+def full_trials_runner(LLM, T, CONCURRENCY_RATE, R):
     # ── Clear log files ───────────────────────────────────────────────────────
     for log_path in LOG_FILES:
         os.makedirs(os.path.dirname(log_path), exist_ok=True)
