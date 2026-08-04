@@ -313,7 +313,8 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
                             target_service, temporal_propagation_enabled, previous_step_acceptance_type,
                             migration_sorting_strategy_services, T, LLM, CONCURRENCY_RATE, R):
     logger.info(f"🧪 Running Predicate-based Acceptance Experiment for step {step_num}...")
-    # time.sleep(2/10)  
+    time.sleep(2) 
+ 
 
     # ---------- Specify predicates thresholds based on predicate mode ----------
     baseline_latency_p95 = 1
@@ -419,7 +420,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         }
     )
     # print(f"Evidence Summary for step {step_num}:", evidence_summary)
-    logger.info(f"Prediction Category for step {step_num}: {prediction_category}")
+    logger.info(f"Prediction Category for step {step_num}: {prediction_category}, \n\n qa_inconsistency_rate: {step_result_parsed['details']['qa_inconsistency_rate']:.4f}, p95_latency: {step_result_parsed['details']['p95_latency']:.4f}, failure_rate: {step_result_parsed['details']['failure_rate']:.4f}, temporal_propagation: {step_self_temporal_propagation:.4f} \n\n")
     if str(step_num)=="1":
          # For the first step, we create a new report file (overwriting if it already exists)
         with open(step_report_file_name, "w") as f:

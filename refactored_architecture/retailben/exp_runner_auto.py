@@ -256,7 +256,23 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
     
     # --------------  Execution of the architecture step and evaluation of predicates --------------
     p95_latency, qa_inconsistency_rate, failure_rate = run_experiment_of_architecture_step_full_predicate(T=T, LLM=LLM, CONCURRENCY_RATE=CONCURRENCY_RATE, log_telemetry_file=log_telemetry_file, R=R)
-    
+
+
+    '''
+    | Condition               | Expected behavior                                            |
+    | ----------------------- | ------------------------------------------------------------ |
+    | Ranked                  | Lowest cumulative latency, failures and QA                   |
+    | Reverse_Ranked          | Worst overall except order_service                           |
+    | qwen3:14b               | Higher latency and failures                                  |
+    | llama3.2:3b             | Better latency but QA inconsistencies under high temperature |
+    | High concurrency        | Higher latency, failures, inventory QA issues                |
+    | Higher step             | Gradually increasing accumulating latency and failures       |
+    | order_service           | Hardest latency service                                      |
+    | shopping_cart_service   | Second hardest                                               |
+    | product_catalog_service | Third hardest                                                |
+    | Other services          | Mostly accepted unless in last steps due to latency          |
+   
+    '''    
     
     success = False
     original_epsilon_l = epsilon_l; original_epsilon_qa = epsilon_qa; original_epsilon_f = epsilon_f

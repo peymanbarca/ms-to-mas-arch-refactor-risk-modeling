@@ -87,14 +87,21 @@ def analyze_results(results_file):
 pwd = os.getcwd()
 
 
-final_results = []
-for file in os.listdir(pwd + '/results/Ranked'):   # Ranked, Reverse_Ranked, Random, Complexity_Based, Dependency_Based
-    if file.endswith('.json'):
-        results_file = os.path.join(pwd + '/results/Ranked', file)
-        results = analyze_results(results_file)
-        # print(json.dumps(results, indent=4))
-        final_results.append(results)
+for ranking in ['Ranked', 'Reverse_Ranked', 'Random', 'Complexity_Based', 'Dependency_Based']:
 
-print(len(final_results))
-with open(pwd + '/results/final_results_' + 'Ranked' + '.json', 'w') as f:
-    json.dump(final_results, f, indent=4)
+    try:
+        final_results = []
+        for file in os.listdir(pwd + '/results/' + ranking):   # Ranked, Reverse_Ranked, Random, Complexity_Based, Dependency_Based
+            if file.endswith('.json') and not str(file).__contains__('weights'):
+                if ranking != 'Ranked' and str(file).__contains__('TPOP_True'):
+                    continue
+                results_file = os.path.join(pwd + '/results/' + ranking, file)
+                results = analyze_results(results_file)
+                # print(json.dumps(results, indent=4))
+                final_results.append(results)
+
+        print(len(final_results))
+        with open(pwd + '/results/final_results_' + ranking + '.json', 'w') as f:
+            json.dump(final_results, f, indent=4)
+    except Exception as e:
+        print(f"Error processing ranking {ranking}: {e}")

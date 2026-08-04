@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
 from matplotlib import cm
+import matplotlib as mpl
+
 
 # ==========================================================
 # Data
@@ -258,7 +260,7 @@ for metric_id, (metric_name, values, errors) in enumerate(metrics):
         ha='center',
         va='bottom',
         fontsize=16,
-        fontweight='bold'
+        # fontweight='bold'
     )
 
     # Benchmark labels
@@ -270,7 +272,8 @@ for metric_id, (metric_name, values, errors) in enumerate(metrics):
             ha='center',
             va='bottom',
             fontsize=13,
-            color='gray'
+            color='black',
+            fontweight='bold'
         )
 
     # Cells
@@ -378,6 +381,24 @@ ax.set_yticks([])
     
 for s in ax.spines.values():
     s.set_visible(False)
+
+# Vertical separators between metric groups
+for x in range(3, len(metrics) * 3, 3):
+    ax.axvline(
+        x,
+        color='gray',
+        linestyle='--',
+        linewidth=1.2,
+        alpha=0.7,
+        zorder=0
+    )
+# mpl.rcParams["font.family"] = "STIXGeneral"
+# mpl.rcParams["mathtext.fontset"] = "stix"
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "serif",
+    "font.serif": ["Computer Modern"]
+})
 
 plt.tight_layout()
 

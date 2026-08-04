@@ -22,6 +22,19 @@ all_results_runtime = all_results
 print(len(all_results_runtime))
 
 
+def get_cumulative_disturbances(ranking, tprop):
+    sum_sigma_delta_l = 0.0
+    sum_sigma_delta_qa = 0.0
+    sum_sigma_delta_f = 0.0
+    sum_total_rollback = 0
+    for item in all_results:
+        if item['migration_order'] == ranking and item['TPOP_enabled'] == str(tprop):
+            sum_sigma_delta_l += item['sigma_delta_l']
+            sum_sigma_delta_qa += item['sigma_delta_qa']
+            sum_sigma_delta_f += item['sigma_delta_f']
+            sum_total_rollback += item['total_rollback']
+    print(f'Ranking: {ranking}, TPOP: {tprop} -->  sum_sigma_delta_l: {sum_sigma_delta_l}, sum_sigma_delta_qa: {sum_sigma_delta_qa}, sum_sigma_delta_f: {sum_sigma_delta_f}, sum_total_rollback: {sum_total_rollback}')
+
 
 def composite_score(item):
     return (
@@ -170,21 +183,6 @@ def total_best_compare_with_ci():
         higher_is_better=False,      # keep False if lower σΔF is better
     )
 
-    gain_rb, rb_low, rb_high = bootstrap_improvement(
-        best_item["total_rollback"],
-        [x["total_rollback"] for x in others],
-    )
-    
-    gain_f1, f1_low, f1_high = bootstrap_improvement(
-        best_item["f1_score"],
-        [x["f1_score"] for x in others],
-    )
-    
-    gain_gov, gov_low, gov_high = bootstrap_improvement(
-        best_item["gov_requirement"],
-        [x["gov_requirement"] for x in others],
-    )
-    
     
         
     print("Best configuration:")
@@ -204,9 +202,6 @@ def total_best_compare_with_ci():
     print(f"σΔL improvement : {gain_sigma_l:.2f}% [{l_low:.2f}, {l_high:.2f}]")
     print(f"σΔQA improvement: {gain_sigma_qa:.2f}% [{qa_low:.2f}, {qa_high:.2f}]")
     print(f"σΔF improvement : {gain_sigma_f:.2f}% [{f_low:.2f}, {f_high:.2f}]")
-    print(f"Rollback reduction: {gain_rb:.2f}% [{rb_low:.2f}, {rb_high:.2f}]")
-    print(f"f1 improvement : {gain_f1:.2f}% [{f1_low:.2f}, {f1_high:.2f}]")
-    print(f"gov_req improvement : {gain_gov:.2f}% [{gov_low:.2f}, {gov_high:.2f}]")
 
 def total_best_avg_same_baseline_compare():
     
@@ -279,21 +274,6 @@ def total_best_same_baseline_compare_with_ci():
         higher_is_better=False,      # keep False if lower σΔF is better
     )
 
-    gain_rb, rb_low, rb_high = bootstrap_improvement(
-        best_item["total_rollback"],
-        [x["total_rollback"] for x in others],
-    )
-    
-        
-    gain_f1, f1_low, f1_high = bootstrap_improvement(
-        best_item["f1_score"],
-        [x["f1_score"] for x in others],
-    )
-    
-    gain_gov, gov_low, gov_high = bootstrap_improvement(
-        best_item["gov_requirement"],
-        [x["gov_requirement"] for x in others],
-    )
 
     print("Best configuration:")
     print(
@@ -312,9 +292,7 @@ def total_best_same_baseline_compare_with_ci():
     print(f"σΔL improvement : {gain_sigma_l:.2f}% [{l_low:.2f}, {l_high:.2f}]")
     print(f"σΔQA improvement: {gain_sigma_qa:.2f}% [{qa_low:.2f}, {qa_high:.2f}]")
     print(f"σΔF improvement : {gain_sigma_f:.2f}% [{f_low:.2f}, {f_high:.2f}]")
-    print(f"Rollback reduction: {gain_rb:.2f}% [{rb_low:.2f}, {rb_high:.2f}]")
-    print(f"f1 improvement : {gain_f1:.2f}% [{f1_low:.2f}, {f1_high:.2f}]")
-    print(f"gov_req improvement : {gain_gov:.2f}% [{gov_low:.2f}, {gov_high:.2f}]")
+
 
 # --------------------------------------------------------------------------------------
 
@@ -521,9 +499,16 @@ def group_analysis_by_ranking_predicate_gov():
         
         
 if __name__ == '__main__':
+    
+    get_cumulative_disturbances('Ranked', True)
+    get_cumulative_disturbances('Ranked', False)
+    get_cumulative_disturbances('Reverse_Ranked', False)
+    get_cumulative_disturbances('Random', False)
+    get_cumulative_disturbances('Complexity_Based', False)
+    get_cumulative_disturbances('Dependency_Based', False)
+
     # total_best_avg_compare()
-    total_best_compare_with_ci()
-    print('-----------------------\n\n')
-    # total_best_avg_same_baseline_compare()
+    # total_best_compare_with_ci()
+    total_best_avg_same_baseline_compare()
     total_best_same_baseline_compare_with_ci()
     
