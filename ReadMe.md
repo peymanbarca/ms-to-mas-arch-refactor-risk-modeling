@@ -115,23 +115,39 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
     # the full evaluation results will be gathered in ms_baseline/retailben/results folder.
 ```
 
+1-  **DSB-Social-Network**
+
+```bash
+    cd deploy_orchestration/dsb_social
+    
+    ./deploy-local.sh services=compose_post_service:9100,home_timeline_service:9099,media_service:9091 post_storage_service:9096,social_graph_service:9097,text_service:9095,unique_id_service:9090,url_shorten_service:9092,user_mention_service:9093,user_service:9094,user_timeline_service:9098,write_home_timeline_service:8999 agents=
+
+    # 2. Evaluate with workload and gather metrics
+    python3 -m ms_baseline.dsb_social.exp_runner --trials 5000 --concurrency 20
+    
+    # the full evaluation results will be gathered in ms_baseline/dsb_social/results folder.
+```
+
+
 -----------------------------
 
 
 ## Ablation Study
 
-### Running migration loops for all baselines, by deployment of hybrid architectures (at each migration step) and gather step-wise and complete metrics 
+### Running migration loops for all internal baselines, by deployment of hybrid architectures (at each migration step) and gather step-wise and complete metrics 
 
 For each baseline migration cycle based on a ranking strategy, acceptability predicate mode, and governance mechanism, the outcome metrics should be gathered, and then be aggregated.
 
 
-### Step 1: Run baselines migration loops
+### Step 1: Run all internal baselines and proposed migration loops
 
-**Run full migration cycle for each baseline, by looping over model size (x2), temperature (x2), concurrency levels (x2), ranking strategy (x6) (here with equal weights of risk metrics), predicate mode (x4) and governance mode (x3)**
+**Run full migration cycle by looping over model size (x2), temperature (x2), concurrency levels (x2), ranking strategy (x6) (here with equal weights of risk metrics), predicate mode (x4) and governance mode (x3)**
+
+### **Totally 576 full migration cycles**
 
 Hence there are total 576 full migration cycle experiments for each benchmark.
 
-For each migration step for each of baselines, the target hybrid architecture is deployed locally (internally using **deploy-local.sh** script explained before), the full multi-trial evaluation is performed and all outcome metrics are gathered), and then the architecture is shutdown (internally using shutdown-local.sh script besides deploy-local.sh) to be ready for next step. The full procedure is automated by these DevOps based scripts and be run for all migration cycles for each baseline, in each benchmark, by only running the **baseline_ablation_progressive_refactor_orchestrator.py** python script as below:
+For each migration step for each of baselines or the proposed method, the target hybrid architecture is deployed locally (internally using **deploy-local.sh** script explained before), the full multi-trial evaluation is performed and all outcome metrics are gathered), and then the architecture is shutdown (internally using shutdown-local.sh script besides deploy-local.sh) to be ready for next step. The full procedure is automated by these DevOps based scripts and be run for all migration cycles for each baseline, in each benchmark, by only running the **baseline_ablation_progressive_refactor_orchestrator.py** python script as below:
 
 
 
@@ -154,10 +170,21 @@ For each migration step for each of baselines, the target hybrid architecture is
     python3 baseline_ablation_progressive_refactor_orchestrator.py
 
     
-    # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy.
+    # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy.
 ```
 
-### Step 2: Aggregate and analyze baseline results
+2-  **DSB-Social-Network**
+
+ ```bash   
+    cd deploy_orchestration/dsb_social
+    
+    python3 baseline_ablation_progressive_refactor_orchestrator.py
+
+    
+    # the full evaluation results will be gathered in refactored_architecture/dsb_social/results folder, separately under subfolder named with each ranking strategy.
+```
+
+### Step 2: Aggregate and analyze ablation results
 
 1-  **Google Online Boutique Microservices**
 
@@ -167,7 +194,7 @@ For each migration step for each of baselines, the target hybrid architecture is
     # aggregate all individual results for each ranking strategy
     python3 aggregate_results.py
 
-    # analyze all aggregated results, to find the best, worst, selective strategy
+    # analyze all aggregated results, to find the best, worst, selective strategy, and improvement with CI
     python3 analyze_results.py
 ```
 
@@ -180,20 +207,34 @@ For each migration step for each of baselines, the target hybrid architecture is
     # aggregate all individual results for each ranking strategy
     python3 aggregate_results.py
 
-    # analyze all aggregated results, to find the best, worst, selective strategy
+    # analyze all aggregated results, to find the best, worst, selective strategy, and improvement with CI
+    python3 analyze_results.py
+```
+
+3-  **DSB-Social-Network**
+
+```bash
+    cd refactored_architecture/dsb_social
+
+    # aggregate all individual results for each ranking strategy
+    python3 aggregate_results.py
+
+    # analyze all aggregated results, to find the best, worst, selective strategy, and improvement with CI
     python3 analyze_results.py
 ```
 
 --------------------------
 
-### Evaluate Scalability Envelope
+# Evaluate scalability envelope and external baselines final architecture viability
 
-For each baseline, the resulting final architecture should be deployed (using deploy-local.sh script which allows deploy any component as service or agent), and the workload experiment runner (available for each benchmark in its folder in refactored_architecture folder) should be executed on the architecture with varying concurrency level (u) (starting 10 and go up by 5 each time) to find the u_max (maximum concurrency level which the final architecture is not accepted).
+For each baseline, the resulting final architecture should be deployed (using deploy-local.sh script which allows deploy any component as service or agent), and the workload experiment runner (available for each benchmark in its folder in refactored_architecture folder) should be executed on the architecture with varying concurrency level (u) (starting 10 and go up by 5 each time) to find the u_max (maximum concurrency level which the final architecture is still accepted).
+
+For external baselines (hybrid architecture proposals), the target architecture is also deployed in the same way and be evaluated by the same workload experiment runner, as late-stage evaluation. So there's no step-wise regression test for these baselines. Moreover, the Strangler pattern incrementally migrate each service, but at each step only performs local functional testing than system wide regression.
 
 --------------------------
 
 
-### Run Explainability (weights ablation (x7) + Shapley-based analysis (x32) to find contribution), Robustness (by Monte Carlo simulation with weights sampling from Dirichlet simplex distribution (x100)) and Tuning experiments (by grid search of weights to minimize total disturbances)
+## Run Explainability (weights ablation (x7) + Shapley-based analysis (x32) to find contribution), Robustness (by Monte Carlo simulation with weights sampling from Dirichlet simplex distribution (x100)) and Tuning experiments (by grid search of weights to minimize total disturbances)
 
 
 
@@ -213,6 +254,17 @@ For each baseline, the resulting final architecture should be deployed (using de
 
 ```bash
     cd deploy_orchestration/retailben
+    
+    python3 weight_study_progressive_refactor_orchestrator.py
+
+    
+    # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy, then analyzed manually
+```
+
+3-  **DSB-Social-Network**
+
+```bash
+    cd deploy_orchestration/dsb_social
     
     python3 weight_study_progressive_refactor_orchestrator.py
 
