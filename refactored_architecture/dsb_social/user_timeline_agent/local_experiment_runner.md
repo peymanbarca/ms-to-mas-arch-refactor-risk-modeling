@@ -1,5 +1,16 @@
+
+
+## Set service up:
+
+```bash
 python3 -m refactored_architecture.dsb_social.user_timeline_agent.server
+```
+
+## Send a request to service:
+
+``` bash
 
 python3 -m refactored_architecture.dsb_social.user_timeline_agent.client write --user-id 1 --post-id 1000 --timestamp 1717000000000
 python3 -m refactored_architecture.dsb_social.user_timeline_agent.client write --user-id 1 --post-id 1001 --timestamp 1717100000000
 python3 -m refactored_architecture.dsb_social.user_timeline_agent.client read --user-id 1 --start 0 --stop 10
+```

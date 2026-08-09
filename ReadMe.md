@@ -2,19 +2,21 @@
 
 ## Microservice System Benchmarks:
 
-- **RetailBen** (ms_baseline/retailben) (Own Designed)
-  
-  ![SDG](figures/RetailBen.drawio.png)
 
--------------------
-
-- **[*Google Online Boutique Microservices](https://github.com/GoogleCloudPlatform/microservices-demo)** (ms_baseline/google_ms)
+- **[*Google Online Boutique Microservices (B1)](https://github.com/GoogleCloudPlatform/microservices-demo)** (ms_baseline/google_ms)
   
    ![SDG](figures/google-benchmark.drawio.png)
 
 ------------------
 
-- **[DeathStarBench Social Network](https://github.com/delimitrou/DeathStarBench/tree/master/socialNetwork)** (ms_baseline/dsb_social)
+- **RetailBen (B2)** (ms_baseline/retailben) (Own Designed)
+  
+  ![SDG](figures/RetailBen.drawio.png)
+
+-------------------
+
+
+- **[DeathStarBench Social Network (B3)](https://github.com/delimitrou/DeathStarBench/tree/master/socialNetwork)** (ms_baseline/dsb_social)
   
    ![SDG](figures/DSB-social.drawio.png)
    
@@ -30,7 +32,7 @@ For each microservice in each benchmark, an equivalent AI agent is implemented w
 
 - **RetailBen** (refactored_architecture/retailben)
 - **Google Online Boutique Microservices** (refactored_architecture/google_ms)
-- **DeathStarBench Social Network** (**still working, not ready yet!**) 
+- **DeathStarBench Social Network** (refactored_architecture/google_ms) 
 
 ----------------------------
 
@@ -115,7 +117,7 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
     # the full evaluation results will be gathered in ms_baseline/retailben/results folder.
 ```
 
-1-  **DSB-Social-Network**
+3-  **DSB-Social-Network**
 
 ```bash
     cd deploy_orchestration/dsb_social
@@ -173,7 +175,7 @@ For each migration step for each of baselines or the proposed method, the target
     # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy.
 ```
 
-2-  **DSB-Social-Network**
+3-  **DSB-Social-Network**
 
  ```bash   
     cd deploy_orchestration/dsb_social
@@ -229,7 +231,15 @@ For each migration step for each of baselines or the proposed method, the target
 
 For each baseline, the resulting final architecture should be deployed (using deploy-local.sh script which allows deploy any component as service or agent), and the workload experiment runner (available for each benchmark in its folder in refactored_architecture folder) should be executed on the architecture with varying concurrency level (u) (starting 10 and go up by 5 each time) to find the u_max (maximum concurrency level which the final architecture is still accepted).
 
-For external baselines (hybrid architecture proposals), the target architecture is also deployed in the same way and be evaluated by the same workload experiment runner, as late-stage evaluation. So there's no step-wise regression test for these baselines. Moreover, the Strangler pattern incrementally migrate each service, but at each step only performs local functional testing than system wide regression.
+### 1. External baselines (hybrid architecture proposals) evaluations:
+The target architecture is also deployed in the same way and be evaluated by the same workload experiment runner, as late-stage evaluation (by using former exp_runner.py script). So there's no step-wise regression test for these baselines nor incremental migration. The evolution is all at once with only one system regression.
+
+**The migration can be integrated with our framework (incremental stepwise predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.**
+
+### 2. The Strangler pattern evaluations
+Incrementally migrate each service, but at each step only performs local functional testing for the migrating service (using the commands available in **local_experiment_runner.md** in each agent folder in each benchmark in the refactored architecture folder), rather than system wide regression analysis (former exp_runner.py script). The results at this stage should be manually tested for each functional testing of each migrating service at each step.
+
+**The migration itself is incremental but with arbitrary order and local functional regression analysis at the component level, and can be integrated with our framework (predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.**
 
 --------------------------
 

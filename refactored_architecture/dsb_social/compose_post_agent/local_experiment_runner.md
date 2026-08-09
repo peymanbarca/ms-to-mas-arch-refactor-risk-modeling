@@ -1,4 +1,14 @@
+
+
+## Set service up:
+
+```bash
 python3 -m refactored_architecture.dsb_social.compose_post_agent.server
+```
+
+## Send a request to service:
+
+``` bash
 
 python3 -m refactored_architecture.dsb_social.compose_post_agent.client compose --username alice --user-id 2 --text "Hello world agent! check this url: https://www.example.com/some/very/long/path"
 python3 -m refactored_architecture.dsb_social.compose_post_agent.client compose --username alice --user-id 2 --text "Hello world agent!"
@@ -6,3 +16,5 @@ python3 -m refactored_architecture.dsb_social.compose_post_agent.client compose 
 python3 -m refactored_architecture.dsb_social.compose_post_agent.client compose --username alice --user-id 2 --text "Check this out agent!" --media-ids 100 101 --media-types photo photo
 
 python3 -m refactored_architecture.dsb_social.compose_post_agent.client compose --username alice --user-id 2 --text "RT @bob great post agent" --post-type REPOST
+
+```

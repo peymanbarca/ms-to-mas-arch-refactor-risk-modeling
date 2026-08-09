@@ -1,7 +1,18 @@
+
+
+## Set service up:
+
+```bash
 python3 -m refactored_architecture.dsb_social.social_graph_agent.server
+```
+
+## Send a request to service:
+
+``` bash
 
 python3 -m refactored_architecture.dsb_social.social_graph_agent.client insert-user --user-id 1
 python3 -m refactored_architecture.dsb_social.social_graph_agent.client follow --user-id 1 --followee-id 2
 python3 -m refactored_architecture.dsb_social.social_graph_agent.client unfollow --user-id 1 --followee-id 2
 python3 -m refactored_architecture.dsb_social.social_graph_agent.client get-followers --user-id 2
 python3 -m refactored_architecture.dsb_social.social_graph_agent.client get-followees --user-id 1
+```
