@@ -231,7 +231,7 @@ def deploy(services, agents):
     print("Services:", services)
     print("Agents:", agents)
 
-    # subprocess.run([DEPLOY_SCRIPT] + args, check=True)
+    subprocess.run([DEPLOY_SCRIPT] + args, check=True)
 
 def shutdown(services, agents):
     SD_SCRIPT = "./shutdown-local.sh"
@@ -241,7 +241,7 @@ def shutdown(services, agents):
     print("Services:", services)
     print("Agents:", agents)
 
-    # subprocess.run([SD_SCRIPT] + args, check=True)
+    subprocess.run([SD_SCRIPT] + args, check=True)
 
 
 def run_experiment_for_step(migration_order, step_num, predicate_mode, governance_policy, services, agents,
@@ -266,7 +266,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         epsilon_qa = -1
 
     step_result = subprocess.run(
-        ["python3", "exp_runner_auto2.py",
+        ["python3", "exp_runner_auto.py",
          migration_order,
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
          str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy),

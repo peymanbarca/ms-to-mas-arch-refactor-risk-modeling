@@ -40,7 +40,7 @@ qa_errors = np.array([
 latency_values = np.array([
     [29.84,  39.96, 44.71],
     [22.71, 33.10, 37.76],
-    [4.00, 11.00, 8.00],
+    [4.00, 11.00, 14.00],
     [5.44, 6.84, 5.98]
 ])
 
@@ -60,7 +60,7 @@ failure_values = np.array([
 28.40,],
     [1.00,
 3.00,
-3.00,],
+4.00,],
     [3.12,
 5.59,
 4.80]
@@ -86,7 +86,7 @@ cost_values = np.array([
     [6.86, 
  11.65,
  9.37,],
-    [0, 3, 1],
+    [0, 3, 5],
     [1.98,
 2.12,
 2.05]
@@ -137,7 +137,7 @@ f1_values = np.array([
 0.28,],
     [0,   
 0.11,
-0.08,],
+0.16,],
     [0,
 0,
 0]
@@ -389,7 +389,7 @@ for x in range(3, len(metrics) * 3, 3):
         color='gray',
         linestyle='--',
         linewidth=1.2,
-        alpha=0.7,
+        alpha=0.9,
         zorder=0
     )
 # mpl.rcParams["font.family"] = "STIXGeneral"

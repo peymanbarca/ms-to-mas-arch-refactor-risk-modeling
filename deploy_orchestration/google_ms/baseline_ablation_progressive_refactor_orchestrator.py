@@ -158,21 +158,7 @@ service_to_agent = {
     "currency_service:5053": "currency_agent:5053",
 }
 
-# -------------------------- Apply ranking strategy -------------------------
-migration_order_strategy = "Complexity_Based" # ["Ranked", "Reverse_Ranked", "Random", "Dependency_Based", "Complexity_Based"]
 
-if migration_order_strategy == "Ranked":
-    current_services_with_scores = ranked_services.copy()
-elif migration_order_strategy == "Reverse_Ranked":
-    current_services_with_scores = reverse_ranked_services.copy()
-elif migration_order_strategy == "Random":
-    current_services_with_scores = random_ranked_services.copy()
-elif migration_order_strategy == "Dependency_Based":
-    current_services_with_scores = dependency_ranked_services.copy()
-elif migration_order_strategy == "Complexity_Based":
-    current_services_with_scores = complexity_ranked_services.copy()
-else:
-    raise ValueError(f"Invalid migration order strategy: {migration_order_strategy}")
 
 # --------------------------------- Acceptance Predicate ---------------------------
 acceptance_predicate_modes =  ["Full", "Latency-Only", "Failure-Only", "QA-Only"]
@@ -191,7 +177,6 @@ adjudication_criteria = AdjudicationCriteria(
 )
 post_action_adjudicator = PostActionAdjudicator(adjudication_criteria)
 
-temporal_propagation_enabled = True
 temporal_propagation_dependency_influence_weight = {
     "product_catalog_service->checkout_service": 1,
     "product_catalog_service->recommendation_service": 1,
@@ -364,7 +349,9 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         }
     )
     # print(f"Evidence Summary for step {step_num}:", evidence_summary)
-    print(f"Prediction Category for step {step_num}:", prediction_category)
+    
+    print(f"Prediction Category for step {step_num}: {prediction_category}, \n\n qa_inconsistency_rate: {step_result_parsed['details']['qa_inconsistency_rate']:.4f}, p95_latency: {step_result_parsed['details']['p95_latency']:.4f}, failure_rate: {step_result_parsed['details']['failure_rate']:.4f}, temporal_propagation: {step_self_temporal_propagation:.4f} \n\n")
+
     if str(step_num)=="1":
          # For the first step, we create a new report file (overwriting if it already exists)
         with open(step_report_file_name, "w") as f:
@@ -391,12 +378,40 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
 # ---- Main Refactoring LOOP ----
 
 subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
-    
+
+# -------------------------- Apply ranking strategy -------------------------
+migration_order_strategy = "Complexity_Based" # ["Ranked", "Reverse_Ranked", "Random", "Dependency_Based", "Complexity_Based"]
+
+# ----------------- RUNTIME Configurations ----------------
+LLM = ["llama3.2:3b", "qwen3:14b"] # "llama3.2:3b" or "qwen3:14b"
+T = [0.0, 0.8] # 0 or 0.8
+CONCURRENCY_RATE = [20, 100] # concurrent requests
+
+temporal_propagation_enabled = False
+if migration_order_strategy != 'Ranked':
+    temporal_propagation_enabled = False
+        
 def init_conditions():
     subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
 
-    migration_sorting_strategy_services = complexity_ranked_services # ranked_services, reverse_ranked_services, random_ranked_services, dependency_ranked_services, complexity_ranked_services
-    current_services_with_scores = complexity_ranked_services.copy() # ranked_services, reverse_ranked_services, random_ranked_services, dependency_ranked_services, complexity_ranked_services
+    if migration_order_strategy == "Ranked":
+        current_services_with_scores = ranked_services.copy()
+        migration_sorting_strategy_services = ranked_services 
+    elif migration_order_strategy == "Reverse_Ranked":
+        current_services_with_scores = reverse_ranked_services.copy()
+        migration_sorting_strategy_services = reverse_ranked_services
+    elif migration_order_strategy == "Random":
+        current_services_with_scores = random_ranked_services.copy()
+        migration_sorting_strategy_services = random_ranked_services
+    elif migration_order_strategy == "Dependency_Based":
+        current_services_with_scores = dependency_ranked_services.copy()
+        migration_sorting_strategy_services = dependency_ranked_services
+    elif migration_order_strategy == "Complexity_Based":
+        current_services_with_scores = complexity_ranked_services.copy()
+        migration_sorting_strategy_services = complexity_ranked_services
+    else:
+        raise ValueError(f"Invalid migration order strategy: {migration_order_strategy}") 
+   
     previous_step_acceptance_types = ['N/A']
     temporal_propagations = []
     
