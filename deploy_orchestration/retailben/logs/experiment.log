@@ -1,169 +1,182 @@
-2026-08-03 18:52:16,127 - INFO - Config: {'predicates': {'qa': True, 'qa_threshold': '100', 'latency': True, 'latency_threshold': '90', 'failure': True, 'failure_threshold': '2'}, 'governance_mode': 'off', 'governance_thresholds': {'beta': '30', 'gmid': '20', 'deltaL': '10', 'deltaSLO': '0.5', 'deltaTProp': '0.1', 'gpost': '30'}, 'runtime': {'model': 'llama3.2:3b', 'temperature': 0, 'R': 5000, 'concurrency': 20}, 'ranking_weights': {'fanout': 0.2, 'bc': 0.2, 'ccyl': 0.2, 'ccog': 0.2, 'tprop': 0.2}, 'ranked_services': [{'rank': '1', 'service': 'Notification', 'score': '0.029'}, {'rank': '2', 'service': 'Pricing', 'score': '0.045'}, {'rank': '3', 'service': 'Payment', 'score': '0.058'}, {'rank': '4', 'service': 'Subscription', 'score': '0.106'}, {'rank': '5', 'service': 'Shopping Cart', 'score': '0.148'}, {'rank': '6', 'service': 'Inventory', 'score': '0.177'}, {'rank': '7', 'service': 'Product Catalog', 'score': '0.273'}, {'rank': '8', 'service': 'Procurement', 'score': '0.398'}, {'rank': '9', 'service': 'Shipment', 'score': '0.407'}, {'rank': '10', 'service': 'Order', 'score': '0.635'}]}
-2026-08-03 18:52:16,137 - INFO - 
+2026-08-10 16:39:05,445 - INFO - Config: {'predicates': {'qa': True, 'qa_threshold': '100', 'latency': True, 'latency_threshold': '30', 'failure': True, 'failure_threshold': '4.5'}, 'governance_mode': 'auto', 'governance_thresholds': {'beta': '30', 'gmid': '20', 'deltaL': '10', 'deltaSLO': '0.5', 'deltaTProp': '0.1', 'gpost': '30'}, 'runtime': {'model': 'llama3.2:3b', 'temperature': 0, 'R': 5000, 'concurrency': 212}, 'ranking_weights': {'fanout': 0.3, 'bc': 0.2, 'ccyl': 0.1, 'ccog': 0.2, 'tprop': 0.2}, 'ranked_services': [{'rank': '1', 'service': 'Pricing', 'score': '0.038'}, {'rank': '2', 'service': 'Notification', 'score': '0.043'}, {'rank': '3', 'service': 'Payment', 'score': '0.065'}, {'rank': '4', 'service': 'Subscription', 'score': '0.106'}, {'rank': '5', 'service': 'Shopping Cart', 'score': '0.113'}, {'rank': '6', 'service': 'Inventory', 'score': '0.184'}, {'rank': '7', 'service': 'Product Catalog', 'score': '0.252'}, {'rank': '8', 'service': 'Procurement', 'score': '0.312'}, {'rank': '9', 'service': 'Shipment', 'score': '0.332'}, {'rank': '10', 'service': 'Order', 'score': '0.710'}]}
+2026-08-10 16:39:05,458 - INFO - 
 
-============================== Starting Migration Strategy: Ranked, Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20 ==============================
+============================== Starting Migration Strategy: Ranked_weight_fanout0.3_bc0.2_ccyl0.1_ccog0.2_tprop0.2_live_progressive_refactor, Predicate Mode: Full, Governance Policy: Post-Audit-Comprehensive, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 212 ==============================
 
 
-2026-08-03 18:52:16,139 - INFO - 
+2026-08-10 16:39:05,460 - INFO - 
 ============================== Starting Step 1/10 ==============================
-2026-08-03 18:52:16,139 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-03 18:52:16,139 - INFO - 
-=== Step:1, Refactoring notification_service:8011 with risk score 0.029 as AI agent ===
-2026-08-03 18:52:16,139 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:16,239 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 1...
-2026-08-03 18:52:18,792 - INFO - Prediction Category for step 1: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.2214, failure_rate: 0.0000, temporal_propagation: 0.0002 
+2026-08-10 16:39:05,460 - INFO - 
+=== Step:1, Refactoring pricing_service:8002 with risk score 0.038 as AI agent ===
 
 
-2026-08-03 18:52:18,792 - INFO - ✅ ACCEPTED: notification_service:8011 → notification_agent:8011, decision type: auto_predicate_decision_no_governance_but_false_rejection
-2026-08-03 18:52:18,792 - INFO - 🔄 Detecting Temporal Propagation Influence ...
-2026-08-03 18:52:18,793 - INFO -     Updated order_service:8000: score 0.635 → 1.635 due to temporal propagation influence from notification_service:8011 with weight 1
-2026-08-03 18:52:18,793 - INFO - 
+2026-08-10 16:39:05,460 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:05,460 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:05,561 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 1...
+2026-08-10 16:39:07,915 - INFO - Prediction Category for step 1: true_acceptance, 
+
+ qa_inconsistency_rate: 0.0000, p95_latency: 1.1741, failure_rate: 0.0112, temporal_propagation: 0.0114 
+
+
+2026-08-10 16:39:07,916 - INFO - ✅ ACCEPTED: pricing_service:8002 → pricing_agent:8002, decision type: true_accepted_by_predicate_auto_pass
+2026-08-10 16:39:07,916 - INFO - 
 ============================== Starting Step 2/10 ==============================
-2026-08-03 18:52:18,793 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 1.635]]
-2026-08-03 18:52:18,793 - INFO - 
-=== Step:2, Refactoring pricing_service:8002 with risk score 0.045 as AI agent ===
-2026-08-03 18:52:18,793 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:18,893 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 2...
-2026-08-03 18:52:21,447 - INFO - Prediction Category for step 2: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.2444, failure_rate: 0.0014, temporal_propagation: 0.0017 
+2026-08-10 16:39:07,916 - INFO - 
+=== Step:2, Refactoring notification_service:8011 with risk score 0.043 as AI agent ===
 
 
-2026-08-03 18:52:21,447 - INFO - ✅ ACCEPTED: pricing_service:8002 → pricing_agent:8002, decision type: auto_predicate_decision_no_governance_but_false_rejection
-2026-08-03 18:52:21,447 - INFO - 🔄 Detecting Temporal Propagation Influence ...
-2026-08-03 18:52:21,447 - INFO -     Updated product_catalog_service:8008: score 0.273 → 1.273 due to temporal propagation influence from pricing_service:8002 with weight 1
-2026-08-03 18:52:21,447 - INFO -     Updated order_service:8000: score 1.635 → 2.635 due to temporal propagation influence from pricing_service:8002 with weight 1
-2026-08-03 18:52:21,447 - INFO - 
+2026-08-10 16:39:07,916 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:07,916 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:08,016 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 2...
+2026-08-10 16:39:10,543 - INFO - Prediction Category for step 2: true_acceptance, 
+
+ qa_inconsistency_rate: 0.0000, p95_latency: 1.0572, failure_rate: 0.0138, temporal_propagation: 0.0140 
+
+
+2026-08-10 16:39:10,543 - INFO - ✅ ACCEPTED: notification_service:8011 → notification_agent:8011, decision type: true_accepted_by_predicate_auto_pass
+2026-08-10 16:39:10,543 - INFO - 
 ============================== Starting Step 3/10 ==============================
-2026-08-03 18:52:21,447 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['product_catalog_service:8008', 1.2730000000000001], ['order_service:8000', 2.635]]
-2026-08-03 18:52:21,447 - INFO - 
-=== Step:3, Refactoring payment_service:8007 with risk score 0.058 as AI agent ===
-2026-08-03 18:52:21,447 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:21,548 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 3...
-2026-08-03 18:52:24,137 - INFO - Prediction Category for step 3: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.2407, failure_rate: 0.0002, temporal_propagation: 0.0004 
+2026-08-10 16:39:10,543 - INFO - 
+=== Step:3, Refactoring payment_service:8007 with risk score 0.065 as AI agent ===
 
 
-2026-08-03 18:52:24,138 - INFO - ✅ ACCEPTED: payment_service:8007 → payment_agent:8007, decision type: auto_predicate_decision_no_governance_but_false_rejection
-2026-08-03 18:52:24,138 - INFO - 🔄 Detecting Temporal Propagation Influence ...
-2026-08-03 18:52:24,138 - INFO -     Updated order_service:8000: score 2.635 → 2.882 due to temporal propagation influence from payment_service:8007 with weight 1
-2026-08-03 18:52:24,138 - INFO -     Updated subscription_service:8010: score 0.106 → 0.353 due to temporal propagation influence from payment_service:8007 with weight 1
-2026-08-03 18:52:24,138 - INFO - 
+2026-08-10 16:39:10,543 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:10,544 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:10,644 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 3...
+2026-08-10 16:39:13,030 - INFO - Prediction Category for step 3: true_acceptance, 
+
+ qa_inconsistency_rate: 0.0000, p95_latency: 1.2313, failure_rate: 0.0111, temporal_propagation: 0.0113 
+
+
+2026-08-10 16:39:13,031 - INFO - ✅ ACCEPTED: payment_service:8007 → payment_agent:8007, decision type: true_accepted_by_predicate_auto_pass
+2026-08-10 16:39:13,031 - INFO - 
 ============================== Starting Step 4/10 ==============================
-2026-08-03 18:52:24,138 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['subscription_service:8010', 0.35337866550025865], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['product_catalog_service:8008', 1.2730000000000001], ['order_service:8000', 2.8823786655002586]]
-2026-08-03 18:52:24,138 - INFO - 
-=== Step:4, Refactoring shopping_cart_service:8003 with risk score 0.148 as AI agent ===
-2026-08-03 18:52:24,138 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:24,239 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 4...
-2026-08-03 18:52:26,727 - INFO -   No temporal propagation influence detected for this step.
-2026-08-03 18:52:26,727 - INFO - Prediction Category for step 4: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.6052, failure_rate: 0.0116, temporal_propagation: 0.0000 
+2026-08-10 16:39:13,031 - INFO - 
+=== Step:4, Refactoring subscription_service:8010 with risk score 0.106 as AI agent ===
 
 
-2026-08-03 18:52:26,729 - INFO - ✅ ACCEPTED: shopping_cart_service:8003 → shopping_cart_agent:8003, decision type: auto_predicate_decision_no_governance_but_false_rejection
-2026-08-03 18:52:26,729 - INFO - 
+2026-08-10 16:39:13,031 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:13,031 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:13,132 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 4...
+2026-08-10 16:39:15,605 - INFO - Prediction Category for step 4: true_rejection, 
+
+ qa_inconsistency_rate: 0.0000, p95_latency: 1.5283, failure_rate: 0.0108, temporal_propagation: 0.0111 
+
+
+2026-08-10 16:39:15,605 - INFO - ❌ REJECTED: subscription_service:8010 remains as service, decision type: true_rejected_by_predicate
+2026-08-10 16:39:15,606 - INFO - 
 ============================== Starting Step 5/10 ==============================
-2026-08-03 18:52:26,729 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['subscription_service:8010', 0.35337866550025865], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['product_catalog_service:8008', 1.2730000000000001], ['order_service:8000', 2.8823786655002586]]
-2026-08-03 18:52:26,729 - INFO - 
-=== Step:5, Refactoring inventory_service:8001 with risk score 0.177 as AI agent ===
-2026-08-03 18:52:26,729 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:26,830 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 5...
-2026-08-03 18:52:29,341 - INFO - Prediction Category for step 5: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0081, p95_latency: 1.2988, failure_rate: 0.0021, temporal_propagation: 0.0104 
+2026-08-10 16:39:15,606 - INFO - 
+=== Step:5, Refactoring shopping_cart_service:8003 with risk score 0.113 as AI agent ===
 
 
-2026-08-03 18:52:29,342 - INFO - ✅ ACCEPTED: inventory_service:8001 → inventory_agent:8001, decision type: auto_predicate_decision_no_governance_but_false_rejection
-2026-08-03 18:52:29,342 - INFO - 🔄 Detecting Temporal Propagation Influence ...
-2026-08-03 18:52:29,342 - INFO -     Updated product_catalog_service:8008: score 1.273 → 2.273 due to temporal propagation influence from inventory_service:8001 with weight 1
-2026-08-03 18:52:29,342 - INFO -     Updated order_service:8000: score 2.882 → 3.882 due to temporal propagation influence from inventory_service:8001 with weight 1
-2026-08-03 18:52:29,342 - INFO - 
+2026-08-10 16:39:15,606 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:15,606 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:15,706 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 5...
+2026-08-10 16:39:18,104 - INFO -   No temporal propagation influence detected for this step.
+2026-08-10 16:39:18,104 - INFO - Prediction Category for step 5: true_rejection, 
+
+ qa_inconsistency_rate: 0.0000, p95_latency: 1.6389, failure_rate: 0.0205, temporal_propagation: 0.0000 
+
+
+2026-08-10 16:39:18,105 - INFO - ❌ REJECTED: shopping_cart_service:8003 remains as service, decision type: true_rejected_by_predicate
+2026-08-10 16:39:18,105 - INFO - 
 ============================== Starting Step 6/10 ==============================
-2026-08-03 18:52:29,342 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['subscription_service:8010', 0.35337866550025865], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['product_catalog_service:8008', 2.273], ['order_service:8000', 3.8823786655002586]]
-2026-08-03 18:52:29,342 - INFO - 
-=== Step:6, Refactoring subscription_service:8010 with risk score 0.35337866550025865 as AI agent ===
-2026-08-03 18:52:29,342 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:29,443 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 6...
-2026-08-03 18:52:31,967 - INFO - Prediction Category for step 6: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.2144, failure_rate: 0.0062, temporal_propagation: 0.0064 
+2026-08-10 16:39:18,105 - INFO - 
+=== Step:6, Refactoring inventory_service:8001 with risk score 0.184 as AI agent ===
 
 
-2026-08-03 18:52:31,968 - INFO - ✅ ACCEPTED: subscription_service:8010 → subscription_agent:8010, decision type: auto_predicate_decision_no_governance_but_false_rejection
-2026-08-03 18:52:31,968 - INFO - 🔄 Detecting Temporal Propagation Influence ...
-2026-08-03 18:52:31,968 - INFO -     Updated order_service:8000: score 3.882 → 4.498 due to temporal propagation influence from subscription_service:8010 with weight 1
-2026-08-03 18:52:31,968 - INFO - 
+2026-08-10 16:39:18,105 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:18,105 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:18,205 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 6...
+2026-08-10 16:39:20,594 - INFO - Prediction Category for step 6: true_rejection, 
+
+ qa_inconsistency_rate: 0.0150, p95_latency: 1.4573, failure_rate: 0.0112, temporal_propagation: 0.0265 
+
+
+2026-08-10 16:39:20,595 - INFO - ❌ REJECTED: inventory_service:8001 remains as service, decision type: true_rejected_by_predicate
+2026-08-10 16:39:20,595 - INFO - 
 ============================== Starting Step 7/10 ==============================
-2026-08-03 18:52:31,968 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['subscription_service:8010', 0.35337866550025865], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['product_catalog_service:8008', 2.273], ['order_service:8000', 4.498435583419223]]
-2026-08-03 18:52:31,968 - INFO - 
-=== Step:7, Refactoring procurement_service:8009 with risk score 0.398 as AI agent ===
-2026-08-03 18:52:31,968 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:32,068 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 7...
-2026-08-03 18:52:34,605 - INFO - Prediction Category for step 7: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.2340, failure_rate: 0.0020, temporal_propagation: 0.0022 
+2026-08-10 16:39:20,595 - INFO - 
+=== Step:7, Refactoring product_catalog_service:8008 with risk score 0.252 as AI agent ===
 
 
-2026-08-03 18:52:34,606 - INFO - ✅ ACCEPTED: procurement_service:8009 → procurement_agent:8009, decision type: auto_predicate_decision_no_governance_but_false_rejection
-2026-08-03 18:52:34,606 - INFO - 🔄 Detecting Temporal Propagation Influence ...
-2026-08-03 18:52:34,606 - INFO -     Updated inventory_service:8001: score 0.177 → 0.392 due to temporal propagation influence from procurement_service:8009 with weight 1
-2026-08-03 18:52:34,606 - INFO - 
+2026-08-10 16:39:20,595 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:20,595 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:20,695 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 7...
+2026-08-10 16:39:23,064 - INFO -   No temporal propagation influence detected for this step.
+2026-08-10 16:39:23,064 - INFO - Prediction Category for step 7: true_rejection, 
+
+ qa_inconsistency_rate: 0.0000, p95_latency: 1.6978, failure_rate: 0.0177, temporal_propagation: 0.0000 
+
+
+2026-08-10 16:39:23,065 - INFO - ❌ REJECTED: product_catalog_service:8008 remains as service, decision type: true_rejected_by_predicate
+2026-08-10 16:39:23,065 - INFO - 
 ============================== Starting Step 8/10 ==============================
-2026-08-03 18:52:34,606 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['shopping_cart_service:8003', 0.148], ['subscription_service:8010', 0.35337866550025865], ['inventory_service:8001', 0.39246052036568324], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['product_catalog_service:8008', 2.273], ['order_service:8000', 4.498435583419223]]
-2026-08-03 18:52:34,606 - INFO - 
-=== Step:8, Refactoring shipment_service:8006 with risk score 0.407 as AI agent ===
-2026-08-03 18:52:34,606 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:34,706 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 8...
-2026-08-03 18:52:37,308 - INFO - Prediction Category for step 8: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.3149, failure_rate: 0.0064, temporal_propagation: 0.0066 
+2026-08-10 16:39:23,065 - INFO - 
+=== Step:8, Refactoring procurement_service:8009 with risk score 0.312 as AI agent ===
 
 
-2026-08-03 18:52:37,308 - INFO - ✅ ACCEPTED: shipment_service:8006 → shipment_agent:8006, decision type: auto_predicate_decision_no_governance_but_false_rejection
-2026-08-03 18:52:37,308 - INFO - 🔄 Detecting Temporal Propagation Influence ...
-2026-08-03 18:52:37,308 - INFO -     Updated order_service:8000: score 4.498 → 5.135 due to temporal propagation influence from shipment_service:8006 with weight 1
-2026-08-03 18:52:37,308 - INFO - 
+2026-08-10 16:39:23,065 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:23,065 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:23,165 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 8...
+2026-08-10 16:39:25,563 - INFO - Prediction Category for step 8: true_rejection, 
+
+ qa_inconsistency_rate: 0.0000, p95_latency: 1.5392, failure_rate: 0.0149, temporal_propagation: 0.0152 
+
+
+2026-08-10 16:39:25,564 - INFO - ❌ REJECTED: procurement_service:8009 remains as service, decision type: true_rejected_by_predicate
+2026-08-10 16:39:25,564 - INFO - 
 ============================== Starting Step 9/10 ==============================
-2026-08-03 18:52:37,309 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['shopping_cart_service:8003', 0.148], ['subscription_service:8010', 0.35337866550025865], ['inventory_service:8001', 0.39246052036568324], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['product_catalog_service:8008', 2.273], ['order_service:8000', 5.135048012548943]]
-2026-08-03 18:52:37,309 - INFO - 
-=== Step:9, Refactoring product_catalog_service:8008 with risk score 2.273 as AI agent ===
-2026-08-03 18:52:37,309 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:37,409 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 9...
-2026-08-03 18:52:39,963 - INFO -   No temporal propagation influence detected for this step.
-2026-08-03 18:52:39,963 - INFO - Prediction Category for step 9: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.7450, failure_rate: 0.0118, temporal_propagation: 0.0000 
+2026-08-10 16:39:25,564 - INFO - 
+=== Step:9, Refactoring shipment_service:8006 with risk score 0.332 as AI agent ===
 
 
-2026-08-03 18:52:39,963 - INFO - ✅ ACCEPTED: product_catalog_service:8008 → product_catalog_agent:8008, decision type: auto_predicate_decision_no_governance_true_accepted_by_predicate
-2026-08-03 18:52:39,963 - INFO - 
+2026-08-10 16:39:25,564 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:25,564 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:25,664 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 9...
+2026-08-10 16:39:28,102 - INFO - Prediction Category for step 9: true_rejection, 
+
+ qa_inconsistency_rate: 0.0000, p95_latency: 1.5060, failure_rate: 0.0218, temporal_propagation: 0.0221 
+
+
+2026-08-10 16:39:28,103 - INFO - ❌ REJECTED: shipment_service:8006 remains as service, decision type: true_rejected_by_predicate
+2026-08-10 16:39:28,103 - INFO - 
 ============================== Starting Step 10/10 ==============================
-2026-08-03 18:52:39,963 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['shopping_cart_service:8003', 0.148], ['subscription_service:8010', 0.35337866550025865], ['inventory_service:8001', 0.39246052036568324], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['product_catalog_service:8008', 2.273], ['order_service:8000', 5.135048012548943]]
-2026-08-03 18:52:39,964 - INFO - 
-=== Step:10, Refactoring order_service:8000 with risk score 5.135048012548943 as AI agent ===
-2026-08-03 18:52:39,964 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-03 18:52:40,064 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 10...
-2026-08-03 18:52:42,591 - INFO -   No temporal propagation influence detected for this step.
-2026-08-03 18:52:42,591 - INFO - Prediction Category for step 10: auto_predicate_decision_no_governance, 
-
- qa_inconsistency_rate: 0.0385, p95_latency: 1.8539, failure_rate: 0.0209, temporal_propagation: 0.0000 
+2026-08-10 16:39:28,103 - INFO - 
+=== Step:10, Refactoring order_service:8000 with risk score 0.71 as AI agent ===
 
 
-2026-08-03 18:52:42,591 - INFO - ❌ REJECTED: order_service:8000 remains as service, decision type: auto_predicate_decision_no_governance_but_false_acceptance
-2026-08-03 18:52:42,591 - INFO - 
+2026-08-10 16:39:28,103 - INFO - current services with scores: [['pricing_service:8002', 0.038], ['notification_service:8011', 0.043], ['payment_service:8007', 0.065], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.113], ['inventory_service:8001', 0.184], ['product_catalog_service:8008', 0.252], ['procurement_service:8009', 0.312], ['shipment_service:8006', 0.332], ['order_service:8000', 0.71]]
+2026-08-10 16:39:28,103 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-10 16:39:28,204 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 10...
+2026-08-10 16:39:30,614 - INFO -   No temporal propagation influence detected for this step.
+2026-08-10 16:39:30,614 - INFO - Prediction Category for step 10: true_rejection, 
+
+ qa_inconsistency_rate: 0.0077, p95_latency: 1.5807, failure_rate: 0.0285, temporal_propagation: 0.0000 
+
+
+2026-08-10 16:39:30,615 - INFO - ❌ REJECTED: order_service:8000 remains as service, decision type: true_rejected_by_predicate
+2026-08-10 16:39:30,615 - INFO - 
 
 
 
 ------------------------------- 🎯 Final architecture: -------------------- 
 
 
-2026-08-03 18:52:42,591 - INFO - Services: ['order_service:8000']
-2026-08-03 18:52:42,591 - INFO - Agents: ['notification_agent:8011', 'pricing_agent:8002', 'payment_agent:8007', 'shopping_cart_agent:8003', 'inventory_agent:8001', 'subscription_agent:8010', 'procurement_agent:8009', 'shipment_agent:8006', 'product_catalog_agent:8008']
-2026-08-03 18:52:42,592 - INFO - 
+2026-08-10 16:39:30,615 - INFO - Services: ['subscription_service:8010', 'shopping_cart_service:8003', 'inventory_service:8001', 'product_catalog_service:8008', 'procurement_service:8009', 'shipment_service:8006', 'order_service:8000']
+2026-08-10 16:39:30,615 - INFO - Agents: ['pricing_agent:8002', 'notification_agent:8011', 'payment_agent:8007']
+2026-08-10 16:39:30,615 - INFO - Cumulative QA Inconsistency Rate: 0.0227
+2026-08-10 16:39:30,615 - INFO - Cumulative p95 Latency Inflation: 14.4109
+2026-08-10 16:39:30,615 - INFO - Cumulative Failure Rate Inflation: 0.1615
+2026-08-10 16:39:30,615 - INFO - 
+
+------------------------------- 🎯 Final Architecture Experiment Run -------------------- 
+
+2026-08-10 16:39:30,615 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step -1...
+2026-08-10 16:39:32,968 - INFO - Final Architecture Experiment Run Results : {'result': 'REJECTED', 'step_self_temporal_propagation': 0.02350478202084914, 'step_report_file_name': '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/Ranked/res_LLM_llama3.2:3b_T_0_U_212_MO_Ranked_weight_fanout0.3_bc0.2_ccyl0.1_ccog0.2_tprop0.2_live_progressive_refactor_PRED_Full_GM_Post-Audit-Comprehensive_TPOP_True.json', 'details': {'epsilon_l': 1.3, 'epsilon_qa': 0.0, 'epsilon_f': 0.045, 'log_telemetry_file': '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_212.json', 'p95_latency': 1.444403522372107, 'qa_inconsistency_rate': 0.01, 'failure_rate': 0.013215901316374718, 'latency_predicate_failed': True, 'qa_predicate_failed': None, 'failure_rate_predicate_failed': False, 'success': False, 'step_self_temporal_propagation': 0.02350478202084914, 'target_service': 'order_service', 'total_trials': 5000}}
+2026-08-10 16:39:32,968 - INFO - services: ['subscription_service:8010', 'shopping_cart_service:8003', 'inventory_service:8001', 'product_catalog_service:8008', 'procurement_service:8009', 'shipment_service:8006'], agents: ['pricing_agent:8002', 'notification_agent:8011', 'payment_agent:8007', 'order_agent:8000']
+2026-08-10 16:39:32,968 - INFO - 
 Shutting Down:
-2026-08-03 18:52:42,592 - INFO - Services: ['order_service:8000']
-2026-08-03 18:52:42,592 - INFO - Agents: ['notification_agent:8011', 'pricing_agent:8002', 'payment_agent:8007', 'shopping_cart_agent:8003', 'inventory_agent:8001', 'subscription_agent:8010', 'procurement_agent:8009', 'shipment_agent:8006', 'product_catalog_agent:8008']
+2026-08-10 16:39:32,968 - INFO - Services: ['subscription_service:8010', 'shopping_cart_service:8003', 'inventory_service:8001', 'product_catalog_service:8008', 'procurement_service:8009', 'shipment_service:8006', 'order_service:8000']
+2026-08-10 16:39:32,968 - INFO - Agents: ['pricing_agent:8002', 'notification_agent:8011', 'payment_agent:8007']

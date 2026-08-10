@@ -135,7 +135,7 @@ service_to_agent = {
 }
 
 # -------------------------- Apply ranking strategy -------------------------
-migration_order_strategy = "Ranked"
+migration_order_strategy = "Ranked" + "_weight_" + "_".join([f"{k}{v}" for k, v in config["ranking_weights"].items()])+ "_" + "live_progressive_refactor"
 
 
 # --------------------------------- Acceptance Predicate ---------------------------
@@ -309,9 +309,11 @@ def shutdown(services, agents):
     #subprocess.run([SD_SCRIPT] + args, check=True)
 
 
+
 def run_experiment_for_step(migration_order, step_num, predicate_mode, governance_policy, services, agents,
                             target_service, temporal_propagation_enabled, previous_step_acceptance_type,
-                            migration_sorting_strategy_services, T, LLM, CONCURRENCY_RATE, R):
+                            migration_sorting_strategy_services, T, LLM, CONCURRENCY_RATE, R,
+                            cumulative_QA_inconsistency_rate=0, cumulative_p95_latency_inflation=0, cumulative_failure_rate_inflation=0):
     logger.info(f"🧪 Running Predicate-based Acceptance Experiment for step {step_num}...")
     time.sleep(2) 
  
@@ -320,8 +322,9 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
     baseline_latency_p95 = 1
    
     epsilon_l = baseline_latency_p95 * (100 + latency_threshold)/100
-    epsilon_qa = 100 - QA_threshold
+    epsilon_qa = (100 - QA_threshold)/100
     epsilon_f = failure_threshold / 100
+    
    
     if predicate_mode == "QA-Only":
         epsilon_l = -1
@@ -366,7 +369,11 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
 
     # acceptance_result = step_result_parsed["result"]
 
-
+    if step_num == -1:
+        logger.info(f"Final Architecture Experiment Run Results : {step_result_parsed}")
+        logger.info(f"services: {services}, agents: {agents}")
+        return None, None, None, None, None, None, None  # No decision for final architecture run
+    
     # ============================================================================
     # POST-ACTION ADJUDICATION: Apply governance mechanism with HITL decision logic
     # ============================================================================
@@ -421,10 +428,15 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
     )
     # print(f"Evidence Summary for step {step_num}:", evidence_summary)
     logger.info(f"Prediction Category for step {step_num}: {prediction_category}, \n\n qa_inconsistency_rate: {step_result_parsed['details']['qa_inconsistency_rate']:.4f}, p95_latency: {step_result_parsed['details']['p95_latency']:.4f}, failure_rate: {step_result_parsed['details']['failure_rate']:.4f}, temporal_propagation: {step_self_temporal_propagation:.4f} \n\n")
+    cumulative_QA_inconsistency_rate += step_result_parsed['details']['qa_inconsistency_rate']
+    cumulative_p95_latency_inflation += step_result_parsed['details']['p95_latency']
+    cumulative_failure_rate_inflation += step_result_parsed['details']['failure_rate']
+    
     if str(step_num)=="1":
          # For the first step, we create a new report file (overwriting if it already exists)
         with open(step_report_file_name, "w") as f:
             f.write("")
+    
     
     
     full_run_step_results = {"migration_order": migration_order, "migration_sorting_strategy_services": migration_sorting_strategy_services,
@@ -439,13 +451,12 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         json.dump(full_run_step_results, f, indent=2)
         f.write("\n\n------------\n\n")
     
-    return final_decision, step_self_temporal_propagation, decision_type, prediction_category
+    return final_decision, step_self_temporal_propagation, decision_type, prediction_category, cumulative_QA_inconsistency_rate, cumulative_p95_latency_inflation, cumulative_failure_rate_inflation
 
 
 
 
 # ---- Main Refactoring LOOP ----
-
     
 def init_conditions():
     subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
@@ -455,7 +466,11 @@ def init_conditions():
     previous_step_acceptance_types = ['N/A']
     temporal_propagations = []
     
-    return migration_sorting_strategy_services, current_services_with_scores, previous_step_acceptance_types, temporal_propagations
+    cumulative_QA_inconsistency_rate = 0
+    cumulative_p95_latency_inflation = 0
+    cumulative_failure_rate_inflation = 0
+    
+    return migration_sorting_strategy_services, current_services_with_scores, previous_step_acceptance_types, temporal_propagations, cumulative_QA_inconsistency_rate, cumulative_p95_latency_inflation, cumulative_failure_rate_inflation
 
 total = (
     len(acceptance_predicate_modes)
@@ -464,6 +479,7 @@ total = (
     * len(T)
     * len(CONCURRENCY_RATE)
 )
+
 
 
 with tqdm.tqdm(total=total, desc="Experiments") as pbar:
@@ -482,17 +498,17 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                             # Initialize: all services running, no agents yet
                             current_services = [s[0] for s in ranked_services]
                             current_agents = []
-                            migration_sorting_strategy_services, current_services_with_scores, previous_step_acceptance_types, temporal_propagations = init_conditions()
+                            migration_sorting_strategy_services, current_services_with_scores, previous_step_acceptance_types, temporal_propagations, cumulative_QA_inconsistency_rate, cumulative_p95_latency_inflation, cumulative_failure_rate_inflation= init_conditions()
 
                             
                             for step in range(1, len(migration_sorting_strategy_services)+1):
                                 logger.info(f"\n============================== Starting Step {step}/{len(migration_sorting_strategy_services)} ==============================")
-                                logger.info(f"current services with scores: {migration_sorting_strategy_services}")
                                 
                                 
                                 svc = migration_sorting_strategy_services[step-1][0]
                                 risk_score = migration_sorting_strategy_services[step-1][1]
-                                logger.info(f"\n=== Step:{step}, Refactoring {svc} with risk score {risk_score} as AI agent ===")
+                                logger.info(f"\n=== Step:{step}, Refactoring {svc} with risk score {risk_score} as AI agent ===\n\n")
+                                logger.info(f"current services with scores: {migration_sorting_strategy_services}")
 
                                 agent = service_to_agent[svc]
 
@@ -509,10 +525,10 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
 
                                 # input("Press Enter to run the experiment for this configuration...")
 
-                                final_decision, step_self_temporal_propagation, decision_type, prediction_category = run_experiment_for_step(migration_order_strategy, step, predicate_mode, governance_policy,
+                                final_decision, step_self_temporal_propagation, decision_type, prediction_category, cumulative_QA_inconsistency_rate, cumulative_p95_latency_inflation, cumulative_failure_rate_inflation = run_experiment_for_step(migration_order_strategy, step, predicate_mode, governance_policy,
                                                                             candidate_services, candidate_agents, svc.split(":")[0],
                                                                             temporal_propagation_enabled, previous_step_acceptance_types[-1],
-                                                                            migration_sorting_strategy_services, T_, LLM_, CONCURRENCY_RATE_, R=TOTAL_REQUESTS)
+                                                                            migration_sorting_strategy_services, T_, LLM_, CONCURRENCY_RATE_, TOTAL_REQUESTS, cumulative_QA_inconsistency_rate, cumulative_p95_latency_inflation, cumulative_failure_rate_inflation)
                                 previous_step_acceptance_types.append(decision_type)
 
                                 if final_decision is True:
@@ -571,7 +587,20 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                             logger.info("\n\n\n\n------------------------------- 🎯 Final architecture: -------------------- \n\n")
                             logger.info(f"Services: {current_services}")
                             logger.info(f"Agents: {current_agents}")
-
+                            
+                            logger.info(f"Cumulative QA Inconsistency Rate: {cumulative_QA_inconsistency_rate:.4f}")
+                            logger.info(f"Cumulative p95 Latency Inflation: {cumulative_p95_latency_inflation:.4f}")
+                            logger.info(f"Cumulative Failure Rate Inflation: {cumulative_failure_rate_inflation:.4f}")
+                            
+                            
+                            # test final architecture with a final experiment run
+                            logger.info(f"\n\n------------------------------- 🎯 Final Architecture Experiment Run -------------------- \n")
+                            _, _, _, _, _, _, _ = run_experiment_for_step(migration_order_strategy, -1, predicate_mode, governance_policy,
+                                                                            candidate_services, candidate_agents, svc.split(":")[0],
+                                                                            temporal_propagation_enabled, previous_step_acceptance_types[-1],
+                                                                            migration_sorting_strategy_services, T_, LLM_, CONCURRENCY_RATE_, R=TOTAL_REQUESTS)
+                                
+                                
                             # input("Press Enter to gracefully shutdown final configuration...")
                             shutdown(current_services, current_agents)
                         except Exception as e:
