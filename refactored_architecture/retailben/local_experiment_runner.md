@@ -85,14 +85,14 @@ curl -X 'POST' 'http://127.0.0.1:8002/price' -H 'accept: application/json' -H 'C
 ## Set service up:
 
 ```bash
-
+nohup python3 run_as_service.py procurement_agent 8009 >& procurement_agent.log &
 ```
 
 ## Send a request to service:
 
 ``` bash
 
-
+curl -X 'POST' 'http://127.0.0.1:8009/order_supplier' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku": "4cc0770f-91bc-4c0d-a26f-7b872f02ca94","qty": 100, "preferred_supplier": "IGI"}'
 ```
 
 ------------------------
@@ -157,13 +157,16 @@ curl -X 'GET' 'http://127.0.0.1:8003/cart/2c73d756-bf8f-4c60-99ca-47008f3721c4' 
 ## Set service up:
 
 ```bash
-
+nohup python3 run_as_service.py subscription_agent 8010 >& subscription_agent.log &
 ```
 
 ## Send a request to service:
 
 ``` bash
 
+curl -X 'POST' 'http://127.0.0.1:8010/subscriptions' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"user_id": "1","email": "a@b.com", "promo_code": "SUMMER20"}'
+
+curl -X 'GET' 'http://127.0.0.1:8010/subscriptions/1' -H 'accept: application/json' -H 'Content-Type: application/json' 
 
 ```
 

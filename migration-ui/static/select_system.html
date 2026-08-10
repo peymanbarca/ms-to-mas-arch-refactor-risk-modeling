@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Migration Framework</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+
+        <h1>
+            Microservice → Agentic AI Migration
+        </h1>
+
+        <p>
+            Select the microservice system benchmark to configure
+            and execute the migration experiment.
+        </p>
+
+    </div>
+
+
+    <div class="system-grid">
+
+
+        <!-- ============================= -->
+        <!-- RetailBen -->
+        <!-- ============================= -->
+
+        <div
+            class="system-card selectable"
+            onclick="selectSystem('retailben')">
+
+            <div class="system-image">
+
+                <img
+                    src="/figures/RetailBen.drawio.png"
+                    alt="RetailBen Service Dependency Graph">
+
+            </div>
+
+            <div class="system-info">
+
+                <h2>RetailBen</h2>
+
+                <p>
+                    Retail microservice system benchmark
+                    for supply-chain workflows.
+                </p>
+
+                <span class="select-label">
+                    Select System →
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================= -->
+        <!-- System 2 -->
+        <!-- ============================= -->
+
+        <div class="system-card disabled">
+
+            <div class="system-image">
+
+                <img
+                    src="/figures/google-benchmark.drawio.png"
+                    alt="Google Microservice Demo Dependency Graph">
+
+            </div>
+
+            <div class="system-info">
+
+                <h2>System 2</h2>
+
+                <p>
+                    Google Online Boutique microservice system benchmark.
+                </p>
+
+                <span class="disabled-label">
+                    Not Available
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================= -->
+        <!-- System 3 -->
+        <!-- ============================= -->
+
+        <div class="system-card disabled">
+
+            <div class="system-image">
+
+                <img
+                    src="/figures/DSB-social.drawio.png"
+                    alt="DSB Social Network Dependency Graph">
+
+            </div>
+
+            <div class="system-info">
+
+                <h2>System 3</h2>
+
+                <p>
+                    DeathStarBench Social Network microservice system benchmark.
+                </p>
+
+                <span class="disabled-label">
+                    Not Available
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+function selectSystem(system) {
+
+    if (system === "retailben") {
+
+        window.location.href = "/retailben.html";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

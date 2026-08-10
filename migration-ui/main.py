@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 import subprocess
@@ -181,6 +181,13 @@ def get_logs():
         }
         
 
+
+@app.get("/")
+def system_selection():
+
+    return FileResponse(
+        BASE_DIR / "migration-ui" /  "static" / "select_system.html"
+    )
 
 app.mount(
     "/figures",
