@@ -73,8 +73,10 @@ from .quote import create_quote_from_count, create_tracking_id
 
 logger = logging.getLogger("shippingagent")
 
-# ── Ollama LLM (mirrors sample: temperature=0 for deterministic shipping decisions) ─
-llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
+
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 
 # ── MongoDB Configuration ─────────────────────────────────────────────────

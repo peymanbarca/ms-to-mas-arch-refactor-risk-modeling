@@ -55,6 +55,8 @@ from .servicer import AdServicer
 logger = logging.getLogger(__name__)
 
 GRPC_PORT = int(os.getenv("PORT", "5057"))
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 # # ── Prometheus metrics (optional – mirrors Java PrometheusStatsCollector) ───
 # try:
@@ -250,7 +252,8 @@ if __name__ == "__main__":
     #     except ImportError:
     #         logger.warning("opentelemetry-exporter-jaeger not installed; skipping Jaeger export")
 
-    logger.info("AdService starting | gRPC port=%d", GRPC_PORT)
+    logger.info("AdAgent starting | gRPC port=%d", GRPC_PORT)
+    logger.info("AdAgent starting | model=%s | temperature=%.2f", MODEL, TEMPERATURE)
     logger.info("Ad catalog loaded | total_ads=%d | categories=%s",
                 len(ALL_ADS), list(ADS_BY_CATEGORY.keys()))
 

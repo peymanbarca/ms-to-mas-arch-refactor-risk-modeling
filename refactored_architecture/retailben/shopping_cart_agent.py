@@ -65,8 +65,10 @@ logging.basicConfig(
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
 MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8003))
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
-llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 app = FastAPI(title="Shopping Cart Agent")
 
@@ -98,6 +100,8 @@ class CartAgentState(TypedDict):
 
 @app.on_event("startup")
 async def startup():
+    logger.info("Starting Shopping Cart Agent on port %s with model %s and temperature %s", PORT, MODEL, TEMPERATURE)
+    
     global db_client, db
     db_client = AsyncIOMotorClient(MONGO_URI)
     db = db_client[MONGO_DB]

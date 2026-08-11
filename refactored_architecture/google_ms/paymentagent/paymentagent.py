@@ -79,8 +79,10 @@ from .card_validator import (
 
 logger = logging.getLogger("paymentservice.agent")
 
-# ── Ollama LLM (mirrors sample: temperature=0 for deterministic auth) ─────────
-llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
+
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 
 # ── MongoDB Configuration ─────────────────────────────────────────────────

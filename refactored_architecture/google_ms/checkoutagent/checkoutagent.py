@@ -104,6 +104,7 @@ from langchain_ollama import ChatOllama
 from langgraph.graph import END, StateGraph
 from motor.motor_asyncio import AsyncIOMotorClient
 from typing_extensions import TypedDict
+import os
 
 from ..shared import demo_pb2
 from ..shared import demo_pb2_grpc
@@ -121,7 +122,10 @@ from .money import (
 logger = logging.getLogger("checkoutagent")
 
 # ── LLM ───────────────────────────────────────────────────────────────────────
-llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
+
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 # Global client (lazy-initialized)
 _mongodb_client: AsyncIOMotorClient = None

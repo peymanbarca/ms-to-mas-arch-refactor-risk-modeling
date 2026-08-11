@@ -21,7 +21,8 @@ from .quote import create_quote_from_count
 logger = logging.getLogger("shippingagent")
 
 GRPC_PORT = int(os.getenv("PORT", "5051"))
-
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 # ════════════════════════════════════════════════════════════════════════════
 # Optional OpenTelemetry tracing
@@ -271,8 +272,10 @@ if __name__ == "__main__":
     # _setup_profiler()
 
     # Go: port := defaultPort / os.LookupEnv("PORT")
-    logger.info("Shipping Service listening on port %d", GRPC_PORT)
-
+    logger.info("Shipping Agent listening on port %d", GRPC_PORT)
+    logger.info("ShippingAgent starting | gRPC port=%d", GRPC_PORT)
+    logger.info("ShippingAgent starting | model=%s | temperature=%.2f", MODEL, TEMPERATURE)
+    
     http_port = int(os.getenv("HTTP_PORT", GRPC_PORT + 1000))
 
     async def _main() -> None:

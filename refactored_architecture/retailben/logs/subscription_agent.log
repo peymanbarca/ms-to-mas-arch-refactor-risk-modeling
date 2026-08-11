@@ -1743,3 +1743,9 @@ This output is generated based on the provided rules and data. The current time 
 2026-05-25 20:42:44,942 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
 2026-05-25 20:43:02,812 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
 2026-07-20 10:52:17,880 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-08-11 10:09:32,955 - INFO - Starting Subscription Agent on port 8010 with model llama3.2:3b and temperature 0.2
+2026-08-11 10:09:32,961 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-08-11 10:11:18,706 - INFO - Starting Subscription Agent on port 8010 with model llama3.2:3b and temperature 0.2
+2026-08-11 10:11:18,711 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
+2026-08-11 10:12:26,074 - INFO - Starting Subscription Agent on port 8010 with model llama3:8b and temperature 0.0
+2026-08-11 10:12:26,080 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben

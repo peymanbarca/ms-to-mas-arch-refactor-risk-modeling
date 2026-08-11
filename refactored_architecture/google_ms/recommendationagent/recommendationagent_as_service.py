@@ -18,7 +18,8 @@ from .servicer import RecommendationServicer
 logger = logging.getLogger("recommendationagent")
 
 GRPC_PORT = int(os.getenv("PORT", "5058"))
-
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 # ════════════════════════════════════════════════════════════════════════════
 # OpenTelemetry tracing setup
@@ -207,6 +208,9 @@ if __name__ == "__main__":
         await grpc_server.start()
         logger.info("listening on port: %d", GRPC_PORT)
 
+        logger.info("RECOM_Agent starting | gRPC port=%d", GRPC_PORT)
+        logger.info("RECOM_Agent starting | model=%s | temperature=%.2f", MODEL, TEMPERATURE)
+    
         http_config = uvicorn.Config(
             app,
             host="0.0.0.0",

@@ -22,6 +22,9 @@
 
 echo "Parsing arguments..."
 
+MODEL="llama3.2:3b"
+TEMPERATURE="0.0"
+
 for arg in "$@"; do
   case $arg in
     services=*)
@@ -30,6 +33,12 @@ for arg in "$@"; do
     agents=*)
       AGENTS="${arg#*=}"
       ;;
+    model=*)
+        MODEL="${arg#*=}"
+        ;;
+    temperature=*)
+        TEMPERATURE="${arg#*=}"
+        ;;
   esac
 done
 
@@ -87,7 +96,7 @@ for pair in "${AGENT_LIST[@]}"; do
   PORT="${pair##*:}"
 
   echo "Running agent: $NAME on port $PORT, Swagger UI: http://localhost:$PORT/docs"
-  nohup python3 run_as_service.py "$NAME" "$PORT" >& "$NAME".log &
+  MODEL="$MODEL" TEMPERATURE="$TEMPERATURE" nohup python3 run_as_service.py "$NAME" "$PORT" >& "$NAME".log &
 done
 
 # Graceful shutdown on CTRL+C

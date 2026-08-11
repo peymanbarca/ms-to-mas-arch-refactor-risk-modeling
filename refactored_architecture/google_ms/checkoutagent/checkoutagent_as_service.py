@@ -53,7 +53,8 @@ logger = logging.getLogger("checkoutagent")
 
 # Go: listenPort = "5050"
 GRPC_PORT = int(os.getenv("PORT", "5050"))
-
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 # ════════════════════════════════════════════════════════════════════════════
 # mustMapEnv / mustConnGRPC (Go helpers reproduced)
@@ -421,7 +422,10 @@ if __name__ == "__main__":
         # Go: log.Infof("starting to listen on tcp: %q", lis.Addr().String())
         logger.info("starting to listen on tcp: [::]:%d", GRPC_PORT)
         logger.info("HTTP server on :%d", http_port)
-
+        logger.info("CheckoutAgent starting | gRPC port=%d", GRPC_PORT)
+        logger.info("CheckoutAgent starting | model=%s | temperature=%.2f", MODEL, TEMPERATURE)
+        
+    
         http_cfg = uvicorn.Config(
             app,
             host="0.0.0.0",

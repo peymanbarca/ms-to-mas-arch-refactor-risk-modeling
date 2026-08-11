@@ -77,7 +77,10 @@ from typing_extensions import TypedDict
 logger = logging.getLogger("emailagent")
 
 # ── LLM ───────────────────────────────────────────────────────────────────────
-llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
+
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 # ── MongoDB reference (wired by main.py on startup) ───────────────────────────
 db: Any = None

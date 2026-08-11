@@ -16,6 +16,8 @@ from .currencyagent import run_currency_conversion_agent
 
 logger = logging.getLogger(__name__)
 GRPC_PORT = int(os.getenv("PORT", "5053"))
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 # ── Currency data loader ─────────────────────────────────────────────────────
 
@@ -144,6 +146,8 @@ async def rest_convert(request: dict):
 # ── Entry point ──────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    logger.info("CurrencyAgent starting | gRPC port=%d", GRPC_PORT)
+    logger.info("CurrencyAgent starting | model=%s | temperature=%.2f", MODEL, TEMPERATURE)    
     run_service(
         demo_pb2_grpc.add_CurrencyServiceServicer_to_server,
         CurrencyServiceServicer,

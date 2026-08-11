@@ -569,6 +569,15 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
     log_telemetry_file = details.get("log_telemetry_file", "")
     target_service = details.get("target_service", None)
     total_trials = details.get("total_trials", 5000)
+    
+    qa_inconsistency_rate=float(details.get("qa_inconsistency_rate", 0)),
+    p95_latency=float(details.get("p95_latency", 0)),
+    failure_rate=float(details.get("failure_rate", 0)),
+    threshold_qa=float(details.get("epsilon_qa", 0)),
+    threshold_latency=float(details.get("epsilon_l", 0)),
+    threshold_failure=float(details.get("epsilon_f", 0)),
+    
+
     if log_telemetry_file:
         # print(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
         try:
@@ -580,9 +589,114 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
         except Exception as e:
             # print(f"Error reading log telemetry file: {e}")
             pass
-            
     
-    if target_service and target_service in ["checkout_service"]:
-        return random.uniform(0.25, 0.8) *  total_trials  # likely sustained
+
+    # ---------------------------------------------------------
+    # 1. Normalize deviations from acceptance thresholds
+    #
+    # Positive = violation of the threshold
+    # Negative = comfortably below the threshold
+    # ---------------------------------------------------------
+
+    def normalized_deviation(value, threshold):
+        # if threshold <= 0:
+        #     return 0.0 if value <= threshold else 1.0
+
+        return max(0.0, (value[0] - threshold[0]) / threshold[0]) if threshold[0] > 0 else value[0]
+
+    qa_dev = normalized_deviation(
+        qa_inconsistency_rate,
+        threshold_qa
+    )
+
+    latency_dev = normalized_deviation(
+        p95_latency,
+        threshold_latency
+    )
+
+    failure_dev = normalized_deviation(
+        failure_rate,
+        threshold_failure
+    )
+
+    # ---------------------------------------------------------
+    # 2. Combine the three deviations
+    #
+    # max() ensures that a serious violation in ANY metric
+    # can make the event sustained.
+    #
+    # mean() prevents one tiny deviation from dominating.
+    # ---------------------------------------------------------
+
+    mean_deviation = (
+        qa_dev +
+        latency_dev +
+        failure_dev
+    ) / 3.0
+
+    max_deviation = max(
+        qa_dev,
+        latency_dev,
+        failure_dev
+    )
+
+    # Weighted combination:
+    # emphasize the worst metric.
+    overall_deviation = (
+        0.4 * mean_deviation +
+        0.6 * max_deviation
+    )
+    
+ 
+     # ---------------------------------------------------------
+    # 3. Base probability of sustained behavior
+    # ---------------------------------------------------------
+
+    # Close to thresholds:
+    #       sustained ≈ 10-25%
+    #
+    # Large deviation:
+    #       sustained approaches ≈ 80-95%
+    #
+    # sigmoid-like transformation
+    sustained_probability = (
+        0.10
+        + 0.75 * (
+            overall_deviation /
+            (overall_deviation + 0.30)
+        )
+    )
+
+    # ---------------------------------------------------------
+    # 4. Service-specific sustained risk
+    # ---------------------------------------------------------
+
+    if target_service == "order_service":
+        sustained_probability += 0.15
+
+    elif target_service == "product_catalog_service":
+        sustained_probability += 0.10
+
     else:
-        return random.uniform(0.1, 0.3) * total_trials  # → likely transient  
+        sustained_probability += 0.00
+
+    # ---------------------------------------------------------
+    # 5. Bound probability
+    # ---------------------------------------------------------
+
+    sustained_probability = min(
+        0.95,
+        max(0.05, sustained_probability)
+    )
+
+    # ---------------------------------------------------------
+    # 6. Simulate number of sustained trials
+    # ---------------------------------------------------------
+
+    return (
+        random.uniform(
+            sustained_probability * 0.85,
+            sustained_probability * 1.15
+        )
+        * total_trials
+    )

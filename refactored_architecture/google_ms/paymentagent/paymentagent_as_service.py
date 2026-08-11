@@ -28,7 +28,8 @@ from .card_validator import (
 logger = logging.getLogger("paymentagent")
 
 GRPC_PORT = int(os.getenv("PORT", "5052"))
-
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 # ════════════════════════════════════════════════════════════════════════════
 # Optional OpenTelemetry tracing
@@ -287,9 +288,11 @@ if __name__ == "__main__":
         grpc_server = _build_grpc_server(_servicer, GRPC_PORT)
         await grpc_server.start()
         # Node.js: logger.info('PaymentService gRPC server started on port X')
-        logger.info("PaymentService gRPC server started on port %d", GRPC_PORT)
-        logger.info("PaymentService HTTP server starting on port %d", http_port)
-
+        logger.info("PaymentAgent gRPC server started on port %d", GRPC_PORT)
+        logger.info("PaymentAgent HTTP server starting on port %d", http_port)
+        logger.info("PaymentAgent starting | gRPC port=%d", GRPC_PORT)
+        logger.info("PaymentAgent starting | model=%s | temperature=%.2f", MODEL, TEMPERATURE)
+    
         http_cfg = uvicorn.Config(
             app,
             host="0.0.0.0",

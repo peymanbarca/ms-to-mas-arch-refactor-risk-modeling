@@ -69,8 +69,10 @@ from typing_extensions import TypedDict
 
 logger = logging.getLogger("currencyagent")
 
-# ── Ollama LLM (temperature=0 for deterministic conversion review) ─────────────
-llm = ChatOllama(model="llama3.2:3b", temperature=0.0, reasoning=False)
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
+
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 
 

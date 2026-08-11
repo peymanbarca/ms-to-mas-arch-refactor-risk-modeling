@@ -52,10 +52,10 @@ logger = logging.getLogger(__name__)
 # Configuration & Database Setup
 # ════════════════════════════════════════════════════════════════════════════
 
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
-# ── Ollama LLM (mirrors sample: temperature=0 for deterministic auth) ─────────
-llm = ChatOllama(model=OLLAMA_MODEL, temperature=0.0, reasoning=False)
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 
 

@@ -189,17 +189,20 @@ temporal_propagation_dependency_influence_weight = {
 
 
 # ----------------- RUNTIME Configurations ----------------
-LLM = ["llama3.2:3b", "qwen3:14b"] # "llama3.2:3b" or "qwen3:14b"
+LLM = ["llama3.2:3b", "llama3:8b"] # "llama3.2:3b" or "qwen3:14b"
 T = [0.0, 0.8] # 0 or 0.8
 CONCURRENCY_RATE = [20, 100] # concurrent requests
 
 
 # ---- HELPERS ----
 
-def build_args(services, agents):
+def build_args(services, agents, model, t):
     """
     Convert lists to CLI format:
-    services=svc1:8000,svc2:8001 ...
+    services=svc1:8000,svc2:8001
+    agents=agent1:9000,agent2:9001
+    model=qwen3:14b
+    temperature=0.7
     """
     svc_pairs = []
     for s in services:
@@ -215,18 +218,22 @@ def build_args(services, agents):
 
     return [
         f"services={','.join(svc_pairs)}",
-        f"agents={','.join(agent_pairs)}"
+        f"agents={','.join(agent_pairs)}",
+        f"model={model}",
+        f"temperature={t}"
     ]
 
 
-def deploy(services, agents):
+def deploy(services, agents, model, t):
     DEPLOY_SCRIPT = "./deploy-local.sh"
-    args = build_args(services, agents)
+    args = build_args(services, agents, model, t)
 
     print("\n🚀 Deploying:")
     print("Services:", services)
     print("Agents:", agents)
-
+    print("Model:", model)
+    print("Temperature:", t)
+    
     subprocess.run([DEPLOY_SCRIPT] + args, check=True)
 
 def shutdown(services, agents):
@@ -461,7 +468,7 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                                 candidate_agents = current_agents + [agent]
 
                                 # deploy candidate
-                                deploy(candidate_services, candidate_agents)
+                                deploy(candidate_services, candidate_agents, model=LLM_, t=T_)
 
                                 # optional: wait for services to stabilize
                                 print("... Waiting for the deployment to stabilize ...")

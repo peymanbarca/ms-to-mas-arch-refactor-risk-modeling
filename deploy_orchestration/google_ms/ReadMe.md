@@ -23,6 +23,14 @@
   services= \
   agents=ad_agent:5057,cart_agent:5054,checkout_agent:5050,currency_agent:5053,email_agent:5056,payment_agent:5052,product_catalog_agent:5055,recommendation_agent:5058,shipping_agent:5051
 
+# with specific model and temperature
+
+./deploy-local.sh \
+  services= \
+  agents=ad_agent:5057,cart_agent:5054,checkout_agent:5050,currency_agent:5053,email_agent:5056,payment_agent:5052,product_catalog_agent:5055,recommendation_agent:5058,shipping_agent:5051 \
+  model=llama3:8b \
+  temperature=0.2
+
 ./shutdown-local.sh \
   services= \
   agents=ad_agent:5057,cart_agent:5054,checkout_agent:5050,currency_agent:5053,email_agent:5056,payment_agent:5052,product_catalog_agent:5055,recommendation_agent:5058,shipping_agent:5051

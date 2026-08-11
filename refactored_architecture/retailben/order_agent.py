@@ -63,6 +63,8 @@ logging.basicConfig(
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
 MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8000))
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 INVENTORY_SERVICE_RESERVE_URL = "http://127.0.0.1:8001/reserve"
 INVENTORY_SERVICE_RESERVE_ROLLBACK_URL = "http://127.0.0.1:8001/reserve-rollback"
@@ -71,7 +73,7 @@ PRICING_SERVICE_URL = "http://127.0.0.1:8002"
 PAYMENT_SERVICE_URL = "http://127.0.0.1:8007/pay-order"
 SHIPMENT_SERVICE_URL = "http://127.0.0.1:8006/book"
 
-llm = ChatOllama(model="llama3", temperature=0.7, reasoning=False)
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 app = FastAPI(title="Order Agent")
 
@@ -139,6 +141,8 @@ class OrderState(TypedDict):
 
 @app.on_event("startup")
 async def startup():
+    logger.info("Starting Order Agent on port %s with model %s and temperature %s", PORT, MODEL, TEMPERATURE)
+   
     global db_client, db
     db_client = AsyncIOMotorClient(MONGO_URI)
     db = db_client[MONGO_DB]

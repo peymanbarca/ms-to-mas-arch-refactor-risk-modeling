@@ -62,14 +62,17 @@ import grpc
 from langchain_ollama import ChatOllama
 from langgraph.graph import END, StateGraph
 from typing_extensions import TypedDict
+import os
 
 from ..shared import demo_pb2
 from ..shared import demo_pb2_grpc
 
 logger = logging.getLogger("recommendationagent")
 
-# ── LLM — lower temperature for more consistent ranking ───────────────────────
-llm = ChatOllama(model="llama3.2:3b", temperature=0.2, reasoning=False)
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
+
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 MAX_RECOMMENDATIONS: int = 5   # mirrors original MAX_RESPONSES
 

@@ -62,8 +62,10 @@ MONGO_DB = os.getenv("MONGO_DB", "retailben")
 PORT = int(os.getenv("PORT", 8008))
 PRICING_SERVICE_URL = os.getenv("PRICING_SERVICE_URL", "http://localhost:8002")
 INVENTORY_SERVICE_URL = os.getenv("INVENTORY_SERVICE_URL", "http://localhost:8001")
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
-llm = ChatOllama(model="llama3", temperature=0.0, reasoning=False)
+llm = ChatOllama(model=MODEL, temperature=TEMPERATURE, reasoning=False)
 
 app = FastAPI(title="Product Search Agent")
 
@@ -201,6 +203,8 @@ async def fetch_prices_tool(state: ProductSearchAgentState) -> ProductSearchAgen
 
 @app.on_event("startup")
 async def startup():
+    logger.info("Starting Product Catalog Agent on port %s with model %s and temperature %s", PORT, MODEL, TEMPERATURE)
+    
     global db_client, db
     db_client = AsyncIOMotorClient(MONGO_URI)
     db = db_client[MONGO_DB]

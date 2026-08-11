@@ -28,6 +28,8 @@ logger = logging.getLogger(__name__)
 MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017")
 MONGODB_DB = os.getenv("MONGODB_DB", "google_ms")
 GRPC_PORT  = int(os.getenv("PORT", "5054"))
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 # ── MongoDB client and connection ─────────────────────────────────────────
 
@@ -191,6 +193,8 @@ async def rest_empty_cart(user_id: str):
 # ── Entry point ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    logger.info("CartAgent starting | gRPC port=%d", GRPC_PORT)
+    logger.info("CartAgent starting | model=%s | temperature=%.2f", MODEL, TEMPERATURE)
     run_service(
         demo_pb2_grpc.add_CartServiceServicer_to_server,
         CartServicer(),

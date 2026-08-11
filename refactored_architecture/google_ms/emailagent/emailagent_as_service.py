@@ -39,8 +39,8 @@ from . import emailagent as _email_agent
 logger = logging.getLogger("emailagent")
 
 GRPC_PORT = int(os.getenv("PORT", "5056"))
-
-
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 # ════════════════════════════════════════════════════════════════════════════
 # FastAPI application
@@ -201,9 +201,11 @@ if __name__ == "__main__":
 
         grpc_server = _build_grpc_server(_servicer, GRPC_PORT)
         await grpc_server.start()
-        logger.info("EmailService gRPC started on port %d", GRPC_PORT)
-        logger.info("EmailService HTTP started on port %d", http_port)
-
+        logger.info("EmailAgent gRPC started on port %d", GRPC_PORT)
+        logger.info("EmailAgent HTTP started on port %d", http_port)
+        logger.info("EmailAgent starting | gRPC port=%d", GRPC_PORT)
+        logger.info("EmailAgent starting | model=%s | temperature=%.2f", MODEL, TEMPERATURE)
+    
         http_cfg = uvicorn.Config(
             app, host="0.0.0.0", port=http_port,
             log_level="info", access_log=False,

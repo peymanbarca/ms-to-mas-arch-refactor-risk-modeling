@@ -11,6 +11,8 @@ from .productcatalogagent import run_product_search_agent
 
 logger = logging.getLogger(__name__)
 GRPC_PORT = int(os.getenv("PORT", "5055"))
+MODEL = os.getenv("MODEL", "llama3.2:3b")
+TEMPERATURE = float(os.getenv("TEMPERATURE", 0.0))
 
 # ── Product catalog loader ───────────────────────────────────────────────────
 
@@ -152,6 +154,8 @@ async def rest_get_product(product_id: str):
 # ── Entry point ──────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    logger.info("ProductCatalogAgent starting | gRPC port=%d", GRPC_PORT)
+    logger.info("ProductCatalogAgent starting | model=%s | temperature=%.2f", MODEL, TEMPERATURE)    
     run_service(
         demo_pb2_grpc.add_ProductCatalogServiceServicer_to_server,
         ProductCatalogServicer(),
