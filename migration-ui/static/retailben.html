@@ -414,7 +414,7 @@ Confirm Predicates
 <h2>2. Governance</h2>
 
 
-<div>
+<!-- <div>
 
 <input type="radio" name="gov" value="off" checked>
 
@@ -428,8 +428,95 @@ Automatic ITL/OTL
 
 HITL/HOTL (Human involved) (comming soon)
 
-</div>
+</div> -->
 
+<div class="governance-options">
+
+    <label class="gov-option selected">
+
+        <input
+            type="radio"
+            name="gov"
+            value="off"
+            checked
+            onchange="updateGovernanceSelection()">
+
+        <div class="gov-content">
+
+            <div class="gov-title">
+                <span class="gov-radio"></span>
+                <span>Off</span>
+            </div>
+
+            <div class="gov-description">
+                No governance mechanism is applied during migration.
+            </div>
+
+        </div>
+
+    </label>
+
+
+    <label class="gov-option">
+
+        <input
+            type="radio"
+            name="gov"
+            value="auto"
+            onchange="updateGovernanceSelection()">
+
+        <div class="gov-content">
+
+            <div class="gov-title">
+                <span class="gov-radio"></span>
+                <span>Automatic ITL/OTL</span>
+            </div>
+
+            <div class="gov-description">
+                Automatically evaluates migration behavior and
+                triggers governance actions when thresholds are violated.
+            </div>
+
+        </div>
+
+    </label>
+
+
+    <label class="gov-option disabled">
+
+        <input
+            type="radio"
+            name="gov"
+            value="human"
+            disabled>
+
+        <div class="gov-content">
+
+            <div class="gov-title">
+
+                <span class="gov-radio"></span>
+
+                <span>
+                    HITL/HOTL
+                    <small>(Human involved)</small>
+                </span>
+
+                <span class="coming-soon">
+                    Coming soon
+                </span>
+
+            </div>
+
+            <div class="gov-description">
+                Human intervention is used for migration governance
+                and post-migration decisions.
+            </div>
+
+        </div>
+
+    </label>
+
+</div>
 
 
 <div class="grid2">
@@ -653,17 +740,25 @@ Confirm Governance Mode
     </span>
 </label>
 
-<select id="llmModel">
+<div class="model-selector">
 
-    <option value="llama3.2:3b">
-        llama3.2:3b
-    </option>
+    <select id="llmModel">
 
-    <option value="qwen3:14b">
-        qwen3:14b
-    </option>
+        <option value="llama3.2:3b">
+            llama3.2:3b (Llama 3.2, 3B parameters)
+        </option>
 
-</select>
+        <option value="llama3:8b">
+            llama3:8b (Llama 3, 8B parameters)
+        </option>
+
+        <option value="qwen3:14b">
+            qwen3:14b (Qwen 3, 14B parameters)
+        </option>
+
+    </select>
+
+</div>
 
 <p></p>
 

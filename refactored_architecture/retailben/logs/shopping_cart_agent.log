@@ -1,9 +1,0 @@
-2026-08-11 10:02:04,280 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
-2026-08-11 10:05:18,975 - INFO - Starting Shopping Cart Agent on port 8003 with model llama3.2:3b and temperature 0.2
-2026-08-11 10:05:18,989 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
-2026-08-11 10:09:32,361 - INFO - Starting Shopping Cart Agent on port 8003 with model llama3.2:3b and temperature 0.2
-2026-08-11 10:09:32,374 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
-2026-08-11 10:11:17,313 - INFO - Starting Shopping Cart Agent on port 8003 with model llama3.2:3b and temperature 0.2
-2026-08-11 10:11:17,321 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
-2026-08-11 10:12:25,305 - INFO - Starting Shopping Cart Agent on port 8003 with model llama3:8b and temperature 0.0
-2026-08-11 10:12:25,317 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben

@@ -227,6 +227,24 @@ function computeScores(){
 computeScores();
 
 
+function updateGovernanceSelection() {
+
+    document
+        .querySelectorAll(".gov-option")
+        .forEach(option => {
+
+            const radio =
+                option.querySelector("input[type=radio]");
+
+            option.classList.toggle(
+                "selected",
+                radio.checked
+            );
+
+        });
+
+}
+
 // function updateSliderValue(id){
 
 //     const slider=document.getElementById(id);
@@ -353,6 +371,10 @@ function validateGovernance(){
     document.getElementById("step3").classList.remove("disabled");
 
 }
+
+
+
+updateGovernanceSelection();
 
 
 document.getElementById("start").onclick=function(){

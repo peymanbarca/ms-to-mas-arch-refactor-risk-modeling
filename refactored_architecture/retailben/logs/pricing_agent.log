@@ -1,9 +1,0 @@
-2026-08-11 10:02:04,458 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
-2026-08-11 10:05:17,389 - INFO - Starting Pricing Agent on port 8002 with model llama3.2:3b and temperature 0.2
-2026-08-11 10:05:17,599 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
-2026-08-11 10:09:33,295 - INFO - Starting Pricing Agent on port 8002 with model llama3.2:3b and temperature 0.2
-2026-08-11 10:09:33,374 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
-2026-08-11 10:11:18,953 - INFO - Starting Pricing Agent on port 8002 with model llama3.2:3b and temperature 0.2
-2026-08-11 10:11:19,027 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben
-2026-08-11 10:12:26,336 - INFO - Starting Pricing Agent on port 8002 with model llama3:8b and temperature 0.0
-2026-08-11 10:12:26,424 - INFO - Connected to MongoDB at mongodb://localhost:27017/ db=retailben

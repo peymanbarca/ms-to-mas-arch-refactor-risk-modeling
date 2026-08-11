@@ -3,9 +3,9 @@
         "qa": true,
         "qa_threshold": "100",
         "latency": true,
-        "latency_threshold": "30",
+        "latency_threshold": "20",
         "failure": true,
-        "failure_threshold": "4.5"
+        "failure_threshold": "2"
     },
     "governance_mode": "auto",
     "governance_thresholds": {
@@ -18,32 +18,32 @@
     },
     "runtime": {
         "model": "llama3.2:3b",
-        "temperature": 0,
+        "temperature": 0.7,
         "R": 5000,
-        "concurrency": 212
+        "concurrency": 251
     },
     "ranking_weights": {
-        "fanout": 0.3,
+        "fanout": 0.2,
         "bc": 0.2,
-        "ccyl": 0.1,
+        "ccyl": 0.2,
         "ccog": 0.2,
         "tprop": 0.2
     },
     "ranked_services": [
         {
             "rank": "1",
-            "service": "Pricing",
-            "score": "0.038"
+            "service": "Notification",
+            "score": "0.029"
         },
         {
             "rank": "2",
-            "service": "Notification",
-            "score": "0.043"
+            "service": "Pricing",
+            "score": "0.045"
         },
         {
             "rank": "3",
             "service": "Payment",
-            "score": "0.065"
+            "score": "0.058"
         },
         {
             "rank": "4",
@@ -53,32 +53,32 @@
         {
             "rank": "5",
             "service": "Shopping Cart",
-            "score": "0.113"
+            "score": "0.148"
         },
         {
             "rank": "6",
             "service": "Inventory",
-            "score": "0.184"
+            "score": "0.177"
         },
         {
             "rank": "7",
             "service": "Product Catalog",
-            "score": "0.252"
+            "score": "0.273"
         },
         {
             "rank": "8",
             "service": "Procurement",
-            "score": "0.312"
+            "score": "0.398"
         },
         {
             "rank": "9",
             "service": "Shipment",
-            "score": "0.332"
+            "score": "0.407"
         },
         {
             "rank": "10",
             "service": "Order",
-            "score": "0.710"
+            "score": "0.635"
         }
     ]
 }
