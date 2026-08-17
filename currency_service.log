@@ -1,5 +1,0 @@
-INFO:     Started server process [69066]
-INFO:     Waiting for application startup.
-2026-08-17 17:43:53,551 INFO [ms_baseline.google_ms.shared.base_service] gRPC server listening on [::]:5053
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:6053 (Press CTRL+C to quit)

@@ -1,8 +1,0 @@
-2026-08-17 17:43:53,182 INFO [recommendationservice-server] initializing recommendationservice
-2026-08-17 17:43:53,182 INFO [recommendationservice-server] Profiler disabled (googlecloudprofiler removed in PR#3196).
-2026-08-17 17:43:53,183 INFO [recommendationservice-server] product catalog address: localhost:5055
-2026-08-17 17:43:53,208 INFO [recommendationservice-server] listening on port: 5058
-INFO:     Started server process [69070]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:6058 (Press CTRL+C to quit)
