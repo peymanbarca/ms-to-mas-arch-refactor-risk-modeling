@@ -1,0 +1,7 @@
+2026-08-17 17:43:53,884 INFO [__main__] AdService starting | gRPC port=5057
+2026-08-17 17:43:53,884 INFO [__main__] Ad catalog loaded | total_ads=9 | categories=['personal_care', 'apparel', 'decor', 'kitchen', 'vintage', 'music', 'cycling', 'photography']
+INFO:     Started server process [69063]
+INFO:     Waiting for application startup.
+2026-08-17 17:43:53,963 INFO [ms_baseline.google_ms.shared.base_service] gRPC server listening on [::]:5057
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:6057 (Press CTRL+C to quit)

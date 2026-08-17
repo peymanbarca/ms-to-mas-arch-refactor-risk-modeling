@@ -1,0 +1,7 @@
+2026-08-17 17:43:53,598 INFO [__main__] Starting email service...
+2026-08-17 17:43:53,651 INFO [__main__] Loaded confirmation.html template
+INFO:     Started server process [69067]
+INFO:     Waiting for application startup.
+2026-08-17 17:43:53,819 INFO [ms_baseline.google_ms.shared.base_service] gRPC server listening on [::]:5056
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:6056 (Press CTRL+C to quit)

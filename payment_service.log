@@ -1,0 +1,6 @@
+{"severity": "INFO", "time": "2026-08-17 17:43:54,351", "name": "paymentservice", "message": "PaymentService gRPC server started on port 5052"}
+{"severity": "INFO", "time": "2026-08-17 17:43:54,352", "name": "paymentservice", "message": "PaymentService HTTP server starting on port 6052"}
+INFO:     Started server process [69068]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:6052 (Press CTRL+C to quit)

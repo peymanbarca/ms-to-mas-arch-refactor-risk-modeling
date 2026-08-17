@@ -6,11 +6,11 @@
 ```bash
 
 ./deploy-local.sh \
-   services=order_service:8000,inventory_service:8001,pricing_service:8002,shipment_service:8006,shopping_cart_service:8003,shipment_service:8006,payment_service:8007,product_catalog_service:8008,procurement_service:8009,subscription_service:8010 \
+   services=order_service:8000,inventory_service:8001,pricing_service:8002,shipment_service:8006,shopping_cart_service:8003,shipment_service:8006,payment_service:8007,product_search_service:8008,procurement_service:8009,subscription_service:8010 \
    agents=
 
 ./shutdown-local.sh \
-   services=order_service:8000,inventory_service:8001,pricing_service:8002,shipment_service:8006,shopping_cart_service:8003,shipment_service:8006 payment_service:8007,product_catalog_service:8008,procurement_service:8009,subscription_service:8010 \
+   services=order_service:8000,inventory_service:8001,pricing_service:8002,shipment_service:8006,shopping_cart_service:8003,shipment_service:8006 payment_service:8007,product_search_service:8008,procurement_service:8009,subscription_service:8010 \
    agents=
 
 ```

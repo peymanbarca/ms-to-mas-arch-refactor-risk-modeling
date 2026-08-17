@@ -109,6 +109,8 @@ nohup python3 run_as_service.py product_search_agent 8008 >& product_search_agen
 
 ``` bash
 
+curl -X 'POST' 'http://127.0.0.1:8008/products' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"b2926dc2-cc6d-4c3e-ae40-7a127c173b16", "name": "Airpod", "description": "Noise cancelling headphone Airpod"}'
+
 curl -X 'GET' 'http://127.0.0.1:8008/search?q=looking%20for%20headphone%20with%20noise%20cancelling%20under%20300$' -H 'accept: application/json'
 
 ```
@@ -126,8 +128,6 @@ nohup python3 run_as_service.py shipment_agent 8006 >& shipment_agent.log &
 ## Send a request to service:
 
 ``` bash
-
-curl -X 'POST' 'http://127.0.0.1:8008/products' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"sku":"b2926dc2-cc6d-4c3e-ae40-7a127c173b16", "name": "Airpod", "description": "Noise cancelling headphone Airpod"}'
 
 curl -X 'POST' 'http://127.0.0.1:8006/book' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"order_id":"a", "address": "abc"}'
 ```

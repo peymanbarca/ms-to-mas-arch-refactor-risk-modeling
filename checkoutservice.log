@@ -1,0 +1,14 @@
+{"timestamp":"2026-08-17 17:43:54,158","severity":"DEBUG","message":"Using selector: EpollSelector","logger":"asyncio"}
+{"timestamp":"2026-08-17 17:43:54,159","severity":"INFO","message":"connecting gRPC | addr=localhost:5051","logger":"checkoutservice"}
+{"timestamp":"2026-08-17 17:43:54,159","severity":"DEBUG","message":"Using AsyncIOEngine.POLLER as I/O engine","logger":"grpc._cython.cygrpc"}
+{"timestamp":"2026-08-17 17:43:54,163","severity":"INFO","message":"connecting gRPC | addr=localhost:5055","logger":"checkoutservice"}
+{"timestamp":"2026-08-17 17:43:54,163","severity":"INFO","message":"connecting gRPC | addr=localhost:5054","logger":"checkoutservice"}
+{"timestamp":"2026-08-17 17:43:54,163","severity":"INFO","message":"connecting gRPC | addr=localhost:5053","logger":"checkoutservice"}
+{"timestamp":"2026-08-17 17:43:54,164","severity":"INFO","message":"connecting gRPC | addr=localhost:5056","logger":"checkoutservice"}
+{"timestamp":"2026-08-17 17:43:54,164","severity":"INFO","message":"connecting gRPC | addr=localhost:5052","logger":"checkoutservice"}
+{"timestamp":"2026-08-17 17:43:54,165","severity":"INFO","message":"starting to listen on tcp: [::]:5050","logger":"checkoutservice"}
+{"timestamp":"2026-08-17 17:43:54,165","severity":"INFO","message":"HTTP server on :6050","logger":"checkoutservice"}
+INFO:     Started server process [69065]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:6050 (Press CTRL+C to quit)

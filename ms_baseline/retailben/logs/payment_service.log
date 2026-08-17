@@ -24,3 +24,681 @@
 2026-07-16 16:02:43,270 - INFO - Request for process_payment successfully processed, order_id: 1ef56f29-a618-4f54-843b-0af381b57b72, status: SUCCESS
 2026-07-16 16:13:46,034 - INFO - Request for process_payment, order_id: 847448d6-27fd-4f98-b025-a13bb2674ea5, request: order_id='847448d6-27fd-4f98-b025-a13bb2674ea5' final_price=400.0
 2026-07-16 16:13:46,336 - INFO - Request for process_payment successfully processed, order_id: 847448d6-27fd-4f98-b025-a13bb2674ea5, status: SUCCESS
+2026-08-17 15:36:44,564 - INFO - Request for process_payment, order_id: order-1, request: order_id='order-1' final_price=2010.0
+2026-08-17 15:36:44,868 - INFO - Request for process_payment successfully processed, order_id: order-1, status: SUCCESS
+2026-08-17 15:36:44,883 - INFO - Request for process_payment, order_id: order-2, request: order_id='order-2' final_price=2020.0
+2026-08-17 15:36:45,184 - INFO - Request for process_payment successfully processed, order_id: order-2, status: SUCCESS
+2026-08-17 15:36:45,188 - INFO - Request for process_payment, order_id: order-3, request: order_id='order-3' final_price=2030.0
+2026-08-17 15:36:45,490 - INFO - Request for process_payment successfully processed, order_id: order-3, status: SUCCESS
+2026-08-17 15:36:45,497 - INFO - Request for process_payment, order_id: order-4, request: order_id='order-4' final_price=2040.0
+2026-08-17 15:36:45,798 - INFO - Request for process_payment successfully processed, order_id: order-4, status: SUCCESS
+2026-08-17 15:36:45,804 - INFO - Request for process_payment, order_id: order-5, request: order_id='order-5' final_price=2050.0
+2026-08-17 15:36:46,108 - INFO - Request for process_payment successfully processed, order_id: order-5, status: SUCCESS
+2026-08-17 15:36:46,125 - INFO - Request for process_payment, order_id: order-6, request: order_id='order-6' final_price=2060.0
+2026-08-17 15:36:46,426 - INFO - Request for process_payment successfully processed, order_id: order-6, status: SUCCESS
+2026-08-17 15:36:46,433 - INFO - Request for process_payment, order_id: order-7, request: order_id='order-7' final_price=2070.0
+2026-08-17 15:36:46,736 - INFO - Request for process_payment successfully processed, order_id: order-7, status: SUCCESS
+2026-08-17 15:36:46,751 - INFO - Request for process_payment, order_id: order-8, request: order_id='order-8' final_price=2080.0
+2026-08-17 15:36:47,053 - INFO - Request for process_payment successfully processed, order_id: order-8, status: SUCCESS
+2026-08-17 15:36:47,058 - INFO - Request for process_payment, order_id: order-9, request: order_id='order-9' final_price=2090.0
+2026-08-17 15:36:47,359 - INFO - Request for process_payment successfully processed, order_id: order-9, status: SUCCESS
+2026-08-17 15:36:47,363 - INFO - Request for process_payment, order_id: order-10, request: order_id='order-10' final_price=2100.0
+2026-08-17 15:36:47,665 - INFO - Request for process_payment successfully processed, order_id: order-10, status: SUCCESS
+2026-08-17 15:36:47,669 - INFO - Request for process_payment, order_id: order-11, request: order_id='order-11' final_price=2110.0
+2026-08-17 15:36:47,971 - INFO - Request for process_payment successfully processed, order_id: order-11, status: SUCCESS
+2026-08-17 15:36:47,975 - INFO - Request for process_payment, order_id: order-12, request: order_id='order-12' final_price=2120.0
+2026-08-17 15:36:48,277 - INFO - Request for process_payment successfully processed, order_id: order-12, status: SUCCESS
+2026-08-17 15:36:48,282 - INFO - Request for process_payment, order_id: order-13, request: order_id='order-13' final_price=2130.0
+2026-08-17 15:36:48,583 - INFO - Request for process_payment successfully processed, order_id: order-13, status: SUCCESS
+2026-08-17 15:36:48,588 - INFO - Request for process_payment, order_id: order-14, request: order_id='order-14' final_price=2140.0
+2026-08-17 15:36:48,890 - INFO - Request for process_payment successfully processed, order_id: order-14, status: SUCCESS
+2026-08-17 15:36:48,896 - INFO - Request for process_payment, order_id: order-15, request: order_id='order-15' final_price=2150.0
+2026-08-17 15:36:49,197 - INFO - Request for process_payment successfully processed, order_id: order-15, status: SUCCESS
+2026-08-17 15:36:49,201 - INFO - Request for process_payment, order_id: order-16, request: order_id='order-16' final_price=2160.0
+2026-08-17 15:36:49,503 - INFO - Request for process_payment successfully processed, order_id: order-16, status: SUCCESS
+2026-08-17 15:36:49,507 - INFO - Request for process_payment, order_id: order-17, request: order_id='order-17' final_price=2170.0
+2026-08-17 15:36:49,809 - INFO - Request for process_payment successfully processed, order_id: order-17, status: SUCCESS
+2026-08-17 15:36:49,814 - INFO - Request for process_payment, order_id: order-18, request: order_id='order-18' final_price=2180.0
+2026-08-17 15:36:50,115 - INFO - Request for process_payment successfully processed, order_id: order-18, status: SUCCESS
+2026-08-17 15:36:50,120 - INFO - Request for process_payment, order_id: order-19, request: order_id='order-19' final_price=2190.0
+2026-08-17 15:36:50,421 - INFO - Request for process_payment successfully processed, order_id: order-19, status: SUCCESS
+2026-08-17 15:36:50,425 - INFO - Request for process_payment, order_id: order-20, request: order_id='order-20' final_price=2200.0
+2026-08-17 15:36:50,726 - INFO - Request for process_payment successfully processed, order_id: order-20, status: SUCCESS
+2026-08-17 15:36:50,731 - INFO - Request for process_payment, order_id: order-21, request: order_id='order-21' final_price=2210.0
+2026-08-17 15:36:51,036 - INFO - Request for process_payment successfully processed, order_id: order-21, status: SUCCESS
+2026-08-17 15:36:51,047 - INFO - Request for process_payment, order_id: order-22, request: order_id='order-22' final_price=2220.0
+2026-08-17 15:36:51,349 - INFO - Request for process_payment successfully processed, order_id: order-22, status: SUCCESS
+2026-08-17 15:36:51,353 - INFO - Request for process_payment, order_id: order-23, request: order_id='order-23' final_price=2230.0
+2026-08-17 15:36:51,654 - INFO - Request for process_payment successfully processed, order_id: order-23, status: SUCCESS
+2026-08-17 15:36:51,659 - INFO - Request for process_payment, order_id: order-24, request: order_id='order-24' final_price=2240.0
+2026-08-17 15:36:51,960 - INFO - Request for process_payment successfully processed, order_id: order-24, status: SUCCESS
+2026-08-17 15:36:51,967 - INFO - Request for process_payment, order_id: order-25, request: order_id='order-25' final_price=2250.0
+2026-08-17 15:36:52,269 - INFO - Request for process_payment successfully processed, order_id: order-25, status: SUCCESS
+2026-08-17 15:36:52,273 - INFO - Request for process_payment, order_id: order-26, request: order_id='order-26' final_price=2260.0
+2026-08-17 15:36:52,574 - INFO - Request for process_payment successfully processed, order_id: order-26, status: SUCCESS
+2026-08-17 15:36:52,580 - INFO - Request for process_payment, order_id: order-27, request: order_id='order-27' final_price=2270.0
+2026-08-17 15:36:52,881 - INFO - Request for process_payment successfully processed, order_id: order-27, status: SUCCESS
+2026-08-17 15:36:52,885 - INFO - Request for process_payment, order_id: order-28, request: order_id='order-28' final_price=2280.0
+2026-08-17 15:36:53,187 - INFO - Request for process_payment successfully processed, order_id: order-28, status: SUCCESS
+2026-08-17 15:36:53,191 - INFO - Request for process_payment, order_id: order-29, request: order_id='order-29' final_price=2290.0
+2026-08-17 15:36:53,492 - INFO - Request for process_payment successfully processed, order_id: order-29, status: SUCCESS
+2026-08-17 15:36:53,498 - INFO - Request for process_payment, order_id: order-30, request: order_id='order-30' final_price=2300.0
+2026-08-17 15:36:53,799 - INFO - Request for process_payment successfully processed, order_id: order-30, status: SUCCESS
+2026-08-17 15:36:53,803 - INFO - Request for process_payment, order_id: order-31, request: order_id='order-31' final_price=2310.0
+2026-08-17 15:36:54,105 - INFO - Request for process_payment successfully processed, order_id: order-31, status: SUCCESS
+2026-08-17 15:36:54,109 - INFO - Request for process_payment, order_id: order-32, request: order_id='order-32' final_price=2320.0
+2026-08-17 15:36:54,411 - INFO - Request for process_payment successfully processed, order_id: order-32, status: SUCCESS
+2026-08-17 15:36:54,415 - INFO - Request for process_payment, order_id: order-33, request: order_id='order-33' final_price=2330.0
+2026-08-17 15:36:54,717 - INFO - Request for process_payment successfully processed, order_id: order-33, status: SUCCESS
+2026-08-17 15:36:54,722 - INFO - Request for process_payment, order_id: order-34, request: order_id='order-34' final_price=2340.0
+2026-08-17 15:36:55,023 - INFO - Request for process_payment successfully processed, order_id: order-34, status: SUCCESS
+2026-08-17 15:36:55,030 - INFO - Request for process_payment, order_id: order-35, request: order_id='order-35' final_price=2350.0
+2026-08-17 15:36:55,332 - INFO - Request for process_payment successfully processed, order_id: order-35, status: SUCCESS
+2026-08-17 15:36:55,336 - INFO - Request for process_payment, order_id: order-36, request: order_id='order-36' final_price=2360.0
+2026-08-17 15:36:55,637 - INFO - Request for process_payment successfully processed, order_id: order-36, status: SUCCESS
+2026-08-17 15:36:55,641 - INFO - Request for process_payment, order_id: order-37, request: order_id='order-37' final_price=2370.0
+2026-08-17 15:36:55,943 - INFO - Request for process_payment successfully processed, order_id: order-37, status: SUCCESS
+2026-08-17 15:36:55,949 - INFO - Request for process_payment, order_id: order-38, request: order_id='order-38' final_price=2380.0
+2026-08-17 15:36:56,250 - INFO - Request for process_payment successfully processed, order_id: order-38, status: SUCCESS
+2026-08-17 15:36:56,254 - INFO - Request for process_payment, order_id: order-39, request: order_id='order-39' final_price=2390.0
+2026-08-17 15:36:56,556 - INFO - Request for process_payment successfully processed, order_id: order-39, status: SUCCESS
+2026-08-17 15:36:56,561 - INFO - Request for process_payment, order_id: order-40, request: order_id='order-40' final_price=2400.0
+2026-08-17 15:36:56,862 - INFO - Request for process_payment successfully processed, order_id: order-40, status: SUCCESS
+2026-08-17 15:36:56,866 - INFO - Request for process_payment, order_id: order-41, request: order_id='order-41' final_price=2410.0
+2026-08-17 15:36:57,168 - INFO - Request for process_payment successfully processed, order_id: order-41, status: SUCCESS
+2026-08-17 15:36:57,171 - INFO - Request for process_payment, order_id: order-42, request: order_id='order-42' final_price=2420.0
+2026-08-17 15:36:57,473 - INFO - Request for process_payment successfully processed, order_id: order-42, status: SUCCESS
+2026-08-17 15:36:57,477 - INFO - Request for process_payment, order_id: order-43, request: order_id='order-43' final_price=2430.0
+2026-08-17 15:36:57,778 - INFO - Request for process_payment successfully processed, order_id: order-43, status: SUCCESS
+2026-08-17 15:36:57,782 - INFO - Request for process_payment, order_id: order-44, request: order_id='order-44' final_price=2440.0
+2026-08-17 15:36:58,084 - INFO - Request for process_payment successfully processed, order_id: order-44, status: SUCCESS
+2026-08-17 15:36:58,088 - INFO - Request for process_payment, order_id: order-45, request: order_id='order-45' final_price=2450.0
+2026-08-17 15:36:58,389 - INFO - Request for process_payment successfully processed, order_id: order-45, status: SUCCESS
+2026-08-17 15:36:58,393 - INFO - Request for process_payment, order_id: order-46, request: order_id='order-46' final_price=2460.0
+2026-08-17 15:36:58,695 - INFO - Request for process_payment successfully processed, order_id: order-46, status: SUCCESS
+2026-08-17 15:36:58,699 - INFO - Request for process_payment, order_id: order-47, request: order_id='order-47' final_price=2470.0
+2026-08-17 15:36:59,001 - INFO - Request for process_payment successfully processed, order_id: order-47, status: SUCCESS
+2026-08-17 15:36:59,005 - INFO - Request for process_payment, order_id: order-48, request: order_id='order-48' final_price=2480.0
+2026-08-17 15:36:59,307 - INFO - Request for process_payment successfully processed, order_id: order-48, status: SUCCESS
+2026-08-17 15:36:59,312 - INFO - Request for process_payment, order_id: order-49, request: order_id='order-49' final_price=2490.0
+2026-08-17 15:36:59,614 - INFO - Request for process_payment successfully processed, order_id: order-49, status: SUCCESS
+2026-08-17 15:36:59,618 - INFO - Request for process_payment, order_id: order-50, request: order_id='order-50' final_price=2500.0
+2026-08-17 15:36:59,920 - INFO - Request for process_payment successfully processed, order_id: order-50, status: SUCCESS
+2026-08-17 15:36:59,928 - INFO - Request for process_payment, order_id: order-51, request: order_id='order-51' final_price=2510.0
+2026-08-17 15:37:00,231 - INFO - Request for process_payment successfully processed, order_id: order-51, status: SUCCESS
+2026-08-17 15:37:00,236 - INFO - Request for process_payment, order_id: order-52, request: order_id='order-52' final_price=2520.0
+2026-08-17 15:37:00,538 - INFO - Request for process_payment successfully processed, order_id: order-52, status: SUCCESS
+2026-08-17 15:37:00,543 - INFO - Request for process_payment, order_id: order-53, request: order_id='order-53' final_price=2530.0
+2026-08-17 15:37:00,844 - INFO - Request for process_payment successfully processed, order_id: order-53, status: SUCCESS
+2026-08-17 15:37:00,850 - INFO - Request for process_payment, order_id: order-54, request: order_id='order-54' final_price=2540.0
+2026-08-17 15:37:01,151 - INFO - Request for process_payment successfully processed, order_id: order-54, status: SUCCESS
+2026-08-17 15:37:01,156 - INFO - Request for process_payment, order_id: order-55, request: order_id='order-55' final_price=2550.0
+2026-08-17 15:37:01,457 - INFO - Request for process_payment successfully processed, order_id: order-55, status: SUCCESS
+2026-08-17 15:37:01,462 - INFO - Request for process_payment, order_id: order-56, request: order_id='order-56' final_price=2560.0
+2026-08-17 15:37:01,766 - INFO - Request for process_payment successfully processed, order_id: order-56, status: SUCCESS
+2026-08-17 15:37:01,773 - INFO - Request for process_payment, order_id: order-57, request: order_id='order-57' final_price=2570.0
+2026-08-17 15:37:02,074 - INFO - Request for process_payment successfully processed, order_id: order-57, status: SUCCESS
+2026-08-17 15:37:02,086 - INFO - Request for process_payment, order_id: order-58, request: order_id='order-58' final_price=2580.0
+2026-08-17 15:37:02,388 - INFO - Request for process_payment successfully processed, order_id: order-58, status: SUCCESS
+2026-08-17 15:37:02,400 - INFO - Request for process_payment, order_id: order-59, request: order_id='order-59' final_price=2590.0
+2026-08-17 15:37:02,703 - INFO - Request for process_payment successfully processed, order_id: order-59, status: SUCCESS
+2026-08-17 15:37:02,716 - INFO - Request for process_payment, order_id: order-60, request: order_id='order-60' final_price=2600.0
+2026-08-17 15:37:03,018 - INFO - Request for process_payment successfully processed, order_id: order-60, status: SUCCESS
+2026-08-17 15:37:03,024 - INFO - Request for process_payment, order_id: order-61, request: order_id='order-61' final_price=2610.0
+2026-08-17 15:37:03,325 - INFO - Request for process_payment successfully processed, order_id: order-61, status: SUCCESS
+2026-08-17 15:37:03,331 - INFO - Request for process_payment, order_id: order-62, request: order_id='order-62' final_price=2620.0
+2026-08-17 15:37:03,633 - INFO - Request for process_payment successfully processed, order_id: order-62, status: SUCCESS
+2026-08-17 15:37:03,641 - INFO - Request for process_payment, order_id: order-63, request: order_id='order-63' final_price=2630.0
+2026-08-17 15:37:03,944 - INFO - Request for process_payment successfully processed, order_id: order-63, status: SUCCESS
+2026-08-17 15:37:03,952 - INFO - Request for process_payment, order_id: order-64, request: order_id='order-64' final_price=2640.0
+2026-08-17 15:37:04,255 - INFO - Request for process_payment successfully processed, order_id: order-64, status: SUCCESS
+2026-08-17 15:37:04,263 - INFO - Request for process_payment, order_id: order-65, request: order_id='order-65' final_price=2650.0
+2026-08-17 15:37:04,565 - INFO - Request for process_payment successfully processed, order_id: order-65, status: SUCCESS
+2026-08-17 15:37:04,573 - INFO - Request for process_payment, order_id: order-66, request: order_id='order-66' final_price=2660.0
+2026-08-17 15:37:04,875 - INFO - Request for process_payment successfully processed, order_id: order-66, status: SUCCESS
+2026-08-17 15:37:04,883 - INFO - Request for process_payment, order_id: order-67, request: order_id='order-67' final_price=2670.0
+2026-08-17 15:37:05,185 - INFO - Request for process_payment successfully processed, order_id: order-67, status: SUCCESS
+2026-08-17 15:37:05,191 - INFO - Request for process_payment, order_id: order-68, request: order_id='order-68' final_price=2680.0
+2026-08-17 15:37:05,493 - INFO - Request for process_payment successfully processed, order_id: order-68, status: SUCCESS
+2026-08-17 15:37:05,499 - INFO - Request for process_payment, order_id: order-69, request: order_id='order-69' final_price=2690.0
+2026-08-17 15:37:05,801 - INFO - Request for process_payment successfully processed, order_id: order-69, status: SUCCESS
+2026-08-17 15:37:05,805 - INFO - Request for process_payment, order_id: order-70, request: order_id='order-70' final_price=2700.0
+2026-08-17 15:37:06,107 - INFO - Request for process_payment successfully processed, order_id: order-70, status: SUCCESS
+2026-08-17 15:37:06,115 - INFO - Request for process_payment, order_id: order-71, request: order_id='order-71' final_price=2710.0
+2026-08-17 15:37:06,417 - INFO - Request for process_payment successfully processed, order_id: order-71, status: SUCCESS
+2026-08-17 15:37:06,425 - INFO - Request for process_payment, order_id: order-72, request: order_id='order-72' final_price=2720.0
+2026-08-17 15:37:06,727 - INFO - Request for process_payment successfully processed, order_id: order-72, status: SUCCESS
+2026-08-17 15:37:06,735 - INFO - Request for process_payment, order_id: order-73, request: order_id='order-73' final_price=2730.0
+2026-08-17 15:37:07,037 - INFO - Request for process_payment successfully processed, order_id: order-73, status: SUCCESS
+2026-08-17 15:37:07,044 - INFO - Request for process_payment, order_id: order-74, request: order_id='order-74' final_price=2740.0
+2026-08-17 15:37:07,347 - INFO - Request for process_payment successfully processed, order_id: order-74, status: SUCCESS
+2026-08-17 15:37:07,353 - INFO - Request for process_payment, order_id: order-75, request: order_id='order-75' final_price=2750.0
+2026-08-17 15:37:07,656 - INFO - Request for process_payment successfully processed, order_id: order-75, status: SUCCESS
+2026-08-17 15:37:07,670 - INFO - Request for process_payment, order_id: order-76, request: order_id='order-76' final_price=2760.0
+2026-08-17 15:37:07,972 - INFO - Request for process_payment successfully processed, order_id: order-76, status: SUCCESS
+2026-08-17 15:37:07,980 - INFO - Request for process_payment, order_id: order-77, request: order_id='order-77' final_price=2770.0
+2026-08-17 15:37:08,282 - INFO - Request for process_payment successfully processed, order_id: order-77, status: SUCCESS
+2026-08-17 15:37:08,286 - INFO - Request for process_payment, order_id: order-78, request: order_id='order-78' final_price=2780.0
+2026-08-17 15:37:08,588 - INFO - Request for process_payment successfully processed, order_id: order-78, status: SUCCESS
+2026-08-17 15:37:08,601 - INFO - Request for process_payment, order_id: order-79, request: order_id='order-79' final_price=2790.0
+2026-08-17 15:37:08,903 - INFO - Request for process_payment successfully processed, order_id: order-79, status: SUCCESS
+2026-08-17 15:37:08,911 - INFO - Request for process_payment, order_id: order-80, request: order_id='order-80' final_price=2800.0
+2026-08-17 15:37:09,214 - INFO - Request for process_payment successfully processed, order_id: order-80, status: SUCCESS
+2026-08-17 15:37:09,232 - INFO - Request for process_payment, order_id: order-81, request: order_id='order-81' final_price=2810.0
+2026-08-17 15:37:09,534 - INFO - Request for process_payment successfully processed, order_id: order-81, status: SUCCESS
+2026-08-17 15:37:09,539 - INFO - Request for process_payment, order_id: order-82, request: order_id='order-82' final_price=2820.0
+2026-08-17 15:37:09,842 - INFO - Request for process_payment successfully processed, order_id: order-82, status: SUCCESS
+2026-08-17 15:37:09,857 - INFO - Request for process_payment, order_id: order-83, request: order_id='order-83' final_price=2830.0
+2026-08-17 15:37:10,159 - INFO - Request for process_payment successfully processed, order_id: order-83, status: SUCCESS
+2026-08-17 15:37:10,168 - INFO - Request for process_payment, order_id: order-84, request: order_id='order-84' final_price=2840.0
+2026-08-17 15:37:10,470 - INFO - Request for process_payment successfully processed, order_id: order-84, status: SUCCESS
+2026-08-17 15:37:10,479 - INFO - Request for process_payment, order_id: order-85, request: order_id='order-85' final_price=2850.0
+2026-08-17 15:37:10,781 - INFO - Request for process_payment successfully processed, order_id: order-85, status: SUCCESS
+2026-08-17 15:37:10,786 - INFO - Request for process_payment, order_id: order-86, request: order_id='order-86' final_price=2860.0
+2026-08-17 15:37:11,087 - INFO - Request for process_payment successfully processed, order_id: order-86, status: SUCCESS
+2026-08-17 15:37:11,095 - INFO - Request for process_payment, order_id: order-87, request: order_id='order-87' final_price=2870.0
+2026-08-17 15:37:11,397 - INFO - Request for process_payment successfully processed, order_id: order-87, status: SUCCESS
+2026-08-17 15:37:11,401 - INFO - Request for process_payment, order_id: order-88, request: order_id='order-88' final_price=2880.0
+2026-08-17 15:37:11,705 - INFO - Request for process_payment successfully processed, order_id: order-88, status: SUCCESS
+2026-08-17 15:37:11,716 - INFO - Request for process_payment, order_id: order-89, request: order_id='order-89' final_price=2890.0
+2026-08-17 15:37:12,019 - INFO - Request for process_payment successfully processed, order_id: order-89, status: SUCCESS
+2026-08-17 15:37:12,038 - INFO - Request for process_payment, order_id: order-90, request: order_id='order-90' final_price=2900.0
+2026-08-17 15:37:12,340 - INFO - Request for process_payment successfully processed, order_id: order-90, status: SUCCESS
+2026-08-17 15:37:12,351 - INFO - Request for process_payment, order_id: order-91, request: order_id='order-91' final_price=2910.0
+2026-08-17 15:37:12,653 - INFO - Request for process_payment successfully processed, order_id: order-91, status: SUCCESS
+2026-08-17 15:37:12,660 - INFO - Request for process_payment, order_id: order-92, request: order_id='order-92' final_price=2920.0
+2026-08-17 15:37:12,961 - INFO - Request for process_payment successfully processed, order_id: order-92, status: SUCCESS
+2026-08-17 15:37:12,970 - INFO - Request for process_payment, order_id: order-93, request: order_id='order-93' final_price=2930.0
+2026-08-17 15:37:13,271 - INFO - Request for process_payment successfully processed, order_id: order-93, status: SUCCESS
+2026-08-17 15:37:13,278 - INFO - Request for process_payment, order_id: order-94, request: order_id='order-94' final_price=2940.0
+2026-08-17 15:37:13,580 - INFO - Request for process_payment successfully processed, order_id: order-94, status: SUCCESS
+2026-08-17 15:37:13,584 - INFO - Request for process_payment, order_id: order-95, request: order_id='order-95' final_price=2950.0
+2026-08-17 15:37:13,887 - INFO - Request for process_payment successfully processed, order_id: order-95, status: SUCCESS
+2026-08-17 15:37:13,901 - INFO - Request for process_payment, order_id: order-96, request: order_id='order-96' final_price=2960.0
+2026-08-17 15:37:14,203 - INFO - Request for process_payment successfully processed, order_id: order-96, status: SUCCESS
+2026-08-17 15:37:14,211 - INFO - Request for process_payment, order_id: order-97, request: order_id='order-97' final_price=2970.0
+2026-08-17 15:37:14,513 - INFO - Request for process_payment successfully processed, order_id: order-97, status: SUCCESS
+2026-08-17 15:37:14,519 - INFO - Request for process_payment, order_id: order-98, request: order_id='order-98' final_price=2980.0
+2026-08-17 15:37:14,822 - INFO - Request for process_payment successfully processed, order_id: order-98, status: SUCCESS
+2026-08-17 15:37:14,835 - INFO - Request for process_payment, order_id: order-99, request: order_id='order-99' final_price=2990.0
+2026-08-17 15:37:15,137 - INFO - Request for process_payment successfully processed, order_id: order-99, status: SUCCESS
+2026-08-17 15:37:15,144 - INFO - Request for process_payment, order_id: order-100, request: order_id='order-100' final_price=3000.0
+2026-08-17 15:37:15,446 - INFO - Request for process_payment successfully processed, order_id: order-100, status: SUCCESS
+2026-08-17 15:37:15,454 - INFO - Request for process_payment, order_id: order-101, request: order_id='order-101' final_price=3010.0
+2026-08-17 15:37:15,756 - INFO - Request for process_payment successfully processed, order_id: order-101, status: SUCCESS
+2026-08-17 15:37:15,768 - INFO - Request for process_payment, order_id: order-102, request: order_id='order-102' final_price=3020.0
+2026-08-17 15:37:16,070 - INFO - Request for process_payment successfully processed, order_id: order-102, status: SUCCESS
+2026-08-17 15:37:16,082 - INFO - Request for process_payment, order_id: order-103, request: order_id='order-103' final_price=3030.0
+2026-08-17 15:37:16,383 - INFO - Request for process_payment successfully processed, order_id: order-103, status: SUCCESS
+2026-08-17 15:37:16,390 - INFO - Request for process_payment, order_id: order-104, request: order_id='order-104' final_price=3040.0
+2026-08-17 15:37:16,692 - INFO - Request for process_payment successfully processed, order_id: order-104, status: SUCCESS
+2026-08-17 15:37:16,698 - INFO - Request for process_payment, order_id: order-105, request: order_id='order-105' final_price=3050.0
+2026-08-17 15:37:16,999 - INFO - Request for process_payment successfully processed, order_id: order-105, status: SUCCESS
+2026-08-17 15:37:17,006 - INFO - Request for process_payment, order_id: order-106, request: order_id='order-106' final_price=3060.0
+2026-08-17 15:37:17,309 - INFO - Request for process_payment successfully processed, order_id: order-106, status: SUCCESS
+2026-08-17 15:37:17,327 - INFO - Request for process_payment, order_id: order-107, request: order_id='order-107' final_price=3070.0
+2026-08-17 15:37:17,629 - INFO - Request for process_payment successfully processed, order_id: order-107, status: SUCCESS
+2026-08-17 15:37:17,637 - INFO - Request for process_payment, order_id: order-108, request: order_id='order-108' final_price=3080.0
+2026-08-17 15:37:17,938 - INFO - Request for process_payment successfully processed, order_id: order-108, status: SUCCESS
+2026-08-17 15:37:17,950 - INFO - Request for process_payment, order_id: order-109, request: order_id='order-109' final_price=3090.0
+2026-08-17 15:37:18,252 - INFO - Request for process_payment successfully processed, order_id: order-109, status: SUCCESS
+2026-08-17 15:37:18,261 - INFO - Request for process_payment, order_id: order-110, request: order_id='order-110' final_price=3100.0
+2026-08-17 15:37:18,563 - INFO - Request for process_payment successfully processed, order_id: order-110, status: SUCCESS
+2026-08-17 15:37:18,569 - INFO - Request for process_payment, order_id: order-111, request: order_id='order-111' final_price=3110.0
+2026-08-17 15:37:18,870 - INFO - Request for process_payment successfully processed, order_id: order-111, status: SUCCESS
+2026-08-17 15:37:18,877 - INFO - Request for process_payment, order_id: order-112, request: order_id='order-112' final_price=3120.0
+2026-08-17 15:37:19,179 - INFO - Request for process_payment successfully processed, order_id: order-112, status: SUCCESS
+2026-08-17 15:37:19,187 - INFO - Request for process_payment, order_id: order-113, request: order_id='order-113' final_price=3130.0
+2026-08-17 15:37:19,488 - INFO - Request for process_payment successfully processed, order_id: order-113, status: SUCCESS
+2026-08-17 15:37:19,499 - INFO - Request for process_payment, order_id: order-114, request: order_id='order-114' final_price=3140.0
+2026-08-17 15:37:19,800 - INFO - Request for process_payment successfully processed, order_id: order-114, status: SUCCESS
+2026-08-17 15:37:19,804 - INFO - Request for process_payment, order_id: order-115, request: order_id='order-115' final_price=3150.0
+2026-08-17 15:37:20,106 - INFO - Request for process_payment successfully processed, order_id: order-115, status: SUCCESS
+2026-08-17 15:37:20,120 - INFO - Request for process_payment, order_id: order-116, request: order_id='order-116' final_price=3160.0
+2026-08-17 15:37:20,423 - INFO - Request for process_payment successfully processed, order_id: order-116, status: SUCCESS
+2026-08-17 15:37:20,442 - INFO - Request for process_payment, order_id: order-117, request: order_id='order-117' final_price=3170.0
+2026-08-17 15:37:20,744 - INFO - Request for process_payment successfully processed, order_id: order-117, status: SUCCESS
+2026-08-17 15:37:20,752 - INFO - Request for process_payment, order_id: order-118, request: order_id='order-118' final_price=3180.0
+2026-08-17 15:37:21,053 - INFO - Request for process_payment successfully processed, order_id: order-118, status: SUCCESS
+2026-08-17 15:37:21,064 - INFO - Request for process_payment, order_id: order-119, request: order_id='order-119' final_price=3190.0
+2026-08-17 15:37:21,368 - INFO - Request for process_payment successfully processed, order_id: order-119, status: SUCCESS
+2026-08-17 15:37:21,374 - INFO - Request for process_payment, order_id: order-120, request: order_id='order-120' final_price=3200.0
+2026-08-17 15:37:21,677 - INFO - Request for process_payment successfully processed, order_id: order-120, status: SUCCESS
+2026-08-17 15:37:21,684 - INFO - Request for process_payment, order_id: order-121, request: order_id='order-121' final_price=3210.0
+2026-08-17 15:37:21,986 - INFO - Request for process_payment successfully processed, order_id: order-121, status: SUCCESS
+2026-08-17 15:37:21,998 - INFO - Request for process_payment, order_id: order-122, request: order_id='order-122' final_price=3220.0
+2026-08-17 15:37:22,304 - INFO - Request for process_payment successfully processed, order_id: order-122, status: SUCCESS
+2026-08-17 15:37:22,320 - INFO - Request for process_payment, order_id: order-123, request: order_id='order-123' final_price=3230.0
+2026-08-17 15:37:22,621 - INFO - Request for process_payment successfully processed, order_id: order-123, status: SUCCESS
+2026-08-17 15:37:22,634 - INFO - Request for process_payment, order_id: order-124, request: order_id='order-124' final_price=3240.0
+2026-08-17 15:37:22,936 - INFO - Request for process_payment successfully processed, order_id: order-124, status: SUCCESS
+2026-08-17 15:37:22,949 - INFO - Request for process_payment, order_id: order-125, request: order_id='order-125' final_price=3250.0
+2026-08-17 15:37:23,250 - INFO - Request for process_payment successfully processed, order_id: order-125, status: SUCCESS
+2026-08-17 15:37:23,254 - INFO - Request for process_payment, order_id: order-126, request: order_id='order-126' final_price=3260.0
+2026-08-17 15:37:23,556 - INFO - Request for process_payment successfully processed, order_id: order-126, status: SUCCESS
+2026-08-17 15:37:23,564 - INFO - Request for process_payment, order_id: order-127, request: order_id='order-127' final_price=3270.0
+2026-08-17 15:37:23,867 - INFO - Request for process_payment successfully processed, order_id: order-127, status: SUCCESS
+2026-08-17 15:37:23,881 - INFO - Request for process_payment, order_id: order-128, request: order_id='order-128' final_price=3280.0
+2026-08-17 15:37:24,183 - INFO - Request for process_payment successfully processed, order_id: order-128, status: SUCCESS
+2026-08-17 15:37:24,188 - INFO - Request for process_payment, order_id: order-129, request: order_id='order-129' final_price=3290.0
+2026-08-17 15:37:24,493 - INFO - Request for process_payment successfully processed, order_id: order-129, status: SUCCESS
+2026-08-17 15:37:24,534 - INFO - Request for process_payment, order_id: order-130, request: order_id='order-130' final_price=3300.0
+2026-08-17 15:37:24,838 - INFO - Request for process_payment successfully processed, order_id: order-130, status: SUCCESS
+2026-08-17 15:37:24,868 - INFO - Request for process_payment, order_id: order-131, request: order_id='order-131' final_price=3310.0
+2026-08-17 15:37:25,170 - INFO - Request for process_payment successfully processed, order_id: order-131, status: SUCCESS
+2026-08-17 15:37:25,190 - INFO - Request for process_payment, order_id: order-132, request: order_id='order-132' final_price=3320.0
+2026-08-17 15:37:25,493 - INFO - Request for process_payment successfully processed, order_id: order-132, status: SUCCESS
+2026-08-17 15:37:25,507 - INFO - Request for process_payment, order_id: order-133, request: order_id='order-133' final_price=3330.0
+2026-08-17 15:37:25,811 - INFO - Request for process_payment successfully processed, order_id: order-133, status: SUCCESS
+2026-08-17 15:38:30,847 - INFO - Request for process_payment, order_id: order-1, request: order_id='order-1' final_price=2010.0
+2026-08-17 15:38:31,149 - INFO - Request for process_payment successfully processed, order_id: order-1, status: SUCCESS
+2026-08-17 15:38:31,155 - INFO - Request for process_payment, order_id: order-2, request: order_id='order-2' final_price=2020.0
+2026-08-17 15:38:31,456 - INFO - Request for process_payment successfully processed, order_id: order-2, status: SUCCESS
+2026-08-17 15:38:31,460 - INFO - Request for process_payment, order_id: order-3, request: order_id='order-3' final_price=2030.0
+2026-08-17 15:38:31,762 - INFO - Request for process_payment successfully processed, order_id: order-3, status: SUCCESS
+2026-08-17 15:38:31,766 - INFO - Request for process_payment, order_id: order-4, request: order_id='order-4' final_price=2040.0
+2026-08-17 15:38:32,068 - INFO - Request for process_payment successfully processed, order_id: order-4, status: SUCCESS
+2026-08-17 15:38:32,074 - INFO - Request for process_payment, order_id: order-5, request: order_id='order-5' final_price=2050.0
+2026-08-17 15:38:32,375 - INFO - Request for process_payment successfully processed, order_id: order-5, status: SUCCESS
+2026-08-17 15:38:32,379 - INFO - Request for process_payment, order_id: order-6, request: order_id='order-6' final_price=2060.0
+2026-08-17 15:38:32,680 - INFO - Request for process_payment successfully processed, order_id: order-6, status: SUCCESS
+2026-08-17 15:38:32,685 - INFO - Request for process_payment, order_id: order-7, request: order_id='order-7' final_price=2070.0
+2026-08-17 15:38:32,986 - INFO - Request for process_payment successfully processed, order_id: order-7, status: SUCCESS
+2026-08-17 15:38:32,991 - INFO - Request for process_payment, order_id: order-8, request: order_id='order-8' final_price=2080.0
+2026-08-17 15:38:33,292 - INFO - Request for process_payment successfully processed, order_id: order-8, status: SUCCESS
+2026-08-17 15:38:33,296 - INFO - Request for process_payment, order_id: order-9, request: order_id='order-9' final_price=2090.0
+2026-08-17 15:38:33,597 - INFO - Request for process_payment successfully processed, order_id: order-9, status: SUCCESS
+2026-08-17 15:38:33,611 - INFO - Request for process_payment, order_id: order-10, request: order_id='order-10' final_price=2100.0
+2026-08-17 15:38:33,913 - INFO - Request for process_payment successfully processed, order_id: order-10, status: SUCCESS
+2026-08-17 15:38:33,923 - INFO - Request for process_payment, order_id: order-11, request: order_id='order-11' final_price=2110.0
+2026-08-17 15:38:34,224 - INFO - Request for process_payment successfully processed, order_id: order-11, status: SUCCESS
+2026-08-17 15:38:34,228 - INFO - Request for process_payment, order_id: order-12, request: order_id='order-12' final_price=2120.0
+2026-08-17 15:38:34,532 - INFO - Request for process_payment successfully processed, order_id: order-12, status: SUCCESS
+2026-08-17 15:38:34,543 - INFO - Request for process_payment, order_id: order-13, request: order_id='order-13' final_price=2130.0
+2026-08-17 15:38:34,844 - INFO - Request for process_payment successfully processed, order_id: order-13, status: SUCCESS
+2026-08-17 15:38:34,851 - INFO - Request for process_payment, order_id: order-14, request: order_id='order-14' final_price=2140.0
+2026-08-17 15:38:35,152 - INFO - Request for process_payment successfully processed, order_id: order-14, status: SUCCESS
+2026-08-17 15:38:35,156 - INFO - Request for process_payment, order_id: order-15, request: order_id='order-15' final_price=2150.0
+2026-08-17 15:38:35,458 - INFO - Request for process_payment successfully processed, order_id: order-15, status: SUCCESS
+2026-08-17 15:38:35,462 - INFO - Request for process_payment, order_id: order-16, request: order_id='order-16' final_price=2160.0
+2026-08-17 15:38:35,763 - INFO - Request for process_payment successfully processed, order_id: order-16, status: SUCCESS
+2026-08-17 15:38:35,769 - INFO - Request for process_payment, order_id: order-17, request: order_id='order-17' final_price=2170.0
+2026-08-17 15:38:36,072 - INFO - Request for process_payment successfully processed, order_id: order-17, status: SUCCESS
+2026-08-17 15:38:36,078 - INFO - Request for process_payment, order_id: order-18, request: order_id='order-18' final_price=2180.0
+2026-08-17 15:38:36,380 - INFO - Request for process_payment successfully processed, order_id: order-18, status: SUCCESS
+2026-08-17 15:38:36,384 - INFO - Request for process_payment, order_id: order-19, request: order_id='order-19' final_price=2190.0
+2026-08-17 15:38:36,686 - INFO - Request for process_payment successfully processed, order_id: order-19, status: SUCCESS
+2026-08-17 15:38:36,690 - INFO - Request for process_payment, order_id: order-20, request: order_id='order-20' final_price=2200.0
+2026-08-17 15:38:36,992 - INFO - Request for process_payment successfully processed, order_id: order-20, status: SUCCESS
+2026-08-17 15:38:36,996 - INFO - Request for process_payment, order_id: order-21, request: order_id='order-21' final_price=2210.0
+2026-08-17 15:38:37,297 - INFO - Request for process_payment successfully processed, order_id: order-21, status: SUCCESS
+2026-08-17 15:38:37,302 - INFO - Request for process_payment, order_id: order-22, request: order_id='order-22' final_price=2220.0
+2026-08-17 15:38:37,604 - INFO - Request for process_payment successfully processed, order_id: order-22, status: SUCCESS
+2026-08-17 15:38:37,608 - INFO - Request for process_payment, order_id: order-23, request: order_id='order-23' final_price=2230.0
+2026-08-17 15:38:37,909 - INFO - Request for process_payment successfully processed, order_id: order-23, status: SUCCESS
+2026-08-17 15:38:37,913 - INFO - Request for process_payment, order_id: order-24, request: order_id='order-24' final_price=2240.0
+2026-08-17 15:38:38,215 - INFO - Request for process_payment successfully processed, order_id: order-24, status: SUCCESS
+2026-08-17 15:38:38,221 - INFO - Request for process_payment, order_id: order-25, request: order_id='order-25' final_price=2250.0
+2026-08-17 15:38:38,522 - INFO - Request for process_payment successfully processed, order_id: order-25, status: SUCCESS
+2026-08-17 15:38:38,526 - INFO - Request for process_payment, order_id: order-26, request: order_id='order-26' final_price=2260.0
+2026-08-17 15:38:38,827 - INFO - Request for process_payment successfully processed, order_id: order-26, status: SUCCESS
+2026-08-17 15:38:38,831 - INFO - Request for process_payment, order_id: order-27, request: order_id='order-27' final_price=2270.0
+2026-08-17 15:38:39,133 - INFO - Request for process_payment successfully processed, order_id: order-27, status: SUCCESS
+2026-08-17 15:38:39,137 - INFO - Request for process_payment, order_id: order-28, request: order_id='order-28' final_price=2280.0
+2026-08-17 15:38:39,438 - INFO - Request for process_payment successfully processed, order_id: order-28, status: SUCCESS
+2026-08-17 15:38:39,443 - INFO - Request for process_payment, order_id: order-29, request: order_id='order-29' final_price=2290.0
+2026-08-17 15:38:39,744 - INFO - Request for process_payment successfully processed, order_id: order-29, status: SUCCESS
+2026-08-17 15:38:39,748 - INFO - Request for process_payment, order_id: order-30, request: order_id='order-30' final_price=2300.0
+2026-08-17 15:38:40,050 - INFO - Request for process_payment successfully processed, order_id: order-30, status: SUCCESS
+2026-08-17 15:38:40,055 - INFO - Request for process_payment, order_id: order-31, request: order_id='order-31' final_price=2310.0
+2026-08-17 15:38:40,356 - INFO - Request for process_payment successfully processed, order_id: order-31, status: SUCCESS
+2026-08-17 15:38:40,361 - INFO - Request for process_payment, order_id: order-32, request: order_id='order-32' final_price=2320.0
+2026-08-17 15:38:40,662 - INFO - Request for process_payment successfully processed, order_id: order-32, status: SUCCESS
+2026-08-17 15:38:40,667 - INFO - Request for process_payment, order_id: order-33, request: order_id='order-33' final_price=2330.0
+2026-08-17 15:38:40,968 - INFO - Request for process_payment successfully processed, order_id: order-33, status: SUCCESS
+2026-08-17 15:38:40,973 - INFO - Request for process_payment, order_id: order-34, request: order_id='order-34' final_price=2340.0
+2026-08-17 15:38:41,274 - INFO - Request for process_payment successfully processed, order_id: order-34, status: SUCCESS
+2026-08-17 15:38:41,278 - INFO - Request for process_payment, order_id: order-35, request: order_id='order-35' final_price=2350.0
+2026-08-17 15:38:41,580 - INFO - Request for process_payment successfully processed, order_id: order-35, status: SUCCESS
+2026-08-17 15:38:41,584 - INFO - Request for process_payment, order_id: order-36, request: order_id='order-36' final_price=2360.0
+2026-08-17 15:38:41,885 - INFO - Request for process_payment successfully processed, order_id: order-36, status: SUCCESS
+2026-08-17 15:38:41,889 - INFO - Request for process_payment, order_id: order-37, request: order_id='order-37' final_price=2370.0
+2026-08-17 15:38:42,190 - INFO - Request for process_payment successfully processed, order_id: order-37, status: SUCCESS
+2026-08-17 15:38:42,195 - INFO - Request for process_payment, order_id: order-38, request: order_id='order-38' final_price=2380.0
+2026-08-17 15:38:42,496 - INFO - Request for process_payment successfully processed, order_id: order-38, status: SUCCESS
+2026-08-17 15:38:42,501 - INFO - Request for process_payment, order_id: order-39, request: order_id='order-39' final_price=2390.0
+2026-08-17 15:38:42,803 - INFO - Request for process_payment successfully processed, order_id: order-39, status: SUCCESS
+2026-08-17 15:38:42,807 - INFO - Request for process_payment, order_id: order-40, request: order_id='order-40' final_price=2400.0
+2026-08-17 15:38:43,108 - INFO - Request for process_payment successfully processed, order_id: order-40, status: SUCCESS
+2026-08-17 15:38:43,112 - INFO - Request for process_payment, order_id: order-41, request: order_id='order-41' final_price=2410.0
+2026-08-17 15:38:43,414 - INFO - Request for process_payment successfully processed, order_id: order-41, status: SUCCESS
+2026-08-17 15:38:43,419 - INFO - Request for process_payment, order_id: order-42, request: order_id='order-42' final_price=2420.0
+2026-08-17 15:38:43,721 - INFO - Request for process_payment successfully processed, order_id: order-42, status: SUCCESS
+2026-08-17 15:38:43,725 - INFO - Request for process_payment, order_id: order-43, request: order_id='order-43' final_price=2430.0
+2026-08-17 15:38:44,026 - INFO - Request for process_payment successfully processed, order_id: order-43, status: SUCCESS
+2026-08-17 15:38:44,030 - INFO - Request for process_payment, order_id: order-44, request: order_id='order-44' final_price=2440.0
+2026-08-17 15:38:44,332 - INFO - Request for process_payment successfully processed, order_id: order-44, status: SUCCESS
+2026-08-17 15:38:44,337 - INFO - Request for process_payment, order_id: order-45, request: order_id='order-45' final_price=2450.0
+2026-08-17 15:38:44,638 - INFO - Request for process_payment successfully processed, order_id: order-45, status: SUCCESS
+2026-08-17 15:38:44,642 - INFO - Request for process_payment, order_id: order-46, request: order_id='order-46' final_price=2460.0
+2026-08-17 15:38:44,944 - INFO - Request for process_payment successfully processed, order_id: order-46, status: SUCCESS
+2026-08-17 15:38:44,951 - INFO - Request for process_payment, order_id: order-47, request: order_id='order-47' final_price=2470.0
+2026-08-17 15:38:45,253 - INFO - Request for process_payment successfully processed, order_id: order-47, status: SUCCESS
+2026-08-17 15:38:45,257 - INFO - Request for process_payment, order_id: order-48, request: order_id='order-48' final_price=2480.0
+2026-08-17 15:38:45,558 - INFO - Request for process_payment successfully processed, order_id: order-48, status: SUCCESS
+2026-08-17 15:38:45,562 - INFO - Request for process_payment, order_id: order-49, request: order_id='order-49' final_price=2490.0
+2026-08-17 15:38:45,865 - INFO - Request for process_payment successfully processed, order_id: order-49, status: SUCCESS
+2026-08-17 15:38:45,872 - INFO - Request for process_payment, order_id: order-50, request: order_id='order-50' final_price=2500.0
+2026-08-17 15:38:46,176 - INFO - Request for process_payment successfully processed, order_id: order-50, status: SUCCESS
+2026-08-17 15:38:46,186 - INFO - Request for process_payment, order_id: order-51, request: order_id='order-51' final_price=2510.0
+2026-08-17 15:38:46,488 - INFO - Request for process_payment successfully processed, order_id: order-51, status: SUCCESS
+2026-08-17 15:38:46,492 - INFO - Request for process_payment, order_id: order-52, request: order_id='order-52' final_price=2520.0
+2026-08-17 15:38:46,794 - INFO - Request for process_payment successfully processed, order_id: order-52, status: SUCCESS
+2026-08-17 15:38:46,807 - INFO - Request for process_payment, order_id: order-53, request: order_id='order-53' final_price=2530.0
+2026-08-17 15:38:47,108 - INFO - Request for process_payment successfully processed, order_id: order-53, status: SUCCESS
+2026-08-17 15:38:47,116 - INFO - Request for process_payment, order_id: order-54, request: order_id='order-54' final_price=2540.0
+2026-08-17 15:38:47,418 - INFO - Request for process_payment successfully processed, order_id: order-54, status: SUCCESS
+2026-08-17 15:38:47,422 - INFO - Request for process_payment, order_id: order-55, request: order_id='order-55' final_price=2550.0
+2026-08-17 15:38:47,725 - INFO - Request for process_payment successfully processed, order_id: order-55, status: SUCCESS
+2026-08-17 15:38:47,734 - INFO - Request for process_payment, order_id: order-56, request: order_id='order-56' final_price=2560.0
+2026-08-17 15:38:48,036 - INFO - Request for process_payment successfully processed, order_id: order-56, status: SUCCESS
+2026-08-17 15:38:48,040 - INFO - Request for process_payment, order_id: order-57, request: order_id='order-57' final_price=2570.0
+2026-08-17 15:38:48,341 - INFO - Request for process_payment successfully processed, order_id: order-57, status: SUCCESS
+2026-08-17 15:38:48,346 - INFO - Request for process_payment, order_id: order-58, request: order_id='order-58' final_price=2580.0
+2026-08-17 15:38:48,647 - INFO - Request for process_payment successfully processed, order_id: order-58, status: SUCCESS
+2026-08-17 15:38:48,651 - INFO - Request for process_payment, order_id: order-59, request: order_id='order-59' final_price=2590.0
+2026-08-17 15:38:48,953 - INFO - Request for process_payment successfully processed, order_id: order-59, status: SUCCESS
+2026-08-17 15:38:48,958 - INFO - Request for process_payment, order_id: order-60, request: order_id='order-60' final_price=2600.0
+2026-08-17 15:38:49,259 - INFO - Request for process_payment successfully processed, order_id: order-60, status: SUCCESS
+2026-08-17 15:38:49,263 - INFO - Request for process_payment, order_id: order-61, request: order_id='order-61' final_price=2610.0
+2026-08-17 15:38:49,564 - INFO - Request for process_payment successfully processed, order_id: order-61, status: SUCCESS
+2026-08-17 15:38:49,570 - INFO - Request for process_payment, order_id: order-62, request: order_id='order-62' final_price=2620.0
+2026-08-17 15:38:49,872 - INFO - Request for process_payment successfully processed, order_id: order-62, status: SUCCESS
+2026-08-17 15:38:49,876 - INFO - Request for process_payment, order_id: order-63, request: order_id='order-63' final_price=2630.0
+2026-08-17 15:38:50,179 - INFO - Request for process_payment successfully processed, order_id: order-63, status: SUCCESS
+2026-08-17 15:38:50,189 - INFO - Request for process_payment, order_id: order-64, request: order_id='order-64' final_price=2640.0
+2026-08-17 15:38:50,491 - INFO - Request for process_payment successfully processed, order_id: order-64, status: SUCCESS
+2026-08-17 15:38:50,495 - INFO - Request for process_payment, order_id: order-65, request: order_id='order-65' final_price=2650.0
+2026-08-17 15:38:50,798 - INFO - Request for process_payment successfully processed, order_id: order-65, status: SUCCESS
+2026-08-17 15:38:50,806 - INFO - Request for process_payment, order_id: order-66, request: order_id='order-66' final_price=2660.0
+2026-08-17 15:38:51,108 - INFO - Request for process_payment successfully processed, order_id: order-66, status: SUCCESS
+2026-08-17 15:38:51,120 - INFO - Request for process_payment, order_id: order-67, request: order_id='order-67' final_price=2670.0
+2026-08-17 15:38:51,422 - INFO - Request for process_payment successfully processed, order_id: order-67, status: SUCCESS
+2026-08-17 15:38:51,426 - INFO - Request for process_payment, order_id: order-68, request: order_id='order-68' final_price=2680.0
+2026-08-17 15:38:51,727 - INFO - Request for process_payment successfully processed, order_id: order-68, status: SUCCESS
+2026-08-17 15:38:51,738 - INFO - Request for process_payment, order_id: order-69, request: order_id='order-69' final_price=2690.0
+2026-08-17 15:38:52,040 - INFO - Request for process_payment successfully processed, order_id: order-69, status: SUCCESS
+2026-08-17 15:38:52,044 - INFO - Request for process_payment, order_id: order-70, request: order_id='order-70' final_price=2700.0
+2026-08-17 15:38:52,346 - INFO - Request for process_payment successfully processed, order_id: order-70, status: SUCCESS
+2026-08-17 15:38:52,359 - INFO - Request for process_payment, order_id: order-71, request: order_id='order-71' final_price=2710.0
+2026-08-17 15:38:52,660 - INFO - Request for process_payment successfully processed, order_id: order-71, status: SUCCESS
+2026-08-17 15:38:52,667 - INFO - Request for process_payment, order_id: order-72, request: order_id='order-72' final_price=2720.0
+2026-08-17 15:38:52,969 - INFO - Request for process_payment successfully processed, order_id: order-72, status: SUCCESS
+2026-08-17 15:38:52,973 - INFO - Request for process_payment, order_id: order-73, request: order_id='order-73' final_price=2730.0
+2026-08-17 15:38:53,275 - INFO - Request for process_payment successfully processed, order_id: order-73, status: SUCCESS
+2026-08-17 15:38:53,279 - INFO - Request for process_payment, order_id: order-74, request: order_id='order-74' final_price=2740.0
+2026-08-17 15:38:53,584 - INFO - Request for process_payment successfully processed, order_id: order-74, status: SUCCESS
+2026-08-17 15:38:53,591 - INFO - Request for process_payment, order_id: order-75, request: order_id='order-75' final_price=2750.0
+2026-08-17 15:38:53,892 - INFO - Request for process_payment successfully processed, order_id: order-75, status: SUCCESS
+2026-08-17 15:38:53,905 - INFO - Request for process_payment, order_id: order-76, request: order_id='order-76' final_price=2760.0
+2026-08-17 15:38:54,207 - INFO - Request for process_payment successfully processed, order_id: order-76, status: SUCCESS
+2026-08-17 15:38:54,219 - INFO - Request for process_payment, order_id: order-77, request: order_id='order-77' final_price=2770.0
+2026-08-17 15:38:54,521 - INFO - Request for process_payment successfully processed, order_id: order-77, status: SUCCESS
+2026-08-17 15:38:54,526 - INFO - Request for process_payment, order_id: order-78, request: order_id='order-78' final_price=2780.0
+2026-08-17 15:38:54,827 - INFO - Request for process_payment successfully processed, order_id: order-78, status: SUCCESS
+2026-08-17 15:38:54,832 - INFO - Request for process_payment, order_id: order-79, request: order_id='order-79' final_price=2790.0
+2026-08-17 15:38:55,135 - INFO - Request for process_payment successfully processed, order_id: order-79, status: SUCCESS
+2026-08-17 15:38:55,143 - INFO - Request for process_payment, order_id: order-80, request: order_id='order-80' final_price=2800.0
+2026-08-17 15:38:55,449 - INFO - Request for process_payment successfully processed, order_id: order-80, status: SUCCESS
+2026-08-17 15:38:55,464 - INFO - Request for process_payment, order_id: order-81, request: order_id='order-81' final_price=2810.0
+2026-08-17 15:38:55,767 - INFO - Request for process_payment successfully processed, order_id: order-81, status: SUCCESS
+2026-08-17 15:38:55,776 - INFO - Request for process_payment, order_id: order-82, request: order_id='order-82' final_price=2820.0
+2026-08-17 15:38:56,077 - INFO - Request for process_payment successfully processed, order_id: order-82, status: SUCCESS
+2026-08-17 15:38:56,088 - INFO - Request for process_payment, order_id: order-83, request: order_id='order-83' final_price=2830.0
+2026-08-17 15:38:56,390 - INFO - Request for process_payment successfully processed, order_id: order-83, status: SUCCESS
+2026-08-17 15:38:56,400 - INFO - Request for process_payment, order_id: order-84, request: order_id='order-84' final_price=2840.0
+2026-08-17 15:38:56,704 - INFO - Request for process_payment successfully processed, order_id: order-84, status: SUCCESS
+2026-08-17 15:38:56,711 - INFO - Request for process_payment, order_id: order-85, request: order_id='order-85' final_price=2850.0
+2026-08-17 15:38:57,012 - INFO - Request for process_payment successfully processed, order_id: order-85, status: SUCCESS
+2026-08-17 15:38:57,017 - INFO - Request for process_payment, order_id: order-86, request: order_id='order-86' final_price=2860.0
+2026-08-17 15:38:57,318 - INFO - Request for process_payment successfully processed, order_id: order-86, status: SUCCESS
+2026-08-17 15:38:57,323 - INFO - Request for process_payment, order_id: order-87, request: order_id='order-87' final_price=2870.0
+2026-08-17 15:38:57,630 - INFO - Request for process_payment successfully processed, order_id: order-87, status: SUCCESS
+2026-08-17 15:38:57,660 - INFO - Request for process_payment, order_id: order-88, request: order_id='order-88' final_price=2880.0
+2026-08-17 15:38:57,966 - INFO - Request for process_payment successfully processed, order_id: order-88, status: SUCCESS
+2026-08-17 15:38:57,977 - INFO - Request for process_payment, order_id: order-89, request: order_id='order-89' final_price=2890.0
+2026-08-17 15:38:58,278 - INFO - Request for process_payment successfully processed, order_id: order-89, status: SUCCESS
+2026-08-17 15:38:58,286 - INFO - Request for process_payment, order_id: order-90, request: order_id='order-90' final_price=2900.0
+2026-08-17 15:38:58,588 - INFO - Request for process_payment successfully processed, order_id: order-90, status: SUCCESS
+2026-08-17 15:38:58,594 - INFO - Request for process_payment, order_id: order-91, request: order_id='order-91' final_price=2910.0
+2026-08-17 15:38:58,895 - INFO - Request for process_payment successfully processed, order_id: order-91, status: SUCCESS
+2026-08-17 15:38:58,900 - INFO - Request for process_payment, order_id: order-92, request: order_id='order-92' final_price=2920.0
+2026-08-17 15:38:59,202 - INFO - Request for process_payment successfully processed, order_id: order-92, status: SUCCESS
+2026-08-17 15:38:59,208 - INFO - Request for process_payment, order_id: order-93, request: order_id='order-93' final_price=2930.0
+2026-08-17 15:38:59,509 - INFO - Request for process_payment successfully processed, order_id: order-93, status: SUCCESS
+2026-08-17 15:38:59,516 - INFO - Request for process_payment, order_id: order-94, request: order_id='order-94' final_price=2940.0
+2026-08-17 15:38:59,819 - INFO - Request for process_payment successfully processed, order_id: order-94, status: SUCCESS
+2026-08-17 15:38:59,829 - INFO - Request for process_payment, order_id: order-95, request: order_id='order-95' final_price=2950.0
+2026-08-17 15:39:00,135 - INFO - Request for process_payment successfully processed, order_id: order-95, status: SUCCESS
+2026-08-17 15:39:00,144 - INFO - Request for process_payment, order_id: order-96, request: order_id='order-96' final_price=2960.0
+2026-08-17 15:39:00,445 - INFO - Request for process_payment successfully processed, order_id: order-96, status: SUCCESS
+2026-08-17 15:39:00,450 - INFO - Request for process_payment, order_id: order-97, request: order_id='order-97' final_price=2970.0
+2026-08-17 15:39:00,754 - INFO - Request for process_payment successfully processed, order_id: order-97, status: SUCCESS
+2026-08-17 15:39:00,760 - INFO - Request for process_payment, order_id: order-98, request: order_id='order-98' final_price=2980.0
+2026-08-17 15:39:01,061 - INFO - Request for process_payment successfully processed, order_id: order-98, status: SUCCESS
+2026-08-17 15:39:01,075 - INFO - Request for process_payment, order_id: order-99, request: order_id='order-99' final_price=2990.0
+2026-08-17 15:39:01,376 - INFO - Request for process_payment successfully processed, order_id: order-99, status: SUCCESS
+2026-08-17 15:39:01,385 - INFO - Request for process_payment, order_id: order-100, request: order_id='order-100' final_price=3000.0
+2026-08-17 15:39:01,689 - INFO - Request for process_payment successfully processed, order_id: order-100, status: SUCCESS
+2026-08-17 15:39:01,696 - INFO - Request for process_payment, order_id: order-101, request: order_id='order-101' final_price=3010.0
+2026-08-17 15:39:01,997 - INFO - Request for process_payment successfully processed, order_id: order-101, status: SUCCESS
+2026-08-17 15:39:02,007 - INFO - Request for process_payment, order_id: order-102, request: order_id='order-102' final_price=3020.0
+2026-08-17 15:39:02,308 - INFO - Request for process_payment successfully processed, order_id: order-102, status: SUCCESS
+2026-08-17 15:39:02,319 - INFO - Request for process_payment, order_id: order-103, request: order_id='order-103' final_price=3030.0
+2026-08-17 15:39:02,621 - INFO - Request for process_payment successfully processed, order_id: order-103, status: SUCCESS
+2026-08-17 15:39:02,629 - INFO - Request for process_payment, order_id: order-104, request: order_id='order-104' final_price=3040.0
+2026-08-17 15:39:02,931 - INFO - Request for process_payment successfully processed, order_id: order-104, status: SUCCESS
+2026-08-17 15:39:02,945 - INFO - Request for process_payment, order_id: order-105, request: order_id='order-105' final_price=3050.0
+2026-08-17 15:39:03,250 - INFO - Request for process_payment successfully processed, order_id: order-105, status: SUCCESS
+2026-08-17 15:39:03,274 - INFO - Request for process_payment, order_id: order-106, request: order_id='order-106' final_price=3060.0
+2026-08-17 15:39:03,576 - INFO - Request for process_payment successfully processed, order_id: order-106, status: SUCCESS
+2026-08-17 15:39:03,588 - INFO - Request for process_payment, order_id: order-107, request: order_id='order-107' final_price=3070.0
+2026-08-17 15:39:03,890 - INFO - Request for process_payment successfully processed, order_id: order-107, status: SUCCESS
+2026-08-17 15:39:03,895 - INFO - Request for process_payment, order_id: order-108, request: order_id='order-108' final_price=3080.0
+2026-08-17 15:39:04,197 - INFO - Request for process_payment successfully processed, order_id: order-108, status: SUCCESS
+2026-08-17 15:39:04,203 - INFO - Request for process_payment, order_id: order-109, request: order_id='order-109' final_price=3090.0
+2026-08-17 15:39:04,504 - INFO - Request for process_payment successfully processed, order_id: order-109, status: SUCCESS
+2026-08-17 15:39:04,510 - INFO - Request for process_payment, order_id: order-110, request: order_id='order-110' final_price=3100.0
+2026-08-17 15:39:04,811 - INFO - Request for process_payment successfully processed, order_id: order-110, status: SUCCESS
+2026-08-17 15:39:04,817 - INFO - Request for process_payment, order_id: order-111, request: order_id='order-111' final_price=3110.0
+2026-08-17 15:39:05,118 - INFO - Request for process_payment successfully processed, order_id: order-111, status: SUCCESS
+2026-08-17 15:39:05,124 - INFO - Request for process_payment, order_id: order-112, request: order_id='order-112' final_price=3120.0
+2026-08-17 15:39:05,425 - INFO - Request for process_payment successfully processed, order_id: order-112, status: SUCCESS
+2026-08-17 15:39:05,430 - INFO - Request for process_payment, order_id: order-113, request: order_id='order-113' final_price=3130.0
+2026-08-17 15:39:05,734 - INFO - Request for process_payment successfully processed, order_id: order-113, status: SUCCESS
+2026-08-17 15:39:05,751 - INFO - Request for process_payment, order_id: order-114, request: order_id='order-114' final_price=3140.0
+2026-08-17 15:39:06,052 - INFO - Request for process_payment successfully processed, order_id: order-114, status: SUCCESS
+2026-08-17 15:39:06,058 - INFO - Request for process_payment, order_id: order-115, request: order_id='order-115' final_price=3150.0
+2026-08-17 15:39:06,359 - INFO - Request for process_payment successfully processed, order_id: order-115, status: SUCCESS
+2026-08-17 15:39:06,364 - INFO - Request for process_payment, order_id: order-116, request: order_id='order-116' final_price=3160.0
+2026-08-17 15:39:06,666 - INFO - Request for process_payment successfully processed, order_id: order-116, status: SUCCESS
+2026-08-17 15:39:06,671 - INFO - Request for process_payment, order_id: order-117, request: order_id='order-117' final_price=3170.0
+2026-08-17 15:39:06,972 - INFO - Request for process_payment successfully processed, order_id: order-117, status: SUCCESS
+2026-08-17 15:39:06,977 - INFO - Request for process_payment, order_id: order-118, request: order_id='order-118' final_price=3180.0
+2026-08-17 15:39:07,278 - INFO - Request for process_payment successfully processed, order_id: order-118, status: SUCCESS
+2026-08-17 15:39:07,285 - INFO - Request for process_payment, order_id: order-119, request: order_id='order-119' final_price=3190.0
+2026-08-17 15:39:07,590 - INFO - Request for process_payment successfully processed, order_id: order-119, status: SUCCESS
+2026-08-17 15:39:07,600 - INFO - Request for process_payment, order_id: order-120, request: order_id='order-120' final_price=3200.0
+2026-08-17 15:39:07,902 - INFO - Request for process_payment successfully processed, order_id: order-120, status: SUCCESS
+2026-08-17 15:39:07,922 - INFO - Request for process_payment, order_id: order-121, request: order_id='order-121' final_price=3210.0
+2026-08-17 15:39:08,223 - INFO - Request for process_payment successfully processed, order_id: order-121, status: SUCCESS
+2026-08-17 15:39:08,230 - INFO - Request for process_payment, order_id: order-122, request: order_id='order-122' final_price=3220.0
+2026-08-17 15:39:08,533 - INFO - Request for process_payment successfully processed, order_id: order-122, status: SUCCESS
+2026-08-17 15:39:08,543 - INFO - Request for process_payment, order_id: order-123, request: order_id='order-123' final_price=3230.0
+2026-08-17 15:39:08,844 - INFO - Request for process_payment successfully processed, order_id: order-123, status: SUCCESS
+2026-08-17 15:39:08,850 - INFO - Request for process_payment, order_id: order-124, request: order_id='order-124' final_price=3240.0
+2026-08-17 15:39:09,151 - INFO - Request for process_payment successfully processed, order_id: order-124, status: SUCCESS
+2026-08-17 15:39:09,157 - INFO - Request for process_payment, order_id: order-125, request: order_id='order-125' final_price=3250.0
+2026-08-17 15:39:09,458 - INFO - Request for process_payment successfully processed, order_id: order-125, status: SUCCESS
+2026-08-17 15:39:09,471 - INFO - Request for process_payment, order_id: order-126, request: order_id='order-126' final_price=3260.0
+2026-08-17 15:39:09,774 - INFO - Request for process_payment successfully processed, order_id: order-126, status: SUCCESS
+2026-08-17 15:39:09,782 - INFO - Request for process_payment, order_id: order-127, request: order_id='order-127' final_price=3270.0
+2026-08-17 15:39:10,085 - INFO - Request for process_payment successfully processed, order_id: order-127, status: SUCCESS
+2026-08-17 15:39:10,091 - INFO - Request for process_payment, order_id: order-128, request: order_id='order-128' final_price=3280.0
+2026-08-17 15:39:10,392 - INFO - Request for process_payment successfully processed, order_id: order-128, status: SUCCESS
+2026-08-17 15:39:10,398 - INFO - Request for process_payment, order_id: order-129, request: order_id='order-129' final_price=3290.0
+2026-08-17 15:39:10,700 - INFO - Request for process_payment successfully processed, order_id: order-129, status: SUCCESS
+2026-08-17 15:39:10,705 - INFO - Request for process_payment, order_id: order-130, request: order_id='order-130' final_price=3300.0
+2026-08-17 15:39:11,006 - INFO - Request for process_payment successfully processed, order_id: order-130, status: SUCCESS
+2026-08-17 15:39:11,011 - INFO - Request for process_payment, order_id: order-131, request: order_id='order-131' final_price=3310.0
+2026-08-17 15:39:11,314 - INFO - Request for process_payment successfully processed, order_id: order-131, status: SUCCESS
+2026-08-17 15:39:11,320 - INFO - Request for process_payment, order_id: order-132, request: order_id='order-132' final_price=3320.0
+2026-08-17 15:39:11,622 - INFO - Request for process_payment successfully processed, order_id: order-132, status: SUCCESS
+2026-08-17 15:39:11,628 - INFO - Request for process_payment, order_id: order-133, request: order_id='order-133' final_price=3330.0
+2026-08-17 15:39:11,932 - INFO - Request for process_payment successfully processed, order_id: order-133, status: SUCCESS
+2026-08-17 15:39:11,944 - INFO - Request for process_payment, order_id: order-134, request: order_id='order-134' final_price=3340.0
+2026-08-17 15:39:12,247 - INFO - Request for process_payment successfully processed, order_id: order-134, status: SUCCESS
+2026-08-17 15:39:12,252 - INFO - Request for process_payment, order_id: order-135, request: order_id='order-135' final_price=3350.0
+2026-08-17 15:39:12,554 - INFO - Request for process_payment successfully processed, order_id: order-135, status: SUCCESS
+2026-08-17 15:39:12,559 - INFO - Request for process_payment, order_id: order-136, request: order_id='order-136' final_price=3360.0
+2026-08-17 15:39:12,860 - INFO - Request for process_payment successfully processed, order_id: order-136, status: SUCCESS
+2026-08-17 15:39:12,866 - INFO - Request for process_payment, order_id: order-137, request: order_id='order-137' final_price=3370.0
+2026-08-17 15:39:13,168 - INFO - Request for process_payment successfully processed, order_id: order-137, status: SUCCESS
+2026-08-17 15:39:13,173 - INFO - Request for process_payment, order_id: order-138, request: order_id='order-138' final_price=3380.0
+2026-08-17 15:39:13,474 - INFO - Request for process_payment successfully processed, order_id: order-138, status: SUCCESS
+2026-08-17 15:39:13,479 - INFO - Request for process_payment, order_id: order-139, request: order_id='order-139' final_price=3390.0
+2026-08-17 15:39:13,780 - INFO - Request for process_payment successfully processed, order_id: order-139, status: SUCCESS
+2026-08-17 15:39:13,785 - INFO - Request for process_payment, order_id: order-140, request: order_id='order-140' final_price=3400.0
+2026-08-17 15:39:14,086 - INFO - Request for process_payment successfully processed, order_id: order-140, status: SUCCESS
+2026-08-17 15:39:14,091 - INFO - Request for process_payment, order_id: order-141, request: order_id='order-141' final_price=3410.0
+2026-08-17 15:39:14,392 - INFO - Request for process_payment successfully processed, order_id: order-141, status: SUCCESS
+2026-08-17 15:39:14,399 - INFO - Request for process_payment, order_id: order-142, request: order_id='order-142' final_price=3420.0
+2026-08-17 15:39:14,700 - INFO - Request for process_payment successfully processed, order_id: order-142, status: SUCCESS
+2026-08-17 15:39:14,706 - INFO - Request for process_payment, order_id: order-143, request: order_id='order-143' final_price=3430.0
+2026-08-17 15:39:15,008 - INFO - Request for process_payment successfully processed, order_id: order-143, status: SUCCESS
+2026-08-17 15:39:15,014 - INFO - Request for process_payment, order_id: order-144, request: order_id='order-144' final_price=3440.0
+2026-08-17 15:39:15,315 - INFO - Request for process_payment successfully processed, order_id: order-144, status: SUCCESS
+2026-08-17 15:39:15,320 - INFO - Request for process_payment, order_id: order-145, request: order_id='order-145' final_price=3450.0
+2026-08-17 15:39:15,621 - INFO - Request for process_payment successfully processed, order_id: order-145, status: SUCCESS
+2026-08-17 15:39:15,626 - INFO - Request for process_payment, order_id: order-146, request: order_id='order-146' final_price=3460.0
+2026-08-17 15:39:15,927 - INFO - Request for process_payment successfully processed, order_id: order-146, status: SUCCESS
+2026-08-17 15:39:15,934 - INFO - Request for process_payment, order_id: order-147, request: order_id='order-147' final_price=3470.0
+2026-08-17 15:39:16,235 - INFO - Request for process_payment successfully processed, order_id: order-147, status: SUCCESS
+2026-08-17 15:39:16,240 - INFO - Request for process_payment, order_id: order-148, request: order_id='order-148' final_price=3480.0
+2026-08-17 15:39:16,541 - INFO - Request for process_payment successfully processed, order_id: order-148, status: SUCCESS
+2026-08-17 15:39:16,547 - INFO - Request for process_payment, order_id: order-149, request: order_id='order-149' final_price=3490.0
+2026-08-17 15:39:16,851 - INFO - Request for process_payment successfully processed, order_id: order-149, status: SUCCESS
+2026-08-17 15:39:16,857 - INFO - Request for process_payment, order_id: order-150, request: order_id='order-150' final_price=3500.0
+2026-08-17 15:39:17,160 - INFO - Request for process_payment successfully processed, order_id: order-150, status: SUCCESS
+2026-08-17 15:39:17,173 - INFO - Request for process_payment, order_id: order-151, request: order_id='order-151' final_price=3510.0
+2026-08-17 15:39:17,475 - INFO - Request for process_payment successfully processed, order_id: order-151, status: SUCCESS
+2026-08-17 15:39:17,483 - INFO - Request for process_payment, order_id: order-152, request: order_id='order-152' final_price=3520.0
+2026-08-17 15:39:17,785 - INFO - Request for process_payment successfully processed, order_id: order-152, status: SUCCESS
+2026-08-17 15:39:17,794 - INFO - Request for process_payment, order_id: order-153, request: order_id='order-153' final_price=3530.0
+2026-08-17 15:39:18,096 - INFO - Request for process_payment successfully processed, order_id: order-153, status: SUCCESS
+2026-08-17 15:39:18,108 - INFO - Request for process_payment, order_id: order-154, request: order_id='order-154' final_price=3540.0
+2026-08-17 15:39:18,410 - INFO - Request for process_payment successfully processed, order_id: order-154, status: SUCCESS
+2026-08-17 15:39:18,422 - INFO - Request for process_payment, order_id: order-155, request: order_id='order-155' final_price=3550.0
+2026-08-17 15:39:18,724 - INFO - Request for process_payment successfully processed, order_id: order-155, status: SUCCESS
+2026-08-17 15:39:18,734 - INFO - Request for process_payment, order_id: order-156, request: order_id='order-156' final_price=3560.0
+2026-08-17 15:39:19,036 - INFO - Request for process_payment successfully processed, order_id: order-156, status: SUCCESS
+2026-08-17 15:39:19,040 - INFO - Request for process_payment, order_id: order-157, request: order_id='order-157' final_price=3570.0
+2026-08-17 15:39:19,342 - INFO - Request for process_payment successfully processed, order_id: order-157, status: SUCCESS
+2026-08-17 15:39:19,349 - INFO - Request for process_payment, order_id: order-158, request: order_id='order-158' final_price=3580.0
+2026-08-17 15:39:19,651 - INFO - Request for process_payment successfully processed, order_id: order-158, status: SUCCESS
+2026-08-17 15:39:19,657 - INFO - Request for process_payment, order_id: order-159, request: order_id='order-159' final_price=3590.0
+2026-08-17 15:39:19,959 - INFO - Request for process_payment successfully processed, order_id: order-159, status: SUCCESS
+2026-08-17 15:39:19,971 - INFO - Request for process_payment, order_id: order-160, request: order_id='order-160' final_price=3600.0
+2026-08-17 15:39:20,275 - INFO - Request for process_payment successfully processed, order_id: order-160, status: SUCCESS
+2026-08-17 15:39:20,289 - INFO - Request for process_payment, order_id: order-161, request: order_id='order-161' final_price=3610.0
+2026-08-17 15:39:20,591 - INFO - Request for process_payment successfully processed, order_id: order-161, status: SUCCESS
+2026-08-17 15:39:20,608 - INFO - Request for process_payment, order_id: order-162, request: order_id='order-162' final_price=3620.0
+2026-08-17 15:39:20,912 - INFO - Request for process_payment successfully processed, order_id: order-162, status: SUCCESS
+2026-08-17 15:39:20,924 - INFO - Request for process_payment, order_id: order-163, request: order_id='order-163' final_price=3630.0
+2026-08-17 15:39:21,226 - INFO - Request for process_payment successfully processed, order_id: order-163, status: SUCCESS
+2026-08-17 15:39:21,233 - INFO - Request for process_payment, order_id: order-164, request: order_id='order-164' final_price=3640.0
+2026-08-17 15:39:21,534 - INFO - Request for process_payment successfully processed, order_id: order-164, status: SUCCESS
+2026-08-17 15:39:21,542 - INFO - Request for process_payment, order_id: order-165, request: order_id='order-165' final_price=3650.0
+2026-08-17 15:39:21,845 - INFO - Request for process_payment successfully processed, order_id: order-165, status: SUCCESS
+2026-08-17 15:39:21,863 - INFO - Request for process_payment, order_id: order-166, request: order_id='order-166' final_price=3660.0
+2026-08-17 15:39:22,165 - INFO - Request for process_payment successfully processed, order_id: order-166, status: SUCCESS
+2026-08-17 15:39:22,178 - INFO - Request for process_payment, order_id: order-167, request: order_id='order-167' final_price=3670.0
+2026-08-17 15:39:22,481 - INFO - Request for process_payment successfully processed, order_id: order-167, status: SUCCESS
+2026-08-17 15:39:22,496 - INFO - Request for process_payment, order_id: order-168, request: order_id='order-168' final_price=3680.0
+2026-08-17 15:39:22,798 - INFO - Request for process_payment successfully processed, order_id: order-168, status: SUCCESS
+2026-08-17 15:39:22,812 - INFO - Request for process_payment, order_id: order-169, request: order_id='order-169' final_price=3690.0
+2026-08-17 15:39:23,116 - INFO - Request for process_payment successfully processed, order_id: order-169, status: SUCCESS
+2026-08-17 15:39:23,125 - INFO - Request for process_payment, order_id: order-170, request: order_id='order-170' final_price=3700.0
+2026-08-17 15:39:23,428 - INFO - Request for process_payment successfully processed, order_id: order-170, status: SUCCESS
+2026-08-17 15:39:23,436 - INFO - Request for process_payment, order_id: order-171, request: order_id='order-171' final_price=3710.0
+2026-08-17 15:39:23,738 - INFO - Request for process_payment successfully processed, order_id: order-171, status: SUCCESS
+2026-08-17 15:39:23,751 - INFO - Request for process_payment, order_id: order-172, request: order_id='order-172' final_price=3720.0
+2026-08-17 15:39:24,054 - INFO - Request for process_payment successfully processed, order_id: order-172, status: SUCCESS
+2026-08-17 15:39:24,071 - INFO - Request for process_payment, order_id: order-173, request: order_id='order-173' final_price=3730.0
+2026-08-17 15:39:24,373 - INFO - Request for process_payment successfully processed, order_id: order-173, status: SUCCESS
+2026-08-17 15:39:24,386 - INFO - Request for process_payment, order_id: order-174, request: order_id='order-174' final_price=3740.0
+2026-08-17 15:39:24,688 - INFO - Request for process_payment successfully processed, order_id: order-174, status: SUCCESS
+2026-08-17 15:39:24,699 - INFO - Request for process_payment, order_id: order-175, request: order_id='order-175' final_price=3750.0
+2026-08-17 15:39:25,000 - INFO - Request for process_payment successfully processed, order_id: order-175, status: SUCCESS
+2026-08-17 15:39:25,011 - INFO - Request for process_payment, order_id: order-176, request: order_id='order-176' final_price=3760.0
+2026-08-17 15:39:25,314 - INFO - Request for process_payment successfully processed, order_id: order-176, status: SUCCESS
+2026-08-17 15:39:25,334 - INFO - Request for process_payment, order_id: order-177, request: order_id='order-177' final_price=3770.0
+2026-08-17 15:39:25,635 - INFO - Request for process_payment successfully processed, order_id: order-177, status: SUCCESS
+2026-08-17 15:39:25,640 - INFO - Request for process_payment, order_id: order-178, request: order_id='order-178' final_price=3780.0
+2026-08-17 15:39:25,943 - INFO - Request for process_payment successfully processed, order_id: order-178, status: SUCCESS
+2026-08-17 15:39:25,954 - INFO - Request for process_payment, order_id: order-179, request: order_id='order-179' final_price=3790.0
+2026-08-17 15:39:26,256 - INFO - Request for process_payment successfully processed, order_id: order-179, status: SUCCESS
+2026-08-17 15:39:26,266 - INFO - Request for process_payment, order_id: order-180, request: order_id='order-180' final_price=3800.0
+2026-08-17 15:39:26,568 - INFO - Request for process_payment successfully processed, order_id: order-180, status: SUCCESS
+2026-08-17 15:39:26,576 - INFO - Request for process_payment, order_id: order-181, request: order_id='order-181' final_price=3810.0
+2026-08-17 15:39:26,878 - INFO - Request for process_payment successfully processed, order_id: order-181, status: SUCCESS
+2026-08-17 15:39:26,888 - INFO - Request for process_payment, order_id: order-182, request: order_id='order-182' final_price=3820.0
+2026-08-17 15:39:27,189 - INFO - Request for process_payment successfully processed, order_id: order-182, status: SUCCESS
+2026-08-17 15:39:27,204 - INFO - Request for process_payment, order_id: order-183, request: order_id='order-183' final_price=3830.0
+2026-08-17 15:39:27,505 - INFO - Request for process_payment successfully processed, order_id: order-183, status: SUCCESS
+2026-08-17 15:39:27,522 - INFO - Request for process_payment, order_id: order-184, request: order_id='order-184' final_price=3840.0
+2026-08-17 15:39:27,825 - INFO - Request for process_payment successfully processed, order_id: order-184, status: SUCCESS
+2026-08-17 15:39:27,838 - INFO - Request for process_payment, order_id: order-185, request: order_id='order-185' final_price=3850.0
+2026-08-17 15:39:28,140 - INFO - Request for process_payment successfully processed, order_id: order-185, status: SUCCESS
+2026-08-17 15:39:28,157 - INFO - Request for process_payment, order_id: order-186, request: order_id='order-186' final_price=3860.0
+2026-08-17 15:39:28,459 - INFO - Request for process_payment successfully processed, order_id: order-186, status: SUCCESS
+2026-08-17 15:39:28,472 - INFO - Request for process_payment, order_id: order-187, request: order_id='order-187' final_price=3870.0
+2026-08-17 15:39:28,774 - INFO - Request for process_payment successfully processed, order_id: order-187, status: SUCCESS
+2026-08-17 15:39:28,788 - INFO - Request for process_payment, order_id: order-188, request: order_id='order-188' final_price=3880.0
+2026-08-17 15:39:29,090 - INFO - Request for process_payment successfully processed, order_id: order-188, status: SUCCESS
+2026-08-17 15:39:29,100 - INFO - Request for process_payment, order_id: order-189, request: order_id='order-189' final_price=3890.0
+2026-08-17 15:39:29,402 - INFO - Request for process_payment successfully processed, order_id: order-189, status: SUCCESS
+2026-08-17 15:39:29,413 - INFO - Request for process_payment, order_id: order-190, request: order_id='order-190' final_price=3900.0
+2026-08-17 15:39:29,715 - INFO - Request for process_payment successfully processed, order_id: order-190, status: SUCCESS
+2026-08-17 15:39:29,726 - INFO - Request for process_payment, order_id: order-191, request: order_id='order-191' final_price=3910.0
+2026-08-17 15:39:30,028 - INFO - Request for process_payment successfully processed, order_id: order-191, status: SUCCESS
+2026-08-17 15:39:37,463 - INFO - Request for process_payment, order_id: order-1, request: order_id='order-1' final_price=2010.0
+2026-08-17 15:39:37,765 - INFO - Request for process_payment successfully processed, order_id: order-1, status: SUCCESS
+2026-08-17 15:39:37,781 - INFO - Request for process_payment, order_id: order-2, request: order_id='order-2' final_price=2020.0
+2026-08-17 15:39:38,083 - INFO - Request for process_payment successfully processed, order_id: order-2, status: SUCCESS
+2026-08-17 15:39:38,087 - INFO - Request for process_payment, order_id: order-3, request: order_id='order-3' final_price=2030.0
+2026-08-17 15:39:38,388 - INFO - Request for process_payment successfully processed, order_id: order-3, status: SUCCESS
+2026-08-17 15:39:38,396 - INFO - Request for process_payment, order_id: order-4, request: order_id='order-4' final_price=2040.0
+2026-08-17 15:39:38,699 - INFO - Request for process_payment successfully processed, order_id: order-4, status: SUCCESS
+2026-08-17 15:39:38,707 - INFO - Request for process_payment, order_id: order-5, request: order_id='order-5' final_price=2050.0
+2026-08-17 15:39:39,009 - INFO - Request for process_payment successfully processed, order_id: order-5, status: SUCCESS
+2026-08-17 15:39:39,018 - INFO - Request for process_payment, order_id: order-6, request: order_id='order-6' final_price=2060.0
+2026-08-17 15:39:39,320 - INFO - Request for process_payment successfully processed, order_id: order-6, status: SUCCESS
+2026-08-17 15:39:39,323 - INFO - Request for process_payment, order_id: order-7, request: order_id='order-7' final_price=2070.0
+2026-08-17 15:39:39,625 - INFO - Request for process_payment successfully processed, order_id: order-7, status: SUCCESS
+2026-08-17 15:39:39,631 - INFO - Request for process_payment, order_id: order-8, request: order_id='order-8' final_price=2080.0
+2026-08-17 15:39:39,933 - INFO - Request for process_payment successfully processed, order_id: order-8, status: SUCCESS
+2026-08-17 15:39:39,940 - INFO - Request for process_payment, order_id: order-9, request: order_id='order-9' final_price=2090.0
+2026-08-17 15:39:40,242 - INFO - Request for process_payment successfully processed, order_id: order-9, status: SUCCESS
+2026-08-17 15:39:40,253 - INFO - Request for process_payment, order_id: order-10, request: order_id='order-10' final_price=2100.0
+2026-08-17 15:39:40,555 - INFO - Request for process_payment successfully processed, order_id: order-10, status: SUCCESS
+2026-08-17 17:33:18,610 - INFO - Request for process_payment, order_id: ff7bdf29-37b3-43fb-bb23-68f4f4981c59, request: order_id='ff7bdf29-37b3-43fb-bb23-68f4f4981c59' final_price=500.0
+2026-08-17 17:33:18,922 - INFO - Request for process_payment successfully processed, order_id: ff7bdf29-37b3-43fb-bb23-68f4f4981c59, status: SUCCESS
+2026-08-17 17:33:19,195 - INFO - Request for process_payment, order_id: a51637b6-71df-4f24-83a1-2f7eebaf356e, request: order_id='a51637b6-71df-4f24-83a1-2f7eebaf356e' final_price=400.0
+2026-08-17 17:33:19,498 - INFO - Request for process_payment successfully processed, order_id: a51637b6-71df-4f24-83a1-2f7eebaf356e, status: SUCCESS
+2026-08-17 17:33:19,738 - INFO - Request for process_payment, order_id: 6eb780a9-c93c-41f4-b73b-2c5e07873059, request: order_id='6eb780a9-c93c-41f4-b73b-2c5e07873059' final_price=500.0
+2026-08-17 17:33:20,040 - INFO - Request for process_payment successfully processed, order_id: 6eb780a9-c93c-41f4-b73b-2c5e07873059, status: SUCCESS
+2026-08-17 17:33:20,293 - INFO - Request for process_payment, order_id: 3c702dc6-deb5-4d24-be44-56b82835d4d3, request: order_id='3c702dc6-deb5-4d24-be44-56b82835d4d3' final_price=400.0
+2026-08-17 17:33:20,595 - INFO - Request for process_payment successfully processed, order_id: 3c702dc6-deb5-4d24-be44-56b82835d4d3, status: SUCCESS
+2026-08-17 17:33:20,849 - INFO - Request for process_payment, order_id: b5145129-9240-465f-a11d-57965b2bc450, request: order_id='b5145129-9240-465f-a11d-57965b2bc450' final_price=500.0
+2026-08-17 17:33:21,151 - INFO - Request for process_payment successfully processed, order_id: b5145129-9240-465f-a11d-57965b2bc450, status: SUCCESS

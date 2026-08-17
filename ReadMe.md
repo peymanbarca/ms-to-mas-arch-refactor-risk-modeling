@@ -53,10 +53,12 @@ The ollama server should be installed first, then ready to be started (with infe
     # start server
     systemctl start ollama
     ollama pull llama3.2:3b
+    ollama pull llama3:8b
     ollama pull qwen3:14b
 
     # warm up (load the model in memory)
     ollama run llama3.2:3b "Explain CAP theorem in 3 sentences."
+    ollama run llama3:8b "Explain CAP theorem in 3 sentences."
     ollama run qwen3:14b "Explain CAP theorem in 3 sentences."
 ```
 
@@ -237,7 +239,15 @@ The target architecture is also deployed in the same way and be evaluated by the
 **The migration can be integrated with our framework (incremental stepwise predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.**
 
 ### 2. The Strangler pattern evaluations
-Incrementally migrate each service, but at each step only performs local functional testing for the migrating service (using the commands available in **local_experiment_runner.md** in each agent folder in each benchmark in the refactored architecture folder), rather than system wide regression analysis (former exp_runner.py script). The results at this stage should be manually tested for each functional testing of each migrating service at each step.
+
+At each step, deploy the target (hybrid) architecture using to former deployment shell script (deploy-local.sh).
+
+#### Local functional testing
+Incrementally migrate each service, but at each step only performs local functional testing for the migrating service (by running **local_experiment_runner.py script** in each agent folder in each benchmark in the refactored architecture folder), rather than system wide regression analysis (former exp_runner.py script).
+
+The results at this stage should be manually tested for each functional testing of each migrating service at each step.
+
+#### Integration with our stabilization framework
 
 **The migration itself is incremental but with arbitrary order and local functional regression analysis at the component level, and can be integrated with our framework (predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.**
 
