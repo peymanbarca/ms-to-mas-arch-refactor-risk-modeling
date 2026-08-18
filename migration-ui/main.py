@@ -1,7 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
+from fastapi.templating import Jinja2Templates
 
 import subprocess
 import json
@@ -14,6 +15,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 app = FastAPI()
+
+templates = Jinja2Templates(
+    directory=str(BASE_DIR) +  "/migration-ui" + "/templates"
+)
 
 logger = logging.getLogger("migration-experiment-runner")
 logging.basicConfig(
@@ -188,6 +193,18 @@ def system_selection():
     return FileResponse(
         BASE_DIR / "migration-ui" /  "static" / "select_system.html"
     )
+    
+
+@app.get("/retailben")
+async def retailben(request: Request):
+
+    return templates.TemplateResponse(
+        "benchmarks/retailben.html",
+        {
+            "request": request,
+            "benchmark": "retailben"
+        }
+    )
 
 app.mount(
     "/figures",
@@ -197,7 +214,13 @@ app.mount(
     name="figures"
 )
 
-
+app.mount(
+    "/static",
+    StaticFiles(
+        directory=str(BASE_DIR) + "/migration-ui" + "/static"
+    ),
+    name="static"
+)
 
 app.mount(
     "/",

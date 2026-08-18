@@ -16,6 +16,14 @@ from dataclasses import dataclass
 import random
 from typing import Tuple, Dict, Any, List
 from enum import Enum
+import logging
+
+logger = logging.getLogger("migration-experiment-runner-post-action-adjudication")
+logging.basicConfig(
+    filename='./logs/experiment.log',
+    level=logging.INFO,  # Log all messages with severity DEBUG or higher
+    format='%(asctime)s - %(levelname)s - %(message)s'  # Define the message format
+)
 
 
 class AdjudicationMode(Enum):
@@ -23,6 +31,7 @@ class AdjudicationMode(Enum):
     SELECTIVE = "Post-Audit-Selective-Only"
     COMPREHENSIVE = "Post-Audit-Comprehensive"
     NO_GOVERNANCE = "No"
+    HITL = "Human-in-the-Loop"
 
 
 class AdjudicationDecision(Enum):
@@ -228,6 +237,15 @@ class PostActionAdjudicator:
                     prediction_category = "true_acceptance"
                     return True, "true_accepted_by_predicate_auto_pass", evidence_summary, prediction_category
 
+        elif mode == AdjudicationMode.HITL:
+            human_verdict, decision_type = self._get_human_adjudication(
+                metrics=metrics,
+                evidence_summary=evidence_summary,
+                predicate_decision="ACCEPT" if metrics.predicate_overall_result else "REJECT",
+                override_warning="You are in Human-in-the-Loop mode. Please review the evidence and make a decision."
+            )
+            return human_verdict, decision_type, evidence_summary, "hitl_decision"
+
         # Default fallback
         return bool(metrics.predicate_overall_result), "fallback_decision", evidence_summary, prediction_category
 
@@ -396,13 +414,13 @@ class PostActionAdjudicator:
             }
         }
     
+    # HITL
     def _get_human_adjudication(
         self,
         metrics: ExecutionMetrics,
         evidence_summary: Dict[str, Any],
         predicate_decision: str,
         override_warning: str = None,
-        mode: AdjudicationMode = AdjudicationMode.SELECTIVE
     ) -> Tuple[bool, str]:
         """
         Present evidence to human auditor and get adjudication decision.
@@ -419,24 +437,34 @@ class PostActionAdjudicator:
         """
         
         # Display adjudication review interface
+        logger.info("\n" + "="*80)
+        logger.info("POST-ACTION ADJUDICATION REVIEW")
+        logger.info("="*80)
         print("\n" + "="*80)
         print("POST-ACTION ADJUDICATION REVIEW")
         print("="*80)
         
         print(f"\n📋 Step {metrics.step_number}: {metrics.target_service}")
-        print(f"Adjudication Mode: {mode.value}")
         print(f"Predicate Decision: {predicate_decision}")
+        logger.info(f"\n📋 Step {metrics.step_number}: {metrics.target_service}")
+        logger.info(f"Predicate Decision: {predicate_decision}")
         
         if override_warning:
             print(f"\n⚠️  WARNING: {override_warning}")
+            logger.info(f"\n⚠️  WARNING: {override_warning}")
         
         print("\n" + "-"*80)
         print("EXECUTION METRICS & EVIDENCE")
         print("-"*80)
+        logger.info("\n" + "-"*80)
+        logger.info("EXECUTION METRICS & EVIDENCE")
+        logger.info("-"*80)
         
         # Print quality metrics
         metrics_section = evidence_summary["metrics"]
         print("\n📊 Core Metrics:")
+        logger.info("\n📊 Core Metrics:")
+
         for metric_name, metric_data in metrics_section.items():
             status_symbol = "✓" if metric_data["status"] == "PASS" else "✗"
             print(f"\n  {metric_name.replace('_', ' ').upper()}")
@@ -444,64 +472,91 @@ class PostActionAdjudicator:
             print(f"    Threshold:     {metric_data['threshold']}")
             print(f"    Tolerance:     {metric_data['tolerance_band']}")
             print(f"    Status:        {status_symbol} {metric_data['status']}")
-        
+            logger.info(f"\n  {metric_name.replace('_', ' ').upper()}")
+            logger.info(f"    Actual:        {metric_data['actual']}")
+            logger.info(f"    Threshold:     {metric_data['threshold']}")
+            logger.info(f"    Tolerance:     {metric_data['tolerance_band']}")
+            logger.info(f"    Status:        {status_symbol} {metric_data['status']}")
+                    
         # Print risk assessment
         risk_section = evidence_summary["risk_assessment"]
         print("\n🔍 Risk Assessment:")
         print(f"  Temporal Propagation: {risk_section['temporal_propagation']} (tolerance: {risk_section['temporal_prop_tolerance']})")
         print(f"  Status: {risk_section['temporal_prop_status']}")
-        
+        logger.info("\n🔍 Risk Assessment:")
+        logger.info(f"  Temporal Propagation: {risk_section['temporal_propagation']} (tolerance: {risk_section['temporal_prop_tolerance']})")
+        logger.info(f"  Status: {risk_section['temporal_prop_status']}")
+                
         # Print violation analysis
         violation_section = evidence_summary["violation_analysis"]
         print("\n📈 Violation Analysis:")
         print(f"  Violation Duration: {violation_section['violation_duration']}")
         print(f"  Grace Window: {violation_section['grace_window']}")
         print(f"  Classification: {violation_section['duration_status']}")
-        
+        logger.info("\n📈 Violation Analysis:")
+        logger.info(f"  Violation Duration: {violation_section['violation_duration']}")
+        logger.info(f"  Grace Window: {violation_section['grace_window']}")
+        logger.info(f"  Classification: {violation_section['duration_status']}")
+                
         print("\n" + "="*80)
         print("ADJUDICATION DECISION")
         print("="*80)
-        
+        logger.info("\n" + "="*80)
+        logger.info("ADJUDICATION DECISION")
+        logger.info("="*80)
+                
         if predicate_decision == "REJECT":
             print("\n❌ Predicate REJECTED this step.")
-            print("Do you wish to OVERRIDE the rejection and ACCEPT the refactoring?")
+            print("You should either OVERRIDE the rejection to ACCEPT this step, or CONFIRM the rejection")
             print("(Consider: Is this a transient violation without upstream harm?)")
+            logger.info("\n❌ Predicate REJECTED this step.")
+            logger.info("You should either OVERRIDE the rejection to ACCEPT this step, or CONFIRM the rejection")
+            logger.info("(Consider: Is this a transient violation without upstream harm?)")            
         else:
             print("\n✅ Predicate ACCEPTED this step.")
-            if override_warning:
-                print("However, evidence suggests this may be a false acceptance.")
-                print("Do you wish to OVERRIDE the acceptance and REJECT the refactoring?")
-            else:
-                print("Do you wish to CONFIRM this acceptance?")
+            print("However, you may decide it be a false acceptance.")
+            print("You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?")
+            logger.info("\n✅ Predicate ACCEPTED this step.")
+            logger.info("However, you may decide it be a false acceptance.")
+            logger.info("You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?")        
         
         while True:
-            response = input("\nType 'A' to Accept or 'R' to Reject (or 'H' for help): ").strip().upper()
+            logger.info("\n\nType 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): \n...Awaiting human adjudication input...")
+            response = input("\nType 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): ").strip().upper()
+            logging.info("HITL user response: %s", response)
             
             if response == "A":
-                decision_type = f"accepted_by_governance_{mode.value.replace('Post-Audit-', '').lower()}"
+                decision_type = f"accepted_by_human_governance"
                 return True, decision_type
             
             elif response == "R":
-                decision_type = f"rejected_by_governance_{mode.value.replace('Post-Audit-', '').lower()}"
+                decision_type = f"rejected_by_human_governance"
                 return False, decision_type
             
             elif response == "H":
                 print("\n📖 GUIDANCE:")
+                logger.info("\n📖 GUIDANCE:")
                 if predicate_decision == "REJECT":
                     print("  • Accept: If violation is transient and won't propagate harm upstream")
                     print("  • Reject: If violation indicates genuine instability or system issues")
+                    logger.info("  • Accept: If violation is transient and won't propagate harm upstream")
+                    logger.info("  • Reject: If violation indicates genuine instability or system issues")
                 else:
                     if override_warning:
                         print("  • Reject: If violations are sustained beyond grace window")
                         print("  • Accept: If violations are truly transient and grace window is appropriate")
+                        logger.info("  • Reject: If violations are sustained beyond grace window")
+                        logger.info("  • Accept: If violations are truly transient and grace window is appropriate")
                     else:
                         print("  • Accept: If all metrics are within acceptable ranges")
                         print("  • Reject: If you identify hidden safety concerns beyond predicates")
+                        logger.info("  • Accept: If all metrics are within acceptable ranges")
+                        logger.info("  • Reject: If you identify hidden safety concerns beyond predicates")
                 continue
             
             else:
                 print("Invalid input. Please type 'A' for Accept, 'R' for Reject, or 'H' for help.")
-
+                logger.info("Invalid input. Please type 'A' for Accept, 'R' for Reject, or 'H' for help.")
 
 def create_execution_metrics_from_step_result(
     step_result: Dict[str, Any],
@@ -579,7 +634,8 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
     
 
     if log_telemetry_file:
-        # print(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
+        print(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
+        logger.info(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
         try:
             with open(log_telemetry_file, "r") as f:
                 log_data = json.load(f)
@@ -588,6 +644,7 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
                 
         except Exception as e:
             # print(f"Error reading log telemetry file: {e}")
+            logger.error(f"Error reading log telemetry file: {e}")
             pass
     
 

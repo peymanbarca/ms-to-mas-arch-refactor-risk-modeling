@@ -70,9 +70,12 @@ Example experiment_config.json
 }
 '''
 
-
-config = json.loads(sys.argv[1])
-logger.info(f"Config: {config}")
+if len(sys.argv) < 2:
+    with open('experiment_config.json', 'r') as f:
+        config = json.load(f)
+else:
+    config = json.loads(sys.argv[1])
+    logger.info(f"Config: {json.dumps(config)}")
 
 
 # ranked_services = [
@@ -204,7 +207,7 @@ elif mode == "auto":
 elif mode == "human":
 
     governance_policies = [
-        "Post-Audit-Comprehensive"
+        "Human-In-The-Loop"
     ]
 
 gov = config["governance_thresholds"]
@@ -382,7 +385,8 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
     governance_mode_map = {
         "No": AdjudicationMode.NO_GOVERNANCE,
         "Post-Audit-Selective-Only": AdjudicationMode.SELECTIVE,
-        "Post-Audit-Comprehensive": AdjudicationMode.COMPREHENSIVE
+        "Post-Audit-Comprehensive": AdjudicationMode.COMPREHENSIVE,
+        "Human-In-The-Loop": AdjudicationMode.HITL
     }
     
     adjudication_mode = governance_mode_map.get(
@@ -427,7 +431,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         }
     )
     # print(f"Evidence Summary for step {step_num}:", evidence_summary)
-    logger.info(f"Prediction Category for step {step_num}: {prediction_category}, \n\n qa_inconsistency_rate: {step_result_parsed['details']['qa_inconsistency_rate']:.4f}, p95_latency: {step_result_parsed['details']['p95_latency']:.4f}, failure_rate: {step_result_parsed['details']['failure_rate']:.4f}, temporal_propagation: {step_self_temporal_propagation:.4f} \n\n")
+    logger.info(f"Prediction Category for step {step_num}: {prediction_category}, \n\n qa_inconsistency_rate: {step_result_parsed['details']['qa_inconsistency_rate']:.4f}, p95_latency: {step_result_parsed['details']['p95_latency']:.4f}, failure_rate: {step_result_parsed['details']['failure_rate']:.4f}, temporal_propagation: {step_self_temporal_propagation:.4f}, final_decision: {final_decision} \n\n")
     cumulative_QA_inconsistency_rate += step_result_parsed['details']['qa_inconsistency_rate']
     cumulative_p95_latency_inflation += step_result_parsed['details']['p95_latency']
     cumulative_failure_rate_inflation += step_result_parsed['details']['failure_rate']

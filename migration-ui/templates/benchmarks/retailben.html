@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        RetailBen — Microservice to Agentic AI Migration
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/style.css">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <header class="page-header">
+
+        <h1>
+            RetailBen
+        </h1>
+
+        <p>
+            Microservice → Agentic AI Migration Framework
+        </p>
+
+    </header>
+
+
+    <!-- ================================================= -->
+    <!-- STEP 1: RETAILBEN-SPECIFIC -->
+    <!-- ================================================= -->
+
+    {% include "benchmarks/retailben_step1.html" %}
+
+
+    <!-- ================================================= -->
+    <!-- STEP 2 + 3: GENERIC -->
+    <!-- ================================================= -->
+
+    {% include "migration_steps23.html" %}
+
+</div>
+
+
+<script src="/static/js/app.js"></script>
+
+</body>
+
+</html>
