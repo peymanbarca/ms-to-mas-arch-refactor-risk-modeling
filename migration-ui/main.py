@@ -33,7 +33,9 @@ LOG_FILE = str(BASE_DIR) + '/deploy_orchestration/retailben/logs/experiment.log'
 
 process=None
 
+class ExperimentInput(BaseModel):
 
+    response: str
 
 class ExperimentConfig(BaseModel):
 
@@ -50,12 +52,14 @@ class ExperimentConfig(BaseModel):
     ranked_services:list
 
 
-
+experiment_process = None
+experiment_lock = threading.Lock()
 
 
 def run_process(config):
 
     global process
+    global experiment_process
 
 
     # os.makedirs(
@@ -128,17 +132,40 @@ def run_process(config):
             config_json
         ],
 
+        stdin=subprocess.PIPE,          # IMPORTANT
+
         stdout=subprocess.PIPE,
 
         stderr=subprocess.STDOUT,
 
         text=True,
+        bufsize=1,
+        
         cwd=str(BASE_DIR) + "/deploy_orchestration/retailben",
 
     )
     
-    # logger.info(f"Process Run: {process.stdout}")
 
+    with experiment_lock:
+
+        experiment_process = process
+
+
+    # Read stdout continuously
+
+    for line in process.stdout:
+
+        logger.info(
+            line.rstrip()
+        )
+
+
+    process.wait()
+
+
+    with experiment_lock:
+
+        experiment_process = None
 
 @app.post("/run-experiment")
 def run_experiment(config:ExperimentConfig):
@@ -163,6 +190,74 @@ def run_experiment(config:ExperimentConfig):
     }
 
 
+@app.post("/experiment-input")
+def experiment_input(data: ExperimentInput):
+
+    global experiment_process
+
+    response = data.response.strip().upper()
+
+
+    if response not in ["A", "R", "H"]:
+
+        return {
+            "status": "error",
+            "message": "Invalid response. Use A, R, or H."
+        }
+
+
+    with experiment_lock:
+
+        process = experiment_process
+
+
+    if process is None:
+
+        return {
+            "status": "error",
+            "message": "No experiment is currently running."
+        }
+
+
+    if process.poll() is not None:
+
+        return {
+            "status": "error",
+            "message": "Experiment has already finished."
+        }
+
+
+    try:
+
+        process.stdin.write(
+            response + "\n"
+        )
+
+        process.stdin.flush()
+
+
+        logger.info(
+            "HITL response sent to experiment: %s",
+            response
+        )
+
+
+        return {
+            "status": "accepted",
+            "response": response
+        }
+
+
+    except Exception as e:
+
+        logger.exception(
+            "Failed to send experiment input"
+        )
+
+        return {
+            "status": "error",
+            "message": str(e)
+        }
 
 @app.get("/logs")
 def get_logs():

@@ -550,41 +550,189 @@ function getCurrentRanking(){
 
 let logTimer;
 
+const logs = document.getElementById("logs");
 
-function startLogRefresh(){
-
-
-    logTimer=setInterval(()=>{
+let autoScrollLogs = true;
 
 
-    fetch("/logs")
+// -----------------------------------------
+// Preserve user's scroll position
+// -----------------------------------------
 
-    .then(
-    r=>r.json()
-    )
+logs.addEventListener("scroll", () => {
 
-    .then(
-    data=>{
+    const threshold = 5;
 
+    const atBottom =
+        logs.scrollHeight -
+        logs.scrollTop -
+        logs.clientHeight <= threshold;
 
-    let box=document.getElementById(
-    "logs"
-    );
+    autoScrollLogs = atBottom;
 
-
-    box.textContent=data.logs;
+});
 
 
-    box.scrollTop=
-    box.scrollHeight;
+async function sendExperimentInput(response) {
 
+    try {
+
+        const result = await fetch(
+            "/experiment-input",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+                    response: response
+                })
+            }
+        );
+
+
+        const data = await result.json();
+
+
+        if (data.status === "accepted") {
+
+            console.log(
+                "Sent experiment response:",
+                response
+            );
+
+            document
+                .getElementById(
+                    "humanInputPanel"
+                )
+                .style.display = "none";
+
+        }
+        else {
+
+            alert(
+                data.message ||
+                "Failed to send response."
+            );
+
+        }
+
+    }
+    catch (error) {
+
+        console.error(
+            "Error sending experiment input:",
+            error
+        );
+
+        alert(
+            "Could not send response to experiment."
+        );
 
     }
 
-    );
+}
+
+// -----------------------------------------
+// Start log polling
+// -----------------------------------------
+
+function startLogRefresh() {
+
+    if (logTimer) {
+        clearInterval(logTimer);
+    }
 
 
-    },1000);
+    logTimer = setInterval(() => {
 
+        fetch("/logs")
+
+        .then(r => r.json())
+
+        .then(data => {
+
+            const logText = data.logs || "";
+
+
+            logs.textContent = logText;
+
+
+            // ----------------------------------
+            // Detect HITL request
+            // ----------------------------------
+
+            const awaitingInput =
+                logText.trim().endsWith(
+                    "...Awaiting human adjudication input..."
+                );
+
+
+            const inputPanel =
+                document.getElementById(
+                    "humanInputPanel"
+                );
+
+
+            if (awaitingInput) {
+
+                inputPanel.style.display =
+                    "flex";
+
+            }
+            else {
+
+                inputPanel.style.display =
+                    "none";
+
+            }
+
+
+            // ----------------------------------
+            // Preserve scroll behavior
+            // ----------------------------------
+
+            if (autoScrollLogs) {
+
+                logs.scrollTop =
+                    logs.scrollHeight;
+
+            }
+
+
+            // ----------------------------------
+            // Experiment finished
+            // ----------------------------------
+
+            if (
+                logText.includes(
+                    "Final Architecture Experiment Run Finished"
+                )
+            ) {
+
+                clearInterval(logTimer);
+
+                logTimer = null;
+
+                inputPanel.style.display =
+                    "none";
+
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "Error fetching logs:",
+                error
+            );
+
+        });
+
+    }, 1000);
 
 }

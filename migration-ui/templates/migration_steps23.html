@@ -521,13 +521,52 @@ Confirm Governance Mode
 
 <h2>Experiment Logs</h2>
 
+<div class="log-console">
 
-<pre id="logs">
+    <pre id="logs">Waiting for experiment...</pre>
 
-Waiting for experiment...
+</div>
 
-</pre>
 
+<div
+    id="humanInputPanel"
+    class="human-input-panel"
+    style="display:none;">
+
+    <div class="input-prompt">
+
+        Awaiting human adjudication:
+
+    </div>
+
+
+    <button
+        onclick="sendExperimentInput('A')"
+        class="decision-button accept">
+
+        ✓ Accept (A)
+
+    </button>
+
+
+    <button
+        onclick="sendExperimentInput('R')"
+        class="decision-button reject">
+
+        ✕ Reject (R)
+
+    </button>
+
+
+    <button
+        onclick="sendExperimentInput('H')"
+        class="decision-button help">
+
+        ? Help (H)
+
+    </button>
+
+</div>
 
 </section>
 

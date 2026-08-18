@@ -607,6 +607,8 @@ with tqdm.tqdm(total=total, desc="Experiments") as pbar:
                                 
                             # input("Press Enter to gracefully shutdown final configuration...")
                             shutdown(current_services, current_agents)
+                            logger.info(f"Final Architecture Experiment Run Finished Successfully")
+
                         except Exception as e:
                             logger.error(f"❌ Exception occurred during step {step}: {e}")
                             # Attempt to shutdown any deployed services/agents before exiting
