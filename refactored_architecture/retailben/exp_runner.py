@@ -5,6 +5,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pymongo import MongoClient
 import os
 import statistics
+import sys
+import argparse
+
 
 # ---------------- CONFIG ----------------
 SEARCH_SERVICE_URL = "http://127.0.0.1:8008/search"
@@ -16,9 +19,8 @@ SKU = "b2926dc2-cc6d-4c3e-ae40-7a127c173b16"
 INIT_STOCK = 10
 QTY = 2
 
-N_TRIALS = 10
-MAX_WORKERS = N_TRIALS / 10  # Number of concurrent threads
-total_runs = 1
+
+total_full_trials_runs = 1
 
 DELAY = float(os.environ.get("DELAY", "0"))             # seconds to sleep inside inventory agent
 DROP_RATE = int(os.environ.get("DROP_RATE", "0"))       # percent 0-100
@@ -42,26 +44,36 @@ def real_db():
     return client, db
 
 
-def run_trial(trial_id: int, delay: float, drop_rate: int):
+def run_trial(trial_id: int, delay: float, drop_rate: int, CONCURRENCY_RATE: int):
     try:
         start = time.time()
-        result = {"trial": trial_id, "threads": MAX_WORKERS,
+        result = {"trial": trial_id, "threads": CONCURRENCY_RATE,
                     "total_input_tokens": 0,
                     "total_output_tokens": 0,
-                    "total_llm_calls": 0}
+                    "total_llm_calls": 0,
+                    "total_api_calls": 0,
+                    "total_api_calls_failure": 0}
 
         # ------------------- product search ---------------------------------
         st = time.time()
         params = {'q': 'looking for headphone with noise cancelling'}
         r = requests.get(url=SEARCH_SERVICE_URL, params=params)
+        result["total_api_calls"] += 1
+        if r.status_code != 200:
+            result["total_api_calls_failure"] += 1
         r.raise_for_status()
         et = time.time()
         search_latency = round((et - st), 3)
         search_res = r.json()
         # print(f"Result of product search: {search_res}, latency: {search_latency}")
-        selected_sku = search_res["results"][0]["sku"]
-        result["search_latency"] = search_latency
-        result["selected_sku"] = selected_sku
+        if search_res.get("results"):
+            selected_sku = search_res["results"][0]["sku"]
+            result["search_latency"] = search_latency
+            result["selected_sku"] = selected_sku
+        else:
+            selected_sku = SKU # anyway try to progress with SKU even if not exist from search result (due to finishing from the inventory), to test the robustness of the system
+            result["search_latency"] = search_latency
+            result["selected_sku"] = selected_sku
         result["total_input_tokens"] += search_res["total_input_tokens"]
         result["total_output_tokens"] += search_res["total_output_tokens"]
         result["total_llm_calls"] += search_res["total_llm_calls"]
@@ -69,6 +81,10 @@ def run_trial(trial_id: int, delay: float, drop_rate: int):
         # ---------------- add cart -----------------------------
         st = time.time()
         r = requests.post(url=CART_SERVICE_URL.replace('cart_id', '-1'), json={'sku': SKU, 'qty': QTY})
+        result["total_api_calls"] += 1
+        if r.status_code != 200:
+            result["total_api_calls_failure"] += 1
+        r.raise_for_status()
         et = time.time()
         cart_latency = round((et - st), 3)
         cart_res = r.json()
@@ -82,6 +98,10 @@ def run_trial(trial_id: int, delay: float, drop_rate: int):
         # ----------------------- main workflow for purchase cart with order -------------------
         st = time.time()
         resp = requests.post(ORDER_SERVICE_URL.replace('cart_id', cart_id), timeout=30)
+        result["total_api_calls"] += 1
+        if resp.status_code != 200:
+            result["total_api_calls_failure"] += 1
+        resp.raise_for_status()
         et = time.time()
         order_latency = round((et - st), 3)
         order_result = resp.json()
@@ -103,6 +123,13 @@ def run_trial(trial_id: int, delay: float, drop_rate: int):
     except Exception as e:
         elapsed = time.time() - start
         print(f"Trial {trial_id}: Exception {e}")
+        exc_type, exc_obj, tb = sys.exc_info()
+        
+        # Extract the exact line number
+        line_number = tb.tb_lineno
+        
+        print(f"An error occurred on line: {line_number}, exc_type: {exc_type}")
+        print(f"Error details: {e}")        
         return {"trial": trial_id, "status": "error", "elapsed": round(elapsed,3)}
 
 
@@ -142,24 +169,15 @@ def get_final_state():
            final_ec_state, failure_rate
 
 
-if __name__ == '__main__':
-
-    with open(f"results/refactored_arch_results_delay_{DELAY}_drop_{DROP_RATE}.json", "w") as f:
-        f.write("\n\n")
-
+def full_trials_runner(T, LLM, CONCURRENCY_RATE, R):
     run_results = []
 
-    for i in range(total_runs):
+    for i in range(total_full_trials_runs):
 
+        # ----------------- reset system ------------------
         requests.post("http://localhost:8000/clear_orders", json={})
         requests.post("http://localhost:8001/reset_stocks", json={
-          "items": [
-            {
-              "sku": SKU,
-              "stock": INIT_STOCK
-            }
-          ]
-        })
+            "items": [{"sku": SKU, "stock": INIT_STOCK}]})
         requests.post("http://localhost:8007/clear_payments", json={})
         requests.post("http://localhost:8006/clear_bookings", json={})
 
@@ -167,21 +185,21 @@ if __name__ == '__main__':
 
         results = []
 
-        # ---------------- PARALLEL EXECUTION ----------------
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-            futures = [executor.submit(run_trial, i, DELAY, DROP_RATE) for i in range(1, N_TRIALS + 1)]
+        # ---------------- PARALLEL EXECUTION of TRIALS ----------------
+        with ThreadPoolExecutor(max_workers=CONCURRENCY_RATE) as executor:
+            futures = [executor.submit(run_trial, i, DELAY, DROP_RATE, CONCURRENCY_RATE) for i in range(1, R + 1)]
             for future in as_completed(futures):
                 results.append(future.result())
 
         stock_left, total_completed_orders, total_pending_orders, total_oos_orders, expected_total_reserved, \
-        total_shipment_bookings, total_payments,        \
-        final_ec_state, failure_rate = get_final_state()
+            total_shipment_bookings, total_payments, \
+            final_ec_state, qa_inconsistency_rate = get_final_state()
 
         summary = {
-            "n_trials": N_TRIALS,
+            "n_trials": R,
             "delay": DELAY,
             "drop_rate": DROP_RATE,
-            "n_threads": MAX_WORKERS,
+            "n_threads": CONCURRENCY_RATE,
             "stock_left": stock_left,
             "total_completed_orders": total_completed_orders,
             "total_pending_orders": total_pending_orders,
@@ -190,10 +208,11 @@ if __name__ == '__main__':
             "total_shipment_bookings": total_shipment_bookings,
             "total_payments": total_payments,
             "final_ec_state": final_ec_state,
-            "failure_rate": (failure_rate / N_TRIALS) * 100,
+            "qa_inconsistency_rate": (qa_inconsistency_rate / R) * 100,
             "avg_search_latency": statistics.mean([x['search_latency'] for x in results if x.get('search_latency')]),
             "std_search_latency": statistics.stdev([x['search_latency'] for x in results if x.get('search_latency')]),
-            "p95_search_latency": statistics.quantiles(data=[x['search_latency'] for x in results if x.get('search_latency')], n=100)[95],
+            "p95_search_latency":
+                statistics.quantiles(data=[x['search_latency'] for x in results if x.get('search_latency')], n=100)[95],
             "med_search_latency": statistics.median([x['search_latency'] for x in results if x.get('search_latency')]),
             "avg_latency": statistics.mean([x['elapsed'] for x in results if x.get('elapsed')]),
             "std_latency": statistics.stdev([x['elapsed'] for x in results if x.get('elapsed')]),
@@ -202,13 +221,38 @@ if __name__ == '__main__':
             "total_input_tokens": sum([x['total_input_tokens'] for x in results if x.get('total_input_tokens')]),
             "total_output_tokens": sum([x['total_output_tokens'] for x in results if x.get('total_output_tokens')]),
             "total_llm_calls": sum([x['total_llm_calls'] for x in results if x.get('total_llm_calls')]),
+            "total_api_calls": sum([x['total_api_calls'] for x in results if x.get('total_api_calls')]),
+            "total_api_calls_failure": sum([x['total_api_calls_failure'] for x in results if x.get('total_api_calls_failure')]),
         }
         print("Final summary:", summary)
         run_results.append({"run_number": i + 1, "trial_results": results, "final_summary": summary})
-        print(f"Run {i + 1} Done,\n-----------------------------------------")
+        print(f"Full Trials Run {i + 1} Done,\n-----------------------------------------")
 
+    return run_results
+
+if __name__ == '__main__':
+    
+    parser = argparse.ArgumentParser(
+        description="End-to-end load generator for DSB Social Network",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__,
+    )
+    parser.add_argument("--trials",        type=int,   default=10,
+                        help="Total number of end-to-end trials (default: 1)")
+    parser.add_argument("--concurrency",   type=int,   default=1,
+                        help="Parallel worker threads (default: 1)")
+    args = parser.parse_args()
+    
+    N_TRIALS = args.trials
+    CONCURRENCY_RATE = args.concurrency
+
+    log_telemetry_report_file = 'results/log_telemetry.json'
+    with open(log_telemetry_report_file, "w") as f:
+        f.write("\n\n")
+
+    run_results = full_trials_runner(CONCURRENCY_RATE=CONCURRENCY_RATE, R=N_TRIALS)
     # Save all results
-    with open(f"results/refactored_arch_results_delay_{DELAY}_drop_{DROP_RATE}.json", "w") as f:
+    with open(log_telemetry_report_file, "w") as f:
         f.write("\n\n")
         json.dump(run_results, f)
         f.write("\n\n")

@@ -1,0 +1,13 @@
+
+
+## Sample run end-to-end experiment runner script
+
+```bash
+    python3 exp_runner.py --trials=20 --concurrency=10
+```
+
+### Sample run the automatic end-to-end experiment runner (used in ablation study runner experiment shell scripts)
+
+```bash
+    python3 exp_runner_auto.py ranked_sample full 1 all_services some_agent 0.9 0 0.02 full_governance order_service _ true Ranked 0 llama3.2:3b 10 20
+```
