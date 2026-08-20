@@ -921,7 +921,7 @@ def full_trials_runner(LLM, T, CONCURRENCY_RATE, R):
             # run config
             "run":          run_idx + 1,
             "n_trials":     N_TRIALS,
-            "n_workers":    MAX_WORKERS,
+            "n_workers":    CONCURRENCY_RATE,
             "delay_s":      DELAY,
             "drop_rate":    DROP_RATE,
             "search_keyword": SEARCH_KEYWORD,
