@@ -61,8 +61,6 @@ from .shared import demo_pb2_grpc
 
 SEARCH_KEYWORD  = os.environ.get("SEARCH_KEYWORD",   "sunglass")
 ITEM_QTY        = int(os.environ.get("ITEM_QTY",     "2"))
-N_TRIALS        = int(os.environ.get("N_TRIALS",     "5000"))
-MAX_WORKERS     = int(os.environ.get("MAX_WORKERS",  str(max(1, 20))))
 TOTAL_RUNS      = int(os.environ.get("TOTAL_RUNS",   "1"))
 DELAY           = float(os.environ.get("DELAY",      "0"))
 DROP_RATE       = int(os.environ.get("DROP_RATE",    "0"))
@@ -862,7 +860,7 @@ def full_trials_runner(LLM, T, CONCURRENCY_RATE, R):
     for run_idx in range(TOTAL_RUNS):
         print(f"\n{'='*70}")
         print(f"RUN {run_idx + 1} / {TOTAL_RUNS}")
-        print(f"  N_TRIALS={N_TRIALS}  MAX_WORKERS={MAX_WORKERS}  "
+        print(f"  N_TRIALS={R}  MAX_WORKERS={CONCURRENCY_RATE}  "
               f"DELAY={DELAY}s  DROP_RATE={DROP_RATE}%")
         print(f"{'='*70}")
 
@@ -874,10 +872,10 @@ def full_trials_runner(LLM, T, CONCURRENCY_RATE, R):
         results: list[TrialResult] = []
 
         # ── Parallel trial execution ──────────────────────────────────────────
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        with ThreadPoolExecutor(max_workers=CONCURRENCY_RATE) as executor:
             futures = {
                 executor.submit(run_trial, trial_id, DELAY, DROP_RATE): trial_id
-                for trial_id in range(1, N_TRIALS + 1)
+                for trial_id in range(1, R + 1)
             }
             for future in as_completed(futures):
                 trial_result = future.result()
@@ -920,7 +918,7 @@ def full_trials_runner(LLM, T, CONCURRENCY_RATE, R):
         summary = {
             # run config
             "run":          run_idx + 1,
-            "n_trials":     N_TRIALS,
+            "n_trials":     R,
             "n_workers":    CONCURRENCY_RATE,
             "delay_s":      DELAY,
             "drop_rate":    DROP_RATE,
@@ -930,7 +928,7 @@ def full_trials_runner(LLM, T, CONCURRENCY_RATE, R):
             # outcomes
             "successful_trials": len(ok_results),
             "failed_trials":     error_count,
-            "success_rate_pct":  round(len(ok_results) / N_TRIALS * 100, 1),
+            "success_rate_pct":  round(len(ok_results) / R * 100, 1),
             **db_state,
 
             # end-to-end latency
@@ -954,7 +952,7 @@ def full_trials_runner(LLM, T, CONCURRENCY_RATE, R):
         print(f"\n{'─'*70}")
         print("SUMMARY")
         print(f"{'─'*70}")
-        print(f"  Successful trials : {summary['successful_trials']} / {N_TRIALS}")
+        print(f"  Successful trials : {summary['successful_trials']} / {R}")
         print(f"  Success rate      : {summary['success_rate_pct']}%")
         print(f"  Completed orders  : {db_state['total_completed_orders']}")
         print(f"  Pending orders    : {db_state['total_pending_orders']}")
@@ -1006,7 +1004,7 @@ if __name__ == "__main__":
                         help="Parallel worker threads (default: 1)")
     args = parser.parse_args()
     
-    N_TRIALS = args.trials
+    R = args.trials
     CONCURRENCY_RATE = args.concurrency
 
 
@@ -1018,7 +1016,7 @@ if __name__ == "__main__":
     with open(log_telemetry_report_file, "w") as f:
         f.write("\n\n")
 
-    run_results = full_trials_runner(LLM='llama3:8b', T=0, CONCURRENCY_RATE=CONCURRENCY_RATE, R=N_TRIALS)
+    run_results = full_trials_runner(LLM='llama3:8b', T=0, CONCURRENCY_RATE=CONCURRENCY_RATE, R=R)
     # Save all results
     with open(log_telemetry_report_file, "w") as f:
         f.write("\n\n")
