@@ -14,7 +14,6 @@ from pathlib import Path
 
 
 N_TRIALS = 5000
-total_full_trials_runs = 1
 
 
 def run_experiment_of_architecture_step_full_predicate(LLM, T, CONCURRENCY_RATE, log_telemetry_file, R):
@@ -24,8 +23,7 @@ def run_experiment_of_architecture_step_full_predicate(LLM, T, CONCURRENCY_RATE,
     full_run_results = full_trials_runner(LLM=LLM, T=T, CONCURRENCY_RATE=CONCURRENCY_RATE, R=R)
 
     # Save all results
-    with open(f"./results/refactored_arch_results_llm_{LLM}_T_{T}_U_{CONCURRENCY_RATE}"
-              f".json", "w") as f:
+    with open(log_telemetry_file, "w") as f:
         f.write("\n\n")
         json.dump(full_run_results, f)
         f.write("\n\n")
@@ -41,7 +39,7 @@ def run_experiment_of_architecture_step_full_predicate(LLM, T, CONCURRENCY_RATE,
 
 def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsilon_f, acceptance_predicate_mode, target_service, step, T, LLM, CONCURRENCY_RATE, log_telemetry_file, R):
     
-    log_telemetry_file = log_telemetry_file.replace("res_LLM", "telemetry_res_LLM") 
+    log_telemetry_file = log_telemetry_file.replace("res_LLM", "log_telemetry_res_LLM") 
     latency_predicate_failed = None; qa_predicate_failed = None; failure_rate_predicate_failed = None
     
     # --------------  Execution of the architecture step and evaluation of predicates --------------

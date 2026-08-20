@@ -40,9 +40,10 @@ import uuid
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict, dataclass, field
 from typing import Any, Dict, List, Optional
-
+import argparse
 import grpc
 from pymongo import MongoClient
+from pathlib import Path
 
 # ── path setup ────────────────────────────────────────────────────────────────
 import sys
@@ -850,11 +851,11 @@ def full_trials_runner(LLM, T, CONCURRENCY_RATE, R):
         with open(log_path, "w") as f:
             f.write("")
 
-    output_file = (
-        os.path.dirname(__file__) + f"/results/refactored_architecture_results_delay_{DELAY}_drop_{DROP_RATE}.json"
-    )
-    with open(output_file, "w") as f:
-        f.write("")
+    # output_file = (
+    #     os.path.dirname(__file__) + f"/results/refactored_architecture_results_delay_{DELAY}_drop_{DROP_RATE}.json"
+    # )
+    # with open(output_file, "w") as f:
+    #     f.write("")
 
     run_results = []
 
@@ -985,11 +986,41 @@ def full_trials_runner(LLM, T, CONCURRENCY_RATE, R):
         print(f"Run {run_idx + 1} done.\n{'─'*70}")
 
     # ── Write final JSON output ───────────────────────────────────────────────
-    with open(output_file, "w") as f:
-        json.dump(run_results, f, indent=2)
-    print(f"\nResults saved to: {output_file}")
+    # with open(output_file, "w") as f:
+    #     json.dump(run_results, f, indent=2)
+    # print(f"\nResults saved to: {output_file}")
+    # return run_results
+
     return run_results
 
 
 if __name__ == "__main__":
-    full_trials_runner()
+    parser = argparse.ArgumentParser(
+        description="End-to-end load generator for DSB Social Network",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__,
+    )
+    parser.add_argument("--trials",        type=int,   default=10,
+                        help="Total number of end-to-end trials (default: 1)")
+    parser.add_argument("--concurrency",   type=int,   default=1,
+                        help="Parallel worker threads (default: 1)")
+    args = parser.parse_args()
+    
+    N_TRIALS = args.trials
+    CONCURRENCY_RATE = args.concurrency
+
+
+
+    pwd = os.getcwd()
+    script_dir = str(Path(__file__).resolve().parent)
+
+    log_telemetry_report_file = str(script_dir) + '/results/log_telemetry.json'
+    with open(log_telemetry_report_file, "w") as f:
+        f.write("\n\n")
+
+    run_results = full_trials_runner(LLM='llama3:8b', T=0, CONCURRENCY_RATE=CONCURRENCY_RATE, R=N_TRIALS)
+    # Save all results
+    with open(log_telemetry_report_file, "w") as f:
+        f.write("\n\n")
+        json.dump(run_results, f)
+        f.write("\n\n")
