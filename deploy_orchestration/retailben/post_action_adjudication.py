@@ -638,10 +638,27 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
         logger.info(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
         try:
             with open(log_telemetry_file, "r") as f:
-                log_data = json.load(f)
-                # Placeholder: Implement actual logic to analyze logs and calculate violation duration
-                # For example, count how many trials had violations and their timestamps
-                
+                log_telemetry_data = json.load(f)
+                trial_results = log_telemetry_data[0]["trial_results"]
+                total_trials = len(trial_results)
+
+                # Implement actual logic to analyze logs and calculate violation duration
+
+                violations = [
+                        trial for trial in trial_results
+                        if (
+                            trial["elapsed"] > threshold_latency
+                            or trial["total_api_calls_failure"] > 0
+                        )
+                    ]
+                violation_count = len(violations)
+                violation_rate = (
+                    violation_count / total_trials
+                    if total_trials > 0
+                    else 0
+                )
+                return violation_rate * total_trials
+            
         except Exception as e:
             # print(f"Error reading log telemetry file: {e}")
             logger.error(f"Error reading log telemetry file: {e}")

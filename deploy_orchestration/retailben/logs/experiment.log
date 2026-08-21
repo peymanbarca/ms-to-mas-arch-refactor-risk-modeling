@@ -1,762 +1,143 @@
-2026-08-18 12:29:55,315 - INFO - Config: {"predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "human", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3.2:3b", "temperature": 0, "R": 5000, "concurrency": 20}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Notification", "score": "0.029"}, {"rank": "2", "service": "Pricing", "score": "0.045"}, {"rank": "3", "service": "Payment", "score": "0.058"}, {"rank": "4", "service": "Subscription", "score": "0.106"}, {"rank": "5", "service": "Shopping Cart", "score": "0.148"}, {"rank": "6", "service": "Inventory", "score": "0.177"}, {"rank": "7", "service": "Product Catalog", "score": "0.273"}, {"rank": "8", "service": "Procurement", "score": "0.398"}, {"rank": "9", "service": "Shipment", "score": "0.407"}, {"rank": "10", "service": "Order", "score": "0.635"}]}
-2026-08-18 12:29:55,326 - INFO - 
+2026-08-19 10:29:09,911 - INFO - Config: {"predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "human", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3.2:3b", "temperature": 0, "R": 5000, "concurrency": 20}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Notification", "score": "0.029"}, {"rank": "2", "service": "Pricing", "score": "0.045"}, {"rank": "3", "service": "Payment", "score": "0.058"}, {"rank": "4", "service": "Subscription", "score": "0.106"}, {"rank": "5", "service": "Shopping Cart", "score": "0.148"}, {"rank": "6", "service": "Inventory", "score": "0.177"}, {"rank": "7", "service": "Product Catalog", "score": "0.273"}, {"rank": "8", "service": "Procurement", "score": "0.398"}, {"rank": "9", "service": "Shipment", "score": "0.407"}, {"rank": "10", "service": "Order", "score": "0.635"}]}
+2026-08-19 10:29:09,956 - INFO - 
 
 ============================== Starting Migration Strategy: Ranked_weight_fanout0.2_bc0.2_ccyl0.2_ccog0.2_tprop0.2_live_progressive_refactor, Predicate Mode: Full, Governance Policy: Human-In-The-Loop, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20 ==============================
 
 
-2026-08-18 12:29:55,328 - INFO - 
+2026-08-19 10:29:09,963 - INFO - 
 ============================== Starting Step 1/10 ==============================
-2026-08-18 12:29:55,328 - INFO - 
+2026-08-19 10:29:09,964 - INFO - 
 === Step:1, Refactoring notification_service:8011 with risk score 0.029 as AI agent ===
 
 
-2026-08-18 12:29:55,328 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:29:55,328 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:29:55,428 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 1...
-2026-08-18 12:29:57,703 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:29:57,703 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:29:57,704 - INFO - 
+2026-08-19 10:29:09,964 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
+2026-08-19 10:29:09,964 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-19 10:29:10,064 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 1...
+2026-08-19 10:29:13,200 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/log_telemetry_res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-19 10:29:13,200 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/log_telemetry_res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-19 10:29:13,201 - INFO - 
 ================================================================================
-2026-08-18 12:29:57,704 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:29:57,704 - INFO - ================================================================================
-2026-08-18 12:29:57,704 - INFO - 
+2026-08-19 10:29:13,201 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-19 10:29:13,201 - INFO - ================================================================================
+2026-08-19 10:29:13,201 - INFO - 
 📋 Step 1: notification_service
-2026-08-18 12:29:57,704 - INFO - Predicate Decision: ACCEPT
-2026-08-18 12:29:57,704 - INFO - 
+2026-08-19 10:29:13,201 - INFO - Predicate Decision: ACCEPT
+2026-08-19 10:29:13,201 - INFO - 
 ⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:29:57,704 - INFO - 
+2026-08-19 10:29:13,201 - INFO - 
 --------------------------------------------------------------------------------
-2026-08-18 12:29:57,704 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:29:57,704 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:29:57,704 - INFO - 
+2026-08-19 10:29:13,202 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-19 10:29:13,202 - INFO - --------------------------------------------------------------------------------
+2026-08-19 10:29:13,202 - INFO - 
 📊 Core Metrics:
-2026-08-18 12:29:57,704 - INFO - 
+2026-08-19 10:29:13,202 - INFO - 
   QUALITY ASSURANCE
-2026-08-18 12:29:57,704 - INFO -     Actual:        0.0000
-2026-08-18 12:29:57,704 - INFO -     Threshold:     0.0000
-2026-08-18 12:29:57,704 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:29:57,704 - INFO -     Status:        ✓ PASS
-2026-08-18 12:29:57,704 - INFO - 
+2026-08-19 10:29:13,202 - INFO -     Actual:        0.0000
+2026-08-19 10:29:13,202 - INFO -     Threshold:     0.0000
+2026-08-19 10:29:13,202 - INFO -     Tolerance:     ±0.0000
+2026-08-19 10:29:13,202 - INFO -     Status:        ✓ PASS
+2026-08-19 10:29:13,202 - INFO - 
   LATENCY P95
-2026-08-18 12:29:57,704 - INFO -     Actual:        1.140s
-2026-08-18 12:29:57,704 - INFO -     Threshold:     1.900s
-2026-08-18 12:29:57,704 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:29:57,704 - INFO -     Status:        ✓ PASS
-2026-08-18 12:29:57,704 - INFO - 
+2026-08-19 10:29:13,203 - INFO -     Actual:        1.305s
+2026-08-19 10:29:13,203 - INFO -     Threshold:     1.900s
+2026-08-19 10:29:13,203 - INFO -     Tolerance:     ±0.100s
+2026-08-19 10:29:13,203 - INFO -     Status:        ✓ PASS
+2026-08-19 10:29:13,203 - INFO - 
   FAILURE RATE
-2026-08-18 12:29:57,704 - INFO -     Actual:        0.0000
-2026-08-18 12:29:57,704 - INFO -     Threshold:     0.0200
-2026-08-18 12:29:57,704 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:29:57,704 - INFO -     Status:        ✓ PASS
-2026-08-18 12:29:57,704 - INFO - 
+2026-08-19 10:29:13,203 - INFO -     Actual:        0.0017
+2026-08-19 10:29:13,203 - INFO -     Threshold:     0.0200
+2026-08-19 10:29:13,203 - INFO -     Tolerance:     ±0.0050
+2026-08-19 10:29:13,204 - INFO -     Status:        ✓ PASS
+2026-08-19 10:29:13,204 - INFO - 
 🔍 Risk Assessment:
-2026-08-18 12:29:57,704 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
-2026-08-18 12:29:57,705 - INFO -   Status: LOW RISK
-2026-08-18 12:29:57,705 - INFO - 
+2026-08-19 10:29:13,204 - INFO -   Temporal Propagation: 0.002 (tolerance: 0.100)
+2026-08-19 10:29:13,204 - INFO -   Status: LOW RISK
+2026-08-19 10:29:13,204 - INFO - 
 📈 Violation Analysis:
-2026-08-18 12:29:57,705 - INFO -   Violation Duration: 535.63 trials
-2026-08-18 12:29:57,705 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:29:57,705 - INFO -   Classification: TRANSIENT
-2026-08-18 12:29:57,705 - INFO - 
+2026-08-19 10:29:13,204 - INFO -   Violation Duration: 546.68 trials
+2026-08-19 10:29:13,205 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-19 10:29:13,205 - INFO -   Classification: TRANSIENT
+2026-08-19 10:29:13,205 - INFO - 
 ================================================================================
-2026-08-18 12:29:57,705 - INFO - ADJUDICATION DECISION
-2026-08-18 12:29:57,705 - INFO - ================================================================================
-2026-08-18 12:29:57,705 - INFO - 
+2026-08-19 10:29:13,207 - INFO - ADJUDICATION DECISION
+2026-08-19 10:29:13,207 - INFO - ================================================================================
+2026-08-19 10:29:13,207 - INFO - 
 ✅ Predicate ACCEPTED this step.
-2026-08-18 12:29:57,705 - INFO - However, you may decide it be a false acceptance.
-2026-08-18 12:29:57,705 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
-2026-08-18 12:29:57,705 - INFO - 
+2026-08-19 10:29:13,207 - INFO - However, you may decide it be a false acceptance.
+2026-08-19 10:29:13,207 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-08-19 10:29:13,207 - INFO - 
 
 Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
 ...Awaiting human adjudication input...
-2026-08-18 12:30:00,372 - INFO - HITL user response: A
-2026-08-18 12:30:00,373 - INFO - Prediction Category for step 1: hitl_decision, 
+2026-08-19 10:29:25,915 - INFO - HITL user response: A
+2026-08-19 10:29:25,915 - INFO - Prediction Category for step 1: hitl_decision, 
 
- qa_inconsistency_rate: 0.0000, p95_latency: 1.1404, failure_rate: 0.0000, temporal_propagation: 0.0002, final_decision: True 
+ qa_inconsistency_rate: 0.0000, p95_latency: 1.3054, failure_rate: 0.0017, temporal_propagation: 0.0020, final_decision: True 
 
 
-2026-08-18 12:30:00,375 - INFO - ✅ ACCEPTED: notification_service:8011 → notification_agent:8011, decision type: accepted_by_human_governance
-2026-08-18 12:30:00,375 - INFO - 
+2026-08-19 10:29:25,916 - INFO - ✅ ACCEPTED: notification_service:8011 → notification_agent:8011, decision type: accepted_by_human_governance
+2026-08-19 10:29:25,916 - INFO - 
 ============================== Starting Step 2/10 ==============================
-2026-08-18 12:30:00,375 - INFO - 
+2026-08-19 10:29:25,916 - INFO - 
 === Step:2, Refactoring pricing_service:8002 with risk score 0.045 as AI agent ===
 
 
-2026-08-18 12:30:00,376 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:30:00,376 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:30:00,476 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 2...
-2026-08-18 12:30:02,756 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:30:02,756 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:30:02,756 - INFO - 
+2026-08-19 10:29:25,916 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
+2026-08-19 10:29:25,916 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-19 10:29:26,016 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 2...
+2026-08-19 10:29:28,377 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/log_telemetry_res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-19 10:29:28,378 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/log_telemetry_res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-19 10:29:28,378 - INFO - 
 ================================================================================
-2026-08-18 12:30:02,756 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:30:02,756 - INFO - ================================================================================
-2026-08-18 12:30:02,756 - INFO - 
+2026-08-19 10:29:28,378 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-19 10:29:28,378 - INFO - ================================================================================
+2026-08-19 10:29:28,378 - INFO - 
 📋 Step 2: pricing_service
-2026-08-18 12:30:02,756 - INFO - Predicate Decision: ACCEPT
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,378 - INFO - Predicate Decision: ACCEPT
+2026-08-19 10:29:28,378 - INFO - 
 ⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,378 - INFO - 
 --------------------------------------------------------------------------------
-2026-08-18 12:30:02,757 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:30:02,757 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,378 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-19 10:29:28,378 - INFO - --------------------------------------------------------------------------------
+2026-08-19 10:29:28,378 - INFO - 
 📊 Core Metrics:
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,378 - INFO - 
   QUALITY ASSURANCE
-2026-08-18 12:30:02,757 - INFO -     Actual:        0.0000
-2026-08-18 12:30:02,757 - INFO -     Threshold:     0.0000
-2026-08-18 12:30:02,757 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:30:02,757 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,378 - INFO -     Actual:        0.0000
+2026-08-19 10:29:28,378 - INFO -     Threshold:     0.0000
+2026-08-19 10:29:28,378 - INFO -     Tolerance:     ±0.0000
+2026-08-19 10:29:28,378 - INFO -     Status:        ✓ PASS
+2026-08-19 10:29:28,378 - INFO - 
   LATENCY P95
-2026-08-18 12:30:02,757 - INFO -     Actual:        0.972s
-2026-08-18 12:30:02,757 - INFO -     Threshold:     1.900s
-2026-08-18 12:30:02,757 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:30:02,757 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,378 - INFO -     Actual:        1.009s
+2026-08-19 10:29:28,378 - INFO -     Threshold:     1.900s
+2026-08-19 10:29:28,378 - INFO -     Tolerance:     ±0.100s
+2026-08-19 10:29:28,378 - INFO -     Status:        ✓ PASS
+2026-08-19 10:29:28,378 - INFO - 
   FAILURE RATE
-2026-08-18 12:30:02,757 - INFO -     Actual:        0.0000
-2026-08-18 12:30:02,757 - INFO -     Threshold:     0.0200
-2026-08-18 12:30:02,757 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:30:02,757 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,378 - INFO -     Actual:        0.0000
+2026-08-19 10:29:28,378 - INFO -     Threshold:     0.0200
+2026-08-19 10:29:28,378 - INFO -     Tolerance:     ±0.0050
+2026-08-19 10:29:28,378 - INFO -     Status:        ✓ PASS
+2026-08-19 10:29:28,378 - INFO - 
 🔍 Risk Assessment:
-2026-08-18 12:30:02,757 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
-2026-08-18 12:30:02,757 - INFO -   Status: LOW RISK
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,379 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
+2026-08-19 10:29:28,379 - INFO -   Status: LOW RISK
+2026-08-19 10:29:28,379 - INFO - 
 📈 Violation Analysis:
-2026-08-18 12:30:02,757 - INFO -   Violation Duration: 497.14 trials
-2026-08-18 12:30:02,757 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:30:02,757 - INFO -   Classification: TRANSIENT
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,379 - INFO -   Violation Duration: 453.67 trials
+2026-08-19 10:29:28,379 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-19 10:29:28,379 - INFO -   Classification: TRANSIENT
+2026-08-19 10:29:28,379 - INFO - 
 ================================================================================
-2026-08-18 12:30:02,757 - INFO - ADJUDICATION DECISION
-2026-08-18 12:30:02,757 - INFO - ================================================================================
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,379 - INFO - ADJUDICATION DECISION
+2026-08-19 10:29:28,379 - INFO - ================================================================================
+2026-08-19 10:29:28,379 - INFO - 
 ✅ Predicate ACCEPTED this step.
-2026-08-18 12:30:02,757 - INFO - However, you may decide it be a false acceptance.
-2026-08-18 12:30:02,757 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
-2026-08-18 12:30:02,757 - INFO - 
+2026-08-19 10:29:28,379 - INFO - However, you may decide it be a false acceptance.
+2026-08-19 10:29:28,379 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-08-19 10:29:28,379 - INFO - 
 
 Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
 ...Awaiting human adjudication input...
-2026-08-18 12:30:05,234 - INFO - HITL user response: R
-2026-08-18 12:30:05,235 - INFO - Prediction Category for step 2: hitl_decision, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 0.9719, failure_rate: 0.0000, temporal_propagation: 0.0002, final_decision: False 
-
-
-2026-08-18 12:30:05,236 - INFO - ❌ REJECTED: pricing_service:8002 remains as service, decision type: rejected_by_human_governance
-2026-08-18 12:30:05,237 - INFO - 
-============================== Starting Step 3/10 ==============================
-2026-08-18 12:30:05,237 - INFO - 
-=== Step:3, Refactoring payment_service:8007 with risk score 0.058 as AI agent ===
-
-
-2026-08-18 12:30:05,237 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:30:05,238 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:30:05,338 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 3...
-2026-08-18 12:30:07,587 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:30:07,587 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:30:07,587 - INFO - 
-================================================================================
-2026-08-18 12:30:07,587 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:30:07,587 - INFO - ================================================================================
-2026-08-18 12:30:07,587 - INFO - 
-📋 Step 3: payment_service
-2026-08-18 12:30:07,587 - INFO - Predicate Decision: ACCEPT
-2026-08-18 12:30:07,587 - INFO - 
-⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:30:07,587 - INFO - 
---------------------------------------------------------------------------------
-2026-08-18 12:30:07,587 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:30:07,587 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:30:07,588 - INFO - 
-📊 Core Metrics:
-2026-08-18 12:30:07,588 - INFO - 
-  QUALITY ASSURANCE
-2026-08-18 12:30:07,588 - INFO -     Actual:        0.0000
-2026-08-18 12:30:07,588 - INFO -     Threshold:     0.0000
-2026-08-18 12:30:07,588 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:30:07,588 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:07,588 - INFO - 
-  LATENCY P95
-2026-08-18 12:30:07,588 - INFO -     Actual:        1.035s
-2026-08-18 12:30:07,588 - INFO -     Threshold:     1.900s
-2026-08-18 12:30:07,588 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:30:07,588 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:07,588 - INFO - 
-  FAILURE RATE
-2026-08-18 12:30:07,588 - INFO -     Actual:        0.0018
-2026-08-18 12:30:07,588 - INFO -     Threshold:     0.0200
-2026-08-18 12:30:07,588 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:30:07,588 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:07,588 - INFO - 
-🔍 Risk Assessment:
-2026-08-18 12:30:07,588 - INFO -   Temporal Propagation: 0.002 (tolerance: 0.100)
-2026-08-18 12:30:07,588 - INFO -   Status: LOW RISK
-2026-08-18 12:30:07,588 - INFO - 
-📈 Violation Analysis:
-2026-08-18 12:30:07,588 - INFO -   Violation Duration: 478.37 trials
-2026-08-18 12:30:07,589 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:30:07,589 - INFO -   Classification: TRANSIENT
-2026-08-18 12:30:07,589 - INFO - 
-================================================================================
-2026-08-18 12:30:07,589 - INFO - ADJUDICATION DECISION
-2026-08-18 12:30:07,589 - INFO - ================================================================================
-2026-08-18 12:30:07,589 - INFO - 
-✅ Predicate ACCEPTED this step.
-2026-08-18 12:30:07,589 - INFO - However, you may decide it be a false acceptance.
-2026-08-18 12:30:07,589 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
-2026-08-18 12:30:07,589 - INFO - 
-
-Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
-...Awaiting human adjudication input...
-2026-08-18 12:30:10,102 - INFO - HITL user response: A
-2026-08-18 12:30:10,102 - INFO - Prediction Category for step 3: hitl_decision, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.0355, failure_rate: 0.0018, temporal_propagation: 0.0021, final_decision: True 
-
-
-2026-08-18 12:30:10,103 - INFO - ✅ ACCEPTED: payment_service:8007 → payment_agent:8007, decision type: accepted_by_human_governance
-2026-08-18 12:30:10,104 - INFO - 
-============================== Starting Step 4/10 ==============================
-2026-08-18 12:30:10,104 - INFO - 
-=== Step:4, Refactoring subscription_service:8010 with risk score 0.106 as AI agent ===
-
-
-2026-08-18 12:30:10,105 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:30:10,105 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:30:10,205 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 4...
-2026-08-18 12:30:12,487 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:30:12,487 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:30:12,487 - INFO - 
-================================================================================
-2026-08-18 12:30:12,487 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:30:12,487 - INFO - ================================================================================
-2026-08-18 12:30:12,488 - INFO - 
-📋 Step 4: subscription_service
-2026-08-18 12:30:12,488 - INFO - Predicate Decision: ACCEPT
-2026-08-18 12:30:12,488 - INFO - 
-⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:30:12,488 - INFO - 
---------------------------------------------------------------------------------
-2026-08-18 12:30:12,488 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:30:12,488 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:30:12,488 - INFO - 
-📊 Core Metrics:
-2026-08-18 12:30:12,488 - INFO - 
-  QUALITY ASSURANCE
-2026-08-18 12:30:12,488 - INFO -     Actual:        0.0000
-2026-08-18 12:30:12,488 - INFO -     Threshold:     0.0000
-2026-08-18 12:30:12,488 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:30:12,488 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:12,488 - INFO - 
-  LATENCY P95
-2026-08-18 12:30:12,488 - INFO -     Actual:        1.036s
-2026-08-18 12:30:12,488 - INFO -     Threshold:     1.900s
-2026-08-18 12:30:12,488 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:30:12,488 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:12,488 - INFO - 
-  FAILURE RATE
-2026-08-18 12:30:12,488 - INFO -     Actual:        0.0063
-2026-08-18 12:30:12,488 - INFO -     Threshold:     0.0200
-2026-08-18 12:30:12,489 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:30:12,489 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:12,489 - INFO - 
-🔍 Risk Assessment:
-2026-08-18 12:30:12,489 - INFO -   Temporal Propagation: 0.006 (tolerance: 0.100)
-2026-08-18 12:30:12,489 - INFO -   Status: LOW RISK
-2026-08-18 12:30:12,489 - INFO - 
-📈 Violation Analysis:
-2026-08-18 12:30:12,489 - INFO -   Violation Duration: 543.83 trials
-2026-08-18 12:30:12,489 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:30:12,489 - INFO -   Classification: TRANSIENT
-2026-08-18 12:30:12,489 - INFO - 
-================================================================================
-2026-08-18 12:30:12,489 - INFO - ADJUDICATION DECISION
-2026-08-18 12:30:12,489 - INFO - ================================================================================
-2026-08-18 12:30:12,489 - INFO - 
-✅ Predicate ACCEPTED this step.
-2026-08-18 12:30:12,489 - INFO - However, you may decide it be a false acceptance.
-2026-08-18 12:30:12,489 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
-2026-08-18 12:30:12,489 - INFO - 
-
-Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
-...Awaiting human adjudication input...
-2026-08-18 12:30:15,116 - INFO - HITL user response: H
-2026-08-18 12:30:15,117 - INFO - 
-📖 GUIDANCE:
-2026-08-18 12:30:15,117 - INFO -   • Reject: If violations are sustained beyond grace window
-2026-08-18 12:30:15,117 - INFO -   • Accept: If violations are truly transient and grace window is appropriate
-2026-08-18 12:30:15,117 - INFO - 
-
-Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
-...Awaiting human adjudication input...
-2026-08-18 12:30:18,944 - INFO - HITL user response: A
-2026-08-18 12:30:18,945 - INFO - Prediction Category for step 4: hitl_decision, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.0363, failure_rate: 0.0063, temporal_propagation: 0.0065, final_decision: True 
-
-
-2026-08-18 12:30:18,946 - INFO - ✅ ACCEPTED: subscription_service:8010 → subscription_agent:8010, decision type: accepted_by_human_governance
-2026-08-18 12:30:18,946 - INFO - 
-============================== Starting Step 5/10 ==============================
-2026-08-18 12:30:18,946 - INFO - 
-=== Step:5, Refactoring shopping_cart_service:8003 with risk score 0.148 as AI agent ===
-
-
-2026-08-18 12:30:18,947 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:30:18,947 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:30:19,048 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 5...
-2026-08-18 12:30:21,412 - INFO -   No temporal propagation influence detected for this step.
-2026-08-18 12:30:21,412 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:30:21,413 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:30:21,413 - INFO - 
-================================================================================
-2026-08-18 12:30:21,413 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:30:21,413 - INFO - ================================================================================
-2026-08-18 12:30:21,413 - INFO - 
-📋 Step 5: shopping_cart_service
-2026-08-18 12:30:21,413 - INFO - Predicate Decision: ACCEPT
-2026-08-18 12:30:21,413 - INFO - 
-⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:30:21,413 - INFO - 
---------------------------------------------------------------------------------
-2026-08-18 12:30:21,413 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:30:21,413 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:30:21,413 - INFO - 
-📊 Core Metrics:
-2026-08-18 12:30:21,413 - INFO - 
-  QUALITY ASSURANCE
-2026-08-18 12:30:21,413 - INFO -     Actual:        0.0000
-2026-08-18 12:30:21,413 - INFO -     Threshold:     0.0000
-2026-08-18 12:30:21,413 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:30:21,413 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:21,413 - INFO - 
-  LATENCY P95
-2026-08-18 12:30:21,413 - INFO -     Actual:        1.476s
-2026-08-18 12:30:21,413 - INFO -     Threshold:     1.900s
-2026-08-18 12:30:21,414 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:30:21,414 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:21,414 - INFO - 
-  FAILURE RATE
-2026-08-18 12:30:21,414 - INFO -     Actual:        0.0129
-2026-08-18 12:30:21,414 - INFO -     Threshold:     0.0200
-2026-08-18 12:30:21,414 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:30:21,414 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:21,414 - INFO - 
-🔍 Risk Assessment:
-2026-08-18 12:30:21,414 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
-2026-08-18 12:30:21,414 - INFO -   Status: LOW RISK
-2026-08-18 12:30:21,414 - INFO - 
-📈 Violation Analysis:
-2026-08-18 12:30:21,414 - INFO -   Violation Duration: 471.91 trials
-2026-08-18 12:30:21,414 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:30:21,414 - INFO -   Classification: TRANSIENT
-2026-08-18 12:30:21,414 - INFO - 
-================================================================================
-2026-08-18 12:30:21,414 - INFO - ADJUDICATION DECISION
-2026-08-18 12:30:21,414 - INFO - ================================================================================
-2026-08-18 12:30:21,414 - INFO - 
-✅ Predicate ACCEPTED this step.
-2026-08-18 12:30:21,414 - INFO - However, you may decide it be a false acceptance.
-2026-08-18 12:30:21,414 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
-2026-08-18 12:30:21,414 - INFO - 
-
-Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
-...Awaiting human adjudication input...
-2026-08-18 12:30:24,200 - INFO - HITL user response: A
-2026-08-18 12:30:24,200 - INFO - Prediction Category for step 5: hitl_decision, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.4758, failure_rate: 0.0129, temporal_propagation: 0.0000, final_decision: True 
-
-
-2026-08-18 12:30:24,201 - INFO - ✅ ACCEPTED: shopping_cart_service:8003 → shopping_cart_agent:8003, decision type: accepted_by_human_governance
-2026-08-18 12:30:24,202 - INFO - 
-============================== Starting Step 6/10 ==============================
-2026-08-18 12:30:24,202 - INFO - 
-=== Step:6, Refactoring inventory_service:8001 with risk score 0.177 as AI agent ===
-
-
-2026-08-18 12:30:24,202 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:30:24,203 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:30:24,303 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 6...
-2026-08-18 12:30:26,770 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:30:26,770 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:30:26,770 - INFO - 
-================================================================================
-2026-08-18 12:30:26,770 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:30:26,770 - INFO - ================================================================================
-2026-08-18 12:30:26,770 - INFO - 
-📋 Step 6: inventory_service
-2026-08-18 12:30:26,770 - INFO - Predicate Decision: ACCEPT
-2026-08-18 12:30:26,770 - INFO - 
-⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:30:26,771 - INFO - 
---------------------------------------------------------------------------------
-2026-08-18 12:30:26,771 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:30:26,771 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:30:26,771 - INFO - 
-📊 Core Metrics:
-2026-08-18 12:30:26,771 - INFO - 
-  QUALITY ASSURANCE
-2026-08-18 12:30:26,771 - INFO -     Actual:        0.0089
-2026-08-18 12:30:26,771 - INFO -     Threshold:     0.0000
-2026-08-18 12:30:26,771 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:30:26,771 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:26,771 - INFO - 
-  LATENCY P95
-2026-08-18 12:30:26,771 - INFO -     Actual:        1.642s
-2026-08-18 12:30:26,771 - INFO -     Threshold:     1.900s
-2026-08-18 12:30:26,771 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:30:26,771 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:26,771 - INFO - 
-  FAILURE RATE
-2026-08-18 12:30:26,771 - INFO -     Actual:        0.0075
-2026-08-18 12:30:26,771 - INFO -     Threshold:     0.0200
-2026-08-18 12:30:26,771 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:30:26,771 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:26,772 - INFO - 
-🔍 Risk Assessment:
-2026-08-18 12:30:26,772 - INFO -   Temporal Propagation: 0.017 (tolerance: 0.100)
-2026-08-18 12:30:26,772 - INFO -   Status: LOW RISK
-2026-08-18 12:30:26,772 - INFO - 
-📈 Violation Analysis:
-2026-08-18 12:30:26,772 - INFO -   Violation Duration: 590.62 trials
-2026-08-18 12:30:26,772 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:30:26,772 - INFO -   Classification: TRANSIENT
-2026-08-18 12:30:26,772 - INFO - 
-================================================================================
-2026-08-18 12:30:26,772 - INFO - ADJUDICATION DECISION
-2026-08-18 12:30:26,772 - INFO - ================================================================================
-2026-08-18 12:30:26,772 - INFO - 
-✅ Predicate ACCEPTED this step.
-2026-08-18 12:30:26,772 - INFO - However, you may decide it be a false acceptance.
-2026-08-18 12:30:26,772 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
-2026-08-18 12:30:26,772 - INFO - 
-
-Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
-...Awaiting human adjudication input...
-2026-08-18 12:30:29,160 - INFO - HITL user response: R
-2026-08-18 12:30:29,161 - INFO - Prediction Category for step 6: hitl_decision, 
-
- qa_inconsistency_rate: 0.0089, p95_latency: 1.6423, failure_rate: 0.0075, temporal_propagation: 0.0167, final_decision: False 
-
-
-2026-08-18 12:30:29,162 - INFO - ❌ REJECTED: inventory_service:8001 remains as service, decision type: rejected_by_human_governance
-2026-08-18 12:30:29,163 - INFO - 
-============================== Starting Step 7/10 ==============================
-2026-08-18 12:30:29,163 - INFO - 
-=== Step:7, Refactoring product_catalog_service:8008 with risk score 0.273 as AI agent ===
-
-
-2026-08-18 12:30:29,164 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:30:29,164 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:30:29,265 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 7...
-2026-08-18 12:30:31,514 - INFO -   No temporal propagation influence detected for this step.
-2026-08-18 12:30:31,514 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:30:31,514 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:30:31,514 - INFO - 
-================================================================================
-2026-08-18 12:30:31,514 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:30:31,515 - INFO - ================================================================================
-2026-08-18 12:30:31,515 - INFO - 
-📋 Step 7: product_catalog_service
-2026-08-18 12:30:31,515 - INFO - Predicate Decision: ACCEPT
-2026-08-18 12:30:31,515 - INFO - 
-⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:30:31,515 - INFO - 
---------------------------------------------------------------------------------
-2026-08-18 12:30:31,515 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:30:31,515 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:30:31,515 - INFO - 
-📊 Core Metrics:
-2026-08-18 12:30:31,515 - INFO - 
-  QUALITY ASSURANCE
-2026-08-18 12:30:31,515 - INFO -     Actual:        0.0000
-2026-08-18 12:30:31,515 - INFO -     Threshold:     0.0000
-2026-08-18 12:30:31,515 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:30:31,515 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:31,515 - INFO - 
-  LATENCY P95
-2026-08-18 12:30:31,515 - INFO -     Actual:        1.831s
-2026-08-18 12:30:31,515 - INFO -     Threshold:     1.900s
-2026-08-18 12:30:31,515 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:30:31,515 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:31,515 - INFO - 
-  FAILURE RATE
-2026-08-18 12:30:31,515 - INFO -     Actual:        0.0074
-2026-08-18 12:30:31,515 - INFO -     Threshold:     0.0200
-2026-08-18 12:30:31,515 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:30:31,516 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:31,516 - INFO - 
-🔍 Risk Assessment:
-2026-08-18 12:30:31,516 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
-2026-08-18 12:30:31,516 - INFO -   Status: LOW RISK
-2026-08-18 12:30:31,516 - INFO - 
-📈 Violation Analysis:
-2026-08-18 12:30:31,516 - INFO -   Violation Duration: 903.57 trials
-2026-08-18 12:30:31,516 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:30:31,516 - INFO -   Classification: TRANSIENT
-2026-08-18 12:30:31,516 - INFO - 
-================================================================================
-2026-08-18 12:30:31,516 - INFO - ADJUDICATION DECISION
-2026-08-18 12:30:31,516 - INFO - ================================================================================
-2026-08-18 12:30:31,516 - INFO - 
-✅ Predicate ACCEPTED this step.
-2026-08-18 12:30:31,516 - INFO - However, you may decide it be a false acceptance.
-2026-08-18 12:30:31,516 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
-2026-08-18 12:30:31,516 - INFO - 
-
-Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
-...Awaiting human adjudication input...
-2026-08-18 12:30:34,120 - INFO - HITL user response: A
-2026-08-18 12:30:34,120 - INFO - Prediction Category for step 7: hitl_decision, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.8310, failure_rate: 0.0074, temporal_propagation: 0.0000, final_decision: True 
-
-
-2026-08-18 12:30:34,121 - INFO - ✅ ACCEPTED: product_catalog_service:8008 → product_catalog_agent:8008, decision type: accepted_by_human_governance
-2026-08-18 12:30:34,121 - INFO - 
-============================== Starting Step 8/10 ==============================
-2026-08-18 12:30:34,122 - INFO - 
-=== Step:8, Refactoring procurement_service:8009 with risk score 0.398 as AI agent ===
-
-
-2026-08-18 12:30:34,122 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:30:34,122 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:30:34,223 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 8...
-2026-08-18 12:30:36,494 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:30:36,494 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:30:36,494 - INFO - 
-================================================================================
-2026-08-18 12:30:36,494 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:30:36,494 - INFO - ================================================================================
-2026-08-18 12:30:36,494 - INFO - 
-📋 Step 8: procurement_service
-2026-08-18 12:30:36,494 - INFO - Predicate Decision: ACCEPT
-2026-08-18 12:30:36,494 - INFO - 
-⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:30:36,494 - INFO - 
---------------------------------------------------------------------------------
-2026-08-18 12:30:36,494 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:30:36,494 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:30:36,494 - INFO - 
-📊 Core Metrics:
-2026-08-18 12:30:36,494 - INFO - 
-  QUALITY ASSURANCE
-2026-08-18 12:30:36,494 - INFO -     Actual:        0.0000
-2026-08-18 12:30:36,494 - INFO -     Threshold:     0.0000
-2026-08-18 12:30:36,494 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:30:36,494 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:36,494 - INFO - 
-  LATENCY P95
-2026-08-18 12:30:36,494 - INFO -     Actual:        1.730s
-2026-08-18 12:30:36,494 - INFO -     Threshold:     1.900s
-2026-08-18 12:30:36,494 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:30:36,494 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:36,494 - INFO - 
-  FAILURE RATE
-2026-08-18 12:30:36,494 - INFO -     Actual:        0.0069
-2026-08-18 12:30:36,494 - INFO -     Threshold:     0.0200
-2026-08-18 12:30:36,494 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:30:36,494 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:36,494 - INFO - 
-🔍 Risk Assessment:
-2026-08-18 12:30:36,495 - INFO -   Temporal Propagation: 0.007 (tolerance: 0.100)
-2026-08-18 12:30:36,495 - INFO -   Status: LOW RISK
-2026-08-18 12:30:36,495 - INFO - 
-📈 Violation Analysis:
-2026-08-18 12:30:36,495 - INFO -   Violation Duration: 556.74 trials
-2026-08-18 12:30:36,495 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:30:36,495 - INFO -   Classification: TRANSIENT
-2026-08-18 12:30:36,495 - INFO - 
-================================================================================
-2026-08-18 12:30:36,495 - INFO - ADJUDICATION DECISION
-2026-08-18 12:30:36,495 - INFO - ================================================================================
-2026-08-18 12:30:36,495 - INFO - 
-✅ Predicate ACCEPTED this step.
-2026-08-18 12:30:36,495 - INFO - However, you may decide it be a false acceptance.
-2026-08-18 12:30:36,495 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
-2026-08-18 12:30:36,495 - INFO - 
-
-Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
-...Awaiting human adjudication input...
-2026-08-18 12:30:38,635 - INFO - HITL user response: A
-2026-08-18 12:30:38,636 - INFO - Prediction Category for step 8: hitl_decision, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 1.7303, failure_rate: 0.0069, temporal_propagation: 0.0072, final_decision: True 
-
-
-2026-08-18 12:30:38,637 - INFO - ✅ ACCEPTED: procurement_service:8009 → procurement_agent:8009, decision type: accepted_by_human_governance
-2026-08-18 12:30:38,637 - INFO - 
-============================== Starting Step 9/10 ==============================
-2026-08-18 12:30:38,638 - INFO - 
-=== Step:9, Refactoring shipment_service:8006 with risk score 0.407 as AI agent ===
-
-
-2026-08-18 12:30:38,638 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:30:38,638 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:30:38,739 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 9...
-2026-08-18 12:30:41,029 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:30:41,029 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:30:41,029 - INFO - 
-================================================================================
-2026-08-18 12:30:41,029 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:30:41,029 - INFO - ================================================================================
-2026-08-18 12:30:41,030 - INFO - 
-📋 Step 9: shipment_service
-2026-08-18 12:30:41,030 - INFO - Predicate Decision: REJECT
-2026-08-18 12:30:41,030 - INFO - 
-⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:30:41,030 - INFO - 
---------------------------------------------------------------------------------
-2026-08-18 12:30:41,030 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:30:41,030 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:30:41,030 - INFO - 
-📊 Core Metrics:
-2026-08-18 12:30:41,030 - INFO - 
-  QUALITY ASSURANCE
-2026-08-18 12:30:41,030 - INFO -     Actual:        0.0000
-2026-08-18 12:30:41,030 - INFO -     Threshold:     0.0000
-2026-08-18 12:30:41,030 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:30:41,030 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:41,030 - INFO - 
-  LATENCY P95
-2026-08-18 12:30:41,030 - INFO -     Actual:        2.056s
-2026-08-18 12:30:41,030 - INFO -     Threshold:     1.900s
-2026-08-18 12:30:41,030 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:30:41,030 - INFO -     Status:        ✗ FAIL
-2026-08-18 12:30:41,030 - INFO - 
-  FAILURE RATE
-2026-08-18 12:30:41,030 - INFO -     Actual:        0.0067
-2026-08-18 12:30:41,030 - INFO -     Threshold:     0.0200
-2026-08-18 12:30:41,030 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:30:41,030 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:41,030 - INFO - 
-🔍 Risk Assessment:
-2026-08-18 12:30:41,030 - INFO -   Temporal Propagation: 0.007 (tolerance: 0.100)
-2026-08-18 12:30:41,030 - INFO -   Status: LOW RISK
-2026-08-18 12:30:41,030 - INFO - 
-📈 Violation Analysis:
-2026-08-18 12:30:41,030 - INFO -   Violation Duration: 1053.71 trials
-2026-08-18 12:30:41,030 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:30:41,030 - INFO -   Classification: TRANSIENT
-2026-08-18 12:30:41,030 - INFO - 
-================================================================================
-2026-08-18 12:30:41,030 - INFO - ADJUDICATION DECISION
-2026-08-18 12:30:41,030 - INFO - ================================================================================
-2026-08-18 12:30:41,030 - INFO - 
-❌ Predicate REJECTED this step.
-2026-08-18 12:30:41,030 - INFO - You should either OVERRIDE the rejection to ACCEPT this step, or CONFIRM the rejection
-2026-08-18 12:30:41,030 - INFO - (Consider: Is this a transient violation without upstream harm?)
-2026-08-18 12:30:41,030 - INFO - 
-
-Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
-...Awaiting human adjudication input...
-2026-08-18 12:30:42,842 - INFO - HITL user response: A
-2026-08-18 12:30:42,842 - INFO - Prediction Category for step 9: hitl_decision, 
-
- qa_inconsistency_rate: 0.0000, p95_latency: 2.0559, failure_rate: 0.0067, temporal_propagation: 0.0071, final_decision: True 
-
-
-2026-08-18 12:30:42,843 - INFO - ✅ ACCEPTED: shipment_service:8006 → shipment_agent:8006, decision type: accepted_by_human_governance
-2026-08-18 12:30:42,844 - INFO - 
-============================== Starting Step 10/10 ==============================
-2026-08-18 12:30:42,844 - INFO - 
-=== Step:10, Refactoring order_service:8000 with risk score 0.635 as AI agent ===
-
-
-2026-08-18 12:30:42,844 - INFO - current services with scores: [['notification_service:8011', 0.029], ['pricing_service:8002', 0.045], ['payment_service:8007', 0.058], ['subscription_service:8010', 0.106], ['shopping_cart_service:8003', 0.148], ['inventory_service:8001', 0.177], ['product_catalog_service:8008', 0.273], ['procurement_service:8009', 0.398], ['shipment_service:8006', 0.407], ['order_service:8000', 0.635]]
-2026-08-18 12:30:42,845 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-18 12:30:42,945 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 10...
-2026-08-18 12:30:45,222 - INFO -   No temporal propagation influence detected for this step.
-2026-08-18 12:30:45,223 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-18 12:30:45,223 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json'
-2026-08-18 12:30:45,223 - INFO - 
-================================================================================
-2026-08-18 12:30:45,223 - INFO - POST-ACTION ADJUDICATION REVIEW
-2026-08-18 12:30:45,223 - INFO - ================================================================================
-2026-08-18 12:30:45,223 - INFO - 
-📋 Step 10: order_service
-2026-08-18 12:30:45,223 - INFO - Predicate Decision: REJECT
-2026-08-18 12:30:45,223 - INFO - 
-⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
-2026-08-18 12:30:45,223 - INFO - 
---------------------------------------------------------------------------------
-2026-08-18 12:30:45,223 - INFO - EXECUTION METRICS & EVIDENCE
-2026-08-18 12:30:45,223 - INFO - --------------------------------------------------------------------------------
-2026-08-18 12:30:45,223 - INFO - 
-📊 Core Metrics:
-2026-08-18 12:30:45,223 - INFO - 
-  QUALITY ASSURANCE
-2026-08-18 12:30:45,223 - INFO -     Actual:        0.0314
-2026-08-18 12:30:45,223 - INFO -     Threshold:     0.0000
-2026-08-18 12:30:45,223 - INFO -     Tolerance:     ±0.0000
-2026-08-18 12:30:45,223 - INFO -     Status:        ✓ PASS
-2026-08-18 12:30:45,224 - INFO - 
-  LATENCY P95
-2026-08-18 12:30:45,224 - INFO -     Actual:        2.294s
-2026-08-18 12:30:45,224 - INFO -     Threshold:     1.900s
-2026-08-18 12:30:45,224 - INFO -     Tolerance:     ±0.100s
-2026-08-18 12:30:45,224 - INFO -     Status:        ✗ FAIL
-2026-08-18 12:30:45,224 - INFO - 
-  FAILURE RATE
-2026-08-18 12:30:45,224 - INFO -     Actual:        0.0220
-2026-08-18 12:30:45,224 - INFO -     Threshold:     0.0200
-2026-08-18 12:30:45,224 - INFO -     Tolerance:     ±0.0050
-2026-08-18 12:30:45,224 - INFO -     Status:        ✗ FAIL
-2026-08-18 12:30:45,224 - INFO - 
-🔍 Risk Assessment:
-2026-08-18 12:30:45,224 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
-2026-08-18 12:30:45,224 - INFO -   Status: LOW RISK
-2026-08-18 12:30:45,224 - INFO - 
-📈 Violation Analysis:
-2026-08-18 12:30:45,224 - INFO -   Violation Duration: 2600.61 trials
-2026-08-18 12:30:45,224 - INFO -   Grace Window: 1500.0 trials (30%)
-2026-08-18 12:30:45,224 - INFO -   Classification: SUSTAINED
-2026-08-18 12:30:45,224 - INFO - 
-================================================================================
-2026-08-18 12:30:45,224 - INFO - ADJUDICATION DECISION
-2026-08-18 12:30:45,224 - INFO - ================================================================================
-2026-08-18 12:30:45,225 - INFO - 
-❌ Predicate REJECTED this step.
-2026-08-18 12:30:45,225 - INFO - You should either OVERRIDE the rejection to ACCEPT this step, or CONFIRM the rejection
-2026-08-18 12:30:45,225 - INFO - (Consider: Is this a transient violation without upstream harm?)
-2026-08-18 12:30:45,225 - INFO - 
-
-Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
-...Awaiting human adjudication input...
-2026-08-18 12:30:47,701 - INFO - HITL user response: A
-2026-08-18 12:30:47,701 - INFO - Prediction Category for step 10: hitl_decision, 
-
- qa_inconsistency_rate: 0.0314, p95_latency: 2.2943, failure_rate: 0.0220, temporal_propagation: 0.0000, final_decision: True 
-
-
-2026-08-18 12:30:47,703 - INFO - ✅ ACCEPTED: order_service:8000 → order_agent:8000, decision type: accepted_by_human_governance
-2026-08-18 12:30:47,703 - INFO - 
-
-
-
-------------------------------- 🎯 Final architecture: -------------------- 
-
-
-2026-08-18 12:30:47,704 - INFO - Services: ['pricing_service:8002', 'inventory_service:8001']
-2026-08-18 12:30:47,704 - INFO - Agents: ['notification_agent:8011', 'payment_agent:8007', 'subscription_agent:8010', 'shopping_cart_agent:8003', 'product_catalog_agent:8008', 'procurement_agent:8009', 'shipment_agent:8006', 'order_agent:8000']
-2026-08-18 12:30:47,704 - INFO - Cumulative QA Inconsistency Rate: 0.0403
-2026-08-18 12:30:47,705 - INFO - Cumulative p95 Latency Inflation: 15.2137
-2026-08-18 12:30:47,705 - INFO - Cumulative Failure Rate Inflation: 0.0714
-2026-08-18 12:30:47,705 - INFO - 
-
-------------------------------- 🎯 Final Architecture Experiment Run -------------------- 
-
-2026-08-18 12:30:47,705 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step -1...
-2026-08-18 12:30:49,989 - INFO - Final Architecture Experiment Run Results : {'result': 'REJECTED', 'step_self_temporal_propagation': 0.014642806592701361, 'step_report_file_name': '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/Ranked/res_LLM_llama3.2:3b_T_0_U_20_MO_Ranked_weight_fanout0.2_bc0.2_ccyl0.2_ccog0.2_tprop0.2_live_progressive_refactor_PRED_Full_GM_Human-In-The-Loop_TPOP_True.json', 'details': {'epsilon_l': 1.9, 'epsilon_qa': 0.0, 'epsilon_f': 0.02, 'log_telemetry_file': '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/res_llm_llama3.2:3b_T_0.0_U_20.json', 'p95_latency': 2.1937709585572804, 'qa_inconsistency_rate': 0.01, 'failure_rate': 0.004204052400989905, 'latency_predicate_failed': True, 'qa_predicate_failed': None, 'failure_rate_predicate_failed': False, 'success': False, 'step_self_temporal_propagation': 0.014642806592701361, 'target_service': 'order_service', 'total_trials': 5000}}
-2026-08-18 12:30:49,989 - INFO - services: ['pricing_service:8002', 'inventory_service:8001'], agents: ['notification_agent:8011', 'payment_agent:8007', 'subscription_agent:8010', 'shopping_cart_agent:8003', 'product_catalog_agent:8008', 'procurement_agent:8009', 'shipment_agent:8006', 'order_agent:8000']
-2026-08-18 12:30:49,989 - INFO - 
-Shutting Down:
-2026-08-18 12:30:49,989 - INFO - Services: ['pricing_service:8002', 'inventory_service:8001']
-2026-08-18 12:30:49,989 - INFO - Agents: ['notification_agent:8011', 'payment_agent:8007', 'subscription_agent:8010', 'shopping_cart_agent:8003', 'product_catalog_agent:8008', 'procurement_agent:8009', 'shipment_agent:8006', 'order_agent:8000']
-2026-08-18 12:30:49,989 - INFO - Final Architecture Experiment Run Finished Successfully
