@@ -1,3 +1,9 @@
+
+
+
+document.getElementById("benchmark").value = BENCHMARK_NAME;
+document.getElementById("benchmark").textContent = BENCHMARK_NAME;
+
 // weights
 function getWeights(){
 
@@ -52,14 +58,306 @@ function validateWeights(){
     }
 
 
-    alert(
-    "Weights validated successfully"
-    );
+    // alert(
+    // "Weights validated successfully"
+    // );
 
 
     computeScores();
 
     return true;
+
+}
+
+function addRankingRow() {
+
+    const tbody =
+        document.querySelector("#rankingTable tbody");
+
+
+    const row =
+        document.createElement("tr");
+
+
+    row.innerHTML = `
+
+        <td class="rank"></td>
+
+        <td>
+            <input
+                class="service-name"
+                type="text"
+                placeholder="Service name">
+        </td>
+
+
+        <td>
+            <input
+                class="metric fanout"
+                type="number"
+                step="1"
+                value="0">
+        </td>
+
+
+        <td>
+            <input
+                class="metric bc"
+                type="number"
+                step="0.01"
+                value="0">
+        </td>
+
+
+        <td>
+            <input
+                class="metric ccyl"
+                type="number"
+                step="1"
+                value="0">
+        </td>
+
+
+        <td>
+            <input
+                class="metric ccog"
+                type="number"
+                step="1"
+                value="0">
+        </td>
+
+
+        <td>
+            <input
+                class="metric tprop"
+                type="number"
+                step="0.01"
+                value="0">
+        </td>
+
+
+        <td class="score">
+            0.000
+        </td>
+
+
+        <td>
+
+            <button
+                type="button"
+                class="remove-row"
+                onclick="removeRankingRow(this)">
+
+                Remove
+
+            </button>
+
+        </td>
+
+    `;
+
+
+    tbody.appendChild(row);
+
+
+    // Add listeners to the new inputs
+    attachRankingListeners(row);
+
+
+    // Recalculate ranking
+    updateRanking();
+
+}
+
+function removeRankingRow(button) {
+
+    const row =
+        button.closest("tr");
+
+
+    row.remove();
+
+
+    updateRanking();
+
+}
+
+function attachRankingListeners(row) {
+
+    row.querySelectorAll("input").forEach(input => {
+
+        input.addEventListener(
+            "input",
+            updateRanking
+        );
+
+    });
+
+}
+
+document
+    .querySelectorAll("#rankingTable tbody tr")
+    .forEach(row => {
+
+        attachRankingListeners(row);
+
+    });
+
+
+function updateRanking() {
+
+    const tbody =
+        document.querySelector(
+            "#rankingTable tbody"
+        );
+
+
+    const rows =
+        Array.from(tbody.querySelectorAll("tr"));
+
+
+    // 1. Calculate score for every row
+    rows.forEach(row => {
+
+        // calculate normalized metrics
+        // calculate weighted score
+
+    });
+
+
+    // 2. Sort rows by score DESCENDING
+    rows.sort((a, b) => {
+
+        const scoreA =
+            parseFloat(
+                a.querySelector(".score").textContent
+            );
+
+        const scoreB =
+            parseFloat(
+                b.querySelector(".score").textContent
+            );
+
+        return scoreB - scoreA;
+
+    });
+
+
+    // 3. Reinsert sorted rows
+    rows.forEach((row, index) => {
+
+        row.querySelector(".rank")
+           .textContent = index + 1;
+
+        tbody.appendChild(row);
+
+    });
+
+}
+
+function getRankingData() {
+
+    const rows =
+        document.querySelectorAll(
+            "#rankingTable tbody tr"
+        );
+
+
+    const ranking = [];
+
+
+    rows.forEach(row => {
+
+        const service =
+            row.querySelector(
+                ".service-name"
+            ).value.trim();
+
+
+        if (!service) {
+            return;
+        }
+
+
+        ranking.push({
+
+            rank:
+                parseInt(
+                    row.querySelector(".rank")
+                       .textContent
+                ),
+
+            service: service,
+
+            fanout:
+                parseFloat(
+                    row.querySelector(".fanout").value
+                ),
+
+            bc:
+                parseFloat(
+                    row.querySelector(".bc").value
+                ),
+
+            ccyl:
+                parseFloat(
+                    row.querySelector(".ccyl").value
+                ),
+
+            ccog:
+                parseFloat(
+                    row.querySelector(".ccog").value
+                ),
+
+            tprop:
+                parseFloat(
+                    row.querySelector(".tprop").value
+                ),
+
+            risk_score:
+                parseFloat(
+                    row.querySelector(".score").textContent
+                )
+
+        });
+
+    });
+
+
+    return ranking;
+
+}
+
+function getRankingWeights() {
+
+    return {
+
+        fanout:
+            parseFloat(
+                document.getElementById("wFanout").value
+            ),
+
+        bc:
+            parseFloat(
+                document.getElementById("wBC").value
+            ),
+
+        ccyl:
+            parseFloat(
+                document.getElementById("wCCyl").value
+            ),
+
+        ccog:
+            parseFloat(
+                document.getElementById("wCCog").value
+            ),
+
+        tprop:
+            parseFloat(
+                document.getElementById("wTProp").value
+            )
+
+    };
 
 }
 
@@ -383,106 +681,105 @@ document.getElementById("start").onclick=function(){
     let payload={
 
 
-    predicates:{
+        predicates:{
 
 
-    qa:
-    document.getElementById("qa").checked,
+        qa:
+        document.getElementById("qa").checked,
 
 
-    qa_threshold:
-    document.getElementById("qaThreshold").value,
+        qa_threshold:
+        document.getElementById("qaThreshold").value,
 
 
-    latency:
-    document.getElementById("latency").checked,
+        latency:
+        document.getElementById("latency").checked,
 
-    latency_threshold:
-    document.getElementById("latencyThreshold").value,
+        latency_threshold:
+        document.getElementById("latencyThreshold").value,
 
-    failure:
-    document.getElementById("failure").checked,
+        failure:
+        document.getElementById("failure").checked,
 
-    failure_threshold:
-    document.getElementById("failureThreshold").value
+        failure_threshold:
+        document.getElementById("failureThreshold").value
 
-    },
-
-
-
-    governance_mode:
-
-    document.querySelector(
-    "input[name=gov]:checked"
-    ).value,
+        },
 
 
 
-    governance_thresholds:{
+        governance_mode:
 
-
-    beta:
-    document.getElementById("beta").value,
-
-
-    gmid:
-    document.getElementById("gmid").value,
-
-
-    deltaL:
-    document.getElementById("deltaL").value,
-
-
-    deltaSLO:
-    document.getElementById("deltaSLO").value,
-
-
-    deltaTProp:
-    document.getElementById("deltaTP").value,
-
-
-    gpost:
-    document.getElementById("gpost").value
-
-
-    },
+        document.querySelector(
+        "input[name=gov]:checked"
+        ).value,
 
 
 
-    runtime:{
-
-        model:
-        document.getElementById("llmModel").value,
+        governance_thresholds:{
 
 
-        temperature:
-        parseFloat(
-            document.getElementById("temperature").value
-        ),
+        beta:
+        document.getElementById("beta").value,
 
 
-        R:
-        parseInt(
-            document.getElementById("totalRequests").value
-        ),
+        gmid:
+        document.getElementById("gmid").value,
 
 
-        concurrency:
-        parseInt(
-            document.getElementById("concurrency").value
-        )
-
-    },
+        deltaL:
+        document.getElementById("deltaL").value,
 
 
+        deltaSLO:
+        document.getElementById("deltaSLO").value,
 
-    ranking_weights:getWeights(),
+
+        deltaTProp:
+        document.getElementById("deltaTP").value,
+
+
+        gpost:
+        document.getElementById("gpost").value
+
+
+        },
 
 
 
-    ranked_services:
+        runtime:{
 
-    getCurrentRanking()
+            model:
+            document.getElementById("llmModel").value,
+
+
+            temperature:
+            parseFloat(
+                document.getElementById("temperature").value
+            ),
+
+
+            R:
+            parseInt(
+                document.getElementById("totalRequests").value
+            ),
+
+
+            concurrency:
+            parseInt(
+                document.getElementById("concurrency").value
+            )
+
+        },
+
+
+        benchmark: BENCHMARK_NAME,
+
+        ranking_weights:getRankingWeights(),
+
+
+
+        ranked_services: getCurrentRanking()
 
 
     };
@@ -533,7 +830,11 @@ function getCurrentRanking(){
 
 
     service:
-    row.children[1].innerText,
+    // row.children[1].innerText,
+    row.querySelector(
+                ".service-name"
+            ).value.trim(),
+
 
 
     score:
@@ -649,7 +950,15 @@ function startLogRefresh() {
 
     logTimer = setInterval(() => {
 
-        fetch("/logs")
+          const baseUrl = '/logs';
+  
+        const params = {
+            benchmark: BENCHMARK_NAME
+        };
+
+        const queryString = new URLSearchParams(params).toString();
+
+        fetch(`${baseUrl}?${queryString}`)
 
         .then(r => r.json())
 

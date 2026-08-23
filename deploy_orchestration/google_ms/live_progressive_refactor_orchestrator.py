@@ -79,39 +79,36 @@ else:
 
 
 # ranked_services = [
-#     # ["notification_service:8011", 1],
-#     ["pricing_service:8002", 1],
-#     ["payment_service:8007", 2],
-#     ["shopping_cart_service:8003", 3],
-#     ["subscription_service:8010", 4],
-#     ["inventory_service:8001", 5],
-#     ["product_catalog_service:8008", 6],
-#     ["procurement_service:8009", 7],
-#     ["shipment_service:8006", 8],
-#     ["order_service:8000", 9],
+#     # ["currency_service:5053", 1],
+#     ["product_catalog_service:5055", 2],
+#     ["ad_service:5057", 3],
+#     ["cart_service:5054", 4],
+#     ["recommendation_service:5058", 5],
+#     ["shipping_service:5051", 6],
+#     ["email_service:5056", 7],
+#     ["payment_service:5052", 8],
+#     ["checkout_service:5050", 9],
 # ]
 
 def get_service_port(s_name):
-    if s_name == 'notification_service':
-        return 8011
-    elif s_name == 'pricing_service':
-        return 8002
-    elif s_name == 'payment_service':
-        return 8007
-    elif s_name == 'shopping_cart_service':
-        return 8003
-    elif s_name == 'subscription_service':
-        return 8010
-    elif s_name == 'inventory_service':
-        return 8001
+    if s_name == 'currency_service':
+        return 5053
     elif s_name == 'product_catalog_service':
-        return 8008
-    elif s_name == 'procurement_service':
-        return 8009
-    elif s_name == 'shipment_service':
-        return 8006
-    elif s_name == 'order_service':
-        return 8000    
+        return 5055
+    elif s_name == 'ad_service':
+        return 5057
+    elif s_name == 'cart_service':
+        return 5054
+    elif s_name == 'recommendation_service':
+        return 5058
+    elif s_name == 'shipping_service':
+        return 5051
+    elif s_name == 'email_service':
+        return 5056
+    elif s_name == 'payment_service':
+        return 5052
+    elif s_name == 'checkout_service':
+        return 5050
                                 
 ranked_services = [
     [
@@ -125,16 +122,15 @@ ranked_services = [
 
 # mapping service -> agent
 service_to_agent = {
-    "inventory_service:8001": "inventory_agent:8001",
-    "order_service:8000": "order_agent:8000",
-    "payment_service:8007": "payment_agent:8007",
-    "shipment_service:8006": "shipment_agent:8006",
-    "shopping_cart_service:8003": "shopping_cart_agent:8003",
-    "product_catalog_service:8008": "product_catalog_agent:8008",
-    "pricing_service:8002": "pricing_agent:8002",
-    "subscription_service:8010": "subscription_agent:8010",
-    "procurement_service:8009": "procurement_agent:8009",
-    "notification_service:8011": "notification_agent:8011"
+    "checkout_service:5050": "checkout_agent:5050",
+    "payment_service:5052": "payment_agent:5052",
+    "email_service:5056": "email_agent:5056",
+    "shipping_service:5051": "shipping_agent:5051",
+    "recommendation_service:5058": "recommendation_agent:5058",
+    "cart_service:5054": "cart_agent:5054",
+    "ad_service:5057": "ad_agent:5057",
+    "product_catalog_service:5055": "product_catalog_agent:5055",
+    "currency_service:5053": "currency_agent:5053",
 }
 
 # -------------------------- Apply ranking strategy -------------------------
@@ -232,16 +228,13 @@ post_action_adjudicator = PostActionAdjudicator(adjudication_criteria)
 
 temporal_propagation_enabled = True
 temporal_propagation_dependency_influence_weight = {
-    "subscription_service->order_service": 1,
-    "pricing_service->product_catalog_service": 1,
-    "pricing_service->order_service": 1,
-    "inventory_service->product_catalog_service": 1,
-    "inventory_service->order_service": 1,
-    "payment_service->order_service": 1,
-    "payment_service->subscription_service": 1,
-    "procurement_service->inventory_service": 1,
-    "shipment_service->order_service": 1,
-    "notification_service->order_service": 1,
+    "product_catalog_service->checkout_service": 1,
+    "product_catalog_service->recommendation_service": 1,
+    "cart_service->checkout_service": 1,
+    "currency_service->checkout_service": 1,
+    "payment_service->checkout_service": 1,
+    "shipping_service->checkout_service": 1,
+    "email_service->checkout_service": 1,
 }
 
 
@@ -276,13 +269,13 @@ def build_args(services, agents):
     svc_pairs = []
     for s in services:
         name = s.split(":")[0]
-        port = int(s.split(":")[1])
+        port = s.split(":")[1]
         svc_pairs.append(f"{name}:{port}")
 
     agent_pairs = []
     for a in agents:
         name = a.split(":")[0]
-        port = int(a.split(":")[1])
+        port = a.split(":")[1]
         agent_pairs.append(f"{name}:{port}")
 
     return [
@@ -340,16 +333,17 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
         epsilon_qa = -1
 
     step_result = subprocess.run(
-        ["python3", "exp_runner_auto2.py",
+        ["python3", "-m", "refactored_architecture.google_ms.exp_runner_auto2",
          migration_order,
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
-         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy),
-         str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled), 
-         str(migration_sorting_strategy_services), str(T), str(LLM), str(CONCURRENCY_RATE), str(R)
-         ],
-        cwd="../../refactored_architecture/retailben",
+         str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy), 
+         str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled),
+         str(migration_sorting_strategy_services), str(T), str(LLM), str(CONCURRENCY_RATE)
+        ],
+        cwd="../..",
         capture_output=True,
-        text=True
+        text=True,
+        check=True  # Raise exception if subprocess fails
     )
 
     # Debug output

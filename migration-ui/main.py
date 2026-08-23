@@ -29,7 +29,6 @@ logging.basicConfig(
 
 
 # LOG_FILE="logs/experiment.log"
-LOG_FILE = str(BASE_DIR) + '/deploy_orchestration/retailben/logs/experiment.log'
 
 process=None
 
@@ -38,6 +37,8 @@ class ExperimentInput(BaseModel):
     response: str
 
 class ExperimentConfig(BaseModel):
+    
+    benchmark: str
 
     predicates:dict
 
@@ -79,8 +80,12 @@ def run_process(config):
             indent=4
         )
 
+    config_json = json.dumps(config)
+    benchmark = config['benchmark']
 
+    LOG_FILE = str(BASE_DIR) + '/deploy_orchestration/benchmark/logs/experiment.log'
 
+    LOG_FILE = LOG_FILE.replace('benchmark', benchmark)
     open(
         LOG_FILE,
         "w"
@@ -121,14 +126,15 @@ def run_process(config):
     #         log.flush()
 
 
-    config_json = json.dumps(config)
-    logger.info(f"Calling str(BASE_DIR) + '/deploy_orchestration/retailben/live_progressive_refactor_orchestrator.py' with config: {config_json} ")
+
+
+    logger.info(f"Calling str(BASE_DIR) + f'/deploy_orchestration/{benchmark}/live_progressive_refactor_orchestrator.py' with config: {config_json} ")
     
     process=subprocess.Popen(
 
         [
             "python3",
-            str(BASE_DIR) + '/deploy_orchestration/retailben/live_progressive_refactor_orchestrator.py',
+            str(BASE_DIR) + f'/deploy_orchestration/{benchmark}/live_progressive_refactor_orchestrator.py',
             config_json
         ],
 
@@ -141,7 +147,7 @@ def run_process(config):
         text=True,
         bufsize=1,
         
-        cwd=str(BASE_DIR) + "/deploy_orchestration/retailben",
+        cwd=str(BASE_DIR) + f"/deploy_orchestration/{benchmark}",
 
     )
     
@@ -260,7 +266,11 @@ def experiment_input(data: ExperimentInput):
         }
 
 @app.get("/logs")
-def get_logs():
+def get_logs(benchmark: str):
+
+    LOG_FILE = str(BASE_DIR) + '/deploy_orchestration/benchmark/logs/experiment.log'
+
+    LOG_FILE = LOG_FILE.replace('benchmark', benchmark)
 
     if not os.path.exists(LOG_FILE):
         logger.error("log file does not exist.")
@@ -301,6 +311,18 @@ async def retailben(request: Request):
         }
     )
 
+@app.get("/google_online_boutique")
+async def google_ms(request: Request):
+
+    return templates.TemplateResponse(
+        "benchmarks/google_ms.html",
+        {
+            "request": request,
+            "benchmark": "google_ms"
+        }
+    )
+    
+    
 app.mount(
     "/figures",
     StaticFiles(

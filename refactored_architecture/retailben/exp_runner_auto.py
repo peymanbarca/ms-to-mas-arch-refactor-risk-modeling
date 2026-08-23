@@ -66,6 +66,9 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
     '''    
     
     success = False
+    success_l = False
+    success_qa = False
+    success_f = False
     original_epsilon_l = epsilon_l; original_epsilon_qa = epsilon_qa; original_epsilon_f = epsilon_f
     
     # check with baseline w.s.t thresholds:
@@ -83,23 +86,23 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
         else:
             success_l = True
             latency_predicate_failed = False
-    if epsilon_qa and epsilon_qa > -1:
+    if epsilon_qa is not None and epsilon_qa > -1:
         if qa_inconsistency_rate > epsilon_qa:
             success_qa =  False
             qa_predicate_failed = True
         else:
             success_qa = True
             qa_predicate_failed = False
-    if epsilon_f and epsilon_f > -1:
+    if epsilon_f is not None and epsilon_f > -1:
         if failure_rate > epsilon_f:
             success_f = False
             failure_rate_predicate_failed = True
         else:
             success_f = True
             failure_rate_predicate_failed = False
-    success = (success_l if epsilon_l and epsilon_l > -1 else True) and \
-              (success_qa if epsilon_qa and epsilon_qa > -1 else True) and \
-              (success_f if epsilon_f and epsilon_f > -1 else True) 
+    success = (success_l if epsilon_l > -1 else True) and \
+              (success_qa if epsilon_qa > -1 else True) and \
+              (success_f if epsilon_f > -1 else True) 
 
 
     alpha = beta = gamma = 1
@@ -117,6 +120,9 @@ def acceptance_of_architecture_step_predicate_based(epsilon_l, epsilon_qa, epsil
         "latency_predicate_failed": latency_predicate_failed,
         "qa_predicate_failed": qa_predicate_failed,
         "failure_rate_predicate_failed": failure_rate_predicate_failed,
+        "success_l": success_l,
+        "success_qa": success_qa,
+        "success_f": success_f,
         "success": success,
         "step_self_temporal_propagation": step_self_temporal_propagation,
         "target_service": target_service,

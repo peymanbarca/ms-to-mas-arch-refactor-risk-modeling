@@ -874,3 +874,37 @@ input[type=range]:disabled{
     opacity: 0.85;
 
 }
+
+
+.benchmark-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 18px;
+    margin: 16px 0;
+    background: linear-gradient(135deg, #f8fafc, #eef2ff);
+    border: 1px solid #dbe3f0;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    width: fit-content;
+    min-width: 320px;
+}
+
+.benchmark-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+}
+
+.benchmark-value {
+    padding: 7px 13px;
+    border-radius: 8px;
+    background: white;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}

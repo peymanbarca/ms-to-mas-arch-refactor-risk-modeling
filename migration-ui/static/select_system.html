@@ -75,13 +75,15 @@
         <!-- System 2 -->
         <!-- ============================= -->
 
-        <div class="system-card disabled">
+        <div
+            class="system-card selectable"
+            onclick="selectSystem('google_ms')">
 
             <div class="system-image">
 
                 <img
                     src="/figures/google-benchmark.drawio.png"
-                    alt="Google Microservice Demo Dependency Graph">
+                    alt="Google Online Boutique Microservice Demo Dependency Graph">
 
             </div>
 
@@ -93,8 +95,8 @@
                     Google Online Boutique microservice system benchmark.
                 </p>
 
-                <span class="disabled-label">
-                    Not Available
+                <span class="select-label">
+                    Select System →
                 </span>
 
             </div>
@@ -145,10 +147,11 @@
 function selectSystem(system) {
 
     if (system === "retailben") {
-
         window.location.href = "/retailben";
-
     }
+    else if (system === "google_ms") {
+        window.location.href = "/google_online_boutique";
+    }    
 
 }
 
