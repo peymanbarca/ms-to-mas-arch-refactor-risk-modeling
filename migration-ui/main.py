@@ -321,7 +321,17 @@ async def google_ms(request: Request):
             "benchmark": "google_ms"
         }
     )
-    
+
+@app.get("/own_benchmark")
+async def own_benchmark(request: Request):
+
+    return templates.TemplateResponse(
+        "benchmarks/own_benchmark.html",
+        {
+            "request": request,
+            "benchmark": "own_benchmark"
+        }
+    )    
     
 app.mount(
     "/figures",

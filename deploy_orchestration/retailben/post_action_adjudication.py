@@ -506,17 +506,19 @@ class PostActionAdjudicator:
         logger.info("="*80)
                 
         if predicate_decision == "REJECT":
-            print("\n❌ Predicate REJECTED this step.")
+            print("❌ Predicate REJECTED this step.")
             print("You should either OVERRIDE the rejection to ACCEPT this step, or CONFIRM the rejection")
             print("(Consider: Is this a transient violation without upstream harm?)")
-            logger.info("\n❌ Predicate REJECTED this step.")
+            logger.info("========================")
+            logger.info("❌ Predicate REJECTED this step.")
             logger.info("You should either OVERRIDE the rejection to ACCEPT this step, or CONFIRM the rejection")
             logger.info("(Consider: Is this a transient violation without upstream harm?)")            
         else:
-            print("\n✅ Predicate ACCEPTED this step.")
+            print("✅ Predicate ACCEPTED this step.")
             print("However, you may decide it be a false acceptance.")
             print("You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?")
-            logger.info("\n✅ Predicate ACCEPTED this step.")
+            logger.info("========================")
+            logger.info("✅ Predicate ACCEPTED this step.")
             logger.info("However, you may decide it be a false acceptance.")
             logger.info("You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?")        
         

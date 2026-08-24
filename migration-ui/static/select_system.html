@@ -89,10 +89,10 @@
 
             <div class="system-info">
 
-                <h2>System 2</h2>
+                <h2>Google Online Boutique</h2>
 
                 <p>
-                    Google Online Boutique microservice system benchmark.
+                    Google Online Boutique (front-door online shopping ecosystem) microservice system benchmark.
                 </p>
 
                 <span class="select-label">
@@ -121,7 +121,7 @@
 
             <div class="system-info">
 
-                <h2>System 3</h2>
+                <h2>DeathStarBench Social Network</h2>
 
                 <p>
                     DeathStarBench Social Network microservice system benchmark.
@@ -136,6 +136,37 @@
         </div>
 
 
+        <!-- ============================= -->
+        <!-- System own -->
+        <!-- ============================= -->
+
+        <div
+            class="system-card selectable"
+            onclick="selectSystem('own_benchmark')">
+
+            <div class="system-image">
+
+                <img
+                    src="/figures/user_own_benchmark.png"
+                    alt="Your own benchmark">
+
+            </div>
+
+            <div class="system-info">
+
+                <h2>Your own system</h2>
+
+                <p>
+                    Your own microservice system benchmark.
+                </p>
+
+                <span class="select-label">
+                    Select System →
+                </span>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -151,7 +182,10 @@ function selectSystem(system) {
     }
     else if (system === "google_ms") {
         window.location.href = "/google_online_boutique";
-    }    
+    } 
+    else if (system === "own_benchmark") {
+        window.location.href = "/own_benchmark";
+    }          
 
 }
 

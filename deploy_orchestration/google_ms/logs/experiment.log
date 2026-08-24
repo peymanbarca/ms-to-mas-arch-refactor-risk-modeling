@@ -1,463 +1,958 @@
-2026-08-23 18:59:10,044 - INFO - Config: {"benchmark": "google_ms", "predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "auto", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3.2:3b", "temperature": 0, "R": 5000, "concurrency": 20}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Currency", "score": "0.000"}, {"rank": "2", "service": "Product Catalog", "score": "0.023"}, {"rank": "3", "service": "Ad", "score": "0.075"}, {"rank": "4", "service": "Cart", "score": "0.088"}, {"rank": "5", "service": "Recommendation", "score": "0.096"}, {"rank": "6", "service": "Shipping", "score": "0.122"}, {"rank": "7", "service": "Email", "score": "0.177"}, {"rank": "8", "service": "Payment", "score": "0.288"}, {"rank": "9", "service": "Checkout", "score": "0.800"}]}
-2026-08-23 18:59:10,054 - INFO - 
+2026-08-24 09:48:50,727 - INFO - Config: {"benchmark": "google_ms", "predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "human", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3.2:3b", "temperature": 0, "R": 5000, "concurrency": 20}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Currency", "score": "0.000"}, {"rank": "2", "service": "Product Catalog", "score": "0.023"}, {"rank": "3", "service": "Ad", "score": "0.075"}, {"rank": "4", "service": "Cart", "score": "0.088"}, {"rank": "5", "service": "Recommendation", "score": "0.096"}, {"rank": "6", "service": "Shipping", "score": "0.122"}, {"rank": "7", "service": "Email", "score": "0.177"}, {"rank": "8", "service": "Payment", "score": "0.288"}, {"rank": "9", "service": "Checkout", "score": "0.800"}]}
+2026-08-24 09:48:50,737 - INFO - 
 
-============================== Starting Migration Strategy: Ranked_weight_fanout0.2_bc0.2_ccyl0.2_ccog0.2_tprop0.2_live_progressive_refactor,                                     Predicate Mode: Full, Governance Policy: Post-Audit-Comprehensive, T: 0, LLM: llama3.2:3b,                                     CONCURRENCY_RATE: 20 ==============================
+============================== Starting Migration Strategy: Ranked_weight_fanout0.2_bc0.2_ccyl0.2_ccog0.2_tprop0.2_live_progressive_refactor,                                     Predicate Mode: Full, Governance Policy: Human-In-The-Loop, T: 0, LLM: llama3.2:3b,                                     CONCURRENCY_RATE: 20 ==============================
 
 
-2026-08-23 18:59:10,056 - INFO - 
+2026-08-24 09:48:50,739 - INFO - 
 
 ============================== Starting Step 1/9 ==============================
-2026-08-23 18:59:10,056 - INFO - 
+2026-08-24 09:48:50,739 - INFO - 
 
 === Step:1, Refactoring currency_service:5053 with risk score 0.0 as AI agent ===
 
 
-2026-08-23 18:59:10,056 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['recommendation_service:5058', 0.096], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['checkout_service:5050', 0.8]]
-2026-08-23 18:59:10,056 - INFO - 
+2026-08-24 09:48:50,739 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['recommendation_service:5058', 0.096], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['checkout_service:5050', 0.8]]
+2026-08-24 09:48:50,739 - INFO - 
 
 Current successfully agentified services so far: []
 
 
-2026-08-23 18:59:10,056 - INFO - 
+2026-08-24 09:48:50,739 - INFO - 
 
  ============== Deployment of step candidate architecture ==============
 
 
-2026-08-23 18:59:10,057 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-23 18:59:10,157 - INFO - Candidate architecture deployed successfully.
+2026-08-24 09:48:50,739 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-24 09:48:50,840 - INFO - Candidate architecture deployed successfully.
 
 
-2026-08-23 18:59:10,157 - INFO - 
+2026-08-24 09:48:50,840 - INFO - 
 
  ============== Predicate-driven acceptance of step's candidate architecture ==============
 
 
-2026-08-23 18:59:10,157 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 1...
-2026-08-23 18:59:12,656 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-23 18:59:12,656 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
-2026-08-23 18:59:12,656 - INFO - 
+2026-08-24 09:48:50,840 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 1...
+2026-08-24 09:48:53,498 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-24 09:48:53,498 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-24 09:48:53,498 - INFO - 
+================================================================================
+2026-08-24 09:48:53,498 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-24 09:48:53,498 - INFO - ================================================================================
+2026-08-24 09:48:53,498 - INFO - 
+📋 Step 1: currency_service
+2026-08-24 09:48:53,498 - INFO - Predicate Decision: ACCEPT
+2026-08-24 09:48:53,498 - INFO - 
+⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-08-24 09:48:53,498 - INFO - 
+--------------------------------------------------------------------------------
+2026-08-24 09:48:53,498 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-24 09:48:53,498 - INFO - --------------------------------------------------------------------------------
+2026-08-24 09:48:53,498 - INFO - 
+📊 Core Metrics:
+2026-08-24 09:48:53,498 - INFO - 
+  QUALITY ASSURANCE
+2026-08-24 09:48:53,498 - INFO -     Actual:        0.0000
+2026-08-24 09:48:53,498 - INFO -     Threshold:     0.0000
+2026-08-24 09:48:53,498 - INFO -     Tolerance:     ±0.0000
+2026-08-24 09:48:53,498 - INFO -     Status:        ✓ PASS
+2026-08-24 09:48:53,498 - INFO - 
+  LATENCY P95
+2026-08-24 09:48:53,499 - INFO -     Actual:        1.352s
+2026-08-24 09:48:53,499 - INFO -     Threshold:     1.900s
+2026-08-24 09:48:53,499 - INFO -     Tolerance:     ±0.100s
+2026-08-24 09:48:53,499 - INFO -     Status:        ✓ PASS
+2026-08-24 09:48:53,499 - INFO - 
+  FAILURE RATE
+2026-08-24 09:48:53,499 - INFO -     Actual:        0.0090
+2026-08-24 09:48:53,499 - INFO -     Threshold:     0.0200
+2026-08-24 09:48:53,499 - INFO -     Tolerance:     ±0.0050
+2026-08-24 09:48:53,499 - INFO -     Status:        ✓ PASS
+2026-08-24 09:48:53,499 - INFO - 
+🔍 Risk Assessment:
+2026-08-24 09:48:53,499 - INFO -   Temporal Propagation: 0.009 (tolerance: 0.100)
+2026-08-24 09:48:53,499 - INFO -   Status: LOW RISK
+2026-08-24 09:48:53,499 - INFO - 
+📈 Violation Analysis:
+2026-08-24 09:48:53,499 - INFO -   Violation Duration: 503.42 trials
+2026-08-24 09:48:53,499 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-24 09:48:53,499 - INFO -   Classification: TRANSIENT
+2026-08-24 09:48:53,499 - INFO - 
+================================================================================
+2026-08-24 09:48:53,499 - INFO - ADJUDICATION DECISION
+2026-08-24 09:48:53,499 - INFO - ================================================================================
+2026-08-24 09:48:53,499 - INFO - ========================
+2026-08-24 09:48:53,499 - INFO - ✅ Predicate ACCEPTED this step.
+2026-08-24 09:48:53,499 - INFO - However, you may decide it be a false acceptance.
+2026-08-24 09:48:53,499 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-08-24 09:48:53,499 - INFO - 
+
+Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
+...Awaiting human adjudication input...
+2026-08-24 09:49:08,665 - INFO - HITL user response: A
+2026-08-24 09:49:08,665 - INFO - 
 
  Predicate-driven automatic acceptance test results summary:                 
- Prediction Category for step 1: true_acceptance,                 
+ Prediction Category for step 1: hitl_decision,                 
  qa_inconsistency_rate: 0.0000,                    QA_threshold: 0.0, success_QA: ✅                 
- p95_latency: 1.3946,                     Latency_threshold: 1.9, success_L: ✅                 
- failure_rate: 0.0058,                     Failure_threshold: 0.02, success_F: ✅                 
+ p95_latency: 1.3523,                     Latency_threshold: 1.9, success_L: ✅                 
+ failure_rate: 0.0090,                     Failure_threshold: 0.02, success_F: ✅                 
  final predicate automatic raw decision: ✅                 
- temporal_propagation: 0.0061,                 
+ temporal_propagation: 0.0093,                 
  final adjudicated decision: ✅ 
 
 
-2026-08-23 18:59:12,656 - INFO - Step 1 final result: ✅ ACCEPTED: currency_service:5053 → currency_agent:5053, decision type: true_accepted_by_predicate_auto_pass
-2026-08-23 18:59:12,656 - INFO - 
+2026-08-24 09:49:08,672 - INFO - Step 1 final result: ✅ ACCEPTED: currency_service:5053 → currency_agent:5053, decision type: accepted_by_human_governance
+2026-08-24 09:49:08,673 - INFO - 
 
  ============ 🔄 Detecting Temporal Propagation Influence To Update Remaining Services Ranking Score ================= 
 
-2026-08-23 18:59:12,657 - INFO -     Updated checkout_service:5050: score 0.800 → 1.800 due to temporal propagation influence from currency_service:5053 with weight 1
-2026-08-23 18:59:12,657 - INFO - 
+2026-08-24 09:49:08,673 - INFO -     Updated checkout_service:5050: score 0.800 → 1.800 due to temporal propagation influence from currency_service:5053 with weight 1
+2026-08-24 09:49:08,674 - INFO - 
 
 ============================== Starting Step 2/9 ==============================
-2026-08-23 18:59:12,657 - INFO - 
+2026-08-24 09:49:08,675 - INFO - 
 
 === Step:2, Refactoring product_catalog_service:5055 with risk score 0.023 as AI agent ===
 
 
-2026-08-23 18:59:12,657 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['recommendation_service:5058', 0.096], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['checkout_service:5050', 1.8]]
-2026-08-23 18:59:12,657 - INFO - 
+2026-08-24 09:49:08,676 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['recommendation_service:5058', 0.096], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['checkout_service:5050', 1.8]]
+2026-08-24 09:49:08,676 - INFO - 
 
 Current successfully agentified services so far: ['currency_agent:5053']
 
 
-2026-08-23 18:59:12,657 - INFO - 
+2026-08-24 09:49:08,676 - INFO - 
 
  ============== Deployment of step candidate architecture ==============
 
 
-2026-08-23 18:59:12,657 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-23 18:59:12,757 - INFO - Candidate architecture deployed successfully.
+2026-08-24 09:49:08,676 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-24 09:49:08,777 - INFO - Candidate architecture deployed successfully.
 
 
-2026-08-23 18:59:12,757 - INFO - 
+2026-08-24 09:49:08,777 - INFO - 
 
  ============== Predicate-driven acceptance of step's candidate architecture ==============
 
 
-2026-08-23 18:59:12,758 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 2...
-2026-08-23 18:59:15,240 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-23 18:59:15,240 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
-2026-08-23 18:59:15,240 - INFO - 
+2026-08-24 09:49:08,778 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 2...
+2026-08-24 09:49:11,421 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-24 09:49:11,421 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-24 09:49:11,421 - INFO - 
+================================================================================
+2026-08-24 09:49:11,421 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-24 09:49:11,421 - INFO - ================================================================================
+2026-08-24 09:49:11,421 - INFO - 
+📋 Step 2: product_catalog_service
+2026-08-24 09:49:11,421 - INFO - Predicate Decision: ACCEPT
+2026-08-24 09:49:11,421 - INFO - 
+⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-08-24 09:49:11,421 - INFO - 
+--------------------------------------------------------------------------------
+2026-08-24 09:49:11,421 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-24 09:49:11,421 - INFO - --------------------------------------------------------------------------------
+2026-08-24 09:49:11,421 - INFO - 
+📊 Core Metrics:
+2026-08-24 09:49:11,421 - INFO - 
+  QUALITY ASSURANCE
+2026-08-24 09:49:11,421 - INFO -     Actual:        0.0000
+2026-08-24 09:49:11,421 - INFO -     Threshold:     0.0000
+2026-08-24 09:49:11,421 - INFO -     Tolerance:     ±0.0000
+2026-08-24 09:49:11,422 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:11,422 - INFO - 
+  LATENCY P95
+2026-08-24 09:49:11,422 - INFO -     Actual:        1.436s
+2026-08-24 09:49:11,422 - INFO -     Threshold:     1.900s
+2026-08-24 09:49:11,422 - INFO -     Tolerance:     ±0.100s
+2026-08-24 09:49:11,422 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:11,422 - INFO - 
+  FAILURE RATE
+2026-08-24 09:49:11,422 - INFO -     Actual:        0.0106
+2026-08-24 09:49:11,422 - INFO -     Threshold:     0.0200
+2026-08-24 09:49:11,422 - INFO -     Tolerance:     ±0.0050
+2026-08-24 09:49:11,422 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:11,422 - INFO - 
+🔍 Risk Assessment:
+2026-08-24 09:49:11,422 - INFO -   Temporal Propagation: 0.011 (tolerance: 0.100)
+2026-08-24 09:49:11,422 - INFO -   Status: LOW RISK
+2026-08-24 09:49:11,422 - INFO - 
+📈 Violation Analysis:
+2026-08-24 09:49:11,422 - INFO -   Violation Duration: 446.72 trials
+2026-08-24 09:49:11,422 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-24 09:49:11,422 - INFO -   Classification: TRANSIENT
+2026-08-24 09:49:11,422 - INFO - 
+================================================================================
+2026-08-24 09:49:11,422 - INFO - ADJUDICATION DECISION
+2026-08-24 09:49:11,422 - INFO - ================================================================================
+2026-08-24 09:49:11,422 - INFO - ========================
+2026-08-24 09:49:11,422 - INFO - ✅ Predicate ACCEPTED this step.
+2026-08-24 09:49:11,422 - INFO - However, you may decide it be a false acceptance.
+2026-08-24 09:49:11,422 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-08-24 09:49:11,422 - INFO - 
+
+Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
+...Awaiting human adjudication input...
+2026-08-24 09:49:16,508 - INFO - HITL user response: A
+2026-08-24 09:49:16,509 - INFO - 
 
  Predicate-driven automatic acceptance test results summary:                 
- Prediction Category for step 2: true_acceptance,                 
+ Prediction Category for step 2: hitl_decision,                 
  qa_inconsistency_rate: 0.0000,                    QA_threshold: 0.0, success_QA: ✅                 
- p95_latency: 1.4484,                     Latency_threshold: 1.9, success_L: ✅                 
- failure_rate: 0.0068,                     Failure_threshold: 0.02, success_F: ✅                 
+ p95_latency: 1.4358,                     Latency_threshold: 1.9, success_L: ✅                 
+ failure_rate: 0.0106,                     Failure_threshold: 0.02, success_F: ✅                 
  final predicate automatic raw decision: ✅                 
- temporal_propagation: 0.0071,                 
+ temporal_propagation: 0.0109,                 
  final adjudicated decision: ✅ 
 
 
-2026-08-23 18:59:15,241 - INFO - Step 2 final result: ✅ ACCEPTED: product_catalog_service:5055 → product_catalog_agent:5055, decision type: true_accepted_by_predicate_auto_pass
-2026-08-23 18:59:15,241 - INFO - 
+2026-08-24 09:49:16,511 - INFO - Step 2 final result: ✅ ACCEPTED: product_catalog_service:5055 → product_catalog_agent:5055, decision type: accepted_by_human_governance
+2026-08-24 09:49:16,512 - INFO - 
 
  ============ 🔄 Detecting Temporal Propagation Influence To Update Remaining Services Ranking Score ================= 
 
-2026-08-23 18:59:15,241 - INFO -     Updated checkout_service:5050: score 1.800 → 2.800 due to temporal propagation influence from product_catalog_service:5055 with weight 1
-2026-08-23 18:59:15,241 - INFO -     Updated recommendation_service:5058: score 0.096 → 1.096 due to temporal propagation influence from product_catalog_service:5055 with weight 1
-2026-08-23 18:59:15,241 - INFO - 
+2026-08-24 09:49:16,512 - INFO -     Updated checkout_service:5050: score 1.800 → 2.800 due to temporal propagation influence from product_catalog_service:5055 with weight 1
+2026-08-24 09:49:16,512 - INFO -     Updated recommendation_service:5058: score 0.096 → 1.096 due to temporal propagation influence from product_catalog_service:5055 with weight 1
+2026-08-24 09:49:16,513 - INFO - 
 
 ============================== Starting Step 3/9 ==============================
-2026-08-23 18:59:15,241 - INFO - 
+2026-08-24 09:49:16,513 - INFO - 
 
 === Step:3, Refactoring ad_service:5057 with risk score 0.075 as AI agent ===
 
 
-2026-08-23 18:59:15,241 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 2.8]]
-2026-08-23 18:59:15,241 - INFO - 
+2026-08-24 09:49:16,513 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 2.8]]
+2026-08-24 09:49:16,514 - INFO - 
 
 Current successfully agentified services so far: ['currency_agent:5053', 'product_catalog_agent:5055']
 
 
-2026-08-23 18:59:15,241 - INFO - 
+2026-08-24 09:49:16,514 - INFO - 
 
  ============== Deployment of step candidate architecture ==============
 
 
-2026-08-23 18:59:15,241 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-23 18:59:15,341 - INFO - Candidate architecture deployed successfully.
+2026-08-24 09:49:16,515 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-24 09:49:16,615 - INFO - Candidate architecture deployed successfully.
 
 
-2026-08-23 18:59:15,342 - INFO - 
+2026-08-24 09:49:16,615 - INFO - 
 
  ============== Predicate-driven acceptance of step's candidate architecture ==============
 
 
-2026-08-23 18:59:15,342 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 3...
-2026-08-23 18:59:17,811 - INFO - 🔄 No temporal propagation influence detected for this step.
-2026-08-23 18:59:17,811 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-23 18:59:17,811 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
-2026-08-23 18:59:17,811 - INFO - 
+2026-08-24 09:49:16,615 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 3...
+2026-08-24 09:49:19,150 - INFO - 🔄 No temporal propagation influence detected for this step.
+2026-08-24 09:49:19,151 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-24 09:49:19,151 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-24 09:49:19,151 - INFO - 
+================================================================================
+2026-08-24 09:49:19,151 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-24 09:49:19,151 - INFO - ================================================================================
+2026-08-24 09:49:19,151 - INFO - 
+📋 Step 3: ad_service
+2026-08-24 09:49:19,151 - INFO - Predicate Decision: ACCEPT
+2026-08-24 09:49:19,151 - INFO - 
+⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-08-24 09:49:19,151 - INFO - 
+--------------------------------------------------------------------------------
+2026-08-24 09:49:19,151 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-24 09:49:19,151 - INFO - --------------------------------------------------------------------------------
+2026-08-24 09:49:19,151 - INFO - 
+📊 Core Metrics:
+2026-08-24 09:49:19,151 - INFO - 
+  QUALITY ASSURANCE
+2026-08-24 09:49:19,151 - INFO -     Actual:        0.0000
+2026-08-24 09:49:19,151 - INFO -     Threshold:     0.0000
+2026-08-24 09:49:19,151 - INFO -     Tolerance:     ±0.0000
+2026-08-24 09:49:19,151 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:19,151 - INFO - 
+  LATENCY P95
+2026-08-24 09:49:19,151 - INFO -     Actual:        1.467s
+2026-08-24 09:49:19,151 - INFO -     Threshold:     1.900s
+2026-08-24 09:49:19,151 - INFO -     Tolerance:     ±0.100s
+2026-08-24 09:49:19,151 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:19,151 - INFO - 
+  FAILURE RATE
+2026-08-24 09:49:19,151 - INFO -     Actual:        0.0073
+2026-08-24 09:49:19,151 - INFO -     Threshold:     0.0200
+2026-08-24 09:49:19,151 - INFO -     Tolerance:     ±0.0050
+2026-08-24 09:49:19,151 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:19,151 - INFO - 
+🔍 Risk Assessment:
+2026-08-24 09:49:19,151 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
+2026-08-24 09:49:19,151 - INFO -   Status: LOW RISK
+2026-08-24 09:49:19,152 - INFO - 
+📈 Violation Analysis:
+2026-08-24 09:49:19,152 - INFO -   Violation Duration: 507.15 trials
+2026-08-24 09:49:19,152 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-24 09:49:19,152 - INFO -   Classification: TRANSIENT
+2026-08-24 09:49:19,152 - INFO - 
+================================================================================
+2026-08-24 09:49:19,152 - INFO - ADJUDICATION DECISION
+2026-08-24 09:49:19,152 - INFO - ================================================================================
+2026-08-24 09:49:19,152 - INFO - ========================
+2026-08-24 09:49:19,152 - INFO - ✅ Predicate ACCEPTED this step.
+2026-08-24 09:49:19,152 - INFO - However, you may decide it be a false acceptance.
+2026-08-24 09:49:19,152 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-08-24 09:49:19,152 - INFO - 
+
+Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
+...Awaiting human adjudication input...
+2026-08-24 09:49:21,653 - INFO - HITL user response: A
+2026-08-24 09:49:21,654 - INFO - 
 
  Predicate-driven automatic acceptance test results summary:                 
- Prediction Category for step 3: true_acceptance,                 
+ Prediction Category for step 3: hitl_decision,                 
  qa_inconsistency_rate: 0.0000,                    QA_threshold: 0.0, success_QA: ✅                 
- p95_latency: 1.4689,                     Latency_threshold: 1.9, success_L: ✅                 
- failure_rate: 0.0139,                     Failure_threshold: 0.02, success_F: ✅                 
+ p95_latency: 1.4668,                     Latency_threshold: 1.9, success_L: ✅                 
+ failure_rate: 0.0073,                     Failure_threshold: 0.02, success_F: ✅                 
  final predicate automatic raw decision: ✅                 
  temporal_propagation: 0.0000,                 
  final adjudicated decision: ✅ 
 
 
-2026-08-23 18:59:17,811 - INFO - Step 3 final result: ✅ ACCEPTED: ad_service:5057 → ad_agent:5057, decision type: true_accepted_by_predicate_auto_pass
-2026-08-23 18:59:17,811 - INFO - 
+2026-08-24 09:49:21,657 - INFO - Step 3 final result: ✅ ACCEPTED: ad_service:5057 → ad_agent:5057, decision type: accepted_by_human_governance
+2026-08-24 09:49:21,657 - INFO - 
 
 ============================== Starting Step 4/9 ==============================
-2026-08-23 18:59:17,811 - INFO - 
+2026-08-24 09:49:21,658 - INFO - 
 
 === Step:4, Refactoring cart_service:5054 with risk score 0.088 as AI agent ===
 
 
-2026-08-23 18:59:17,811 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 2.8]]
-2026-08-23 18:59:17,811 - INFO - 
+2026-08-24 09:49:21,658 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 2.8]]
+2026-08-24 09:49:21,658 - INFO - 
 
 Current successfully agentified services so far: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057']
 
 
-2026-08-23 18:59:17,811 - INFO - 
+2026-08-24 09:49:21,659 - INFO - 
 
  ============== Deployment of step candidate architecture ==============
 
 
-2026-08-23 18:59:17,811 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-23 18:59:17,912 - INFO - Candidate architecture deployed successfully.
+2026-08-24 09:49:21,659 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-24 09:49:21,759 - INFO - Candidate architecture deployed successfully.
 
 
-2026-08-23 18:59:17,912 - INFO - 
+2026-08-24 09:49:21,759 - INFO - 
 
  ============== Predicate-driven acceptance of step's candidate architecture ==============
 
 
-2026-08-23 18:59:17,912 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 4...
-2026-08-23 18:59:20,428 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-23 18:59:20,428 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
-2026-08-23 18:59:20,428 - INFO - 
+2026-08-24 09:49:21,760 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 4...
+2026-08-24 09:49:24,363 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-24 09:49:24,363 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-24 09:49:24,363 - INFO - 
+================================================================================
+2026-08-24 09:49:24,363 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-24 09:49:24,363 - INFO - ================================================================================
+2026-08-24 09:49:24,363 - INFO - 
+📋 Step 4: cart_service
+2026-08-24 09:49:24,363 - INFO - Predicate Decision: ACCEPT
+2026-08-24 09:49:24,363 - INFO - 
+⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-08-24 09:49:24,363 - INFO - 
+--------------------------------------------------------------------------------
+2026-08-24 09:49:24,363 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-24 09:49:24,363 - INFO - --------------------------------------------------------------------------------
+2026-08-24 09:49:24,363 - INFO - 
+📊 Core Metrics:
+2026-08-24 09:49:24,363 - INFO - 
+  QUALITY ASSURANCE
+2026-08-24 09:49:24,363 - INFO -     Actual:        0.0000
+2026-08-24 09:49:24,363 - INFO -     Threshold:     0.0000
+2026-08-24 09:49:24,363 - INFO -     Tolerance:     ±0.0000
+2026-08-24 09:49:24,364 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:24,364 - INFO - 
+  LATENCY P95
+2026-08-24 09:49:24,364 - INFO -     Actual:        1.584s
+2026-08-24 09:49:24,364 - INFO -     Threshold:     1.900s
+2026-08-24 09:49:24,364 - INFO -     Tolerance:     ±0.100s
+2026-08-24 09:49:24,364 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:24,364 - INFO - 
+  FAILURE RATE
+2026-08-24 09:49:24,364 - INFO -     Actual:        0.0109
+2026-08-24 09:49:24,364 - INFO -     Threshold:     0.0200
+2026-08-24 09:49:24,364 - INFO -     Tolerance:     ±0.0050
+2026-08-24 09:49:24,364 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:24,364 - INFO - 
+🔍 Risk Assessment:
+2026-08-24 09:49:24,364 - INFO -   Temporal Propagation: 0.011 (tolerance: 0.100)
+2026-08-24 09:49:24,364 - INFO -   Status: LOW RISK
+2026-08-24 09:49:24,364 - INFO - 
+📈 Violation Analysis:
+2026-08-24 09:49:24,364 - INFO -   Violation Duration: 468.84 trials
+2026-08-24 09:49:24,364 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-24 09:49:24,364 - INFO -   Classification: TRANSIENT
+2026-08-24 09:49:24,364 - INFO - 
+================================================================================
+2026-08-24 09:49:24,365 - INFO - ADJUDICATION DECISION
+2026-08-24 09:49:24,365 - INFO - ================================================================================
+2026-08-24 09:49:24,365 - INFO - ========================
+2026-08-24 09:49:24,365 - INFO - ✅ Predicate ACCEPTED this step.
+2026-08-24 09:49:24,365 - INFO - However, you may decide it be a false acceptance.
+2026-08-24 09:49:24,365 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-08-24 09:49:24,365 - INFO - 
+
+Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
+...Awaiting human adjudication input...
+2026-08-24 09:49:26,455 - INFO - HITL user response: A
+2026-08-24 09:49:26,455 - INFO - 
 
  Predicate-driven automatic acceptance test results summary:                 
- Prediction Category for step 4: true_acceptance,                 
+ Prediction Category for step 4: hitl_decision,                 
  qa_inconsistency_rate: 0.0000,                    QA_threshold: 0.0, success_QA: ✅                 
- p95_latency: 1.5651,                     Latency_threshold: 1.9, success_L: ✅                 
- failure_rate: 0.0089,                     Failure_threshold: 0.02, success_F: ✅                 
+ p95_latency: 1.5843,                     Latency_threshold: 1.9, success_L: ✅                 
+ failure_rate: 0.0109,                     Failure_threshold: 0.02, success_F: ✅                 
  final predicate automatic raw decision: ✅                 
- temporal_propagation: 0.0092,                 
+ temporal_propagation: 0.0112,                 
  final adjudicated decision: ✅ 
 
 
-2026-08-23 18:59:20,428 - INFO - Step 4 final result: ✅ ACCEPTED: cart_service:5054 → cart_agent:5054, decision type: true_accepted_by_predicate_auto_pass
-2026-08-23 18:59:20,429 - INFO - 
+2026-08-24 09:49:26,459 - INFO - Step 4 final result: ✅ ACCEPTED: cart_service:5054 → cart_agent:5054, decision type: accepted_by_human_governance
+2026-08-24 09:49:26,459 - INFO - 
 
  ============ 🔄 Detecting Temporal Propagation Influence To Update Remaining Services Ranking Score ================= 
 
-2026-08-23 18:59:20,429 - INFO -     Updated checkout_service:5050: score 2.800 → 3.800 due to temporal propagation influence from cart_service:5054 with weight 1
-2026-08-23 18:59:20,429 - INFO - 
+2026-08-24 09:49:26,460 - INFO -     Updated checkout_service:5050: score 2.800 → 3.800 due to temporal propagation influence from cart_service:5054 with weight 1
+2026-08-24 09:49:26,460 - INFO - 
 
 ============================== Starting Step 5/9 ==============================
-2026-08-23 18:59:20,429 - INFO - 
+2026-08-24 09:49:26,461 - INFO - 
 
 === Step:5, Refactoring shipping_service:5051 with risk score 0.122 as AI agent ===
 
 
-2026-08-23 18:59:20,429 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 3.8]]
-2026-08-23 18:59:20,429 - INFO - 
+2026-08-24 09:49:26,461 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 3.8]]
+2026-08-24 09:49:26,461 - INFO - 
 
 Current successfully agentified services so far: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054']
 
 
-2026-08-23 18:59:20,429 - INFO - 
+2026-08-24 09:49:26,462 - INFO - 
 
  ============== Deployment of step candidate architecture ==============
 
 
-2026-08-23 18:59:20,429 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-23 18:59:20,529 - INFO - Candidate architecture deployed successfully.
+2026-08-24 09:49:26,462 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-24 09:49:26,562 - INFO - Candidate architecture deployed successfully.
 
 
-2026-08-23 18:59:20,529 - INFO - 
+2026-08-24 09:49:26,563 - INFO - 
 
  ============== Predicate-driven acceptance of step's candidate architecture ==============
 
 
-2026-08-23 18:59:20,529 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 5...
-2026-08-23 18:59:23,178 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-23 18:59:23,178 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
-2026-08-23 18:59:23,178 - INFO - 
+2026-08-24 09:49:26,563 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 5...
+2026-08-24 09:49:29,150 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-24 09:49:29,150 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-24 09:49:29,150 - INFO - 
+================================================================================
+2026-08-24 09:49:29,150 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-24 09:49:29,150 - INFO - ================================================================================
+2026-08-24 09:49:29,150 - INFO - 
+📋 Step 5: shipping_service
+2026-08-24 09:49:29,150 - INFO - Predicate Decision: ACCEPT
+2026-08-24 09:49:29,150 - INFO - 
+⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-08-24 09:49:29,150 - INFO - 
+--------------------------------------------------------------------------------
+2026-08-24 09:49:29,150 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-24 09:49:29,150 - INFO - --------------------------------------------------------------------------------
+2026-08-24 09:49:29,150 - INFO - 
+📊 Core Metrics:
+2026-08-24 09:49:29,150 - INFO - 
+  QUALITY ASSURANCE
+2026-08-24 09:49:29,150 - INFO -     Actual:        0.0000
+2026-08-24 09:49:29,151 - INFO -     Threshold:     0.0000
+2026-08-24 09:49:29,151 - INFO -     Tolerance:     ±0.0000
+2026-08-24 09:49:29,151 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:29,151 - INFO - 
+  LATENCY P95
+2026-08-24 09:49:29,151 - INFO -     Actual:        1.573s
+2026-08-24 09:49:29,151 - INFO -     Threshold:     1.900s
+2026-08-24 09:49:29,151 - INFO -     Tolerance:     ±0.100s
+2026-08-24 09:49:29,151 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:29,151 - INFO - 
+  FAILURE RATE
+2026-08-24 09:49:29,151 - INFO -     Actual:        0.0116
+2026-08-24 09:49:29,151 - INFO -     Threshold:     0.0200
+2026-08-24 09:49:29,151 - INFO -     Tolerance:     ±0.0050
+2026-08-24 09:49:29,151 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:29,151 - INFO - 
+🔍 Risk Assessment:
+2026-08-24 09:49:29,151 - INFO -   Temporal Propagation: 0.012 (tolerance: 0.100)
+2026-08-24 09:49:29,151 - INFO -   Status: LOW RISK
+2026-08-24 09:49:29,151 - INFO - 
+📈 Violation Analysis:
+2026-08-24 09:49:29,151 - INFO -   Violation Duration: 465.85 trials
+2026-08-24 09:49:29,151 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-24 09:49:29,151 - INFO -   Classification: TRANSIENT
+2026-08-24 09:49:29,151 - INFO - 
+================================================================================
+2026-08-24 09:49:29,151 - INFO - ADJUDICATION DECISION
+2026-08-24 09:49:29,151 - INFO - ================================================================================
+2026-08-24 09:49:29,151 - INFO - ========================
+2026-08-24 09:49:29,151 - INFO - ✅ Predicate ACCEPTED this step.
+2026-08-24 09:49:29,151 - INFO - However, you may decide it be a false acceptance.
+2026-08-24 09:49:29,151 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-08-24 09:49:29,151 - INFO - 
+
+Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
+...Awaiting human adjudication input...
+2026-08-24 09:49:31,627 - INFO - HITL user response: A
+2026-08-24 09:49:31,628 - INFO - 
 
  Predicate-driven automatic acceptance test results summary:                 
- Prediction Category for step 5: true_acceptance,                 
+ Prediction Category for step 5: hitl_decision,                 
  qa_inconsistency_rate: 0.0000,                    QA_threshold: 0.0, success_QA: ✅                 
- p95_latency: 1.5352,                     Latency_threshold: 1.9, success_L: ✅                 
- failure_rate: 0.0102,                     Failure_threshold: 0.02, success_F: ✅                 
+ p95_latency: 1.5729,                     Latency_threshold: 1.9, success_L: ✅                 
+ failure_rate: 0.0116,                     Failure_threshold: 0.02, success_F: ✅                 
  final predicate automatic raw decision: ✅                 
- temporal_propagation: 0.0105,                 
+ temporal_propagation: 0.0119,                 
  final adjudicated decision: ✅ 
 
 
-2026-08-23 18:59:23,179 - INFO - Step 5 final result: ✅ ACCEPTED: shipping_service:5051 → shipping_agent:5051, decision type: true_accepted_by_predicate_auto_pass
-2026-08-23 18:59:23,179 - INFO - 
+2026-08-24 09:49:31,634 - INFO - Step 5 final result: ✅ ACCEPTED: shipping_service:5051 → shipping_agent:5051, decision type: accepted_by_human_governance
+2026-08-24 09:49:31,634 - INFO - 
 
  ============ 🔄 Detecting Temporal Propagation Influence To Update Remaining Services Ranking Score ================= 
 
-2026-08-23 18:59:23,179 - INFO -     Updated checkout_service:5050: score 3.800 → 4.800 due to temporal propagation influence from shipping_service:5051 with weight 1
-2026-08-23 18:59:23,179 - INFO - 
+2026-08-24 09:49:31,635 - INFO -     Updated checkout_service:5050: score 3.800 → 4.800 due to temporal propagation influence from shipping_service:5051 with weight 1
+2026-08-24 09:49:31,635 - INFO - 
 
 ============================== Starting Step 6/9 ==============================
-2026-08-23 18:59:23,179 - INFO - 
+2026-08-24 09:49:31,636 - INFO - 
 
 === Step:6, Refactoring email_service:5056 with risk score 0.177 as AI agent ===
 
 
-2026-08-23 18:59:23,179 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 4.8]]
-2026-08-23 18:59:23,179 - INFO - 
+2026-08-24 09:49:31,636 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 4.8]]
+2026-08-24 09:49:31,638 - INFO - 
 
 Current successfully agentified services so far: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051']
 
 
-2026-08-23 18:59:23,179 - INFO - 
+2026-08-24 09:49:31,638 - INFO - 
 
  ============== Deployment of step candidate architecture ==============
 
 
-2026-08-23 18:59:23,180 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-23 18:59:23,280 - INFO - Candidate architecture deployed successfully.
+2026-08-24 09:49:31,642 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-24 09:49:31,743 - INFO - Candidate architecture deployed successfully.
 
 
-2026-08-23 18:59:23,280 - INFO - 
+2026-08-24 09:49:31,744 - INFO - 
 
  ============== Predicate-driven acceptance of step's candidate architecture ==============
 
 
-2026-08-23 18:59:23,280 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 6...
-2026-08-23 18:59:25,988 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-23 18:59:25,989 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
-2026-08-23 18:59:25,989 - INFO - 
+2026-08-24 09:49:31,744 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 6...
+2026-08-24 09:49:34,331 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-24 09:49:34,331 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-24 09:49:34,331 - INFO - 
+================================================================================
+2026-08-24 09:49:34,331 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-24 09:49:34,331 - INFO - ================================================================================
+2026-08-24 09:49:34,331 - INFO - 
+📋 Step 6: email_service
+2026-08-24 09:49:34,331 - INFO - Predicate Decision: ACCEPT
+2026-08-24 09:49:34,331 - INFO - 
+⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-08-24 09:49:34,331 - INFO - 
+--------------------------------------------------------------------------------
+2026-08-24 09:49:34,331 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-24 09:49:34,331 - INFO - --------------------------------------------------------------------------------
+2026-08-24 09:49:34,332 - INFO - 
+📊 Core Metrics:
+2026-08-24 09:49:34,332 - INFO - 
+  QUALITY ASSURANCE
+2026-08-24 09:49:34,332 - INFO -     Actual:        0.0000
+2026-08-24 09:49:34,332 - INFO -     Threshold:     0.0000
+2026-08-24 09:49:34,332 - INFO -     Tolerance:     ±0.0000
+2026-08-24 09:49:34,332 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:34,332 - INFO - 
+  LATENCY P95
+2026-08-24 09:49:34,332 - INFO -     Actual:        1.467s
+2026-08-24 09:49:34,332 - INFO -     Threshold:     1.900s
+2026-08-24 09:49:34,332 - INFO -     Tolerance:     ±0.100s
+2026-08-24 09:49:34,332 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:34,332 - INFO - 
+  FAILURE RATE
+2026-08-24 09:49:34,332 - INFO -     Actual:        0.0108
+2026-08-24 09:49:34,332 - INFO -     Threshold:     0.0200
+2026-08-24 09:49:34,332 - INFO -     Tolerance:     ±0.0050
+2026-08-24 09:49:34,332 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:34,332 - INFO - 
+🔍 Risk Assessment:
+2026-08-24 09:49:34,332 - INFO -   Temporal Propagation: 0.011 (tolerance: 0.100)
+2026-08-24 09:49:34,333 - INFO -   Status: LOW RISK
+2026-08-24 09:49:34,333 - INFO - 
+📈 Violation Analysis:
+2026-08-24 09:49:34,333 - INFO -   Violation Duration: 520.76 trials
+2026-08-24 09:49:34,333 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-24 09:49:34,333 - INFO -   Classification: TRANSIENT
+2026-08-24 09:49:34,333 - INFO - 
+================================================================================
+2026-08-24 09:49:34,333 - INFO - ADJUDICATION DECISION
+2026-08-24 09:49:34,333 - INFO - ================================================================================
+2026-08-24 09:49:34,333 - INFO - ========================
+2026-08-24 09:49:34,333 - INFO - ✅ Predicate ACCEPTED this step.
+2026-08-24 09:49:34,333 - INFO - However, you may decide it be a false acceptance.
+2026-08-24 09:49:34,333 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-08-24 09:49:34,333 - INFO - 
+
+Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
+...Awaiting human adjudication input...
+2026-08-24 09:49:37,156 - INFO - HITL user response: A
+2026-08-24 09:49:37,156 - INFO - 
 
  Predicate-driven automatic acceptance test results summary:                 
- Prediction Category for step 6: true_acceptance,                 
+ Prediction Category for step 6: hitl_decision,                 
  qa_inconsistency_rate: 0.0000,                    QA_threshold: 0.0, success_QA: ✅                 
- p95_latency: 1.6303,                     Latency_threshold: 1.9, success_L: ✅                 
- failure_rate: 0.0154,                     Failure_threshold: 0.02, success_F: ✅                 
+ p95_latency: 1.4671,                     Latency_threshold: 1.9, success_L: ✅                 
+ failure_rate: 0.0108,                     Failure_threshold: 0.02, success_F: ✅                 
  final predicate automatic raw decision: ✅                 
- temporal_propagation: 0.0157,                 
+ temporal_propagation: 0.0111,                 
  final adjudicated decision: ✅ 
 
 
-2026-08-23 18:59:25,989 - INFO - Step 6 final result: ✅ ACCEPTED: email_service:5056 → email_agent:5056, decision type: true_accepted_by_predicate_auto_pass
-2026-08-23 18:59:25,989 - INFO - 
+2026-08-24 09:49:37,158 - INFO - Step 6 final result: ✅ ACCEPTED: email_service:5056 → email_agent:5056, decision type: accepted_by_human_governance
+2026-08-24 09:49:37,160 - INFO - 
 
  ============ 🔄 Detecting Temporal Propagation Influence To Update Remaining Services Ranking Score ================= 
 
-2026-08-23 18:59:25,989 - INFO -     Updated checkout_service:5050: score 4.800 → 5.800 due to temporal propagation influence from email_service:5056 with weight 1
-2026-08-23 18:59:25,989 - INFO - 
+2026-08-24 09:49:37,160 - INFO -     Updated checkout_service:5050: score 4.800 → 5.728 due to temporal propagation influence from email_service:5056 with weight 1
+2026-08-24 09:49:37,160 - INFO - 
 
 ============================== Starting Step 7/9 ==============================
-2026-08-23 18:59:25,989 - INFO - 
+2026-08-24 09:49:37,161 - INFO - 
 
 === Step:7, Refactoring payment_service:5052 with risk score 0.288 as AI agent ===
 
 
-2026-08-23 18:59:25,990 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 5.8]]
-2026-08-23 18:59:25,990 - INFO - 
+2026-08-24 09:49:37,161 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 5.728475709738521]]
+2026-08-24 09:49:37,162 - INFO - 
 
 Current successfully agentified services so far: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056']
 
 
-2026-08-23 18:59:25,990 - INFO - 
+2026-08-24 09:49:37,162 - INFO - 
 
  ============== Deployment of step candidate architecture ==============
 
 
-2026-08-23 18:59:25,990 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-23 18:59:26,090 - INFO - Candidate architecture deployed successfully.
+2026-08-24 09:49:37,163 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-24 09:49:37,263 - INFO - Candidate architecture deployed successfully.
 
 
-2026-08-23 18:59:26,090 - INFO - 
+2026-08-24 09:49:37,264 - INFO - 
 
  ============== Predicate-driven acceptance of step's candidate architecture ==============
 
 
-2026-08-23 18:59:26,090 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 7...
-2026-08-23 18:59:28,654 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-23 18:59:28,654 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
-2026-08-23 18:59:28,654 - INFO - 
+2026-08-24 09:49:37,264 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 7...
+2026-08-24 09:49:39,880 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-24 09:49:39,880 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-24 09:49:39,880 - INFO - 
+================================================================================
+2026-08-24 09:49:39,880 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-24 09:49:39,880 - INFO - ================================================================================
+2026-08-24 09:49:39,880 - INFO - 
+📋 Step 7: payment_service
+2026-08-24 09:49:39,880 - INFO - Predicate Decision: ACCEPT
+2026-08-24 09:49:39,880 - INFO - 
+⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-08-24 09:49:39,880 - INFO - 
+--------------------------------------------------------------------------------
+2026-08-24 09:49:39,880 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-24 09:49:39,880 - INFO - --------------------------------------------------------------------------------
+2026-08-24 09:49:39,880 - INFO - 
+📊 Core Metrics:
+2026-08-24 09:49:39,881 - INFO - 
+  QUALITY ASSURANCE
+2026-08-24 09:49:39,881 - INFO -     Actual:        0.0000
+2026-08-24 09:49:39,881 - INFO -     Threshold:     0.0000
+2026-08-24 09:49:39,881 - INFO -     Tolerance:     ±0.0000
+2026-08-24 09:49:39,881 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:39,881 - INFO - 
+  LATENCY P95
+2026-08-24 09:49:39,881 - INFO -     Actual:        1.645s
+2026-08-24 09:49:39,881 - INFO -     Threshold:     1.900s
+2026-08-24 09:49:39,881 - INFO -     Tolerance:     ±0.100s
+2026-08-24 09:49:39,881 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:39,881 - INFO - 
+  FAILURE RATE
+2026-08-24 09:49:39,881 - INFO -     Actual:        0.0156
+2026-08-24 09:49:39,881 - INFO -     Threshold:     0.0200
+2026-08-24 09:49:39,881 - INFO -     Tolerance:     ±0.0050
+2026-08-24 09:49:39,881 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:39,881 - INFO - 
+🔍 Risk Assessment:
+2026-08-24 09:49:39,881 - INFO -   Temporal Propagation: 0.016 (tolerance: 0.100)
+2026-08-24 09:49:39,881 - INFO -   Status: LOW RISK
+2026-08-24 09:49:39,881 - INFO - 
+📈 Violation Analysis:
+2026-08-24 09:49:39,881 - INFO -   Violation Duration: 554.71 trials
+2026-08-24 09:49:39,881 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-24 09:49:39,881 - INFO -   Classification: TRANSIENT
+2026-08-24 09:49:39,881 - INFO - 
+================================================================================
+2026-08-24 09:49:39,881 - INFO - ADJUDICATION DECISION
+2026-08-24 09:49:39,881 - INFO - ================================================================================
+2026-08-24 09:49:39,881 - INFO - ========================
+2026-08-24 09:49:39,881 - INFO - ✅ Predicate ACCEPTED this step.
+2026-08-24 09:49:39,881 - INFO - However, you may decide it be a false acceptance.
+2026-08-24 09:49:39,881 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-08-24 09:49:39,881 - INFO - 
+
+Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
+...Awaiting human adjudication input...
+2026-08-24 09:49:42,759 - INFO - HITL user response: A
+2026-08-24 09:49:42,759 - INFO - 
 
  Predicate-driven automatic acceptance test results summary:                 
- Prediction Category for step 7: true_acceptance,                 
+ Prediction Category for step 7: hitl_decision,                 
  qa_inconsistency_rate: 0.0000,                    QA_threshold: 0.0, success_QA: ✅                 
- p95_latency: 1.5053,                     Latency_threshold: 1.9, success_L: ✅                 
- failure_rate: 0.0185,                     Failure_threshold: 0.02, success_F: ✅                 
+ p95_latency: 1.6450,                     Latency_threshold: 1.9, success_L: ✅                 
+ failure_rate: 0.0156,                     Failure_threshold: 0.02, success_F: ✅                 
  final predicate automatic raw decision: ✅                 
- temporal_propagation: 0.0188,                 
+ temporal_propagation: 0.0160,                 
  final adjudicated decision: ✅ 
 
 
-2026-08-23 18:59:28,655 - INFO - Step 7 final result: ✅ ACCEPTED: payment_service:5052 → payment_agent:5052, decision type: true_accepted_by_predicate_auto_pass
-2026-08-23 18:59:28,655 - INFO - 
+2026-08-24 09:49:42,759 - INFO - Step 7 final result: ✅ ACCEPTED: payment_service:5052 → payment_agent:5052, decision type: accepted_by_human_governance
+2026-08-24 09:49:42,760 - INFO - 
 
  ============ 🔄 Detecting Temporal Propagation Influence To Update Remaining Services Ranking Score ================= 
 
-2026-08-23 18:59:28,655 - INFO -     Updated checkout_service:5050: score 5.800 → 6.800 due to temporal propagation influence from payment_service:5052 with weight 1
-2026-08-23 18:59:28,655 - INFO - 
+2026-08-24 09:49:42,760 - INFO -     Updated checkout_service:5050: score 5.728 → 6.728 due to temporal propagation influence from payment_service:5052 with weight 1
+2026-08-24 09:49:42,760 - INFO - 
 
 ============================== Starting Step 8/9 ==============================
-2026-08-23 18:59:28,655 - INFO - 
+2026-08-24 09:49:42,760 - INFO - 
 
 === Step:8, Refactoring recommendation_service:5058 with risk score 1.096 as AI agent ===
 
 
-2026-08-23 18:59:28,655 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 6.8]]
-2026-08-23 18:59:28,655 - INFO - 
+2026-08-24 09:49:42,760 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 6.728475709738521]]
+2026-08-24 09:49:42,760 - INFO - 
 
 Current successfully agentified services so far: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
 
 
-2026-08-23 18:59:28,655 - INFO - 
+2026-08-24 09:49:42,760 - INFO - 
 
  ============== Deployment of step candidate architecture ==============
 
 
-2026-08-23 18:59:28,655 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-23 18:59:28,755 - INFO - Candidate architecture deployed successfully.
+2026-08-24 09:49:42,761 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-24 09:49:42,861 - INFO - Candidate architecture deployed successfully.
 
 
-2026-08-23 18:59:28,756 - INFO - 
+2026-08-24 09:49:42,861 - INFO - 
 
  ============== Predicate-driven acceptance of step's candidate architecture ==============
 
 
-2026-08-23 18:59:28,756 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 8...
-2026-08-23 18:59:31,427 - INFO - 🔄 No temporal propagation influence detected for this step.
-2026-08-23 18:59:31,427 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-23 18:59:31,427 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
-2026-08-23 18:59:31,427 - INFO - 
+2026-08-24 09:49:42,862 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 8...
+2026-08-24 09:49:45,499 - INFO - 🔄 No temporal propagation influence detected for this step.
+2026-08-24 09:49:45,499 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-24 09:49:45,499 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-24 09:49:45,500 - INFO - 
+================================================================================
+2026-08-24 09:49:45,500 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-24 09:49:45,500 - INFO - ================================================================================
+2026-08-24 09:49:45,500 - INFO - 
+📋 Step 8: recommendation_service
+2026-08-24 09:49:45,500 - INFO - Predicate Decision: REJECT
+2026-08-24 09:49:45,500 - INFO - 
+⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-08-24 09:49:45,500 - INFO - 
+--------------------------------------------------------------------------------
+2026-08-24 09:49:45,500 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-24 09:49:45,500 - INFO - --------------------------------------------------------------------------------
+2026-08-24 09:49:45,500 - INFO - 
+📊 Core Metrics:
+2026-08-24 09:49:45,500 - INFO - 
+  QUALITY ASSURANCE
+2026-08-24 09:49:45,500 - INFO -     Actual:        0.0000
+2026-08-24 09:49:45,500 - INFO -     Threshold:     0.0000
+2026-08-24 09:49:45,500 - INFO -     Tolerance:     ±0.0000
+2026-08-24 09:49:45,500 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:45,500 - INFO - 
+  LATENCY P95
+2026-08-24 09:49:45,500 - INFO -     Actual:        1.871s
+2026-08-24 09:49:45,500 - INFO -     Threshold:     1.900s
+2026-08-24 09:49:45,500 - INFO -     Tolerance:     ±0.100s
+2026-08-24 09:49:45,500 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:45,500 - INFO - 
+  FAILURE RATE
+2026-08-24 09:49:45,500 - INFO -     Actual:        0.0249
+2026-08-24 09:49:45,500 - INFO -     Threshold:     0.0200
+2026-08-24 09:49:45,500 - INFO -     Tolerance:     ±0.0050
+2026-08-24 09:49:45,500 - INFO -     Status:        ✗ FAIL
+2026-08-24 09:49:45,500 - INFO - 
+🔍 Risk Assessment:
+2026-08-24 09:49:45,500 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
+2026-08-24 09:49:45,501 - INFO -   Status: LOW RISK
+2026-08-24 09:49:45,501 - INFO - 
+📈 Violation Analysis:
+2026-08-24 09:49:45,501 - INFO -   Violation Duration: 1846.25 trials
+2026-08-24 09:49:45,501 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-24 09:49:45,501 - INFO -   Classification: SUSTAINED
+2026-08-24 09:49:45,501 - INFO - 
+================================================================================
+2026-08-24 09:49:45,501 - INFO - ADJUDICATION DECISION
+2026-08-24 09:49:45,501 - INFO - ================================================================================
+2026-08-24 09:49:45,501 - INFO - ========================
+2026-08-24 09:49:45,501 - INFO - ❌ Predicate REJECTED this step.
+2026-08-24 09:49:45,501 - INFO - You should either OVERRIDE the rejection to ACCEPT this step, or CONFIRM the rejection
+2026-08-24 09:49:45,501 - INFO - (Consider: Is this a transient violation without upstream harm?)
+2026-08-24 09:49:45,501 - INFO - 
+
+Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
+...Awaiting human adjudication input...
+2026-08-24 09:49:47,371 - INFO - HITL user response: A
+2026-08-24 09:49:47,372 - INFO - 
 
  Predicate-driven automatic acceptance test results summary:                 
- Prediction Category for step 8: true_rejection,                 
+ Prediction Category for step 8: hitl_decision,                 
  qa_inconsistency_rate: 0.0000,                    QA_threshold: 0.0, success_QA: ✅                 
- p95_latency: 1.8545,                     Latency_threshold: 1.9, success_L: ✅                 
- failure_rate: 0.0273,                     Failure_threshold: 0.02, success_F: ❌                 
+ p95_latency: 1.8713,                     Latency_threshold: 1.9, success_L: ✅                 
+ failure_rate: 0.0249,                     Failure_threshold: 0.02, success_F: ❌                 
  final predicate automatic raw decision: ❌                 
  temporal_propagation: 0.0000,                 
- final adjudicated decision: ❌ 
+ final adjudicated decision: ✅ 
 
 
-2026-08-23 18:59:31,427 - INFO - Step 8 final result: ❌ REJECTED: recommendation_service:5058 remains as service, decision type: true_rejected_by_predicate
-2026-08-23 18:59:31,428 - INFO - 
+2026-08-24 09:49:47,379 - INFO - Step 8 final result: ✅ ACCEPTED: recommendation_service:5058 → recommendation_agent:5058, decision type: accepted_by_human_governance
+2026-08-24 09:49:47,380 - INFO - 
 
 ============================== Starting Step 9/9 ==============================
-2026-08-23 18:59:31,428 - INFO - 
+2026-08-24 09:49:47,380 - INFO - 
 
-=== Step:9, Refactoring checkout_service:5050 with risk score 6.8 as AI agent ===
-
-
-2026-08-23 18:59:31,428 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 6.8]]
-2026-08-23 18:59:31,428 - INFO - 
-
-Current successfully agentified services so far: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+=== Step:9, Refactoring checkout_service:5050 with risk score 6.728475709738521 as AI agent ===
 
 
-2026-08-23 18:59:31,428 - INFO - 
+2026-08-24 09:49:47,381 - INFO - Current services ranking scores: [['currency_service:5053', 0.0], ['product_catalog_service:5055', 0.023], ['ad_service:5057', 0.075], ['cart_service:5054', 0.088], ['shipping_service:5051', 0.122], ['email_service:5056', 0.177], ['payment_service:5052', 0.288], ['recommendation_service:5058', 1.096], ['checkout_service:5050', 6.728475709738521]]
+2026-08-24 09:49:47,381 - INFO - 
+
+Current successfully agentified services so far: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+
+
+2026-08-24 09:49:47,382 - INFO - 
 
  ============== Deployment of step candidate architecture ==============
 
 
-2026-08-23 18:59:31,428 - INFO - ... Waiting for the deployment to stabilize ...
-2026-08-23 18:59:31,528 - INFO - Candidate architecture deployed successfully.
+2026-08-24 09:49:47,382 - INFO - ... Waiting for the deployment to stabilize ...
+2026-08-24 09:49:47,483 - INFO - Candidate architecture deployed successfully.
 
 
-2026-08-23 18:59:31,528 - INFO - 
+2026-08-24 09:49:47,483 - INFO - 
 
  ============== Predicate-driven acceptance of step's candidate architecture ==============
 
 
-2026-08-23 18:59:31,529 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 9...
-2026-08-23 18:59:34,263 - INFO - 🔄 No temporal propagation influence detected for this step.
-2026-08-23 18:59:34,263 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
-2026-08-23 18:59:34,263 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
-2026-08-23 18:59:34,263 - INFO - 
+2026-08-24 09:49:47,484 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step 9...
+2026-08-24 09:49:50,082 - INFO - 🔄 No temporal propagation influence detected for this step.
+2026-08-24 09:49:50,082 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-08-24 09:49:50,082 - ERROR - Error reading log telemetry file: [Errno 2] No such file or directory: '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json'
+2026-08-24 09:49:50,082 - INFO - 
+================================================================================
+2026-08-24 09:49:50,082 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-08-24 09:49:50,082 - INFO - ================================================================================
+2026-08-24 09:49:50,082 - INFO - 
+📋 Step 9: checkout_service
+2026-08-24 09:49:50,083 - INFO - Predicate Decision: REJECT
+2026-08-24 09:49:50,083 - INFO - 
+⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-08-24 09:49:50,083 - INFO - 
+--------------------------------------------------------------------------------
+2026-08-24 09:49:50,083 - INFO - EXECUTION METRICS & EVIDENCE
+2026-08-24 09:49:50,083 - INFO - --------------------------------------------------------------------------------
+2026-08-24 09:49:50,083 - INFO - 
+📊 Core Metrics:
+2026-08-24 09:49:50,083 - INFO - 
+  QUALITY ASSURANCE
+2026-08-24 09:49:50,083 - INFO -     Actual:        0.0000
+2026-08-24 09:49:50,083 - INFO -     Threshold:     0.0000
+2026-08-24 09:49:50,083 - INFO -     Tolerance:     ±0.0000
+2026-08-24 09:49:50,083 - INFO -     Status:        ✓ PASS
+2026-08-24 09:49:50,083 - INFO - 
+  LATENCY P95
+2026-08-24 09:49:50,083 - INFO -     Actual:        2.204s
+2026-08-24 09:49:50,083 - INFO -     Threshold:     1.900s
+2026-08-24 09:49:50,083 - INFO -     Tolerance:     ±0.100s
+2026-08-24 09:49:50,083 - INFO -     Status:        ✗ FAIL
+2026-08-24 09:49:50,083 - INFO - 
+  FAILURE RATE
+2026-08-24 09:49:50,083 - INFO -     Actual:        0.0251
+2026-08-24 09:49:50,084 - INFO -     Threshold:     0.0200
+2026-08-24 09:49:50,084 - INFO -     Tolerance:     ±0.0050
+2026-08-24 09:49:50,084 - INFO -     Status:        ✗ FAIL
+2026-08-24 09:49:50,084 - INFO - 
+🔍 Risk Assessment:
+2026-08-24 09:49:50,084 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
+2026-08-24 09:49:50,084 - INFO -   Status: LOW RISK
+2026-08-24 09:49:50,084 - INFO - 
+📈 Violation Analysis:
+2026-08-24 09:49:50,084 - INFO -   Violation Duration: 3028.98 trials
+2026-08-24 09:49:50,084 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-08-24 09:49:50,084 - INFO -   Classification: SUSTAINED
+2026-08-24 09:49:50,084 - INFO - 
+================================================================================
+2026-08-24 09:49:50,084 - INFO - ADJUDICATION DECISION
+2026-08-24 09:49:50,084 - INFO - ================================================================================
+2026-08-24 09:49:50,084 - INFO - ========================
+2026-08-24 09:49:50,084 - INFO - ❌ Predicate REJECTED this step.
+2026-08-24 09:49:50,084 - INFO - You should either OVERRIDE the rejection to ACCEPT this step, or CONFIRM the rejection
+2026-08-24 09:49:50,084 - INFO - (Consider: Is this a transient violation without upstream harm?)
+2026-08-24 09:49:50,084 - INFO - 
+
+Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): 
+...Awaiting human adjudication input...
+2026-08-24 09:49:52,085 - INFO - HITL user response: A
+2026-08-24 09:49:52,086 - INFO - 
 
  Predicate-driven automatic acceptance test results summary:                 
- Prediction Category for step 9: true_rejection,                 
+ Prediction Category for step 9: hitl_decision,                 
  qa_inconsistency_rate: 0.0000,                    QA_threshold: 0.0, success_QA: ✅                 
- p95_latency: 2.0695,                     Latency_threshold: 1.9, success_L: ❌                 
- failure_rate: 0.0264,                     Failure_threshold: 0.02, success_F: ❌                 
+ p95_latency: 2.2042,                     Latency_threshold: 1.9, success_L: ❌                 
+ failure_rate: 0.0251,                     Failure_threshold: 0.02, success_F: ❌                 
  final predicate automatic raw decision: ❌                 
  temporal_propagation: 0.0000,                 
- final adjudicated decision: ❌ 
+ final adjudicated decision: ✅ 
 
 
-2026-08-23 18:59:34,264 - INFO - Step 9 final result: ❌ REJECTED: checkout_service:5050 remains as service, decision type: true_rejected_by_predicate
-2026-08-23 18:59:34,264 - INFO - 
+2026-08-24 09:49:52,089 - INFO - Step 9 final result: ✅ ACCEPTED: checkout_service:5050 → checkout_agent:5050, decision type: accepted_by_human_governance
+2026-08-24 09:49:52,090 - INFO - 
 
 
 
 ------------------------------- 🎯 Final architecture: -------------------- 
 
 
-2026-08-23 18:59:34,264 - INFO - Services: ['recommendation_service:5058', 'checkout_service:5050']
+2026-08-24 09:49:52,090 - INFO - Services: []
 
-2026-08-23 18:59:34,264 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+2026-08-24 09:49:52,090 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
 
 
-2026-08-23 18:59:34,264 - INFO - Cumulative QA Inconsistency Rate: 0.0000
-2026-08-23 18:59:34,264 - INFO - Cumulative p95 Latency Inflation: 14.4717
-2026-08-23 18:59:34,264 - INFO - Cumulative Failure Rate Inflation: 0.1332
-2026-08-23 18:59:34,264 - INFO - 
+2026-08-24 09:49:52,090 - INFO - Cumulative QA Inconsistency Rate: 0.0000
+2026-08-24 09:49:52,090 - INFO - Cumulative p95 Latency Inflation: 14.5998
+2026-08-24 09:49:52,091 - INFO - Cumulative Failure Rate Inflation: 0.1259
+2026-08-24 09:49:52,091 - INFO - 
 
 ------------------------------- 🎯 Final Architecture Experiment Run -------------------- 
 
-2026-08-23 18:59:34,264 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step -1...
-2026-08-23 18:59:36,885 - INFO - Final Architecture Experiment Run Results : {'result': 'ACCEPTED', 'step_self_temporal_propagation': 0.01633855281955294, 'step_report_file_name': '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/google_ms/results/Ranked/res_LLM_llama3.2:3b_T_0_U_20_MO_Ranked_weight_fanout0.2_bc0.2_ccyl0.2_ccog0.2_tprop0.2_live_progressive_refactor_PRED_Full_GM_Post-Audit-Comprehensive_TPOP_True.json', 'details': {'epsilon_l': 1.9, 'epsilon_qa': 0.0, 'epsilon_f': 0.02, 'log_telemetry_file': '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json', 'p95_latency': 1.794802153991669, 'qa_inconsistency_rate': 0, 'failure_rate': 0.015979592388754606, 'latency_predicate_failed': False, 'qa_predicate_failed': False, 'failure_rate_predicate_failed': False, 'success_l': True, 'success_qa': True, 'success_f': True, 'success': True, 'step_self_temporal_propagation': 0.01633855281955294, 'target_service': 'checkout_service', 'total_trials': 5000}}
-2026-08-23 18:59:36,885 - INFO - services: ['recommendation_service:5058'], agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'checkout_agent:5050']
-2026-08-23 18:59:36,892 - INFO - 
+2026-08-24 09:49:52,091 - INFO - 🧪 Running Predicate-based Acceptance Experiment for step -1...
+2026-08-24 09:49:54,813 - INFO - Final Architecture Experiment Run Results : {'result': 'ACCEPTED', 'step_self_temporal_propagation': 0.019568666322723607, 'step_report_file_name': '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/google_ms/results/Ranked/res_LLM_llama3.2:3b_T_0_U_20_MO_Ranked_weight_fanout0.2_bc0.2_ccyl0.2_ccog0.2_tprop0.2_live_progressive_refactor_PRED_Full_GM_Human-In-The-Loop_TPOP_True.json', 'details': {'epsilon_l': 1.9, 'epsilon_qa': 0.0, 'epsilon_f': 0.02, 'log_telemetry_file': '/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/results/res_LLM_llama3.2:3b_T_0.0_U_20.json', 'p95_latency': 1.7960130889199368, 'qa_inconsistency_rate': 0, 'failure_rate': 0.01920946370493962, 'latency_predicate_failed': False, 'qa_predicate_failed': False, 'failure_rate_predicate_failed': False, 'success_l': True, 'success_qa': True, 'success_f': True, 'success': True, 'step_self_temporal_propagation': 0.019568666322723607, 'target_service': 'checkout_service', 'total_trials': 5000}}
+2026-08-24 09:49:54,813 - INFO - services: [], agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+2026-08-24 09:49:54,813 - INFO - 
 Shutting Down:
-2026-08-23 18:59:36,892 - INFO - Services: ['recommendation_service:5058', 'checkout_service:5050']
-2026-08-23 18:59:36,892 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
-2026-08-23 18:59:36,892 - INFO - Final Architecture Experiment Run Finished Successfully
+2026-08-24 09:49:54,813 - INFO - Services: []
+2026-08-24 09:49:54,813 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+2026-08-24 09:49:54,813 - INFO - Final Architecture Experiment Run Finished Successfully

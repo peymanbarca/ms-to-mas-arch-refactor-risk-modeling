@@ -1,0 +1,159 @@
+
+
+<h1>Step 1: System Analysis</h1>
+
+
+<script>
+    const BENCHMARK_NAME = "own_benchmark";
+</script>
+
+
+<div class="benchmark-info">
+    <span class="benchmark-label">Benchmark</span>
+    <div id="benchmark" class="benchmark-value"></div>
+</div>
+
+
+<div class="top-panel">
+
+<div class="card">
+
+<h2>Service Dependency Graph</h2>
+
+<img src="figures/user_own_benchmark.png" class="sdg" height=60% width=60%>
+
+</div>
+
+
+
+<div class="card">
+
+    <section class="card">
+
+<h2>Static Risk Score Weights</h2>
+
+<div class="grid2">
+
+<label>W<sub>FanOut</sub></label>
+<input 
+    id="wFanout" 
+    type="number" 
+    step="0.01"
+    min="0"
+    max="1"
+    value="0.20">
+
+
+<label>W<sub>BC</sub></label>
+<input 
+    id="wBC" 
+    type="number" 
+    step="0.01"
+    min="0"
+    max="1"
+    value="0.20">
+
+
+<label>W<sub>C<sub>Cyc</sub></sub></label>
+<input 
+    id="wCCyl" 
+    type="number" 
+    step="0.01"
+    min="0"
+    max="1"
+    value="0.20">
+
+
+<label>W<sub>C<sub>Cog</sub></sub></label>
+<input 
+    id="wCCog" 
+    type="number"
+    step="0.01"
+    min="0"
+    max="1"
+    value="0.20">
+
+
+<label>W<sub>T<sub>Prop</sub></sub></label>
+<input 
+    id="wTProp"
+    type="number"
+    step="0.01"
+    min="0"
+    max="1"
+    value="0.20">
+
+
+</div>
+
+
+<p>
+Total Weight:
+<span id="weightSum">1.00</span>
+</p>
+
+
+<button onclick="validateWeights()">
+    Validate Weights
+</button>
+
+</section>
+
+<h2>Static Ranking</h2>
+
+<table id="rankingTable">
+
+<thead>
+
+<tr>
+
+<th>Rank</th>
+<th>Service</th>
+
+<th>FanOut</th>
+<th>BC</th>
+<th>C<sub>Cyc</sub></th>
+<th>C<sub>Cog</sub></th>
+<th>TProp</th>
+
+<th>Static Risk Score</th>
+
+<th>Action</th>
+
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+
+
+</tbody>
+
+</table>
+
+<div class="ranking-actions">
+
+    <button
+        type="button"
+        onclick="addRankingRow()">
+
+        + Add Service
+
+    </button>
+
+
+    <button onclick="validateWeights()">
+        Update Ranking
+    </button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
