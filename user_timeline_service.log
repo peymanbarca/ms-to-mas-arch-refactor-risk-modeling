@@ -1,9 +1,0 @@
-2026-09-01 14:45:09,008 INFO     user-timeline-service  MongoDB: localhost:27017  db=dsb_social  col=user-timeline
-2026-09-01 14:45:09,009 INFO     user-timeline-service  Redis: localhost:6385  db=0
-2026-09-01 14:45:09,010 INFO     user-timeline-service  PostStorageService pool: localhost:9096
-2026-09-01 14:45:09,098 INFO     jaeger_tracing  Initializing Jaeger Tracer with UDP reporter
-2026-09-01 14:45:09,143 INFO     jaeger_tracing  Using sampler ConstSampler(True)
-2026-09-01 14:45:09,144 INFO     jaeger_tracing  opentracing.tracer initialized to <jaeger_client.tracer.Tracer object at 0x7e4551f4bf40>[app_name=user-timeline-service]
-2026-09-01 14:45:09,149 INFO     user-timeline-service.tracing  Jaeger tracer initialised service=user-timeline-service agent=jaeger-agent:6831
-2026-09-01 14:45:09,155 INFO     user-timeline-service  UserTimelineService starting on port 9098
-2026-09-01 14:45:09,158 INFO     user-timeline-service  UserTimelineService ready

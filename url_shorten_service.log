@@ -1,8 +1,0 @@
-2026-09-01 14:45:09,141 INFO     url-shorten-service  MongoDB: localhost:27017 db=dsb_social col=url-shorten
-2026-09-01 14:45:09,142 INFO     url-shorten-service  Redis: localhost:6385 db=0
-2026-09-01 14:45:09,203 INFO     jaeger_tracing  Initializing Jaeger Tracer with UDP reporter
-2026-09-01 14:45:09,232 INFO     jaeger_tracing  Using sampler ConstSampler(True)
-2026-09-01 14:45:09,234 INFO     jaeger_tracing  opentracing.tracer initialized to <jaeger_client.tracer.Tracer object at 0x7590a054b370>[app_name=url-shorten-service]
-2026-09-01 14:45:09,234 INFO     url-shorten-service.tracing  Jaeger tracer initialised: service=url-shorten-service agent=jaeger-agent:6831
-2026-09-01 14:45:09,237 INFO     url-shorten-service  UrlShortenService starting on port 9092  hostname=http://dsbscl.com/
-2026-09-01 14:45:09,237 INFO     url-shorten-service  UrlShortenService ready
