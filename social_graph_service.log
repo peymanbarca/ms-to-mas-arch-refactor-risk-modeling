@@ -1,0 +1,9 @@
+2026-09-01 14:45:08,902 INFO     social-graph-service  MongoDB: localhost:27017  db=dsb_social  col=social-graph
+2026-09-01 14:45:08,902 INFO     social-graph-service  Redis: localhost:6385  db=0
+2026-09-01 14:45:08,903 INFO     social-graph-service  UserService pool: localhost:9094
+2026-09-01 14:45:09,112 INFO     jaeger_tracing  Initializing Jaeger Tracer with UDP reporter
+2026-09-01 14:45:09,144 INFO     jaeger_tracing  Using sampler ConstSampler(True)
+2026-09-01 14:45:09,145 INFO     jaeger_tracing  opentracing.tracer initialized to <jaeger_client.tracer.Tracer object at 0x7a3dc834c550>[app_name=social-graph-service]
+2026-09-01 14:45:09,146 INFO     social-graph-service.tracing  Jaeger tracer initialised service=social-graph-service agent=jaeger-agent:6831
+2026-09-01 14:45:09,154 INFO     social-graph-service  SocialGraphService starting on port 9097
+2026-09-01 14:45:09,154 INFO     social-graph-service  SocialGraphService ready

@@ -1,0 +1,13 @@
+2026-09-01 14:45:08,350 INFO     compose-post-service  Pool unique-id-service            localhost:9090  size=16
+2026-09-01 14:45:08,350 INFO     compose-post-service  Pool media-service                localhost:9091  size=16
+2026-09-01 14:45:08,351 INFO     compose-post-service  Pool text-service                 localhost:9095  size=16
+2026-09-01 14:45:08,351 INFO     compose-post-service  Pool user-service                 localhost:9094  size=16
+2026-09-01 14:45:08,351 INFO     compose-post-service  Pool post-storage-service         localhost:9096  size=16
+2026-09-01 14:45:08,351 INFO     compose-post-service  Pool user-timeline-service        localhost:9098  size=16
+2026-09-01 14:45:08,351 INFO     compose-post-service  RabbitMQ: localhost:5672  queue=write-home-timeline
+2026-09-01 14:45:08,746 INFO     jaeger_tracing  Initializing Jaeger Tracer with UDP reporter
+2026-09-01 14:45:08,839 INFO     jaeger_tracing  Using sampler ConstSampler(True)
+2026-09-01 14:45:08,840 INFO     jaeger_tracing  opentracing.tracer initialized to <jaeger_client.tracer.Tracer object at 0x711784837730>[app_name=compose-post-service]
+2026-09-01 14:45:08,840 INFO     compose-post-service.tracing  Jaeger tracer initialised service=compose-post-service agent=jaeger-agent:6831
+2026-09-01 14:45:08,841 INFO     compose-post-service  ComposePostService starting on port 9100
+2026-09-01 14:45:08,841 INFO     compose-post-service  ComposePostService ready

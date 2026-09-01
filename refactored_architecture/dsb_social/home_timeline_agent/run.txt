@@ -1,0 +1,2 @@
+python3 -m refactored_architecture.dsb_social.home_timeline_agent.server
+python3 -m refactored_architecture.dsb_social.home_timeline_agent.client

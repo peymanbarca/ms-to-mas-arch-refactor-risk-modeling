@@ -1,0 +1,6 @@
+2026-09-01 14:45:08,034 INFO     unique-id-service  UniqueIdService starting on port 9090, machine_id=0
+2026-09-01 14:45:08,572 INFO     jaeger_tracing  Initializing Jaeger Tracer with UDP reporter
+2026-09-01 14:45:08,663 INFO     jaeger_tracing  Using sampler ConstSampler(True)
+2026-09-01 14:45:08,664 INFO     jaeger_tracing  opentracing.tracer initialized to <jaeger_client.tracer.Tracer object at 0x7bec0c381ae0>[app_name=unique-id-service]
+2026-09-01 14:45:08,664 INFO     unique-id-service.tracing  Jaeger tracer initialised: service=unique-id-service agent=jaeger-agent:6831
+2026-09-01 14:45:08,665 INFO     unique-id-service  UniqueIdService ready

@@ -1,0 +1,8 @@
+2026-09-01 14:45:08,151 INFO     text-service  UrlShortenService pool: localhost:9092
+2026-09-01 14:45:08,154 INFO     text-service  UserMentionService pool: localhost:9093
+2026-09-01 14:45:08,566 INFO     jaeger_tracing  Initializing Jaeger Tracer with UDP reporter
+2026-09-01 14:45:08,663 INFO     jaeger_tracing  Using sampler ConstSampler(True)
+2026-09-01 14:45:08,665 INFO     jaeger_tracing  opentracing.tracer initialized to <jaeger_client.tracer.Tracer object at 0x7564165204f0>[app_name=text-service]
+2026-09-01 14:45:08,665 INFO     text-service.tracing  Jaeger tracer initialised service=text-service agent=jaeger-agent:6831
+2026-09-01 14:45:08,665 INFO     text-service  TextService starting on port 9095
+2026-09-01 14:45:08,666 INFO     text-service  TextService ready

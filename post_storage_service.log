@@ -1,0 +1,8 @@
+2026-09-01 14:45:09,057 INFO     post-storage-service  Connecting to MongoDB at localhost:27017 db=dsb_social col=post
+2026-09-01 14:45:09,081 INFO     post-storage-service  Connecting to Redis at localhost:6385 db=0
+2026-09-01 14:45:09,163 INFO     jaeger_tracing  Initializing Jaeger Tracer with UDP reporter
+2026-09-01 14:45:09,189 INFO     jaeger_tracing  Using sampler ConstSampler(True)
+2026-09-01 14:45:09,190 INFO     jaeger_tracing  opentracing.tracer initialized to <jaeger_client.tracer.Tracer object at 0x7b6cd9ea7640>[app_name=post-storage-service]
+2026-09-01 14:45:09,190 INFO     post-storage-service.tracing  Jaeger tracer initialised service=post-storage-service agent=jaeger-agent:6831
+2026-09-01 14:45:09,194 INFO     post-storage-service  PostStorageService starting on port 9096
+2026-09-01 14:45:09,194 INFO     post-storage-service  PostStorageService ready
