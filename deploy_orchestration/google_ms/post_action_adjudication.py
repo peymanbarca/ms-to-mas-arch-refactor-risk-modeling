@@ -637,7 +637,7 @@ def _estimate_violation_duration(details: Dict[str, Any]) -> float:
     
 
     if log_telemetry_file:
-        print(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
+        # print(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
         logger.info(f"Analyzing log telemetry from: {log_telemetry_file} to estimate post-action audit violation duration...")
         try:
             with open(log_telemetry_file, "r") as f:

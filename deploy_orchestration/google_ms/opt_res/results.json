@@ -1,0 +1,3138 @@
+[
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "email_service:5056",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051"
+    ],
+    "migration_coverage": 0.5555555555555556,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.180626965736167,
+    "cumulative_failure_rate_inflation": 0.07177362262311245,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4816241956779992,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.2998365179220555,
+    "cumulative_failure_rate_inflation": 0.05446847523790742,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.676456185127158,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.812025058437328,
+    "cumulative_failure_rate_inflation": 0.06549408222268528,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4554859992592637,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058"
+    ],
+    "migration_coverage": 0.8888888888888888,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.374081136321756,
+    "cumulative_failure_rate_inflation": 0.03641118397541785,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6601630947786394,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.854005721636511,
+    "cumulative_failure_rate_inflation": 0.03939487034859139,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4923861138067316,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.53292696566889,
+    "cumulative_failure_rate_inflation": 0.03413333434174495,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.547402575817906,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.8288214705795145,
+    "cumulative_failure_rate_inflation": 0.03182573714325587,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5288443327096228,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.7512245016117856,
+    "cumulative_failure_rate_inflation": 0.026021269303399278,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5943106113682235,
+      "delta_f": 0.003069025078319138
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.201576902284682,
+    "cumulative_failure_rate_inflation": 0.02043144902142614,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5923812707088953,
+      "delta_f": 0.0028694390779897723
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 80.0,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.488687254120162,
+    "cumulative_failure_rate_inflation": 0.016004817618195687,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6275009819275192,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "shipping_service:5051",
+      "email_service:5056",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054"
+    ],
+    "migration_coverage": 0.4444444444444444,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.121860843140532,
+    "cumulative_failure_rate_inflation": 0.07849316013441857,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5860376211940594,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.534632970625617,
+    "cumulative_failure_rate_inflation": 0.06695524720686219,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6900868408124023,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.396953541139373,
+    "cumulative_failure_rate_inflation": 0.0681832929380085,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.46929782446387,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058"
+    ],
+    "migration_coverage": 0.8888888888888888,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.187124589798234,
+    "cumulative_failure_rate_inflation": 0.046457591216017544,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6379265119908084,
+      "delta_f": 0.0031481823905808847
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.447967765932788,
+    "cumulative_failure_rate_inflation": 0.04630697141222355,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5632506811979763,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.554875301780781,
+    "cumulative_failure_rate_inflation": 0.029640779441310737,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5911909961324902,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.231298300340771,
+    "cumulative_failure_rate_inflation": 0.04040203121426629,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5661995823799668,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.5138169367042,
+    "cumulative_failure_rate_inflation": 0.01710888622906267,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5261464481378015,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.392104118512327,
+    "cumulative_failure_rate_inflation": 0.024905579234376897,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.691383433930339,
+      "delta_f": 0.000328359395504069
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 82.22222222222223,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.027432077570728,
+    "cumulative_failure_rate_inflation": 0.010511075892994756,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6573229430209342,
+      "delta_f": 5.86180079355271e-05
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "cart_service:5054",
+      "recommendation_service:5058",
+      "shipping_service:5051",
+      "email_service:5056",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057"
+    ],
+    "migration_coverage": 0.3333333333333333,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.372317382783502,
+    "cumulative_failure_rate_inflation": 0.0778303506846455,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4849040672954321,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056"
+    ],
+    "migration_coverage": 0.6666666666666666,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.155950296115154,
+    "cumulative_failure_rate_inflation": 0.05549075197283447,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5673117922340793,
+      "delta_f": 0.0010682694711130012
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.2301689014667545,
+    "cumulative_failure_rate_inflation": 0.060531262527343796,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5473120053384823,
+      "delta_f": 7.559659363651737e-05
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058"
+    ],
+    "migration_coverage": 0.8888888888888888,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.063658097848694,
+    "cumulative_failure_rate_inflation": 0.04209707363805418,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5626630226656455,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.421367131046341,
+    "cumulative_failure_rate_inflation": 0.04174457153266914,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6619595122716782,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.268108145630377,
+    "cumulative_failure_rate_inflation": 0.0314835275711976,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.561281810873772,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.218452300994468,
+    "cumulative_failure_rate_inflation": 0.030070515106171605,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6588281689399569,
+      "delta_f": 0.00028027739867435633
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.169566343629946,
+    "cumulative_failure_rate_inflation": 0.03513018162071786,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5548540382901286,
+      "delta_f": 0.0009481235926620101
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.300603370900431,
+    "cumulative_failure_rate_inflation": 0.01970601555309178,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5057037955822206,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 84.44444444444444,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.067446770213745,
+    "cumulative_failure_rate_inflation": 0.013342759671172237,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.571482711324439,
+      "delta_f": 0.0019799134409945315
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056"
+    ],
+    "migration_coverage": 0.6666666666666666,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.281348462515138,
+    "cumulative_failure_rate_inflation": 0.07361645395451069,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.60346490616016,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.087065354654116,
+    "cumulative_failure_rate_inflation": 0.08066874895127932,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4760422834473406,
+      "delta_f": 9.769070531265474e-05
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.454739797705477,
+    "cumulative_failure_rate_inflation": 0.05346069290056361,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4916728535191721,
+      "delta_f": 0.0019030285417298625
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "recommendation_agent:5058",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.219271804985837,
+    "cumulative_failure_rate_inflation": 0.05565360196839016,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.487600387617302,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.386152757514035,
+    "cumulative_failure_rate_inflation": 0.047769996104969834,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.486683131623066,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.032979575608933,
+    "cumulative_failure_rate_inflation": 0.026051282637396624,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5310264437426966,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.286811000552271,
+    "cumulative_failure_rate_inflation": 0.03345509926177019,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5887872098542197,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.356864126133704,
+    "cumulative_failure_rate_inflation": 0.022156413572503322,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6297643315340054,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.210487052292385,
+    "cumulative_failure_rate_inflation": 0.02448077909047921,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.690002875672937,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 86.66666666666667,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.9713664081945437,
+    "cumulative_failure_rate_inflation": 0.018637613223690685,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4804817292105543,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056"
+    ],
+    "migration_coverage": 0.6666666666666666,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.9508804151862593,
+    "cumulative_failure_rate_inflation": 0.06840440916846001,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5536902501750325,
+      "delta_f": 0.00028119929461453523
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.254791725652812,
+    "cumulative_failure_rate_inflation": 0.0690700164639219,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6445738856615177,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058"
+    ],
+    "migration_coverage": 0.8888888888888888,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.989314797399411,
+    "cumulative_failure_rate_inflation": 0.05161828335087721,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6149239444461407,
+      "delta_f": 0.002892192604137163
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058"
+    ],
+    "migration_coverage": 0.8888888888888888,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.091682780937775,
+    "cumulative_failure_rate_inflation": 0.04957913963094601,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.615248779501352,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.021611893041842,
+    "cumulative_failure_rate_inflation": 0.047626136873853156,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5886301445941498,
+      "delta_f": 0.001975467842183865
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.114516815620753,
+    "cumulative_failure_rate_inflation": 0.020561966983748313,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4998339848089681,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.373636779462688,
+    "cumulative_failure_rate_inflation": 0.03030671736080005,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4645775317913354,
+      "delta_f": 0.0009212024169302988
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.020941534723075,
+    "cumulative_failure_rate_inflation": 0.02442291845811849,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4625449796460157,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.146494812867029,
+    "cumulative_failure_rate_inflation": 0.020499019386603645,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4994712561029317,
+      "delta_f": 0.0015619509259282502
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 88.88888888888889,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.012411263528481,
+    "cumulative_failure_rate_inflation": 0.02006868507839354,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4535937939505785,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "email_service:5056",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051"
+    ],
+    "migration_coverage": 0.5555555555555556,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.443756763785368,
+    "cumulative_failure_rate_inflation": 0.0642930565498786,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6227502217034806,
+      "delta_f": 0.002432241520697014
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.217863303764405,
+    "cumulative_failure_rate_inflation": 0.061619464279627036,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5288135304174117,
+      "delta_f": 0.0009265229400959819
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.347156265806044,
+    "cumulative_failure_rate_inflation": 0.060296005372316316,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5910874420105725,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "recommendation_agent:5058",
+      "payment_agent:5052",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.045163811851563,
+    "cumulative_failure_rate_inflation": 0.04304683069374733,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5093082047212472,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.390643507790591,
+    "cumulative_failure_rate_inflation": 0.03388138746692345,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6419864967445112,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.388571971348071,
+    "cumulative_failure_rate_inflation": 0.03723678648149408,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.653300509366032,
+      "delta_f": 0.0016054428971623647
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.057869872295867,
+    "cumulative_failure_rate_inflation": 0.02989431378823871,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6860517710225735,
+      "delta_f": 0.0008494284532196668
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.334699140325757,
+    "cumulative_failure_rate_inflation": 0.029618485245050043,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5288745586769543,
+      "delta_f": 0.0027056341398446655
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.200397945665779,
+    "cumulative_failure_rate_inflation": 0.0166840941435858,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.594729887604701,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 91.11111111111111,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.201053755348065,
+    "cumulative_failure_rate_inflation": 0.012627147192269785,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.465647625109153,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "email_service:5056",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051"
+    ],
+    "migration_coverage": 0.5555555555555556,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.26459289081513,
+    "cumulative_failure_rate_inflation": 0.08136742855429303,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4597579109569427,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.274144062102165,
+    "cumulative_failure_rate_inflation": 0.07456167078550682,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6635155971598035,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.10912649264162,
+    "cumulative_failure_rate_inflation": 0.051391008672385004,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5412636428789581,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058"
+    ],
+    "migration_coverage": 0.8888888888888888,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.195129691083187,
+    "cumulative_failure_rate_inflation": 0.04828597823307745,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5711265329935804,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.457060062751937,
+    "cumulative_failure_rate_inflation": 0.04364202992159984,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5943819783785722,
+      "delta_f": 0.001116522721957885
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.540999526211279,
+    "cumulative_failure_rate_inflation": 0.03471296699655614,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4596471710476913,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.583401300021459,
+    "cumulative_failure_rate_inflation": 0.027728030954175496,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5217937825160444,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.354052932384602,
+    "cumulative_failure_rate_inflation": 0.0290012616395202,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5438766344091455,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.825422891572665,
+    "cumulative_failure_rate_inflation": 0.01579429583520543,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5910803052341294,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 93.33333333333333,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.284464954048718,
+    "cumulative_failure_rate_inflation": 0.01747369557911366,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.50273322206755,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "ad_service:5057",
+      "recommendation_service:5058",
+      "shipping_service:5051",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "cart_agent:5054",
+      "email_agent:5056"
+    ],
+    "migration_coverage": 0.4444444444444444,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.279626071593515,
+    "cumulative_failure_rate_inflation": 0.07597009588603001,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6394004068691452,
+      "delta_f": 0.00043310442947556895
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.767872675494909,
+    "cumulative_failure_rate_inflation": 0.07472294302045117,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4576727563398204,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058"
+    ],
+    "migration_coverage": 0.8888888888888888,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.4365984889128764,
+    "cumulative_failure_rate_inflation": 0.054741662547527714,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6540444688009337,
+      "delta_f": 0.0012728595543522831
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.300267090205974,
+    "cumulative_failure_rate_inflation": 0.04903787908102433,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6526174989616382,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.256241315451001,
+    "cumulative_failure_rate_inflation": 0.05287518099732491,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.565399526926368,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.43648716031506,
+    "cumulative_failure_rate_inflation": 0.05426592280409537,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6517516598810462,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.95185801971677,
+    "cumulative_failure_rate_inflation": 0.03209244452113341,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5164764285381804,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.9383014427477696,
+    "cumulative_failure_rate_inflation": 0.022159847425992776,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.691432617107784,
+      "delta_f": 0.00046015073497552
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.066905657842522,
+    "cumulative_failure_rate_inflation": 0.017026011899851194,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.57526555477217,
+      "delta_f": 0.00021256371857666587
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 95.55555555555556,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.465726265594071,
+    "cumulative_failure_rate_inflation": 0.018119770830572604,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6010611288071268,
+      "delta_f": 0.0015580880994874235
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "shipping_service:5051",
+      "email_service:5056",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054"
+    ],
+    "migration_coverage": 0.4444444444444444,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.6876208083310145,
+    "cumulative_failure_rate_inflation": 0.06446334743178414,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6767069307342113,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056"
+    ],
+    "migration_coverage": 0.6666666666666666,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.708467748426302,
+    "cumulative_failure_rate_inflation": 0.05818384191617937,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5503872246313817,
+      "delta_f": 0.0016756703433939623
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.255091876290212,
+    "cumulative_failure_rate_inflation": 0.0646751883801878,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6727039562897903,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.403877110223393,
+    "cumulative_failure_rate_inflation": 0.045065112902069784,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.455389455991345,
+      "delta_f": 0.0010656161897057842
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.444154898364337,
+    "cumulative_failure_rate_inflation": 0.04129158206213081,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6703867038245344,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.51436065829153,
+    "cumulative_failure_rate_inflation": 0.03633837494759986,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4842377805074454,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.464372396549431,
+    "cumulative_failure_rate_inflation": 0.03343862395167463,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.504143596700021,
+      "delta_f": 0.0004180144120650769
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.191040904842742,
+    "cumulative_failure_rate_inflation": 0.022997317234961352,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6403079959449294,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.004364707108309,
+    "cumulative_failure_rate_inflation": 0.02317696222057964,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5728841353909075,
+      "delta_f": 0.0028832523546097576
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 97.77777777777777,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.349000468909014,
+    "cumulative_failure_rate_inflation": 0.022397488530319185,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5904087212847087,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 40.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "cart_service:5054",
+      "recommendation_service:5058",
+      "email_service:5056",
+      "payment_service:5052",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "shipping_agent:5051"
+    ],
+    "migration_coverage": 0.4444444444444444,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.461455328218913,
+    "cumulative_failure_rate_inflation": 0.07815366222051016,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6012171605399441,
+      "delta_f": 0.0008649614725830743
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 57.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.222301683684417,
+    "cumulative_failure_rate_inflation": 0.06564721442798194,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5967559856825253,
+      "delta_f": 0.001351143076065881
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 75.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "recommendation_service:5058",
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052"
+    ],
+    "migration_coverage": 0.7777777777777778,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.293040518881191,
+    "cumulative_failure_rate_inflation": 0.07323018870365446,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6781591436243297,
+      "delta_f": 0.0006675336373338885
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 93.0,
+    "failure_threshold": 2.0,
+    "final_services": [
+      "checkout_service:5050"
+    ],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058"
+    ],
+    "migration_coverage": 0.8888888888888888,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.844376023734083,
+    "cumulative_failure_rate_inflation": 0.06224631077715455,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4828264542619236,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 111.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.027983869579044,
+    "cumulative_failure_rate_inflation": 0.031679011252261136,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5349102214346628,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 128.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.9949406579247024,
+    "cumulative_failure_rate_inflation": 0.04470518245046619,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.6474065113927476,
+      "delta_f": 0.0016611214832455944
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 146.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.665132365729999,
+    "cumulative_failure_rate_inflation": 0.023370314786492718,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5853802857257724,
+      "delta_f": 0.0025387389795740664
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 164.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.536990828911139,
+    "cumulative_failure_rate_inflation": 0.020111512660197055,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.4930677457410806,
+      "delta_f": 0
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 182.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 4.408254805735234,
+    "cumulative_failure_rate_inflation": 0.01856783079445312,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.5611061501584451,
+      "delta_f": 0.0023291768111813518
+    }
+  },
+  {
+    "predicate_mode": "Full",
+    "governance_policy": "No",
+    "T": 0,
+    "LLM": "llama3.2:3b",
+    "CONCURRENCY_RATE": 20,
+    "QA_threshold": 100.0,
+    "latency_threshold": 200.0,
+    "failure_threshold": 2.0,
+    "final_services": [],
+    "final_agents": [
+      "currency_agent:5053",
+      "product_catalog_agent:5055",
+      "ad_agent:5057",
+      "cart_agent:5054",
+      "shipping_agent:5051",
+      "email_agent:5056",
+      "payment_agent:5052",
+      "recommendation_agent:5058",
+      "checkout_agent:5050"
+    ],
+    "migration_coverage": 1.0,
+    "cumulative_QA_inconsistency_rate": 0,
+    "cumulative_p95_latency_inflation": 3.7967041294669235,
+    "cumulative_failure_rate_inflation": 0.01744261974399427,
+    "final_architecture_experiment_results": {
+      "delta_qa": 0,
+      "delta_l": 1.554499889368134,
+      "delta_f": 0
+    }
+  }
+]

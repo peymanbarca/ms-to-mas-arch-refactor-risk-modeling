@@ -1,0 +1,1700 @@
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051']
+
+Migration coverage: 0.5556
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1806
+Cumulative Failure Rate Inflation: 0.0718
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4816, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2998
+Cumulative Failure Rate Inflation: 0.0545
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6765, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.8120
+Cumulative Failure Rate Inflation: 0.0655
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4555, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+
+Migration coverage: 0.8889
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3741
+Cumulative Failure Rate Inflation: 0.0364
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6602, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.8540
+Cumulative Failure Rate Inflation: 0.0394
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4924, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.5329
+Cumulative Failure Rate Inflation: 0.0341
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5474, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.8288
+Cumulative Failure Rate Inflation: 0.0318
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5288, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.7512
+Cumulative Failure Rate Inflation: 0.0260
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5943, delta_f: 0.0031
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2016
+Cumulative Failure Rate Inflation: 0.0204
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5924, delta_f: 0.0029
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 80.0, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4887
+Cumulative Failure Rate Inflation: 0.0160
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6275, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054']
+
+Migration coverage: 0.4444
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1219
+Cumulative Failure Rate Inflation: 0.0785
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5860, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.5346
+Cumulative Failure Rate Inflation: 0.0670
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6901, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3970
+Cumulative Failure Rate Inflation: 0.0682
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4693, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+
+Migration coverage: 0.8889
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1871
+Cumulative Failure Rate Inflation: 0.0465
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6379, delta_f: 0.0031
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4480
+Cumulative Failure Rate Inflation: 0.0463
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5633, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.5549
+Cumulative Failure Rate Inflation: 0.0296
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5912, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2313
+Cumulative Failure Rate Inflation: 0.0404
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5662, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.5138
+Cumulative Failure Rate Inflation: 0.0171
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5261, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3921
+Cumulative Failure Rate Inflation: 0.0249
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6914, delta_f: 0.0003
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 82.22222222222223, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0274
+Cumulative Failure Rate Inflation: 0.0105
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6573, delta_f: 0.0001
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057']
+
+Migration coverage: 0.3333
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3723
+Cumulative Failure Rate Inflation: 0.0778
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4849, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056']
+
+Migration coverage: 0.6667
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1560
+Cumulative Failure Rate Inflation: 0.0555
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5673, delta_f: 0.0011
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2302
+Cumulative Failure Rate Inflation: 0.0605
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5473, delta_f: 0.0001
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+
+Migration coverage: 0.8889
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0637
+Cumulative Failure Rate Inflation: 0.0421
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5627, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4214
+Cumulative Failure Rate Inflation: 0.0417
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6620, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2681
+Cumulative Failure Rate Inflation: 0.0315
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5613, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2185
+Cumulative Failure Rate Inflation: 0.0301
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6588, delta_f: 0.0003
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1696
+Cumulative Failure Rate Inflation: 0.0351
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5549, delta_f: 0.0009
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3006
+Cumulative Failure Rate Inflation: 0.0197
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5057, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 84.44444444444444, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0674
+Cumulative Failure Rate Inflation: 0.0133
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5715, delta_f: 0.0020
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056']
+
+Migration coverage: 0.6667
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2813
+Cumulative Failure Rate Inflation: 0.0736
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6035, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0871
+Cumulative Failure Rate Inflation: 0.0807
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4760, delta_f: 0.0001
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4547
+Cumulative Failure Rate Inflation: 0.0535
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4917, delta_f: 0.0019
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'recommendation_agent:5058', 'email_agent:5056', 'payment_agent:5052', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2193
+Cumulative Failure Rate Inflation: 0.0557
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4876, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3862
+Cumulative Failure Rate Inflation: 0.0478
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4867, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0330
+Cumulative Failure Rate Inflation: 0.0261
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5310, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2868
+Cumulative Failure Rate Inflation: 0.0335
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5888, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3569
+Cumulative Failure Rate Inflation: 0.0222
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6298, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2105
+Cumulative Failure Rate Inflation: 0.0245
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6900, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 86.66666666666667, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.9714
+Cumulative Failure Rate Inflation: 0.0186
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4805, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056']
+
+Migration coverage: 0.6667
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.9509
+Cumulative Failure Rate Inflation: 0.0684
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5537, delta_f: 0.0003
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2548
+Cumulative Failure Rate Inflation: 0.0691
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6446, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+
+Migration coverage: 0.8889
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.9893
+Cumulative Failure Rate Inflation: 0.0516
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6149, delta_f: 0.0029
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+
+Migration coverage: 0.8889
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0917
+Cumulative Failure Rate Inflation: 0.0496
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6152, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0216
+Cumulative Failure Rate Inflation: 0.0476
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5886, delta_f: 0.0020
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1145
+Cumulative Failure Rate Inflation: 0.0206
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4998, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3736
+Cumulative Failure Rate Inflation: 0.0303
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4646, delta_f: 0.0009
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0209
+Cumulative Failure Rate Inflation: 0.0244
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4625, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1465
+Cumulative Failure Rate Inflation: 0.0205
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4995, delta_f: 0.0016
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 88.88888888888889, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0124
+Cumulative Failure Rate Inflation: 0.0201
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4536, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051']
+
+Migration coverage: 0.5556
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4438
+Cumulative Failure Rate Inflation: 0.0643
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6228, delta_f: 0.0024
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2179
+Cumulative Failure Rate Inflation: 0.0616
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5288, delta_f: 0.0009
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3472
+Cumulative Failure Rate Inflation: 0.0603
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5911, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'recommendation_agent:5058', 'payment_agent:5052', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0452
+Cumulative Failure Rate Inflation: 0.0430
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5093, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3906
+Cumulative Failure Rate Inflation: 0.0339
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6420, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3886
+Cumulative Failure Rate Inflation: 0.0372
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6533, delta_f: 0.0016
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0579
+Cumulative Failure Rate Inflation: 0.0299
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6861, delta_f: 0.0008
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3347
+Cumulative Failure Rate Inflation: 0.0296
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5289, delta_f: 0.0027
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2004
+Cumulative Failure Rate Inflation: 0.0167
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5947, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 91.11111111111111, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2011
+Cumulative Failure Rate Inflation: 0.0126
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4656, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051']
+
+Migration coverage: 0.5556
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2646
+Cumulative Failure Rate Inflation: 0.0814
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4598, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2741
+Cumulative Failure Rate Inflation: 0.0746
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6635, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1091
+Cumulative Failure Rate Inflation: 0.0514
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5413, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+
+Migration coverage: 0.8889
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1951
+Cumulative Failure Rate Inflation: 0.0483
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5711, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4571
+Cumulative Failure Rate Inflation: 0.0436
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5944, delta_f: 0.0011
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.5410
+Cumulative Failure Rate Inflation: 0.0347
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4596, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.5834
+Cumulative Failure Rate Inflation: 0.0277
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5218, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3541
+Cumulative Failure Rate Inflation: 0.0290
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5439, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.8254
+Cumulative Failure Rate Inflation: 0.0158
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5911, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 93.33333333333333, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2845
+Cumulative Failure Rate Inflation: 0.0175
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5027, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['ad_service:5057', 'recommendation_service:5058', 'shipping_service:5051', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'cart_agent:5054', 'email_agent:5056']
+
+Migration coverage: 0.4444
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2796
+Cumulative Failure Rate Inflation: 0.0760
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6394, delta_f: 0.0004
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.7679
+Cumulative Failure Rate Inflation: 0.0747
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4577, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+
+Migration coverage: 0.8889
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4366
+Cumulative Failure Rate Inflation: 0.0547
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6540, delta_f: 0.0013
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3003
+Cumulative Failure Rate Inflation: 0.0490
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6526, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2562
+Cumulative Failure Rate Inflation: 0.0529
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5654, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4365
+Cumulative Failure Rate Inflation: 0.0543
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6518, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.9519
+Cumulative Failure Rate Inflation: 0.0321
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5165, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.9383
+Cumulative Failure Rate Inflation: 0.0222
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6914, delta_f: 0.0005
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0669
+Cumulative Failure Rate Inflation: 0.0170
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5753, delta_f: 0.0002
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 95.55555555555556, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4657
+Cumulative Failure Rate Inflation: 0.0181
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6011, delta_f: 0.0016
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054']
+
+Migration coverage: 0.4444
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.6876
+Cumulative Failure Rate Inflation: 0.0645
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6767, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056']
+
+Migration coverage: 0.6667
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.7085
+Cumulative Failure Rate Inflation: 0.0582
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5504, delta_f: 0.0017
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2551
+Cumulative Failure Rate Inflation: 0.0647
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6727, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4039
+Cumulative Failure Rate Inflation: 0.0451
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4554, delta_f: 0.0011
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4442
+Cumulative Failure Rate Inflation: 0.0413
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6704, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.5144
+Cumulative Failure Rate Inflation: 0.0363
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4842, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4644
+Cumulative Failure Rate Inflation: 0.0334
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5041, delta_f: 0.0004
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.1910
+Cumulative Failure Rate Inflation: 0.0230
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6403, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0044
+Cumulative Failure Rate Inflation: 0.0232
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5729, delta_f: 0.0029
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 97.77777777777777, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.3490
+Cumulative Failure Rate Inflation: 0.0224
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5904, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 40.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['cart_service:5054', 'recommendation_service:5058', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'shipping_agent:5051']
+
+Migration coverage: 0.4444
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4615
+Cumulative Failure Rate Inflation: 0.0782
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6012, delta_f: 0.0009
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 57.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2223
+Cumulative Failure Rate Inflation: 0.0656
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5968, delta_f: 0.0014
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 75.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['recommendation_service:5058', 'checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+
+Migration coverage: 0.7778
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.2930
+Cumulative Failure Rate Inflation: 0.0732
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6782, delta_f: 0.0007
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 93.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: ['checkout_service:5050']
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+
+Migration coverage: 0.8889
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.8444
+Cumulative Failure Rate Inflation: 0.0622
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4828, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 111.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.0280
+Cumulative Failure Rate Inflation: 0.0317
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5349, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 128.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.9949
+Cumulative Failure Rate Inflation: 0.0447
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.6474, delta_f: 0.0017
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 146.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.6651
+Cumulative Failure Rate Inflation: 0.0234
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5854, delta_f: 0.0025
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 164.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.5370
+Cumulative Failure Rate Inflation: 0.0201
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.4931, delta_f: 0.0000
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 182.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 4.4083
+Cumulative Failure Rate Inflation: 0.0186
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5611, delta_f: 0.0023
+
+
+------------------------------- -------------------- 
+
+Predicate Mode: Full, Governance Policy: No, T: 0, LLM: llama3.2:3b, CONCURRENCY_RATE: 20, QA_threshold: 100.0, Latency_threshold: 200.0, Failure_threshold: 2.0
+
+
+--- 🎯 Final architecture: --- 
+
+Services: []
+Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+
+Migration coverage: 1.0000
+Cumulative QA Inconsistency Rate: 0.0000
+Cumulative p95 Latency Inflation: 3.7967
+Cumulative Failure Rate Inflation: 0.0174
+final architecture experiment run results: delta_qa: 0.0000, delta_l: 1.5545, delta_f: 0.0000
