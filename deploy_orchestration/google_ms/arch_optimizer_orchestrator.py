@@ -35,91 +35,98 @@ with open('./opt_res/results.json', 'w') as f:
 QA_thresholds = list(np.linspace(80, 100, 10))
 latency_thresholds = list(np.linspace(40, 200, 10))
 
+LLM = ["llama3.2:3b", "llama3:8b"] # "llama3.2:3b" or "qwen3:14b"
+T = [0.0, 0.8] # 0 or 0.8
+CONCURRENCY_RATE = [20, 100] # concurrent requests
+
 configs = []
 for qa_t in QA_thresholds:
     for l_t in latency_thresholds:
+        for LLM_ in LLM:
+            for T_ in T:
+                for CONCURRENCY_RATE_ in CONCURRENCY_RATE:
     
-        config = {
-            "benchmark": "google_ms",
-            "predicates": {
-                "qa": True,
-                "qa_threshold": str(qa_t),
-                "latency": True,
-                "latency_threshold": str(int(l_t)),
-                "failure": True,
-                "failure_threshold": "2"
-            },
-            "governance_mode": "off",
-            "governance_thresholds": {
-                "beta": "30",
-                "gmid": "20",
-                "deltaL": "10",
-                "deltaSLO": "0.5",
-                "deltaTProp": "0.1",
-                "gpost": "30"
-            },
-            "runtime": {
-                "model": "llama3.2:3b",
-                "temperature": 0,
-                "R": 5000,
-                "concurrency": 20
-            },
-            "ranking_weights": {
-                "fanout": 0.2,
-                "bc": 0.2,
-                "ccyl": 0.2,
-                "ccog": 0.2,
-                "tprop": 0.2
-            },
-            "ranked_services": [
-                {
-                    "rank": "1",
-                    "service": "Currency",
-                    "score": "0.000"
-                },
-                {
-                    "rank": "2",
-                    "service": "Product Catalog",
-                    "score": "0.023"
-                },
-                {
-                    "rank": "3",
-                    "service": "Ad",
-                    "score": "0.075"
-                },
-                {
-                    "rank": "4",
-                    "service": "Cart",
-                    "score": "0.088"
-                },
-                {
-                    "rank": "5",
-                    "service": "Recommendation",
-                    "score": "0.096"
-                },
-                {
-                    "rank": "6",
-                    "service": "Shipping",
-                    "score": "0.122"
-                },
-                {
-                    "rank": "7",
-                    "service": "Email",
-                    "score": "0.177"
-                },
-                {
-                    "rank": "8",
-                    "service": "Payment",
-                    "score": "0.288"
-                },
-                {
-                    "rank": "9",
-                    "service": "Checkout",
-                    "score": "0.800"
-                }
-            ]
-        }
-        configs.append(config)
+                    config = {
+                        "benchmark": "google_ms",
+                        "predicates": {
+                            "qa": True,
+                            "qa_threshold": str(qa_t),
+                            "latency": True,
+                            "latency_threshold": str(int(l_t)),
+                            "failure": True,
+                            "failure_threshold": "2"
+                        },
+                        "governance_mode": "off",
+                        "governance_thresholds": {
+                            "beta": "30",
+                            "gmid": "20",
+                            "deltaL": "10",
+                            "deltaSLO": "0.5",
+                            "deltaTProp": "0.1",
+                            "gpost": "30"
+                        },
+                        "runtime": {
+                            "model": LLM_,
+                            "temperature": T_,
+                            "R": 5000,
+                            "concurrency": CONCURRENCY_RATE_
+                        },
+                        "ranking_weights": {
+                            "fanout": 0.2,
+                            "bc": 0.2,
+                            "ccyl": 0.2,
+                            "ccog": 0.2,
+                            "tprop": 0.2
+                        },
+                        "ranked_services": [
+                            {
+                                "rank": "1",
+                                "service": "Currency",
+                                "score": "0.000"
+                            },
+                            {
+                                "rank": "2",
+                                "service": "Product Catalog",
+                                "score": "0.023"
+                            },
+                            {
+                                "rank": "3",
+                                "service": "Ad",
+                                "score": "0.075"
+                            },
+                            {
+                                "rank": "4",
+                                "service": "Cart",
+                                "score": "0.088"
+                            },
+                            {
+                                "rank": "5",
+                                "service": "Recommendation",
+                                "score": "0.096"
+                            },
+                            {
+                                "rank": "6",
+                                "service": "Shipping",
+                                "score": "0.122"
+                            },
+                            {
+                                "rank": "7",
+                                "service": "Email",
+                                "score": "0.177"
+                            },
+                            {
+                                "rank": "8",
+                                "service": "Payment",
+                                "score": "0.288"
+                            },
+                            {
+                                "rank": "9",
+                                "service": "Checkout",
+                                "score": "0.800"
+                            }
+                        ]
+                    }
+                    configs.append(config)
 
 def get_service_port(s_name):
     if s_name == 'currency_service':
@@ -223,24 +230,9 @@ temporal_propagation_dependency_influence_weight = {
 
 
 # ----------------- RUNTIME Configurations ----------------
-# LLM = ["llama3.2:3b"]  # "llama3.2:3b" or "qwen3:14b"
-# T = [0.0] # 0 or 0.8
-# CONCURRENCY_RATE = [20] # [20, 100] # concurrent requests
+
 
 runtime = configs[0]["runtime"]
-
-LLM = [
-    runtime["model"]
-]
-
-T = [
-    runtime["temperature"]
-]
-
-CONCURRENCY_RATE = [
-    runtime["concurrency"]
-]
-
 TOTAL_REQUESTS = runtime["R"]
 
 # ---- HELPERS ----
@@ -324,7 +316,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
          predicate_mode, str(step_num), ",".join(services), ",".join(agents),
          str(epsilon_l), str(epsilon_qa), str(epsilon_f), str(governance_policy), 
          str(target_service), str(previous_step_acceptance_type), str(temporal_propagation_enabled),
-         str(migration_sorting_strategy_services), str(T), str(LLM), str(CONCURRENCY_RATE)
+         str(migration_sorting_strategy_services), str(T), str(LLM), str(CONCURRENCY_RATE), str(R)
         ],
         cwd="../..",
         capture_output=True,
@@ -516,10 +508,14 @@ total = (
     * len(LLM)
     * len(T)
     * len(CONCURRENCY_RATE)
-    * len(configs)
+    * len(QA_thresholds)
+    * len(latency_thresholds)
 )
 
-logger.info(f"Total experiments to run: {total} (Acceptance Predicate Modes: {len(acceptance_predicate_modes)}, Governance Policies: {len(governance_policies)}, LLMs: {len(LLM)}, Temperatures: {len(T)}, Concurrency Rates: {len(CONCURRENCY_RATE)}, Configurations: {len(configs)})")
+logger.info(f"Total experiments to run: {total} (Acceptance Predicate Modes: {len(acceptance_predicate_modes)}, \
+            Governance Policies: {len(governance_policies)}, LLMs: {len(LLM)}, Temperatures: {len(T)}, \
+            Concurrency Rates: {len(CONCURRENCY_RATE)}, QA_thresholds: {len(QA_thresholds)}, \
+            latency_thresholds: {len(latency_thresholds)}, Configurations: {len(configs)})")
 
 
 opt_res = []
@@ -527,194 +523,194 @@ opt_res = []
 with tqdm.tqdm(total=total, desc="Experiments") as pbar:
     for predicate_mode in acceptance_predicate_modes:
         for governance_policy in governance_policies:
-            for LLM_ in LLM:
-                for T_ in T:
-                    for CONCURRENCY_RATE_ in CONCURRENCY_RATE:
-                        for predicate_pair in range(len(configs)):
-                            pred = configs[predicate_pair]["predicates"]
-                            QA_threshold = float(pred["qa_threshold"])
-                            latency_threshold = float(pred["latency_threshold"])
-                            failure_threshold = float(pred["failure_threshold"])
+            for config in configs:
+                pred = config["predicates"]
+                QA_threshold = float(pred["qa_threshold"])
+                latency_threshold = float(pred["latency_threshold"])
+                failure_threshold = float(pred["failure_threshold"])
+                LLM_ = config["runtime"]["model"]
+                T_ = float(config["runtime"]["temperature"])
+                CONCURRENCY_RATE_ = int(config["runtime"]["concurrency"])
+        
+                logger.info(f"""\n\n============================== Starting Migration Strategy: {migration_order_strategy}, 
+                            Predicate Mode: {predicate_mode}, Governance Policy: {governance_policy}, T: {T_}, LLM: {LLM_}, 
+                            CONCURRENCY_RATE: {CONCURRENCY_RATE_}, QA_threshold: {QA_threshold}, Latency_threshold: {latency_threshold}, 
+                            Failure_threshold: {failure_threshold} 
+                            ==============================\n\n""")
+
+                try:
                     
-                            logger.info(f"""\n\n============================== Starting Migration Strategy: {migration_order_strategy}, 
-                                        Predicate Mode: {predicate_mode}, Governance Policy: {governance_policy}, T: {T_}, LLM: {LLM_}, 
-                                        CONCURRENCY_RATE: {CONCURRENCY_RATE_}, QA_threshold: {QA_threshold}, Latency_threshold: {latency_threshold}, 
-                                        Failure_threshold: {failure_threshold} 
-                                        ==============================\n\n""")
+                    # ---------------- State Tracking for Current Architecture --------------
 
-                            try:
+                    # Initialize: all services running, no agents yet
+                    current_services = [s[0] for s in ranked_services]
+                    current_agents = []
+                    migration_sorting_strategy_services, current_services_with_scores, previous_step_acceptance_types, \
+                        temporal_propagations, cumulative_QA_inconsistency_rate, cumulative_p95_latency_inflation, \
+                        cumulative_failure_rate_inflation= init_conditions()
+
+                    
+                    for step in range(1, len(migration_sorting_strategy_services)+1):
+                        logger.info(f"\n\n============================== Starting Step {step}/{len(migration_sorting_strategy_services)} ==============================")
+                        
+                        try:
+                            svc = migration_sorting_strategy_services[step-1][0]
+                            risk_score = migration_sorting_strategy_services[step-1][1]
+                            logger.info(f"\n\n=== Step:{step}, Refactoring {svc} with risk score {risk_score} as AI agent ===\n\n")
+                            logger.info(f"Current services ranking scores: {migration_sorting_strategy_services}")
+                            logger.info(f"\n\nCurrent successfully agentified services so far: {current_agents}\n\n")
+
+                            agent = service_to_agent[svc]
+
+                            # candidate configuration: remove current service, add as agent
+                            candidate_services = [s for s in current_services if s != svc]
+                            candidate_agents = current_agents + [agent]
+
+                            logger.info("\n\n ============== Deployment of step candidate architecture ==============\n\n")
+                            # deploy candidate
+                            deploy(candidate_services, candidate_agents)
+
+                            # optional: wait for services to stabilize
+                            logger.info("... Waiting for the deployment to stabilize ...")
+                            # time.sleep(0.1)
+                            logger.info("Candidate architecture deployed successfully.\n\n")
+
+
+
+                            logger.info("\n\n ============== Predicate-driven acceptance of step's candidate architecture ==============\n\n")
+                            final_decision, step_self_temporal_propagation, decision_type, prediction_category, cumulative_QA_inconsistency_rate, \
+                                cumulative_p95_latency_inflation, cumulative_failure_rate_inflation = \
+                                    run_experiment_for_step(migration_order_strategy, step, predicate_mode, governance_policy,
+                                                                        candidate_services, candidate_agents, svc.split(":")[0],
+                                                                        temporal_propagation_enabled, previous_step_acceptance_types[-1],
+                                                                        migration_sorting_strategy_services, T_, LLM_,
+                                                                        CONCURRENCY_RATE_, TOTAL_REQUESTS, 
+                                                                        cumulative_QA_inconsistency_rate, cumulative_p95_latency_inflation, 
+                                                                        cumulative_failure_rate_inflation,
+                                                                        QA_threshold, latency_threshold, failure_threshold)
+                            previous_step_acceptance_types.append(decision_type)
+
+                            if final_decision is True:
+                                logger.info(f"Step {step} final result: ✅ ACCEPTED: {svc} → {agent}, decision type: {decision_type}")
+                                current_services = candidate_services
+                                current_agents = candidate_agents
+                            else:
+                                logger.info(f"Step {step} final result: ❌ REJECTED: {svc} remains as service, decision type: {decision_type}")
+                                # current_services and current_agents remain unchanged
                                 
-                                # ---------------- State Tracking for Current Architecture --------------
-
-                                # Initialize: all services running, no agents yet
-                                current_services = [s[0] for s in ranked_services]
-                                current_agents = []
-                                migration_sorting_strategy_services, current_services_with_scores, previous_step_acceptance_types, \
-                                    temporal_propagations, cumulative_QA_inconsistency_rate, cumulative_p95_latency_inflation, \
-                                    cumulative_failure_rate_inflation= init_conditions()
-
+                            # handle temporal propagation influence on next steps if this step is accepted and has temporal propagation influence, and if the strategy is ranked (so we can adjust ranking)
+                            if final_decision is True and temporal_propagation_enabled and \
+                                    step_self_temporal_propagation > 0 and migration_order_strategy.__contains__("Ranked"):
+                                        
+                                temporal_propagations.append(step_self_temporal_propagation)
+                                step_self_temporal_propagation_normalized = step_self_temporal_propagation / max(temporal_propagations) if temporal_propagations else 0
                                 
-                                for step in range(1, len(migration_sorting_strategy_services)+1):
-                                    logger.info(f"\n\n============================== Starting Step {step}/{len(migration_sorting_strategy_services)} ==============================")
+                                logger.info(f"\n\n ============ 🔄 Detecting Temporal Propagation Influence To Update Remaining Services Ranking Score ================= \n")
+                                # Adjust the ranking of remaining services based on temporal propagation influence
+                                affecting_services = []
+                                for dependency, weight in temporal_propagation_dependency_influence_weight.items():
+                                    upstream = dependency.split("->")[1]
+                                    downstream = dependency.split("->")[0]
+                                    #print(f"  Checking dependency {downstream} -> {upstream} with influence weight {weight} ...")
+                                    if svc.split(":")[0] == downstream:
+                                        # print(f"    {svc} is downstream of {upstream}. Adding to affecting services with weight {weight}.")
+                                        affecting_services.append((upstream, weight))
+                                
+                                if not affecting_services:
+                                    logger.info("  No temporal propagation influence detected for this step.")
+                                
+                                # Update ranking for affected services
+                                if affecting_services:
+                                    # logger.info(f"🔄 Temporal Propagation Influence Detected for some affected (upstream) services: {step_self_temporal_propagation_normalized}, {affecting_services}")
+                                    # logger.info(f"  Affected upstream services: {affecting_services}")
+                                    for affected_svc, influence_weight in affecting_services:
+                                        # Find and update the affected service's score in current_services_with_scores
+                                        for i, (service_name_with_port, score) in enumerate(current_services_with_scores):
+                                            service_name = service_name_with_port.split(":")[0]
+                                            if service_name == affected_svc:
+                                                # Increase the score based on temporal propagation influence
+                                                old_score = score
+                                                new_score = score + (step_self_temporal_propagation_normalized * influence_weight)
+                                                current_services_with_scores[i] = [service_name_with_port, new_score]
+                                                logger.info(f"    Updated {service_name_with_port}: score {old_score:.3f} → {new_score:.3f} due to temporal propagation influence from {svc} with weight {influence_weight}")
+                                                break
                                     
-                                    try:
-                                        svc = migration_sorting_strategy_services[step-1][0]
-                                        risk_score = migration_sorting_strategy_services[step-1][1]
-                                        logger.info(f"\n\n=== Step:{step}, Refactoring {svc} with risk score {risk_score} as AI agent ===\n\n")
-                                        logger.info(f"Current services ranking scores: {migration_sorting_strategy_services}")
-                                        logger.info(f"\n\nCurrent successfully agentified services so far: {current_agents}\n\n")
-
-                                        agent = service_to_agent[svc]
-
-                                        # candidate configuration: remove current service, add as agent
-                                        candidate_services = [s for s in current_services if s != svc]
-                                        candidate_agents = current_agents + [agent]
-
-                                        logger.info("\n\n ============== Deployment of step candidate architecture ==============\n\n")
-                                        # deploy candidate
-                                        deploy(candidate_services, candidate_agents)
-
-                                        # optional: wait for services to stabilize
-                                        logger.info("... Waiting for the deployment to stabilize ...")
-                                        # time.sleep(0.1)
-                                        logger.info("Candidate architecture deployed successfully.\n\n")
-
-
-
-                                        logger.info("\n\n ============== Predicate-driven acceptance of step's candidate architecture ==============\n\n")
-                                        final_decision, step_self_temporal_propagation, decision_type, prediction_category, cumulative_QA_inconsistency_rate, \
-                                            cumulative_p95_latency_inflation, cumulative_failure_rate_inflation = \
-                                                run_experiment_for_step(migration_order_strategy, step, predicate_mode, governance_policy,
-                                                                                    candidate_services, candidate_agents, svc.split(":")[0],
-                                                                                    temporal_propagation_enabled, previous_step_acceptance_types[-1],
-                                                                                    migration_sorting_strategy_services, T_, LLM_,
-                                                                                    CONCURRENCY_RATE_, TOTAL_REQUESTS, 
-                                                                                    cumulative_QA_inconsistency_rate, cumulative_p95_latency_inflation, 
-                                                                                    cumulative_failure_rate_inflation,
-                                                                                    QA_threshold, latency_threshold, failure_threshold)
-                                        previous_step_acceptance_types.append(decision_type)
-
-                                        if final_decision is True:
-                                            logger.info(f"Step {step} final result: ✅ ACCEPTED: {svc} → {agent}, decision type: {decision_type}")
-                                            current_services = candidate_services
-                                            current_agents = candidate_agents
-                                        else:
-                                            logger.info(f"Step {step} final result: ❌ REJECTED: {svc} remains as service, decision type: {decision_type}")
-                                            # current_services and current_agents remain unchanged
-                                            
-                                        # handle temporal propagation influence on next steps if this step is accepted and has temporal propagation influence, and if the strategy is ranked (so we can adjust ranking)
-                                        if final_decision is True and temporal_propagation_enabled and \
-                                                step_self_temporal_propagation > 0 and migration_order_strategy.__contains__("Ranked"):
-                                                    
-                                            temporal_propagations.append(step_self_temporal_propagation)
-                                            step_self_temporal_propagation_normalized = step_self_temporal_propagation / max(temporal_propagations) if temporal_propagations else 0
-                                            
-                                            logger.info(f"\n\n ============ 🔄 Detecting Temporal Propagation Influence To Update Remaining Services Ranking Score ================= \n")
-                                            # Adjust the ranking of remaining services based on temporal propagation influence
-                                            affecting_services = []
-                                            for dependency, weight in temporal_propagation_dependency_influence_weight.items():
-                                                upstream = dependency.split("->")[1]
-                                                downstream = dependency.split("->")[0]
-                                                #print(f"  Checking dependency {downstream} -> {upstream} with influence weight {weight} ...")
-                                                if svc.split(":")[0] == downstream:
-                                                    # print(f"    {svc} is downstream of {upstream}. Adding to affecting services with weight {weight}.")
-                                                    affecting_services.append((upstream, weight))
-                                            
-                                            if not affecting_services:
-                                                logger.info("  No temporal propagation influence detected for this step.")
-                                            
-                                            # Update ranking for affected services
-                                            if affecting_services:
-                                                # logger.info(f"🔄 Temporal Propagation Influence Detected for some affected (upstream) services: {step_self_temporal_propagation_normalized}, {affecting_services}")
-                                                # logger.info(f"  Affected upstream services: {affecting_services}")
-                                                for affected_svc, influence_weight in affecting_services:
-                                                    # Find and update the affected service's score in current_services_with_scores
-                                                    for i, (service_name_with_port, score) in enumerate(current_services_with_scores):
-                                                        service_name = service_name_with_port.split(":")[0]
-                                                        if service_name == affected_svc:
-                                                            # Increase the score based on temporal propagation influence
-                                                            old_score = score
-                                                            new_score = score + (step_self_temporal_propagation_normalized * influence_weight)
-                                                            current_services_with_scores[i] = [service_name_with_port, new_score]
-                                                            logger.info(f"    Updated {service_name_with_port}: score {old_score:.3f} → {new_score:.3f} due to temporal propagation influence from {svc} with weight {influence_weight}")
-                                                            break
-                                                
-                                                # Re-sort services based on updated scores (lowest first)
-                                                current_services_with_scores.sort(key=lambda x: x[1], reverse=False)
-                                                # logger.info(f"  Updated migration ranking: {[s[0] for s in current_services_with_scores]}")
-                                                
-                                                # Update migration_sorting_strategy_services for next steps
-                                                migration_sorting_strategy_services = current_services_with_scores.copy()
-                                                # print(f"  Migration strategy updated for next steps: {[s[0] for s in migration_sorting_strategy_services]}")
-                                    except Exception as e_in:
-                                        logger.error(f"❌ Exception occurred during step {step}: {e_in}")
-                                        # Attempt to shutdown any deployed services/agents before exiting
-                                        shutdown(current_services, current_agents)
-                                        continue
+                                    # Re-sort services based on updated scores (lowest first)
+                                    current_services_with_scores.sort(key=lambda x: x[1], reverse=False)
+                                    # logger.info(f"  Updated migration ranking: {[s[0] for s in current_services_with_scores]}")
                                     
-                                logger.info("\n\n\n\n------------------------------- 🎯 Final architecture: -------------------- \n\n")
-                                logger.info(f"Services: {current_services}\n")
-                                logger.info(f"Agents: {current_agents}\n\n")
-                                
-                                logger.info(f"Cumulative QA Inconsistency Rate: {cumulative_QA_inconsistency_rate:.4f}")
-                                logger.info(f"Cumulative p95 Latency Inflation: {cumulative_p95_latency_inflation:.4f}")
-                                logger.info(f"Cumulative Failure Rate Inflation: {cumulative_failure_rate_inflation:.4f}")
-                            
-    
-                                
-                                # test final architecture with a final experiment run
-                                logger.info(f"\n\n------------------------------- 🎯 Final Architecture Experiment Run -------------------- \n")
-                                _, _, _, _, delta_qa, delta_l, delta_f = run_experiment_for_step(migration_order_strategy, -1, predicate_mode, governance_policy,
-                                                                                current_services, current_agents, svc.split(":")[0],
-                                                                                temporal_propagation_enabled, previous_step_acceptance_types[-1],
-                                                                                migration_sorting_strategy_services, T_, LLM_, CONCURRENCY_RATE_, R=TOTAL_REQUESTS)
-                                
-                                with open('./opt_res/results.txt', 'a') as f:
-                                    f.write(f"\n\n------------------------------- -------------------- \n\n")
-                                    f.write(f"Predicate Mode: {predicate_mode}, Governance Policy: {governance_policy}, T: {T_}, LLM: {LLM_}, CONCURRENCY_RATE: {CONCURRENCY_RATE_}, QA_threshold: {QA_threshold}, Latency_threshold: {latency_threshold}, Failure_threshold: {failure_threshold}\n")
-                                    f.write(f"\n\n--- 🎯 Final architecture: --- \n\n")
-                                    f.write(f"Services: {current_services}\n")
-                                    f.write(f"Agents: {current_agents}\n\n")
-                                    f.write(f"Migration coverage: {len(current_agents)/len(ranked_services):.4f}\n")
-                                    
-                                    f.write(f"Cumulative QA Inconsistency Rate: {cumulative_QA_inconsistency_rate:.4f}\n")
-                                    f.write(f"Cumulative p95 Latency Inflation: {cumulative_p95_latency_inflation:.4f}\n")
-                                    f.write(f"Cumulative Failure Rate Inflation: {cumulative_failure_rate_inflation:.4f}\n")
-                                    f.write(f"final architecture experiment run results: delta_qa: {delta_qa:.4f}, delta_l: {delta_l:.4f}, delta_f: {delta_f:.4f}\n")
-                                
-                                opt_res.append({
-                                    "predicate_mode": predicate_mode,
-                                    "governance_policy": governance_policy,
-                                    "T": T_,
-                                    "LLM": LLM_,
-                                    "CONCURRENCY_RATE": CONCURRENCY_RATE_,
-                                    "QA_threshold": QA_threshold,
-                                    "latency_threshold": latency_threshold,
-                                    "failure_threshold": failure_threshold,
-                                    "final_services": current_services,
-                                    "final_agents": current_agents,
-                                    "migration_coverage": len(current_agents) / len(ranked_services),
-                                    "cumulative_QA_inconsistency_rate": cumulative_QA_inconsistency_rate,
-                                    "cumulative_p95_latency_inflation": cumulative_p95_latency_inflation,
-                                    "cumulative_failure_rate_inflation": cumulative_failure_rate_inflation,
-                                    "final_architecture_experiment_results": {
-                                        "delta_qa": delta_qa,
-                                        "delta_l": delta_l,
-                                        "delta_f": delta_f
-                                    }
-                                })                                    
-                                    
-                                # input("Press Enter to gracefully shutdown final configuration...")
-                                shutdown(current_services, current_agents)
-                                logger.info(f"Final Architecture Experiment Run Finished Successfully")
+                                    # Update migration_sorting_strategy_services for next steps
+                                    migration_sorting_strategy_services = current_services_with_scores.copy()
+                                    # print(f"  Migration strategy updated for next steps: {[s[0] for s in migration_sorting_strategy_services]}")
+                        except Exception as e_in:
+                            logger.error(f"❌ Exception occurred during step {step}: {e_in}")
+                            # Attempt to shutdown any deployed services/agents before exiting
+                            shutdown(current_services, current_agents)
+                            continue
+                        
+                    logger.info("\n\n\n\n------------------------------- 🎯 Final architecture: -------------------- \n\n")
+                    logger.info(f"Services: {current_services}\n")
+                    logger.info(f"Agents: {current_agents}\n\n")
+                    
+                    logger.info(f"Cumulative QA Inconsistency Rate: {cumulative_QA_inconsistency_rate:.4f}")
+                    logger.info(f"Cumulative p95 Latency Inflation: {cumulative_p95_latency_inflation:.4f}")
+                    logger.info(f"Cumulative Failure Rate Inflation: {cumulative_failure_rate_inflation:.4f}")
+                
 
-                            except Exception as e:
-                                logger.error(f"❌ Exception occurred during step {step}: {e}")
-                                # Attempt to shutdown any deployed services/agents before exiting
-                                shutdown(current_services, current_agents)
-                                continue
-                            finally:
-                                pbar.update(1)
+                    
+                    # test final architecture with a final experiment run
+                    logger.info(f"\n\n------------------------------- 🎯 Final Architecture Experiment Run -------------------- \n")
+                    _, _, _, _, delta_qa, delta_l, delta_f = run_experiment_for_step(migration_order_strategy, -1, predicate_mode, governance_policy,
+                                                                    current_services, current_agents, svc.split(":")[0],
+                                                                    temporal_propagation_enabled, previous_step_acceptance_types[-1],
+                                                                    migration_sorting_strategy_services, T_, LLM_, CONCURRENCY_RATE_, R=TOTAL_REQUESTS)
+                    
+                    with open('./opt_res/results.txt', 'a') as f:
+                        f.write(f"\n\n------------------------------- -------------------- \n\n")
+                        f.write(f"Predicate Mode: {predicate_mode}, Governance Policy: {governance_policy}, T: {T_}, LLM: {LLM_}, CONCURRENCY_RATE: {CONCURRENCY_RATE_}, QA_threshold: {QA_threshold}, Latency_threshold: {latency_threshold}, Failure_threshold: {failure_threshold}\n")
+                        f.write(f"\n\n--- 🎯 Final architecture: --- \n\n")
+                        f.write(f"Services: {current_services}\n")
+                        f.write(f"Agents: {current_agents}\n\n")
+                        f.write(f"Migration coverage: {len(current_agents)/len(ranked_services):.4f}\n")
+                        
+                        f.write(f"Cumulative QA Inconsistency Rate: {cumulative_QA_inconsistency_rate:.4f}\n")
+                        f.write(f"Cumulative p95 Latency Inflation: {cumulative_p95_latency_inflation:.4f}\n")
+                        f.write(f"Cumulative Failure Rate Inflation: {cumulative_failure_rate_inflation:.4f}\n")
+                        f.write(f"final architecture experiment run results: delta_qa: {delta_qa:.4f}, delta_l: {delta_l:.4f}, delta_f: {delta_f:.4f}\n")
+                    
+                    opt_res.append({
+                        "predicate_mode": predicate_mode,
+                        "governance_policy": governance_policy,
+                        "T": T_,
+                        "LLM": LLM_,
+                        "CONCURRENCY_RATE": CONCURRENCY_RATE_,
+                        "QA_threshold": QA_threshold,
+                        "latency_threshold": latency_threshold,
+                        "failure_threshold": failure_threshold,
+                        "final_services": current_services,
+                        "final_agents": current_agents,
+                        "migration_coverage": len(current_agents) / len(ranked_services),
+                        "cumulative_QA_inconsistency_rate": cumulative_QA_inconsistency_rate,
+                        "cumulative_p95_latency_inflation": cumulative_p95_latency_inflation,
+                        "cumulative_failure_rate_inflation": cumulative_failure_rate_inflation,
+                        "final_architecture_experiment_results": {
+                            "delta_qa": delta_qa,
+                            "delta_l": delta_l,
+                            "delta_f": delta_f
+                        }
+                    })                                    
+                        
+                    # input("Press Enter to gracefully shutdown final configuration...")
+                    shutdown(current_services, current_agents)
+                    logger.info(f"Final Architecture Experiment Run Finished Successfully")
+
+                except Exception as e:
+                    logger.error(f"❌ Exception occurred during step {step}: {e}")
+                    # Attempt to shutdown any deployed services/agents before exiting
+                    shutdown(current_services, current_agents)
+                    continue
+                finally:
+                    pbar.update(1)
 
 
 with open('./opt_res/results.json', 'a') as f:
