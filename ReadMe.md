@@ -7,11 +7,17 @@
   
    ![SDG](figures/google-benchmark.drawio.png)
 
+- Original source code: https://github.com/GoogleCloudPlatform/microservices-demo
+  
+- Python-converted source code with gRPC and MongoDB integration: (ms_baseline/google_ms folder)
+  
 ------------------
 
-- **RetailBen (B2)** (ms_baseline/retailben) (Own Designed)
+- **RetailBen (B2)** (Own Designed)
   
   ![SDG](figures/RetailBen.drawio.png)
+
+- Original source code: ms_baseline/retailben folder
 
 -------------------
 
@@ -19,7 +25,10 @@
 - **[DeathStarBench Social Network (B3)](https://github.com/delimitrou/DeathStarBench/tree/master/socialNetwork)** (ms_baseline/dsb_social)
   
    ![SDG](figures/DSB-social.drawio.png)
-   
+
+- Original source code: https://github.com/delimitrou/DeathStarBench/tree/master/socialNetwork
+  
+- Python-converted source code with thrift same MongoDB / Redis integration: (ms_baseline/dsb_social folder)   
 
 ----------------------------
 
