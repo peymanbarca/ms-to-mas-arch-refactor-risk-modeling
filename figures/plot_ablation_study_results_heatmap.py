@@ -11,7 +11,7 @@ import matplotlib as mpl
 
 row_titles = [
     "Overall",
-    "Risk-aware \n migration order\n",
+    "Risk-aware migration order\n",
     "Temporal propagation\n",
     "Two-tier governance\n"
 ]
@@ -79,31 +79,31 @@ failure_errors = np.array([
 2.18]
 ])
 
-cost_values = np.array([
-    [8.64, 
-13.16,
-11.18,],
-    [6.86, 
- 11.65,
- 9.37,],
-    [0, 3, 5],
-    [1.98,
-2.12,
-2.05]
-])
+# cost_values = np.array([
+#     [8.64, 
+# 13.16,
+# 11.18,],
+#     [6.86, 
+#  11.65,
+#  9.37,],
+#     [0, 3, 5],
+#     [1.98,
+# 2.12,
+# 2.05]
+# ])
 
-cost_errors = np.array([
-    [3.31,
-4.88,
-5.31,],
-    [4.15,
-5.03,
-6.16,],
-    [0.00, 0.00, 0.00],
-    [0.20,
-0.75,
-0.56]
-])
+# cost_errors = np.array([
+#     [3.31,
+# 4.88,
+# 5.31,],
+#     [4.15,
+# 5.03,
+# 6.16,],
+#     [0.00, 0.00, 0.00],
+#     [0.20,
+# 0.75,
+# 0.56]
+# ])
 
 r_values = np.array([
     [2,
@@ -200,10 +200,10 @@ metrics = [
         failure_errors
     ),
 
-    (r"$\Sigma\Delta C^{\%}\downarrow$",
-        cost_values,
-        cost_errors
-    ),
+    # (r"$\Sigma\Delta C^{\%}\downarrow$",
+    #     cost_values,
+    #     cost_errors
+    # ),
     
     (r"$N_{RB}\downarrow$",
         r_values,
@@ -365,7 +365,8 @@ for i, (title, desc) in enumerate(zip(row_titles, row_desc)):
         y + 0.15,
         desc,
         fontsize=10,
-        color="black",
+        fontweight="bold",
+        color="dimgray",
         ha="right",
         va="top",
     )

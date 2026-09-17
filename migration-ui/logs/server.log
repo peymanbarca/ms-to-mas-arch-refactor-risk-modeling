@@ -6057,3 +6057,306 @@
 2026-08-24 09:49:54,814 - INFO - Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help):
 2026-08-24 09:49:54,814 - INFO - Experiments: 100%|██████████| 1/1 [01:04<00:00, 64.08s/it]
 2026-08-24 09:49:54,814 - INFO - Experiments: 100%|██████████| 1/1 [01:04<00:00, 64.08s/it]
+2026-09-14 17:53:23,158 - INFO - run_experiment thread started.
+2026-09-14 17:53:23,167 - INFO - previous log file trimmed.
+2026-09-14 17:53:23,168 - INFO - Calling str(BASE_DIR) + f'/deploy_orchestration/google_ms/live_progressive_refactor_orchestrator.py' with config: {"benchmark": "google_ms", "predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "off", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3.2:3b", "temperature": 0, "R": 5000, "concurrency": 20}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Currency", "score": "0.000"}, {"rank": "2", "service": "Product Catalog", "score": "0.023"}, {"rank": "3", "service": "Ad", "score": "0.075"}, {"rank": "4", "service": "Cart", "score": "0.088"}, {"rank": "5", "service": "Recommendation", "score": "0.096"}, {"rank": "6", "service": "Shipping", "score": "0.122"}, {"rank": "7", "service": "Email", "score": "0.177"}, {"rank": "8", "service": "Payment", "score": "0.288"}, {"rank": "9", "service": "Checkout", "score": "0.800"}]} 
+2026-09-14 17:53:23,387 - INFO - 
+2026-09-14 17:53:50,983 - INFO - Experiments:   0%|          | 0/1 [00:00<?, ?it/s]
+2026-09-14 17:53:50,983 - INFO - Experiments: 100%|██████████| 1/1 [00:27<00:00, 27.60s/it]
+2026-09-14 17:53:50,984 - INFO - Experiments: 100%|██████████| 1/1 [00:27<00:00, 27.60s/it]
+2026-09-14 17:53:50,984 - INFO - 
+2026-09-14 17:53:50,984 - INFO - 🚀 Deploying:
+2026-09-14 17:53:50,984 - INFO - Services: ['product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 17:53:50,984 - INFO - Agents: ['currency_agent:5053']
+2026-09-14 17:53:50,984 - INFO - 
+2026-09-14 17:53:50,984 - INFO - 🚀 Deploying:
+2026-09-14 17:53:50,984 - INFO - Services: ['ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 17:53:50,984 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055']
+2026-09-14 17:53:50,984 - INFO - 
+2026-09-14 17:53:50,984 - INFO - 🚀 Deploying:
+2026-09-14 17:53:50,984 - INFO - Services: ['cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 17:53:50,984 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057']
+2026-09-14 17:53:50,984 - INFO - 
+2026-09-14 17:53:50,984 - INFO - 🚀 Deploying:
+2026-09-14 17:53:50,985 - INFO - Services: ['recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 17:53:50,985 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054']
+2026-09-14 17:53:50,985 - INFO - 
+2026-09-14 17:53:50,985 - INFO - 🚀 Deploying:
+2026-09-14 17:53:50,985 - INFO - Services: ['recommendation_service:5058', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 17:53:50,985 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051']
+2026-09-14 17:53:50,985 - INFO - 
+2026-09-14 17:53:50,985 - INFO - 🚀 Deploying:
+2026-09-14 17:53:50,985 - INFO - Services: ['recommendation_service:5058', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 17:53:50,985 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056']
+2026-09-14 17:53:50,985 - INFO - 
+2026-09-14 17:53:50,985 - INFO - 🚀 Deploying:
+2026-09-14 17:53:50,985 - INFO - Services: ['recommendation_service:5058', 'checkout_service:5050']
+2026-09-14 17:53:50,985 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+2026-09-14 17:53:50,985 - INFO - 
+2026-09-14 17:53:50,985 - INFO - 🚀 Deploying:
+2026-09-14 17:53:50,986 - INFO - Services: ['checkout_service:5050']
+2026-09-14 17:53:50,986 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058']
+2026-09-14 17:53:50,986 - INFO - 
+2026-09-14 17:53:50,986 - INFO - 🚀 Deploying:
+2026-09-14 17:53:50,986 - INFO - Services: []
+2026-09-14 17:53:50,986 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052', 'recommendation_agent:5058', 'checkout_agent:5050']
+2026-09-14 18:38:47,789 - INFO - run_experiment thread started.
+2026-09-14 18:38:47,795 - INFO - previous log file trimmed.
+2026-09-14 18:38:47,795 - INFO - Calling str(BASE_DIR) + f'/deploy_orchestration/google_ms/live_progressive_refactor_orchestrator.py' with config: {"benchmark": "google_ms", "predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "auto", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3:8b", "temperature": 0.45, "R": 5000, "concurrency": 113}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Currency", "score": "0.000"}, {"rank": "2", "service": "Product Catalog", "score": "0.023"}, {"rank": "3", "service": "Ad", "score": "0.075"}, {"rank": "4", "service": "Cart", "score": "0.088"}, {"rank": "5", "service": "Recommendation", "score": "0.096"}, {"rank": "6", "service": "Shipping", "score": "0.122"}, {"rank": "7", "service": "Email", "score": "0.177"}, {"rank": "8", "service": "Payment", "score": "0.288"}, {"rank": "9", "service": "Checkout", "score": "0.800"}]} 
+2026-09-14 18:38:47,960 - INFO - 
+2026-09-14 18:39:18,554 - INFO - Experiments:   0%|          | 0/1 [00:00<?, ?it/s]
+2026-09-14 18:39:18,555 - INFO - Experiments: 100%|██████████| 1/1 [00:30<00:00, 30.59s/it]
+2026-09-14 18:39:18,555 - INFO - Experiments: 100%|██████████| 1/1 [00:30<00:00, 30.59s/it]
+2026-09-14 18:39:18,555 - INFO - 
+2026-09-14 18:39:18,555 - INFO - 🚀 Deploying:
+2026-09-14 18:39:18,555 - INFO - Services: ['product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:39:18,555 - INFO - Agents: ['currency_agent:5053']
+2026-09-14 18:39:18,555 - INFO - 
+2026-09-14 18:39:18,555 - INFO - 🚀 Deploying:
+2026-09-14 18:39:18,555 - INFO - Services: ['ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:39:18,555 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055']
+2026-09-14 18:39:18,555 - INFO - 
+2026-09-14 18:39:18,555 - INFO - 🚀 Deploying:
+2026-09-14 18:39:18,555 - INFO - Services: ['cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:39:18,556 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057']
+2026-09-14 18:39:18,556 - INFO - 
+2026-09-14 18:39:18,556 - INFO - 🚀 Deploying:
+2026-09-14 18:39:18,556 - INFO - Services: ['recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:39:18,556 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054']
+2026-09-14 18:39:18,556 - INFO - 
+2026-09-14 18:39:18,556 - INFO - 🚀 Deploying:
+2026-09-14 18:39:18,556 - INFO - Services: ['recommendation_service:5058', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:39:18,556 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051']
+2026-09-14 18:39:18,556 - INFO - 
+2026-09-14 18:39:18,556 - INFO - 🚀 Deploying:
+2026-09-14 18:39:18,556 - INFO - Services: ['recommendation_service:5058', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:39:18,556 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056']
+2026-09-14 18:39:18,556 - INFO - 
+2026-09-14 18:39:18,556 - INFO - 🚀 Deploying:
+2026-09-14 18:39:18,556 - INFO - Services: ['recommendation_service:5058', 'checkout_service:5050']
+2026-09-14 18:39:18,556 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'payment_agent:5052']
+2026-09-14 18:39:18,556 - INFO - 
+2026-09-14 18:39:18,556 - INFO - 🚀 Deploying:
+2026-09-14 18:39:18,556 - INFO - Services: ['payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:39:18,556 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'recommendation_agent:5058']
+2026-09-14 18:39:18,556 - INFO - 
+2026-09-14 18:39:18,557 - INFO - 🚀 Deploying:
+2026-09-14 18:39:18,557 - INFO - Services: ['recommendation_service:5058', 'payment_service:5052']
+2026-09-14 18:39:18,557 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055', 'ad_agent:5057', 'cart_agent:5054', 'shipping_agent:5051', 'email_agent:5056', 'checkout_agent:5050']
+2026-09-14 18:47:17,725 - INFO - run_experiment thread started.
+2026-09-14 18:47:17,727 - INFO - previous log file trimmed.
+2026-09-14 18:47:17,727 - INFO - Calling str(BASE_DIR) + f'/deploy_orchestration/google_ms/live_progressive_refactor_orchestrator.py' with config: {"benchmark": "google_ms", "predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "human", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3:8b", "temperature": 0.45, "R": 5000, "concurrency": 113}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Currency", "score": "0.000"}, {"rank": "2", "service": "Product Catalog", "score": "0.023"}, {"rank": "3", "service": "Ad", "score": "0.075"}, {"rank": "4", "service": "Cart", "score": "0.088"}, {"rank": "5", "service": "Recommendation", "score": "0.096"}, {"rank": "6", "service": "Shipping", "score": "0.122"}, {"rank": "7", "service": "Email", "score": "0.177"}, {"rank": "8", "service": "Payment", "score": "0.288"}, {"rank": "9", "service": "Checkout", "score": "0.800"}]} 
+2026-09-14 18:47:17,875 - INFO - 
+2026-09-14 18:47:51,916 - INFO - run_experiment thread started.
+2026-09-14 18:47:51,919 - INFO - previous log file trimmed.
+2026-09-14 18:47:51,919 - INFO - Calling str(BASE_DIR) + f'/deploy_orchestration/google_ms/live_progressive_refactor_orchestrator.py' with config: {"benchmark": "google_ms", "predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "human", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3.2:3b", "temperature": 0, "R": 5000, "concurrency": 20}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Currency", "score": "0.000"}, {"rank": "2", "service": "Product Catalog", "score": "0.023"}, {"rank": "3", "service": "Ad", "score": "0.075"}, {"rank": "4", "service": "Cart", "score": "0.088"}, {"rank": "5", "service": "Recommendation", "score": "0.096"}, {"rank": "6", "service": "Shipping", "score": "0.122"}, {"rank": "7", "service": "Email", "score": "0.177"}, {"rank": "8", "service": "Payment", "score": "0.288"}, {"rank": "9", "service": "Checkout", "score": "0.800"}]} 
+2026-09-14 18:47:52,097 - INFO - 
+2026-09-14 18:47:55,134 - INFO - Experiments:   0%|          | 0/1 [00:00<?, ?it/s]
+2026-09-14 18:47:55,134 - INFO - 🚀 Deploying:
+2026-09-14 18:47:55,134 - INFO - Services: ['product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:47:55,134 - INFO - Agents: ['currency_agent:5053']
+2026-09-14 18:47:55,134 - INFO - 
+2026-09-14 18:47:55,134 - INFO - ================================================================================
+2026-09-14 18:47:55,134 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-09-14 18:47:55,134 - INFO - ================================================================================
+2026-09-14 18:47:55,134 - INFO - 
+2026-09-14 18:47:55,134 - INFO - 📋 Step 1: currency_service
+2026-09-14 18:47:55,134 - INFO - Predicate Decision: ACCEPT
+2026-09-14 18:47:55,134 - INFO - 
+2026-09-14 18:47:55,134 - INFO - ⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-09-14 18:47:55,135 - INFO - 
+2026-09-14 18:47:55,135 - INFO - --------------------------------------------------------------------------------
+2026-09-14 18:47:55,135 - INFO - EXECUTION METRICS & EVIDENCE
+2026-09-14 18:47:55,135 - INFO - --------------------------------------------------------------------------------
+2026-09-14 18:47:55,135 - INFO - 
+2026-09-14 18:47:55,135 - INFO - 📊 Core Metrics:
+2026-09-14 18:47:55,135 - INFO - 
+2026-09-14 18:47:55,135 - INFO -   QUALITY ASSURANCE
+2026-09-14 18:47:55,135 - INFO -     Actual:        0.0000
+2026-09-14 18:47:55,135 - INFO -     Threshold:     0.0000
+2026-09-14 18:47:55,135 - INFO -     Tolerance:     ±0.0000
+2026-09-14 18:47:55,135 - INFO -     Status:        ✓ PASS
+2026-09-14 18:47:55,135 - INFO - 
+2026-09-14 18:47:55,135 - INFO -   LATENCY P95
+2026-09-14 18:47:55,135 - INFO -     Actual:        1.331s
+2026-09-14 18:47:55,135 - INFO -     Threshold:     1.900s
+2026-09-14 18:47:55,136 - INFO -     Tolerance:     ±0.100s
+2026-09-14 18:47:55,136 - INFO -     Status:        ✓ PASS
+2026-09-14 18:47:55,136 - INFO - 
+2026-09-14 18:47:55,136 - INFO -   FAILURE RATE
+2026-09-14 18:47:55,136 - INFO -     Actual:        0.0026
+2026-09-14 18:47:55,136 - INFO -     Threshold:     0.0200
+2026-09-14 18:47:55,136 - INFO -     Tolerance:     ±0.0050
+2026-09-14 18:47:55,136 - INFO -     Status:        ✓ PASS
+2026-09-14 18:47:55,136 - INFO - 
+2026-09-14 18:47:55,136 - INFO - 🔍 Risk Assessment:
+2026-09-14 18:47:55,136 - INFO -   Temporal Propagation: 0.003 (tolerance: 0.100)
+2026-09-14 18:47:55,137 - INFO -   Status: LOW RISK
+2026-09-14 18:47:55,137 - INFO - 
+2026-09-14 18:47:55,137 - INFO - 📈 Violation Analysis:
+2026-09-14 18:47:55,137 - INFO -   Violation Duration: 487.12 trials
+2026-09-14 18:47:55,137 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-09-14 18:47:55,137 - INFO -   Classification: TRANSIENT
+2026-09-14 18:47:55,137 - INFO - 
+2026-09-14 18:47:55,137 - INFO - ================================================================================
+2026-09-14 18:47:55,137 - INFO - ADJUDICATION DECISION
+2026-09-14 18:47:55,137 - INFO - ================================================================================
+2026-09-14 18:47:55,137 - INFO - 
+2026-09-14 18:47:55,137 - INFO - ✅ Predicate ACCEPTED this step.
+2026-09-14 18:47:55,137 - INFO - However, you may decide it be a false acceptance.
+2026-09-14 18:47:55,137 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-09-14 18:47:55,137 - INFO - 
+2026-09-14 18:49:43,755 - INFO - previous log file trimmed.
+2026-09-14 18:49:43,755 - INFO - Calling str(BASE_DIR) + f'/deploy_orchestration/google_ms/live_progressive_refactor_orchestrator.py' with config: {"benchmark": "google_ms", "predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "human", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3.2:3b", "temperature": 0, "R": 5000, "concurrency": 20}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Currency", "score": "0.000"}, {"rank": "2", "service": "Product Catalog", "score": "0.023"}, {"rank": "3", "service": "Ad", "score": "0.075"}, {"rank": "4", "service": "Cart", "score": "0.088"}, {"rank": "5", "service": "Recommendation", "score": "0.096"}, {"rank": "6", "service": "Shipping", "score": "0.122"}, {"rank": "7", "service": "Email", "score": "0.177"}, {"rank": "8", "service": "Payment", "score": "0.288"}, {"rank": "9", "service": "Checkout", "score": "0.800"}]} 
+2026-09-14 18:49:43,756 - INFO - run_experiment thread started.
+2026-09-14 18:49:43,880 - INFO - 
+2026-09-14 18:49:47,037 - INFO - Experiments:   0%|          | 0/1 [00:00<?, ?it/s]
+2026-09-14 18:49:47,037 - INFO - 🚀 Deploying:
+2026-09-14 18:49:47,037 - INFO - Services: ['product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:49:47,037 - INFO - Agents: ['currency_agent:5053']
+2026-09-14 18:49:47,037 - INFO - 
+2026-09-14 18:49:47,037 - INFO - ================================================================================
+2026-09-14 18:49:47,037 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-09-14 18:49:47,037 - INFO - ================================================================================
+2026-09-14 18:49:47,037 - INFO - 
+2026-09-14 18:49:47,037 - INFO - 📋 Step 1: currency_service
+2026-09-14 18:49:47,037 - INFO - Predicate Decision: ACCEPT
+2026-09-14 18:49:47,037 - INFO - 
+2026-09-14 18:49:47,037 - INFO - ⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-09-14 18:49:47,038 - INFO - 
+2026-09-14 18:49:47,038 - INFO - --------------------------------------------------------------------------------
+2026-09-14 18:49:47,038 - INFO - EXECUTION METRICS & EVIDENCE
+2026-09-14 18:49:47,038 - INFO - --------------------------------------------------------------------------------
+2026-09-14 18:49:47,038 - INFO - 
+2026-09-14 18:49:47,038 - INFO - 📊 Core Metrics:
+2026-09-14 18:49:47,038 - INFO - 
+2026-09-14 18:49:47,038 - INFO -   QUALITY ASSURANCE
+2026-09-14 18:49:47,038 - INFO -     Actual:        0.0000
+2026-09-14 18:49:47,038 - INFO -     Threshold:     0.0000
+2026-09-14 18:49:47,038 - INFO -     Tolerance:     ±0.0000
+2026-09-14 18:49:47,038 - INFO -     Status:        ✓ PASS
+2026-09-14 18:49:47,038 - INFO - 
+2026-09-14 18:49:47,038 - INFO -   LATENCY P95
+2026-09-14 18:49:47,038 - INFO -     Actual:        1.342s
+2026-09-14 18:49:47,038 - INFO -     Threshold:     1.900s
+2026-09-14 18:49:47,038 - INFO -     Tolerance:     ±0.100s
+2026-09-14 18:49:47,038 - INFO -     Status:        ✓ PASS
+2026-09-14 18:49:47,038 - INFO - 
+2026-09-14 18:49:47,039 - INFO -   FAILURE RATE
+2026-09-14 18:49:47,039 - INFO -     Actual:        0.0000
+2026-09-14 18:49:47,039 - INFO -     Threshold:     0.0200
+2026-09-14 18:49:47,039 - INFO -     Tolerance:     ±0.0050
+2026-09-14 18:49:47,039 - INFO -     Status:        ✓ PASS
+2026-09-14 18:49:47,039 - INFO - 
+2026-09-14 18:49:47,039 - INFO - 🔍 Risk Assessment:
+2026-09-14 18:49:47,039 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
+2026-09-14 18:49:47,039 - INFO -   Status: LOW RISK
+2026-09-14 18:49:47,039 - INFO - 
+2026-09-14 18:49:47,039 - INFO - 📈 Violation Analysis:
+2026-09-14 18:49:47,039 - INFO -   Violation Duration: 473.03 trials
+2026-09-14 18:49:47,039 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-09-14 18:49:47,039 - INFO -   Classification: TRANSIENT
+2026-09-14 18:49:47,039 - INFO - 
+2026-09-14 18:49:47,039 - INFO - ================================================================================
+2026-09-14 18:49:47,039 - INFO - ADJUDICATION DECISION
+2026-09-14 18:49:47,039 - INFO - ================================================================================
+2026-09-14 18:49:47,040 - INFO - 
+2026-09-14 18:49:47,040 - INFO - ✅ Predicate ACCEPTED this step.
+2026-09-14 18:49:47,040 - INFO - However, you may decide it be a false acceptance.
+2026-09-14 18:49:47,040 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-09-14 18:49:47,040 - INFO - 
+2026-09-14 18:49:51,118 - INFO - HITL response sent to experiment: A
+2026-09-14 18:49:54,058 - INFO - Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help):
+2026-09-14 18:49:54,058 - INFO - 🚀 Deploying:
+2026-09-14 18:49:54,059 - INFO - Services: ['ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:49:54,059 - INFO - Agents: ['currency_agent:5053', 'product_catalog_agent:5055']
+2026-09-14 18:49:54,059 - INFO - 
+2026-09-14 18:49:54,059 - INFO - ================================================================================
+2026-09-14 18:49:54,059 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-09-14 18:49:54,059 - INFO - ================================================================================
+2026-09-14 18:49:54,059 - INFO - 
+2026-09-14 18:49:54,059 - INFO - 📋 Step 2: product_catalog_service
+2026-09-14 18:49:54,059 - INFO - Predicate Decision: ACCEPT
+2026-09-14 18:49:54,059 - INFO - 
+2026-09-14 18:49:54,059 - INFO - ⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-09-14 18:49:54,060 - INFO - 
+2026-09-14 18:49:54,060 - INFO - --------------------------------------------------------------------------------
+2026-09-14 18:49:54,060 - INFO - EXECUTION METRICS & EVIDENCE
+2026-09-14 18:49:54,060 - INFO - --------------------------------------------------------------------------------
+2026-09-14 18:49:54,060 - INFO - 
+2026-09-14 18:49:54,060 - INFO - 📊 Core Metrics:
+2026-09-14 18:49:54,060 - INFO - 
+2026-09-14 18:49:54,060 - INFO -   QUALITY ASSURANCE
+2026-09-14 18:49:54,060 - INFO -     Actual:        0.0000
+2026-09-14 18:49:54,060 - INFO -     Threshold:     0.0000
+2026-09-14 18:49:54,060 - INFO -     Tolerance:     ±0.0000
+2026-09-14 18:49:54,060 - INFO -     Status:        ✓ PASS
+2026-09-14 18:49:54,060 - INFO - 
+2026-09-14 18:49:54,060 - INFO -   LATENCY P95
+2026-09-14 18:49:54,061 - INFO -     Actual:        1.197s
+2026-09-14 18:49:54,061 - INFO -     Threshold:     1.900s
+2026-09-14 18:49:54,061 - INFO -     Tolerance:     ±0.100s
+2026-09-14 18:49:54,061 - INFO -     Status:        ✓ PASS
+2026-09-14 18:49:54,061 - INFO - 
+2026-09-14 18:49:54,061 - INFO -   FAILURE RATE
+2026-09-14 18:49:54,061 - INFO -     Actual:        0.0015
+2026-09-14 18:49:54,061 - INFO -     Threshold:     0.0200
+2026-09-14 18:49:54,061 - INFO -     Tolerance:     ±0.0050
+2026-09-14 18:49:54,061 - INFO -     Status:        ✓ PASS
+2026-09-14 18:49:54,061 - INFO - 
+2026-09-14 18:49:54,061 - INFO - 🔍 Risk Assessment:
+2026-09-14 18:49:54,061 - INFO -   Temporal Propagation: 0.002 (tolerance: 0.100)
+2026-09-14 18:49:54,061 - INFO -   Status: LOW RISK
+2026-09-14 18:49:54,061 - INFO - 
+2026-09-14 18:49:54,061 - INFO - 📈 Violation Analysis:
+2026-09-14 18:49:54,062 - INFO -   Violation Duration: 559.22 trials
+2026-09-14 18:49:54,062 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-09-14 18:49:54,062 - INFO -   Classification: TRANSIENT
+2026-09-14 18:49:54,062 - INFO - 
+2026-09-14 18:49:54,062 - INFO - ================================================================================
+2026-09-14 18:49:54,062 - INFO - ADJUDICATION DECISION
+2026-09-14 18:49:54,062 - INFO - ================================================================================
+2026-09-14 18:49:54,062 - INFO - 
+2026-09-14 18:49:54,062 - INFO - ✅ Predicate ACCEPTED this step.
+2026-09-14 18:49:54,062 - INFO - However, you may decide it be a false acceptance.
+2026-09-14 18:49:54,062 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-09-14 18:49:54,062 - INFO - 
+2026-09-14 18:52:50,787 - INFO - Experiments:   0%|          | 0/1 [00:00<?, ?it/s]
+2026-09-14 18:52:50,787 - INFO - Experiments: 100%|██████████| 1/1 [05:32<00:00, 332.91s/it]
+2026-09-14 18:52:50,787 - INFO - Experiments: 100%|██████████| 1/1 [05:32<00:00, 332.91s/it]
+2026-09-14 18:52:50,787 - INFO - 
+2026-09-14 18:52:50,787 - INFO - 🚀 Deploying:
+2026-09-14 18:52:50,787 - INFO - Services: ['product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:52:50,788 - INFO - Agents: ['currency_agent:5053']
+2026-09-14 18:52:50,788 - INFO - 
+2026-09-14 18:52:50,788 - INFO - 🚀 Deploying:
+2026-09-14 18:52:50,788 - INFO - Services: ['currency_service:5053', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:52:50,788 - INFO - Agents: ['product_catalog_agent:5055']
+2026-09-14 18:52:50,788 - INFO - 
+2026-09-14 18:52:50,788 - INFO - 🚀 Deploying:
+2026-09-14 18:52:50,788 - INFO - Services: ['currency_service:5053', 'product_catalog_service:5055', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:52:50,788 - INFO - Agents: ['ad_agent:5057']
+2026-09-14 18:52:50,788 - INFO - 
+2026-09-14 18:52:50,788 - INFO - 🚀 Deploying:
+2026-09-14 18:52:50,788 - INFO - Services: ['currency_service:5053', 'product_catalog_service:5055', 'ad_service:5057', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:52:50,788 - INFO - Agents: ['cart_agent:5054']
+2026-09-14 18:52:50,788 - INFO - 
+2026-09-14 18:52:50,788 - INFO - 🚀 Deploying:
+2026-09-14 18:52:50,789 - INFO - Services: ['currency_service:5053', 'product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:52:50,789 - INFO - Agents: ['recommendation_agent:5058']
+2026-09-14 18:52:50,789 - INFO - 
+2026-09-14 18:52:50,789 - INFO - 🚀 Deploying:
+2026-09-14 18:52:50,789 - INFO - Services: ['currency_service:5053', 'product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'email_service:5056', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:52:50,789 - INFO - Agents: ['shipping_agent:5051']
+2026-09-14 18:52:50,789 - INFO - 
+2026-09-14 18:52:50,789 - INFO - 🚀 Deploying:
+2026-09-14 18:52:50,789 - INFO - Services: ['currency_service:5053', 'product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'payment_service:5052', 'checkout_service:5050']
+2026-09-14 18:52:50,789 - INFO - Agents: ['email_agent:5056']
+2026-09-14 18:52:50,789 - INFO - 
+2026-09-14 18:52:50,792 - INFO - 🚀 Deploying:
+2026-09-14 18:52:50,792 - INFO - Services: ['currency_service:5053', 'product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'checkout_service:5050']
+2026-09-14 18:52:50,792 - INFO - Agents: ['payment_agent:5052']
+2026-09-14 18:52:50,792 - INFO - 
+2026-09-14 18:52:50,792 - INFO - 🚀 Deploying:
+2026-09-14 18:52:50,792 - INFO - Services: ['currency_service:5053', 'product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052']
+2026-09-14 18:52:50,792 - INFO - Agents: ['checkout_agent:5050']
