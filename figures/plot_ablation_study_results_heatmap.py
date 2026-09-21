@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
 from matplotlib import cm
 import matplotlib as mpl
+from matplotlib.transforms import blended_transform_factory
 
 
 # ==========================================================
@@ -383,22 +384,41 @@ ax.set_yticks([])
 for s in ax.spines.values():
     s.set_visible(False)
 
-# Vertical separators between metric groups
+# # Vertical separators between metric groups
+# for x in range(3, len(metrics) * 3, 3):
+#     ax.axvline(
+#         x,
+#         color='gray',
+#         linestyle='--',
+#         linewidth=1.2,
+#         alpha=0.9,
+#         zorder=0
+#     )
+    
+# Create a blended transform: x-axis in data coordinates, y-axis in axes fractions
+transform = blended_transform_factory(ax.transData, ax.transAxes)
+
+# Vertical separators between metric groups, extending above the top
 for x in range(3, len(metrics) * 3, 3):
-    ax.axvline(
-        x,
+    ax.plot(
+        [x, x],
+        [0.0, 1.15],         # y-coordinates: 0.0 (bottom) to 1.15 (15% above the top)
+        transform=transform,
         color='gray',
         linestyle='--',
-        linewidth=1.2,
+        linewidth=1.4,
         alpha=0.9,
-        zorder=0
+        zorder=0,
+        clip_on=False        # Essential: allows drawing outside the axes bounding box
     )
+    
 # mpl.rcParams["font.family"] = "STIXGeneral"
 # mpl.rcParams["mathtext.fontset"] = "stix"
 plt.rcParams.update({
-    "text.usetex": True,
+    "text.usetex": False,
     "font.family": "serif",
-    "font.serif": ["Computer Modern"]
+    "font.serif": ["Computer Modern Roman", "DejaVu Serif"],
+    "mathtext.fontset": "cm"  # Forces native matplotlib math to use Computer Modern
 })
 
 plt.tight_layout()

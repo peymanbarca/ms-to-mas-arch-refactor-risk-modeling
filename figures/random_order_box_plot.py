@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import random
-
+import json
+import os
 
 # ============================================================
 # Random migration-order results
@@ -11,12 +12,18 @@ import random
 # microservice system for one random migration order.
 # ============================================================
 
-qa_random = [random.uniform(6.5, 15.7) for _ in range(50)]
 
-latency_random = [random.uniform(22.7, 37.7) for _ in range(50)]
-
-failure_random = [random.uniform(22.6, 31.5) for _ in range(50)]
-
+# read from random order execution folder
+executions = []
+for file in os.listdir('../refactored_architecture/google_ms/results/Random'):
+    results_file = os.path.join('../refactored_architecture/google_ms/results/Random', file)
+    with open(results_file, 'r') as f:
+        step_results = f.read().split('------------')
+        executions.append(step_results)
+        
+qa_random = []
+latency_random = []
+failure_random = []
 
 data = [
     qa_random,
