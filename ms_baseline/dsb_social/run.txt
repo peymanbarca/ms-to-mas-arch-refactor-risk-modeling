@@ -1,1 +1,1 @@
-python3 -m ms_baseline.dsb_social.exp_runner --trials 1 --concurrency 1
+python3 -m ms_baseline.dsb_social.exp_runner --trials 5000 --concurrency 100

@@ -180,7 +180,7 @@ for i, architecture in enumerate(architecture_names):
 
 ax1.set_ylabel(r"$U_{\max}(\mathcal{A})$", fontsize=13, fontweight="bold")
 ax2.set_ylabel(r"$\sum \Delta QA^{pp}$", fontsize=13, fontweight="bold")
-ax3.set_ylabel(r"Agentification Coverage", fontsize=13, fontweight="bold")
+ax3.set_ylabel(r"Agentification Ratio", fontsize=13, fontweight="bold")
 
 # X-ticks only on the bottom plot due to sharex=True
 ax3.set_xticks(x)

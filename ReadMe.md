@@ -249,7 +249,10 @@ The target architecture is also deployed in the same way and be evaluated by the
 
 ### 2. The Strangler pattern evaluations
 
-At each step, deploy the target (hybrid) architecture using to former deployment shell script (deploy-local.sh).
+At each step, deploy the target (hybrid) architecture using to former deployment shell script (deploy-local.sh). However, two version of each component should be deployed: 
+
+- For each step, the target agentification component should be deployed as both service (v1) and agent (v2) on different ports to handle traffic sharing among service and agent version. 
+- For other components of each step, the component should be deployed for both v1 and v2 on different ports as agent if it was previously accepted to be agentified, otherwise both as service.
 
 #### Local functional testing
 Incrementally migrate each service, but at each step only performs local functional testing for the migrating service (by running **local_experiment_runner.py script** in each agent folder in each benchmark in the refactored architecture folder), rather than system wide regression analysis (former exp_runner.py script).
