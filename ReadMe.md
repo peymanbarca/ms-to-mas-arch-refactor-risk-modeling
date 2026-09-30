@@ -249,6 +249,7 @@ The target architecture is also deployed in the same way and be evaluated by the
 
 **The migration can be integrated with our framework (incremental stepwise predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.**
 For this purpose, you should manually deploy the steps of the given fixed architecture proposals based on ranked order obtained previously for each benchmark, and at each step manually run exp_runner of each benchmark to obtain the step acceptance.
+Each full migration cycle towards the proposed hybrid architecture should be performed 30 times to obtain statistical results.
 
 ### 2. The Strangler pattern evaluations
 
@@ -257,7 +258,7 @@ At each step, deploy the target (hybrid) architecture using to former deployment
 - For each step, the target agentification component should be deployed as both service (v1) and agent (v2) on different ports to handle traffic sharing among service and agent version. 
 - For other components of each step, the component should be deployed for both v1 and v2 on different ports as agent if it was previously accepted to be agentified, otherwise both as service.
 
-#### Local functional testing
+#### With Local functional testing
 Strangler pattern incrementally migrate each service, but at each step only performs local functional testing for the migrating service (by running **local_experiment_runner.py script** in each agent folder in each benchmark in the refactored architecture folder), rather than system wide regression analysis (former exp_runner.py script).
 
 The results at this stage should be manually tested for each functional testing of each migrating service at each step to accept or reject that step.
