@@ -21,12 +21,6 @@ arch_umax = {
         "B3": [125, 135, 105, 105]
     },
 
-    # "Best Ordinary": {
-    #     "B1": [200, 215, 140, 140],
-    #     "B2": [155, 150, 110, 110],
-    #     "B3": [115, 120, 95, 95]
-    # },
-    
     "Orchestrator agent \n only [5]": {
         "B1": [220, 215, 130, 130],
         "B2": [125, 140, 95, 95],
@@ -123,11 +117,6 @@ arch_delta = {
         "B3": [7, 12, 0, 0]
     },
 
-    # "Best Ordinary": {
-    #     "B1": [0, 3, 0, 0],
-    #     "B2": [4, 7, 1, 1],
-    #     "B3": [11, 19, 0, 0]
-    # },
     
     "Orchestrator agent \n only [5]": {
         "B1": [0, 3, 0, 0],
@@ -221,11 +210,6 @@ arch_cov = {
         "B3": [0.66, 0.5, 0.58, 0.58]
     },
 
-    # "Best Ordinary": {
-    #     "B1": [1, 0.88, 0.66, 0.66],
-    #     "B2": [0.7, 0.7, 0.5, 0.5],
-    #     "B3": [0.58, 0.42, 0.5, 0.5]
-    # },
 
     "Orchestrator agent \n only [5]": {
         "B1": [0.11, 0.11, 0.11, 0.11],
@@ -398,7 +382,7 @@ def generate_synthetic_data(
                     else:
                         values = rng.normal(
                                                    center,
-                                                   0.05,
+                                                   0.00,
                                                    n_runs
                                                )
 
@@ -689,121 +673,123 @@ for row_idx, metric in enumerate(
                                     "B3": "green"
                                 }
 
-                violin = ax.violinplot(
+                if min(values) != max(values):
+                    violin = ax.violinplot(
 
-                    values,
+                        values,
 
-                    positions=[
-                        x_position
-                    ],
+                        positions=[
+                            x_position
+                        ],
 
-                    widths=0.12,
+                        widths=0.12,
 
-                    showmeans=False,
+                        showmeans=False,
 
-                    showmedians=True,
+                        showmedians=True,
 
-                    showextrema=True
-                )
-
-
-                # ------------------------------------------------
-                # Appearance
-                # ------------------------------------------------
-
-                for body in violin[
-                    "bodies"
-                ]:
-
-
-                    body.set_facecolor(
-                        benchmark_colors[benchmark]
-                    )
-    
-                    body.set_alpha(
-                        0.65
-                    )
-
-                    body.set_hatch(
-                        hatches[
-                            benchmark_idx
-                        ]
-                    )
-
-                    body.set_edgecolor(
-                        "black"
+                        showextrema=True
                     )
 
 
-                # Median
-                violin[
-                    "cmedians"
-                ].set_linewidth(
-                    1.2
-                )
+                    # ------------------------------------------------
+                    # Appearance
+                    # ------------------------------------------------
+
+                    for body in violin[
+                        "bodies"
+                    ]:
 
 
-                # Min/max
-                violin[
-                    "cmins"
-                ].set_linewidth(
-                    0.8
-                )
+                        body.set_facecolor(
+                            benchmark_colors[benchmark]
+                        )
+        
+                        body.set_alpha(
+                            0.85
+                        )
 
-                violin[
-                    "cmaxes"
-                ].set_linewidth(
-                    0.8
-                )
+                        body.set_hatch(
+                            hatches[
+                                benchmark_idx
+                            ]
+                        )
 
-                violin[
-                    "cbars"
-                ].set_linewidth(
-                    0.8
-                )
+                        body.set_edgecolor(
+                            "black"
+                        )
 
 
-                benchmark_color = benchmark_colors[benchmark]
+                    # Median
+                    violin[
+                        "cmedians"
+                    ].set_linewidth(
+                        1.2
+                    )
 
-                violin["cmedians"].set_color(
-                    benchmark_color
-                )
 
-                violin["cmins"].set_color(
-                    benchmark_color
-                )
+                    # Min/max
+                    violin[
+                        "cmins"
+                    ].set_linewidth(
+                        1
+                    )
 
-                violin["cmaxes"].set_color(
-                    benchmark_color
-                )
+                    violin[
+                        "cmaxes"
+                    ].set_linewidth(
+                        1
+                    )
 
-                violin["cbars"].set_color(
-                    benchmark_color
-                )
+                    violin[
+                        "cbars"
+                    ].set_linewidth(
+                        0.8
+                    )
+
+
+                    benchmark_color = benchmark_colors[benchmark]
+
+                    violin["cmedians"].set_color(
+                        benchmark_color
+                    )
+
+                    violin["cmins"].set_color(
+                        benchmark_color
+                    )
+
+                    violin["cmaxes"].set_color(
+                        benchmark_color
+                    )
+
+                    violin["cbars"].set_color(
+                        benchmark_color
+                    )
+                else:
 
                 # ------------------------------------------------
                 # Original reported value
                 # ------------------------------------------------
 
-                # reference = subset[
-                #     "Reference"
-                # ].iloc[0]
+                    reference = subset[
+                        "Reference"
+                    ].iloc[0]
 
 
-                # ax.scatter(
+                    ax.scatter(
 
-                #     x_position,
+                        x_position,
 
-                #     reference,
+                        reference,
 
-                #     marker="o",
+                        marker="o",
 
-                #     s=12,
+                        s=12,
 
-                #     color="black",
+                        color=benchmark_colors[benchmark],
 
-                #     zorder=5
-                # )
+                        zorder=5
+                    )
 
 
         # ====================================================
@@ -847,7 +833,7 @@ for row_idx, metric in enumerate(
 
         if row_idx == 0:
 
-            title_fontsize = 16
+            title_fontsize = 20
 
             ax.set_title(
 
@@ -871,9 +857,8 @@ for row_idx, metric in enumerate(
 
                 metric["label"],
 
-                fontsize=18,
+                fontsize=22,
 
-                fontweight="bold"
             )
 
 
@@ -902,7 +887,7 @@ for ax in axes1[1, :]:
     )   
     ax.tick_params(
         axis='y', 
-        labelsize=16  
+        labelsize=18  
     )
 
 
@@ -915,7 +900,7 @@ for ax in axes1[2, :]:
     )
     ax.tick_params(
         axis='y', 
-        labelsize=16 
+        labelsize=18 
     )
 
 
@@ -928,7 +913,7 @@ fig1.text(
     0.02,
     r"Runtime setting: $M_S$ = Small Model (3B), $M_L$ = Large Model (8B), $T_L$ = Low Temperature, $T_H$ = High Temperature",
     ha="center",
-    fontsize=18,
+    fontsize=20,
     fontweight="bold"
 )
 
@@ -997,12 +982,12 @@ fig1.legend(
 
     bbox_to_anchor=(
         0.5,
-        0.985
+        0.99
     ),
 
     ncol=4,
 
-    fontsize=16,
+    fontsize=19,
 
     frameon=True
 )
@@ -1098,13 +1083,13 @@ plt.subplots_adjust(
 
     top=0.85,
 
-    wspace=0.18,
+    wspace=0.1,
 
     hspace=0.1
 )
 
 
-plt.savefig("baselines_violin_heuristic.png", dpi=400, bbox_inches="tight")
+plt.savefig("baselines_violin_heuristic.png", dpi=600, bbox_inches="tight")
 # plt.show()
 
 
@@ -1253,121 +1238,123 @@ for row_idx, metric in enumerate(
                                     "B3": "green"
                                 }
 
-                violin = ax.violinplot(
+                if min(values) != max(values):
+                    violin = ax.violinplot(
 
-                    values,
+                        values,
 
-                    positions=[
-                        x_position
-                    ],
+                        positions=[
+                            x_position
+                        ],
 
-                    widths=0.12,
+                        widths=0.12,
 
-                    showmeans=False,
+                        showmeans=False,
 
-                    showmedians=True,
+                        showmedians=True,
 
-                    showextrema=True
-                )
-
-
-                # ------------------------------------------------
-                # Appearance
-                # ------------------------------------------------
-
-                for body in violin[
-                    "bodies"
-                ]:
-
-
-                    body.set_facecolor(
-                        benchmark_colors[benchmark]
-                    )
-    
-                    body.set_alpha(
-                        0.65
-                    )
-
-                    body.set_hatch(
-                        hatches[
-                            benchmark_idx
-                        ]
-                    )
-
-                    body.set_edgecolor(
-                        "black"
+                        showextrema=True
                     )
 
 
-                # Median
-                violin[
-                    "cmedians"
-                ].set_linewidth(
-                    1.2
-                )
+                    # ------------------------------------------------
+                    # Appearance
+                    # ------------------------------------------------
+
+                    for body in violin[
+                        "bodies"
+                    ]:
 
 
-                # Min/max
-                violin[
-                    "cmins"
-                ].set_linewidth(
-                    0.8
-                )
+                        body.set_facecolor(
+                            benchmark_colors[benchmark]
+                        )
+        
+                        body.set_alpha(
+                            0.85
+                        )
 
-                violin[
-                    "cmaxes"
-                ].set_linewidth(
-                    0.8
-                )
+                        body.set_hatch(
+                            hatches[
+                                benchmark_idx
+                            ]
+                        )
 
-                violin[
-                    "cbars"
-                ].set_linewidth(
-                    0.8
-                )
+                        body.set_edgecolor(
+                            "black"
+                        )
 
 
-                benchmark_color = benchmark_colors[benchmark]
+                    # Median
+                    violin[
+                        "cmedians"
+                    ].set_linewidth(
+                        1.2
+                    )
 
-                violin["cmedians"].set_color(
-                    benchmark_color
-                )
 
-                violin["cmins"].set_color(
-                    benchmark_color
-                )
+                    # Min/max
+                    violin[
+                        "cmins"
+                    ].set_linewidth(
+                        1
+                    )
 
-                violin["cmaxes"].set_color(
-                    benchmark_color
-                )
+                    violin[
+                        "cmaxes"
+                    ].set_linewidth(
+                        1
+                    )
 
-                violin["cbars"].set_color(
-                    benchmark_color
-                )
+                    violin[
+                        "cbars"
+                    ].set_linewidth(
+                        0.8
+                    )
+
+
+                    benchmark_color = benchmark_colors[benchmark]
+
+                    violin["cmedians"].set_color(
+                        benchmark_color
+                    )
+
+                    violin["cmins"].set_color(
+                        benchmark_color
+                    )
+
+                    violin["cmaxes"].set_color(
+                        benchmark_color
+                    )
+
+                    violin["cbars"].set_color(
+                        benchmark_color
+                    )
+                else:
 
                 # ------------------------------------------------
                 # Original reported value
                 # ------------------------------------------------
 
-                # reference = subset[
-                #     "Reference"
-                # ].iloc[0]
+                    reference = subset[
+                        "Reference"
+                    ].iloc[0]
 
 
-                # ax.scatter(
+                    ax.scatter(
 
-                #     x_position,
+                        x_position,
 
-                #     reference,
+                        reference,
 
-                #     marker="o",
+                        marker="o",
 
-                #     s=12,
+                        s=12,
 
-                #     color="black",
+                        color=benchmark_colors[benchmark],
 
-                #     zorder=5
-                # )
+                        zorder=5
+                    )
 
 
         # ====================================================
@@ -1411,7 +1398,7 @@ for row_idx, metric in enumerate(
 
         if row_idx == 0:
 
-            title_fontsize = 16
+            title_fontsize = 17
 
             ax.set_title(
 
@@ -1435,9 +1422,8 @@ for row_idx, metric in enumerate(
 
                 metric["label"],
 
-                fontsize=18,
+                fontsize=20,
 
-                fontweight="bold"
             )
 
 
@@ -1466,7 +1452,7 @@ for ax in axes2[1, :]:
     )   
     ax.tick_params(
         axis='y', 
-        labelsize=16  
+        labelsize=18  
     )
 
 
@@ -1479,7 +1465,7 @@ for ax in axes2[2, :]:
     )
     ax.tick_params(
         axis='y', 
-        labelsize=16 
+        labelsize=18 
     )
 
 
@@ -1492,7 +1478,7 @@ fig2.text(
     0.02,
     r"Runtime setting: $M_S$ = Small Model (3B), $M_L$ = Large Model (8B), $T_L$ = Low Temperature, $T_H$ = High Temperature",
     ha="center",
-    fontsize=18,
+    fontsize=20,
     fontweight="bold"
 )
 
@@ -1561,15 +1547,16 @@ fig2.legend(
 
     bbox_to_anchor=(
         0.5,
-        0.985
+        0.99
     ),
 
     ncol=4,
 
-    fontsize=16,
+    fontsize=19,
 
     frameon=True
 )
+
 
 
 # ============================================================
@@ -1663,11 +1650,11 @@ plt.subplots_adjust(
 
     top=0.85,
 
-    wspace=0.18,
+    wspace=0.1,
 
     hspace=0.1
 )
 
 
-plt.savefig("baselines_violin_strangler.png", dpi=400, bbox_inches="tight")
+plt.savefig("baselines_violin_strangler.png", dpi=600, bbox_inches="tight")
 # plt.show()

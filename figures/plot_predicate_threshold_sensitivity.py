@@ -43,7 +43,7 @@ metrics = [
 
 labels = [
     # "Agentification\nRatio",
-    r"$N_{RB}$",
+    r"$    N_{RB}$",
     r"$QA$",
     r"$L_{p95}$",
     r"$F$",
@@ -246,7 +246,7 @@ def plot_all_benchmarks(B1, B2, B3):
     fig, axes = plt.subplots(
         3,
         4,
-        figsize=(10.5, 8.5),
+        figsize=(12, 8),
         subplot_kw={"polar": True}
     )
 
@@ -399,7 +399,7 @@ def plot_all_benchmarks(B1, B2, B3):
                         color=color
                     )
                 elif value_text != '0%':
-                    if value_text > '100':
+                    if int(value_text) > 50:
                         ax.annotate(
                             value_text,
                             xy=(angle, norm_value),
@@ -414,7 +414,7 @@ def plot_all_benchmarks(B1, B2, B3):
                          ax.annotate(
                             value_text,
                             xy=(angle, norm_value),
-                            xytext=(3, 0),
+                            xytext=(3, 4),
                             textcoords="offset points",
                             ha="left",
                             va="bottom",
@@ -533,7 +533,7 @@ def plot_all_benchmarks(B1, B2, B3):
         top=0.94,
         bottom=0.04,
         hspace=0.2,
-        wspace=0.25
+        wspace=0.15
     )
 
     plt.savefig(
@@ -542,7 +542,7 @@ def plot_all_benchmarks(B1, B2, B3):
         bbox_inches="tight"
     )
 
-    plt.show()
+    # plt.show()
 
 
 # ============================================================

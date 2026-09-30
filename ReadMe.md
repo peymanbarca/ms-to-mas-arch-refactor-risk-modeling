@@ -97,7 +97,7 @@ The ollama server should be installed first, then ready to be started (with infe
 
 There is a **deploy-local.sh** script in the deploy_orchestration folder for each benchmark, which receives the list of service (with ports) and agents to deploy each component as service or AI agent.  
 
-## Deployment of microservice baseline and gather metrics
+## Deployment of microservice baseline and gather its metrics
 
 1-  **Google Online Boutique Microservices**
 
@@ -145,7 +145,7 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
 -----------------------------
 
 
-## Ablation Study
+# Ablation Study
 
 ### Running migration loops for all internal baselines, by deployment of hybrid architectures (at each migration step) and gather step-wise and complete metrics 
 
@@ -197,7 +197,9 @@ For each migration step for each of baselines or the proposed method, the target
     # the full evaluation results will be gathered in refactored_architecture/dsb_social/results folder, separately under subfolder named with each ranking strategy.
 ```
 
-### Step 2: Aggregate and analyze ablation results
+### Step 2: Aggregate and analyze ablation results 
+
+To obtain gain of the proposed method compared to alternative weaker internal strategies: e.g. partial predicate/governance or other migration orders.
 
 1-  **Google Online Boutique Microservices**
 
@@ -238,14 +240,15 @@ For each migration step for each of baselines or the proposed method, the target
 
 --------------------------
 
-# Evaluate scalability envelope and external baselines final architecture viability
+# Evaluate external baselines final architecture viability (scalability envelope and agentification ratio)
 
 For each baseline, the resulting final architecture should be deployed (using deploy-local.sh script which allows deploy any component as service or agent), and the workload experiment runner (available for each benchmark in its folder in refactored_architecture folder) should be executed on the architecture with varying concurrency level (u) (starting 10 and go up by 5 each time) to find the u_max (maximum concurrency level which the final architecture is still accepted).
 
-### 1. External baselines (hybrid architecture proposals) evaluations:
+### 1. External baselines (hybrid architecture proposals: orchestrator, non-orchestrator, user-interacting agentification methods) evaluations:
 The target architecture is also deployed in the same way and be evaluated by the same workload experiment runner, as late-stage evaluation (by using former exp_runner.py script). So there's no step-wise regression test for these baselines nor incremental migration. The evolution is all at once with only one system regression.
 
 **The migration can be integrated with our framework (incremental stepwise predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.**
+For this purpose, you should manually deploy the steps of the given fixed architecture proposals based on ranked order obtained previously for each benchmark, and at each step manually run exp_runner of each benchmark to obtain the step acceptance.
 
 ### 2. The Strangler pattern evaluations
 
@@ -255,13 +258,14 @@ At each step, deploy the target (hybrid) architecture using to former deployment
 - For other components of each step, the component should be deployed for both v1 and v2 on different ports as agent if it was previously accepted to be agentified, otherwise both as service.
 
 #### Local functional testing
-Incrementally migrate each service, but at each step only performs local functional testing for the migrating service (by running **local_experiment_runner.py script** in each agent folder in each benchmark in the refactored architecture folder), rather than system wide regression analysis (former exp_runner.py script).
+Strangler pattern incrementally migrate each service, but at each step only performs local functional testing for the migrating service (by running **local_experiment_runner.py script** in each agent folder in each benchmark in the refactored architecture folder), rather than system wide regression analysis (former exp_runner.py script).
 
-The results at this stage should be manually tested for each functional testing of each migrating service at each step.
+The results at this stage should be manually tested for each functional testing of each migrating service at each step to accept or reject that step.
 
 #### Integration with our stabilization framework
 
-**The migration itself is incremental but with arbitrary order and local functional regression analysis at the component level, and can be integrated with our framework (predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.**
+**The migration itself is incremental but with arbitrary order and local functional regression analysis at the component level, and can be integrated with our framework (predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.** 
+For system-wide regression analysis purpose, use exp_runner_strangler.py for experiment runner that generates workload to be distributed among services and agents for each component based on a predefined rate. 
 
 --------------------------
 
@@ -305,3 +309,6 @@ The results at this stage should be manually tested for each functional testing 
 ```
 
 
+## Run Predicate Threshold Sensitivity Analysis
+
+Should change the thresholds based on 4 given policies (latency-first, QA-first, permissive) in **cycle using run_full_migration_cycle_once.py** for each benchmark available in deploy_orchestration folder, to run full migration cycle with given thresholds and obtain the final architecture for each policy.
