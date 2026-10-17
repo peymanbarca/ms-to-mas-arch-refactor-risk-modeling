@@ -94,7 +94,7 @@ def add_gain_box(ax, x1, x2, y, text, box_y_offset=0.0):
         ha="center",
         va="center",
         color=ours_color,
-        fontsize=11,
+        fontsize=13,
         bbox=dict(
             boxstyle="round,pad=0.28",
             facecolor="white",
@@ -186,7 +186,7 @@ def plot_panel(
         is_last = (i == len(y) - 1)
         
         # Set custom offset and alignment for the last row if desired
-        text_offset = (yi - 0.22) if is_last else (yi - 0.1)
+        text_offset = (yi - 0.24) if is_last else (yi - 0.1)
         rotation = 0 if is_last else 90
         va_align = "bottom" if is_last else "top"
 
@@ -197,9 +197,9 @@ def plot_panel(
             f"{baseline[i]:.1f}",
             ha="center",
             va=va_align,
-            fontsize=13.5,
+            fontsize=14.5,
             rotation=rotation,
-            color=baseline_color
+            color='red'
         )
 
         # ours value
@@ -209,9 +209,9 @@ def plot_panel(
             f"{ours[i]:.1f}",
             ha="center",
             va=va_align,
-            fontsize=13.5,
+            fontsize=14.5,
             rotation=rotation,
-            color=ours_color
+            color='blue'
         )
 
         add_gain_box(
@@ -233,7 +233,7 @@ def plot_panel(
 
     ax.tick_params(axis="y", length=0)
     axes[1].tick_params(axis="y", labelleft=False)
-    axes[0].tick_params(axis="y", labelsize=16, rotation=15)
+    axes[0].tick_params(axis="y", labelsize=16, rotation=45)
 
     # REDUCED VERTICAL MARGINS HERE (from 0.15 to 0.08)
     ax.margins(y=0.08)
@@ -251,7 +251,7 @@ plot_panel(
     methods,
     umax_annotations,
     xlabel=r"$U_{\max}$",
-    title=r"Scalability Envelope Gain ($U_{\max} \uparrow$)",
+    title=r"Supported Concurrency Gain ($U_{\max} \uparrow$)",
     xlim=(0, 210),
     xticks=np.arange(0, 211, 25)
 )
@@ -282,7 +282,7 @@ legend_handles = [
         [0], [0],
         marker="o",
         linestyle="None",
-        markersize=9,
+        markersize=11,
         markerfacecolor="white",
         markeredgecolor=baseline_color,
         markeredgewidth=2,
@@ -292,7 +292,7 @@ legend_handles = [
         [0], [0],
         marker="o",
         linestyle="None",
-        markersize=9,
+        markersize=11,
         markerfacecolor="white",
         markeredgecolor=ours_color,
         markeredgewidth=2,
@@ -304,12 +304,12 @@ fig.legend(
     handles=legend_handles,
     loc="lower center",
     ncol=2,
-    frameon=False,
-    fancybox=False,
-    bbox_to_anchor=(0.5, -0.05),
+    frameon=True,
+    fancybox=True,
+    bbox_to_anchor=(0.5, -0.1),
     handletextpad=0.5,
     columnspacing=1.5,
-    prop={"size": 18, "family": "serif"}
+    prop={"size": 20, "family": "serif"}
 )
 
 # ============================================================
@@ -318,7 +318,7 @@ fig.legend(
 plt.tight_layout(rect=[0, 0.06, 1, 1])
 
 plt.savefig(
-    "stabilization_framework_gain.png",
+    "generated_figs/stabilization_framework_gain.png",
     dpi=600,
     bbox_inches="tight"
 )

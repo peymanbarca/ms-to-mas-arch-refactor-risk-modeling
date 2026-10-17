@@ -11,7 +11,7 @@ from matplotlib.lines import Line2D
 policies = [
     "Latency-first", # (97%, 40%)
     "QA-first", # (100%, 130%)
-    "Permissive", # (97%, 130%)
+    "Permissive (Relaxed)", # (97%, 130%)
     "Default", # (100%, 90%)
 ]
 
@@ -23,7 +23,7 @@ policies = [
 policy_colors = {
     "Latency-first": "#0072B2",
     "QA-first": "#E69F00",
-    "Permissive": "black",
+    "Permissive (Relaxed)": "black",
     "Default": "#009E73",
 }
 
@@ -59,7 +59,7 @@ B1 = pd.DataFrame({
     "Policy": [
         "Latency-first",
         "QA-first",
-        "Permissive",
+        "Permissive (Relaxed)",
         "Default",
     ],
 
@@ -430,7 +430,8 @@ def plot_all_benchmarks(B1, B2, B3):
 
             ax.set_xticklabels(
                 labels,
-                fontsize=9
+                fontsize=9,
+                fontweight="bold"
             )
 
             # =================================================
@@ -470,32 +471,32 @@ def plot_all_benchmarks(B1, B2, B3):
 
                 policy_title += (
                     "\n"
-                    + r"$(\tau_{QA}=97\%,\ "
-                    r"\epsilon_L=1.4\times L^{MS}_{p95})$"
+                    + r"$(\tau_{QA}=0.97,\ "
+                    r"\epsilon_L=0.4)$"
                 )
 
             elif policy_title == "QA-first":
 
                 policy_title += (
                     "\n"
-                    + r"$(\tau_{QA}=100\%,\ "
-                    r"\epsilon_L=2.3\times L^{MS}_{p95})$"
+                    + r"$(\tau_{QA}=1,\ "
+                    r"\epsilon_L=1.3)$"
                 )
 
-            elif policy_title == "Permissive":
+            elif policy_title == "Permissive (Relaxed)":
 
                 policy_title += (
                     "\n"
-                    + r"$(\tau_{QA}=97\%,\ "
-                    r"\epsilon_L=2.3\times L^{MS}_{p95})$"
+                    + r"$(\tau_{QA}=0.97,\ "
+                    r"\epsilon_L=1.3)$"
                 )
 
             elif policy_title == "Default":
 
                 policy_title += (
                     "\n"
-                    + r"$(\tau_{QA}=100\%,\ "
-                    r"\epsilon_L=1.9\times L^{MS}_{p95})$"
+                    + r"$(\tau_{QA}=1,\ "
+                    r"\epsilon_L=0.9)$"
                 )
 
             if row_idx == 0:
@@ -537,7 +538,7 @@ def plot_all_benchmarks(B1, B2, B3):
     )
 
     plt.savefig(
-        "predicate_threshold_sensitivity.png",
+        "generated_figs/predicate_threshold_sensitivity.png",
         dpi=400,
         bbox_inches="tight"
     )

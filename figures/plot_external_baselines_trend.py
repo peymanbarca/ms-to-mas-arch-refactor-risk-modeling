@@ -327,7 +327,7 @@ plt.subplots_adjust(
     top=0.90
 )
 
-plt.savefig("baselines_u_max.png", dpi=400, bbox_inches="tight")
+plt.savefig("generated_figs/baselines_u_max.png", dpi=400, bbox_inches="tight")
 plt.show()
 
 # ------------------------------------------------------------------------------------
@@ -602,7 +602,7 @@ plt.subplots_adjust(
     top=0.90
 )
 
-plt.savefig("baselines_delta_qa.png", dpi=400, bbox_inches="tight")
+plt.savefig("generated_figs/baselines_delta_qa.png", dpi=400, bbox_inches="tight")
 plt.show()
 
 
@@ -877,5 +877,5 @@ plt.subplots_adjust(
     top=0.90
 )
 
-plt.savefig("baselines_mig_cov.png", dpi=400, bbox_inches="tight")
+plt.savefig("generated_figs/baselines_mig_cov.png", dpi=400, bbox_inches="tight")
 plt.show()

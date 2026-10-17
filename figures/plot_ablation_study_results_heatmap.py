@@ -10,18 +10,32 @@ from matplotlib.transforms import blended_transform_factory
 # Data
 # ==========================================================
 
+# row_titles = [
+#     "Overall",
+#     "Risk-aware migration order\n",
+#     "Temporal propagation\n",
+#     "Two-tier governance\n"
+# ]
+
+# row_desc = [
+#     "(8 vs. all 568 alternative \n ordinary baselines)",
+#     "(96 vs. 480 static/random \n ordered baselines)",
+#     "(vs. fully static ordered baseline)",
+#     "(192 vs. 384 partial / \n non-governed baselines)"
+# ]
+
 row_titles = [
-    "Overall",
-    "Risk-aware migration order\n",
-    "Temporal propagation\n",
-    "Two-tier governance\n"
+    "",
+    "",
+    "",
+    ""
 ]
 
 row_desc = [
-    "(8 vs. all 568 alternative \n ordinary baselines)",
-    "(96 vs. 480 static/random \n ordered baselines)",
-    "(vs. fully static ordered baseline)",
-    "(192 vs. 384 partial / \n non-governed baselines)"
+    "",
+    "",
+    "",
+    ""
 ]
 
 qa_values = np.array([
@@ -230,7 +244,7 @@ benchmarks = ["B1","B2","B3"]
 # Plot settings
 # ==========================================================
 
-fig, ax = plt.subplots(figsize=(18,3.8))
+fig, ax = plt.subplots(figsize=(14,3.8))
 
 ax.set_xlim(0, len(metrics)*3)
 ax.set_ylim(0, len(row_titles))
@@ -417,12 +431,12 @@ for x in range(3, len(metrics) * 3, 3):
 plt.rcParams.update({
     "text.usetex": False,
     "font.family": "serif",
-    "font.serif": ["Computer Modern Roman", "DejaVu Serif"],
+    "font.serif": ["Times New Roman", "DejaVu Serif"],
     "mathtext.fontset": "cm"  # Forces native matplotlib math to use Computer Modern
 })
 
 plt.tight_layout()
 
-plt.savefig("heatmap_contributions.png", dpi=400, bbox_inches="tight")
+plt.savefig("generated_figs/heatmap_contributions.png", dpi=600, bbox_inches="tight")
 
 plt.show()

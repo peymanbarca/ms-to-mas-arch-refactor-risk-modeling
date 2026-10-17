@@ -1,5 +1,5 @@
 {
-    "benchmark": "google_ms",
+    "benchmark": "retailben",
     "predicates": {
         "qa": true,
         "qa_threshold": "100",
@@ -33,48 +33,53 @@
     "ranked_services": [
         {
             "rank": "1",
-            "service": "Currency",
-            "score": "0.000"
+            "service": "Notification",
+            "score": "0.029"
         },
         {
             "rank": "2",
-            "service": "Product Catalog",
-            "score": "0.023"
+            "service": "Pricing",
+            "score": "0.045"
         },
         {
             "rank": "3",
-            "service": "Ad",
-            "score": "0.075"
+            "service": "Payment",
+            "score": "0.058"
         },
         {
             "rank": "4",
-            "service": "Cart",
-            "score": "0.088"
+            "service": "Subscription",
+            "score": "0.106"
         },
         {
             "rank": "5",
-            "service": "Recommendation",
-            "score": "0.096"
+            "service": "Shopping Cart",
+            "score": "0.148"
         },
         {
             "rank": "6",
-            "service": "Shipping",
-            "score": "0.122"
-        },
-        {
-            "rank": "7",
-            "service": "Email",
+            "service": "Inventory",
             "score": "0.177"
         },
         {
+            "rank": "7",
+            "service": "Product Catalog",
+            "score": "0.273"
+        },
+        {
             "rank": "8",
-            "service": "Payment",
-            "score": "0.288"
+            "service": "Procurement",
+            "score": "0.398"
         },
         {
             "rank": "9",
-            "service": "Checkout",
-            "score": "0.800"
+            "service": "Shipment",
+            "score": "0.407"
+        },
+        {
+            "rank": "10",
+            "service": "Order",
+            "score": "0.635"
         }
     ]
 }

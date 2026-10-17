@@ -6360,3 +6360,131 @@
 2026-09-14 18:52:50,792 - INFO - 🚀 Deploying:
 2026-09-14 18:52:50,792 - INFO - Services: ['currency_service:5053', 'product_catalog_service:5055', 'ad_service:5057', 'cart_service:5054', 'recommendation_service:5058', 'shipping_service:5051', 'email_service:5056', 'payment_service:5052']
 2026-09-14 18:52:50,792 - INFO - Agents: ['checkout_agent:5050']
+2026-10-07 12:13:03,654 - INFO - run_experiment thread started.
+2026-10-07 12:13:03,664 - INFO - previous log file trimmed.
+2026-10-07 12:13:03,667 - INFO - Calling str(BASE_DIR) + f'/deploy_orchestration/retailben/live_progressive_refactor_orchestrator.py' with config: {"benchmark": "retailben", "predicates": {"qa": true, "qa_threshold": "100", "latency": true, "latency_threshold": "90", "failure": true, "failure_threshold": "2"}, "governance_mode": "human", "governance_thresholds": {"beta": "30", "gmid": "20", "deltaL": "10", "deltaSLO": "0.5", "deltaTProp": "0.1", "gpost": "30"}, "runtime": {"model": "llama3.2:3b", "temperature": 0, "R": 5000, "concurrency": 20}, "ranking_weights": {"fanout": 0.2, "bc": 0.2, "ccyl": 0.2, "ccog": 0.2, "tprop": 0.2}, "ranked_services": [{"rank": "1", "service": "Notification", "score": "0.029"}, {"rank": "2", "service": "Pricing", "score": "0.045"}, {"rank": "3", "service": "Payment", "score": "0.058"}, {"rank": "4", "service": "Subscription", "score": "0.106"}, {"rank": "5", "service": "Shopping Cart", "score": "0.148"}, {"rank": "6", "service": "Inventory", "score": "0.177"}, {"rank": "7", "service": "Product Catalog", "score": "0.273"}, {"rank": "8", "service": "Procurement", "score": "0.398"}, {"rank": "9", "service": "Shipment", "score": "0.407"}, {"rank": "10", "service": "Order", "score": "0.635"}]} 
+2026-10-07 12:13:03,802 - INFO - 
+2026-10-07 12:13:06,425 - INFO - Experiments:   0%|          | 0/1 [00:00<?, ?it/s]
+2026-10-07 12:13:06,425 - INFO - 🚀 Deploying:
+2026-10-07 12:13:06,425 - INFO - Services: ['pricing_service:8002', 'payment_service:8007', 'subscription_service:8010', 'shopping_cart_service:8003', 'inventory_service:8001', 'product_catalog_service:8008', 'procurement_service:8009', 'shipment_service:8006', 'order_service:8000']
+2026-10-07 12:13:06,425 - INFO - Agents: ['notification_agent:8011']
+2026-10-07 12:13:06,426 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/log_telemetry_res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-10-07 12:13:06,426 - INFO - 
+2026-10-07 12:13:06,426 - INFO - ================================================================================
+2026-10-07 12:13:06,426 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-10-07 12:13:06,426 - INFO - ================================================================================
+2026-10-07 12:13:06,426 - INFO - 
+2026-10-07 12:13:06,426 - INFO - 📋 Step 1: notification_service
+2026-10-07 12:13:06,426 - INFO - Predicate Decision: ACCEPT
+2026-10-07 12:13:06,426 - INFO - 
+2026-10-07 12:13:06,426 - INFO - ⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-10-07 12:13:06,426 - INFO - 
+2026-10-07 12:13:06,426 - INFO - --------------------------------------------------------------------------------
+2026-10-07 12:13:06,426 - INFO - EXECUTION METRICS & EVIDENCE
+2026-10-07 12:13:06,426 - INFO - --------------------------------------------------------------------------------
+2026-10-07 12:13:06,426 - INFO - 
+2026-10-07 12:13:06,426 - INFO - 📊 Core Metrics:
+2026-10-07 12:13:06,426 - INFO - 
+2026-10-07 12:13:06,426 - INFO -   QUALITY ASSURANCE
+2026-10-07 12:13:06,427 - INFO -     Actual:        0.0000
+2026-10-07 12:13:06,427 - INFO -     Threshold:     0.0000
+2026-10-07 12:13:06,427 - INFO -     Tolerance:     ±0.0000
+2026-10-07 12:13:06,427 - INFO -     Status:        ✓ PASS
+2026-10-07 12:13:06,427 - INFO - 
+2026-10-07 12:13:06,427 - INFO -   LATENCY P95
+2026-10-07 12:13:06,427 - INFO -     Actual:        1.055s
+2026-10-07 12:13:06,427 - INFO -     Threshold:     1.900s
+2026-10-07 12:13:06,427 - INFO -     Tolerance:     ±0.100s
+2026-10-07 12:13:06,427 - INFO -     Status:        ✓ PASS
+2026-10-07 12:13:06,427 - INFO - 
+2026-10-07 12:13:06,427 - INFO -   FAILURE RATE
+2026-10-07 12:13:06,427 - INFO -     Actual:        0.0000
+2026-10-07 12:13:06,427 - INFO -     Threshold:     0.0200
+2026-10-07 12:13:06,427 - INFO -     Tolerance:     ±0.0050
+2026-10-07 12:13:06,427 - INFO -     Status:        ✓ PASS
+2026-10-07 12:13:06,427 - INFO - 
+2026-10-07 12:13:06,427 - INFO - 🔍 Risk Assessment:
+2026-10-07 12:13:06,428 - INFO -   Temporal Propagation: 0.000 (tolerance: 0.100)
+2026-10-07 12:13:06,428 - INFO -   Status: LOW RISK
+2026-10-07 12:13:06,428 - INFO - 
+2026-10-07 12:13:06,428 - INFO - 📈 Violation Analysis:
+2026-10-07 12:13:06,428 - INFO -   Violation Duration: 533.56 trials
+2026-10-07 12:13:06,428 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-10-07 12:13:06,428 - INFO -   Classification: TRANSIENT
+2026-10-07 12:13:06,428 - INFO - 
+2026-10-07 12:13:06,429 - INFO - ================================================================================
+2026-10-07 12:13:06,429 - INFO - ADJUDICATION DECISION
+2026-10-07 12:13:06,429 - INFO - ================================================================================
+2026-10-07 12:13:06,429 - INFO - ✅ Predicate ACCEPTED this step.
+2026-10-07 12:13:06,429 - INFO - However, you may decide it be a false acceptance.
+2026-10-07 12:13:06,429 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-10-07 12:13:06,429 - INFO - 
+2026-10-07 12:18:14,816 - INFO - HITL response sent to experiment: A
+2026-10-07 12:18:17,304 - INFO - Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help):
+2026-10-07 12:18:17,304 - INFO - 🚀 Deploying:
+2026-10-07 12:18:17,304 - INFO - Services: ['payment_service:8007', 'subscription_service:8010', 'shopping_cart_service:8003', 'inventory_service:8001', 'product_catalog_service:8008', 'procurement_service:8009', 'shipment_service:8006', 'order_service:8000']
+2026-10-07 12:18:17,305 - INFO - Agents: ['notification_agent:8011', 'pricing_agent:8002']
+2026-10-07 12:18:17,305 - INFO - Analyzing log telemetry from: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/refactored_architecture/retailben/results/log_telemetry_res_LLM_llama3.2:3b_T_0.0_U_20.json to estimate post-action audit violation duration...
+2026-10-07 12:18:17,305 - INFO - 
+2026-10-07 12:18:17,305 - INFO - ================================================================================
+2026-10-07 12:18:17,306 - INFO - POST-ACTION ADJUDICATION REVIEW
+2026-10-07 12:18:17,306 - INFO - ================================================================================
+2026-10-07 12:18:17,306 - INFO - 
+2026-10-07 12:18:17,306 - INFO - 📋 Step 2: pricing_service
+2026-10-07 12:18:17,306 - INFO - Predicate Decision: ACCEPT
+2026-10-07 12:18:17,306 - INFO - 
+2026-10-07 12:18:17,306 - INFO - ⚠️  WARNING: You are in Human-in-the-Loop mode. Please review the evidence and make a decision.
+2026-10-07 12:18:17,306 - INFO - 
+2026-10-07 12:18:17,306 - INFO - --------------------------------------------------------------------------------
+2026-10-07 12:18:17,306 - INFO - EXECUTION METRICS & EVIDENCE
+2026-10-07 12:18:17,306 - INFO - --------------------------------------------------------------------------------
+2026-10-07 12:18:17,306 - INFO - 
+2026-10-07 12:18:17,307 - INFO - 📊 Core Metrics:
+2026-10-07 12:18:17,307 - INFO - 
+2026-10-07 12:18:17,307 - INFO -   QUALITY ASSURANCE
+2026-10-07 12:18:17,307 - INFO -     Actual:        0.0000
+2026-10-07 12:18:17,307 - INFO -     Threshold:     0.0000
+2026-10-07 12:18:17,307 - INFO -     Tolerance:     ±0.0000
+2026-10-07 12:18:17,307 - INFO -     Status:        ✓ PASS
+2026-10-07 12:18:17,307 - INFO - 
+2026-10-07 12:18:17,307 - INFO -   LATENCY P95
+2026-10-07 12:18:17,307 - INFO -     Actual:        1.223s
+2026-10-07 12:18:17,307 - INFO -     Threshold:     1.900s
+2026-10-07 12:18:17,307 - INFO -     Tolerance:     ±0.100s
+2026-10-07 12:18:17,307 - INFO -     Status:        ✓ PASS
+2026-10-07 12:18:17,307 - INFO - 
+2026-10-07 12:18:17,308 - INFO -   FAILURE RATE
+2026-10-07 12:18:17,308 - INFO -     Actual:        0.0025
+2026-10-07 12:18:17,308 - INFO -     Threshold:     0.0200
+2026-10-07 12:18:17,308 - INFO -     Tolerance:     ±0.0050
+2026-10-07 12:18:17,308 - INFO -     Status:        ✓ PASS
+2026-10-07 12:18:17,308 - INFO - 
+2026-10-07 12:18:17,308 - INFO - 🔍 Risk Assessment:
+2026-10-07 12:18:17,308 - INFO -   Temporal Propagation: 0.003 (tolerance: 0.100)
+2026-10-07 12:18:17,308 - INFO -   Status: LOW RISK
+2026-10-07 12:18:17,308 - INFO - 
+2026-10-07 12:18:17,308 - INFO - 📈 Violation Analysis:
+2026-10-07 12:18:17,308 - INFO -   Violation Duration: 494.42 trials
+2026-10-07 12:18:17,308 - INFO -   Grace Window: 1500.0 trials (30%)
+2026-10-07 12:18:17,308 - INFO -   Classification: TRANSIENT
+2026-10-07 12:18:17,308 - INFO - 
+2026-10-07 12:18:17,308 - INFO - ================================================================================
+2026-10-07 12:18:17,308 - INFO - ADJUDICATION DECISION
+2026-10-07 12:18:17,309 - INFO - ================================================================================
+2026-10-07 12:18:17,309 - INFO - ✅ Predicate ACCEPTED this step.
+2026-10-07 12:18:17,309 - INFO - However, you may decide it be a false acceptance.
+2026-10-07 12:18:17,309 - INFO - You should decide to OVERRIDE the acceptance to REJECT this step, or CONFIRM this acceptance?
+2026-10-07 12:18:17,309 - INFO - 
+2026-10-07 12:29:11,859 - INFO - Type 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help):
+2026-10-07 12:29:11,860 - INFO - Experiments: 100%|██████████| 1/1 [16:08<00:00, 968.06s/it]
+2026-10-07 12:29:11,860 - INFO - Experiments: 100%|██████████| 1/1 [16:08<00:00, 968.06s/it]
+2026-10-07 12:29:11,860 - INFO - Traceback (most recent call last):
+2026-10-07 12:29:11,861 - INFO -   File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/deploy_orchestration/retailben/live_progressive_refactor_orchestrator.py", line 563, in <module>
+2026-10-07 12:29:11,861 - INFO -     run_experiment_for_step(migration_order_strategy, step, predicate_mode, governance_policy,
+2026-10-07 12:29:11,861 - INFO -   File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/deploy_orchestration/retailben/live_progressive_refactor_orchestrator.py", line 426, in run_experiment_for_step
+2026-10-07 12:29:11,862 - INFO -     final_decision, decision_type, evidence_summary, prediction_category = post_action_adjudicator.adjudicate_step(
+2026-10-07 12:29:11,862 - INFO -   File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/deploy_orchestration/retailben/post_action_adjudication.py", line 241, in adjudicate_step
+2026-10-07 12:29:11,868 - INFO -     human_verdict, decision_type = self._get_human_adjudication(
+2026-10-07 12:29:11,869 - INFO -   File "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/deploy_orchestration/retailben/post_action_adjudication.py", line 527, in _get_human_adjudication
+2026-10-07 12:29:11,870 - INFO -     response = input("\nType 'A' to Accept this migration step or 'R' to Reject it (or 'H' for help): ").strip().upper()
+2026-10-07 12:29:11,871 - INFO - KeyboardInterrupt

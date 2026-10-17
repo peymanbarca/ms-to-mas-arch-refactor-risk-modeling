@@ -463,5 +463,5 @@ fig.text(
 plt.tight_layout(
     rect=[0, 0.03, 1, 0.97]
 )
-plt.savefig("mid_execution_temporal_violation_patterns_otl.png", dpi=400, bbox_inches="tight")
+plt.savefig("generated_figs/mid_execution_temporal_violation_patterns_otl.png", dpi=400, bbox_inches="tight")
 plt.show()

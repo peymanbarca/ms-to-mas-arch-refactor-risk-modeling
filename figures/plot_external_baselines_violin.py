@@ -21,7 +21,7 @@ arch_umax = {
         "B3": [125, 135, 105, 105]
     },
 
-    "Orchestrator agent \n only [5]": {
+    "Orchestrator agent \n only": {
         "B1": [220, 215, 130, 130],
         "B2": [125, 140, 95, 95],
         "B3": [80, 90, 75, 75]
@@ -30,34 +30,34 @@ arch_umax = {
 
 
 
-    "Non-Orchestrator \n agents [5]": {
+    "Non-Orchestrator \n agents": {
         "B1": [215, 215, 125, 125],
         "B2": [140, 140, 80, 80],
         "B3": [75, 75, 50, 50]
     },
 
 
-    "User-interacting \n agents [6]": {
+    "User-interacting \n agents": {
         "B1": [235, 235, 155, 155],
         "B2": [185, 185, 150, 150],
         "B3": [145, 145, 120, 120]
     },
 
 
-    "Orchestrator agent \n + System Regression": {
+    "Orchestrator agent \n + Joint acceptance": {
         "B1": [220, 285, 130, 130],
         "B2": [205, 205, 205, 205],
         "B3": [165, 165, 165, 165]
     },
     
     
-    "Non-Orchestrator \n + Integration": {
+    "Non-Orchestrator \n + Augmentation": {
         "B1": [215, 215, 155, 155],
         "B2": [165, 165, 120, 120],
         "B3": [125, 135, 105, 105]
     },
     
-    "User-interacting \n + Integration": {
+    "User-interacting \n + Augmentation": {
         "B1": [235, 235, 175, 165],
         "B2": [185, 185, 165, 170],
         "B3": [145, 155, 145, 140]
@@ -67,37 +67,37 @@ arch_umax = {
 
 
     
-    "Strangler pattern \n (vanilla, 90%) [24]": {
+    "Baseline": {
         "B1": [200, 200, 110, 110],
         "B2": [120, 140, 70, 70],
         "B3": [75, 80, 35, 35]
     },
 
-    " Strangler pattern (90%) \n + Risk-aware ordering": {
+    "Baseline + Runtime \n agentification ordering": {
         "B1": [200, 215, 125, 125],
         "B2": [140, 145, 90, 90],
         "B3": [105, 115, 50, 55]
     },
 
-    "  Strangler pattern (90%) \n + System Regression": {
+    "Baseline \n + Joint acceptance": {
         "B1": [200, 215, 135, 135],
         "B2": [145, 150, 95, 95],
         "B3": [120, 125, 80, 80]
     },
     
-    "Strangler pattern \n (vanilla, 50%) [24]": {
+    " Baseline.": {
         "B1": [235, 230, 185, 190],
         "B2": [155, 170, 125, 125],
         "B3": [105, 115, 75, 75]
     },
 
-    " Strangler pattern (50%) \n + Risk-aware ordering": {
+    " Baseline. + Runtime \n agentification ordering": {
         "B1": [150, 245, 205, 205],
         "B2": [165, 175, 150, 150],
         "B3": [120, 130, 105, 110]
     },
 
-    "  Strangler pattern (50%) \n + System Regression": {
+    " Baseline. \n + Joint acceptance": {
         "B1": [255, 250, 220, 220],
         "B2": [175, 185, 165, 165],
         "B3": [130, 135, 120, 125]
@@ -118,7 +118,7 @@ arch_delta = {
     },
 
     
-    "Orchestrator agent \n only [5]": {
+    "Orchestrator agent \n only": {
         "B1": [0, 3, 0, 0],
         "B2": [4, 6, 0, 0],
         "B3": [11, 17, 0, 0]
@@ -126,31 +126,31 @@ arch_delta = {
     
 
 
-    "Non-Orchestrator \n agents [5]": {
+    "Non-Orchestrator \n agents": {
         "B1": [0, 0, 0, 0],
         "B2": [2, 2, 1, 1],
         "B3": [3, 5, 0, 0]
     },
     
-    "User-interacting \n agents [6]": {
+    "User-interacting \n agents": {
         "B1": [0, 0, 0, 0],
         "B2": [0, 0, 0, 0],
         "B3": [0, 3, 0, 0]
     },
     
-    "Orchestrator agent \n + System Regression": {
+    "Orchestrator agent \n + Joint acceptance": {
         "B1": [0, 3, 0, 0],
         "B2": [4, 6, 0, 0],
         "B3": [11, 17, 0, 0]
     },
 
-    "Non-Orchestrator \n + Integration": {
+    "Non-Orchestrator \n + Augmentation": {
         "B1": [0, 0, 0, 0],
         "B2": [1, 1, 1, 1],
         "B3": [2, 4, 0, 0]
     },
     
-    "User-interacting \n + Integration": {
+    "User-interacting \n + Augmentation": {
         "B1": [0, 0, 0, 0],
         "B2": [0, 0, 0, 0],
         "B3": [0, 3, 0, 0]
@@ -160,37 +160,37 @@ arch_delta = {
 
 
 
-    "Strangler pattern \n (vanilla, 90%) [24]": {
+    "Baseline": {
         "B1": [0, 4, 0, 0],
         "B2": [5, 9, 1, 1],
         "B3": [13, 20, 0, 0]
     },
 
-    " Strangler pattern (90%) \n + Risk-aware ordering": {
+    "Baseline + Runtime \n agentification ordering": {
         "B1": [0, 3, 0, 0],
         "B2": [3, 6, 1, 1],
         "B3": [8, 14, 0, 0]
     },
 
-    "  Strangler pattern (90%) \n + System Regression": {
+    "Baseline \n + Joint acceptance": {
         "B1": [0, 3, 0, 0],
         "B2": [5, 8, 1, 1],
         "B3": [11, 16, 0, 0]
     },
     
-    "Strangler pattern \n (vanilla, 50%) [24]": {
+    " Baseline.": {
         "B1": [0, 1, 0, 0],
         "B2": [3, 4, 0, 1],
         "B3": [7, 8, 0, 0]
     },
 
-    " Strangler pattern (50%) \n + Risk-aware ordering": {
+    " Baseline. + Runtime \n agentification ordering": {
         "B1": [0, 1, 0, 0],
         "B2": [1, 2, 0, 0],
         "B3": [3, 5, 0, 0]
     },
 
-    "  Strangler pattern (50%) \n + System Regression": {
+    " Baseline. \n + Joint acceptance": {
         "B1": [0, 2, 0, 0],
         "B2": [3, 3, 0, 0],
         "B3": [5, 7, 0, 0]
@@ -211,74 +211,74 @@ arch_cov = {
     },
 
 
-    "Orchestrator agent \n only [5]": {
+    "Orchestrator agent \n only": {
         "B1": [0.11, 0.11, 0.11, 0.11],
         "B2": [0.1, 0.1, 0.1, 0.1],
         "B3": [0.08, 0.08, 0.08, 0.08]
     },
 
-    "Non-Orchestrator \n agents [5]": {
+    "Non-Orchestrator \n agents": {
         "B1": [0.88, 0.88, 0.88, 0.88],
         "B2": [0.9, 0.9, 0.9, 0.9],
         "B3": [0.91, 0.91, 0.91, 0.91]
     },
         
-    "User-interacting \n agents [6]": {
+    "User-interacting \n agents": {
         "B1": [0.66, 0.66, 0.66, 0.66],
         "B2": [0.3, 0.3, 0.3, 0.3],
         "B3": [0.33, 0.33, 0.33, 0.33]
     },
 
-    "Orchestrator agent \n + System Regression": {
+    "Orchestrator agent \n + Joint acceptance": {
         "B1": [0.11, 0, 0.11, 0.11],
         "B2": [0, 0, 0, 0],
         "B3": [0, 0, 0, 0]
     },
     
-    "Non-Orchestrator \n + Integration": {
+    "Non-Orchestrator \n + Augmentation": {
         "B1": [0.88, 0.88, 0.77, 0.77],
         "B2": [0.8, 0.8, 0.6, 0.6],
         "B3": [0.66, 0.5, 0.58, 0.58]
     },
     
-    "User-interacting \n + Integration": {
+    "User-interacting \n + Augmentation": {
         "B1": [0.66, 0.66, 0.55, 0.55],
         "B2": [0.3, 0.3, 0.2, 0.2],
         "B3": [0.33, 0.2, 0.25, 0.25]
     },
 
 
-    "Strangler pattern \n (vanilla, 90%) [24]": {
+    "Baseline": {
         "B1": [1, 1, 1, 1],
         "B2": [1, 0.9, 1, 1],
         "B3": [0.91, 0.83, 1, 1]
     },
 
-    " Strangler pattern (90%) \n + Risk-aware ordering": {
+    "Baseline + Runtime \n agentification ordering": {
         "B1": [1, 0.88, 0.88, 0.88],
         "B2": [0.9, 0.9, 0.9, 0.9],
         "B3": [0.83, 0.75, 0.91, 0.91]
     },
 
-    "  Strangler pattern (90%) \n + System Regression": {
+    "Baseline \n + Joint acceptance": {
         "B1": [1, 0.77, 0.55, 0.55],
         "B2": [0.7, 0.7, 0.5, 0.5],
         "B3": [0.83, 0.66, 0.58, 0.58]
     },
     
-    "Strangler pattern \n (vanilla, 50%) [24]": {
+    " Baseline.": {
         "B1": [1, 1, 1, 1],
         "B2": [1, 0.9, 1, 1],
         "B3": [1, 0.83, 1, 1]
     },
 
-    " Strangler pattern (50%) \n + Risk-aware ordering": {
+    " Baseline. + Runtime \n agentification ordering": {
         "B1": [1, 0.88, 0.88, 0.88],
         "B2": [1, 0.9, 0.9, 0.9],
         "B3": [0.91, 0.83, 0.91, 1]
     },
 
-    "  Strangler pattern (50%) \n + System Regression": {
+    " Baseline. \n + Joint acceptance": {
         "B1": [1, 0.88, 0.66, 0.66],
         "B2": [0.9, 0.8, 0.6, 0.6],
         "B3": [0.91, 0.83, 0.66, 0.75]
@@ -543,7 +543,7 @@ fig1, axes1 = plt.subplots(
 
     ncols=len(architectures_part1),
 
-    figsize=(24, 12),
+    figsize=(26, 12),
 
     sharex=True,
     sharey='row'
@@ -569,19 +569,19 @@ metric_info = [
 
     {
         "name": "Umax",
-        "label": r"$U_{\max}(\mathcal{A}^{Final})$",
+        "label": "Supported \n Concurrency \n" + r"$U_{\max}(\mathcal{A}^{Final})$",
         "data": df_umax
     },
 
     {
         "name": "DeltaQA",
-        "label": r"$\Sigma\Delta QA^{pp}$",
+        "label": "Cumulative \n consistency \n disturbance (pp)",
         "data": df_delta
     },
 
     {
         "name": "Coverage",
-        "label": "Agentification \n Ratio",
+        "label": "Agentification \n Coverage",
         "data": df_cov
     }
 
@@ -858,6 +858,7 @@ for row_idx, metric in enumerate(
                 metric["label"],
 
                 fontsize=22,
+                fontweight="bold",
 
             )
 
@@ -1026,10 +1027,11 @@ fig1.add_artist(category_line)
 fig1.text(
     x_center,
     y_line + 0.008,
-    "Heuristic Selection",
+    "Role-based strategies",
     ha="center",
     va="bottom",
-    fontsize=16,
+    fontsize=19,
+    fontweight="bold",
     transform=fig1.transFigure
 )
 
@@ -1061,10 +1063,11 @@ fig1.add_artist(category_line)
 fig1.text(
     x_center,
     y_line + 0.008,
-    "Heuristic Selection + Integration",
+    "Role-based strategies + Augmentation",
     ha="center",
     va="bottom",
-    fontsize=16,
+    fontsize=19,
+    fontweight="bold",
     transform=fig1.transFigure
 )
 
@@ -1089,7 +1092,7 @@ plt.subplots_adjust(
 )
 
 
-plt.savefig("baselines_violin_heuristic.png", dpi=600, bbox_inches="tight")
+plt.savefig("generated_figs/baselines_violin_heuristic.png", dpi=400, bbox_inches="tight")
 # plt.show()
 
 
@@ -1134,19 +1137,19 @@ metric_info = [
 
     {
         "name": "Umax",
-        "label": r"$U_{\max}(\mathcal{A}^{Final})$",
+        "label": "Supported \n Concurrency \n" + r"$U_{\max}(\mathcal{A}^{Final})$",
         "data": df_umax
     },
 
     {
         "name": "DeltaQA",
-        "label": r"$\Sigma\Delta QA^{pp}$",
+        "label": "Cumulative \n consistency \n disturbance (pp)",
         "data": df_delta
     },
 
     {
         "name": "Coverage",
-        "label": "Agentification \n Ratio",
+        "label": "Agentification \n Coverage",
         "data": df_cov
     }
 
@@ -1423,6 +1426,8 @@ for row_idx, metric in enumerate(
                 metric["label"],
 
                 fontsize=20,
+                fontweight="bold",
+
 
             )
 
@@ -1440,7 +1445,7 @@ for ax in axes2[0, :]:
     ax.tick_params(axis='y', labelrotation=0)
     ax.tick_params(
         axis='y', 
-        labelsize=16  
+        labelsize=16
     )
 
 
@@ -1452,7 +1457,7 @@ for ax in axes2[1, :]:
     )   
     ax.tick_params(
         axis='y', 
-        labelsize=18  
+        labelsize=18
     )
 
 
@@ -1553,7 +1558,7 @@ fig2.legend(
     ncol=4,
 
     fontsize=19,
-
+    fancybox=True,
     frameon=True
 )
 
@@ -1592,10 +1597,11 @@ fig2.add_artist(category_line)
 fig2.text(
     x_center,
     y_line + 0.008,
-    "Strangler Pattern (90% traffic routing to agents)",
+    "Strangler-based configurations: 90% agent traffic",
     ha="center",
     va="bottom",
-    fontsize=16,
+    fontsize=19,
+    fontweight="bold",
     transform=fig2.transFigure
 )
 
@@ -1628,10 +1634,11 @@ fig2.add_artist(category_line)
 fig2.text(
     x_center,
     y_line + 0.008,
-    "Strangler Pattern (50% traffic routing to agents)",
+    "Strangler-based configurations: 50% agent traffic",
     ha="center",
     va="bottom",
-    fontsize=16,
+    fontsize=19,
+    fontweight="bold",
     transform=fig2.transFigure
 )
 
@@ -1656,5 +1663,5 @@ plt.subplots_adjust(
 )
 
 
-plt.savefig("baselines_violin_strangler.png", dpi=600, bbox_inches="tight")
+plt.savefig("generated_figs/baselines_violin_strangler.png", dpi=400, bbox_inches="tight")
 # plt.show()

@@ -195,5 +195,5 @@ plt.subplots_adjust(
     hspace=0.15
 )
 
-plt.savefig("baselines_trend.png", dpi=400, bbox_inches="tight")
+plt.savefig("generated_figs/baselines_trend.png", dpi=400, bbox_inches="tight")
 plt.show()

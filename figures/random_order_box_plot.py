@@ -69,6 +69,10 @@ metrics_data = {
     }
 }
 
+
+with open("generated_figs/random_order_degradation_metrics_data.json", "w") as f:    
+    json.dump(metrics_data, f)
+
 metric_names = ["Invariants Satisfaction", "Latency", "Failure"]
 model_names = ["3B", "8B"]
 benchmark_labels = ["B1", "B2", "B3"]
@@ -129,5 +133,5 @@ for col_idx, metric in enumerate(metric_names):
         ax.set_xlabel("Benchmark", fontweight="bold", fontsize=10)
 
 plt.tight_layout()
-plt.savefig("random_order_degradation_models_benchmarks.png", dpi=400, bbox_inches="tight")
+plt.savefig("generated_figs/random_order_degradation_models_benchmarks.png", dpi=400, bbox_inches="tight")
 plt.show()
