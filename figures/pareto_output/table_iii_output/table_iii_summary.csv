@@ -1,0 +1,16 @@
+benchmark,strategy,strategy_label,median_latency_degradation,median_qa_deviation,median_agentification_coverage,median_failure_rate_degradation,total_pareto_members,median_d_pareto,candidate_count,runtime_condition_count,failure_metric_count
+B1,Orchestrator_only,Orchestrator-only,71.65043083916268,1.1069554774379904,0.1111111111111111,,2,0.6748438543490376,8,8,0
+B1,Non_orchestrator,Non-orchestrator,103.5010122605013,0.0,0.8888888888888888,,2,0.37995758003951074,8,8,0
+B1,User_interacting,User-interacting,67.55347872178368,0.0,0.6666666666666666,,2,0.1527652132037816,8,8,0
+B1,Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,89.83558703639721,0.0,0.8888888888888888,,33,0.24807671423416022,480,8,0
+B1,Pareto_set,Pareto-set,65.49688342765805,0.0,0.8888888888888888,,39,0.0,39,8,0
+B2,Orchestrator_only,Orchestrator-only,76.61651520022646,2.899960306865915,0.1,,0,0.7985814114022207,8,8,0
+B2,Non_orchestrator,Non-orchestrator,114.2650392510468,0.10350397677946638,0.9,,0,0.3806910776630813,8,8,0
+B2,User_interacting,User-interacting,58.24918847586958,0.0,0.3,,2,0.4207652640685197,8,8,0
+B2,Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,73.10071831839801,0.0,0.75,,64,0.116607177184756,480,8,0
+B2,Pareto_set,Pareto-set,68.25477302756019,0.02474442029848637,0.8,,66,0.0,66,8,0
+B3,Orchestrator_only,Orchestrator-only,103.3265523220435,3.9883728042236917,0.08333333333333333,,0,0.9542735513652769,8,8,0
+B3,Non_orchestrator,Non-orchestrator,150.5718439414425,0.18132512178159044,0.9166666666666666,,6,0.0,8,8,0
+B3,User_interacting,User-interacting,89.81353947904955,0.0,0.3333333333333333,,0,0.46808523370490085,8,8,0
+B3,Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,47.05042614875667,0.0,0.5833333333333334,,61,0.09438252204653963,480,8,0
+B3,Pareto_set,Pareto-set,64.70228966548557,0.0,0.75,,67,0.0,67,8,0

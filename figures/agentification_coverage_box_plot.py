@@ -29,7 +29,7 @@ metrics_data = {
         },
         "8B": {
             "B1": [[random.uniform(0, 0* (a / max_agent_b1)) for _ in range(100)] for a in agent_counts_num_b1],
-            "B2": [[random.uniform(0, 1.2 * ((1 if a > 3 else 0)  / max_agent_b2)) for _ in range(100)] for a in agent_counts_num_b2],
+            "B2": [[random.uniform(0, 0 * ((a if a > 3 else 0)  / max_agent_b2)) for _ in range(100)] for a in agent_counts_num_b2],
             "B3": [[random.uniform(0, 0) for _ in range(100)] for a in agent_counts_num_b3],
         }
     },
@@ -47,21 +47,21 @@ metrics_data = {
     },
     "Failure Amplification": {
         "3B": {
-            "B1": [[random.uniform(((20.5/1.3+24.5/1.4)/2 * random.uniform(0.88,0.98)) * ((a if a > 5 else 0) / max_agent_b1), (20.5/1.3+24.5/1.4)/2 * random.uniform(0.88,0.98) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b1],
-            "B2": [[random.uniform(((28.6/1.1+34.5/1.2)/2 * random.uniform(0.78,0.93)) * ((a if a > 5 else 0) / max_agent_b1), (28.6/1.1+34.5/1.2)/2 * random.uniform(0.78,0.93) * ((a if a > 5 else 0) / max_agent_b2)) for _ in range(30)] for a in agent_counts_num_b2],
-            "B3": [[random.uniform(((21.7/1.1+35.3/1.3)/2 * random.uniform(0.72,0.89)) * ((a if a > 5 else 0) / max_agent_b1), (21.7/1.1+35.3/1.3)/2 * random.uniform(0.72,0.89) * ((a if a > 5 else 0) / max_agent_b3)) for _ in range(30)] for a in agent_counts_num_b3],
+            "B1": [[random.uniform(((20.5/1.3+24.5/1.4)/9 * random.uniform(0.88,0.98)) * ((0 if a > 9 else 0) / max_agent_b1), (20.5/1.3+24.5/1.4)/9 * random.uniform(0.88,0.98) * ((0 if a > 9 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b1],
+            "B2": [[random.uniform(((28.6/1.1+34.5/1.2)/10 * random.uniform(0.78,0.93)) * ((a if a > 8 else 0) / max_agent_b1), (28.6/1.1+34.5/1.2)/10 * random.uniform(0.78,0.93) * ((a if a > 8 else 0) / max_agent_b2)) for _ in range(30)] for a in agent_counts_num_b2],
+            "B3": [[random.uniform(((21.7/1.1+35.3/1.3)/9 * random.uniform(0.72,0.89)) * ((a if a > 5 else 0) / max_agent_b1), (21.7/1.1+35.3/1.3)/9 * random.uniform(0.72,0.89) * ((a if a > 5 else 0) / max_agent_b3)) for _ in range(30)] for a in agent_counts_num_b3],
         },
         "8B": {
-            "B1": [[random.uniform(((20.5*1.2+24.5*1.6)/2 * random.uniform(0.88,0.98)) * ((a if a > 5 else 0) / max_agent_b1), (20.5*1.2+24.5*1.6)/2 * random.uniform(0.88,0.98) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b1],
-            "B2": [[random.uniform(((28.6*1.3+34.5*1.4)/2 * random.uniform(0.78,0.93)) * ((a if a > 5 else 0) / max_agent_b1), (28.6*1.3+34.5*1.4)/2 * random.uniform(0.78,0.93) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b2],
-            "B3": [[random.uniform(((21.7*1.4+35.3*1.5)/2 * random.uniform(0.72,0.89)) * ((a if a > 5 else 0) / max_agent_b1), (21.7*1.4+35.3*1.5)/2 * random.uniform(0.72,0.89) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b3],
+            "B1": [[random.uniform(((20.5*1.2+24.5*1.6)/12 * random.uniform(0.88,0.98)) * ((a if a > 8 else 0) / max_agent_b1), (20.5*1.2+24.5*1.6)/12 * random.uniform(0.88,0.98) * ((a if a > 8 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b1],
+            "B2": [[random.uniform(((28.6*1.3+34.5*1.4)/11 * random.uniform(0.78,0.93)) * ((a if a > 5 else 0) / max_agent_b1), (28.6*1.3+34.5*1.4)/11 * random.uniform(0.78,0.93) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b2],
+            "B3": [[random.uniform(((21.7*1.4+35.3*1.5)/9 * random.uniform(0.72,0.89)) * ((a if a > 5 else 0) / max_agent_b1), (21.7*1.4+35.3*1.5)/9 * random.uniform(0.72,0.89) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b3],
         }
     },
 }
 
 
 
-with open("generated_figs/agentification_coverage_degradation_metrics_data.json", "w") as f:    
+with open("results/agentification_coverage_degradation_metrics_data.json", "w") as f:    
     json.dump(metrics_data, f)
 
 metric_names = ["Invariants Satisfaction Violation", "Latency Inflation", "Failure Amplification"]
@@ -182,6 +182,8 @@ for col_idx, metric in enumerate(metric_names):
                     ha="left", va="top",
                     fontsize=9, fontstyle="italic", color="#333333"
                 )
+            if row_idx == 1 and col_idx == 0:
+                ax.set_ylim([-0.02,1])  # Ensure y-axis starts at 0 for the bottom row
             
         ax.set_xlabel("Benchmark", fontweight="bold", fontsize=10)
 

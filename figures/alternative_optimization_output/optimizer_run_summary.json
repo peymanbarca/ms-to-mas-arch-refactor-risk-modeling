@@ -1,0 +1,286 @@
+{
+  "raw_file": "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/figures/results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json",
+  "pareto_file": "/home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/figures/pareto_output/pareto_fronts.json",
+  "pareto_alignment_metrics_added": true,
+  "benchmark_count": 3,
+  "benchmark_runtime_group_count": 24,
+  "runtime_conditions_per_benchmark": {
+    "B1": 8,
+    "B2": 8,
+    "B3": 8
+  },
+  "candidate_count": 1512,
+  "weight_step": 0.1,
+  "strictly_positive_weight_vector_count": 36,
+  "weight_vectors": [
+    {
+      "weight_index": 1,
+      "w_L": 0.1,
+      "w_QA": 0.1,
+      "w_C": 0.8,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 2,
+      "w_L": 0.1,
+      "w_QA": 0.2,
+      "w_C": 0.7,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 3,
+      "w_L": 0.1,
+      "w_QA": 0.3,
+      "w_C": 0.6,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 4,
+      "w_L": 0.1,
+      "w_QA": 0.4,
+      "w_C": 0.5,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 5,
+      "w_L": 0.1,
+      "w_QA": 0.5,
+      "w_C": 0.4,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 6,
+      "w_L": 0.1,
+      "w_QA": 0.6,
+      "w_C": 0.3,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 7,
+      "w_L": 0.1,
+      "w_QA": 0.7,
+      "w_C": 0.2,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 8,
+      "w_L": 0.1,
+      "w_QA": 0.8,
+      "w_C": 0.1,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 9,
+      "w_L": 0.2,
+      "w_QA": 0.1,
+      "w_C": 0.7,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 10,
+      "w_L": 0.2,
+      "w_QA": 0.2,
+      "w_C": 0.6,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 11,
+      "w_L": 0.2,
+      "w_QA": 0.3,
+      "w_C": 0.5,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 12,
+      "w_L": 0.2,
+      "w_QA": 0.4,
+      "w_C": 0.4,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 13,
+      "w_L": 0.2,
+      "w_QA": 0.5,
+      "w_C": 0.3,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 14,
+      "w_L": 0.2,
+      "w_QA": 0.6,
+      "w_C": 0.2,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 15,
+      "w_L": 0.2,
+      "w_QA": 0.7,
+      "w_C": 0.1,
+      "sum": 0.9999999999999999
+    },
+    {
+      "weight_index": 16,
+      "w_L": 0.3,
+      "w_QA": 0.1,
+      "w_C": 0.6,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 17,
+      "w_L": 0.3,
+      "w_QA": 0.2,
+      "w_C": 0.5,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 18,
+      "w_L": 0.3,
+      "w_QA": 0.3,
+      "w_C": 0.4,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 19,
+      "w_L": 0.3,
+      "w_QA": 0.4,
+      "w_C": 0.3,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 20,
+      "w_L": 0.3,
+      "w_QA": 0.5,
+      "w_C": 0.2,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 21,
+      "w_L": 0.3,
+      "w_QA": 0.6,
+      "w_C": 0.1,
+      "sum": 0.9999999999999999
+    },
+    {
+      "weight_index": 22,
+      "w_L": 0.4,
+      "w_QA": 0.1,
+      "w_C": 0.5,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 23,
+      "w_L": 0.4,
+      "w_QA": 0.2,
+      "w_C": 0.4,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 24,
+      "w_L": 0.4,
+      "w_QA": 0.3,
+      "w_C": 0.3,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 25,
+      "w_L": 0.4,
+      "w_QA": 0.4,
+      "w_C": 0.2,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 26,
+      "w_L": 0.4,
+      "w_QA": 0.5,
+      "w_C": 0.1,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 27,
+      "w_L": 0.5,
+      "w_QA": 0.1,
+      "w_C": 0.4,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 28,
+      "w_L": 0.5,
+      "w_QA": 0.2,
+      "w_C": 0.3,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 29,
+      "w_L": 0.5,
+      "w_QA": 0.3,
+      "w_C": 0.2,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 30,
+      "w_L": 0.5,
+      "w_QA": 0.4,
+      "w_C": 0.1,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 31,
+      "w_L": 0.6,
+      "w_QA": 0.1,
+      "w_C": 0.3,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 32,
+      "w_L": 0.6,
+      "w_QA": 0.2,
+      "w_C": 0.2,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 33,
+      "w_L": 0.6,
+      "w_QA": 0.3,
+      "w_C": 0.1,
+      "sum": 0.9999999999999999
+    },
+    {
+      "weight_index": 34,
+      "w_L": 0.7,
+      "w_QA": 0.1,
+      "w_C": 0.2,
+      "sum": 1.0
+    },
+    {
+      "weight_index": 35,
+      "w_L": 0.7,
+      "w_QA": 0.2,
+      "w_C": 0.1,
+      "sum": 0.9999999999999999
+    },
+    {
+      "weight_index": 36,
+      "w_L": 0.8,
+      "w_QA": 0.1,
+      "w_C": 0.1,
+      "sum": 1.0
+    }
+  ],
+  "lexicographic_policies": [
+    "Latency-first",
+    "QA-first",
+    "Autonomy-first"
+  ],
+  "lexicographic_tolerance": {
+    "delta_l": 1.0,
+    "delta_qa": 0.1
+  },
+  "slo_constraint": "disabled by explicit --ignore-slo-constraint",
+  "missing_failure_metric_candidate_count": 1512,
+  "lexicographic_selection_rows_requested": 72,
+  "lexicographic_selection_rows_successful": 72,
+  "weighted_sum_selection_rows_requested": 864,
+  "weighted_sum_selection_rows_successful": 864,
+  "weighted_sum_unique_selected_candidates_global": 90,
+  "note": "Selection rows are optimizer decisions. Multiple weight vectors can select the same candidate, so unique selected architectures can be fewer than the number of weight vectors."
+}

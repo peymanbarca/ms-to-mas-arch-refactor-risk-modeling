@@ -1,0 +1,1922 @@
+{
+  "objectives": {
+    "qa_deviation": "minimize",
+    "latency_degradation": "minimize",
+    "agentification_coverage": "maximize"
+  },
+  "dominance_rule": "A dominates B iff A is no worse in all three objectives and strictly better in at least one; identical objective vectors do not dominate.",
+  "groups": [
+    {
+      "benchmark": "B1",
+      "runtime_condition": "$M_S,T_L,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 6,
+      "pareto_set": [
+        {
+          "candidate_id": "Orchestrator_only",
+          "candidate_uid": "record0:Orchestrator_only",
+          "strategy": "Orchestrator_only",
+          "candidate_index": null,
+          "source_record_index": 0,
+          "qa_deviation": 2.2139109548759808,
+          "latency_degradation": 37.49822993811408,
+          "agentification_coverage": 0.1111111111111111
+        },
+        {
+          "candidate_id": "Non_orchestrator",
+          "candidate_uid": "record0:Non_orchestrator",
+          "strategy": "Non_orchestrator",
+          "candidate_index": null,
+          "source_record_index": 0,
+          "qa_deviation": 0.0,
+          "latency_degradation": 60.83327409521835,
+          "agentification_coverage": 0.8888888888888888
+        },
+        {
+          "candidate_id": "User_interacting",
+          "candidate_uid": "record0:User_interacting",
+          "strategy": "User_interacting",
+          "candidate_index": null,
+          "source_record_index": 0,
+          "qa_deviation": 0.0,
+          "latency_degradation": 45.74533983962477,
+          "agentification_coverage": 0.6666666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[21]",
+          "candidate_uid": "record0:Complexity_ranked_refactoring[21]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 21,
+          "source_record_index": 0,
+          "qa_deviation": 0.0,
+          "latency_degradation": 55.27857624735226,
+          "agentification_coverage": 0.7777777777777778
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[36]",
+          "candidate_uid": "record0:Complexity_ranked_refactoring[36]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 36,
+          "source_record_index": 0,
+          "qa_deviation": 2.2706107432080396,
+          "latency_degradation": 72.23239812119748,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[58]",
+          "candidate_uid": "record0:Complexity_ranked_refactoring[58]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 58,
+          "source_record_index": 0,
+          "qa_deviation": 2.24077360879484,
+          "latency_degradation": 92.95580233922668,
+          "agentification_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "benchmark": "B1",
+      "runtime_condition": "$M_S,T_L,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 5,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[9]",
+          "candidate_uid": "record1:Complexity_ranked_refactoring[9]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 9,
+          "source_record_index": 1,
+          "qa_deviation": 2.216399643086395,
+          "latency_degradation": 76.49642052281912,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[10]",
+          "candidate_uid": "record1:Complexity_ranked_refactoring[10]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 10,
+          "source_record_index": 1,
+          "qa_deviation": 2.814706096074721,
+          "latency_degradation": 74.3193256496538,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[30]",
+          "candidate_uid": "record1:Complexity_ranked_refactoring[30]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 30,
+          "source_record_index": 1,
+          "qa_deviation": 0.0,
+          "latency_degradation": 64.96102553947034,
+          "agentification_coverage": 0.8888888888888888
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[47]",
+          "candidate_uid": "record1:Complexity_ranked_refactoring[47]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 47,
+          "source_record_index": 1,
+          "qa_deviation": 0.0,
+          "latency_degradation": 58.42278688994197,
+          "agentification_coverage": 0.7777777777777778
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[59]",
+          "candidate_uid": "record1:Complexity_ranked_refactoring[59]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 59,
+          "source_record_index": 1,
+          "qa_deviation": 2.210218280290677,
+          "latency_degradation": 103.30499803458999,
+          "agentification_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "benchmark": "B1",
+      "runtime_condition": "$M_S,T_H,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 6,
+      "pareto_set": [
+        {
+          "candidate_id": "Orchestrator_only",
+          "candidate_uid": "record2:Orchestrator_only",
+          "strategy": "Orchestrator_only",
+          "candidate_index": null,
+          "source_record_index": 2,
+          "qa_deviation": 4.875886050841003,
+          "latency_degradation": 31.831725413876505,
+          "agentification_coverage": 0.1111111111111111
+        },
+        {
+          "candidate_id": "Non_orchestrator",
+          "candidate_uid": "record2:Non_orchestrator",
+          "strategy": "Non_orchestrator",
+          "candidate_index": null,
+          "source_record_index": 2,
+          "qa_deviation": 0.0,
+          "latency_degradation": 59.246051510580315,
+          "agentification_coverage": 0.8888888888888888
+        },
+        {
+          "candidate_id": "User_interacting",
+          "candidate_uid": "record2:User_interacting",
+          "strategy": "User_interacting",
+          "candidate_index": null,
+          "source_record_index": 2,
+          "qa_deviation": 0.0,
+          "latency_degradation": 44.22231415485796,
+          "agentification_coverage": 0.6666666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[4]",
+          "candidate_uid": "record2:Complexity_ranked_refactoring[4]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 4,
+          "source_record_index": 2,
+          "qa_deviation": 0.0,
+          "latency_degradation": 55.759943612990845,
+          "agentification_coverage": 0.7777777777777778
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[31]",
+          "candidate_uid": "record2:Complexity_ranked_refactoring[31]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 31,
+          "source_record_index": 2,
+          "qa_deviation": 4.395663158983651,
+          "latency_degradation": 93.48702922580496,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[55]",
+          "candidate_uid": "record2:Complexity_ranked_refactoring[55]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 55,
+          "source_record_index": 2,
+          "qa_deviation": 4.941272727228075,
+          "latency_degradation": 70.45929470159052,
+          "agentification_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "benchmark": "B1",
+      "runtime_condition": "$M_S,T_H,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 7,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[9]",
+          "candidate_uid": "record3:Complexity_ranked_refactoring[9]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 9,
+          "source_record_index": 3,
+          "qa_deviation": 5.737915086616585,
+          "latency_degradation": 76.41280879767605,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[10]",
+          "candidate_uid": "record3:Complexity_ranked_refactoring[10]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 10,
+          "source_record_index": 3,
+          "qa_deviation": 5.206269454566362,
+          "latency_degradation": 81.70572112443824,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[11]",
+          "candidate_uid": "record3:Complexity_ranked_refactoring[11]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 11,
+          "source_record_index": 3,
+          "qa_deviation": 5.164559471824838,
+          "latency_degradation": 82.41325518024637,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[23]",
+          "candidate_uid": "record3:Complexity_ranked_refactoring[23]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 23,
+          "source_record_index": 3,
+          "qa_deviation": 0.0,
+          "latency_degradation": 65.49688342765805,
+          "agentification_coverage": 0.8888888888888888
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[34]",
+          "candidate_uid": "record3:Complexity_ranked_refactoring[34]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 34,
+          "source_record_index": 3,
+          "qa_deviation": 4.5020690847396265,
+          "latency_degradation": 84.99804764175434,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[41]",
+          "candidate_uid": "record3:Complexity_ranked_refactoring[41]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 41,
+          "source_record_index": 3,
+          "qa_deviation": 4.3622693445671334,
+          "latency_degradation": 93.00586068643906,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[43]",
+          "candidate_uid": "record3:Complexity_ranked_refactoring[43]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 43,
+          "source_record_index": 3,
+          "qa_deviation": 0.0,
+          "latency_degradation": 60.23702159770202,
+          "agentification_coverage": 0.7777777777777778
+        }
+      ]
+    },
+    {
+      "benchmark": "B1",
+      "runtime_condition": "$M_L,T_L,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 4,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[19]",
+          "candidate_uid": "record4:Complexity_ranked_refactoring[19]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 19,
+          "source_record_index": 4,
+          "qa_deviation": 0.0,
+          "latency_degradation": 60.63872743640691,
+          "agentification_coverage": 0.7777777777777778
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[26]",
+          "candidate_uid": "record4:Complexity_ranked_refactoring[26]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 26,
+          "source_record_index": 4,
+          "qa_deviation": 0.0,
+          "latency_degradation": 77.0012885695659,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[28]",
+          "candidate_uid": "record4:Complexity_ranked_refactoring[28]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 28,
+          "source_record_index": 4,
+          "qa_deviation": 0.0,
+          "latency_degradation": 71.29977032520763,
+          "agentification_coverage": 0.8888888888888888
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[47]",
+          "candidate_uid": "record4:Complexity_ranked_refactoring[47]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 47,
+          "source_record_index": 4,
+          "qa_deviation": 0.0,
+          "latency_degradation": 52.89476073999994,
+          "agentification_coverage": 0.6666666666666666
+        }
+      ]
+    },
+    {
+      "benchmark": "B1",
+      "runtime_condition": "$M_L,T_L,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 4,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[22]",
+          "candidate_uid": "record5:Complexity_ranked_refactoring[22]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 22,
+          "source_record_index": 5,
+          "qa_deviation": 0.0,
+          "latency_degradation": 63.58087615399584,
+          "agentification_coverage": 0.7777777777777778
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[37]",
+          "candidate_uid": "record5:Complexity_ranked_refactoring[37]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 37,
+          "source_record_index": 5,
+          "qa_deviation": 0.0,
+          "latency_degradation": 70.90377318445013,
+          "agentification_coverage": 0.8888888888888888
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[46]",
+          "candidate_uid": "record5:Complexity_ranked_refactoring[46]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 46,
+          "source_record_index": 5,
+          "qa_deviation": 0.0,
+          "latency_degradation": 55.09016467559344,
+          "agentification_coverage": 0.6666666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[56]",
+          "candidate_uid": "record5:Complexity_ranked_refactoring[56]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 56,
+          "source_record_index": 5,
+          "qa_deviation": 0.0,
+          "latency_degradation": 71.27751893012025,
+          "agentification_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "benchmark": "B1",
+      "runtime_condition": "$M_L,T_H,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 3,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[20]",
+          "candidate_uid": "record6:Complexity_ranked_refactoring[20]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 20,
+          "source_record_index": 6,
+          "qa_deviation": 0.0,
+          "latency_degradation": 59.57151612064252,
+          "agentification_coverage": 0.7777777777777778
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[39]",
+          "candidate_uid": "record6:Complexity_ranked_refactoring[39]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 39,
+          "source_record_index": 6,
+          "qa_deviation": 0.0,
+          "latency_degradation": 76.01298485262848,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[55]",
+          "candidate_uid": "record6:Complexity_ranked_refactoring[55]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 55,
+          "source_record_index": 6,
+          "qa_deviation": 0.0,
+          "latency_degradation": 48.05319033238277,
+          "agentification_coverage": 0.6666666666666666
+        }
+      ]
+    },
+    {
+      "benchmark": "B1",
+      "runtime_condition": "$M_L,T_H,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 4,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[18]",
+          "candidate_uid": "record7:Complexity_ranked_refactoring[18]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 18,
+          "source_record_index": 7,
+          "qa_deviation": 0.0,
+          "latency_degradation": 57.25087294337252,
+          "agentification_coverage": 0.7777777777777778
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[34]",
+          "candidate_uid": "record7:Complexity_ranked_refactoring[34]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 34,
+          "source_record_index": 7,
+          "qa_deviation": 0.0,
+          "latency_degradation": 74.38671767217978,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[35]",
+          "candidate_uid": "record7:Complexity_ranked_refactoring[35]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 35,
+          "source_record_index": 7,
+          "qa_deviation": 0.0,
+          "latency_degradation": 52.54651371869633,
+          "agentification_coverage": 0.6666666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[37]",
+          "candidate_uid": "record7:Complexity_ranked_refactoring[37]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 37,
+          "source_record_index": 7,
+          "qa_deviation": 0.0,
+          "latency_degradation": 66.29358593284272,
+          "agentification_coverage": 0.8888888888888888
+        }
+      ]
+    },
+    {
+      "benchmark": "B2",
+      "runtime_condition": "$M_S,T_L,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 14,
+      "pareto_set": [
+        {
+          "candidate_id": "User_interacting",
+          "candidate_uid": "record8:User_interacting",
+          "strategy": "User_interacting",
+          "candidate_index": null,
+          "source_record_index": 8,
+          "qa_deviation": 0.0,
+          "latency_degradation": 24.900434659478442,
+          "agentification_coverage": 0.3
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[0]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[0]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 0,
+          "source_record_index": 8,
+          "qa_deviation": 0.2104957590221747,
+          "latency_degradation": 63.213585923208896,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[3]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[3]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 3,
+          "source_record_index": 8,
+          "qa_deviation": 0.14870875564347488,
+          "latency_degradation": 68.56167505225723,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[4]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[4]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 4,
+          "source_record_index": 8,
+          "qa_deviation": 0.015843842770258413,
+          "latency_degradation": 101.76233259303535,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[10]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[10]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 10,
+          "source_record_index": 8,
+          "qa_deviation": 0.0,
+          "latency_degradation": 25.83046472801381,
+          "agentification_coverage": 0.6
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[18]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[18]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 18,
+          "source_record_index": 8,
+          "qa_deviation": 0.040423498330571885,
+          "latency_degradation": 76.50354774062532,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[28]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[28]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 28,
+          "source_record_index": 8,
+          "qa_deviation": 0.025492586958448745,
+          "latency_degradation": 68.88982147963695,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[30]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[30]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 30,
+          "source_record_index": 8,
+          "qa_deviation": 0.0,
+          "latency_degradation": 50.34386771887558,
+          "agentification_coverage": 0.7
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[33]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[33]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 33,
+          "source_record_index": 8,
+          "qa_deviation": 7.78146295011372,
+          "latency_degradation": 77.08490432696632,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[37]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[37]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 37,
+          "source_record_index": 8,
+          "qa_deviation": 6.365285489745588,
+          "latency_degradation": 127.28214769917632,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[39]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[39]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 39,
+          "source_record_index": 8,
+          "qa_deviation": 6.4347918705208995,
+          "latency_degradation": 108.0544500054022,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[40]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[40]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 40,
+          "source_record_index": 8,
+          "qa_deviation": 6.674629521738073,
+          "latency_degradation": 80.29849398050672,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[50]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[50]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 50,
+          "source_record_index": 8,
+          "qa_deviation": 8.248960217153856,
+          "latency_degradation": 73.75909282874768,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[54]",
+          "candidate_uid": "record8:Complexity_ranked_refactoring[54]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 54,
+          "source_record_index": 8,
+          "qa_deviation": 0.030171537302095337,
+          "latency_degradation": 101.99985756602256,
+          "agentification_coverage": 0.9
+        }
+      ]
+    },
+    {
+      "benchmark": "B2",
+      "runtime_condition": "$M_S,T_L,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 10,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[1]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[1]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 1,
+          "source_record_index": 9,
+          "qa_deviation": 0.6027606349923954,
+          "latency_degradation": 58.820372352397726,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[2]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[2]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 2,
+          "source_record_index": 9,
+          "qa_deviation": 0.0,
+          "latency_degradation": 33.569343156039075,
+          "agentification_coverage": 0.6
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[7]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[7]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 7,
+          "source_record_index": 9,
+          "qa_deviation": 5.765882110202653,
+          "latency_degradation": 121.55370971809961,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[8]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[8]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 8,
+          "source_record_index": 9,
+          "qa_deviation": 0.0,
+          "latency_degradation": 50.152510152537666,
+          "agentification_coverage": 0.7
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[20]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[20]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 20,
+          "source_record_index": 9,
+          "qa_deviation": 0.09628628155330554,
+          "latency_degradation": 72.46501063602553,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[22]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[22]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 22,
+          "source_record_index": 9,
+          "qa_deviation": 0.24883781209184946,
+          "latency_degradation": 67.94787100286317,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[23]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[23]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 23,
+          "source_record_index": 9,
+          "qa_deviation": 5.813651612018178,
+          "latency_degradation": 74.01012443285782,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[38]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[38]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 38,
+          "source_record_index": 9,
+          "qa_deviation": 0.18490267316207473,
+          "latency_degradation": 71.16881715203232,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[54]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[54]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 54,
+          "source_record_index": 9,
+          "qa_deviation": 0.4473515054081569,
+          "latency_degradation": 66.21553099671706,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[57]",
+          "candidate_uid": "record9:Complexity_ranked_refactoring[57]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 57,
+          "source_record_index": 9,
+          "qa_deviation": 0.41124602529340987,
+          "latency_degradation": 70.27328138798259,
+          "agentification_coverage": 0.9
+        }
+      ]
+    },
+    {
+      "benchmark": "B2",
+      "runtime_condition": "$M_S,T_H,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 14,
+      "pareto_set": [
+        {
+          "candidate_id": "User_interacting",
+          "candidate_uid": "record10:User_interacting",
+          "strategy": "User_interacting",
+          "candidate_index": null,
+          "source_record_index": 10,
+          "qa_deviation": 0.0,
+          "latency_degradation": 25.474042897775448,
+          "agentification_coverage": 0.3
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[11]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[11]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 11,
+          "source_record_index": 10,
+          "qa_deviation": 0.9957200685920272,
+          "latency_degradation": 63.649886375849576,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[13]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[13]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 13,
+          "source_record_index": 10,
+          "qa_deviation": 0.1433547490657328,
+          "latency_degradation": 80.80027602011317,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[15]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[15]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 15,
+          "source_record_index": 10,
+          "qa_deviation": 0.0,
+          "latency_degradation": 31.258552978887515,
+          "agentification_coverage": 0.6
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[17]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[17]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 17,
+          "source_record_index": 10,
+          "qa_deviation": 0.5513748559395104,
+          "latency_degradation": 54.40374098912315,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[31]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[31]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 31,
+          "source_record_index": 10,
+          "qa_deviation": 0.0,
+          "latency_degradation": 53.48221400205793,
+          "agentification_coverage": 0.7
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[33]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[33]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 33,
+          "source_record_index": 10,
+          "qa_deviation": 8.518094641391441,
+          "latency_degradation": 70.27369456479443,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[36]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[36]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 36,
+          "source_record_index": 10,
+          "qa_deviation": 0.8654750841757727,
+          "latency_degradation": 73.19588791426835,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[38]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[38]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 38,
+          "source_record_index": 10,
+          "qa_deviation": 0.023996253638523993,
+          "latency_degradation": 84.26106615536355,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[39]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[39]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 39,
+          "source_record_index": 10,
+          "qa_deviation": 8.387549278308496,
+          "latency_degradation": 121.63508673764464,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[44]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[44]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 44,
+          "source_record_index": 10,
+          "qa_deviation": 8.483240597327727,
+          "latency_degradation": 88.04267092517598,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[50]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[50]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 50,
+          "source_record_index": 10,
+          "qa_deviation": 8.405693481112404,
+          "latency_degradation": 107.30209570517778,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[52]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[52]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 52,
+          "source_record_index": 10,
+          "qa_deviation": 7.972397160070211,
+          "latency_degradation": 130.30413999233892,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[54]",
+          "candidate_uid": "record10:Complexity_ranked_refactoring[54]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 54,
+          "source_record_index": 10,
+          "qa_deviation": 0.26308799792977794,
+          "latency_degradation": 77.91038291895426,
+          "agentification_coverage": 0.9
+        }
+      ]
+    },
+    {
+      "benchmark": "B2",
+      "runtime_condition": "$M_S,T_H,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 8,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[3]",
+          "candidate_uid": "record11:Complexity_ranked_refactoring[3]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 3,
+          "source_record_index": 11,
+          "qa_deviation": 0.13911368121230772,
+          "latency_degradation": 60.827113277521654,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[11]",
+          "candidate_uid": "record11:Complexity_ranked_refactoring[11]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 11,
+          "source_record_index": 11,
+          "qa_deviation": 0.013280140309135985,
+          "latency_degradation": 66.50355703221196,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[22]",
+          "candidate_uid": "record11:Complexity_ranked_refactoring[22]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 22,
+          "source_record_index": 11,
+          "qa_deviation": 0.6537586376195045,
+          "latency_degradation": 57.787173770242866,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[25]",
+          "candidate_uid": "record11:Complexity_ranked_refactoring[25]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 25,
+          "source_record_index": 11,
+          "qa_deviation": 0.0,
+          "latency_degradation": 26.892622142231666,
+          "agentification_coverage": 0.6
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[26]",
+          "candidate_uid": "record11:Complexity_ranked_refactoring[26]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 26,
+          "source_record_index": 11,
+          "qa_deviation": 7.537413453036016,
+          "latency_degradation": 100.94888448619555,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[31]",
+          "candidate_uid": "record11:Complexity_ranked_refactoring[31]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 31,
+          "source_record_index": 11,
+          "qa_deviation": 0.0,
+          "latency_degradation": 55.397139367221214,
+          "agentification_coverage": 0.7
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[33]",
+          "candidate_uid": "record11:Complexity_ranked_refactoring[33]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 33,
+          "source_record_index": 11,
+          "qa_deviation": 9.120675666063168,
+          "latency_degradation": 71.25804081193316,
+          "agentification_coverage": 1.0
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[44]",
+          "candidate_uid": "record11:Complexity_ranked_refactoring[44]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 44,
+          "source_record_index": 11,
+          "qa_deviation": 8.191393738735496,
+          "latency_degradation": 82.42284866401447,
+          "agentification_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "benchmark": "B2",
+      "runtime_condition": "$M_L,T_L,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 5,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[14]",
+          "candidate_uid": "record12:Complexity_ranked_refactoring[14]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 14,
+          "source_record_index": 12,
+          "qa_deviation": 0.0,
+          "latency_degradation": 28.021276733665676,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[40]",
+          "candidate_uid": "record12:Complexity_ranked_refactoring[40]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 40,
+          "source_record_index": 12,
+          "qa_deviation": 0.0,
+          "latency_degradation": 56.54743781718032,
+          "agentification_coverage": 0.7
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[49]",
+          "candidate_uid": "record12:Complexity_ranked_refactoring[49]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 49,
+          "source_record_index": 12,
+          "qa_deviation": 0.0,
+          "latency_degradation": 82.88755941279595,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[50]",
+          "candidate_uid": "record12:Complexity_ranked_refactoring[50]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 50,
+          "source_record_index": 12,
+          "qa_deviation": 0.0,
+          "latency_degradation": 69.73064362192832,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[51]",
+          "candidate_uid": "record12:Complexity_ranked_refactoring[51]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 51,
+          "source_record_index": 12,
+          "qa_deviation": 0.0,
+          "latency_degradation": 28.620332230060335,
+          "agentification_coverage": 0.6
+        }
+      ]
+    },
+    {
+      "benchmark": "B2",
+      "runtime_condition": "$M_L,T_L,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 5,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[8]",
+          "candidate_uid": "record13:Complexity_ranked_refactoring[8]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 8,
+          "source_record_index": 13,
+          "qa_deviation": 0.0,
+          "latency_degradation": 71.56790429234724,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[12]",
+          "candidate_uid": "record13:Complexity_ranked_refactoring[12]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 12,
+          "source_record_index": 13,
+          "qa_deviation": 0.0,
+          "latency_degradation": 23.482744613803753,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[20]",
+          "candidate_uid": "record13:Complexity_ranked_refactoring[20]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 20,
+          "source_record_index": 13,
+          "qa_deviation": 0.0,
+          "latency_degradation": 71.16047503736938,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[40]",
+          "candidate_uid": "record13:Complexity_ranked_refactoring[40]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 40,
+          "source_record_index": 13,
+          "qa_deviation": 0.0,
+          "latency_degradation": 53.953569147740616,
+          "agentification_coverage": 0.7
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[51]",
+          "candidate_uid": "record13:Complexity_ranked_refactoring[51]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 51,
+          "source_record_index": 13,
+          "qa_deviation": 0.0,
+          "latency_degradation": 29.925801324109493,
+          "agentification_coverage": 0.6
+        }
+      ]
+    },
+    {
+      "benchmark": "B2",
+      "runtime_condition": "$M_L,T_H,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 5,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[6]",
+          "candidate_uid": "record14:Complexity_ranked_refactoring[6]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 6,
+          "source_record_index": 14,
+          "qa_deviation": 0.0,
+          "latency_degradation": 23.1361119056379,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[16]",
+          "candidate_uid": "record14:Complexity_ranked_refactoring[16]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 16,
+          "source_record_index": 14,
+          "qa_deviation": 0.0,
+          "latency_degradation": 29.963342773610652,
+          "agentification_coverage": 0.6
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[36]",
+          "candidate_uid": "record14:Complexity_ranked_refactoring[36]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 36,
+          "source_record_index": 14,
+          "qa_deviation": 0.0,
+          "latency_degradation": 62.3503909403614,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[37]",
+          "candidate_uid": "record14:Complexity_ranked_refactoring[37]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 37,
+          "source_record_index": 14,
+          "qa_deviation": 0.0,
+          "latency_degradation": 81.09639763960647,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[58]",
+          "candidate_uid": "record14:Complexity_ranked_refactoring[58]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 58,
+          "source_record_index": 14,
+          "qa_deviation": 0.0,
+          "latency_degradation": 60.82470817654554,
+          "agentification_coverage": 0.7
+        }
+      ]
+    },
+    {
+      "benchmark": "B2",
+      "runtime_condition": "$M_L,T_H,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 5,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[35]",
+          "candidate_uid": "record15:Complexity_ranked_refactoring[35]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 35,
+          "source_record_index": 15,
+          "qa_deviation": 0.0,
+          "latency_degradation": 30.08696851544068,
+          "agentification_coverage": 0.6
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[36]",
+          "candidate_uid": "record15:Complexity_ranked_refactoring[36]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 36,
+          "source_record_index": 15,
+          "qa_deviation": 0.0,
+          "latency_degradation": 63.11395619589724,
+          "agentification_coverage": 0.8
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[53]",
+          "candidate_uid": "record15:Complexity_ranked_refactoring[53]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 53,
+          "source_record_index": 15,
+          "qa_deviation": 0.0,
+          "latency_degradation": 26.506946432632663,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[57]",
+          "candidate_uid": "record15:Complexity_ranked_refactoring[57]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 57,
+          "source_record_index": 15,
+          "qa_deviation": 0.0,
+          "latency_degradation": 74.19510374797252,
+          "agentification_coverage": 0.9
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[58]",
+          "candidate_uid": "record15:Complexity_ranked_refactoring[58]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 58,
+          "source_record_index": 15,
+          "qa_deviation": 0.0,
+          "latency_degradation": 60.21065700297335,
+          "agentification_coverage": 0.7
+        }
+      ]
+    },
+    {
+      "benchmark": "B3",
+      "runtime_condition": "$M_S,T_L,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 9,
+      "pareto_set": [
+        {
+          "candidate_id": "Non_orchestrator",
+          "candidate_uid": "record16:Non_orchestrator",
+          "strategy": "Non_orchestrator",
+          "candidate_index": null,
+          "source_record_index": 16,
+          "qa_deviation": 0.3626502435631809,
+          "latency_degradation": 123.96994828164712,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[1]",
+          "candidate_uid": "record16:Complexity_ranked_refactoring[1]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 1,
+          "source_record_index": 16,
+          "qa_deviation": 0.0,
+          "latency_degradation": 26.775370150338638,
+          "agentification_coverage": 0.5833333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[13]",
+          "candidate_uid": "record16:Complexity_ranked_refactoring[13]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 13,
+          "source_record_index": 16,
+          "qa_deviation": 0.7392254354649461,
+          "latency_degradation": 76.10793700835261,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[20]",
+          "candidate_uid": "record16:Complexity_ranked_refactoring[20]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 20,
+          "source_record_index": 16,
+          "qa_deviation": 0.0,
+          "latency_degradation": 25.60058467577232,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[26]",
+          "candidate_uid": "record16:Complexity_ranked_refactoring[26]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 26,
+          "source_record_index": 16,
+          "qa_deviation": 0.2220567115006316,
+          "latency_degradation": 129.8371708700651,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[37]",
+          "candidate_uid": "record16:Complexity_ranked_refactoring[37]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 37,
+          "source_record_index": 16,
+          "qa_deviation": 0.0,
+          "latency_degradation": 58.356508146341355,
+          "agentification_coverage": 0.75
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[40]",
+          "candidate_uid": "record16:Complexity_ranked_refactoring[40]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 40,
+          "source_record_index": 16,
+          "qa_deviation": 0.5287334757391666,
+          "latency_degradation": 77.5887873978313,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[53]",
+          "candidate_uid": "record16:Complexity_ranked_refactoring[53]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 53,
+          "source_record_index": 16,
+          "qa_deviation": 0.16874943382223156,
+          "latency_degradation": 107.60482091092642,
+          "agentification_coverage": 0.8333333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[58]",
+          "candidate_uid": "record16:Complexity_ranked_refactoring[58]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 58,
+          "source_record_index": 16,
+          "qa_deviation": 0.0,
+          "latency_degradation": 19.829910425191965,
+          "agentification_coverage": 0.4166666666666667
+        }
+      ]
+    },
+    {
+      "benchmark": "B3",
+      "runtime_condition": "$M_S,T_L,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 9,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[9]",
+          "candidate_uid": "record17:Complexity_ranked_refactoring[9]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 9,
+          "source_record_index": 17,
+          "qa_deviation": 0.22970004618502726,
+          "latency_degradation": 101.63203424377693,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[10]",
+          "candidate_uid": "record17:Complexity_ranked_refactoring[10]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 10,
+          "source_record_index": 17,
+          "qa_deviation": 0.0,
+          "latency_degradation": 56.68597177989531,
+          "agentification_coverage": 0.6666666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[11]",
+          "candidate_uid": "record17:Complexity_ranked_refactoring[11]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 11,
+          "source_record_index": 17,
+          "qa_deviation": 0.0,
+          "latency_degradation": 20.417851500792615,
+          "agentification_coverage": 0.4166666666666667
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[22]",
+          "candidate_uid": "record17:Complexity_ranked_refactoring[22]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 22,
+          "source_record_index": 17,
+          "qa_deviation": 0.9441595643031642,
+          "latency_degradation": 85.80163202196566,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[26]",
+          "candidate_uid": "record17:Complexity_ranked_refactoring[26]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 26,
+          "source_record_index": 17,
+          "qa_deviation": 1.5404118175906887,
+          "latency_degradation": 77.18395313674648,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[33]",
+          "candidate_uid": "record17:Complexity_ranked_refactoring[33]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 33,
+          "source_record_index": 17,
+          "qa_deviation": 0.0,
+          "latency_degradation": 24.425005361458542,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[38]",
+          "candidate_uid": "record17:Complexity_ranked_refactoring[38]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 38,
+          "source_record_index": 17,
+          "qa_deviation": 0.0,
+          "latency_degradation": 91.46455406989467,
+          "agentification_coverage": 0.75
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[50]",
+          "candidate_uid": "record17:Complexity_ranked_refactoring[50]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 50,
+          "source_record_index": 17,
+          "qa_deviation": 0.0,
+          "latency_degradation": 26.371685791384337,
+          "agentification_coverage": 0.5833333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[57]",
+          "candidate_uid": "record17:Complexity_ranked_refactoring[57]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 57,
+          "source_record_index": 17,
+          "qa_deviation": 0.018357051056922234,
+          "latency_degradation": 83.07666961215502,
+          "agentification_coverage": 0.8333333333333334
+        }
+      ]
+    },
+    {
+      "benchmark": "B3",
+      "runtime_condition": "$M_S,T_H,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 10,
+      "pareto_set": [
+        {
+          "candidate_id": "Complexity_ranked_refactoring[6]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[6]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 6,
+          "source_record_index": 18,
+          "qa_deviation": 2.185565000302172,
+          "latency_degradation": 94.79346093087642,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[16]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[16]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 16,
+          "source_record_index": 18,
+          "qa_deviation": 0.0,
+          "latency_degradation": 26.71827636980128,
+          "agentification_coverage": 0.5833333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[22]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[22]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 22,
+          "source_record_index": 18,
+          "qa_deviation": 2.767531966372779,
+          "latency_degradation": 77.82269170065898,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[23]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[23]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 23,
+          "source_record_index": 18,
+          "qa_deviation": 2.3561009376158357,
+          "latency_degradation": 73.65703889849915,
+          "agentification_coverage": 0.8333333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[26]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[26]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 26,
+          "source_record_index": 18,
+          "qa_deviation": 3.252957355909791,
+          "latency_degradation": 73.2306221473131,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[29]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[29]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 29,
+          "source_record_index": 18,
+          "qa_deviation": 0.0,
+          "latency_degradation": 19.55753790857197,
+          "agentification_coverage": 0.4166666666666667
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[35]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[35]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 35,
+          "source_record_index": 18,
+          "qa_deviation": 1.3593870649951731,
+          "latency_degradation": 86.91578656834031,
+          "agentification_coverage": 0.8333333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[38]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[38]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 38,
+          "source_record_index": 18,
+          "qa_deviation": 0.0,
+          "latency_degradation": 67.45317441003318,
+          "agentification_coverage": 0.75
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[40]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[40]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 40,
+          "source_record_index": 18,
+          "qa_deviation": 0.46130653209050526,
+          "latency_degradation": 118.17017954430736,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[54]",
+          "candidate_uid": "record18:Complexity_ranked_refactoring[54]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 54,
+          "source_record_index": 18,
+          "qa_deviation": 0.0,
+          "latency_degradation": 51.73076528656222,
+          "agentification_coverage": 0.6666666666666666
+        }
+      ]
+    },
+    {
+      "benchmark": "B3",
+      "runtime_condition": "$M_S,T_H,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 10,
+      "pareto_set": [
+        {
+          "candidate_id": "Non_orchestrator",
+          "candidate_uid": "record19:Non_orchestrator",
+          "strategy": "Non_orchestrator",
+          "candidate_index": null,
+          "source_record_index": 19,
+          "qa_deviation": 0.6148595825577601,
+          "latency_degradation": 151.73574508392298,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[6]",
+          "candidate_uid": "record19:Complexity_ranked_refactoring[6]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 6,
+          "source_record_index": 19,
+          "qa_deviation": 1.0675233884180784,
+          "latency_degradation": 80.75591881654059,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[22]",
+          "candidate_uid": "record19:Complexity_ranked_refactoring[22]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 22,
+          "source_record_index": 19,
+          "qa_deviation": 4.458781581410842,
+          "latency_degradation": 71.41547050926809,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[23]",
+          "candidate_uid": "record19:Complexity_ranked_refactoring[23]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 23,
+          "source_record_index": 19,
+          "qa_deviation": 0.784487415648188,
+          "latency_degradation": 73.58367509180474,
+          "agentification_coverage": 0.8333333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[26]",
+          "candidate_uid": "record19:Complexity_ranked_refactoring[26]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 26,
+          "source_record_index": 19,
+          "qa_deviation": 0.9801636417308284,
+          "latency_degradation": 106.96408323011622,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[37]",
+          "candidate_uid": "record19:Complexity_ranked_refactoring[37]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 37,
+          "source_record_index": 19,
+          "qa_deviation": 0.0,
+          "latency_degradation": 64.42357772392911,
+          "agentification_coverage": 0.75
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[39]",
+          "candidate_uid": "record19:Complexity_ranked_refactoring[39]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 39,
+          "source_record_index": 19,
+          "qa_deviation": 0.0,
+          "latency_degradation": 26.13242906750269,
+          "agentification_coverage": 0.5833333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[42]",
+          "candidate_uid": "record19:Complexity_ranked_refactoring[42]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 42,
+          "source_record_index": 19,
+          "qa_deviation": 0.0,
+          "latency_degradation": 20.86236740601647,
+          "agentification_coverage": 0.4166666666666667
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[52]",
+          "candidate_uid": "record19:Complexity_ranked_refactoring[52]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 52,
+          "source_record_index": 19,
+          "qa_deviation": 0.0,
+          "latency_degradation": 55.438574485513826,
+          "agentification_coverage": 0.6666666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[53]",
+          "candidate_uid": "record19:Complexity_ranked_refactoring[53]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 53,
+          "source_record_index": 19,
+          "qa_deviation": 3.2951418240812997,
+          "latency_degradation": 66.89436335409499,
+          "agentification_coverage": 0.8333333333333334
+        }
+      ]
+    },
+    {
+      "benchmark": "B3",
+      "runtime_condition": "$M_L,T_L,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 8,
+      "pareto_set": [
+        {
+          "candidate_id": "Non_orchestrator",
+          "candidate_uid": "record20:Non_orchestrator",
+          "strategy": "Non_orchestrator",
+          "candidate_index": null,
+          "source_record_index": 20,
+          "qa_deviation": 0.0,
+          "latency_degradation": 152.1563334270959,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[6]",
+          "candidate_uid": "record20:Complexity_ranked_refactoring[6]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 6,
+          "source_record_index": 20,
+          "qa_deviation": 0.0,
+          "latency_degradation": 62.601898775398055,
+          "agentification_coverage": 0.75
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[10]",
+          "candidate_uid": "record20:Complexity_ranked_refactoring[10]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 10,
+          "source_record_index": 20,
+          "qa_deviation": 0.0,
+          "latency_degradation": 32.84042826297943,
+          "agentification_coverage": 0.5833333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[25]",
+          "candidate_uid": "record20:Complexity_ranked_refactoring[25]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 25,
+          "source_record_index": 20,
+          "qa_deviation": 0.0,
+          "latency_degradation": 73.0207595330814,
+          "agentification_coverage": 0.8333333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[35]",
+          "candidate_uid": "record20:Complexity_ranked_refactoring[35]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 35,
+          "source_record_index": 20,
+          "qa_deviation": 0.0,
+          "latency_degradation": 27.426508286764204,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[36]",
+          "candidate_uid": "record20:Complexity_ranked_refactoring[36]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 36,
+          "source_record_index": 20,
+          "qa_deviation": 0.0,
+          "latency_degradation": 26.420337640183288,
+          "agentification_coverage": 0.4166666666666667
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[42]",
+          "candidate_uid": "record20:Complexity_ranked_refactoring[42]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 42,
+          "source_record_index": 20,
+          "qa_deviation": 0.0,
+          "latency_degradation": 24.667677393574895,
+          "agentification_coverage": 0.3333333333333333
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[54]",
+          "candidate_uid": "record20:Complexity_ranked_refactoring[54]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 54,
+          "source_record_index": 20,
+          "qa_deviation": 0.0,
+          "latency_degradation": 56.28653860663321,
+          "agentification_coverage": 0.6666666666666666
+        }
+      ]
+    },
+    {
+      "benchmark": "B3",
+      "runtime_condition": "$M_L,T_L,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 7,
+      "pareto_set": [
+        {
+          "candidate_id": "Non_orchestrator",
+          "candidate_uid": "record21:Non_orchestrator",
+          "strategy": "Non_orchestrator",
+          "candidate_index": null,
+          "source_record_index": 21,
+          "qa_deviation": 0.0,
+          "latency_degradation": 150.63015462412082,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[6]",
+          "candidate_uid": "record21:Complexity_ranked_refactoring[6]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 6,
+          "source_record_index": 21,
+          "qa_deviation": 0.0,
+          "latency_degradation": 70.58873933256694,
+          "agentification_coverage": 0.75
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[20]",
+          "candidate_uid": "record21:Complexity_ranked_refactoring[20]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 20,
+          "source_record_index": 21,
+          "qa_deviation": 0.0,
+          "latency_degradation": 18.13480544826149,
+          "agentification_coverage": 0.3333333333333333
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[25]",
+          "candidate_uid": "record21:Complexity_ranked_refactoring[25]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 25,
+          "source_record_index": 21,
+          "qa_deviation": 0.0,
+          "latency_degradation": 85.08875543317107,
+          "agentification_coverage": 0.8333333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[32]",
+          "candidate_uid": "record21:Complexity_ranked_refactoring[32]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 32,
+          "source_record_index": 21,
+          "qa_deviation": 0.0,
+          "latency_degradation": 25.175017155527705,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[40]",
+          "candidate_uid": "record21:Complexity_ranked_refactoring[40]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 40,
+          "source_record_index": 21,
+          "qa_deviation": 0.0,
+          "latency_degradation": 29.84555546338474,
+          "agentification_coverage": 0.5833333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[45]",
+          "candidate_uid": "record21:Complexity_ranked_refactoring[45]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 45,
+          "source_record_index": 21,
+          "qa_deviation": 0.0,
+          "latency_degradation": 57.80395290084427,
+          "agentification_coverage": 0.6666666666666666
+        }
+      ]
+    },
+    {
+      "benchmark": "B3",
+      "runtime_condition": "$M_L,T_H,U_L$",
+      "candidate_count": 63,
+      "pareto_count": 8,
+      "pareto_set": [
+        {
+          "candidate_id": "Non_orchestrator",
+          "candidate_uid": "record22:Non_orchestrator",
+          "strategy": "Non_orchestrator",
+          "candidate_index": null,
+          "source_record_index": 22,
+          "qa_deviation": 0.0,
+          "latency_degradation": 150.51353325876417,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[5]",
+          "candidate_uid": "record22:Complexity_ranked_refactoring[5]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 5,
+          "source_record_index": 22,
+          "qa_deviation": 0.0,
+          "latency_degradation": 22.306336955836255,
+          "agentification_coverage": 0.4166666666666667
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[8]",
+          "candidate_uid": "record22:Complexity_ranked_refactoring[8]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 8,
+          "source_record_index": 22,
+          "qa_deviation": 0.0,
+          "latency_degradation": 59.22301245768025,
+          "agentification_coverage": 0.6666666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[23]",
+          "candidate_uid": "record22:Complexity_ranked_refactoring[23]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 23,
+          "source_record_index": 22,
+          "qa_deviation": 0.0,
+          "latency_degradation": 26.902107719761606,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[25]",
+          "candidate_uid": "record22:Complexity_ranked_refactoring[25]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 25,
+          "source_record_index": 22,
+          "qa_deviation": 0.0,
+          "latency_degradation": 86.33699549086131,
+          "agentification_coverage": 0.8333333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[27]",
+          "candidate_uid": "record22:Complexity_ranked_refactoring[27]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 27,
+          "source_record_index": 22,
+          "qa_deviation": 0.0,
+          "latency_degradation": 74.83213888808605,
+          "agentification_coverage": 0.75
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[39]",
+          "candidate_uid": "record22:Complexity_ranked_refactoring[39]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 39,
+          "source_record_index": 22,
+          "qa_deviation": 0.0,
+          "latency_degradation": 17.021103881493303,
+          "agentification_coverage": 0.3333333333333333
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[40]",
+          "candidate_uid": "record22:Complexity_ranked_refactoring[40]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 40,
+          "source_record_index": 22,
+          "qa_deviation": 0.0,
+          "latency_degradation": 30.51393466641661,
+          "agentification_coverage": 0.5833333333333334
+        }
+      ]
+    },
+    {
+      "benchmark": "B3",
+      "runtime_condition": "$M_L,T_H,U_H$",
+      "candidate_count": 63,
+      "pareto_count": 6,
+      "pareto_set": [
+        {
+          "candidate_id": "Non_orchestrator",
+          "candidate_uid": "record23:Non_orchestrator",
+          "strategy": "Non_orchestrator",
+          "candidate_index": null,
+          "source_record_index": 23,
+          "qa_deviation": 0.0,
+          "latency_degradation": 149.21136751969487,
+          "agentification_coverage": 0.9166666666666666
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[25]",
+          "candidate_uid": "record23:Complexity_ranked_refactoring[25]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 25,
+          "source_record_index": 23,
+          "qa_deviation": 0.0,
+          "latency_degradation": 104.6987084125785,
+          "agentification_coverage": 0.8333333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[27]",
+          "candidate_uid": "record23:Complexity_ranked_refactoring[27]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 27,
+          "source_record_index": 23,
+          "qa_deviation": 0.0,
+          "latency_degradation": 64.70228966548557,
+          "agentification_coverage": 0.75
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[32]",
+          "candidate_uid": "record23:Complexity_ranked_refactoring[32]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 32,
+          "source_record_index": 23,
+          "qa_deviation": 0.0,
+          "latency_degradation": 26.46894526660628,
+          "agentification_coverage": 0.5
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[47]",
+          "candidate_uid": "record23:Complexity_ranked_refactoring[47]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 47,
+          "source_record_index": 23,
+          "qa_deviation": 0.0,
+          "latency_degradation": 33.09161314159049,
+          "agentification_coverage": 0.5833333333333334
+        },
+        {
+          "candidate_id": "Complexity_ranked_refactoring[50]",
+          "candidate_uid": "record23:Complexity_ranked_refactoring[50]",
+          "strategy": "Complexity_ranked_refactoring",
+          "candidate_index": 50,
+          "source_record_index": 23,
+          "qa_deviation": 0.0,
+          "latency_degradation": 18.208226493005316,
+          "agentification_coverage": 0.3333333333333333
+        }
+      ]
+    }
+  ]
+}

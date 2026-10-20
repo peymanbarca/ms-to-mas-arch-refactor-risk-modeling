@@ -1,0 +1,13 @@
+Input: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/figures/results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json
+Candidates loaded: 1512
+Pareto alignment: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/figures/pareto_output/pareto_fronts.json (is_pareto and d_pareto added)
+Benchmark/runtime groups: 24
+Runtime conditions by benchmark: B1=8, B2=8, B3=8
+Strictly positive weight vectors: 36 (step=0.1)
+Weight selections requested/successful: 864/864
+Lexicographic selections requested/successful: 72/72
+SLO rule: disabled by explicit --ignore-slo-constraint
+Candidates missing failure metric: 1512
+Lexicographic tolerances: delta_L=1.0, delta_QA=0.1
+Weighted-sum normalization: min-max independently within each benchmark/runtime-condition candidate pool.
+Tie breaking: deterministic objective-order tie breaking after the specified optimization criterion.

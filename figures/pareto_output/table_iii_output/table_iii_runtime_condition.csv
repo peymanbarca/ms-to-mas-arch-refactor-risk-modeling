@@ -1,0 +1,97 @@
+benchmark,runtime_condition,strategy,strategy_label,median_latency_degradation,median_qa_deviation,median_agentification_coverage,median_failure_rate_degradation,total_pareto_members,median_d_pareto,candidate_count,runtime_condition_count,failure_metric_count
+B1,"$M_L,T_H,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,81.03820203786998,0.0,0.7777777777777778,,4,0.18172490765253824,60,1,0
+B1,"$M_L,T_H,U_H$",Non_orchestrator,Non-orchestrator,104.29268323193097,0.0,0.8888888888888888,,0,0.36746601815587276,1,1,0
+B1,"$M_L,T_H,U_H$",Orchestrator_only,Orchestrator-only,71.9861771822283,0.0,0.1111111111111111,,0,0.6641372072425288,1,1,0
+B1,"$M_L,T_H,U_H$",User_interacting,User-interacting,67.64457648162937,0.0,0.6666666666666666,,0,0.17334325777513027,1,1,0
+B1,"$M_L,T_H,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,84.29994942505748,0.0,0.7777777777777778,,3,0.19927484828542125,60,1,0
+B1,"$M_L,T_H,U_L$",Non_orchestrator,Non-orchestrator,109.06999257412755,0.0,0.8888888888888888,,0,0.39244914192314867,1,1,0
+B1,"$M_L,T_H,U_L$",Orchestrator_only,Orchestrator-only,74.66315906264582,0.0,0.1111111111111111,,0,0.6930366681250795,1,1,0
+B1,"$M_L,T_H,U_L$",User_interacting,User-interacting,69.24343180588039,0.0,0.6666666666666666,,0,0.1657466645647606,1,1,0
+B1,"$M_L,T_L,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,87.34767516319442,0.0,0.7777777777777778,,4,0.2602678052196151,60,1,0
+B1,"$M_L,T_L,U_H$",Non_orchestrator,Non-orchestrator,102.70934128907163,0.0,0.8888888888888888,,0,0.41558461913375944,1,1,0
+B1,"$M_L,T_L,U_H$",Orchestrator_only,Orchestrator-only,76.64920594894419,0.0,0.1111111111111111,,0,0.6855505014555463,1,1,0
+B1,"$M_L,T_L,U_H$",User_interacting,User-interacting,69.89959663682946,0.0,0.6666666666666666,,0,0.14980536900935507,1,1,0
+B1,"$M_L,T_L,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,84.98404048277862,0.0,0.7777777777777778,,4,0.21096710717123904,60,1,0
+B1,"$M_L,T_L,U_L$",Non_orchestrator,Non-orchestrator,104.29413667484306,0.0,0.8888888888888888,,0,0.35425727387982564,1,1,0
+B1,"$M_L,T_L,U_L$",Orchestrator_only,Orchestrator-only,67.88257120227806,0.0,0.1111111111111111,,0,0.6509675440783921,1,1,0
+B1,"$M_L,T_L,U_L$",User_interacting,User-interacting,67.46238096193797,0.0,0.6666666666666666,,0,0.14997654719889447,1,1,0
+B1,"$M_S,T_H,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,89.84058425881554,0.0,0.8888888888888888,,7,0.23345206855796571,60,1,0
+B1,"$M_S,T_H,U_H$",Non_orchestrator,Non-orchestrator,108.84990433392498,0.0,0.8888888888888888,,0,0.535073257320677,1,1,0
+B1,"$M_S,T_H,U_H$",Orchestrator_only,Orchestrator-only,71.31468449609706,7.490596665587702,0.1111111111111111,,0,1.0203147799180978,1,1,0
+B1,"$M_S,T_H,U_H$",User_interacting,User-interacting,67.0895328021398,0.0,0.6666666666666666,,0,0.15555387920866878,1,1,0
+B1,"$M_S,T_H,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,98.06368767625992,0.0,0.8888888888888888,,3,0.3372680996274372,60,1,0
+B1,"$M_S,T_H,U_L$",Non_orchestrator,Non-orchestrator,59.246051510580315,0.0,0.8888888888888888,,1,0.0,1,1,0
+B1,"$M_S,T_H,U_L$",Orchestrator_only,Orchestrator-only,31.831725413876505,4.875886050841003,0.1111111111111111,,1,0.0,1,1,0
+B1,"$M_S,T_H,U_L$",User_interacting,User-interacting,44.22231415485796,0.0,0.6666666666666666,,1,0.0,1,1,0
+B1,"$M_S,T_L,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,98.96814089523258,0.0,0.8888888888888888,,5,0.25785689919398785,60,1,0
+B1,"$M_S,T_L,U_H$",Non_orchestrator,Non-orchestrator,98.84682496880515,0.0,0.8888888888888888,,0,0.4478482672929283,1,1,0
+B1,"$M_S,T_L,U_H$",Orchestrator_only,Orchestrator-only,74.2456299478084,2.97084085706949,0.1111111111111111,,0,1.0013406090803045,1,1,0
+B1,"$M_S,T_L,U_H$",User_interacting,User-interacting,68.8545156692379,0.0,0.6666666666666666,,0,0.18609972689126125,1,1,0
+B1,"$M_S,T_L,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,91.41430098785172,0.0,0.8888888888888888,,3,0.25252901989063287,60,1,0
+B1,"$M_S,T_L,U_L$",Non_orchestrator,Non-orchestrator,60.83327409521835,0.0,0.8888888888888888,,1,0.0,1,1,0
+B1,"$M_S,T_L,U_L$",Orchestrator_only,Orchestrator-only,37.49822993811408,2.2139109548759808,0.1111111111111111,,1,0.0,1,1,0
+B1,"$M_S,T_L,U_L$",User_interacting,User-interacting,45.74533983962477,0.0,0.6666666666666666,,1,0.0,1,1,0
+B2,"$M_L,T_H,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,62.048955801597714,0.0,0.7,,5,0.13036123531915694,60,1,0
+B2,"$M_L,T_H,U_H$",Non_orchestrator,Non-orchestrator,114.7215752154344,0.0,0.9,,0,0.38467701132009763,1,1,0
+B2,"$M_L,T_H,U_H$",Orchestrator_only,Orchestrator-only,78.81117853964983,0.0,0.1,,0,0.70461613073013,1,1,0
+B2,"$M_L,T_H,U_H$",User_interacting,User-interacting,63.30196060400472,0.0,0.3,,0,0.42951272397602575,1,1,0
+B2,"$M_L,T_H,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,62.218598949719336,0.0,0.7,,5,0.11827006657623698,60,1,0
+B2,"$M_L,T_H,U_L$",Non_orchestrator,Non-orchestrator,122.01390078345378,0.0,0.9,,0,0.3767051440060649,1,1,0
+B2,"$M_L,T_H,U_L$",Orchestrator_only,Orchestrator-only,75.27033161563239,0.0,0.1,,0,0.6930890892095275,1,1,0
+B2,"$M_L,T_H,U_L$",User_interacting,User-interacting,66.6941513032951,0.0,0.3,,0,0.4725601843703946,1,1,0
+B2,"$M_L,T_L,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,66.16971297806113,0.0,0.7,,5,0.1451633628596917,60,1,0
+B2,"$M_L,T_L,U_H$",Non_orchestrator,Non-orchestrator,116.04624417275484,0.0,0.9,,0,0.4142112705170318,1,1,0
+B2,"$M_L,T_L,U_H$",Orchestrator_only,Orchestrator-only,73.11919619397727,0.0,0.1,,0,0.6809348410790844,1,1,0
+B2,"$M_L,T_L,U_H$",User_interacting,User-interacting,57.68504227307178,0.0,0.3,,0,0.40490889630214083,1,1,0
+B2,"$M_L,T_L,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,65.54521422788494,0.0,0.7,,5,0.10968030905390092,60,1,0
+B2,"$M_L,T_L,U_L$",Non_orchestrator,Non-orchestrator,112.60163787118724,0.0,0.9,,0,0.28169347884249196,1,1,0
+B2,"$M_L,T_L,U_L$",Orchestrator_only,Orchestrator-only,81.87649563736058,0.0,0.1,,0,0.7146090925005063,1,1,0
+B2,"$M_L,T_L,U_L$",User_interacting,User-interacting,67.40437795346938,0.0,0.3,,0,0.4493278757181557,1,1,0
+B2,"$M_S,T_H,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,75.24816284556198,0.43282289617273956,0.8,,8,0.11873172103222476,60,1,0
+B2,"$M_S,T_H,U_H$",Non_orchestrator,Non-orchestrator,121.39330482447123,0.9132287891315987,0.9,,0,0.49308063937291385,1,1,0
+B2,"$M_S,T_H,U_H$",Orchestrator_only,Orchestrator-only,80.44783228116887,14.34446694161682,0.1,,0,1.0673906279412817,1,1,0
+B2,"$M_S,T_H,U_H$",User_interacting,User-interacting,58.57493853218865,0.0,0.3,,0,0.4368068055198488,1,1,0
+B2,"$M_S,T_H,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,83.88787040209631,0.4139639594178106,0.8,,13,0.10867306426327808,60,1,0
+B2,"$M_S,T_H,U_L$",Non_orchestrator,Non-orchestrator,84.55444670795711,0.5767038927919775,0.9,,0,0.03696610455993375,1,1,0
+B2,"$M_S,T_H,U_L$",Orchestrator_only,Orchestrator-only,49.46602568909782,14.994776003795025,0.1,,0,1.0496485556458783,1,1,0
+B2,"$M_S,T_H,U_L$",User_interacting,User-interacting,25.474042897775448,0.0,0.3,,1,0.0,1,1,0
+B2,"$M_S,T_L,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,83.63077825758636,0.3541344705560542,0.8,,10,0.1209349175725202,60,1,0
+B2,"$M_S,T_L,U_H$",Non_orchestrator,Non-orchestrator,113.80850328665919,0.20700795355893276,0.9,,0,0.42400928245304936,1,1,0
+B2,"$M_S,T_L,U_H$",Orchestrator_only,Orchestrator-only,77.96269878482053,5.79992061373183,0.1,,0,0.9908679981574351,1,1,0
+B2,"$M_S,T_L,U_H$",User_interacting,User-interacting,57.92343841955051,0.0,0.3,,0,0.4120178041610137,1,1,0
+B2,"$M_S,T_L,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,79.90148845607095,0.25597178351364197,0.8,,13,0.08444904411856106,60,1,0
+B2,"$M_S,T_L,U_L$",Non_orchestrator,Non-orchestrator,84.2498052879652,0.2418096234464515,0.9,,0,0.07948670731877445,1,1,0
+B2,"$M_S,T_L,U_L$",Orchestrator_only,Orchestrator-only,46.157285158240825,6.84807646206693,0.1,,0,0.8825537303039352,1,1,0
+B2,"$M_S,T_L,U_L$",User_interacting,User-interacting,24.900434659478442,0.0,0.3,,1,0.0,1,1,0
+B3,"$M_L,T_H,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,48.050666089997726,0.0,0.5833333333333334,,5,0.10148010739791899,60,1,0
+B3,"$M_L,T_H,U_H$",Non_orchestrator,Non-orchestrator,149.21136751969487,0.0,0.9166666666666666,,1,0.0,1,1,0
+B3,"$M_L,T_H,U_H$",Orchestrator_only,Orchestrator-only,102.46240414144596,0.0,0.08333333333333333,,0,0.7096739298459548,1,1,0
+B3,"$M_L,T_H,U_H$",User_interacting,User-interacting,90.87129382718162,0.0,0.3333333333333333,,0,0.5307349616735196,1,1,0
+B3,"$M_L,T_H,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,48.11281754780716,0.0,0.5833333333333334,,7,0.10169850648110221,60,1,0
+B3,"$M_L,T_H,U_L$",Non_orchestrator,Non-orchestrator,150.51353325876417,0.0,0.9166666666666666,,1,0.0,1,1,0
+B3,"$M_L,T_H,U_L$",Orchestrator_only,Orchestrator-only,98.15443701931729,0.0,0.08333333333333333,,0,0.6777832946508952,1,1,0
+B3,"$M_L,T_H,U_L$",User_interacting,User-interacting,91.95431240488796,0.0,0.3333333333333333,,0,0.4691686325564696,1,1,0
+B3,"$M_L,T_L,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,47.62975303556785,0.0,0.5833333333333334,,6,0.10430521088068848,60,1,0
+B3,"$M_L,T_L,U_H$",Non_orchestrator,Non-orchestrator,150.63015462412082,0.0,0.9166666666666666,,1,0.0,1,1,0
+B3,"$M_L,T_L,U_H$",Orchestrator_only,Orchestrator-only,108.16950943161477,0.0,0.08333333333333333,,0,0.7428071420987822,1,1,0
+B3,"$M_L,T_L,U_H$",User_interacting,User-interacting,89.00759768917254,0.0,0.3333333333333333,,0,0.46418075095082584,1,1,0
+B3,"$M_L,T_L,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,45.70816700047294,0.0,0.5833333333333334,,7,0.07571175164448687,60,1,0
+B3,"$M_L,T_L,U_L$",Non_orchestrator,Non-orchestrator,152.1563334270959,0.0,0.9166666666666666,,1,0.0,1,1,0
+B3,"$M_L,T_L,U_L$",Orchestrator_only,Orchestrator-only,108.94868072678146,0.0,0.08333333333333333,,0,0.7259718245733762,1,1,0
+B3,"$M_L,T_L,U_L$",User_interacting,User-interacting,89.14027441668179,0.0,0.3333333333333333,,0,0.47582446629078995,1,1,0
+B3,"$M_S,T_H,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,49.55592784396504,0.0,0.5833333333333334,,9,0.1039781193173129,60,1,0
+B3,"$M_S,T_H,U_H$",Non_orchestrator,Non-orchestrator,151.73574508392298,0.6148595825577601,0.9166666666666666,,1,0.0,1,1,0
+B3,"$M_S,T_H,U_H$",Orchestrator_only,Orchestrator-only,104.19070050264104,22.2941583047211,0.08333333333333333,,0,1.2511590973770652,1,1,0
+B3,"$M_S,T_H,U_H$",User_interacting,User-interacting,92.49658548228234,0.0,0.3333333333333333,,0,0.4900807853092045,1,1,0
+B3,"$M_S,T_H,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,44.19064608471312,0.0,0.5833333333333334,,10,0.09629692308672108,60,1,0
+B3,"$M_S,T_H,U_L$",Non_orchestrator,Non-orchestrator,126.6714328456317,0.5267337536520168,0.9166666666666666,,0,0.07548009089922085,1,1,0
+B3,"$M_S,T_H,U_L$",Orchestrator_only,Orchestrator-only,70.9028323514109,23.47661315456827,0.08333333333333333,,0,1.1694198721235354,1,1,0
+B3,"$M_S,T_H,U_L$",User_interacting,User-interacting,55.99815068015957,0.0,0.3333333333333333,,0,0.33843591483142754,1,1,0
+B3,"$M_S,T_L,U_H$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,46.86767972958921,0.0,0.5833333333333334,,9,0.07445021236671939,60,1,0
+B3,"$M_S,T_L,U_H$",Non_orchestrator,Non-orchestrator,160.6585428120388,0.5537595624604569,0.9166666666666666,,0,0.42285038872949665,1,1,0
+B3,"$M_S,T_L,U_H$",Orchestrator_only,Orchestrator-only,104.72931524463446,7.976745608447383,0.08333333333333333,,0,1.2334629340279935,1,1,0
+B3,"$M_S,T_L,U_H$",User_interacting,User-interacting,90.48680454141733,0.0,0.3333333333333333,,0,0.46700183485333213,1,1,0
+B3,"$M_S,T_L,U_L$",Complexity_ranked_refactoring,Complexity-ranked iterative refactoring,45.77067621109107,0.0,0.5833333333333334,,8,0.092335658460063,60,1,0
+B3,"$M_S,T_L,U_L$",Non_orchestrator,Non-orchestrator,123.96994828164712,0.3626502435631809,0.9166666666666666,,1,0.0,1,1,0
+B3,"$M_S,T_L,U_L$",Orchestrator_only,Orchestrator-only,69.58697249692416,8.048282566403097,0.08333333333333333,,0,1.1657399606317718,1,1,0
+B3,"$M_S,T_L,U_L$",User_interacting,User-interacting,51.76366227020703,0.0,0.3333333333333333,,0,0.30322781354863776,1,1,0

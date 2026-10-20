@@ -1,0 +1,29 @@
+Raw file: ../results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json
+Pareto file: pareto_fronts.json
+Benchmarks: 3; benchmark/runtime groups: 24
+Runtime-condition counts: B1=8, B2=8, B3=8
+B1 | $M_L,T_H,U_H$: candidates=63, Pareto members=4, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B1 | $M_L,T_H,U_L$: candidates=63, Pareto members=3, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B1 | $M_L,T_L,U_H$: candidates=63, Pareto members=4, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B1 | $M_L,T_L,U_L$: candidates=63, Pareto members=4, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B1 | $M_S,T_H,U_H$: candidates=63, Pareto members=7, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B1 | $M_S,T_H,U_L$: candidates=63, Pareto members=6, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B1 | $M_S,T_L,U_H$: candidates=63, Pareto members=5, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B1 | $M_S,T_L,U_L$: candidates=63, Pareto members=6, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B2 | $M_L,T_H,U_H$: candidates=63, Pareto members=5, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B2 | $M_L,T_H,U_L$: candidates=63, Pareto members=5, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B2 | $M_L,T_L,U_H$: candidates=63, Pareto members=5, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B2 | $M_L,T_L,U_L$: candidates=63, Pareto members=5, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B2 | $M_S,T_H,U_H$: candidates=63, Pareto members=8, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B2 | $M_S,T_H,U_L$: candidates=63, Pareto members=14, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B2 | $M_S,T_L,U_H$: candidates=63, Pareto members=10, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B2 | $M_S,T_L,U_L$: candidates=63, Pareto members=14, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B3 | $M_L,T_H,U_H$: candidates=63, Pareto members=6, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B3 | $M_L,T_H,U_L$: candidates=63, Pareto members=8, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B3 | $M_L,T_L,U_H$: candidates=63, Pareto members=7, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B3 | $M_L,T_L,U_L$: candidates=63, Pareto members=8, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B3 | $M_S,T_H,U_H$: candidates=63, Pareto members=10, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B3 | $M_S,T_H,U_L$: candidates=63, Pareto members=10, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B3 | $M_S,T_L,U_H$: candidates=63, Pareto members=9, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+B3 | $M_S,T_L,U_L$: candidates=63, Pareto members=9, strategy counts=Complexity-ranked iterative refactoring:60, Non-orchestrator:1, Orchestrator-only:1, User-interacting:1
+WARNING: No failure-rate degradation metric was found. Median Delta F (%) will be blank. Supply an explicit field with --failure-field or add candidate/baseline failure rates.
