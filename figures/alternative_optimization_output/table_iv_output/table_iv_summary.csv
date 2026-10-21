@@ -1,0 +1,28 @@
+benchmark,method,configuration,w_L,w_QA,w_C,median_latency_degradation,median_qa_deviation,median_agentification_coverage,median_failure_rate_degradation,total_pareto_members,unique_pareto_architecture_count,median_d_pareto,selection_count,selection_instance_count,unique_architecture_count,duplicate_selection_instances,runtime_condition_count,failure_metric_count,weight_vector_count
+B1,Lexicographic,Latency-first,,,,52.720637229348135,0.0,0.6666666666666666,,8,8,0.0,8,8,8,0,8,0,
+B1,Lexicographic,QA-first,,,,52.720637229348135,0.0,0.6666666666666666,,8,8,0.0,8,8,8,0,8,0,
+B1,Lexicographic,Autonomy-first,,,,76.2547026877238,1.1081998215431974,1.0,,8,8,0.0,8,8,8,0,8,0,
+B1,Weighted sum,All weight vectors,,,,60.83327409521835,0.0,0.8888888888888888,,288,21,0.0,288,288,21,267,8,0,36
+B1,Weighted sum,Latency-heavy,0.8,0.1,0.1,52.720637229348135,0.0,0.6666666666666666,,8,8,0.0,8,8,8,0,8,0,
+B1,Weighted sum,QA-heavy,0.4,0.5,0.1,52.720637229348135,0.0,0.6666666666666666,,8,8,0.0,8,8,8,0,8,0,
+B1,Weighted sum,Autonomy-heavy,0.1,0.1,0.8,75.19985126240414,1.1081998215431974,1.0,,8,8,0.0,8,8,8,0,8,0,
+B1,Weighted sum,Balanced,0.3,0.4,0.3,68.38720117888914,0.0,0.9444444444444444,,8,8,0.0,8,8,8,0,8,0,
+B1,Pareto,Pareto-set,,,,65.49688342765805,0.0,0.8888888888888888,,39,39,0.0,39,39,39,0,8,0,
+B2,Lexicographic,Latency-first,,,,26.168705580323234,0.0,0.55,,8,8,0.0,8,8,8,0,8,0,
+B2,Lexicographic,QA-first,,,,26.168705580323234,0.0,0.55,,8,8,0.0,8,8,8,0,8,0,
+B2,Lexicographic,Autonomy-first,,,,81.99197852620121,2.906825806009089,0.95,,8,8,0.0,8,8,8,0,8,0,
+B2,Weighted sum,All weight vectors,,,,31.258552978887515,0.0,0.6,,288,29,0.0,288,288,29,259,8,0,36
+B2,Weighted sum,Latency-heavy,0.8,0.1,0.1,26.168705580323234,0.0,0.55,,8,8,0.0,8,8,8,0,8,0,
+B2,Weighted sum,QA-heavy,0.4,0.5,0.1,26.699784287432166,0.0,0.6,,8,8,0.0,8,8,8,0,8,0,
+B2,Weighted sum,Autonomy-heavy,0.1,0.1,0.8,74.10261409041517,2.906825806009089,0.95,,8,8,0.0,8,8,8,0,8,0,
+B2,Weighted sum,Balanced,0.3,0.4,0.3,29.944572048860074,0.0,0.6,,8,8,0.0,8,8,8,0,8,0,
+B2,Pareto,Pareto-set,,,,68.25477302756019,0.02474442029848637,0.8,,66,66,0.0,66,66,66,0,8,0,
+B3,Lexicographic,Latency-first,,,,19.693724166881967,0.0,0.375,,8,8,0.0,8,8,8,0,8,0,
+B3,Lexicographic,QA-first,,,,19.693724166881967,0.0,0.375,,8,8,0.0,8,8,8,0,8,0,
+B3,Lexicographic,Autonomy-first,,,,149.86245038922954,0.1110283557503158,0.9166666666666666,,8,8,0.0,8,8,8,0,8,0,
+B3,Weighted sum,All weight vectors,,,,30.51393466641661,0.0,0.5833333333333334,,288,40,0.0,288,288,40,248,8,0,36
+B3,Weighted sum,Latency-heavy,0.8,0.1,0.1,19.693724166881967,0.0,0.4166666666666667,,8,8,0.0,8,8,8,0,8,0,
+B3,Weighted sum,QA-heavy,0.4,0.5,0.1,19.693724166881967,0.0,0.4166666666666667,,8,8,0.0,8,8,8,0,8,0,
+B3,Weighted sum,Autonomy-heavy,0.1,0.1,0.8,117.50649977083026,0.2643667378695833,0.9166666666666666,,8,8,0.0,8,8,8,0,8,0,
+B3,Weighted sum,Balanced,0.3,0.4,0.3,28.31046280686169,0.0,0.5833333333333334,,8,8,0.0,8,8,8,0,8,0,
+B3,Pareto,Pareto-set,,,,64.70228966548557,0.0,0.75,,67,67,0.0,67,67,67,0,8,0,

@@ -26,6 +26,8 @@ cd pareto_output && python3 calculate_agentification_strategies_metrics.py --raw
 
 ## Alternative optimization analysis
 
+- Obtain results of alternative optimization methods 
+  
 ```bash
 
 python3 architecture_opt_alternative.py \
@@ -37,5 +39,18 @@ python3 architecture_opt_alternative.py \
     --delta-qa 0.1 \
     --slo-epsilon 2.0 \
     --ignore-slo-constraint
+
+```
+
+- Calculate comparisons of alternative optimization with the Pareto frontier
+  
+```bash
+
+cd alternative_optimization_output && python3 calculate_alternative_opt_metrics.py \
+    --raw ../results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json \
+    --pareto ../pareto_output/pareto_fronts.json \
+    --lex lexicographic_selections.csv \
+    --weighted weighted_sum_selections.csv \
+    --outdir table_iv_output
 
 ```

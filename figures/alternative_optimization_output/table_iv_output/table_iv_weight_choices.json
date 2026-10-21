@@ -1,0 +1,30 @@
+[
+  {
+    "configuration": "Latency-heavy",
+    "w_L": 0.8,
+    "w_QA": 0.1,
+    "w_C": 0.1,
+    "selection_rule": "among unique-largest-w_L vectors, minimize global median latency, then QA, then maximize coverage"
+  },
+  {
+    "configuration": "QA-heavy",
+    "w_L": 0.4,
+    "w_QA": 0.5,
+    "w_C": 0.1,
+    "selection_rule": "among unique-largest-w_QA vectors, minimize global median QA, then latency, then maximize coverage"
+  },
+  {
+    "configuration": "Autonomy-heavy",
+    "w_L": 0.1,
+    "w_QA": 0.1,
+    "w_C": 0.8,
+    "selection_rule": "among unique-largest-w_C vectors, maximize global median coverage, then minimize QA, then latency"
+  },
+  {
+    "configuration": "Balanced",
+    "w_L": 0.3,
+    "w_QA": 0.4,
+    "w_C": 0.3,
+    "selection_rule": "fixed as (w_L,w_QA,w_C)=(0.3,0.4,0.3), per requested (w_QA,w_L,w_C)=(0.4,0.3,0.3)"
+  }
+]

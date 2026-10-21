@@ -1,0 +1,15 @@
+Raw input: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/figures/results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json
+Pareto input: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/figures/pareto_output/pareto_fronts.json
+Lexicographic input: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/figures/alternative_optimization_output/lexicographic_selections.csv
+Weighted-sum input: /home/ghazal/PhD/impl/ms-to-mas-arch-refactor-risk-modeling/figures/alternative_optimization_output/weighted_sum_selections.csv
+Raw candidate count: 1512
+Benchmark/runtime groups: 24
+Runtime conditions by benchmark: B1=8, B2=8, B3=8
+Global heavy-weight selection rule: choose one weight vector across all groups by median primary-objective performance.
+Balanced vector: (w_L,w_QA,w_C)=(0.3, 0.4, 0.3)
+Chosen weights: Latency-heavy=(0.8,0.1,0.1); QA-heavy=(0.4,0.5,0.1); Autonomy-heavy=(0.1,0.1,0.8); Balanced=(0.3,0.4,0.3)
+Pareto membership: selected point UID match or objective-vector match with the supplied exact front.
+d_Pareto: nearest Euclidean distance after min-max normalization within the raw benchmark/runtime candidate pool.
+Table IV metric aggregation: specific optimizer configurations use one result per runtime condition; the 'All weight vectors' row aggregates all successful weight-vector/runtime-condition selections.
+For 'All weight vectors', medians and total_pareto_members count selection instances, including repeated outcomes for the same candidate. unique_architecture_count, unique_pareto_architecture_count, and duplicate_selection_instances distinguish distinct architectures from repeated selections.
+WARNING: No failure-rate degradation available; median Delta F (%) will be blank.
