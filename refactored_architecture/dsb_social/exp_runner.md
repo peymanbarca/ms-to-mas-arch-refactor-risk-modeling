@@ -6,8 +6,3 @@
     python3 -m refactored_architecture.dsb_social.exp_runner --trials 5000 --concurrency 20
 ```
 
-### Sample run the automatic end-to-end experiment runner (used in ablation study runner experiment shell scripts)
-
-```bash
-    python3 -m refactored_architecture.dsb_social.exp_runner_auto ranked_sample full 1 all_services some_agent 0.9 0 0.02 full_governance order_service _ true Ranked 0 llama3.2:3b 10 20
-```
