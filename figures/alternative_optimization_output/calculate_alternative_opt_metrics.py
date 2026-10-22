@@ -475,6 +475,10 @@ def sum_value(rows: Iterable[dict[str, Any]], field: str) -> float | None:
     values = [v for v in values if v is not None]
     return sum(values) if values else None
 
+def mean_value(rows: Iterable[dict[str, Any]], field: str) -> float | None:
+    values = [as_number(r.get(field)) for r in rows]
+    values = [v for v in values if v is not None]
+    return statistics.mean(values) if values else None
 
 def summarize_selected(rows: list[dict[str, Any]], benchmark: str, method: str, config: str,
                        weights: tuple[float, float, float] | None = None) -> dict[str, Any]:
@@ -495,7 +499,7 @@ def summarize_selected(rows: list[dict[str, Any]], benchmark: str, method: str, 
              str(r.get("selected_candidate_uid", r.get("candidate_uid", ""))))
             for r in rows if r.get("is_pareto") is True
         }),
-        "median_d_pareto": sum_value(rows, "d_pareto"),
+        "median_d_pareto": mean_value(rows, "d_pareto"),
         "selection_count": len(rows),
         "selection_instance_count": len(rows),
         "unique_architecture_count": len({

@@ -111,10 +111,10 @@ service_to_agent = {
 
 
 # --------------------------------- Acceptance Predicate ---------------------------
-acceptance_predicate_modes =  ["Full", "Latency-Only", "Failure-Only", "QA-Only"]
+acceptance_predicate_modes =  ["Full"]
 
 # --------------------------------- Governance Mechanism  ---------------------------
-governance_policies = ["No", "Post-Audit-Selective-Only", "Post-Audit-Comprehensive"]
+governance_policies = ["No"]
 
 # Initialize the Post-Action Adjudicator with custom criteria
 adjudication_criteria = AdjudicationCriteria(

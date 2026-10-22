@@ -12,6 +12,9 @@
 #
 
 
+MODEL="llama3.2:3b"
+TEMPERATURE="0.0"
+
 echo "Parsing arguments..."
 
 for arg in "$@"; do
@@ -22,6 +25,12 @@ for arg in "$@"; do
     agents=*)
       AGENTS="${arg#*=}"
       ;;
+    model=*)
+        MODEL="${arg#*=}"
+        ;;
+    temperature=*)
+        TEMPERATURE="${arg#*=}"
+        ;;      
   esac
 done
 

@@ -347,6 +347,10 @@ def _median(values: Iterable[float | None]) -> float | None:
     usable = [float(value) for value in values if value is not None and math.isfinite(float(value))]
     return statistics.median(usable) if usable else None
 
+def _mean(values: Iterable[float | None]) -> float | None:
+    usable = [float(value) for value in values if value is not None and math.isfinite(float(value))]
+    return statistics.mean(usable) if usable else None
+
 def _sum(values: Iterable[dict[str, Any]]) -> float | None:
     usable = [float(value) for value in values if value is not None and math.isfinite(float(value))]
     return sum(usable) if values else None
@@ -473,7 +477,7 @@ def _summarise_rows(
         "median_agentification_coverage": _median(r["agentification_coverage"] for r in rows),
         "median_failure_rate_degradation": _median(r["failure_rate_degradation"] for r in rows),
         "total_pareto_members": sum(1 for r in rows if r["is_pareto"]),
-        "median_d_pareto": _sum(r["d_pareto"] for r in rows),
+        "median_d_pareto": _mean(r["d_pareto"] for r in rows),
         "candidate_count": len(rows),
         "runtime_condition_count": len({r["runtime_condition"] for r in rows}),
         "failure_metric_count": sum(1 for r in rows if r["failure_rate_degradation"] is not None),
