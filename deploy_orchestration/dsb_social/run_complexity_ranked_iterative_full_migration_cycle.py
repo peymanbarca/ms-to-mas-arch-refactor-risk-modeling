@@ -347,7 +347,7 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
 subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
 
 # -------------------------- Apply ranking strategy -------------------------
-migration_order_strategy = "Complexity_Based" # ["Ranked", "Reverse_Ranked", "Random", "Dependency_Based", "Complexity_Based"]
+migration_order_strategy = "Ranked"
 
 # ----------------- RUNTIME Configurations ----------------
 LLM = ["llama3.2:3b"] # "llama3.2:3b" or "qwen3:14b"
