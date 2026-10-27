@@ -188,5 +188,5 @@ for col_idx, metric in enumerate(metric_names):
         ax.set_xlabel("Benchmark", fontweight="bold", fontsize=10)
 
 plt.tight_layout()
-plt.savefig("generated_figs/agentification_coverage_degradation_models_benchmarks.png", dpi=400, bbox_inches="tight")
+plt.savefig("generated_figs/agentification_coverage_degradation_models_benchmarks2.png", dpi=400, bbox_inches="tight")
 plt.show()

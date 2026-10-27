@@ -168,7 +168,7 @@ The script itself loops over various runtime conditions for model setting and co
 
 
 
-# Multi-objective architecture optimization
+# Run Multi-objective architecture optimization
 
 ### 1. Plot architecture candidate pool trade-off space
 The full results obtained from previous step (cross-strategy architecture candidate pool) should be aggregated for all 4 strategies across all 8 runtime conditions in a json file.
@@ -176,17 +176,75 @@ The current architecture candidate pool result is available at figures/results/a
 
 To plot the scatter plots for each benchmark and runtime condition to demonstrate trade-space between latency inflation, quality deviation, and agentification coverage:
 
-```python
+```bash
 
 cd figures
+
 python3 plot_cross_agentification_strategy_arch_pool.py
 
 ```
 
 The resulting figure is generated in generated_figs/agentification_strategy_arch_pool_tradeoffs.png
 
-### 2. Perform and plot three-objective Pareto analysis with exhaustive Pareto filtering
+### 2. Perform and plot three-objective Pareto analysis with exhaustive Pareto filtering 
 
 
-### 3. Perform and compare results of alternative optimizations with Pareto analysis
+- Exact Pareto filtering on architecture candidate pool results to only obtain Pareto frontier
+```bash
 
+cd figures
+
+python3 architecture_opt_pareto_filter.py --input results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json
+
+```
+
+- Exact Pareto filtering on architecture candidate pool results to obtain and plot Pareto frontier
+```bash
+
+cd figures
+
+python3 architecture_opt_pareto_filter_plot.py --input results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json
+
+```
+
+- Calculate comparisons of strategies contribution to the Pareto frontier
+  
+```bash
+cd figures
+
+cd pareto_output && python3 calculate_agentification_strategies_metrics.py --raw ../results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json --pareto pareto_fronts.json --outdir table_iii_output
+
+```
+
+### 3. Perform and compare results of alternative optimization methods with Pareto analysis
+
+- Obtain results of alternative optimization methods 
+  
+```bash
+cd figures
+
+python3 architecture_opt_alternative.py \
+    --raw results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json \
+    --pareto pareto_output/pareto_fronts.json \
+    --outdir alternative_optimization_output \
+    --weight-step 0.1 \
+    --delta-l 1.0 \
+    --delta-qa 0.1 \
+    --slo-epsilon 2.0 \
+    --ignore-slo-constraint
+
+```
+
+- Calculate comparisons of alternative optimization with the Pareto frontier
+  
+```bash
+cd figures
+
+cd alternative_optimization_output && python3 calculate_alternative_opt_metrics.py \
+    --raw ../results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json \
+    --pareto ../pareto_output/pareto_fronts.json \
+    --lex lexicographic_selections.csv \
+    --weighted weighted_sum_selections.csv \
+    --outdir table_iv_output
+
+```
