@@ -278,5 +278,5 @@ fig.text(
 plt.subplots_adjust(top=0.90, bottom=0.10, left=0.04, right=0.98, hspace=0.25, wspace=0.20)
 
 # Save and show plot
-plt.savefig("generated_figs/agentification_strategy_arch_pool_tradeoffs.png", dpi=300, bbox_inches='tight')
+plt.savefig("generated_figs/agentification_strategy_arch_pool_tradeoffs2.png", dpi=300, bbox_inches='tight')
 # plt.show()
