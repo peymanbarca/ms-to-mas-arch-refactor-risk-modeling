@@ -150,7 +150,7 @@ def build_args(services, agents, model, t):
     Convert lists to CLI format:
     services=svc1:8000,svc2:8001
     agents=agent1:9000,agent2:9001
-    model=qwen3:14b
+    model=llama3:8b
     temperature=0.7
     """
     svc_pairs = []
@@ -334,13 +334,13 @@ def run_experiment_for_step(migration_order, step_num, predicate_mode, governanc
 
 
 # -------------------------- Apply ranking strategy -------------------------
-migration_order_strategy = "Complexity_Based" # ["Ranked", "Reverse_Ranked", "Random", "Dependency_Based", "Complexity_Based"]
+migration_order_strategy = "Ranked" 
 
 
 # ----------------- RUNTIME Configurations ----------------
-LLM = ["llama3.2:3b"] # "llama3.2:3b" or "qwen3:14b"
-T = [0.0] # 0 or 0.8
-CONCURRENCY_RATE = [100] # concurrent requests
+LLM = ["llama3.2:3b", "llama3:8b"] # "llama3.2:3b" or "llama3:8b"
+T = [0.0, 0.8] # 0 or 0.8
+CONCURRENCY_RATE = [20, 100] # concurrent requests
 
     
 temporal_propagation_enabled = True

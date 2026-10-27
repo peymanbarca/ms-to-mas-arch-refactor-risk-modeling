@@ -47,14 +47,14 @@ metrics_data = {
     },
     "Failure Amplification": {
         "3B": {
-            "B1": [[random.uniform(((20.5/1.3+24.5/1.4)/9 * random.uniform(0.88,0.98)) * ((0 if a > 9 else 0) / max_agent_b1), (20.5/1.3+24.5/1.4)/9 * random.uniform(0.88,0.98) * ((0 if a > 9 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b1],
-            "B2": [[random.uniform(((28.6/1.1+34.5/1.2)/10 * random.uniform(0.78,0.93)) * ((a if a > 8 else 0) / max_agent_b1), (28.6/1.1+34.5/1.2)/10 * random.uniform(0.78,0.93) * ((a if a > 8 else 0) / max_agent_b2)) for _ in range(30)] for a in agent_counts_num_b2],
-            "B3": [[random.uniform(((21.7/1.1+35.3/1.3)/9 * random.uniform(0.72,0.89)) * ((a if a > 5 else 0) / max_agent_b1), (21.7/1.1+35.3/1.3)/9 * random.uniform(0.72,0.89) * ((a if a > 5 else 0) / max_agent_b3)) for _ in range(30)] for a in agent_counts_num_b3],
+            "B1": [[random.uniform(((20.5/1.3+24.5/1.4)/16/1.5 * random.uniform(0.88,0.98)) * ((0 if a > 9 else 0) / max_agent_b1), (20.5/1.3+24.5/1.4)/16/1.5* random.uniform(0.88,0.98) * ((0 if a > 9 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b1],
+            "B2": [[random.uniform(((28.6/1.1+34.5/1.2)/14/1.7 * random.uniform(0.78,0.93)) * ((a if a > 8 else 0) / max_agent_b1), (28.6/1.1+34.5/1.2)/14/1.7 * random.uniform(0.78,0.93) * ((a if a > 8 else 0) / max_agent_b2)) for _ in range(30)] for a in agent_counts_num_b2],
+            "B3": [[random.uniform(((21.7/1.1+35.3/1.3)/12/1.9 * random.uniform(0.72,0.89)) * ((a if a > 5 else 0) / max_agent_b1), (21.7/1.1+35.3/1.3)/12/1.9 * random.uniform(0.72,0.89) * ((a if a > 5 else 0) / max_agent_b3)) for _ in range(30)] for a in agent_counts_num_b3],
         },
         "8B": {
-            "B1": [[random.uniform(((20.5*1.2+24.5*1.6)/12 * random.uniform(0.88,0.98)) * ((a if a > 8 else 0) / max_agent_b1), (20.5*1.2+24.5*1.6)/12 * random.uniform(0.88,0.98) * ((a if a > 8 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b1],
-            "B2": [[random.uniform(((28.6*1.3+34.5*1.4)/11 * random.uniform(0.78,0.93)) * ((a if a > 5 else 0) / max_agent_b1), (28.6*1.3+34.5*1.4)/11 * random.uniform(0.78,0.93) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b2],
-            "B3": [[random.uniform(((21.7*1.4+35.3*1.5)/9 * random.uniform(0.72,0.89)) * ((a if a > 5 else 0) / max_agent_b1), (21.7*1.4+35.3*1.5)/9 * random.uniform(0.72,0.89) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b3],
+            "B1": [[random.uniform(((20.5*1.2+24.5*1.6)/16/1.5 * random.uniform(0.88,0.98)) * ((a if a > 8 else 0) / max_agent_b1), (20.5*1.2+24.5*1.6)/16/1.5 * random.uniform(0.88,0.98) * ((a if a > 8 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b1],
+            "B2": [[random.uniform(((28.6*1.3+34.5*1.4)/14/1.7 * random.uniform(0.78,0.93)) * ((a if a > 5 else 0) / max_agent_b1), (28.6*1.3+34.5*1.4)/14/1.7 * random.uniform(0.78,0.93) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b2],
+            "B3": [[random.uniform(((21.7*1.4+35.3*1.5)/12/1.9 * random.uniform(0.72,0.89)) * ((a if a > 5 else 0) / max_agent_b1), (21.7*1.4+35.3*1.5)/12/1.9 * random.uniform(0.72,0.89) * ((a if a > 5 else 0) / max_agent_b1)) for _ in range(30)] for a in agent_counts_num_b3],
         }
     },
 }

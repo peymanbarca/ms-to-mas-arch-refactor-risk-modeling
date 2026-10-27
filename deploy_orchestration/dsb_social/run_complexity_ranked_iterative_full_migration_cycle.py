@@ -350,9 +350,9 @@ subprocess.run("rm -f *.log", shell=True, cwd=".", check=True)
 migration_order_strategy = "Ranked"
 
 # ----------------- RUNTIME Configurations ----------------
-LLM = ["llama3.2:3b"] # "llama3.2:3b" or "qwen3:14b"
-T = [0.0] # 0 or 0.8
-CONCURRENCY_RATE = [100] # concurrent requests
+LLM = ["llama3.2:3b", "llama3:8b"] # "llama3.2:3b" or "llama3:8b"
+T = [0.0, 0.8] # 0 or 0.8
+CONCURRENCY_RATE = [20, 100] # concurrent requests
     
 temporal_propagation_enabled = False
 if migration_order_strategy != 'Ranked':

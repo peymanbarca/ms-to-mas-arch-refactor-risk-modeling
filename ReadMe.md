@@ -1,4 +1,4 @@
-# Stabilizing Agentification (Architecture Refactoring) of Microservice Systems To LLM-Based Agentic-AI Systems
+# Hybrid service-agent architecture multi-objective optimization
 
 ## Microservice System Benchmarks:
 
@@ -97,7 +97,8 @@ The ollama server should be installed first, then ready to be started (with infe
 
 There is a **deploy-local.sh** script in the deploy_orchestration folder for each benchmark, which receives the list of service (with ports) and agents to deploy each component as service or AI agent.  
 
-## Deployment of microservice baseline and gather its metrics
+
+# Deployment of microservice baseline and gather its metrics
 
 1-  **Google Online Boutique Microservices**
 
@@ -145,171 +146,47 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
 -----------------------------
 
 
-# Ablation Study
 
-### Running migration loops for all internal baselines, by deployment of hybrid architectures (at each migration step) and gather step-wise and complete metrics 
+# Create cross-strategy architecture candidate pool (gather results of different agentification strategies)
 
-For each baseline migration cycle based on a ranking strategy, acceptability predicate mode, and governance mechanism, the outcome metrics should be gathered, and then be aggregated.
+### 1. Fixed hybrid architecture proposals (orchestrator, non-orchestrator, user-interacting agentification methods):
 
+For each strategy, the resulting target final architecture should be deployed (using **deploy-local.sh** script which allows deploy any component as service or agent, commands are available separately for each strategy). Also the model and temperature can be selected for different runtime conditions.
 
-### Step 1: Run all internal baselines and proposed migration loops
-
-**Run full migration cycle by looping over model size (x2), temperature (x2), concurrency levels (x2), ranking strategy (x6) (here with equal weights of risk metrics), predicate mode (x4) and governance mode (x3)**
-
-### **Totally 576 full migration cycles**
-
-Hence there are total 576 full migration cycle experiments for each benchmark.
-
-For each migration step for each of baselines or the proposed method, the target hybrid architecture is deployed locally (internally using **deploy-local.sh** script explained before), the full multi-trial evaluation is performed and all outcome metrics are gathered), and then the architecture is shutdown (internally using shutdown-local.sh script besides deploy-local.sh) to be ready for next step. The full procedure is automated by these DevOps based scripts and be run for all migration cycles for each baseline, in each benchmark, by only running the **baseline_ablation_progressive_refactor_orchestrator.py** python script as below:
+The experiment runner script (available for each benchmark in its folder in refactored_architecture folder as **exp_runner.py**) should be executed on the deployed architecture with a workload with total requests (trials) and concurrency level to find the quality, latency, failure deviation, to obtain the QA / latency deviations.
 
 
 
-1-  **Google Online Boutique Microservices**
-
- ```bash   
-    cd deploy_orchestration/google_ms
-    
-    python3 baseline_ablation_progressive_refactor_orchestrator.py
-
-    
-    # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy.
-```
-
-2-  **RetailBen**
-
- ```bash   
-    cd deploy_orchestration/retailben
-    
-    python3 baseline_ablation_progressive_refactor_orchestrator.py
-
-    
-    # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy.
-```
-
-3-  **DSB-Social-Network**
-
- ```bash   
-    cd deploy_orchestration/dsb_social
-    
-    python3 baseline_ablation_progressive_refactor_orchestrator.py
-
-    
-    # the full evaluation results will be gathered in refactored_architecture/dsb_social/results folder, separately under subfolder named with each ranking strategy.
-```
-
-### Step 2: Aggregate and analyze ablation results 
-
-To obtain gain of the proposed method compared to alternative weaker internal strategies: e.g. partial predicate/governance or other migration orders.
-
-1-  **Google Online Boutique Microservices**
-
-```bash
-    cd refactored_architecture/google_ms
-
-    # aggregate all individual results for each ranking strategy
-    python3 aggregate_results.py
-
-    # analyze all aggregated results, to find the best, worst, selective strategy, and improvement with CI
-    python3 analyze_results.py
-```
+### 2. Complexity-ranked predicate-driven iterative refactoring 
 
 
-2-  **RetailBen**
+Should change the acceptance thresholds for QA (epsilon_qa) and latency deviation (epsilon_l) based on grid search in **run_complexity_ranked_iterative_full_migration_cycle.py** script for each benchmark available in deploy_orchestration folder, to run full migration cycle with given thresholds pair and obtain the final architecture and its deviation for each thresholds pair.
 
-```bash
-    cd refactored_architecture/retailben
-
-    # aggregate all individual results for each ranking strategy
-    python3 aggregate_results.py
-
-    # analyze all aggregated results, to find the best, worst, selective strategy, and improvement with CI
-    python3 analyze_results.py
-```
-
-3-  **DSB-Social-Network**
-
-```bash
-    cd refactored_architecture/dsb_social
-
-    # aggregate all individual results for each ranking strategy
-    python3 aggregate_results.py
-
-    # analyze all aggregated results, to find the best, worst, selective strategy, and improvement with CI
-    python3 analyze_results.py
-```
-
---------------------------
-
-# Evaluate external baselines final architecture viability (scalability envelope and agentification ratio)
-
-For each baseline, the resulting final architecture should be deployed (using deploy-local.sh script which allows deploy any component as service or agent), and the workload experiment runner (available for each benchmark in its folder in refactored_architecture folder) should be executed on the architecture with varying concurrency level (u) (starting 10 and go up by 5 each time) to find the u_max (maximum concurrency level which the final architecture is still accepted).
-
-### 1. External baselines (hybrid architecture proposals: orchestrator, non-orchestrator, user-interacting agentification methods) evaluations:
-The target architecture is also deployed in the same way and be evaluated by the same workload experiment runner, as late-stage evaluation (by using former exp_runner.py script). So there's no step-wise regression test for these baselines nor incremental migration. The evolution is all at once with only one system regression.
-
-**The migration can be integrated with our framework (incremental stepwise predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.**
-For this purpose, you should manually deploy the steps of the given fixed architecture proposals based on ranked order obtained previously for each benchmark, and at each step manually run exp_runner of each benchmark to obtain the step acceptance.
-Each full migration cycle towards the proposed hybrid architecture should be performed 30 times to obtain statistical results.
-
-### 2. The Strangler pattern evaluations
-
-At each step, deploy the target (hybrid) architecture using to former deployment shell script (deploy-local.sh). However, two version of each component should be deployed: 
-
-- For each step, the target agentification component should be deployed as both service (v1) and agent (v2) on different ports to handle traffic sharing among service and agent version. 
-- For other components of each step, the component should be deployed for both v1 and v2 on different ports as agent if it was previously accepted to be agentified, otherwise both as service.
-
-#### With Local functional testing
-Strangler pattern incrementally migrate each service, but at each step only performs local functional testing for the migrating service (by running **local_experiment_runner.py script** in each agent folder in each benchmark in the refactored architecture folder), rather than system wide regression analysis (former exp_runner.py script).
-
-The results at this stage should be manually tested for each functional testing of each migrating service at each step to accept or reject that step.
-
-#### Integration with our stabilization framework
-
-**The migration itself is incremental but with arbitrary order and local functional regression analysis at the component level, and can be integrated with our framework (predicate-driven system-wide regression analysis + Risk-aware migration order) to results in safer migration and final architecture while maintaining high coverage.** 
-For system-wide regression analysis purpose, use exp_runner_strangler.py for experiment runner that generates workload to be distributed among services and agents for each component based on a predefined rate. 
+The script itself loops over various runtime conditions for model setting and concurrency levels, and runs the experiment runner with desired concurrency level and workload requests for both intermediate regression analysis and final architecture evaluation.
 
 --------------------------
 
 
-## Run Explainability (weights ablation (x7) + Shapley-based analysis (x32) to find contribution), Robustness (by Monte Carlo simulation with weights sampling from Dirichlet simplex distribution (x100)) and Tuning experiments (by grid search of weights to minimize total disturbances)
 
+# Multi-objective architecture optimization
 
+### 1. Plot architecture candidate pool trade-off space
+The full results obtained from previous step (cross-strategy architecture candidate pool) should be aggregated for all 4 strategies across all 8 runtime conditions in a json file.
+The current architecture candidate pool result is available at figures/results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json
 
+To plot the scatter plots for each benchmark and runtime condition to demonstrate trade-space between latency inflation, quality deviation, and agentification coverage:
 
-1-  **Google Online Boutique Microservices**
+```python
 
-```bash
-    cd deploy_orchestration/google_ms
-    
-    python3 weight_study_progressive_refactor_orchestrator.py
+cd figures
+python3 plot_cross_agentification_strategy_arch_pool.py
 
-    
-    # the full evaluation results will be gathered in refactored_architecture/google_ms/results folder, separately under subfolder named with each ranking strategy, then analyzed manually.
 ```
 
-2-  **RetailBen**
+The resulting figure is generated in generated_figs/agentification_strategy_arch_pool_tradeoffs.png
 
-```bash
-    cd deploy_orchestration/retailben
-    
-    python3 weight_study_progressive_refactor_orchestrator.py
-
-    
-    # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy, then analyzed manually
-```
-
-3-  **DSB-Social-Network**
-
-```bash
-    cd deploy_orchestration/dsb_social
-    
-    python3 weight_study_progressive_refactor_orchestrator.py
-
-    
-    # the full evaluation results will be gathered in refactored_architecture/retailben/results folder, separately under subfolder named with each ranking strategy, then analyzed manually
-```
+### 2. Perform and plot three-objective Pareto analysis with exhaustive Pareto filtering
 
 
-## Run Predicate Threshold Sensitivity Analysis
+### 3. Perform and compare results of alternative optimizations with Pareto analysis
 
-Should change the thresholds based on 4 given policies (latency-first, QA-first, permissive) in **cycle using run_full_migration_cycle_once.py** for each benchmark available in deploy_orchestration folder, to run full migration cycle with given thresholds and obtain the final architecture for each policy.
