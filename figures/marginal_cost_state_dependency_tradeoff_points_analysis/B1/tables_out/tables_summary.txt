@@ -1,0 +1,88 @@
+TABLE VI  (RQ1) state-conditioned marginal costs
+benchmark runtime  rho  N_eligible   me_L  me_L_min  me_L_max   Ve_L  Ve_L_min  Ve_L_max  N_SD_L  R_SD_L  me_QA  me_QA_min  me_QA_max  Ve_QA  Ve_QA_min  Ve_QA_max  N_SD_QA  R_SD_QA  me_F  me_F_min  me_F_max  Ve_F  Ve_F_min  Ve_F_max  N_SD_F  R_SD_F
+       B1      C1 rho1           6 25.193    18.525    41.555  7.621     0.281    17.198       4   0.667  0.000      0.000      5.175  0.023      0.000     11.416        2    0.333 0.203     0.100     0.836 0.104     0.003     0.452       3   0.500
+       B1      C2 rho2           6 32.321    22.679    55.578  7.353     0.130     9.202       4   0.667  0.000      0.000      3.833  0.000      0.000      5.630        2    0.333 0.332     0.103     1.077 0.021     0.001     0.237       2   0.333
+       B1      C3 rho3           6 25.026    18.555    41.347  7.158     0.384    18.095       4   0.667  0.000      0.000      6.667  0.015      0.000     11.452        2    0.333 0.203     0.103     1.181 0.106     0.012     0.440       3   0.500
+       B1      C4 rho4           6 32.563    22.146    56.368  7.640     0.221     9.372       4   0.667  0.000      0.000      6.606  0.000      0.000      5.612        2    0.333 0.328     0.102     1.441 0.018     0.009     0.257       2   0.333
+       B1      C5 rho5           6 31.966    22.178    69.200  7.351     0.103     9.162       4   0.667  0.000      0.000      0.000  0.000      0.000      0.000        0    0.000 0.333     0.094     0.847 0.017     0.008     0.241       2   0.333
+       B1      C6 rho6           6 49.797    23.335    96.100 10.654     0.038    16.910       4   0.667  0.000      0.000      0.000  0.000      0.000      0.000        0    0.000 0.908     0.102     1.408 0.715     0.003     0.941       4   0.667
+       B1      C7 rho7           6 32.374    22.296    69.229  7.089     0.338     8.336       4   0.667  0.000      0.000      0.000  0.000      0.000      0.000        0    0.000 0.329     0.099     0.840 0.011     0.001     0.247       2   0.333
+       B1      C8 rho8           6 49.927    23.171    96.218 10.692     0.228    16.522       4   0.667  0.000      0.000      0.000  0.000      0.000      0.000        0    0.000 0.910     0.101     1.415 0.721     0.010     0.967       4   0.667
+
+TABLE VII (RQ2) state-induced admission classes and flips under theta_ref
+benchmark runtime  rho  N_eligible  N_pairs  N_always_acc  N_always_rej  N_state_depends  N_indet  N_flips  R_state_flip_pct  N_flips_conclusive  R_state_flip_conclusive_pct
+       B1      C1 rho1           6      101             1             1                4        0       30            29.703                  30                       29.703
+       B1      C2 rho2           6       36             1             2                3        0       10            27.778                  10                       27.778
+       B1      C3 rho3           6       84             1             1                4        0       27            32.143                  27                       32.143
+       B1      C4 rho4           6       36             1             2                3        0       10            27.778                  10                       27.778
+       B1      C5 rho5           6       36             1             1                4        0       13            36.111                  13                       36.111
+       B1      C6 rho6           6       44             0             3                3        0        9            20.455                   9                       20.455
+       B1      C7 rho7           6       36             1             1                4        0       13            36.111                  13                       36.111
+       B1      C8 rho8           6       44             0             3                3        0        9            20.455                   9                       20.455
+
+TABLE VIII (RQ2) trade-off point effect classes
+benchmark runtime  rho  N_tradeoff  N_budget  N_interaction  N_mixed  N_unclassified  S_tradeoff  S_budget  S_interaction  S_mixed
+       B1      C1 rho1          30         8              0       22               0           4         2              0        3
+       B1      C2 rho2          10         4              0        6               0           3         2              0        2
+       B1      C3 rho3          27         8              0       19               0           4         2              0        3
+       B1      C4 rho4          10         4              0        6               0           3         2              0        2
+       B1      C5 rho5          13         5              0        8               0           4         3              0        3
+       B1      C6 rho6           9         5              0        4               0           3         3              0        1
+       B1      C7 rho7          13         5              0        8               0           4         3              0        3
+       B1      C8 rho8           9         5              0        4               0           3         3              0        1
+
+  unique services per effect:
+benchmark runtime S_tradeoff_list S_budget_list S_interaction_list S_mixed_list
+       B1      C1     s5;s6;s7;s8         s5;s8                        s6;s7;s8
+       B1      C2        s5;s7;s8         s5;s8                           s7;s8
+       B1      C3     s5;s6;s7;s8         s5;s8                        s6;s7;s8
+       B1      C4        s5;s7;s8         s5;s8                           s7;s8
+       B1      C5     s5;s6;s7;s8      s5;s6;s8                        s6;s7;s8
+       B1      C6        s4;s5;s7      s4;s5;s7                              s7
+       B1      C7     s5;s6;s7;s8      s5;s6;s8                        s6;s7;s8
+       B1      C8        s4;s5;s7      s4;s5;s7                              s7
+
+TABLE IX  (RQ2) policy-induced admission sensitivity
+benchmark runtime  rho  N_service_state  R_policy_flip  R_policy_accept  R_uncertain
+       B1      C1 rho1               33          0.381            0.467        0.009
+       B1      C2 rho2               23          0.452            0.417        0.010
+       B1      C3 rho3               31          0.381            0.450        0.009
+       B1      C4 rho4               23          0.381            0.400        0.007
+       B1      C5 rho5               23          0.452            0.417        0.007
+       B1      C6 rho6               25          0.282            0.250        0.003
+       B1      C7 rho7               23          0.452            0.417        0.011
+       B1      C8 rho8               25          0.282            0.250        0.003
+
+TABLE X   (RQ2) rejection trigger rates of the CRI trajectories
+benchmark runtime  rho  N_rejected  R_gate_L  R_gate_QA  R_gate_F  R_gate_L_beyond  R_gate_QA_beyond  R_gate_F_beyond
+       B1      C1 rho1         265     0.992      0.121     0.015            0.992             0.121            0.000
+       B1      C2 rho2         290     1.000      0.128     0.000            0.983             0.128            0.000
+       B1      C3 rho3         269     0.993      0.164     0.033            0.978             0.164            0.033
+       B1      C4 rho4         290     1.000      0.169     0.052            1.000             0.169            0.052
+       B1      C5 rho5         290     1.000      0.000     0.000            1.000             0.000            0.000
+       B1      C6 rho6         310     1.000      0.000     0.387            1.000             0.000            0.387
+       B1      C7 rho7         290     1.000      0.000     0.000            1.000             0.000            0.000
+       B1      C8 rho8         310     1.000      0.000     0.387            1.000             0.000            0.387
+
+Notes
+- Predecessor states: steps.csv prev states (paper Eq. 18). Eligible service = at least 2 predecessor states.
+- Table VI: me = median over eligible services of the median marginal cost over their predecessor
+  states (me_*_min / me_*_max give the min-to-max range of those per-service medians; Ve_*_min /
+  Ve_*_max give the same range for the per-service V); Ve = median over eligible services of max |m(X)-m(X')|; N_SD = services with at least one
+  Holm significant contrast (all services x state pairs x metrics of one benchmark/runtime, alpha=0.05,
+  10,000 bootstrap replicates); R_SD = N_SD / N_eligible. L in %, QA and F in pp.
+- Table VII: theta_ref = (eps_L=90.0%, tau_QA=100.0% => dQA <= 0.0 pp, eps_SLO=2.0%). Service classes
+  follow Eq. (27). N_flips counts predecessor pairs with different 3-valued admission label; the
+  *_conclusive columns count admitted-vs-rejected pairs only (the ones Table VIII classifies).
+- Table VIII: a conclusive flip pair (admitted at Xa, rejected at Xr) is attributed using the metrics
+  beyond their bound at the rejected candidate. 'interaction' contributes if the marginal cost is
+  significantly larger at Xr (Holm contrast of Table VI), 'budget' contributes if the predecessor cost
+  med(Xr)-med(Xa) is significantly > 0 (bootstrap, Holm over the unique predecessor pairs of the
+  runtime). both -> mixed, neither -> unclassified.
+- Table IX: candidate X+{s} of every eligible (s, X) replayed under all policies of steps.csv.
+  R_policy_flip = median over (s,X) of the share of policy pairs with different 3-valued labels;
+  R_policy_accept = median share of policies admitting; R_uncertain = share of uncertain labels over
+  all (s, X, policy) evaluations.
+- Table X: over all rejected CRI steps (accepted_online = False); R_gate_q = share of rejected steps whose
+  median violates the gate of q (this is the rule that reproduces accepted_online exactly). The
+  *_beyond columns use the exact-CI label 'beyond' instead of the median.

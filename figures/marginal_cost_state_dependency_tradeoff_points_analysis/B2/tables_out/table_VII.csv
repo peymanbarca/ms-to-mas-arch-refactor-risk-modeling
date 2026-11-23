@@ -1,0 +1,9 @@
+benchmark,runtime,rho,N_eligible,N_pairs,N_always_acc,N_always_rej,N_state_depends,N_indet,N_flips,R_state_flip_pct,N_flips_conclusive,R_state_flip_conclusive_pct
+B2,C1,rho1,7,182,1,2,4,0,55,30.2198,55,30.2198
+B2,C2,rho2,7,106,0,2,4,1,33,31.1321,29,27.3585
+B2,C3,rho3,7,224,1,2,4,0,66,29.4643,66,29.4643
+B2,C4,rho4,7,106,0,2,4,1,33,31.1321,29,27.3585
+B2,C5,rho5,7,106,0,1,5,1,37,34.9057,33,31.1321
+B2,C6,rho6,7,47,0,4,3,0,12,25.5319,12,25.5319
+B2,C7,rho7,7,106,0,1,5,1,37,34.9057,33,31.1321
+B2,C8,rho8,7,47,0,4,3,0,12,25.5319,12,25.5319

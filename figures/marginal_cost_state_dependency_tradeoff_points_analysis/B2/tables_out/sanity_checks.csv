@@ -1,0 +1,9 @@
+benchmark,runtime,n_states,runs_per_state_min,runs_per_state_max,n_cri_steps,n_policies,online_vs_median_rule_mismatch,online_vs_exact_ci_admission_mismatch,n_tests,n_tests_significant,n_pred_states_total,eligible,seconds
+B2,C1,54,30,30,600,60,0,9,546,0,50,"s4,s5,s6,s7,s8,s9,s10",37.4
+B2,C2,45,30,30,600,60,0,0,318,124,41,"s4,s5,s6,s7,s8,s9,s10",24.5
+B2,C3,59,30,30,600,60,0,0,672,0,55,"s4,s5,s6,s7,s8,s9,s10",45.1
+B2,C4,45,30,30,600,60,0,0,318,126,41,"s4,s5,s6,s7,s8,s9,s10",23.3
+B2,C5,45,30,30,600,60,0,0,318,99,41,"s4,s5,s6,s7,s8,s9,s10",21.7
+B2,C6,33,30,30,600,60,0,0,141,36,29,"s4,s5,s6,s7,s8,s9,s10",10.6
+B2,C7,45,30,30,600,60,0,0,318,97,41,"s4,s5,s6,s7,s8,s9,s10",17.6
+B2,C8,33,30,30,600,60,0,0,141,39,29,"s4,s5,s6,s7,s8,s9,s10",9.8

@@ -1,3 +1,36 @@
+# Analyze marginal costs, tradeoff points (admission flips), state dependency
+
+
+- B1 (Google online boutique)
+```bash
+
+cd marginal_cost_state_dependency_tradeoff_points_analysis/B1
+
+python3 tables_analysis.py --runs ../../../deploy_orchestration/google_ms/cri_policy_grid_results_30rep/runs.csv --steps ../../../deploy_orchestration/google_ms/cri_policy_grid_results_30rep/steps.csv --out tables_out --benchmark B1
+
+```
+
+- B2 (RetailBen)
+```bash
+
+cd marginal_cost_state_dependency_tradeoff_points_analysis/B2
+
+python3 tables_analysis.py --runs ../../../deploy_orchestration/retailben/cri_policy_grid_results_30rep/runs.csv --steps ../../../deploy_orchestration/retailben/cri_policy_grid_results_30rep/steps.csv --out tables_out --benchmark B2
+
+```
+
+### Plot marginal cost and its state dependency across all benchmarks
+
+```bash
+
+
+python3 plot_marginal_cost_states.py --csv marginal_cost_state_dependency_tradeoff_points_analysis/B1/tables_out/table_VI.csv marginal_cost_state_dependency_tradeoff_points_analysis/B2/tables_out/table_VI.csv --labels B1 B2 --out generated_figs
+
+```
+
+
+--------------------------------------------------------
+
 # Run Optimization Scripts
 
 ## Pareto analysis

@@ -1,0 +1,9 @@
+benchmark,runtime,rho,N_tradeoff,N_budget,N_interaction,N_mixed,N_unclassified,S_tradeoff,S_tradeoff_list,S_budget,S_budget_list,S_interaction,S_interaction_list,S_mixed,S_mixed_list
+B1,C1,rho1,30,8,0,22,0,4,s5;s6;s7;s8,2,s5;s8,0,,3,s6;s7;s8
+B1,C2,rho2,10,4,0,6,0,3,s5;s7;s8,2,s5;s8,0,,2,s7;s8
+B1,C3,rho3,27,8,0,19,0,4,s5;s6;s7;s8,2,s5;s8,0,,3,s6;s7;s8
+B1,C4,rho4,10,4,0,6,0,3,s5;s7;s8,2,s5;s8,0,,2,s7;s8
+B1,C5,rho5,13,5,0,8,0,4,s5;s6;s7;s8,3,s5;s6;s8,0,,3,s6;s7;s8
+B1,C6,rho6,9,5,0,4,0,3,s4;s5;s7,3,s4;s5;s7,0,,1,s7
+B1,C7,rho7,13,5,0,8,0,4,s5;s6;s7;s8,3,s5;s6;s8,0,,3,s6;s7;s8
+B1,C8,rho8,9,5,0,4,0,3,s4;s5;s7,3,s4;s5;s7,0,,1,s7

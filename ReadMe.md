@@ -1,4 +1,4 @@
-# Hybrid service-agent architecture multi-objective optimization
+# Hybrid service-agent architecture state-dependent tradeoff points & migration endpoint multi-objective optimization
 
 ## Microservice System Benchmarks:
 
@@ -108,6 +108,7 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
     ./deploy-local.sh services=ad_service:5057,cart_service:5054,checkout_service:5050,currency_service:5053,email_service:5056,payment_service:5052,product_catalog_service:5055,recommendation_service:5058,shipping_service:5051 agents=
 
     # 2. Evaluate with workload and gather metrics
+    # from root of project
     python3 -m ms_baseline.google_ms.exp_runner
     
     # the full evaluation results will be gathered in ms_baseline/google_ms/results folder.
@@ -123,6 +124,7 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
     ./deploy-local.sh services=payment_service:8007,inventory_service:8001,shipment_service:8006,shopping_cart_service:8003,pricing_service:8002,product_search_service:8008,procurement_service:8009,order_service:8000,subscription_service:8010,notification_service:8011 agents=
 
     # 2. Evaluate with workload and gather metrics
+    # from root of project
     cd ms_baseline/retailben
     python3 exp_runner.py
 
@@ -137,6 +139,7 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
     ./deploy-local.sh services=compose_post_service:9100,home_timeline_service:9099,media_service:9091 post_storage_service:9096,social_graph_service:9097,text_service:9095,unique_id_service:9090,url_shorten_service:9092,user_mention_service:9093,user_service:9094,user_timeline_service:9098,write_home_timeline_service:8999 agents=
 
     # 2. Evaluate with workload and gather metrics
+    # from root of project
     python3 -m ms_baseline.dsb_social.exp_runner --trials 5000 --concurrency 20
     
     # the full evaluation results will be gathered in ms_baseline/dsb_social/results folder.
@@ -147,7 +150,7 @@ There is a **deploy-local.sh** script in the deploy_orchestration folder for eac
 
 
 
-# Create cross-strategy architecture candidate pool (gather results of different agentification strategies)
+# Gather CRI migration states and trajectory and Construct multi-strategy final architecture (migration endpoint) candidate pool 
 
 ### 1. Fixed hybrid architecture proposals (orchestrator, non-orchestrator, user-interacting agentification methods):
 
@@ -157,20 +160,105 @@ The experiment runner script (available for each benchmark in its folder in refa
 
 
 
-### 2. Complexity-ranked predicate-driven iterative refactoring 
+### 2. CRI: Complexity-ranked predicate-driven iterative refactoring 
 
 
-Should change the acceptance thresholds for QA (epsilon_qa) and latency deviation (epsilon_l) based on grid search in **run_complexity_ranked_iterative_full_migration_cycle.py** script for each benchmark available in deploy_orchestration folder, to run full migration cycle with given thresholds pair and obtain the final architecture and its deviation for each thresholds pair.
+Run based on a grid of 60 acceptance thresholds for QA (epsilon_qa) and latency deviation (epsilon_l), with fixed SLO failure rate threshold.
+The runner script itself loops over 8 runtime conditions for model setting and concurrency levels, and runs the experiment runner with desired concurrency level and workload requests and run numbers for both intermediate regression analysis and final architecture evaluation.
 
-The script itself loops over various runtime conditions for model setting and concurrency levels, and runs the experiment runner with desired concurrency level and workload requests for both intermediate regression analysis and final architecture evaluation.
+1-  **Google Online Boutique Microservices**
+
+```bash
+    cd deploy_orchestration/google_ms
+    
+    python3 run_cri_policy_grid.py \
+    --runs-per-state 30 --endpoint-replicates 30 \
+    --out-dir ./cri_policy_grid_results_30rep
+    
+    # the full evaluation results (both for CRI trajectories and migration endpoints) will be gathered in the cri_policy_grid_results_30rep folder
+```
+
+
+2-  **RetailBen**
+
+```bash
+    cd deploy_orchestration/retailben
+    
+    python3 run_cri_policy_grid.py \
+    --runs-per-state 30 --endpoint-replicates 30 \
+    --out-dir ./cri_policy_grid_results_30rep
+    
+    # the full evaluation results (both for CRI trajectories and migration endpoints) will be gathered in the cri_policy_grid_results_30rep folder
+```
+
+3-  **DSB-Social-Network**
+
+```bash
+    cd deploy_orchestration/dsb_social
+    
+    python3 run_cri_policy_grid.py \
+    --runs-per-state 30 --endpoint-replicates 30 \
+    --out-dir ./cri_policy_grid_results_30rep
+    
+    # the full evaluation results (both for CRI trajectories and migration endpoints) will be gathered in the cri_policy_grid_results_30rep folder
+```
+
+Using the derived detail results steps.csv and runs.csv
 
 --------------------------
 
 
+# Analysis of CRI evolution trajectories under 60 acceptance policies (marginal cost,admission-flips, tradeoff points, and their state-dependency)
 
-# Run Multi-objective architecture optimization
+- Marginal cost and its state dependency analysis (aggregated and detailed service-level tables)
+
+- Admission flip (tradeoff points) and its state dependency analysis 
+
+- Policy-induced admission flip analysis
+
+
+... For each benchmark:
+
+- B1 (Google online boutique)
+```bash
+
+cd marginal_cost_state_dependency_tradeoff_points_analysis/B1
+
+python3 tables_analysis.py --runs ../../../deploy_orchestration/google_ms/cri_policy_grid_results_30rep/runs.csv --steps ../../../deploy_orchestration/google_ms/cri_policy_grid_results_30rep/steps.csv --out tables_out --benchmark B1
+
+```
+
+- B2 (RetailBen)
+```bash
+
+cd marginal_cost_state_dependency_tradeoff_points_analysis/B2
+
+python3 tables_analysis.py --runs ../../../deploy_orchestration/retailben/cri_policy_grid_results_30rep/runs.csv --steps ../../../deploy_orchestration/retailben/cri_policy_grid_results_30rep/steps.csv --out tables_out --benchmark B2
+
+```
+
+- B3 (DSB-social)
+```bash
+
+
+```
+
+### Plot marginal cost and its state dependency across all benchmarks
+
+```bash
+
+
+python3 plot_marginal_cost_states.py --csv marginal_cost_state_dependency_tradeoff_points_analysis/B1/tables_out/table_VI.csv marginal_cost_state_dependency_tradeoff_points_analysis/B2/tables_out/table_VI.csv --labels B1 B2 --out generated_figs
+
+```
+
+-----------------------------------------------------
+
+# Multi-objective architecture optimization, measure strategy contribution on Pareto set, and compare alternative optimization methods
 
 ### 1. Plot architecture candidate pool trade-off space
+Use the endpoints.csv derived from previous step for each benchmark which contains one median-quality row per runtime/policy, measured by an experiment of the acceptance policy's final committed architecture. 
+
 The full results obtained from previous step (cross-strategy architecture candidate pool) should be aggregated for all 4 strategies across all 8 runtime conditions in a json file.
 The current architecture candidate pool result is available at figures/results/agentification_strategy_arch_pool_tradeoffs_experiment_data.json
 
