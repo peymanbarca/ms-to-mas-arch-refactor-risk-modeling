@@ -11,6 +11,8 @@ deploy_orchestration_evaluation/b1_google_ms/results/*.json
 deploy_orchestration_evaluation/b1_google_ms/step_result.py
 deploy_orchestration_evaluation/b2_retailben/results/*.json
 deploy_orchestration_evaluation/b2_retailben/step_result.py
+deploy_orchestration_evaluation/b3_dsb_social/results/*.json
+deploy_orchestration_evaluation/b3_dsb_social/step_result.py
 refactored_architecture/google_ms/exp_runner_auto2.py
 refactored_architecture/retailben/exp_runner_auto2.py
 refactored_architecture/dsb_social/exp_runner_auto2.py

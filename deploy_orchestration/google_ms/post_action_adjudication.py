@@ -383,7 +383,7 @@ class PostActionAdjudicator:
                     "actual": f"{metrics.qa_rate:.4f}",
                     "threshold": f"{metrics.threshold_qa:.4f}",
                     "tolerance_band": f"±{self.criteria.delta_qa:.4f}",
-                    "status": "PASS" if metrics.qa_rate >= metrics.threshold_qa else "FAIL",
+                    "status": "PASS" if metrics.qa_rate <= metrics.threshold_qa else "FAIL",
                     "predicate_failed": metrics.qa_predicate_failed
                 },
                 "latency_p95": {
